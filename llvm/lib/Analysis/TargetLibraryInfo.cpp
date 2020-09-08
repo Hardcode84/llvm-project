@@ -63,6 +63,11 @@ static bool hasBcmp(const Triple &TT) {
   return TT.isOSFreeBSD() || TT.isOSSolaris();
 }
 
+std::string svmlMangle(StringRef FnName, const bool IsFast) {
+  std::string FullName = FnName.str();
+  return IsFast ? FullName : FullName + "_ha";
+}
+
 /// Initialize the set of available library functions based on the specified
 /// target triple. This should be carefully written so that a missing target
 /// triple gets a sane set of defaults.
@@ -1559,8 +1564,9 @@ void TargetLibraryInfoImpl::addVectorizableFunctionsFromVecLib(
   }
   case SVML: {
     const VecDesc VecFuncs[] = {
-    #define TLI_DEFINE_SVML_VECFUNCS
-    #include "llvm/Analysis/VecFuncs.def"
+    #define GET_SVML_VARIANTS
+    #include "llvm/IR/SVML.inc"
+    #undef GET_SVML_VARIANTS
     };
     addVectorizableFunctions(VecFuncs);
     break;
@@ -1580,19 +1586,52 @@ bool TargetLibraryInfoImpl::isFunctionVectorizable(StringRef funcName) const {
   return I != VectorDescs.end() && StringRef(I->ScalarFnName) == funcName;
 }
 
-StringRef TargetLibraryInfoImpl::getVectorizedFunction(StringRef F,
-                                                       unsigned VF) const {
+std::string TargetLibraryInfoImpl::getVectorizedFunction(StringRef F,
+                                                         unsigned VF,
+                                                         bool IsFast) const {
+  bool FromSVML = ClVectorLibrary == SVML;
   F = sanitizeFunctionName(F);
   if (F.empty())
-    return F;
+    return F.str();
   std::vector<VecDesc>::const_iterator I =
       llvm::lower_bound(VectorDescs, F, compareWithScalarFnName);
   while (I != VectorDescs.end() && StringRef(I->ScalarFnName) == F) {
-    if (I->VectorizationFactor == VF)
-      return I->VectorFnName;
+    if (I->VectorizationFactor == VF) {
+      if (FromSVML) {
+        return svmlMangle(I->VectorFnName, IsFast);
+      }
+      return I->VectorFnName.str();
+    }
     ++I;
   }
-  return StringRef();
+  return std::string();
+}
+
+static CallingConv::ID getSVMLCallingConv(const DataLayout &DL, const FunctionType &FType)
+{
+  assert(isa<VectorType>(FType.getReturnType()));
+  auto *VecCallRetType = cast<VectorType>(FType.getReturnType());
+  auto TypeBitWidth = DL.getTypeSizeInBits(VecCallRetType);
+  if (TypeBitWidth == 128) {
+    return CallingConv::Intel_SVML128;
+  } else if (TypeBitWidth == 256) {
+    return CallingConv::Intel_SVML256;
+  } else if (TypeBitWidth == 512) {
+    return CallingConv::Intel_SVML512;
+  } else {
+    llvm_unreachable("Invalid vector width");
+  }
+  return 0; // not reachable
+}
+
+Optional<CallingConv::ID>
+TargetLibraryInfoImpl::getVectorizedFunctionCallingConv(
+    StringRef F, const FunctionType &FTy, const DataLayout &DL) const {
+  if (ClVectorLibrary == SVML) {
+    assert(F.startswith("__svml"));
+    return getSVMLCallingConv(DL, FTy);
+  }
+  return {};
 }
 
 StringRef TargetLibraryInfoImpl::getScalarizedFunction(StringRef F,

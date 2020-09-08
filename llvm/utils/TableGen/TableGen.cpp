@@ -57,6 +57,7 @@ enum ActionType {
   GenDirectivesEnumDecl,
   GenDirectivesEnumImpl,
   GenDirectivesEnumGen,
+  GenSVMLVariants,
 };
 
 namespace llvm {
@@ -137,7 +138,9 @@ cl::opt<ActionType> Action(
         clEnumValN(GenDirectivesEnumImpl, "gen-directive-impl",
                    "Generate directive related implementation code"),
         clEnumValN(GenDirectivesEnumGen, "gen-directive-gen",
-                   "Generate directive related implementation code part")));
+                   "Generate directive related implementation code part"),
+        clEnumValN(GenSVMLVariants, "gen-svml",
+                   "Generate SVML variant function names")));
 
 cl::OptionCategory PrintEnumsCat("Options for -print-enums");
 cl::opt<std::string> Class("class", cl::desc("Print Enum list for this class"),
@@ -270,6 +273,9 @@ bool LLVMTableGenMain(raw_ostream &OS, RecordKeeper &Records) {
     break;
   case GenDirectivesEnumGen:
     EmitDirectivesGen(Records, OS);
+    break;
+  case GenSVMLVariants:
+    EmitSVMLVariants(Records, OS);
     break;
   }
 

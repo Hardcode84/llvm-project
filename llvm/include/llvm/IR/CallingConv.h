@@ -241,6 +241,11 @@ namespace CallingConv {
     /// The remainder matches the regular calling convention.
     WASM_EmscriptenInvoke = 99,
 
+    /// Intel_SVML - Calling conventions for Intel Short Math Vector Library
+    Intel_SVML128 = 100,
+    Intel_SVML256 = 101,
+    Intel_SVML512 = 102,
+
     /// The highest possible calling convention ID. Must be some 2^k - 1.
     MaxID = 1023
   };

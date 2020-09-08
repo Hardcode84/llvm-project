@@ -46,6 +46,7 @@ add_tablegen(llvm-tblgen LLVM
   SearchableTableEmitter.cpp
   SubtargetEmitter.cpp
   SubtargetFeatureInfo.cpp
+  SVMLEmitter.cpp
   TableGen.cpp
   Types.cpp
   X86DisassemblerTables.cpp

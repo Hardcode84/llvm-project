@@ -90,8 +90,7 @@ static void addMappingsFromTLI(const TargetLibraryInfo &TLI, CallInst &CI) {
   //  All VFs in the TLI are powers of 2.
   for (unsigned VF = 2, WidestVF = TLI.getWidestVF(ScalarName); VF <= WidestVF;
        VF *= 2) {
-    const std::string TLIName =
-        std::string(TLI.getVectorizedFunction(ScalarName, VF));
+    const std::string TLIName = TLI.getVectorizedFunction(ScalarName, VF, CI.getFastMathFlags().isFast());
     if (!TLIName.empty()) {
       std::string MangledName = VFABI::mangleTLIVectorName(
           TLIName, ScalarName, CI.getNumArgOperands(), VF);

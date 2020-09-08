@@ -19,3 +19,7 @@ tablegen(LLVM IntrinsicsWebAssembly.h -gen-intrinsic-enums -intrinsic-prefix=was
 tablegen(LLVM IntrinsicsX86.h -gen-intrinsic-enums -intrinsic-prefix=x86)
 tablegen(LLVM IntrinsicsXCore.h -gen-intrinsic-enums -intrinsic-prefix=xcore)
 add_public_tablegen_target(intrinsics_gen)
+
+set(LLVM_TARGET_DEFINITIONS SVML.td)
+tablegen(LLVM SVML.inc -gen-svml)
+add_public_tablegen_target(svml_gen)
