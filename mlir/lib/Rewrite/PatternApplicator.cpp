@@ -138,19 +138,26 @@ LogicalResult PatternApplicator::matchAndRewrite(
     const PDLByteCode::MatchResult *pdlMatch = nullptr;
     /// Operation specific patterns.
     if (opIt != opE)
-      bestPattern = *(opIt++);
+      bestPattern = *opIt;
     /// Operation agnostic patterns.
     if (anyIt != anyE &&
         (!bestPattern || bestPattern->getBenefit() < (*anyIt)->getBenefit()))
-      bestPattern = *(anyIt++);
+      bestPattern = *anyIt;
     /// PDL patterns.
     if (pdlIt != pdlE &&
         (!bestPattern || bestPattern->getBenefit() < pdlIt->benefit)) {
       pdlMatch = pdlIt;
-      bestPattern = (pdlIt++)->pattern;
+      bestPattern = pdlIt->pattern;
     }
     if (!bestPattern)
       break;
+
+    if (opIt != opE && bestPattern == *opIt)
+      opIt++;
+    else if (anyIt != anyE && bestPattern == *anyIt)
+      anyIt++;
+    else if (pdlIt != pdlE && bestPattern == pdlIt->pattern)
+      pdlIt++;
 
     // Check that the pattern can be applied.
     if (canApply && !canApply(*bestPattern))
