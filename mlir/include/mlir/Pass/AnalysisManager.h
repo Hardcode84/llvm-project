@@ -17,6 +17,8 @@
 #include "llvm/Support/TypeName.h"
 
 namespace mlir {
+class AnalysisManager;
+
 //===----------------------------------------------------------------------===//
 // Analysis Preservation and Concept Modeling
 //===----------------------------------------------------------------------===//
@@ -129,17 +131,17 @@ public:
 
   /// Get an analysis for the current IR unit, computing it if necessary.
   template <typename AnalysisT>
-  AnalysisT &getAnalysis(PassInstrumentor *pi) {
-    return getAnalysisImpl<AnalysisT, Operation *>(pi, ir);
+  AnalysisT &getAnalysis(PassInstrumentor *pi, AnalysisManager &am) {
+    return getAnalysisImpl<AnalysisT, Operation *>(pi, ir, am);
   }
 
   /// Get an analysis for the current IR unit assuming it's of specific derived
   /// operation type.
   template <typename AnalysisT, typename OpT>
-  typename std::enable_if<std::is_constructible<AnalysisT, OpT>::value,
-                          AnalysisT &>::type
-  getAnalysis(PassInstrumentor *pi) {
-    return getAnalysisImpl<AnalysisT, OpT>(pi, cast<OpT>(ir));
+  auto getAnalysis(PassInstrumentor *pi, AnalysisManager &am)
+      -> decltype(this->getAnalysisImpl<AnalysisT, OpT>(pi, cast<OpT>(this->ir),
+                                                        am)) {
+    return getAnalysisImpl<AnalysisT, OpT>(pi, cast<OpT>(ir), am);
   }
 
   /// Get a cached analysis instance if one exists, otherwise return null.
@@ -170,25 +172,40 @@ public:
 
 private:
   template <typename AnalysisT, typename OpT>
-  AnalysisT &getAnalysisImpl(PassInstrumentor *pi, OpT op) {
+  AnalysisT &getAnalysisImpl(PassInstrumentor *pi, OpT op,
+                             AnalysisManager &am) {
     TypeID id = TypeID::get<AnalysisT>();
 
-    typename ConceptMap::iterator it;
-    bool wasInserted;
-    std::tie(it, wasInserted) = analyses.try_emplace(id);
-
+    auto it = analyses.find(id);
     // If we don't have a cached analysis for this operation, compute it
     // directly and add it to the cache.
-    if (wasInserted) {
+    if (analyses.end() == it) {
       if (pi)
         pi->runBeforeAnalysis(getAnalysisName<AnalysisT>(), id, ir);
 
-      it->second = std::make_unique<AnalysisModel<AnalysisT>>(op);
+      bool wasInserted;
+      std::tie(it, wasInserted) =
+          analyses.try_emplace(id, constructAnalysis<AnalysisT>(am, op));
+      assert(wasInserted);
 
       if (pi)
         pi->runAfterAnalysis(getAnalysisName<AnalysisT>(), id, ir);
     }
     return static_cast<AnalysisModel<AnalysisT> &>(*it->second).analysis;
+  }
+
+  template <typename AnalysisT, typename OpT,
+            std::enable_if_t<std::is_constructible<
+                AnalysisT, OpT, AnalysisManager &>::value> * = nullptr>
+  static auto constructAnalysis(AnalysisManager &am, OpT op) {
+    return std::make_unique<AnalysisModel<AnalysisT>>(op, am);
+  }
+
+  template <typename AnalysisT, typename OpT,
+            std::enable_if_t<!std::is_constructible<
+                AnalysisT, OpT, AnalysisManager &>::value> * = nullptr>
+  static auto constructAnalysis(AnalysisManager &, OpT op) {
+    return std::make_unique<AnalysisModel<AnalysisT>>(op);
   }
 
   Operation *ir;
@@ -273,14 +290,15 @@ public:
 
   /// Query for the given analysis for the current operation.
   template <typename AnalysisT> AnalysisT &getAnalysis() {
-    return impl->analyses.getAnalysis<AnalysisT>(getPassInstrumentor());
+    return impl->analyses.getAnalysis<AnalysisT>(getPassInstrumentor(), *this);
   }
 
   /// Query for the given analysis for the current operation of a specific
   /// derived operation type.
   template <typename AnalysisT, typename OpT>
   AnalysisT &getAnalysis() {
-    return impl->analyses.getAnalysis<AnalysisT, OpT>(getPassInstrumentor());
+    return impl->analyses.getAnalysis<AnalysisT, OpT>(getPassInstrumentor(),
+                                                      *this);
   }
 
   /// Query for a cached entry of the given analysis on the current operation.
