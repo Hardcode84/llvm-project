@@ -3546,7 +3546,8 @@ void VarArgsLoweringHelper::forwardMustTailParameters(SDValue &Chain) {
   // FIXME: Only some x86_32 calling conventions support AVX512.
   if (Subtarget.useAVX512Regs() &&
       (is64Bit() || (CallConv == CallingConv::X86_VectorCall ||
-                     CallConv == CallingConv::Intel_OCL_BI)))
+                     CallConv == CallingConv::Intel_OCL_BI ||
+                     CallConv == CallingConv::Intel_SVML512)))
     VecVT = MVT::v16f32;
   else if (Subtarget.hasAVX())
     VecVT = MVT::v8f32;
@@ -37591,7 +37592,7 @@ static SDValue combineTargetShuffle(SDValue N, SelectionDAG &DAG,
       return Res;
 
     // Fold vperm2x128 subvector shuffle with an inner concat pattern.
-    // vperm2x128(concat(X,Y),concat(Z,W)) --> concat X,Y etc.  
+    // vperm2x128(concat(X,Y),concat(Z,W)) --> concat X,Y etc.
     auto FindSubVector128 = [&](unsigned Idx) {
       if (Idx > 3)
         return SDValue();

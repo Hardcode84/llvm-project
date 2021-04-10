@@ -190,7 +190,7 @@ declare float @__exp2f_finite(float) #0
 
 define void @exp2f_finite(float* nocapture %varray) {
 ; CHECK-LABEL: @exp2f_finite(
-; CHECK:    call <4 x float> @__svml_exp2f4(<4 x float> %{{.*}})
+; CHECK:    call intel_svmlcc128 <4 x float> @__svml_exp2f4(<4 x float> %{{.*}})
 ; CHECK:    ret void
 ;
 entry:
@@ -219,7 +219,7 @@ declare double @__exp2_finite(double) #0
 
 define void @exp2_finite(double* nocapture %varray) {
 ; CHECK-LABEL: @exp2_finite(
-; CHECK:    call <4 x double> @__svml_exp24(<4 x double> {{.*}})
+; CHECK:    call intel_svmlcc256 <4 x double> @__svml_exp24(<4 x double> {{.*}})
 ; CHECK:    ret void
 ;
 entry:

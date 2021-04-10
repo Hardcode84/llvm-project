@@ -164,6 +164,12 @@ public:
   /// such mapping exists, return the empty string.
   StringRef getVectorizedFunction(StringRef F, const ElementCount &VF) const;
 
+  /// Returns vectorized function custom calling convention. Returns empty
+  /// Optional if no special calling convention is needed for function.
+  Optional<CallingConv::ID>
+  getVectorizedFunctionCallingConv(StringRef F, const FunctionType &FTy,
+                                   const DataLayout &DL) const;
+
   /// Set to true iff i32 parameters to library functions should have signext
   /// or zeroext attributes if they correspond to C-level int or unsigned int,
   /// respectively.
@@ -319,6 +325,11 @@ public:
   }
   StringRef getVectorizedFunction(StringRef F, const ElementCount &VF) const {
     return Impl->getVectorizedFunction(F, VF);
+  }
+  Optional<CallingConv::ID>
+  getVectorizedFunctionCallingConv(StringRef F, const FunctionType &FTy,
+                                   const DataLayout &DL) const {
+    return Impl->getVectorizedFunctionCallingConv(F, FTy, DL);
   }
 
   /// Tests if the function is both available and a candidate for optimized code

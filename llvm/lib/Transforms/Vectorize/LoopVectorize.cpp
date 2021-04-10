@@ -4965,6 +4965,17 @@ void InnerLoopVectorizer::widenInstruction(Instruction &I, VPValue *Def,
   } // end of switch.
 }
 
+static void setVectorFunctionCallingConv(CallInst &CI, const DataLayout &DL,
+                                         const TargetLibraryInfo &TLI) {
+  Function *VectorF = CI.getCalledFunction();
+  FunctionType *FTy = VectorF->getFunctionType();
+  StringRef VFName = VectorF->getName();
+  auto CC = TLI.getVectorizedFunctionCallingConv(VFName, *FTy, DL);
+  if (CC) {
+    CI.setCallingConv(*CC);
+  }
+}
+
 void InnerLoopVectorizer::widenCallInstruction(CallInst &I, VPValue *Def,
                                                VPUser &ArgOperands,
                                                VPTransformState &State) {
@@ -5029,6 +5040,9 @@ void InnerLoopVectorizer::widenCallInstruction(CallInst &I, VPValue *Def,
 
       if (isa<FPMathOperator>(V))
         V->copyFastMathFlags(CI);
+
+      const DataLayout &DL = V->getModule()->getDataLayout();
+      setVectorFunctionCallingConv(*V, DL, *TLI);
 
       State.set(Def, V, Part);
       addMetadata(V, &I);

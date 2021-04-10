@@ -103,6 +103,9 @@ syn keyword llvmKeyword
       \ inlinehint
       \ inreg
       \ intel_ocl_bicc
+      \ intel_svmlcc128
+      \ intel_svmlcc256
+      \ intel_svmlcc512
       \ inteldialect
       \ internal
       \ jumptable

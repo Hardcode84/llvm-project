@@ -1677,6 +1677,33 @@ TargetLibraryInfoImpl::getVectorizedFunction(StringRef F,
   return StringRef();
 }
 
+static CallingConv::ID getSVMLCallingConv(const DataLayout &DL,
+                                          const FunctionType &FType) {
+  assert(isa<VectorType>(FType.getReturnType()));
+  auto *VecCallRetType = cast<VectorType>(FType.getReturnType());
+  auto TypeBitWidth = DL.getTypeSizeInBits(VecCallRetType);
+  if (TypeBitWidth == 128) {
+    return CallingConv::Intel_SVML128;
+  } else if (TypeBitWidth == 256) {
+    return CallingConv::Intel_SVML256;
+  } else if (TypeBitWidth == 512) {
+    return CallingConv::Intel_SVML512;
+  } else {
+    llvm_unreachable("Invalid vector width");
+  }
+  return 0; // not reachable
+}
+
+Optional<CallingConv::ID>
+TargetLibraryInfoImpl::getVectorizedFunctionCallingConv(
+    StringRef F, const FunctionType &FTy, const DataLayout &DL) const {
+  if (ClVectorLibrary == SVML) {
+    assert(F.startswith("__svml"));
+    return getSVMLCallingConv(DL, FTy);
+  }
+  return {};
+}
+
 TargetLibraryInfo TargetLibraryAnalysis::run(const Function &F,
                                              FunctionAnalysisManager &) {
   if (!BaselineInfoImpl)
