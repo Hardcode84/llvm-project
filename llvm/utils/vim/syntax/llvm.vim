@@ -104,6 +104,7 @@ syn keyword llvmKeyword
       \ inreg
       \ intel_ocl_bicc
       \ inteldialect
+      \ intel_svmlcc
       \ internal
       \ jumptable
       \ linkonce

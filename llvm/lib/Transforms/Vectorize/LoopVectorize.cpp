@@ -712,6 +712,27 @@ protected:
   virtual void printDebugTracesAtStart(){};
   virtual void printDebugTracesAtEnd(){};
 
+  /// Check legality of given SVML call instruction \p VecCall generated for
+  /// scalar call \p Call. If illegal then the appropriate legal instruction
+  /// is returned.
+  Value *legalizeSVMLCall(CallInst *VecCall, CallInst *Call);
+
+  /// Returns the legal VF for a call instruction \p CI using TTI information
+  /// and vector type.
+  ElementCount getLegalVFForCall(CallInst *CI);
+
+  /// Partially vectorize a given call \p Call by breaking it down into multiple
+  /// calls of \p LegalCall, decided by the variant VF \p LegalVF.
+  Value *partialVectorizeCall(CallInst *Call, CallInst *LegalCall,
+                              unsigned LegalVF);
+
+  /// Generate shufflevector instruction for a vector value \p V based on the
+  /// current \p Part and a smaller VF \p LegalVF.
+  Value *generateShuffleValue(Value *V, unsigned LegalVF, unsigned Part);
+
+  /// Combine partially vectorized calls stored in \p CallResults.
+  Value *combinePartialVecCalls(SmallVectorImpl<Value *> &CallResults);
+
   /// The original loop.
   Loop *OrigLoop;
 
@@ -4596,6 +4617,17 @@ static bool mayDivideByZero(Instruction &I) {
   return !CInt || CInt->isZero();
 }
 
+static void setVectorFunctionCallingConv(CallInst &CI, const DataLayout &DL,
+                                         const TargetLibraryInfo &TLI) {
+  Function *VectorF = CI.getCalledFunction();
+  FunctionType *FTy = VectorF->getFunctionType();
+  StringRef VFName = VectorF->getName();
+  auto CC = TLI.getVectorizedFunctionCallingConv(VFName, *FTy, DL);
+  if (CC) {
+    CI.setCallingConv(*CC);
+  }
+}
+
 void InnerLoopVectorizer::widenCallInstruction(CallInst &I, VPValue *Def,
                                                VPUser &ArgOperands,
                                                VPTransformState &State) {
@@ -4664,9 +4696,246 @@ void InnerLoopVectorizer::widenCallInstruction(CallInst &I, VPValue *Def,
       if (isa<FPMathOperator>(V))
         V->copyFastMathFlags(CI);
 
+    const DataLayout &DL = V->getModule()->getDataLayout();
+    setVectorFunctionCallingConv(*V, DL, *TLI);
+
+    // Perform legalization of SVML call instruction only if original call
+    // was not Intrinsic
+    if (!UseVectorIntrinsic &&
+        (V->getCalledFunction()->getName()).startswith("__svml")) {
+      // assert((V->getCalledFunction()->getName()).startswith("__svml"));
+      LLVM_DEBUG(dbgs() << "LV(SVML): Vector call inst:"; V->dump());
+      auto *LegalV = cast<Instruction>(legalizeSVMLCall(V, CI));
+      LLVM_DEBUG(dbgs() << "LV: Completed SVML legalization.\n LegalV: ";
+                 LegalV->dump());
+      State.set(Def, LegalV, Part);
+      addMetadata(LegalV, &I);
+    } else {
       State.set(Def, V, Part);
       addMetadata(V, &I);
+    }
   }
+}
+
+//===----------------------------------------------------------------------===//
+// Implementation of functions for SVML vector call legalization.
+//===----------------------------------------------------------------------===//
+//
+// Unlike other VECLIBs, SVML needs to be used with target-legal
+// vector types. Otherwise, link failures and/or runtime failures
+// will occur. A motivating example could be -
+//
+//   double *a;
+//   float *b;
+//   #pragma clang loop vectorize_width(8)
+//   for(i = 0; i < N; ++i) {
+//     a[i] = sin(i);   // Legal SVML VF must be 4 or below on AVX
+//     b[i] = cosf(i);  // VF can be 8 on AVX since 8 floats can fit in YMM
+//    }
+//
+// Current implementation of vector code generation in LV is
+// driven based on a single VF (in InnerLoopVectorizer::VF). This
+// inhibits the flexibility of adjusting/choosing different VF
+// for different instructions.
+//
+// Due to this limitation it is much more straightforward to
+// first generate the illegal sin8 (svml_sin8 for SVML vector
+// library) call and then legalize it than trying to avoid
+// generating illegal code from the beginning.
+//
+// A solution for this problem is to check legality of the
+// call instruction right after generating it in vectorizer and
+// if it is illegal we split the call arguments and issue multiple
+// calls to match the legal VF. This is demonstrated currently for
+// the SVML vector library calls (non-intrinsic version only).
+//
+// Future directions and extensions:
+// 1) This legalization example shows us that a good direction
+//    for the VPlan framework would be to model the vector call
+//    instructions in a way that legal VF for each call is chosen
+//    correctly within vectorizer and illegal code generation is
+//    avoided.
+// 2) This logic can also be extended to general vector functions
+//    i.e. legalization OpenMP decalre simd functions. The
+//    requirements needed for this will be documented soon.
+
+Value *InnerLoopVectorizer::legalizeSVMLCall(CallInst *VecCall,
+                                             CallInst *Call) {
+  ElementCount LegalVF = getLegalVFForCall(VecCall);
+
+  assert(LegalVF.getKnownMinValue() > 1 &&
+         "Legal VF for SVML call must be greater than 1 to vectorize");
+
+  if (LegalVF == VF)
+    return VecCall;
+  else if (LegalVF.getKnownMinValue() > VF.getKnownMinValue())
+    // TODO: handle case when we are underfilling vectors
+    return VecCall;
+
+  // Legal VF for this SVML call is smaller than chosen VF, break it down into
+  // smaller call instructions
+
+  // Convert args, types and return type to match legal VF
+  SmallVector<Type *, 4> NewTys;
+  SmallVector<Value *, 4> NewArgs;
+
+  for (Value *ArgOperand : Call->args()) {
+    Type *Ty = ToVectorTy(ArgOperand->getType(), LegalVF);
+    NewTys.push_back(Ty);
+    NewArgs.push_back(UndefValue::get(Ty));
+  }
+
+  // Construct legal vector function
+  const VFShape Shape =
+    VFShape::get(*Call, LegalVF /*EC*/, false /*HasGlobalPred*/);
+  Function *LegalVectorF = VFDatabase(*Call).getVectorizedFunction(Shape);
+  assert(LegalVectorF != nullptr && "Can't create legal vector function.");
+
+  LLVM_DEBUG(dbgs() << "LV(SVML): LegalVectorF: "; LegalVectorF->dump());
+
+  SmallVector<OperandBundleDef, 1> OpBundles;
+  Call->getOperandBundlesAsDefs(OpBundles);
+  auto LegalV = std::unique_ptr<CallInst>(CallInst::Create(LegalVectorF, NewArgs, OpBundles));
+
+  if (isa<FPMathOperator>(LegalV))
+    LegalV->copyFastMathFlags(Call);
+
+  const DataLayout &DL = VecCall->getModule()->getDataLayout();
+  // Set SVML calling conventions
+  setVectorFunctionCallingConv(*LegalV, DL, *TLI);
+
+  LLVM_DEBUG(dbgs() << "LV(SVML): LegalV: "; LegalV->dump());
+
+  Value *LegalizedCall = partialVectorizeCall(VecCall, LegalV.get(), LegalVF.getKnownMinValue());
+
+  LLVM_DEBUG(dbgs() << "LV(SVML): LegalizedCall: "; LegalizedCall->dump());
+
+  // Remove the illegal call from Builder
+  VecCall->eraseFromParent();
+
+  return LegalizedCall;
+}
+
+ElementCount InnerLoopVectorizer::getLegalVFForCall(CallInst *CI) {
+  const DataLayout DL = CI->getModule()->getDataLayout();
+  FunctionType *CallFT = CI->getFunctionType();
+  // All functions that need legalization should have a vector return type.
+  // This is true for all SVML functions that are currently supported.
+  assert(isa<VectorType>(CallFT->getReturnType()) &&
+         "Return type of call that needs legalization is not a vector.");
+  auto *VecCallRetType = cast<VectorType>(CallFT->getReturnType());
+  Type *ElemType = VecCallRetType->getElementType();
+
+  unsigned TypeBitWidth = DL.getTypeSizeInBits(ElemType);
+  unsigned VectorBitWidth = TTI->getRegisterBitWidth(TargetTransformInfo::RGK_FixedWidthVector);
+  unsigned LegalVF = VectorBitWidth / TypeBitWidth;
+
+  LLVM_DEBUG(dbgs() << "LV(SVML): Type Bit Width: " << TypeBitWidth << "\n");
+  LLVM_DEBUG(dbgs() << "LV(SVML): Current VL: " << VF << "\n");
+  LLVM_DEBUG(dbgs() << "LV(SVML): Vector Bit Width: " << VectorBitWidth
+                    << "\n");
+  LLVM_DEBUG(dbgs() << "LV(SVML): Legal Target VL: " << LegalVF << "\n");
+
+  return ElementCount::getFixed(LegalVF);
+}
+
+// Partial vectorization of a call instruction is achieved by making clones of
+// \p LegalCall and overwriting its argument operands with shufflevector
+// equivalent decided based on \p LegalVF and current Part being filled.
+Value *InnerLoopVectorizer::partialVectorizeCall(CallInst *Call,
+                                                 CallInst *LegalCall,
+                                                 unsigned LegalVF) {
+  unsigned NumParts = VF.getKnownMinValue() / LegalVF;
+  LLVM_DEBUG(dbgs() << "LV(SVML): NumParts: " << NumParts << "\n");
+  SmallVector<Value *, 8> CallResults;
+
+  for (unsigned Part = 0; Part < NumParts; ++Part) {
+    auto *ClonedCall = cast<CallInst>(LegalCall->clone());
+
+    // Update the arg operand of cloned call to shufflevector
+    for (unsigned i = 0, ie = Call->arg_size(); i != ie; ++i) {
+      auto *NewOp = generateShuffleValue(Call->getArgOperand(i), LegalVF, Part);
+      ClonedCall->setArgOperand(i, NewOp);
+    }
+
+    LLVM_DEBUG(dbgs() << "LV(SVML): ClonedCall: "; ClonedCall->dump());
+
+    auto *PartialVecCall = Builder.Insert(ClonedCall);
+    CallResults.push_back(PartialVecCall);
+  }
+
+  return combinePartialVecCalls(CallResults);
+}
+
+Value *InnerLoopVectorizer::generateShuffleValue(Value *V, unsigned LegalVF,
+                                                 unsigned Part) {
+  // Example:
+  // Consider the following vector code -
+  // %1 = sitofp <4 x i32> %0 to <4 x double>
+  // %2 = call <4 x double> @__svml_sin4(<4 x double> %1)
+  //
+  // If the LegalVF is 2, we partially vectorize the sin4 call by invoking
+  // generateShuffleValue on the operand %1
+  // If Part = 1, output value is -
+  // %shuffle = shufflevector <4 x double> %1, <4 x double> undef, <2 x i32><i32 0, i32 1>
+  // and if Part = 2, output is -
+  // %shuffle7 =shufflevector <4 x double> %1, <4 x double> undef, <2 x i32><i32 2, i32 3>
+
+  assert(isa<VectorType>(V->getType()) &&
+         "Cannot generate shuffles for non-vector values.");
+  SmallVector<int, 4> ShuffleMask;
+  Value *Undef = UndefValue::get(V->getType());
+
+  unsigned ElemIdx = Part * LegalVF;
+
+  for (unsigned K = 0; K < LegalVF; K++)
+    ShuffleMask.push_back(static_cast<int>(ElemIdx + K));
+
+  auto *ShuffleInst =
+      Builder.CreateShuffleVector(V, Undef, ShuffleMask, "shuffle");
+
+  return ShuffleInst;
+}
+
+// Results of the calls executed by smaller legal call instructions must be
+// combined to match the original VF for later use. This is done by constructing
+// shufflevector instructions in a cumulative fashion.
+Value *InnerLoopVectorizer::combinePartialVecCalls(
+    SmallVectorImpl<Value *> &CallResults) {
+  assert(isa<VectorType>(CallResults[0]->getType()) &&
+         "Cannot combine calls with non-vector results.");
+  auto *CallType = cast<VectorType>(CallResults[0]->getType());
+
+  Value *CombinedShuffle;
+  unsigned NumElems = CallType->getElementCount().getKnownMinValue() * 2;
+  unsigned NumRegs = CallResults.size();
+
+  assert(NumRegs >= 2 && isPowerOf2_32(NumRegs) &&
+         "Number of partial vector calls to combine must be a power of 2 "
+         "(atleast 2^1)");
+
+  while (NumRegs > 1) {
+    for (unsigned I = 0; I < NumRegs; I += 2) {
+      SmallVector<int, 4> ShuffleMask;
+      for (unsigned J = 0; J < NumElems; J++)
+        ShuffleMask.push_back(static_cast<int>(J));
+
+      CombinedShuffle = Builder.CreateShuffleVector(
+          CallResults[I], CallResults[I + 1], ShuffleMask, "combined");
+      LLVM_DEBUG(dbgs() << "LV(SVML): CombinedShuffle:";
+                 CombinedShuffle->dump());
+      CallResults.push_back(CombinedShuffle);
+    }
+
+    SmallVector<Value *, 2>::iterator Start = CallResults.begin();
+    SmallVector<Value *, 2>::iterator End = Start + NumRegs;
+    CallResults.erase(Start, End);
+
+    NumElems *= 2;
+    NumRegs /= 2;
+  }
+
+  return CombinedShuffle;
 }
 
 void LoopVectorizationCostModel::collectLoopScalars(ElementCount VF) {

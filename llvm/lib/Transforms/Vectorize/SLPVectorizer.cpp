@@ -6322,6 +6322,17 @@ Value *BoUpSLP::vectorizeTree(ArrayRef<Value *> VL) {
   return Vec;
 }
 
+static void setVectorFunctionCallingConv(CallInst &CI, const DataLayout &DL,
+                                         const TargetLibraryInfo &TLI) {
+  Function *VectorF = CI.getCalledFunction();
+  FunctionType *FTy = VectorF->getFunctionType();
+  StringRef VFName = VectorF->getName();
+  auto CC = TLI.getVectorizedFunctionCallingConv(VFName, *FTy, DL);
+  if (CC) {
+    CI.setCallingConv(*CC);
+  }
+}
+
 Value *BoUpSLP::vectorizeTree(TreeEntry *E) {
   IRBuilder<>::InsertPointGuard Guard(Builder);
 
@@ -6794,7 +6805,12 @@ Value *BoUpSLP::vectorizeTree(TreeEntry *E) {
 
       SmallVector<OperandBundleDef, 1> OpBundles;
       CI->getOperandBundlesAsDefs(OpBundles);
-      Value *V = Builder.CreateCall(CF, OpVecs, OpBundles);
+
+      CallInst *NewCall = Builder.CreateCall(CF, OpVecs, OpBundles);
+      const DataLayout &DL = NewCall->getModule()->getDataLayout();
+      setVectorFunctionCallingConv(*NewCall, DL, *TLI);
+
+      Value *V = NewCall;
 
       // The scalar argument uses an in-tree scalar so we add the new vectorized
       // call to ExternalUses list to make sure that an extract will be

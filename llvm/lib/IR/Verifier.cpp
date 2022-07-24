@@ -2457,6 +2457,9 @@ void Verifier::visitFunction(const Function &F) {
   case CallingConv::Fast:
   case CallingConv::Cold:
   case CallingConv::Intel_OCL_BI:
+  case CallingConv::Intel_SVML128:
+  case CallingConv::Intel_SVML256:
+  case CallingConv::Intel_SVML512:
   case CallingConv::PTX_Kernel:
   case CallingConv::PTX_Device:
     Assert(!F.isVarArg(), "Calling convention does not support varargs or "
