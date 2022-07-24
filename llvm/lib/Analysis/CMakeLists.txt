@@ -150,6 +150,7 @@ add_llvm_component_library(LLVMAnalysis
   DEPENDS
   intrinsics_gen
   ${MLDeps}
+  svml_gen
 
   LINK_LIBS
   ${MLLinkDeps}

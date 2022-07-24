@@ -157,7 +157,7 @@ static bool replaceWithCallToVeclib(const TargetLibraryInfo &TLI,
   // and the exact vector width of the call operands in the
   // TargetLibraryInfo.
   const std::string TLIName =
-      std::string(TLI.getVectorizedFunction(ScalarName, VF));
+      std::string(TLI.getVectorizedFunction(ScalarName, VF, CI.getFastMathFlags().isFast()));
 
   LLVM_DEBUG(dbgs() << DEBUG_TYPE << ": Looking up TLI mapping for `"
                     << ScalarName << "` and vector width " << VF << ".\n");

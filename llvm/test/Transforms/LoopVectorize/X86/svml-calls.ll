@@ -48,7 +48,7 @@ declare float @llvm.exp2.f32(float) #0
 
 define void @sin_f64(double* nocapture %varray) {
 ; CHECK-LABEL: @sin_f64(
-; CHECK:    [[TMP5:%.*]] = call <4 x double> @__svml_sin4(<4 x double> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc256 <4 x double> @__svml_sin4_ha(<4 x double> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -71,7 +71,7 @@ for.end:
 
 define void @sin_f32(float* nocapture %varray) {
 ; CHECK-LABEL: @sin_f32(
-; CHECK:    [[TMP5:%.*]] = call <4 x float> @__svml_sinf4(<4 x float> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc128 <4 x float> @__svml_sinf4_ha(<4 x float> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -94,7 +94,7 @@ for.end:
 
 define void @sin_f64_intrinsic(double* nocapture %varray) {
 ; CHECK-LABEL: @sin_f64_intrinsic(
-; CHECK:    [[TMP5:%.*]] = call <4 x double> @__svml_sin4(<4 x double> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc256 <4 x double> @__svml_sin4_ha(<4 x double> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -117,7 +117,7 @@ for.end:
 
 define void @sin_f32_intrinsic(float* nocapture %varray) {
 ; CHECK-LABEL: @sin_f32_intrinsic(
-; CHECK:    [[TMP5:%.*]] = call <4 x float> @__svml_sinf4(<4 x float> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc128 <4 x float> @__svml_sinf4_ha(<4 x float> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -140,7 +140,7 @@ for.end:
 
 define void @cos_f64(double* nocapture %varray) {
 ; CHECK-LABEL: @cos_f64(
-; CHECK:    [[TMP5:%.*]] = call <4 x double> @__svml_cos4(<4 x double> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc256 <4 x double> @__svml_cos4_ha(<4 x double> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -163,7 +163,7 @@ for.end:
 
 define void @cos_f32(float* nocapture %varray) {
 ; CHECK-LABEL: @cos_f32(
-; CHECK:    [[TMP5:%.*]] = call <4 x float> @__svml_cosf4(<4 x float> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc128 <4 x float> @__svml_cosf4_ha(<4 x float> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -186,7 +186,7 @@ for.end:
 
 define void @cos_f64_intrinsic(double* nocapture %varray) {
 ; CHECK-LABEL: @cos_f64_intrinsic(
-; CHECK:    [[TMP5:%.*]] = call <4 x double> @__svml_cos4(<4 x double> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc256 <4 x double> @__svml_cos4_ha(<4 x double> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -209,7 +209,7 @@ for.end:
 
 define void @cos_f32_intrinsic(float* nocapture %varray) {
 ; CHECK-LABEL: @cos_f32_intrinsic(
-; CHECK:    [[TMP5:%.*]] = call <4 x float> @__svml_cosf4(<4 x float> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc128 <4 x float> @__svml_cosf4_ha(<4 x float> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -232,7 +232,7 @@ for.end:
 
 define void @pow_f64(double* nocapture %varray, double* nocapture readonly %exp) {
 ; CHECK-LABEL: @pow_f64(
-; CHECK:    [[TMP8:%.*]] = call <4 x double> @__svml_pow4(<4 x double> [[TMP4:%.*]], <4 x double> [[WIDE_LOAD:%.*]])
+; CHECK:    [[TMP8:%.*]] = call intel_svmlcc256 <4 x double> @__svml_pow4_ha(<4 x double> [[TMP4:%.*]], <4 x double> [[WIDE_LOAD:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -257,7 +257,7 @@ for.end:
 
 define void @pow_f64_intrinsic(double* nocapture %varray, double* nocapture readonly %exp) {
 ; CHECK-LABEL: @pow_f64_intrinsic(
-; CHECK:    [[TMP8:%.*]] = call <4 x double> @__svml_pow4(<4 x double> [[TMP4:%.*]], <4 x double> [[WIDE_LOAD:%.*]])
+; CHECK:    [[TMP8:%.*]] = call intel_svmlcc256 <4 x double> @__svml_pow4_ha(<4 x double> [[TMP4:%.*]], <4 x double> [[WIDE_LOAD:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -282,7 +282,7 @@ for.end:
 
 define void @pow_f32(float* nocapture %varray, float* nocapture readonly %exp) {
 ; CHECK-LABEL: @pow_f32(
-; CHECK:    [[TMP8:%.*]] = call <4 x float> @__svml_powf4(<4 x float> [[TMP4:%.*]], <4 x float> [[WIDE_LOAD:%.*]])
+; CHECK:    [[TMP8:%.*]] = call intel_svmlcc128 <4 x float> @__svml_powf4_ha(<4 x float> [[TMP4:%.*]], <4 x float> [[WIDE_LOAD:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -307,7 +307,7 @@ for.end:
 
 define void @pow_f32_intrinsic(float* nocapture %varray, float* nocapture readonly %exp) {
 ; CHECK-LABEL: @pow_f32_intrinsic(
-; CHECK:    [[TMP8:%.*]] = call <4 x float> @__svml_powf4(<4 x float> [[TMP4:%.*]], <4 x float> [[WIDE_LOAD:%.*]])
+; CHECK:    [[TMP8:%.*]] = call intel_svmlcc128 <4 x float> @__svml_powf4_ha(<4 x float> [[TMP4:%.*]], <4 x float> [[WIDE_LOAD:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -332,7 +332,7 @@ for.end:
 
 define void @exp_f64(double* nocapture %varray) {
 ; CHECK-LABEL: @exp_f64(
-; CHECK:    [[TMP5:%.*]] = call <4 x double> @__svml_exp4(<4 x double> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc256 <4 x double> @__svml_exp4_ha(<4 x double> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -355,7 +355,7 @@ for.end:
 
 define void @exp_f32(float* nocapture %varray) {
 ; CHECK-LABEL: @exp_f32(
-; CHECK:    [[TMP5:%.*]] = call <4 x float> @__svml_expf4(<4 x float> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc128 <4 x float> @__svml_expf4_ha(<4 x float> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -378,7 +378,7 @@ for.end:
 
 define void @exp_f64_intrinsic(double* nocapture %varray) {
 ; CHECK-LABEL: @exp_f64_intrinsic(
-; CHECK:    [[TMP5:%.*]] = call <4 x double> @__svml_exp4(<4 x double> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc256 <4 x double> @__svml_exp4_ha(<4 x double> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -401,7 +401,7 @@ for.end:
 
 define void @exp_f32_intrinsic(float* nocapture %varray) {
 ; CHECK-LABEL: @exp_f32_intrinsic(
-; CHECK:    [[TMP5:%.*]] = call <4 x float> @__svml_expf4(<4 x float> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc128 <4 x float> @__svml_expf4_ha(<4 x float> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -424,7 +424,7 @@ for.end:
 
 define void @log_f64(double* nocapture %varray) {
 ; CHECK-LABEL: @log_f64(
-; CHECK:    [[TMP5:%.*]] = call <4 x double> @__svml_log4(<4 x double> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc256 <4 x double> @__svml_log4_ha(<4 x double> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -447,7 +447,7 @@ for.end:
 
 define void @log_f32(float* nocapture %varray) {
 ; CHECK-LABEL: @log_f32(
-; CHECK:    [[TMP5:%.*]] = call <4 x float> @__svml_logf4(<4 x float> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc128 <4 x float> @__svml_logf4_ha(<4 x float> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -470,7 +470,7 @@ for.end:
 
 define void @log_f64_intrinsic(double* nocapture %varray) {
 ; CHECK-LABEL: @log_f64_intrinsic(
-; CHECK:    [[TMP5:%.*]] = call <4 x double> @__svml_log4(<4 x double> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc256 <4 x double> @__svml_log4_ha(<4 x double> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -493,7 +493,7 @@ for.end:
 
 define void @log_f32_intrinsic(float* nocapture %varray) {
 ; CHECK-LABEL: @log_f32_intrinsic(
-; CHECK:    [[TMP5:%.*]] = call <4 x float> @__svml_logf4(<4 x float> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc128 <4 x float> @__svml_logf4_ha(<4 x float> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -516,7 +516,7 @@ for.end:
 
 define void @log2_f64(double* nocapture %varray) {
 ; CHECK-LABEL: @log2_f64(
-; CHECK:    [[TMP5:%.*]] = call <4 x double> @__svml_log24(<4 x double> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc256 <4 x double> @__svml_log24_ha(<4 x double> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -539,7 +539,7 @@ for.end:
 
 define void @log2_f32(float* nocapture %varray) {
 ; CHECK-LABEL: @log2_f32(
-; CHECK:    [[TMP5:%.*]] = call <4 x float> @__svml_log2f4(<4 x float> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc128 <4 x float> @__svml_log2f4_ha(<4 x float> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -562,7 +562,7 @@ for.end:
 
 define void @log2_f64_intrinsic(double* nocapture %varray) {
 ; CHECK-LABEL: @log2_f64_intrinsic(
-; CHECK:    [[TMP5:%.*]] = call <4 x double> @__svml_log24(<4 x double> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc256 <4 x double> @__svml_log24_ha(<4 x double> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -585,7 +585,7 @@ for.end:
 
 define void @log2_f32_intrinsic(float* nocapture %varray) {
 ; CHECK-LABEL: @log2_f32_intrinsic(
-; CHECK:    [[TMP5:%.*]] = call <4 x float> @__svml_log2f4(<4 x float> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc128 <4 x float> @__svml_log2f4_ha(<4 x float> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -608,7 +608,7 @@ for.end:
 
 define void @log10_f64(double* nocapture %varray) {
 ; CHECK-LABEL: @log10_f64(
-; CHECK:    [[TMP5:%.*]] = call <4 x double> @__svml_log104(<4 x double> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc256 <4 x double> @__svml_log104_ha(<4 x double> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -631,7 +631,7 @@ for.end:
 
 define void @log10_f32(float* nocapture %varray) {
 ; CHECK-LABEL: @log10_f32(
-; CHECK:    [[TMP5:%.*]] = call <4 x float> @__svml_log10f4(<4 x float> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc128 <4 x float> @__svml_log10f4_ha(<4 x float> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -654,7 +654,7 @@ for.end:
 
 define void @log10_f64_intrinsic(double* nocapture %varray) {
 ; CHECK-LABEL: @log10_f64_intrinsic(
-; CHECK:    [[TMP5:%.*]] = call <4 x double> @__svml_log104(<4 x double> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc256 <4 x double> @__svml_log104_ha(<4 x double> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -677,7 +677,7 @@ for.end:
 
 define void @log10_f32_intrinsic(float* nocapture %varray) {
 ; CHECK-LABEL: @log10_f32_intrinsic(
-; CHECK:    [[TMP5:%.*]] = call <4 x float> @__svml_log10f4(<4 x float> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc128 <4 x float> @__svml_log10f4_ha(<4 x float> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -700,7 +700,7 @@ for.end:
 
 define void @sqrt_f64(double* nocapture %varray) {
 ; CHECK-LABEL: @sqrt_f64(
-; CHECK:    [[TMP5:%.*]] = call <4 x double> @__svml_sqrt4(<4 x double> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc256 <4 x double> @__svml_sqrt4_ha(<4 x double> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -723,7 +723,7 @@ for.end:
 
 define void @sqrt_f32(float* nocapture %varray) {
 ; CHECK-LABEL: @sqrt_f32(
-; CHECK:    [[TMP5:%.*]] = call <4 x float> @__svml_sqrtf4(<4 x float> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc128 <4 x float> @__svml_sqrtf4_ha(<4 x float> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -746,7 +746,7 @@ for.end:
 
 define void @exp2_f64(double* nocapture %varray) {
 ; CHECK-LABEL: @exp2_f64(
-; CHECK:    [[TMP5:%.*]] = call <4 x double> @__svml_exp24(<4 x double> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc256 <4 x double> @__svml_exp24_ha(<4 x double> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -769,7 +769,7 @@ for.end:
 
 define void @exp2_f32(float* nocapture %varray) {
 ; CHECK-LABEL: @exp2_f32(
-; CHECK:    [[TMP5:%.*]] = call <4 x float> @__svml_exp2f4(<4 x float> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc128 <4 x float> @__svml_exp2f4_ha(<4 x float> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -792,7 +792,7 @@ for.end:
 
 define void @exp2_f64_intrinsic(double* nocapture %varray) {
 ; CHECK-LABEL: @exp2_f64_intrinsic(
-; CHECK:    [[TMP5:%.*]] = call <4 x double> @__svml_exp24(<4 x double> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc256 <4 x double> @__svml_exp24_ha(<4 x double> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -815,7 +815,7 @@ for.end:
 
 define void @exp2_f32_intrinsic(float* nocapture %varray) {
 ; CHECK-LABEL: @exp2_f32_intrinsic(
-; CHECK:    [[TMP5:%.*]] = call <4 x float> @__svml_exp2f4(<4 x float> [[TMP4:%.*]])
+; CHECK:    [[TMP5:%.*]] = call intel_svmlcc128 <4 x float> @__svml_exp2f4_ha(<4 x float> [[TMP4:%.*]])
 ; CHECK:    ret void
 ;
 entry:
@@ -836,4 +836,44 @@ for.end:
   ret void
 }
 
+; CHECK-LABEL: @atan2_finite
+; CHECK: intel_svmlcc256 <4 x double> @__svml_atan24(
+; CHECK: intel_svmlcc256 <4 x double> @__svml_atan24(
+; CHECK: ret
+
+declare double @__atan2_finite(double, double) local_unnamed_addr #0
+
+define void @atan2_finite([100 x double]* nocapture %varray) local_unnamed_addr #0 {
+entry:
+  br label %for.cond1.preheader
+
+for.cond1.preheader:                              ; preds = %for.inc7, %entry
+  %indvars.iv19 = phi i64 [ 0, %entry ], [ %indvars.iv.next20, %for.inc7 ]
+  %0 = trunc i64 %indvars.iv19 to i32
+  %conv = sitofp i32 %0 to double
+  br label %for.body3
+
+for.body3:                                        ; preds = %for.body3, %for.cond1.preheader
+  %indvars.iv = phi i64 [ 0, %for.cond1.preheader ], [ %indvars.iv.next, %for.body3 ]
+  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1
+  %1 = trunc i64 %indvars.iv.next to i32
+  %conv4 = sitofp i32 %1 to double
+  %call = tail call fast double @__atan2_finite(double %conv, double %conv4)
+  %arrayidx6 = getelementptr inbounds [100 x double], [100 x double]* %varray, i64 %indvars.iv19, i64 %indvars.iv
+  store double %call, double* %arrayidx6, align 8
+  %exitcond = icmp eq i64 %indvars.iv.next, 100
+  br i1 %exitcond, label %for.inc7, label %for.body3, !llvm.loop !5
+
+for.inc7:                                         ; preds = %for.body3
+  %indvars.iv.next20 = add nuw nsw i64 %indvars.iv19, 1
+  %exitcond21 = icmp eq i64 %indvars.iv.next20, 100
+  br i1 %exitcond21, label %for.end9, label %for.cond1.preheader
+
+for.end9:                                         ; preds = %for.inc7
+  ret void
+}
+
 attributes #0 = { nounwind readnone }
+!5 = distinct !{!5, !6, !7}
+!6 = !{!"llvm.loop.vectorize.width", i32 8}
+!7 = !{!"llvm.loop.vectorize.enable", i1 true}

@@ -10,7 +10,7 @@ target triple = "x86_64-unknown-linux-gnu"
 define <4 x double> @exp_v4(<4 x double> %in) {
 ; SVML-LABEL: define {{[^@]+}}@exp_v4
 ; SVML-SAME: (<4 x double> [[IN:%.*]]) {
-; SVML-NEXT:    [[TMP1:%.*]] = call <4 x double> @__svml_exp4(<4 x double> [[IN]])
+; SVML-NEXT:    [[TMP1:%.*]] = call <4 x double> @__svml_exp4_ha(<4 x double> [[IN]])
 ; SVML-NEXT:    ret <4 x double> [[TMP1]]
 ;
 ; LIBMVEC-X86-LABEL: define {{[^@]+}}@exp_v4
@@ -37,7 +37,7 @@ declare <4 x double> @llvm.exp.v4f64(<4 x double>) #0
 define <4 x float> @exp_f32(<4 x float> %in) {
 ; SVML-LABEL: define {{[^@]+}}@exp_f32
 ; SVML-SAME: (<4 x float> [[IN:%.*]]) {
-; SVML-NEXT:    [[TMP1:%.*]] = call <4 x float> @__svml_expf4(<4 x float> [[IN]])
+; SVML-NEXT:    [[TMP1:%.*]] = call <4 x float> @__svml_expf4_ha(<4 x float> [[IN]])
 ; SVML-NEXT:    ret <4 x float> [[TMP1]]
 ;
 ; LIBMVEC-X86-LABEL: define {{[^@]+}}@exp_f32

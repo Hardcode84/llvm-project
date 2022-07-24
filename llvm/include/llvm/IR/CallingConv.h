@@ -252,6 +252,11 @@ namespace CallingConv {
     /// M68k_INTR - Calling convention used for M68k interrupt routines.
     M68k_INTR = 101,
 
+    /// Intel_SVML - Calling conventions for Intel Short Math Vector Library
+    Intel_SVML128 = 102,
+    Intel_SVML256 = 103,
+    Intel_SVML512 = 104,
+
     /// The highest possible calling convention ID. Must be some 2^k - 1.
     MaxID = 1023
   };
