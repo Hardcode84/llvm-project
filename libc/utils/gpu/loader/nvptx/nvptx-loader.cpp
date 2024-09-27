@@ -192,6 +192,8 @@ CUresult launch_kernel(CUmodule binary, CUstream stream,
   size_t prealloc_size = 64 * 1024 * 1024;
   CUdeviceptr prealloc_ptr;
   if (CUresult err = cuMemAlloc(&prealloc_ptr, prealloc_size))
+  // if (CUresult err = cuMemAllocManaged(&prealloc_ptr, prealloc_size, CU_MEM_ATTACH_HOST))
+  // if (CUresult err = cuMemHostAlloc (&prealloc_ptr, prealloc_size, 0))
     handle_error(err);
 
   BumpPtrAlloc alloc;
@@ -226,7 +228,7 @@ CUresult launch_kernel(CUmodule binary, CUstream stream,
           uint64_t size = buffer->data[0];
           auto* alloc = static_cast<BumpPtrAlloc*>(data);
           if (auto ptr = alloc->alloc(size, 16)) {
-            printf("alloc arena %d %p\n", (int)size, (void*)ptr);
+            // printf("alloc arena %d %p\n", (int)size, (void*)ptr);
             buffer->data[0] = static_cast<uintptr_t>(ptr);
             return;
           }
@@ -235,7 +237,7 @@ CUresult launch_kernel(CUmodule binary, CUstream stream,
           if (CUresult err = cuMemAlloc(&dev_ptr, size))
             dev_ptr = 0UL;
 
-          printf("alloc %d %p\n", (int)size, (void*)dev_ptr);
+          // printf("alloc %d %p\n", (int)size, (void*)dev_ptr);
 
           // uint64_t size = buffer->data[0];
           // uintptr_t align = 16;
@@ -266,7 +268,7 @@ CUresult launch_kernel(CUmodule binary, CUstream stream,
           uint64_t ptr = buffer->data[0];
           auto* alloc = static_cast<BumpPtrAlloc*>(data);
           if (alloc->is_allocated(ptr)) {
-            printf("free arena %p\n", (void*)ptr);
+            // printf("free arena %p\n", (void*)ptr);
             return;
           }
 
@@ -274,7 +276,7 @@ CUresult launch_kernel(CUmodule binary, CUstream stream,
                   static_cast<CUdeviceptr>(ptr)))
             handle_error(err);
 
-          printf("free %p\n", (void*)ptr);
+          // printf("free %p\n", (void*)ptr);
 
           // CUstream memory_stream = *static_cast<CUstream *>(data);
           // if (CUresult err = cuMemFreeAsync(
