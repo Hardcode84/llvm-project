@@ -164,11 +164,40 @@ void print_kernel_resources(CUmodule binary, const char *kernel_name) {
   printf("%6s registers: %d\n", kernel_name, num_regs);
 }
 
+namespace {
+struct BumpPtrAlloc {
+  uintptr_t prealloc_current = 0;
+  uintptr_t prealloc_end = 0;
+
+  uintptr_t alloc(size_t size, size_t align) {
+    if ((prealloc_current + (size + align)) <= prealloc_end) {
+      uintptr_t ptr = (prealloc_current + align - 1) & ~(align - 1);
+      prealloc_current += (size + align);
+      return ptr;
+    }
+    return 0;
+  }
+
+  bool is_allocated(uintptr_t ptr) const {
+    return ptr >= prealloc_current && ptr < prealloc_end;
+  }
+};
+}
+
 template <typename args_t>
 CUresult launch_kernel(CUmodule binary, CUstream stream,
                        rpc_device_t rpc_device, const LaunchParameters &params,
                        const char *kernel_name, args_t kernel_args,
                        bool print_resource_usage) {
+  size_t prealloc_size = 64 * 1024 * 1024;
+  CUdeviceptr prealloc_ptr;
+  if (CUresult err = cuMemAlloc(&prealloc_ptr, prealloc_size))
+    handle_error(err);
+
+  BumpPtrAlloc alloc;
+  alloc.prealloc_current = static_cast<uintptr_t>(prealloc_ptr);
+  alloc.prealloc_end = alloc.prealloc_current + prealloc_size;
+
   // look up the '_start' kernel in the loaded module.
   CUfunction function;
   if (CUresult err = cuModuleGetFunction(&function, binary, kernel_name))
@@ -194,32 +223,67 @@ CUresult launch_kernel(CUmodule binary, CUstream stream,
       rpc_device, RPC_MALLOC,
       [](rpc_port_t port, void *data) {
         auto malloc_handler = [](rpc_buffer_t *buffer, void *data) -> void {
-          CUstream memory_stream = *static_cast<CUstream *>(data);
           uint64_t size = buffer->data[0];
+          auto* alloc = static_cast<BumpPtrAlloc*>(data);
+          if (auto ptr = alloc->alloc(size, 16)) {
+            printf("alloc arena %d %p\n", (int)size, (void*)ptr);
+            buffer->data[0] = static_cast<uintptr_t>(ptr);
+            return;
+          }
+
           CUdeviceptr dev_ptr;
-          if (CUresult err = cuMemAllocAsync(&dev_ptr, size, memory_stream))
+          if (CUresult err = cuMemAlloc(&dev_ptr, size))
             dev_ptr = 0UL;
 
-          // Wait until the memory allocation is complete.
-          while (cuStreamQuery(memory_stream) == CUDA_ERROR_NOT_READY)
-            ;
+          printf("alloc %d %p\n", (int)size, (void*)dev_ptr);
+
+          // uint64_t size = buffer->data[0];
+          // uintptr_t align = 16;
+          // if ((prealloc_current + (size + align)) <= prealloc_end) {
+          //   uintptr_t ptr = (prealloc_current + align - 1) & ~align;
+          //   buffer->data[0] = ptr;
+          //   prealloc_current += (size + align);
+          //   return;
+          // }
+
+          // CUstream memory_stream = *static_cast<CUstream *>(data);
+          // CUdeviceptr dev_ptr;
+          // if (CUresult err = cuMemAllocAsync(&dev_ptr, size, memory_stream))
+          //   dev_ptr = 0UL;
+
+          // // Wait until the memory allocation is complete.
+          // while (cuStreamQuery(memory_stream) == CUDA_ERROR_NOT_READY)
+          //   ;
           buffer->data[0] = static_cast<uintptr_t>(dev_ptr);
         };
         rpc_recv_and_send(port, malloc_handler, data);
       },
-      &memory_stream);
+      &alloc);
   rpc_register_callback(
       rpc_device, RPC_FREE,
       [](rpc_port_t port, void *data) {
         auto free_handler = [](rpc_buffer_t *buffer, void *data) {
-          CUstream memory_stream = *static_cast<CUstream *>(data);
-          if (CUresult err = cuMemFreeAsync(
-                  static_cast<CUdeviceptr>(buffer->data[0]), memory_stream))
+          uint64_t ptr = buffer->data[0];
+          auto* alloc = static_cast<BumpPtrAlloc*>(data);
+          if (alloc->is_allocated(ptr)) {
+            printf("free arena %p\n", (void*)ptr);
+            return;
+          }
+
+          if (CUresult err = cuMemFree(
+                  static_cast<CUdeviceptr>(ptr)))
             handle_error(err);
+
+          printf("free %p\n", (void*)ptr);
+
+          // CUstream memory_stream = *static_cast<CUstream *>(data);
+          // if (CUresult err = cuMemFreeAsync(
+          //         static_cast<CUdeviceptr>(buffer->data[0]), memory_stream))
+          //   handle_error(err);
         };
         rpc_recv_and_send(port, free_handler, data);
       },
-      &memory_stream);
+      &alloc);
 
   if (print_resource_usage)
     print_kernel_resources(binary, kernel_name);
