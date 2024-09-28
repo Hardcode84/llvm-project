@@ -210,6 +210,27 @@ static T read_global_var(CUmodule binary, CUstream stream, const char *name) {
   return ret;
 }
 
+template <typename T>
+static void write_global_var(CUmodule binary, CUstream stream, const char *name,
+                             const T &val) {
+  size_t size = 0;
+  CUdeviceptr ptr;
+  if (CUresult err = cuModuleGetGlobal(&ptr, &size, binary, name))
+    handle_error(err);
+
+  if (size != sizeof(T)) {
+    fprintf(stderr, "Invalid var %s size, expected %d got %d\n", name,
+            int(sizeof(T)), int(size));
+    exit(EXIT_FAILURE);
+  }
+
+  if (CUresult err = cuMemcpyHtoDAsync(ptr, &val, size, stream))
+    handle_error(err);
+
+  if (CUresult err = cuStreamSynchronize(stream))
+    handle_error(err);
+}
+
 static bool handle_rpc_server(rpc_device_t rpc_device, CUstream stream) {
   if (cuStreamQuery(stream) != CUDA_ERROR_NOT_READY)
     return false;
@@ -327,12 +348,198 @@ CUresult launch_kernel(CUmodule binary, CUstream stream, BumpPtrAlloc& alloc,
   return CUDA_SUCCESS;
 }
 
+#define KEY_RIGHTARROW 0xae
+#define KEY_LEFTARROW 0xac
+#define KEY_UPARROW 0xad
+#define KEY_DOWNARROW 0xaf
+#define KEY_STRAFE_L 0xa0
+#define KEY_STRAFE_R 0xa1
+#define KEY_USE 0xa2
+#define KEY_FIRE 0xa3
+#define KEY_ESCAPE 27
+#define KEY_ENTER 13
+#define KEY_TAB 9
+#define KEY_F1 (0x80 + 0x3b)
+#define KEY_F2 (0x80 + 0x3c)
+#define KEY_F3 (0x80 + 0x3d)
+#define KEY_F4 (0x80 + 0x3e)
+#define KEY_F5 (0x80 + 0x3f)
+#define KEY_F6 (0x80 + 0x40)
+#define KEY_F7 (0x80 + 0x41)
+#define KEY_F8 (0x80 + 0x42)
+#define KEY_F9 (0x80 + 0x43)
+#define KEY_F10 (0x80 + 0x44)
+#define KEY_F11 (0x80 + 0x57)
+#define KEY_F12 (0x80 + 0x58)
+
+#define KEY_BACKSPACE 0x7f
+#define KEY_PAUSE 0xff
+
+#define KEY_EQUALS 0x3d
+#define KEY_MINUS 0x2d
+
+#define KEY_RSHIFT (0x80 + 0x36)
+#define KEY_RCTRL (0x80 + 0x1d)
+#define KEY_RALT (0x80 + 0x38)
+
+#define KEY_LALT KEY_RALT
+
+// new keys:
+
+#define KEY_CAPSLOCK (0x80 + 0x3a)
+#define KEY_NUMLOCK (0x80 + 0x45)
+#define KEY_SCRLCK (0x80 + 0x46)
+#define KEY_PRTSCR (0x80 + 0x59)
+
+#define KEY_HOME (0x80 + 0x47)
+#define KEY_END (0x80 + 0x4f)
+#define KEY_PGUP (0x80 + 0x49)
+#define KEY_PGDN (0x80 + 0x51)
+#define KEY_INS (0x80 + 0x52)
+#define KEY_DEL (0x80 + 0x53)
+
+#define KEYP_0 0
+#define KEYP_1 KEY_END
+#define KEYP_2 KEY_DOWNARROW
+#define KEYP_3 KEY_PGDN
+#define KEYP_4 KEY_LEFTARROW
+#define KEYP_5 '5'
+#define KEYP_6 KEY_RIGHTARROW
+#define KEYP_7 KEY_HOME
+#define KEYP_8 KEY_UPARROW
+#define KEYP_9 KEY_PGUP
+
+#define KEYP_DIVIDE '/'
+#define KEYP_PLUS '+'
+#define KEYP_MINUS '-'
+#define KEYP_MULTIPLY '*'
+#define KEYP_PERIOD 0
+#define KEYP_EQUALS KEY_EQUALS
+#define KEYP_ENTER KEY_ENTER
+
+static unsigned char convertToDoomKey(unsigned int key) {
+  switch (key) {
+  case SDLK_RETURN:
+    key = KEY_ENTER;
+    break;
+  case SDLK_ESCAPE:
+    key = KEY_ESCAPE;
+    break;
+  case SDLK_LEFT:
+    key = KEY_LEFTARROW;
+    break;
+  case SDLK_RIGHT:
+    key = KEY_RIGHTARROW;
+    break;
+  case SDLK_UP:
+    key = KEY_UPARROW;
+    break;
+  case SDLK_DOWN:
+    key = KEY_DOWNARROW;
+    break;
+  case SDLK_LCTRL:
+  case SDLK_RCTRL:
+    key = KEY_FIRE;
+    break;
+  case SDLK_SPACE:
+    key = KEY_USE;
+    break;
+  case SDLK_LSHIFT:
+  case SDLK_RSHIFT:
+    key = KEY_RSHIFT;
+    break;
+  case SDLK_LALT:
+  case SDLK_RALT:
+    key = KEY_LALT;
+    break;
+  case SDLK_F2:
+    key = KEY_F2;
+    break;
+  case SDLK_F3:
+    key = KEY_F3;
+    break;
+  case SDLK_F4:
+    key = KEY_F4;
+    break;
+  case SDLK_F5:
+    key = KEY_F5;
+    break;
+  case SDLK_F6:
+    key = KEY_F6;
+    break;
+  case SDLK_F7:
+    key = KEY_F7;
+    break;
+  case SDLK_F8:
+    key = KEY_F8;
+    break;
+  case SDLK_F9:
+    key = KEY_F9;
+    break;
+  case SDLK_F10:
+    key = KEY_F10;
+    break;
+  case SDLK_F11:
+    key = KEY_F11;
+    break;
+  case SDLK_EQUALS:
+  case SDLK_PLUS:
+    key = KEY_EQUALS;
+    break;
+  case SDLK_MINUS:
+    key = KEY_MINUS;
+    break;
+  default:
+    key = tolower(key);
+    break;
+  }
+
+  return key;
+}
+
+static const int KEYQUEUE_SIZE = 16;
+#define KeyQueueReadIndex (KeyQueue[KEYQUEUE_SIZE])
+#define KeyQueueWriteIndex (KeyQueue[KEYQUEUE_SIZE + 1])
+static void addKeyToQueue(unsigned short *KeyQueue, int pressed,
+                          unsigned int keyCode) {
+  unsigned char key = convertToDoomKey(keyCode);
+
+  unsigned short keyData = (pressed << 8) | key;
+
+  KeyQueue[KeyQueueWriteIndex] = keyData;
+  KeyQueueWriteIndex++;
+  KeyQueueWriteIndex %= KEYQUEUE_SIZE;
+}
+
+static void handleKeyInput(unsigned short *KeyQueue) {
+  SDL_Event e;
+  while (SDL_PollEvent(&e)) {
+    if (e.type == SDL_QUIT) {
+      puts("Quit requested");
+      exit(1);
+    }
+    if (e.type == SDL_KEYDOWN) {
+      addKeyToQueue(KeyQueue, 1, e.key.keysym.sym);
+    } else if (e.type == SDL_KEYUP) {
+      addKeyToQueue(KeyQueue, 0, e.key.keysym.sym);
+    }
+  }
+}
+#undef KeyQueueReadIndex
+#undef KeyQueueWriteIndex
+
 template <typename args_t>
 CUresult launch_main_loop(CUmodule binary, CUstream stream, BumpPtrAlloc &alloc,
                           rpc_device_t rpc_device,
                           const LaunchParameters &params,
                           const char *kernel_name, args_t kernel_args,
                           bool print_resource_usage) {
+  const size_t keybuffer_size = KEYQUEUE_SIZE + 2;
+  unsigned short *key_queue = nullptr;
+  if (CUresult err = cuMemAllocHost((void **)&key_queue,
+                                    keybuffer_size * (sizeof(key_queue[0]))))
+    handle_error(err);
+
   // look up the '_start' kernel in the loaded module.
   CUfunction function;
   if (CUresult err = cuModuleGetFunction(&function, binary, kernel_name))
@@ -350,6 +557,8 @@ CUresult launch_main_loop(CUmodule binary, CUstream stream, BumpPtrAlloc &alloc,
   CUstream memory_stream;
   if (CUresult err = cuStreamCreate(&memory_stream, CU_STREAM_NON_BLOCKING))
     handle_error(err);
+
+  write_global_var(binary, memory_stream, "DG_GPU_KeyQueue", key_queue);
 
   // Register RPC callbacks for the malloc and free functions on HSA.
   register_rpc_callbacks<32>(rpc_device);
@@ -435,9 +644,10 @@ CUresult launch_main_loop(CUmodule binary, CUstream stream, BumpPtrAlloc &alloc,
   std::unique_ptr<char[]> temp_screen(new char[screenbuffer_size]);
 
   while (true) {
-    // Pre draw barrier
     if (!handle_rpc_barrier(rpc_device, stream))
       break;
+
+    handleKeyInput(key_queue);
 
     // Post draw barrier
     if (!handle_rpc_barrier(rpc_device, stream))
