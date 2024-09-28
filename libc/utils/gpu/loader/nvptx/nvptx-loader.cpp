@@ -26,6 +26,8 @@
 #include <cstring>
 #include <vector>
 
+#include <SDL.h>
+
 using namespace llvm;
 using namespace object;
 
@@ -414,7 +416,23 @@ CUresult launch_main_loop(CUmodule binary, CUstream stream, BumpPtrAlloc &alloc,
 
   printf("Screen: %dx%d %p\n", screen_w, screen_h, (void *)screen_ptr);
 
-  size_t screenbuffer_size = screen_w * screen_h * 4;
+  auto window =
+      SDL_CreateWindow("DOOM", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+                       screen_w, screen_h, SDL_WINDOW_SHOWN);
+
+  // Setup renderer
+  auto renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+  // Clear winow
+  SDL_RenderClear(renderer);
+  // Render the rect to the screen
+  SDL_RenderPresent(renderer);
+
+  auto texture =
+      SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGB888,
+                        SDL_TEXTUREACCESS_TARGET, screen_w, screen_h);
+
+  size_t screenbuffer_size = screen_w * screen_h * sizeof(uint32_t);
+  std::unique_ptr<char[]> temp_screen(new char[screenbuffer_size]);
 
   while (true) {
     // Pre draw barrier
@@ -424,6 +442,20 @@ CUresult launch_main_loop(CUmodule binary, CUstream stream, BumpPtrAlloc &alloc,
     // Post draw barrier
     if (!handle_rpc_barrier(rpc_device, stream))
       break;
+
+    if (CUresult err = cuMemcpyDtoHAsync(temp_screen.get(), screen_ptr,
+                                         screenbuffer_size, memory_stream))
+      handle_error(err);
+
+    if (CUresult err = cuStreamSynchronize(memory_stream))
+      handle_error(err);
+
+    SDL_UpdateTexture(texture, nullptr, temp_screen.get(),
+                      screen_w * sizeof(uint32_t));
+
+    SDL_RenderClear(renderer);
+    SDL_RenderCopy(renderer, texture, nullptr, nullptr);
+    SDL_RenderPresent(renderer);
   }
 
   // Handle the server one more time in case the kernel exited with a pending

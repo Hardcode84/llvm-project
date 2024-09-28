@@ -5,6 +5,8 @@ set(LLVM_LINK_COMPONENTS
   Support
   )
 
+find_package(SDL2 REQUIRED)
+
 add_llvm_executable(nvptx-loader nvptx-loader.cpp)
 
 target_link_libraries(nvptx-loader
@@ -12,4 +14,5 @@ target_link_libraries(nvptx-loader
   gpu_loader
   llvmlibc_rpc_server
   CUDA::cuda_driver
+  SDL2::SDL2
 )
