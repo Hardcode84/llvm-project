@@ -184,6 +184,30 @@ struct BumpPtrAlloc {
 };
 }
 
+template <typename T>
+static T read_global_var(CUmodule binary, CUstream stream, const char *name) {
+  size_t size = 0;
+  CUdeviceptr ptr;
+  if (CUresult err = cuModuleGetGlobal(&ptr, &size, binary, name))
+    handle_error(err);
+
+  if (size != sizeof(T)) {
+    fprintf(stderr, "Invalid var %s size, expected %d got %d\n", name,
+            int(sizeof(T)), int(size));
+    exit(EXIT_FAILURE);
+  }
+
+  T ret;
+
+  if (CUresult err = cuMemcpyDtoHAsync(&ret, ptr, size, stream))
+    handle_error(err);
+
+  if (CUresult err = cuStreamSynchronize(stream))
+    handle_error(err);
+
+  return ret;
+}
+
 static bool handle_rpc_server(rpc_device_t rpc_device, CUstream stream) {
   if (cuStreamQuery(stream) != CUDA_ERROR_NOT_READY)
     return false;
@@ -195,17 +219,17 @@ static bool handle_rpc_server(rpc_device_t rpc_device, CUstream stream) {
 }
 
 static bool handle_rpc_barrier(rpc_device_t rpc_device, CUstream stream) {
-  do {
+  while (true) {
     if (cuStreamQuery(stream) != CUDA_ERROR_NOT_READY)
       return false;
 
     if (rpc_status_t err = rpc_handle_server(rpc_device)) {
       if (err == RPC_STATUS_BARRIER)
-        continue;
+        break;
 
       handle_error(err);
     }
-  } while (false);
+  }
 
   return true;
 }
@@ -380,8 +404,18 @@ CUresult launch_main_loop(CUmodule binary, CUstream stream, BumpPtrAlloc &alloc,
           params.num_threads_z, 0, stream, nullptr, args_config))
     handle_error(err);
 
-  // Wait until the kernel has completed execution on the device. Periodically
-  // check the RPC client for work to be performed on the server.
+  // After init barrier
+  handle_rpc_barrier(rpc_device, stream);
+
+  auto screen_w = read_global_var<int>(binary, memory_stream, "DG_GPU_ResX");
+  auto screen_h = read_global_var<int>(binary, memory_stream, "DG_GPU_Resy");
+  auto screen_ptr = read_global_var<CUdeviceptr>(binary, memory_stream,
+                                                 "DG_GPU_ScreenBuffer");
+
+  printf("Screen: %dx%d %p\n", screen_w, screen_h, (void *)screen_ptr);
+
+  size_t screenbuffer_size = screen_w * screen_h * 4;
+
   while (true) {
     // Pre draw barrier
     if (!handle_rpc_barrier(rpc_device, stream))
