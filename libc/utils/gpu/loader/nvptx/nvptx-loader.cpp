@@ -184,22 +184,21 @@ struct BumpPtrAlloc {
 };
 }
 
+static bool handle_rpc_server(rpc_device_t rpc_device, CUstream stream) {
+  if (cuStreamQuery(stream) != CUDA_ERROR_NOT_READY)
+    return false;
+
+  if (rpc_status_t err = rpc_handle_server(rpc_device))
+      handle_error(err);
+
+    return true;
+}
+
 template <typename args_t>
-CUresult launch_kernel(CUmodule binary, CUstream stream,
+CUresult launch_kernel(CUmodule binary, CUstream stream, BumpPtrAlloc& alloc,
                        rpc_device_t rpc_device, const LaunchParameters &params,
                        const char *kernel_name, args_t kernel_args,
                        bool print_resource_usage) {
-  size_t prealloc_size = 64 * 1024 * 1024;
-  CUdeviceptr prealloc_ptr;
-  if (CUresult err = cuMemAlloc(&prealloc_ptr, prealloc_size))
-  // if (CUresult err = cuMemAllocManaged(&prealloc_ptr, prealloc_size, CU_MEM_ATTACH_HOST))
-  // if (CUresult err = cuMemHostAlloc (&prealloc_ptr, prealloc_size, 0))
-    handle_error(err);
-
-  BumpPtrAlloc alloc;
-  alloc.prealloc_current = static_cast<uintptr_t>(prealloc_ptr);
-  alloc.prealloc_end = alloc.prealloc_current + prealloc_size;
-
   // look up the '_start' kernel in the loaded module.
   CUfunction function;
   if (CUresult err = cuModuleGetFunction(&function, binary, kernel_name))
@@ -238,24 +237,6 @@ CUresult launch_kernel(CUmodule binary, CUstream stream,
             dev_ptr = 0UL;
 
           // printf("alloc %d %p\n", (int)size, (void*)dev_ptr);
-
-          // uint64_t size = buffer->data[0];
-          // uintptr_t align = 16;
-          // if ((prealloc_current + (size + align)) <= prealloc_end) {
-          //   uintptr_t ptr = (prealloc_current + align - 1) & ~align;
-          //   buffer->data[0] = ptr;
-          //   prealloc_current += (size + align);
-          //   return;
-          // }
-
-          // CUstream memory_stream = *static_cast<CUstream *>(data);
-          // CUdeviceptr dev_ptr;
-          // if (CUresult err = cuMemAllocAsync(&dev_ptr, size, memory_stream))
-          //   dev_ptr = 0UL;
-
-          // // Wait until the memory allocation is complete.
-          // while (cuStreamQuery(memory_stream) == CUDA_ERROR_NOT_READY)
-          //   ;
           buffer->data[0] = static_cast<uintptr_t>(dev_ptr);
         };
         rpc_recv_and_send(port, malloc_handler, data);
@@ -277,11 +258,6 @@ CUresult launch_kernel(CUmodule binary, CUstream stream,
             handle_error(err);
 
           // printf("free %p\n", (void*)ptr);
-
-          // CUstream memory_stream = *static_cast<CUstream *>(data);
-          // if (CUresult err = cuMemFreeAsync(
-          //         static_cast<CUdeviceptr>(buffer->data[0]), memory_stream))
-          //   handle_error(err);
         };
         rpc_recv_and_send(port, free_handler, data);
       },
@@ -299,9 +275,7 @@ CUresult launch_kernel(CUmodule binary, CUstream stream,
 
   // Wait until the kernel has completed execution on the device. Periodically
   // check the RPC client for work to be performed on the server.
-  while (cuStreamQuery(stream) == CUDA_ERROR_NOT_READY)
-    if (rpc_status_t err = rpc_handle_server(rpc_device))
-      handle_error(err);
+  while (handle_rpc_server(rpc_device, stream));
 
   // Handle the server one more time in case the kernel exited with a pending
   // send still in flight.
@@ -404,16 +378,25 @@ int load(int argc, const char **argv, const char **envp, void *image,
                        rpc_get_client_size()))
     handle_error(err);
 
+  size_t prealloc_size = 64 * 1024 * 1024;
+  CUdeviceptr prealloc_ptr;
+  if (CUresult err = cuMemAlloc(&prealloc_ptr, prealloc_size))
+    handle_error(err);
+
+  BumpPtrAlloc alloc;
+  alloc.prealloc_current = static_cast<uintptr_t>(prealloc_ptr);
+  alloc.prealloc_end = alloc.prealloc_current + prealloc_size;
+
   LaunchParameters single_threaded_params = {1, 1, 1, 1, 1, 1};
   begin_args_t init_args = {argc, dev_argv, dev_envp};
   if (CUresult err =
-          launch_kernel(binary, stream, rpc_device, single_threaded_params,
+          launch_kernel(binary, stream, alloc, rpc_device, single_threaded_params,
                         "_begin", init_args, print_resource_usage))
     handle_error(err);
 
   start_args_t args = {argc, dev_argv, dev_envp,
                        reinterpret_cast<void *>(dev_ret)};
-  if (CUresult err = launch_kernel(binary, stream, rpc_device, params, "_start",
+  if (CUresult err = launch_kernel(binary, stream, alloc, rpc_device, params, "_start",
                                    args, print_resource_usage))
     handle_error(err);
 
@@ -427,7 +410,7 @@ int load(int argc, const char **argv, const char **envp, void *image,
 
   end_args_t fini_args = {host_ret};
   if (CUresult err =
-          launch_kernel(binary, stream, rpc_device, single_threaded_params,
+          launch_kernel(binary, stream, alloc, rpc_device, single_threaded_params,
                         "_end", fini_args, print_resource_usage))
     handle_error(err);
 
