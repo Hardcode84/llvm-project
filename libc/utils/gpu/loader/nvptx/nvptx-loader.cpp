@@ -194,6 +194,22 @@ static bool handle_rpc_server(rpc_device_t rpc_device, CUstream stream) {
     return true;
 }
 
+static bool handle_rpc_barrier(rpc_device_t rpc_device, CUstream stream) {
+  do {
+    if (cuStreamQuery(stream) != CUDA_ERROR_NOT_READY)
+      return false;
+
+    if (rpc_status_t err = rpc_handle_server(rpc_device)) {
+      if (err == RPC_STATUS_BARRIER)
+        continue;
+
+      handle_error(err);
+    }
+  } while (false);
+
+  return true;
+}
+
 template <typename args_t>
 CUresult launch_kernel(CUmodule binary, CUstream stream, BumpPtrAlloc& alloc,
                        rpc_device_t rpc_device, const LaunchParameters &params,
@@ -276,6 +292,105 @@ CUresult launch_kernel(CUmodule binary, CUstream stream, BumpPtrAlloc& alloc,
   // Wait until the kernel has completed execution on the device. Periodically
   // check the RPC client for work to be performed on the server.
   while (handle_rpc_server(rpc_device, stream));
+
+  // Handle the server one more time in case the kernel exited with a pending
+  // send still in flight.
+  if (rpc_status_t err = rpc_handle_server(rpc_device))
+    handle_error(err);
+
+  return CUDA_SUCCESS;
+}
+
+template <typename args_t>
+CUresult launch_main_loop(CUmodule binary, CUstream stream, BumpPtrAlloc &alloc,
+                          rpc_device_t rpc_device,
+                          const LaunchParameters &params,
+                          const char *kernel_name, args_t kernel_args,
+                          bool print_resource_usage) {
+  // look up the '_start' kernel in the loaded module.
+  CUfunction function;
+  if (CUresult err = cuModuleGetFunction(&function, binary, kernel_name))
+    handle_error(err);
+
+  // Set up the arguments to the '_start' kernel on the GPU.
+  uint64_t args_size = sizeof(args_t);
+  void *args_config[] = {CU_LAUNCH_PARAM_BUFFER_POINTER, &kernel_args,
+                         CU_LAUNCH_PARAM_BUFFER_SIZE, &args_size,
+                         CU_LAUNCH_PARAM_END};
+
+  // Initialize a non-blocking CUDA stream to allocate memory if needed. This
+  // needs to be done on a separate stream or else it will deadlock with the
+  // executing kernel.
+  CUstream memory_stream;
+  if (CUresult err = cuStreamCreate(&memory_stream, CU_STREAM_NON_BLOCKING))
+    handle_error(err);
+
+  // Register RPC callbacks for the malloc and free functions on HSA.
+  register_rpc_callbacks<32>(rpc_device);
+
+  rpc_register_callback(
+      rpc_device, RPC_MALLOC,
+      [](rpc_port_t port, void *data) {
+        auto malloc_handler = [](rpc_buffer_t *buffer, void *data) -> void {
+          uint64_t size = buffer->data[0];
+          auto *alloc = static_cast<BumpPtrAlloc *>(data);
+          if (auto ptr = alloc->alloc(size, 16)) {
+            // printf("alloc arena %d %p\n", (int)size, (void*)ptr);
+            buffer->data[0] = static_cast<uintptr_t>(ptr);
+            return;
+          }
+
+          CUdeviceptr dev_ptr;
+          if (CUresult err = cuMemAlloc(&dev_ptr, size))
+            dev_ptr = 0UL;
+
+          // printf("alloc %d %p\n", (int)size, (void*)dev_ptr);
+          buffer->data[0] = static_cast<uintptr_t>(dev_ptr);
+        };
+        rpc_recv_and_send(port, malloc_handler, data);
+      },
+      &alloc);
+  rpc_register_callback(
+      rpc_device, RPC_FREE,
+      [](rpc_port_t port, void *data) {
+        auto free_handler = [](rpc_buffer_t *buffer, void *data) {
+          uint64_t ptr = buffer->data[0];
+          auto *alloc = static_cast<BumpPtrAlloc *>(data);
+          if (alloc->is_allocated(ptr)) {
+            // printf("free arena %p\n", (void*)ptr);
+            return;
+          }
+
+          if (CUresult err = cuMemFree(static_cast<CUdeviceptr>(ptr)))
+            handle_error(err);
+
+          // printf("free %p\n", (void*)ptr);
+        };
+        rpc_recv_and_send(port, free_handler, data);
+      },
+      &alloc);
+
+  if (print_resource_usage)
+    print_kernel_resources(binary, kernel_name);
+
+  // Call the kernel with the given arguments.
+  if (CUresult err = cuLaunchKernel(
+          function, params.num_blocks_x, params.num_blocks_y,
+          params.num_blocks_z, params.num_threads_x, params.num_threads_y,
+          params.num_threads_z, 0, stream, nullptr, args_config))
+    handle_error(err);
+
+  // Wait until the kernel has completed execution on the device. Periodically
+  // check the RPC client for work to be performed on the server.
+  while (true) {
+    // Pre draw barrier
+    if (!handle_rpc_barrier(rpc_device, stream))
+      break;
+
+    // Post draw barrier
+    if (!handle_rpc_barrier(rpc_device, stream))
+      break;
+  }
 
   // Handle the server one more time in case the kernel exited with a pending
   // send still in flight.
@@ -396,8 +511,8 @@ int load(int argc, const char **argv, const char **envp, void *image,
 
   start_args_t args = {argc, dev_argv, dev_envp,
                        reinterpret_cast<void *>(dev_ret)};
-  if (CUresult err = launch_kernel(binary, stream, alloc, rpc_device, params, "_start",
-                                   args, print_resource_usage))
+  if (CUresult err = launch_main_loop(binary, stream, alloc, rpc_device, params,
+                                      "_start", args, print_resource_usage))
     handle_error(err);
 
   // Copy the return value back from the kernel and wait.
