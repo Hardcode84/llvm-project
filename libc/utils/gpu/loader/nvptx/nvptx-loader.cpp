@@ -241,18 +241,50 @@ static bool handle_rpc_server(rpc_device_t rpc_device, CUstream stream) {
     return true;
 }
 
-static bool handle_rpc_barrier(rpc_device_t rpc_device, CUstream stream) {
-  while (true) {
-    if (cuStreamQuery(stream) != CUDA_ERROR_NOT_READY)
-      return false;
+static int HostInsideBarrier = 0;
+namespace {
+struct HostBarrierGuard {
+  HostBarrierGuard() { ++HostInsideBarrier; }
+  ~HostBarrierGuard() { --HostInsideBarrier; }
+};
+} // namespace
 
-    if (rpc_status_t err = rpc_handle_server(rpc_device)) {
-      if (err == RPC_STATUS_BARRIER)
+static int GpuBlocksInsideBarrier = 0;
+static size_t gpu_barrier_enter(void *) {
+  if (HostInsideBarrier == 0)
+    return 0;
+
+  ++GpuBlocksInsideBarrier;
+  return 1;
+}
+
+static size_t gpu_barrier_exit(void *) {
+  if (HostInsideBarrier != 0)
+    return 0;
+
+  --GpuBlocksInsideBarrier;
+  return 1;
+}
+
+static bool handle_rpc_barrier_impl(rpc_device_t rpc_device, CUstream stream,
+                                    uint32_t num_blocks) {
+  {
+    HostBarrierGuard g;
+    while (true) {
+      if (cuStreamQuery(stream) != CUDA_ERROR_NOT_READY)
+        return false;
+
+      if (rpc_status_t err = rpc_handle_server(rpc_device))
+        handle_error(err);
+
+      if ((uint32_t)GpuBlocksInsideBarrier == num_blocks)
         break;
-
-      handle_error(err);
     }
   }
+  do {
+    if (!handle_rpc_server(rpc_device, stream))
+      return false;
+  } while (GpuBlocksInsideBarrier != 0);
 
   return true;
 }
@@ -560,6 +592,11 @@ CUresult launch_main_loop(CUmodule binary, CUstream stream, BumpPtrAlloc &alloc,
 
   write_global_var(binary, memory_stream, "DG_GPU_KeyQueue", key_queue);
 
+  write_global_var(binary, memory_stream, "DG_GPU_BarrierEnter",
+                   (void *)&gpu_barrier_enter);
+  write_global_var(binary, memory_stream, "DG_GPU_BarrierExit",
+                   (void *)&gpu_barrier_exit);
+
   // Register RPC callbacks for the malloc and free functions on HSA.
   register_rpc_callbacks<32>(rpc_device);
 
@@ -615,8 +652,14 @@ CUresult launch_main_loop(CUmodule binary, CUstream stream, BumpPtrAlloc &alloc,
           params.num_threads_z, 0, stream, nullptr, args_config))
     handle_error(err);
 
+  auto num_blocks =
+      params.num_blocks_x * params.num_blocks_y * params.num_blocks_z;
+  auto handle_rpc_barrier = [&]() -> bool {
+    return handle_rpc_barrier_impl(rpc_device, stream, num_blocks);
+  };
+
   // After init barrier
-  handle_rpc_barrier(rpc_device, stream);
+  handle_rpc_barrier();
 
   auto screen_w = read_global_var<int>(binary, memory_stream, "DG_GPU_ResX");
   auto screen_h = read_global_var<int>(binary, memory_stream, "DG_GPU_Resy");
@@ -644,13 +687,13 @@ CUresult launch_main_loop(CUmodule binary, CUstream stream, BumpPtrAlloc &alloc,
   std::unique_ptr<char[]> temp_screen(new char[screenbuffer_size]);
 
   while (true) {
-    if (!handle_rpc_barrier(rpc_device, stream))
+    if (!handle_rpc_barrier())
       break;
 
     handleKeyInput(key_queue);
 
     // Post draw barrier
-    if (!handle_rpc_barrier(rpc_device, stream))
+    if (!handle_rpc_barrier())
       break;
 
     if (CUresult err = cuMemcpyDtoHAsync(temp_screen.get(), screen_ptr,
