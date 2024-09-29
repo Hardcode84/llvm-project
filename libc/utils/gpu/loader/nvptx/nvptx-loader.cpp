@@ -289,6 +289,12 @@ static bool handle_rpc_barrier_impl(rpc_device_t rpc_device, CUstream stream,
   return true;
 }
 
+static llvm::function_ref<void()> RenderFunc;
+static size_t render_screen(void *) {
+  RenderFunc();
+  return 0;
+}
+
 template <typename args_t>
 CUresult launch_kernel(CUmodule binary, CUstream stream, BumpPtrAlloc& alloc,
                        rpc_device_t rpc_device, const LaunchParameters &params,
@@ -596,6 +602,8 @@ CUresult launch_main_loop(CUmodule binary, CUstream stream, BumpPtrAlloc &alloc,
                    (void *)&gpu_barrier_enter);
   write_global_var(binary, memory_stream, "DG_GPU_BarrierExit",
                    (void *)&gpu_barrier_exit);
+  write_global_var(binary, memory_stream, "DG_GPU_DrawFrame",
+                   (void *)&render_screen);
 
   // Register RPC callbacks for the malloc and free functions on HSA.
   register_rpc_callbacks<32>(rpc_device);
@@ -645,6 +653,8 @@ CUresult launch_main_loop(CUmodule binary, CUstream stream, BumpPtrAlloc &alloc,
   if (print_resource_usage)
     print_kernel_resources(binary, kernel_name);
 
+  SDL_Init(SDL_INIT_VIDEO);
+
   // Call the kernel with the given arguments.
   if (CUresult err = cuLaunchKernel(
           function, params.num_blocks_x, params.num_blocks_y,
@@ -686,6 +696,31 @@ CUresult launch_main_loop(CUmodule binary, CUstream stream, BumpPtrAlloc &alloc,
   size_t screenbuffer_size = screen_w * screen_h * sizeof(uint32_t);
   std::unique_ptr<char[]> temp_screen(new char[screenbuffer_size]);
 
+  bool screen_pending = false;
+  auto present_pending_screen = [&]() {
+    if (screen_pending) {
+      if (CUresult err = cuStreamSynchronize(memory_stream))
+        handle_error(err);
+
+      SDL_UpdateTexture(texture, nullptr, temp_screen.get(),
+                        screen_w * sizeof(uint32_t));
+
+      SDL_RenderCopy(renderer, texture, nullptr, nullptr);
+      SDL_RenderPresent(renderer);
+      screen_pending = false;
+    }
+  };
+
+  auto draw_screen = [&]() {
+    present_pending_screen();
+    if (CUresult err = cuMemcpyDtoHAsync(temp_screen.get(), screen_ptr,
+                                         screenbuffer_size, memory_stream))
+      handle_error(err);
+
+    screen_pending = true;
+  };
+  RenderFunc = draw_screen;
+
   while (true) {
     if (!handle_rpc_barrier())
       break;
@@ -696,19 +731,7 @@ CUresult launch_main_loop(CUmodule binary, CUstream stream, BumpPtrAlloc &alloc,
     if (!handle_rpc_barrier())
       break;
 
-    if (CUresult err = cuMemcpyDtoHAsync(temp_screen.get(), screen_ptr,
-                                         screenbuffer_size, memory_stream))
-      handle_error(err);
-
-    if (CUresult err = cuStreamSynchronize(memory_stream))
-      handle_error(err);
-
-    SDL_UpdateTexture(texture, nullptr, temp_screen.get(),
-                      screen_w * sizeof(uint32_t));
-
-    SDL_RenderClear(renderer);
-    SDL_RenderCopy(renderer, texture, nullptr, nullptr);
-    SDL_RenderPresent(renderer);
+    present_pending_screen();
   }
 
   // Handle the server one more time in case the kernel exited with a pending
