@@ -108,7 +108,7 @@ func.func @check_scalar_func_call(%in : f32) {
 func.func @loop_carried(%arg0 : index, %arg1 : index, %arg2 : index, %base0 : !base_type, %base1 : !base_type) -> (!base_type, !base_type) {
   // This test checks that in the BAREPTR case, the branch arguments only forward the descriptor.
   // This test was lowered from a simple scf.for that swaps 2 memref iter_args.
-  //      BAREPTR: llvm.br ^bb1(%{{.*}}, %{{.*}}, %{{.*}} : i64, !llvm.struct<(ptr<201>, ptr<201>, i64, array<1 x i64>, array<1 x i64>)>, !llvm.struct<(ptr<201>, ptr<201>, i64, array<1 x i64>, array<1 x i64>)>)
+  //      BAREPTR: llvm.br ^bb1(%{{.*}}, %{{.*}}, %{{.*}} : i64, !llvm.struct<(ptr<201>, ptr<201>, array<1 x i64>, array<1 x i64>)>, !llvm.struct<(ptr<201>, ptr<201>, array<1 x i64>, array<1 x i64>)>)
   cf.br ^bb1(%arg0, %base0, %base1 : index, memref<64xi32, 201>, memref<64xi32, 201>)
 
   // BAREPTR-NEXT: ^bb1

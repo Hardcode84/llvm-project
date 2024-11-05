@@ -8,11 +8,11 @@
 
 // An external function is transformed into the glue around calling an interface function.
 // CHECK-LABEL: @external
-// CHECK: %[[ALLOC0:.*]]: !llvm.ptr, %[[ALIGN0:.*]]: !llvm.ptr, %[[OFFSET0:.*]]: i64, %[[SIZE00:.*]]: i64, %[[SIZE01:.*]]: i64, %[[STRIDE00:.*]]: i64, %[[STRIDE01:.*]]: i64,
-// CHECK: %[[ALLOC1:.*]]: !llvm.ptr, %[[ALIGN1:.*]]: !llvm.ptr, %[[OFFSET1:.*]]: i64)
+// CHECK: %[[ALLOC0:.*]]: !llvm.ptr, %[[ALIGN0:.*]]: !llvm.ptr, %[[SIZE00:.*]]: i64, %[[SIZE01:.*]]: i64, %[[STRIDE00:.*]]: i64, %[[STRIDE01:.*]]: i64,
+// CHECK: %[[ALLOC1:.*]]: !llvm.ptr, %[[ALIGN1:.*]]: !llvm.ptr)
 func.func private @external(%arg0: memref<?x?xf32>, %arg1: memref<f32>)
   // Populate the descriptor for arg0.
-  // CHECK: %[[DESC00:.*]] = llvm.mlir.undef : !llvm.struct<(ptr, ptr, i64, array<2 x i64>, array<2 x i64>)>
+  // CHECK: %[[DESC00:.*]] = llvm.mlir.undef : !llvm.struct<(ptr, ptr, array<2 x i64>, array<2 x i64>)>
   // CHECK: %[[DESC01:.*]] = llvm.insertvalue %arg0, %[[DESC00]][0]
   // CHECK: %[[DESC02:.*]] = llvm.insertvalue %arg1, %[[DESC01]][1]
   // CHECK: %[[DESC03:.*]] = llvm.insertvalue %arg2, %[[DESC02]][2]
@@ -23,18 +23,18 @@ func.func private @external(%arg0: memref<?x?xf32>, %arg1: memref<f32>)
 
   // Allocate on stack and store to comply with C calling convention.
   // CHECK: %[[C1:.*]] = llvm.mlir.constant(1 : index)
-  // CHECK: %[[DESC0_ALLOCA:.*]] = llvm.alloca %[[C1]] x !llvm.struct<(ptr, ptr, i64, array<2 x i64>, array<2 x i64>)>
+  // CHECK: %[[DESC0_ALLOCA:.*]] = llvm.alloca %[[C1]] x !llvm.struct<(ptr, ptr, array<2 x i64>, array<2 x i64>)>
   // CHECK: llvm.store %[[DESC07]], %[[DESC0_ALLOCA]]
 
   // Populate the descriptor for arg1.
-  // CHECK: %[[DESC10:.*]] = llvm.mlir.undef : !llvm.struct<(ptr, ptr, i64)>
-  // CHECK: %[[DESC11:.*]] = llvm.insertvalue %arg7, %[[DESC10]][0] : !llvm.struct<(ptr, ptr, i64)>
-  // CHECK: %[[DESC12:.*]] = llvm.insertvalue %arg8, %[[DESC11]][1] : !llvm.struct<(ptr, ptr, i64)>
-  // CHECK: %[[DESC13:.*]] = llvm.insertvalue %arg9, %[[DESC12]][2] : !llvm.struct<(ptr, ptr, i64)>
+  // CHECK: %[[DESC10:.*]] = llvm.mlir.undef : !llvm.struct<(ptr, ptr)>
+  // CHECK: %[[DESC11:.*]] = llvm.insertvalue %arg7, %[[DESC10]][0] : !llvm.struct<(ptr, ptr)>
+  // CHECK: %[[DESC12:.*]] = llvm.insertvalue %arg8, %[[DESC11]][1] : !llvm.struct<(ptr, ptr)>
+  // CHECK: %[[DESC13:.*]] = llvm.insertvalue %arg9, %[[DESC12]][2] : !llvm.struct<(ptr, ptr)>
 
   // Allocate on stack and store to comply with C calling convention.
   // CHECK: %[[C1:.*]] = llvm.mlir.constant(1 : index)
-  // CHECK: %[[DESC1_ALLOCA:.*]] = llvm.alloca %[[C1]] x !llvm.struct<(ptr, ptr, i64)>
+  // CHECK: %[[DESC1_ALLOCA:.*]] = llvm.alloca %[[C1]] x !llvm.struct<(ptr, ptr)>
   // CHECK: llvm.store %[[DESC13]], %[[DESC1_ALLOCA]]
 
   // Call the interface function.
@@ -46,28 +46,27 @@ func.func private @external(%arg0: memref<?x?xf32>, %arg1: memref<f32>)
 
 // Verify that the return value is not affected.
 // CHECK-LABEL: @returner
-// CHECK: -> !llvm.struct<(struct<(ptr, ptr, i64, array<2 x i64>, array<2 x i64>)>, struct<(ptr, ptr, i64)>)>
+// CHECK: -> !llvm.struct<(struct<(ptr, ptr, array<2 x i64>, array<2 x i64>)>, struct<(ptr, ptr)>)>
 func.func private @returner() -> (memref<?x?xf32>, memref<f32>)
 
 // CHECK-LABEL: @caller
 func.func @caller() {
   %0:2 = call @returner() : () -> (memref<?x?xf32>, memref<f32>)
   // Extract individual values from the descriptor for the first memref.
-  // CHECK: %[[ALLOC0:.*]] = llvm.extractvalue %[[DESC0:.*]][0] : !llvm.struct<(ptr, ptr, i64, array<2 x i64>, array<2 x i64>)>
+  // CHECK: %[[ALLOC0:.*]] = llvm.extractvalue %[[DESC0:.*]][0] : !llvm.struct<(ptr, ptr, array<2 x i64>, array<2 x i64>)>
   // CHECK: %[[ALIGN0:.*]] = llvm.extractvalue %[[DESC0]][1]
-  // CHECK: %[[OFFSET0:.*]] = llvm.extractvalue %[[DESC0]][2]
-  // CHECK: %[[SIZE00:.*]] = llvm.extractvalue %[[DESC0]][3, 0]
-  // CHECK: %[[SIZE01:.*]] = llvm.extractvalue %[[DESC0]][3, 1]
-  // CHECK: %[[STRIDE00:.*]] = llvm.extractvalue %[[DESC0]][4, 0]
-  // CHECK: %[[STRIDE01:.*]] = llvm.extractvalue %[[DESC0]][4, 1]
+  // CHECK: %[[SIZE00:.*]] = llvm.extractvalue %[[DESC0]][2, 0]
+  // CHECK: %[[SIZE01:.*]] = llvm.extractvalue %[[DESC0]][2, 1]
+  // CHECK: %[[STRIDE00:.*]] = llvm.extractvalue %[[DESC0]][3, 0]
+  // CHECK: %[[STRIDE01:.*]] = llvm.extractvalue %[[DESC0]][3, 1]
 
   // Extract individual values from the descriptor for the second memref.
-  // CHECK: %[[ALLOC1:.*]] = llvm.extractvalue %[[DESC1:.*]][0] : !llvm.struct<(ptr, ptr, i64)>
+  // CHECK: %[[ALLOC1:.*]] = llvm.extractvalue %[[DESC1:.*]][0] : !llvm.struct<(ptr, ptr)>
   // CHECK: %[[ALIGN1:.*]] = llvm.extractvalue %[[DESC1]][1]
   // CHECK: %[[OFFSET1:.*]] = llvm.extractvalue %[[DESC1]][2]
 
   // Forward the values to the call.
-  // CHECK: llvm.call @external(%[[ALLOC0]], %[[ALIGN0]], %[[OFFSET0]], %[[SIZE00]], %[[SIZE01]], %[[STRIDE00]], %[[STRIDE01]], %[[ALLOC1]], %[[ALIGN1]], %[[OFFSET1]]) : (!llvm.ptr, !llvm.ptr, i64, i64, i64, i64, i64, !llvm.ptr, !llvm.ptr, i64) -> ()
+  // CHECK: llvm.call @external(%[[ALLOC0]], %[[ALIGN0]], %[[SIZE00]], %[[SIZE01]], %[[STRIDE00]], %[[STRIDE01]], %[[ALLOC1]], %[[ALIGN1]]) : (!llvm.ptr, !llvm.ptr, i64, i64, i64, i64, i64, !llvm.ptr, !llvm.ptr, i64) -> ()
   call @external(%0#0, %0#1) : (memref<?x?xf32>, memref<f32>) -> ()
   return
 }
@@ -83,7 +82,7 @@ func.func @callee(%arg0: memref<?xf32>, %arg1: index) {
 // CHECK-LABEL: @_mlir_ciface_callee
 // CHECK: %[[ARG0:.*]]: !llvm.ptr
   // Load the memref descriptor pointer.
-  // CHECK: %[[DESC:.*]] = llvm.load %[[ARG0]] : !llvm.ptr -> !llvm.struct<(ptr, ptr, i64, array<1 x i64>, array<1 x i64>)>
+  // CHECK: %[[DESC:.*]] = llvm.load %[[ARG0]] : !llvm.ptr -> !llvm.struct<(ptr, ptr, array<1 x i64>, array<1 x i64>)>
 
   // Extract individual components of the descriptor.
   // CHECK: %[[ALLOC:.*]] = llvm.extractvalue %[[DESC]][0]
@@ -251,7 +250,7 @@ func.func @return_two_var_memref(%arg0: memref<4x3xf32>) -> (memref<*xf32>, memr
 // CHECK-SAME: -> !llvm.ptr
 func.func @bare_ptr_calling_conv(%arg0: memref<4x3xf32>, %arg1 : index, %arg2 : index, %arg3 : f32)
      -> (memref<4x3xf32>) attributes { llvm.bareptr } {
-  // CHECK: %[[UNDEF_DESC:.*]] = llvm.mlir.undef : !llvm.struct<(ptr, ptr, i64, array<2 x i64>, array<2 x i64>)>
+  // CHECK: %[[UNDEF_DESC:.*]] = llvm.mlir.undef : !llvm.struct<(ptr, ptr, array<2 x i64>, array<2 x i64>)>
   // CHECK: %[[INSERT_ALLOCPTR:.*]] = llvm.insertvalue %[[ARG0]], %[[UNDEF_DESC]][0]
   // CHECK: %[[INSERT_ALIGNEDPTR:.*]] = llvm.insertvalue %[[ARG0]], %[[INSERT_ALLOCPTR]][1]
   // CHECK: %[[C0:.*]] = llvm.mlir.constant(0 : index) : i64
@@ -280,7 +279,7 @@ func.func @bare_ptr_calling_conv(%arg0: memref<4x3xf32>, %arg1 : index, %arg2 : 
 // CHECK-SAME: -> !llvm.struct<(f32, ptr)>
 func.func @bare_ptr_calling_conv_multiresult(%arg0: memref<4x3xf32>, %arg1 : index, %arg2 : index, %arg3 : f32)
      -> (f32, memref<4x3xf32>) attributes { llvm.bareptr } {
-  // CHECK: %[[UNDEF_DESC:.*]] = llvm.mlir.undef : !llvm.struct<(ptr, ptr, i64, array<2 x i64>, array<2 x i64>)>
+  // CHECK: %[[UNDEF_DESC:.*]] = llvm.mlir.undef : !llvm.struct<(ptr, ptr, array<2 x i64>, array<2 x i64>)>
   // CHECK: %[[INSERT_ALLOCPTR:.*]] = llvm.insertvalue %[[ARG0]], %[[UNDEF_DESC]][0]
   // CHECK: %[[INSERT_ALIGNEDPTR:.*]] = llvm.insertvalue %[[ARG0]], %[[INSERT_ALLOCPTR]][1]
   // CHECK: %[[C0:.*]] = llvm.mlir.constant(0 : index) : i64

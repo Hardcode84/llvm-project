@@ -1511,13 +1511,11 @@ func.func @type_cast_f32(%arg0: memref<8x8x8xf32>) -> memref<vector<8x8x8xf32>> 
   return %0 : memref<vector<8x8x8xf32>>
 }
 // CHECK-LABEL: @type_cast_f32
-//       CHECK:   llvm.mlir.undef : !llvm.struct<(ptr, ptr, i64)>
-//       CHECK:   %[[allocated:.*]] = llvm.extractvalue {{.*}}[0] : !llvm.struct<(ptr, ptr, i64, array<3 x i64>, array<3 x i64>)>
-//       CHECK:   llvm.insertvalue %[[allocated]], {{.*}}[0] : !llvm.struct<(ptr, ptr, i64)>
-//       CHECK:   %[[aligned:.*]] = llvm.extractvalue {{.*}}[1] : !llvm.struct<(ptr, ptr, i64, array<3 x i64>, array<3 x i64>)>
-//       CHECK:   llvm.insertvalue %[[aligned]], {{.*}}[1] : !llvm.struct<(ptr, ptr, i64)>
-//       CHECK:   llvm.mlir.constant(0 : index
-//       CHECK:   llvm.insertvalue {{.*}}[2] : !llvm.struct<(ptr, ptr, i64)>
+//       CHECK:   llvm.mlir.undef : !llvm.struct<(ptr, ptr)>
+//       CHECK:   %[[allocated:.*]] = llvm.extractvalue {{.*}}[0] : !llvm.struct<(ptr, ptr, array<3 x i64>, array<3 x i64>)>
+//       CHECK:   llvm.insertvalue %[[allocated]], {{.*}}[0] : !llvm.struct<(ptr, ptr)>
+//       CHECK:   %[[aligned:.*]] = llvm.extractvalue {{.*}}[1] : !llvm.struct<(ptr, ptr, array<3 x i64>, array<3 x i64>)>
+//       CHECK:   llvm.insertvalue %[[aligned]], {{.*}}[1] : !llvm.struct<(ptr, ptr)>
 
 // NOTE: No test for scalable vectors - the input memref is fixed size.
 
@@ -1529,9 +1527,9 @@ func.func @type_cast_index(%arg0: memref<8x8x8xindex>) -> memref<vector<8x8x8xin
 }
 // CHECK-LABEL: @type_cast_index(
 // CHECK-SAME: %[[A:.*]]: memref<8x8x8xindex>)
-//       CHECK:   %{{.*}} = builtin.unrealized_conversion_cast %[[A]] : memref<8x8x8xindex> to !llvm.struct<(ptr, ptr, i64, array<3 x i64>, array<3 x i64>)>
+//       CHECK:   %{{.*}} = builtin.unrealized_conversion_cast %[[A]] : memref<8x8x8xindex> to !llvm.struct<(ptr, ptr, array<3 x i64>, array<3 x i64>)>
 
-//       CHECK:   %{{.*}} = builtin.unrealized_conversion_cast %{{.*}} : !llvm.struct<(ptr, ptr, i64)> to memref<vector<8x8x8xindex>>
+//       CHECK:   %{{.*}} = builtin.unrealized_conversion_cast %{{.*}} : !llvm.struct<(ptr, ptr)> to memref<vector<8x8x8xindex>>
 
 // NOTE: No test for scalable vectors - the input memref is fixed size.
 
@@ -1542,13 +1540,11 @@ func.func @vector_type_cast_non_zero_addrspace(%arg0: memref<8x8x8xf32, 3>) -> m
   return %0 : memref<vector<8x8x8xf32>, 3>
 }
 // CHECK-LABEL: @vector_type_cast_non_zero_addrspace
-//       CHECK:   llvm.mlir.undef : !llvm.struct<(ptr<3>, ptr<3>, i64)>
-//       CHECK:   %[[allocated:.*]] = llvm.extractvalue {{.*}}[0] : !llvm.struct<(ptr<3>, ptr<3>, i64, array<3 x i64>, array<3 x i64>)>
-//       CHECK:   llvm.insertvalue %[[allocated]], {{.*}}[0] : !llvm.struct<(ptr<3>, ptr<3>, i64)>
-//       CHECK:   %[[aligned:.*]] = llvm.extractvalue {{.*}}[1] : !llvm.struct<(ptr<3>, ptr<3>, i64, array<3 x i64>, array<3 x i64>)>
-//       CHECK:   llvm.insertvalue %[[aligned]], {{.*}}[1] : !llvm.struct<(ptr<3>, ptr<3>, i64)>
-//       CHECK:   llvm.mlir.constant(0 : index
-//       CHECK:   llvm.insertvalue {{.*}}[2] : !llvm.struct<(ptr<3>, ptr<3>, i64)>
+//       CHECK:   llvm.mlir.undef : !llvm.struct<(ptr<3>, ptr<3>)>
+//       CHECK:   %[[allocated:.*]] = llvm.extractvalue {{.*}}[0] : !llvm.struct<(ptr<3>, ptr<3>, array<3 x i64>, array<3 x i64>)>
+//       CHECK:   llvm.insertvalue %[[allocated]], {{.*}}[0] : !llvm.struct<(ptr<3>, ptr<3>)>
+//       CHECK:   %[[aligned:.*]] = llvm.extractvalue {{.*}}[1] : !llvm.struct<(ptr<3>, ptr<3>, array<3 x i64>, array<3 x i64>)>
+//       CHECK:   llvm.insertvalue %[[aligned]], {{.*}}[1] : !llvm.struct<(ptr<3>, ptr<3>)>
 
 // NOTE: No test for scalable vectors - the input memref is fixed size.
 
