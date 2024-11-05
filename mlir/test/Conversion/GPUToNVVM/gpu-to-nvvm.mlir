@@ -728,9 +728,8 @@ gpu.module @test_module_33 {
 
 gpu.module @test_module_34 {
   // CHECK-LABEL: llvm.func @memref_signature(
-  //  CHECK-SAME:     %{{.*}}: !llvm.ptr, %{{.*}}: !llvm.ptr, %{{.*}}: i64, %{{.*}}: i64, %{{.*}}: i64, %{{.*}}: f32) -> !llvm.struct<(struct<(ptr, ptr, i64, array<1 x i64>, array<1 x i64>)>, f32)>
+  //  CHECK-SAME:     %{{.*}}: !llvm.ptr, %{{.*}}: !llvm.ptr, %{{.*}}: i64, %{{.*}}: i64, %{{.*}}: f32) -> !llvm.struct<(struct<(ptr, ptr, array<1 x i64>, array<1 x i64>)>, f32)>
   //       CHECK:   llvm.mlir.undef
-  //       CHECK:   llvm.insertvalue
   //       CHECK:   llvm.insertvalue
   //       CHECK:   llvm.insertvalue
   //       CHECK:   llvm.insertvalue

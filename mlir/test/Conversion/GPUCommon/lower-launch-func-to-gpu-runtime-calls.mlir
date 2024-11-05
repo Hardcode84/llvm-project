@@ -21,7 +21,7 @@ module attributes {gpu.container_module} {
   // CHECK: gpu.launch_func @kernel_module::@kernel
   // CHECK: blocks in ([[C8]], [[C8]], [[C8]]) threads in ([[C8]], [[C8]], [[C8]]) : i64
   // CHECK: dynamic_shared_memory_size [[C256]]
-  // CHECK: args([[C32]] : i32, %{{.*}} : !llvm.ptr, %{{.*}} : !llvm.ptr, %{{.*}} : i64, %{{.*}} : i64, %{{.*}} : i64)
+  // CHECK: args([[C32]] : i32, %{{.*}} : !llvm.ptr, %{{.*}} : !llvm.ptr, %{{.*}} : i64, %{{.*}} : i64)
     gpu.launch_func @kernel_module::@kernel
         blocks in (%c8, %c8, %c8)
         threads in (%c8, %c8, %c8)
@@ -58,7 +58,7 @@ module attributes {gpu.container_module} {
   // CHECK: clusters in ([[C2]], [[C2]], [[C2]])
   // CHECK: blocks in ([[C8]], [[C8]], [[C8]]) threads in ([[C8]], [[C8]], [[C8]]) : i64
   // CHECK: dynamic_shared_memory_size [[C256]]
-  // CHECK: args([[C32]] : i32, %{{.*}} : !llvm.ptr, %{{.*}} : !llvm.ptr, %{{.*}} : i64, %{{.*}} : i64, %{{.*}} : i64)
+  // CHECK: args([[C32]] : i32, %{{.*}} : !llvm.ptr, %{{.*}} : !llvm.ptr, %{{.*}} : i64, %{{.*}} : i64)
     gpu.launch_func @kernel_module::@kernel
         clusters in (%c2, %c2, %c2)
         blocks in (%c8, %c8, %c8)
@@ -89,7 +89,7 @@ module attributes {gpu.container_module} {
   // CHECK: clusters in ([[C2]], [[C2]], [[C2]])
   // CHECK: blocks in ([[C8]], [[C8]], [[C8]]) threads in ([[C8]], [[C8]], [[C8]]) : i64
   // CHECK: dynamic_shared_memory_size [[C256]]
-  // CHECK: args([[C32]] : i32, %{{.*}} : !llvm.ptr, %{{.*}} : !llvm.ptr, %{{.*}} : i64, %{{.*}} : i64, %{{.*}} : i64)
+  // CHECK: args([[C32]] : i32, %{{.*}} : !llvm.ptr, %{{.*}} : !llvm.ptr, %{{.*}} : i64, %{{.*}} : i64)
     gpu.launch_func @kernel_module::@kernel
         clusters in (%c2, %c2, %c2)
         blocks in (%c8, %c8, %c8)

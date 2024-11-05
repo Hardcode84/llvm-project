@@ -22,7 +22,7 @@ func.func @main() -> () {
   }
   %unranked_input = memref.cast %input : memref<2x3xf32> to memref<*xf32>
   call @printMemrefF32(%unranked_input) : (memref<*xf32>) -> ()
-  // CHECK: rank = 2 offset = 0 sizes = [2, 3] strides = [3, 1]
+  // CHECK: rank = 2 sizes = [2, 3] strides = [3, 1]
   // CHECK-NEXT: [0,   1,   2]
   // CHECK-NEXT: [3,   4,   5]
 
@@ -43,7 +43,7 @@ func.func @cast_ranked_memref_to_static_shape(%input : memref<2x3xf32>) {
   %unranked_output = memref.cast %output
       : memref<6x1xf32> to memref<*xf32>
   call @printMemrefF32(%unranked_output) : (memref<*xf32>) -> ()
-  // CHECK: rank = 2 offset = 0 sizes = [6, 1] strides = [1, 1] data =
+  // CHECK: rank = 2 sizes = [6, 1] strides = [1, 1] data =
   // CHECK-NEXT: [0],
   // CHECK-NEXT: [1],
   // CHECK-NEXT: [2],
@@ -64,7 +64,7 @@ func.func @cast_ranked_memref_to_dynamic_shape(%input : memref<2x3xf32>) {
   %unranked_output = memref.cast %output
       : memref<?x?xf32, strided<[?, ?], offset: ?>> to memref<*xf32>
   call @printMemrefF32(%unranked_output) : (memref<*xf32>) -> ()
-  // CHECK: rank = 2 offset = 0 sizes = [1, 6] strides = [6, 1] data =
+  // CHECK: rank = 2 sizes = [1, 6] strides = [6, 1] data =
   // CHECK-NEXT: [0,   1,   2,   3,   4,   5]
   return
 }
@@ -78,7 +78,7 @@ func.func @cast_unranked_memref_to_static_shape(%input : memref<2x3xf32>) {
   %unranked_output = memref.cast %output
       : memref<6x1xf32> to memref<*xf32>
   call @printMemrefF32(%unranked_output) : (memref<*xf32>) -> ()
-  // CHECK: rank = 2 offset = 0 sizes = [6, 1] strides = [1, 1] data =
+  // CHECK: rank = 2 sizes = [6, 1] strides = [1, 1] data =
   // CHECK-NEXT: [0],
   // CHECK-NEXT: [1],
   // CHECK-NEXT: [2],
@@ -100,7 +100,7 @@ func.func @cast_unranked_memref_to_dynamic_shape(%input : memref<2x3xf32>) {
   %unranked_output = memref.cast %output
       : memref<?x?xf32, strided<[?, ?], offset: ?>> to memref<*xf32>
   call @printMemrefF32(%unranked_output) : (memref<*xf32>) -> ()
-  // CHECK: rank = 2 offset = 0 sizes = [1, 6] strides = [6, 1] data =
+  // CHECK: rank = 2 sizes = [1, 6] strides = [6, 1] data =
   // CHECK-NEXT: [0,   1,   2,   3,   4,   5]
   return
 }

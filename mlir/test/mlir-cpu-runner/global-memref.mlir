@@ -9,7 +9,6 @@ func.func @test1DMemref() {
   %0 = memref.get_global @gv0 : memref<4xf32>
   %U = memref.cast %0 : memref<4xf32> to memref<*xf32>
   // CHECK: rank = 1
-  // CHECK: offset = 0
   // CHECK: sizes = [4]
   // CHECK: strides = [1]
   // CHECK: [0,  1,  2,  3]
@@ -24,7 +23,6 @@ func.func @test1DMemref() {
   memref.store %fp0, %0[%c0] : memref<4xf32>
   memref.store %fp1, %0[%c2] : memref<4xf32>
   // CHECK: rank = 1
-  // CHECK: offset = 0
   // CHECK: sizes = [4]
   // CHECK: strides = [1]
   // CHECK: [4,  1,  5,  3]
@@ -38,7 +36,6 @@ func.func @testConstantMemref() {
   %0 = memref.get_global @gv1 : memref<3x2xi32>
   %U = memref.cast %0 : memref<3x2xi32> to memref<*xi32>
   // CHECK: rank = 2
-  // CHECK: offset = 0
   // CHECK: sizes = [3, 2]
   // CHECK: strides = [2, 1]
   // CHECK: [0,   1]
@@ -54,7 +51,6 @@ func.func @test2DMemref() {
   %0 = memref.get_global @gv2 : memref<4x2xf32>
   %U = memref.cast %0 : memref<4x2xf32> to memref<*xf32>
   // CHECK: rank = 2
-  // CHECK: offset = 0
   // CHECK: sizes = [4, 2]
   // CHECK: strides = [2, 1]
   // CHECK: [0,   1]
@@ -70,7 +66,6 @@ func.func @test2DMemref() {
   %fp10 = arith.constant 10.0 : f32
   memref.store %fp10, %0[%c0, %c1] : memref<4x2xf32>
   // CHECK: rank = 2
-  // CHECK: offset = 0
   // CHECK: sizes = [4, 2]
   // CHECK: strides = [2, 1]
   // CHECK: [0,   10]
@@ -87,7 +82,6 @@ func.func @testScalarMemref() {
   %0 = memref.get_global @gv3 : memref<i32>
   %U = memref.cast %0 : memref<i32> to memref<*xi32>
   // CHECK: rank = 0
-  // CHECK: offset = 0
   // CHECK: sizes = []
   // CHECK: strides = []
   // CHECK: [11]

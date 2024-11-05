@@ -84,6 +84,4 @@ gpu.module @kernel {
 
 // CHECK-LABEL:  llvm.func @test_func_noundef
 // ROCDL-SAME:  !llvm.ptr {llvm.noundef}
-// ROCDL-SAME:  i64 {llvm.noundef}
 //  NVVM-SAME:  !llvm.ptr {llvm.noundef}
-//  NVVM-SAME:  i64 {llvm.noundef}

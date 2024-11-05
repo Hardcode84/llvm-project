@@ -11,11 +11,11 @@ func.func @check_noalias(%static : memref<2xf32> {llvm.noalias}, %other : memref
 
 // CHECK-LABEL: func @check_strided_memref_arguments(
 // CHECK-COUNT-2: !llvm.ptr
-// CHECK-COUNT-5: i64
+// CHECK-COUNT-4: i64
 // CHECK-COUNT-2: !llvm.ptr
-// CHECK-COUNT-5: i64
+// CHECK-COUNT-4: i64
 // CHECK-COUNT-2: !llvm.ptr
-// CHECK-COUNT-5: i64
+// CHECK-COUNT-4: i64
 func.func @check_strided_memref_arguments(%static: memref<10x20xf32, affine_map<(i,j)->(20 * i + j + 1)>>,
                                      %dynamic : memref<?x?xf32, affine_map<(i,j)[M]->(M * i + j + 1)>>,
                                      %mixed : memref<10x?xf32, affine_map<(i,j)[M]->(M * i + j + 1)>>) {
@@ -25,13 +25,13 @@ func.func @check_strided_memref_arguments(%static: memref<10x20xf32, affine_map<
 // -----
 
 // CHECK-LABEL: func @memref_index
-// CHECK-SAME: %arg0: !llvm.ptr, %arg1: !llvm.ptr,
-// CHECK-SAME: %arg2: i64, %arg3: i64, %arg4: i64)
-// CHECK-SAME: -> !llvm.struct<(ptr, ptr, i64, array<1 x i64>, array<1 x i64>)>
+// CHECK-SAME: %{{.*}}: !llvm.ptr, %{{.*}}: !llvm.ptr,
+// CHECK-SAME: %{{.*}}: i64, %{{.*}}: i64)
+// CHECK-SAME: -> !llvm.struct<(ptr, ptr, array<1 x i64>, array<1 x i64>)>
 // CHECK32-LABEL: func @memref_index
-// CHECK32-SAME: %arg0: !llvm.ptr, %arg1: !llvm.ptr,
-// CHECK32-SAME: %arg2: i32, %arg3: i32, %arg4: i32)
-// CHECK32-SAME: -> !llvm.struct<(ptr, ptr, i32, array<1 x i32>, array<1 x i32>)>
+// CHECK32-SAME: %{{.*}}: !llvm.ptr, %{{.*}}: !llvm.ptr,
+// CHECK32-SAME: %{{.*}}: i32, %{{.*}}: i32)
+// CHECK32-SAME: -> !llvm.struct<(ptr, ptr, array<1 x i32>, array<1 x i32>)>
 func.func @memref_index(%arg0: memref<32xindex>) -> memref<32xindex> {
   return %arg0 : memref<32xindex>
 }
@@ -40,11 +40,11 @@ func.func @memref_index(%arg0: memref<32xindex>) -> memref<32xindex> {
 
 // CHECK-LABEL: func @check_arguments
 // CHECK-COUNT-2: !llvm.ptr
-// CHECK-COUNT-5: i64
+// CHECK-COUNT-4: i64
 // CHECK-COUNT-2: !llvm.ptr
-// CHECK-COUNT-5: i64
+// CHECK-COUNT-4: i64
 // CHECK-COUNT-2: !llvm.ptr
-// CHECK-COUNT-5: i64
+// CHECK-COUNT-4: i64
 func.func @check_arguments(%static: memref<10x20xf32>, %dynamic : memref<?x?xf32>, %mixed : memref<10x?xf32>) {
   return
 }

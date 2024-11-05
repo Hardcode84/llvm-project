@@ -12,7 +12,7 @@ func.func @print_0d() {
   memref.dealloc %A : memref<f32>
   return
 }
-// PRINT-0D: Unranked Memref base@ = {{.*}} rank = 0 offset = 0 sizes = [] strides = [] data =
+// PRINT-0D: Unranked Memref base@ = {{.*}} rank = 0 sizes = [] strides = [] data =
 // PRINT-0D: [2]
 
 func.func @print_1d() {
@@ -25,7 +25,7 @@ func.func @print_1d() {
   memref.dealloc %A : memref<16xf32>
   return
 }
-// PRINT-1D: Unranked Memref base@ = {{.*}} rank = 1 offset = 0 sizes = [16] strides = [1] data =
+// PRINT-1D: Unranked Memref base@ = {{.*}} rank = 1 sizes = [16] strides = [1] data =
 // PRINT-1D-NEXT: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
 
 func.func @print_3d() {
@@ -42,7 +42,7 @@ func.func @print_3d() {
   memref.dealloc %A : memref<3x4x5xf32>
   return
 }
-// PRINT-3D: Unranked Memref base@ = {{.*}} rank = 3 offset = 0 sizes = [3, 4, 5] strides = [20, 5, 1] data =
+// PRINT-3D: Unranked Memref base@ = {{.*}} rank = 3 sizes = [3, 4, 5] strides = [20, 5, 1] data =
 // PRINT-3D-COUNT-4: {{.*[[:space:]].*}}2,    2,    2,    2,    2
 // PRINT-3D-COUNT-4: {{.*[[:space:]].*}}2,    2,    2,    2,    2
 // PRINT-3D-COUNT-2: {{.*[[:space:]].*}}2,    2,    2,    2,    2
@@ -67,7 +67,7 @@ func.func @vector_splat_2d() {
   return
 }
 
-// PRINT-VECTOR-SPLAT-2D: Memref base@ = {{.*}} rank = 2 offset = 0 sizes = [1, 1] strides = [1, 1] data =
+// PRINT-VECTOR-SPLAT-2D: Memref base@ = {{.*}} rank = 2 sizes = [1, 1] strides = [1, 1] data =
 // PRINT-VECTOR-SPLAT-2D-NEXT: [((10, 10, 10, 10),   (10, 10, 10, 10),   (10, 10, 10, 10),   (10, 10, 10, 10))]
 
 func.func private @printMemrefVector4x4xf32(memref<?x?x!vector_type_C>) attributes { llvm.emit_c_interface }

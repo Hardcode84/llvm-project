@@ -50,7 +50,7 @@ func.func @mulf(%arg0: memref<?x?xbf16>, %arg1: memref<?x?xf32>) {
 // CHECK: %[[CST_128_1:.+]] = llvm.mlir.constant(128 : i64) : i64
 // CHECK: "amx.tileloadd64"(%{{.+}}, %{{.+}}, %{{.+}}, %[[CST_128_1]]
 // CHECK: llvm.mlir.constant(2 : i64) : i64
-// CHECK: llvm.extractvalue %{{.+}}[4, 0]
+// CHECK: llvm.extractvalue %{{.+}}[3, 0]
 // CHECK: %[[STRIDE_1:.+]] = llvm.mul
 // CHECK: "amx.tileloadd64"(%{{.+}}, %{{.+}}, %{{.+}}, %[[STRIDE_1]]
 // CHECK: %[[CST_64_2:.+]] = llvm.mlir.constant(64 : i64) : i64
@@ -58,7 +58,7 @@ func.func @mulf(%arg0: memref<?x?xbf16>, %arg1: memref<?x?xf32>) {
 // CHECK: %[[CST_128_2:.+]] = llvm.mlir.constant(128 : i64) : i64
 // CHECK: "amx.tilestored64"(%{{.+}}, %{{.+}}, %{{.+}}, %[[CST_128_2]]
 // CHECK: llvm.mlir.constant(2 : i64) : i64
-// CHECK: llvm.extractvalue %{{.+}}[4, 0]
+// CHECK: llvm.extractvalue %{{.+}}[3, 0]
 // CHECK: %[[STRIDE_2:.+]] = llvm.mul
 // CHECK: "amx.tilestored64"(%{{.+}}, %{{.+}}, %{{.+}}, %[[STRIDE_2]]
 func.func @strides(%arg0: memref<16x32xbf16>, %arg1: memref<16x32xbf16, strided<[64, 1]>>, %arg2: memref<16x32xbf16, strided<[?, 1]>>) {

@@ -444,20 +444,20 @@ gpu.module @kernels {
     gpu.return
   }
 
-  // CHECK-64:   llvm.func spir_kernelcc @kernel_with_conv_args(%{{.*}}: i64, %{{.*}}: !llvm.ptr<1>, %{{.*}}: !llvm.ptr<1>, %{{.*}}: i64) attributes {gpu.kernel} {
-  // CHECK-32:   llvm.func spir_kernelcc @kernel_with_conv_args(%{{.*}}: i32, %{{.*}}: !llvm.ptr<1>, %{{.*}}: !llvm.ptr<1>, %{{.*}}: i32) attributes {gpu.kernel} {
+  // CHECK-64:   llvm.func spir_kernelcc @kernel_with_conv_args(%{{.*}}: i64, %{{.*}}: !llvm.ptr<1>, %{{.*}}: !llvm.ptr<1>) attributes {gpu.kernel} {
+  // CHECK-32:   llvm.func spir_kernelcc @kernel_with_conv_args(%{{.*}}: i32, %{{.*}}: !llvm.ptr<1>, %{{.*}}: !llvm.ptr<1>) attributes {gpu.kernel} {
   gpu.func @kernel_with_conv_args(%arg0: index, %arg1: memref<index>) kernel {
     gpu.return
   }
 
-  // CHECK-64:   llvm.func spir_kernelcc @kernel_with_sized_memref(%{{.*}}: !llvm.ptr<1>, %{{.*}}: !llvm.ptr<1>, %{{.*}}: i64, %{{.*}}: i64, %{{.*}}: i64) attributes {gpu.kernel} {
-  // CHECK-32:   llvm.func spir_kernelcc @kernel_with_sized_memref(%{{.*}}: !llvm.ptr<1>, %{{.*}}: !llvm.ptr<1>, %{{.*}}: i32, %{{.*}}: i32, %{{.*}}: i32) attributes {gpu.kernel} {
+  // CHECK-64:   llvm.func spir_kernelcc @kernel_with_sized_memref(%{{.*}}: !llvm.ptr<1>, %{{.*}}: !llvm.ptr<1>, %{{.*}}: i64, %{{.*}}: i64) attributes {gpu.kernel} {
+  // CHECK-32:   llvm.func spir_kernelcc @kernel_with_sized_memref(%{{.*}}: !llvm.ptr<1>, %{{.*}}: !llvm.ptr<1>, %{{.*}}: i32, %{{.*}}: i32) attributes {gpu.kernel} {
   gpu.func @kernel_with_sized_memref(%arg0: memref<1xindex>) kernel {
     gpu.return
   }
 
-  // CHECK-64:   llvm.func spir_kernelcc @kernel_with_ND_memref(%{{.*}}: !llvm.ptr<1>, %{{.*}}: !llvm.ptr<1>, %{{.*}}: i64, %{{.*}}: i64, %{{.*}}: i64, %{{.*}}: i64, %{{.*}}: i64, %{{.*}}: i64, %{{.*}}: i64) attributes {gpu.kernel} {
-  // CHECK-32:   llvm.func spir_kernelcc @kernel_with_ND_memref(%{{.*}}: !llvm.ptr<1>, %{{.*}}: !llvm.ptr<1>, %{{.*}}: i32, %{{.*}}: i32, %{{.*}}: i32, %{{.*}}: i32, %{{.*}}: i32, %{{.*}}: i32, %{{.*}}: i32) attributes {gpu.kernel} {
+  // CHECK-64:   llvm.func spir_kernelcc @kernel_with_ND_memref(%{{.*}}: !llvm.ptr<1>, %{{.*}}: !llvm.ptr<1>, %{{.*}}: i64, %{{.*}}: i64, %{{.*}}: i64, %{{.*}}: i64, %{{.*}}: i64, %{{.*}}: i64) attributes {gpu.kernel} {
+  // CHECK-32:   llvm.func spir_kernelcc @kernel_with_ND_memref(%{{.*}}: !llvm.ptr<1>, %{{.*}}: !llvm.ptr<1>, %{{.*}}: i32, %{{.*}}: i32, %{{.*}}: i32, %{{.*}}: i32, %{{.*}}: i32, %{{.*}}: i32) attributes {gpu.kernel} {
   gpu.func @kernel_with_ND_memref(%arg0: memref<128x128x128xindex>) kernel {
     gpu.return
   }
@@ -475,8 +475,8 @@ gpu.module @kernels {
 
 // MemRef descriptor built from allocated pointer
 
-// CHECK-64:        %[[VAL_4:.*]] = llvm.mlir.undef : !llvm.struct<(ptr, ptr, i64, array<1 x i64>, array<1 x i64>)>
-// CHECK-32:        %[[VAL_4:.*]] = llvm.mlir.undef : !llvm.struct<(ptr, ptr, i32, array<1 x i32>, array<1 x i32>)>
+// CHECK-64:        %[[VAL_4:.*]] = llvm.mlir.undef : !llvm.struct<(ptr, ptr, array<1 x i64>, array<1 x i64>)>
+// CHECK-32:        %[[VAL_4:.*]] = llvm.mlir.undef : !llvm.struct<(ptr, ptr, array<1 x i32>, array<1 x i32>)>
 
 // CHECK:           %[[VAL_5:.*]] = llvm.insertvalue %[[VAL_3]], %[[VAL_4]][0]
 // CHECK:           llvm.insertvalue %[[VAL_3]], %[[VAL_5]][1]
@@ -486,8 +486,8 @@ gpu.module @kernels {
 // CHECK:           %[[VAL_14:.*]] = llvm.mlir.constant(16 : i64) : i64
 // CHECK:           %[[VAL_15:.*]] = llvm.alloca %[[VAL_14]] x i16 : (i64) -> !llvm.ptr
 
-// CHECK-64:        %[[VAL_16:.*]] = llvm.mlir.undef : !llvm.struct<(ptr, ptr, i64, array<1 x i64>, array<1 x i64>)>
-// CHECK-32:        %[[VAL_16:.*]] = llvm.mlir.undef : !llvm.struct<(ptr, ptr, i32, array<1 x i32>, array<1 x i32>)>
+// CHECK-64:        %[[VAL_16:.*]] = llvm.mlir.undef : !llvm.struct<(ptr, ptr, array<1 x i64>, array<1 x i64>)>
+// CHECK-32:        %[[VAL_16:.*]] = llvm.mlir.undef : !llvm.struct<(ptr, ptr, array<1 x i32>, array<1 x i32>)>
 
 // CHECK:           %[[VAL_17:.*]] = llvm.insertvalue %[[VAL_15]], %[[VAL_16]][0]
 // CHECK:           llvm.insertvalue %[[VAL_15]], %[[VAL_17]][1]
@@ -505,16 +505,16 @@ gpu.module @kernels {
 
 // MemRef descriptor built from new argument
 
-// CHECK-64:        %[[VAL_31:.*]] = llvm.mlir.undef : !llvm.struct<(ptr<3>, ptr<3>, i64, array<1 x i64>, array<1 x i64>)>
-// CHECK-32:        %[[VAL_31:.*]] = llvm.mlir.undef : !llvm.struct<(ptr<3>, ptr<3>, i32, array<1 x i32>, array<1 x i32>)>
+// CHECK-64:        %[[VAL_31:.*]] = llvm.mlir.undef : !llvm.struct<(ptr<3>, ptr<3>, array<1 x i64>, array<1 x i64>)>
+// CHECK-32:        %[[VAL_31:.*]] = llvm.mlir.undef : !llvm.struct<(ptr<3>, ptr<3>, array<1 x i32>, array<1 x i32>)>
 
 // CHECK:           %[[VAL_32:.*]] = llvm.insertvalue %[[VAL_29]], %[[VAL_31]][0]
 // CHECK:           llvm.insertvalue %[[VAL_29]], %[[VAL_32]][1]
 
 // Same as above
 
-// CHECK-64:        %[[VAL_41:.*]] = llvm.mlir.undef : !llvm.struct<(ptr<3>, ptr<3>, i64, array<1 x i64>, array<1 x i64>)>
-// CHECK-32:        %[[VAL_41:.*]] = llvm.mlir.undef : !llvm.struct<(ptr<3>, ptr<3>, i32, array<1 x i32>, array<1 x i32>)>
+// CHECK-64:        %[[VAL_41:.*]] = llvm.mlir.undef : !llvm.struct<(ptr<3>, ptr<3>, array<1 x i64>, array<1 x i64>)>
+// CHECK-32:        %[[VAL_41:.*]] = llvm.mlir.undef : !llvm.struct<(ptr<3>, ptr<3>, array<1 x i32>, array<1 x i32>)>
 
 // CHECK:           %[[VAL_42:.*]] = llvm.insertvalue %[[VAL_30]], %[[VAL_41]][0]
 // CHECK:           llvm.insertvalue %[[VAL_30]], %[[VAL_42]][1]

@@ -562,9 +562,9 @@ func.func @omp_distribute(%arg0 : index) -> () {
 // -----
 
 // CHECK-LABEL: llvm.func @omp_teams(
-// CHECK-SAME:  %[[ARG0:.*]]: !llvm.ptr, %[[ARG1:.*]]: !llvm.ptr, %[[ARG2:.*]]: i64)
+// CHECK-SAME:  %[[ARG0:.*]]: !llvm.ptr, %[[ARG1:.*]]: !llvm.ptr)
 func.func @omp_teams(%arg0 : memref<i32>) -> () {
-  // CHECK: omp.teams allocate(%{{.*}} : !llvm.struct<(ptr, ptr, i64)> -> %{{.*}} : !llvm.struct<(ptr, ptr, i64)>)
+  // CHECK: omp.teams allocate(%{{.*}} : !llvm.struct<(ptr, ptr)> -> %{{.*}} : !llvm.struct<(ptr, ptr)>)
   omp.teams allocate(%arg0 : memref<i32> -> %arg0 : memref<i32>) {
     omp.terminator
   }
@@ -589,11 +589,11 @@ func.func @omp_ordered(%arg0 : index) -> () {
 // -----
 
 // CHECK-LABEL: @omp_taskloop(
-// CHECK-SAME:  %[[ARG0:.*]]: i64, %[[ARG1:.*]]: !llvm.ptr, %[[ARG2:.*]]: !llvm.ptr, %[[ARG3:.*]]: i64)
+// CHECK-SAME:  %[[ARG0:.*]]: i64, %[[ARG1:.*]]: !llvm.ptr, %[[ARG2:.*]]: !llvm.ptr)
 func.func @omp_taskloop(%arg0: index, %arg1 : memref<i32>) {
   // CHECK: omp.parallel {
   omp.parallel {
-    // CHECK: omp.taskloop allocate(%{{.*}} : !llvm.struct<(ptr, ptr, i64)> -> %{{.*}} : !llvm.struct<(ptr, ptr, i64)>) {
+    // CHECK: omp.taskloop allocate(%{{.*}} : !llvm.struct<(ptr, ptr)> -> %{{.*}} : !llvm.struct<(ptr, ptr)>) {
     omp.taskloop allocate(%arg1 : memref<i32> -> %arg1 : memref<i32>) {
       // CHECK: omp.loop_nest (%[[IV:.*]]) : i64 = (%[[ARG0]]) to (%[[ARG0]]) step (%[[ARG0]]) {
       omp.loop_nest (%iv) : index = (%arg0) to (%arg0) step (%arg0) {

@@ -10,7 +10,7 @@ func.func private @second_order_result() -> (() -> ())
 func.func private @second_order_multi_result() -> (() -> (i32), () -> (i64), () -> (f32))
 
 // Check that memrefs are converted to argument packs if appear as function arguments.
-// CHECK: llvm.func @memref_call_conv(!llvm.ptr, !llvm.ptr, i64, i64, i64)
+// CHECK: llvm.func @memref_call_conv(!llvm.ptr, !llvm.ptr, i64, i64)
 func.func private @memref_call_conv(%arg0: memref<?xf32>)
 
 // Same in nested functions.
