@@ -87,7 +87,6 @@ def make_nd_memref_descriptor(rank, dtype):
         _fields_ = [
             ("allocated", ctypes.c_longlong),
             ("aligned", ctypes.POINTER(dtype)),
-            ("offset", ctypes.c_longlong),
             ("shape", ctypes.c_longlong * rank),
             ("strides", ctypes.c_longlong * rank),
         ]
@@ -102,7 +101,6 @@ def make_zero_d_memref_descriptor(dtype):
         _fields_ = [
             ("allocated", ctypes.c_longlong),
             ("aligned", ctypes.POINTER(dtype)),
-            ("offset", ctypes.c_longlong),
         ]
 
     return MemRefDescriptor

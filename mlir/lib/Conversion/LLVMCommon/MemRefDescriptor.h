@@ -15,9 +15,8 @@
 
 static constexpr unsigned kAllocatedPtrPosInMemRefDescriptor = 0;
 static constexpr unsigned kAlignedPtrPosInMemRefDescriptor = 1;
-static constexpr unsigned kOffsetPosInMemRefDescriptor = 2;
-static constexpr unsigned kSizePosInMemRefDescriptor = 3;
-static constexpr unsigned kStridePosInMemRefDescriptor = 4;
+static constexpr unsigned kSizePosInMemRefDescriptor = 2;
+static constexpr unsigned kStridePosInMemRefDescriptor = 3;
 
 static constexpr unsigned kRankInUnrankedMemRefDescriptor = 0;
 static constexpr unsigned kPtrInUnrankedMemRefDescriptor = 1;

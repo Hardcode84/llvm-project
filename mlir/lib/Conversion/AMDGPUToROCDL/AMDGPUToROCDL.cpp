@@ -238,12 +238,7 @@ struct RawBufferOpLowering : public ConvertOpToLLVMPattern<GpuOp> {
     Value sgprOffset = adaptor.getSgprOffset();
     if (!sgprOffset)
       sgprOffset = createI32Constant(rewriter, loc, 0);
-    if (ShapedType::isDynamic(offset))
-      sgprOffset = rewriter.create<LLVM::AddOp>(
-          loc, memrefDescriptor.offset(rewriter, loc), sgprOffset);
-    else if (offset > 0)
-      sgprOffset = rewriter.create<LLVM::AddOp>(
-          loc, sgprOffset, createI32Constant(rewriter, loc, offset));
+
     args.push_back(sgprOffset);
 
     // bit 0: GLC = 0 (atomics drop value, less coherency)

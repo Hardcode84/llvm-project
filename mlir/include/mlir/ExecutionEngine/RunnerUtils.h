@@ -46,7 +46,7 @@ void printMemRefMetaData(StreamType &os, const DynamicMemRefType<T> &v) {
   // integer and manually formatting it to a hex with prefix as tests expect.
   os << "base@ = " << std::hex << std::showbase
      << reinterpret_cast<std::intptr_t>(v.data) << std::dec << std::noshowbase
-     << " rank = " << v.rank << " offset = " << v.offset;
+     << " rank = " << v.rank;
   auto print = [&](const int64_t *ptr) {
     if (v.rank == 0)
       return;
@@ -142,23 +142,19 @@ std::ostream &operator<<(std::ostream &os, const Vector<T, M, Dims...> &v) {
 template <typename T>
 struct MemRefDataPrinter {
   static void print(std::ostream &os, T *base, int64_t dim, int64_t rank,
-                    int64_t offset, const int64_t *sizes,
-                    const int64_t *strides);
+                    const int64_t *sizes, const int64_t *strides);
   static void printFirst(std::ostream &os, T *base, int64_t dim, int64_t rank,
-                         int64_t offset, const int64_t *sizes,
-                         const int64_t *strides);
+                         const int64_t *sizes, const int64_t *strides);
   static void printLast(std::ostream &os, T *base, int64_t dim, int64_t rank,
-                        int64_t offset, const int64_t *sizes,
-                        const int64_t *strides);
+                        const int64_t *sizes, const int64_t *strides);
 };
 
 template <typename T>
 void MemRefDataPrinter<T>::printFirst(std::ostream &os, T *base, int64_t dim,
-                                      int64_t rank, int64_t offset,
-                                      const int64_t *sizes,
+                                      int64_t rank, const int64_t *sizes,
                                       const int64_t *strides) {
   os << "[";
-  print(os, base, dim - 1, rank, offset, sizes + 1, strides + 1);
+  print(os, base, dim - 1, rank, sizes + 1, strides + 1);
   // If single element, close square bracket and return early.
   if (sizes[0] <= 1) {
     os << "]";
@@ -171,34 +167,32 @@ void MemRefDataPrinter<T>::printFirst(std::ostream &os, T *base, int64_t dim,
 
 template <typename T>
 void MemRefDataPrinter<T>::print(std::ostream &os, T *base, int64_t dim,
-                                 int64_t rank, int64_t offset,
-                                 const int64_t *sizes, const int64_t *strides) {
+                                 int64_t rank, const int64_t *sizes,
+                                 const int64_t *strides) {
   if (dim == 0) {
-    os << base[offset];
+    os << base[0];
     return;
   }
-  printFirst(os, base, dim, rank, offset, sizes, strides);
+  printFirst(os, base, dim, rank, sizes, strides);
   for (unsigned i = 1; i + 1 < sizes[0]; ++i) {
     printSpace(os, rank - dim + 1);
-    print(os, base, dim - 1, rank, offset + i * strides[0], sizes + 1,
-          strides + 1);
+    print(os, base, dim - 1, rank + i * strides[0], sizes + 1, strides + 1);
     os << ", ";
     if (dim > 1)
       os << "\n";
   }
   if (sizes[0] <= 1)
     return;
-  printLast(os, base, dim, rank, offset, sizes, strides);
+  printLast(os, base, dim, rank, sizes, strides);
 }
 
 template <typename T>
 void MemRefDataPrinter<T>::printLast(std::ostream &os, T *base, int64_t dim,
-                                     int64_t rank, int64_t offset,
-                                     const int64_t *sizes,
+                                     int64_t rank, const int64_t *sizes,
                                      const int64_t *strides) {
   printSpace(os, rank - dim + 1);
-  print(os, base, dim - 1, rank, offset + (sizes[0] - 1) * (*strides),
-        sizes + 1, strides + 1);
+  print(os, base + (sizes[0] - 1) * (*strides), dim - 1, rank, sizes + 1,
+        strides + 1);
   os << "]";
 }
 
@@ -220,8 +214,8 @@ void printMemRef(const DynamicMemRefType<T> &m) {
   std::cout << " data = \n";
   if (m.rank == 0)
     std::cout << "[";
-  MemRefDataPrinter<T>::print(std::cout, m.data, m.rank, m.rank, m.offset,
-                              m.sizes, m.strides);
+  MemRefDataPrinter<T>::print(std::cout, m.data, m.rank, m.rank, m.sizes,
+                              m.strides);
   if (m.rank == 0)
     std::cout << "]";
   std::cout << '\n' << std::flush;
@@ -254,7 +248,7 @@ struct MemRefDataVerifier {
 
   /// Verify the data element-by-element and return the number of errors.
   static int64_t verify(std::ostream &os, T *actualBasePtr, T *expectedBasePtr,
-                        int64_t dim, int64_t offset, const int64_t *sizes,
+                        int64_t dim, const int64_t *sizes,
                         const int64_t *strides, int64_t &printCounter);
 };
 
@@ -289,16 +283,15 @@ inline bool MemRefDataVerifier<float>::verifyElem(float actual,
 template <typename T>
 int64_t MemRefDataVerifier<T>::verify(std::ostream &os, T *actualBasePtr,
                                       T *expectedBasePtr, int64_t dim,
-                                      int64_t offset, const int64_t *sizes,
+                                      const int64_t *sizes,
                                       const int64_t *strides,
                                       int64_t &printCounter) {
   int64_t errors = 0;
-  // Verify the elements at the current offset.
+  // Verify the elements.
   if (dim == 0) {
-    if (!verifyElem(actualBasePtr[offset], expectedBasePtr[offset])) {
+    if (!verifyElem(actualBasePtr[0], expectedBasePtr[0])) {
       if (printCounter < printLimit) {
-        os << actualBasePtr[offset] << " != " << expectedBasePtr[offset]
-           << " offset = " << offset << "\n";
+        os << actualBasePtr[0] << " != " << expectedBasePtr[0] << "\n";
         printCounter++;
       }
       errors++;
@@ -306,9 +299,9 @@ int64_t MemRefDataVerifier<T>::verify(std::ostream &os, T *actualBasePtr,
   } else {
     // Iterate the current dimension and verify recursively.
     for (int64_t i = 0; i < sizes[0]; ++i) {
-      errors +=
-          verify(os, actualBasePtr, expectedBasePtr, dim - 1,
-                 offset + i * strides[0], sizes + 1, strides + 1, printCounter);
+      int64_t offset = i * strides[0];
+      errors += verify(os, actualBasePtr + offset, expectedBasePtr + offset,
+                       dim - 1, sizes + 1, strides + 1, printCounter);
     }
   }
   return errors;
@@ -321,8 +314,7 @@ int64_t verifyMemRef(const DynamicMemRefType<T> &actual,
                      const DynamicMemRefType<T> &expected) {
   // Check if the memref shapes match.
   for (int64_t i = 0; i < actual.rank; ++i) {
-    if (expected.rank != actual.rank || actual.offset != expected.offset ||
-        actual.sizes[i] != expected.sizes[i] ||
+    if (expected.rank != actual.rank || actual.sizes[i] != expected.sizes[i] ||
         actual.strides[i] != expected.strides[i]) {
       printMemRefMetaData(std::cerr, actual);
       printMemRefMetaData(std::cerr, expected);
@@ -332,7 +324,7 @@ int64_t verifyMemRef(const DynamicMemRefType<T> &actual,
   // Return the number of errors.
   int64_t printCounter = 0;
   return MemRefDataVerifier<T>::verify(std::cerr, actual.data, expected.data,
-                                       actual.rank, actual.offset, actual.sizes,
+                                       actual.rank, actual.sizes,
                                        actual.strides, printCounter);
 }
 

@@ -1169,8 +1169,6 @@ struct MemrefDescriptor {
   void *allocated_ptr; // Pointer to the base allocation.
   void *aligned_ptr;   // Pointer within base allocation which is aligned to
                        // the value set in the memref.
-  size_t offset;       // Offset from aligned_ptr from where to get values
-                       // corresponding to the memref.
   size_t shape[rank];  // Shape of the memref.
   size_t stride[rank]; // Strides used while accessing elements of the memref.
 };

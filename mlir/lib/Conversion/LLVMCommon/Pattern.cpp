@@ -69,8 +69,7 @@ Value ConvertToLLVMPattern::getStridedElementPtr(
   // optimizations have a longer sequence of instructions to CSE.
   // If we don't do that we would sprinkle the memref.offset in various
   // position of the different address computations.
-  Value base =
-      memRefDescriptor.bufferPtr(rewriter, loc, *getTypeConverter(), type);
+  Value base = memRefDescriptor.alignedPtr(rewriter, loc);
 
   Type indexType = getIndexType();
   Value index;
@@ -226,16 +225,11 @@ MemRefDescriptor ConvertToLLVMPattern::createMemRefDescriptor(
   // Field 2: Actual aligned pointer to payload.
   memRefDescriptor.setAlignedPtr(rewriter, loc, alignedPtr);
 
-  // Field 3: Offset in aligned pointer.
-  Type indexType = getIndexType();
-  memRefDescriptor.setOffset(
-      rewriter, loc, createIndexAttrConstant(rewriter, loc, indexType, 0));
-
-  // Fields 4: Sizes.
+  // Fields 3: Sizes.
   for (const auto &en : llvm::enumerate(sizes))
     memRefDescriptor.setSize(rewriter, loc, en.index(), en.value());
 
-  // Field 5: Strides.
+  // Fields 4: Strides.
   for (const auto &en : llvm::enumerate(strides))
     memRefDescriptor.setStride(rewriter, loc, en.index(), en.value());
 

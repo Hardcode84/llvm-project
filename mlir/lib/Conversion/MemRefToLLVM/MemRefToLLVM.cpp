@@ -777,15 +777,9 @@ struct MemRefCopyOpLowering : public ConvertOpToLLVMPattern<memref::CopyOp> {
     Type elementType = typeConverter->convertType(srcType.getElementType());
 
     Value srcBasePtr = srcDesc.alignedPtr(rewriter, loc);
-    Value srcOffset = srcDesc.offset(rewriter, loc);
-    Value srcPtr = rewriter.create<LLVM::GEPOp>(
-        loc, srcBasePtr.getType(), elementType, srcBasePtr, srcOffset);
     MemRefDescriptor targetDesc(adaptor.getTarget());
     Value targetBasePtr = targetDesc.alignedPtr(rewriter, loc);
-    Value targetOffset = targetDesc.offset(rewriter, loc);
-    Value targetPtr = rewriter.create<LLVM::GEPOp>(
-        loc, targetBasePtr.getType(), elementType, targetBasePtr, targetOffset);
-    rewriter.create<LLVM::MemcpyOp>(loc, targetPtr, srcPtr, totalSize,
+    rewriter.create<LLVM::MemcpyOp>(loc, targetBasePtr, srcBasePtr, totalSize,
                                     /*isVolatile=*/false);
     rewriter.eraseOp(op);
 
@@ -964,11 +958,11 @@ struct MemorySpaceCastOpLowering
 
       // Copy all the index-valued operands.
       Value sourceIndexVals =
-          sourceDesc.offsetBasePtr(rewriter, loc, *getTypeConverter(),
-                                   sourceUnderlyingDesc, sourceElemPtrType);
+          sourceDesc.alignedPtr(rewriter, loc, *getTypeConverter(),
+                                sourceUnderlyingDesc, sourceElemPtrType);
       Value resultIndexVals =
-          result.offsetBasePtr(rewriter, loc, *getTypeConverter(),
-                               resultUnderlyingDesc, resultElemPtrType);
+          result.alignedPtr(rewriter, loc, *getTypeConverter(),
+                            resultUnderlyingDesc, resultElemPtrType);
 
       int64_t bytesToSkip =
           2 * llvm::divideCeil(
@@ -995,15 +989,12 @@ static void extractPointersAndOffset(Location loc,
                                      const LLVMTypeConverter &typeConverter,
                                      Value originalOperand,
                                      Value convertedOperand,
-                                     Value *allocatedPtr, Value *alignedPtr,
-                                     Value *offset = nullptr) {
+                                     Value *allocatedPtr, Value *alignedPtr) {
   Type operandType = originalOperand.getType();
   if (isa<MemRefType>(operandType)) {
     MemRefDescriptor desc(convertedOperand);
     *allocatedPtr = desc.allocatedPtr(rewriter, loc);
     *alignedPtr = desc.alignedPtr(rewriter, loc);
-    if (offset != nullptr)
-      *offset = desc.offset(rewriter, loc);
     return;
   }
 
@@ -1022,10 +1013,6 @@ static void extractPointersAndOffset(Location loc,
       rewriter, loc, underlyingDescPtr, elementPtrType);
   *alignedPtr = UnrankedMemRefDescriptor::alignedPtr(
       rewriter, loc, typeConverter, underlyingDescPtr, elementPtrType);
-  if (offset != nullptr) {
-    *offset = UnrankedMemRefDescriptor::offset(
-        rewriter, loc, typeConverter, underlyingDescPtr, elementPtrType);
-  }
 }
 
 struct MemRefReinterpretCastOpLowering
@@ -1068,13 +1055,26 @@ private:
                              castOp.getSource(), adaptor.getSource(),
                              &allocatedPtr, &alignedPtr);
     desc.setAllocatedPtr(rewriter, loc, allocatedPtr);
-    desc.setAlignedPtr(rewriter, loc, alignedPtr);
 
-    // Set offset.
-    if (castOp.isDynamicOffset(0))
-      desc.setOffset(rewriter, loc, adaptor.getOffsets()[0]);
-    else
-      desc.setConstantOffset(rewriter, loc, castOp.getStaticOffset(0));
+    Value offset;
+    if (castOp.isDynamicOffset(0)) {
+      offset = adaptor.getOffsets()[0];
+    } else if (castOp.getStaticOffset(0) != 0) {
+      offset = createIndexAttrConstant(rewriter, loc, getIndexType(),
+                                       castOp.getStaticOffset(0));
+    }
+
+    if (offset) {
+      Type elementType =
+          typeConverter->convertType(targetMemRefType.getElementType());
+      if (!elementType)
+        return failure();
+
+      alignedPtr = rewriter.create<LLVM::GEPOp>(
+          loc, alignedPtr.getType(), elementType, alignedPtr, offset);
+    }
+
+    desc.setAlignedPtr(rewriter, loc, alignedPtr);
 
     // Set sizes and strides.
     unsigned dynSizeId = 0;
@@ -1151,8 +1151,6 @@ private:
         return rewriter.notifyMatchFailure(reshapeOp,
                                            "dynamic offset is unsupported");
 
-      desc.setConstantOffset(rewriter, loc, offset);
-
       assert(targetMemRefType.getLayout().isIdentity() &&
              "Identity layout map is a precondition of a valid reshape op");
 
@@ -1223,13 +1221,13 @@ private:
         sizes.front());
     targetDesc.setMemRefDescPtr(rewriter, loc, underlyingDescPtr);
 
-    // Extract pointers and offset from the source memref.
-    Value allocatedPtr, alignedPtr, offset;
+    // Extract pointers from the source memref.
+    Value allocatedPtr, alignedPtr;
     extractPointersAndOffset(loc, rewriter, *getTypeConverter(),
                              reshapeOp.getSource(), adaptor.getSource(),
-                             &allocatedPtr, &alignedPtr, &offset);
+                             &allocatedPtr, &alignedPtr);
 
-    // Set pointers and offset.
+    // Set pointers.
     auto elementPtrType =
         LLVM::LLVMPointerType::get(rewriter.getContext(), addressSpace);
 
@@ -1238,9 +1236,6 @@ private:
     UnrankedMemRefDescriptor::setAlignedPtr(rewriter, loc, *getTypeConverter(),
                                             underlyingDescPtr, elementPtrType,
                                             alignedPtr);
-    UnrankedMemRefDescriptor::setOffset(rewriter, loc, *getTypeConverter(),
-                                        underlyingDescPtr, elementPtrType,
-                                        offset);
 
     // Use the offset pointer as base for further addressing. Copy over the new
     // shape and compute strides. For this, we create a loop from rank-1 to 0.
@@ -1379,9 +1374,6 @@ public:
     targetMemRef.setAlignedPtr(rewriter, loc,
                                viewMemRef.alignedPtr(rewriter, loc));
 
-    // Copy the offset pointer from the old descriptor to the new one.
-    targetMemRef.setOffset(rewriter, loc, viewMemRef.offset(rewriter, loc));
-
     // Iterate over the dimensions and apply size/stride permutation:
     // When enumerating the results of the permutation map, the enumeration
     // index is the index into the target dimensions and the DimExpr points to
@@ -1488,18 +1480,12 @@ struct ViewOpLowering : public ConvertOpToLLVMPattern<memref::ViewOp> {
     targetMemRef.setAlignedPtr(rewriter, loc, alignedPtr);
 
     Type indexType = getIndexType();
-    // Field 3: The offset in the resulting type must be 0. This is
-    // because of the type change: an offset on srcType* may not be
-    // expressible as an offset on dstType*.
-    targetMemRef.setOffset(
-        rewriter, loc,
-        createIndexAttrConstant(rewriter, loc, indexType, offset));
 
     // Early exit for 0-D corner case.
     if (viewMemRefType.getRank() == 0)
       return rewriter.replaceOp(viewOp, {targetMemRef}), success();
 
-    // Fields 4 and 5: Update sizes and strides.
+    // Fields 3 and 4: Update sizes and strides.
     Value stride = nullptr, nextSize = nullptr;
     for (int i = viewMemRefType.getRank() - 1; i >= 0; --i) {
       // Update size.
@@ -1650,7 +1636,8 @@ public:
     results.push_back((Value)dstMemRef);
 
     // Offset.
-    results.push_back(sourceMemRef.offset(rewriter, loc));
+    results.push_back(
+        createIndexAttrConstant(rewriter, loc, getIndexType(), 0));
 
     // Sizes.
     for (unsigned i = 0; i < rank; ++i)

@@ -81,7 +81,7 @@ namespace {
   assert(detail::safelyEQ(MEMREF_GET_USIZE(MEMREF), (SZ)) &&                   \
          "Memref size mismatch")
 
-#define MEMREF_GET_PAYLOAD(MEMREF) ((MEMREF)->data + (MEMREF)->offset)
+#define MEMREF_GET_PAYLOAD(MEMREF) ((MEMREF)->data)
 
 /// Initializes the memref with the provided size and data pointer. This
 /// is designed for functions which want to "return" a memref that aliases
@@ -94,7 +94,6 @@ template <typename DataSizeT, typename T>
 static inline void aliasIntoMemref(DataSizeT size, T *data,
                                    StridedMemRefType<T, 1> &ref) {
   ref.basePtr = ref.data = data;
-  ref.offset = 0;
   using MemrefSizeT = std::remove_reference_t<decltype(ref.sizes[0])>;
   ref.sizes[0] = detail::checkOverflowCast<MemrefSizeT>(size);
   ref.strides[0] = 1;

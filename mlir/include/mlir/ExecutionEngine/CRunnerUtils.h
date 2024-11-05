@@ -131,7 +131,6 @@ template <typename T, int N>
 struct StridedMemRefType {
   T *basePtr;
   T *data;
-  int64_t offset;
   int64_t sizes[N];
   int64_t strides[N];
 
@@ -140,7 +139,7 @@ struct StridedMemRefType {
   T &operator[](Range &&indices) {
     assert(indices.size() == N &&
            "indices should match rank in memref subscript");
-    int64_t curOffset = offset;
+    int64_t curOffset = 0;
     for (int dim = N - 1; dim >= 0; --dim) {
       int64_t currentIndex = *(indices.begin() + dim);
       assert(currentIndex < sizes[dim] && "Index overflow");
@@ -149,15 +148,14 @@ struct StridedMemRefType {
     return data[curOffset];
   }
 
-  StridedMemrefIterator<T, N> begin() { return {*this, offset}; }
+  StridedMemrefIterator<T, N> begin() { return {*this, 0}; }
   StridedMemrefIterator<T, N> end() { return {*this, -1}; }
 
   // This operator[] is extremely slow and only for sugaring purposes.
   StridedMemRefType<T, N - 1> operator[](int64_t idx) {
     StridedMemRefType<T, N - 1> res;
     res.basePtr = basePtr;
-    res.data = data;
-    res.offset = offset + idx * strides[0];
+    res.data = data + idx * strides[0];
     dropFront<N>(sizes, res.sizes);
     dropFront<N>(strides, res.strides);
     return res;
@@ -169,7 +167,6 @@ template <typename T>
 struct StridedMemRefType<T, 1> {
   T *basePtr;
   T *data;
-  int64_t offset;
   int64_t sizes[1];
   int64_t strides[1];
 
@@ -181,10 +178,10 @@ struct StridedMemRefType<T, 1> {
     return (*this)[*indices.begin()];
   }
 
-  StridedMemrefIterator<T, 1> begin() { return {*this, offset}; }
+  StridedMemrefIterator<T, 1> begin() { return {*this, 0}; }
   StridedMemrefIterator<T, 1> end() { return {*this, -1}; }
 
-  T &operator[](int64_t idx) { return *(data + offset + idx * strides[0]); }
+  T &operator[](int64_t idx) { return *(data + idx * strides[0]); }
 };
 
 /// StridedMemRef descriptor type specialized for rank 0.
@@ -192,18 +189,17 @@ template <typename T>
 struct StridedMemRefType<T, 0> {
   T *basePtr;
   T *data;
-  int64_t offset;
 
   template <typename Range,
             typename sfinae = decltype(std::declval<Range>().begin())>
   T &operator[](Range indices) {
     assert((indices.size() == 0) &&
            "Expect empty indices for 0-rank memref subscript");
-    return data[offset];
+    return data[0];
   }
 
-  StridedMemrefIterator<T, 0> begin() { return {*this, offset}; }
-  StridedMemrefIterator<T, 0> end() { return {*this, offset + 1}; }
+  StridedMemrefIterator<T, 0> begin() { return {*this, 0}; }
+  StridedMemrefIterator<T, 0> end() { return {*this, 1}; }
 };
 
 /// Iterate over all elements in a strided memref.
@@ -326,23 +322,21 @@ public:
   int64_t rank;
   T *basePtr;
   T *data;
-  int64_t offset;
   const int64_t *sizes;
   const int64_t *strides;
 
   explicit DynamicMemRefType(const StridedMemRefType<T, 0> &memRef)
-      : rank(0), basePtr(memRef.basePtr), data(memRef.data),
-        offset(memRef.offset), sizes(nullptr), strides(nullptr) {}
+      : rank(0), basePtr(memRef.basePtr), data(memRef.data), sizes(nullptr),
+        strides(nullptr) {}
   template <int N>
   explicit DynamicMemRefType(const StridedMemRefType<T, N> &memRef)
       : rank(N), basePtr(memRef.basePtr), data(memRef.data),
-        offset(memRef.offset), sizes(memRef.sizes), strides(memRef.strides) {}
+        sizes(memRef.sizes), strides(memRef.strides) {}
   explicit DynamicMemRefType(const ::UnrankedMemRefType<T> &memRef)
       : rank(memRef.rank) {
     auto *desc = static_cast<StridedMemRefType<T, 1> *>(memRef.descriptor);
     basePtr = desc->basePtr;
     data = desc->data;
-    offset = desc->offset;
     sizes = rank == 0 ? nullptr : desc->sizes;
     strides = sizes + rank;
   }
@@ -353,9 +347,9 @@ public:
     assert(indices.size() == rank &&
            "indices should match rank in memref subscript");
     if (rank == 0)
-      return data[offset];
+      return data[0];
 
-    int64_t curOffset = offset;
+    int64_t curOffset = 0;
     for (int dim = rank - 1; dim >= 0; --dim) {
       int64_t currentIndex = *(indices.begin() + dim);
       assert(currentIndex < sizes[dim] && "Index overflow");
@@ -364,7 +358,7 @@ public:
     return data[curOffset];
   }
 
-  DynamicMemRefIterator<T> begin() { return {*this, offset}; }
+  DynamicMemRefIterator<T> begin() { return {*this, 0}; }
   DynamicMemRefIterator<T> end() { return {*this, -1}; }
 
   // This operator[] is extremely slow and only for sugaring purposes.
@@ -373,7 +367,7 @@ public:
 
     DynamicMemRefType<T> res(*this);
     --res.rank;
-    res.offset += idx * res.strides[0];
+    res.data += idx * res.strides[0];
     ++res.sizes;
     ++res.strides;
     return res;
@@ -383,7 +377,7 @@ public:
   // order to access the underlying value in case of zero-ranked memref.
   T &operator*() {
     assert(rank == 0 && "not a zero-ranked memRef");
-    return data[offset];
+    return data[0];
   }
 };
 

@@ -74,7 +74,6 @@ template <typename T, int N>
 struct MemRefDescriptor {
   T *allocated;
   T *aligned;
-  int64_t offset;
   int64_t sizes[N];
   int64_t strides[N];
 };

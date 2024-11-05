@@ -1437,10 +1437,6 @@ public:
     // Set aligned ptr.
     Value ptr = sourceMemRef.alignedPtr(rewriter, loc);
     desc.setAlignedPtr(rewriter, loc, ptr);
-    // Fill offset 0.
-    auto attr = rewriter.getIntegerAttr(rewriter.getIndexType(), 0);
-    auto zero = rewriter.create<LLVM::ConstantOp>(loc, int64Ty, attr);
-    desc.setOffset(rewriter, loc, zero);
 
     // Fill size and stride descriptors in memref.
     for (const auto &indexedSize :

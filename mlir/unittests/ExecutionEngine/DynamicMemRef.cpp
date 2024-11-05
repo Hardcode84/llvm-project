@@ -20,7 +20,6 @@ TEST(DynamicMemRef, rankZero) {
   StridedMemRefType<int, 0> memRef;
   memRef.basePtr = &data;
   memRef.data = &data;
-  memRef.offset = 0;
 
   DynamicMemRefType<int> dynamicMemRef(memRef);
 
@@ -38,7 +37,6 @@ TEST(DynamicMemRef, rankOne) {
   StridedMemRefType<int, 1> memRef;
   memRef.basePtr = data.data();
   memRef.data = data.data();
-  memRef.offset = 0;
   memRef.sizes[0] = 3;
   memRef.strides[0] = 1;
 
@@ -62,7 +60,6 @@ TEST(DynamicMemRef, rankTwo) {
   StridedMemRefType<int, 2> memRef;
   memRef.basePtr = data.data();
   memRef.data = data.data();
-  memRef.offset = 0;
   memRef.sizes[0] = 2;
   memRef.sizes[1] = 3;
   memRef.strides[0] = 3;
@@ -84,7 +81,6 @@ TEST(DynamicMemRef, rankThree) {
   StridedMemRefType<int, 3> memRef;
   memRef.basePtr = data.data();
   memRef.data = data.data();
-  memRef.offset = 0;
   memRef.sizes[0] = 2;
   memRef.sizes[1] = 3;
   memRef.sizes[2] = 4;
@@ -96,29 +92,4 @@ TEST(DynamicMemRef, rankThree) {
 
   llvm::SmallVector<int, 24> values(dynamicMemRef.begin(), dynamicMemRef.end());
   EXPECT_THAT(values, ElementsAreArray(data));
-}
-
-TEST(DynamicMemRef, rankOneWithOffset) {
-  constexpr int offset = 4;
-  std::array<int, 3 + offset> buffer;
-
-  for (size_t i = 0; i < buffer.size(); ++i) {
-    buffer[i] = i;
-  }
-
-  StridedMemRefType<int, 1> memRef;
-  memRef.basePtr = buffer.data();
-  memRef.data = buffer.data();
-  memRef.offset = offset;
-  memRef.sizes[0] = 3;
-  memRef.strides[0] = 1;
-
-  DynamicMemRefType<int> dynamicMemRef(memRef);
-
-  llvm::SmallVector<int, 3> values(dynamicMemRef.begin(), dynamicMemRef.end());
-
-  for (int64_t i = 0; i < 3; ++i) {
-    EXPECT_EQ(values[i], buffer[offset + i]);
-    EXPECT_EQ(*dynamicMemRef[i], buffer[offset + i]);
-  }
 }

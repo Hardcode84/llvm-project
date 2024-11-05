@@ -84,8 +84,8 @@ extern "C" void memrefCopy(int64_t elemSize, UnrankedMemRefType<char> *srcArg,
     if (src.sizes[rankp] == 0)
       return;
 
-  char *srcPtr = src.data + src.offset * elemSize;
-  char *dstPtr = dst.data + dst.offset * elemSize;
+  char *srcPtr = src.data;
+  char *dstPtr = dst.data;
 
   if (rank == 0) {
     memcpy(dstPtr, srcPtr, elemSize);
@@ -195,7 +195,7 @@ extern "C" void _mlir_ciface_shuffle(StridedMemRefType<uint64_t, 1> *mref,
   assert(mref->strides[0] == 1); // consecutive
   std::mt19937 *generator = static_cast<std::mt19937 *>(g);
   uint64_t s = mref->sizes[0];
-  uint64_t *data = mref->data + mref->offset;
+  uint64_t *data = mref->data;
   std::iota(data, data + s, 0);
   std::shuffle(data, data + s, *generator);
 }
@@ -205,7 +205,7 @@ extern "C" void _mlir_ciface_shuffle(StridedMemRefType<uint64_t, 1> *mref,
                                               StridedMemRefType<V, 1> *vref) { \
     assert(vref);                                                              \
     assert(vref->strides[0] == 1);                                             \
-    V *values = vref->data + vref->offset;                                     \
+    V *values = vref->data;                                                    \
     stdSort(n, values);                                                        \
   }
 IMPL_STDSORT(I64, int64_t)

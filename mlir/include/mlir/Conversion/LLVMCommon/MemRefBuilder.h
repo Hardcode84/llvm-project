@@ -60,13 +60,6 @@ public:
   /// Builds IR inserting the aligned pointer into the descriptor.
   void setAlignedPtr(OpBuilder &builder, Location loc, Value ptr);
 
-  /// Builds IR extracting the offset from the descriptor.
-  Value offset(OpBuilder &builder, Location loc);
-
-  /// Builds IR inserting the offset into the descriptor.
-  void setOffset(OpBuilder &builder, Location loc, Value offset);
-  void setConstantOffset(OpBuilder &builder, Location loc, uint64_t offset);
-
   /// Builds IR extracting the pos-th size from the descriptor.
   Value size(OpBuilder &builder, Location loc, unsigned pos);
   Value size(OpBuilder &builder, Location loc, Value pos, int64_t rank);
@@ -84,25 +77,13 @@ public:
   void setConstantStride(OpBuilder &builder, Location loc, unsigned pos,
                          uint64_t stride);
 
-  /// Returns the type of array element in this descriptor.
-  Type getIndexType() { return indexType; };
-
   /// Returns the (LLVM) pointer type this descriptor contains.
   LLVM::LLVMPointerType getElementPtrType();
-
-  /// Builds IR for getting the start address of the buffer represented
-  /// by this memref:
-  /// `memref.alignedPtr + memref.offset * sizeof(type.getElementType())`.
-  /// \note there is no setter for this one since it is derived from alignedPtr
-  /// and offset.
-  Value bufferPtr(OpBuilder &builder, Location loc,
-                  const LLVMTypeConverter &converter, MemRefType type);
 
   /// Builds IR populating a MemRef descriptor structure from a list of
   /// individual values composing that descriptor, in the following order:
   /// - allocated pointer;
   /// - aligned pointer;
-  /// - offset;
   /// - <rank> sizes;
   /// - <rank> shapes;
   /// where <rank> is the MemRef rank as provided in `type`.
@@ -118,10 +99,6 @@ public:
   /// Returns the number of non-aggregate values that would be produced by
   /// `unpack`.
   static unsigned getNumUnpackedValues(MemRefType type);
-
-private:
-  // Cached index type.
-  Type indexType;
 };
 
 /// Helper class allowing the user to access a range of Values that correspond
@@ -138,9 +115,6 @@ public:
 
   /// Returns the aligned pointer Value.
   Value alignedPtr();
-
-  /// Returns the offset Value.
-  Value offset();
 
   /// Returns the pos-th size Value.
   Value size(unsigned pos);
@@ -225,23 +199,6 @@ public:
                             Value memRefDescPtr,
                             LLVM::LLVMPointerType elemPtrType,
                             Value alignedPtr);
-
-  /// Builds IR for getting the pointer to the offset's location.
-  /// Returns a pointer to a convertType(index), which points to the beggining
-  /// of a struct {index, index[rank], index[rank]}.
-  static Value offsetBasePtr(OpBuilder &builder, Location loc,
-                             const LLVMTypeConverter &typeConverter,
-                             Value memRefDescPtr,
-                             LLVM::LLVMPointerType elemPtrType);
-  /// Builds IR extracting the offset from the descriptor.
-  static Value offset(OpBuilder &builder, Location loc,
-                      const LLVMTypeConverter &typeConverter,
-                      Value memRefDescPtr, LLVM::LLVMPointerType elemPtrType);
-  /// Builds IR inserting the offset into the descriptor.
-  static void setOffset(OpBuilder &builder, Location loc,
-                        const LLVMTypeConverter &typeConverter,
-                        Value memRefDescPtr, LLVM::LLVMPointerType elemPtrType,
-                        Value offset);
 
   /// Builds IR extracting the pointer to the first element of the size array.
   static Value sizeBasePtr(OpBuilder &builder, Location loc,
