@@ -176,7 +176,7 @@ void MemRefDataPrinter<T>::print(std::ostream &os, T *base, int64_t dim,
   printFirst(os, base, dim, rank, sizes, strides);
   for (unsigned i = 1; i + 1 < sizes[0]; ++i) {
     printSpace(os, rank - dim + 1);
-    print(os, base, dim - 1, rank + i * strides[0], sizes + 1, strides + 1);
+    print(os, base + i * strides[0], dim - 1, rank, sizes + 1, strides + 1);
     os << ", ";
     if (dim > 1)
       os << "\n";

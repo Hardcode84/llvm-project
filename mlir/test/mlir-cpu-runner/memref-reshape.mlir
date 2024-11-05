@@ -23,7 +23,7 @@ func.func @main() -> () {
   }
   %unranked_input = memref.cast %input : memref<2x3xf32> to memref<*xf32>
   call @printMemrefF32(%unranked_input) : (memref<*xf32>) -> ()
-  // CHECK: rank = 2 offset = 0 sizes = [2, 3] strides = [3, 1]
+  // CHECK: rank = 2 sizes = [2, 3] strides = [3, 1]
   // CHECK-NEXT: [0,   1,   2]
   // CHECK-NEXT: [3,   4,   5]
 
@@ -55,7 +55,7 @@ func.func @reshape_ranked_memref_to_ranked(%input : memref<2x3xf32>,
 
   %unranked_output = memref.cast %output : memref<?x?xf32> to memref<*xf32>
   call @printMemrefF32(%unranked_output) : (memref<*xf32>) -> ()
-  // CHECK: rank = 2 offset = 0 sizes = [3, 2] strides = [2, 1] data =
+  // CHECK: rank = 2 sizes = [3, 2] strides = [2, 1] data =
   // CHECK: [0,   1],
   // CHECK: [2,   3],
   // CHECK: [4,   5]
@@ -70,7 +70,7 @@ func.func @reshape_unranked_memref_to_ranked(%input : memref<2x3xf32>,
 
   %unranked_output = memref.cast %output : memref<?x?xf32> to memref<*xf32>
   call @printMemrefF32(%unranked_output) : (memref<*xf32>) -> ()
-  // CHECK: rank = 2 offset = 0 sizes = [3, 2] strides = [2, 1] data =
+  // CHECK: rank = 2 sizes = [3, 2] strides = [2, 1] data =
   // CHECK: [0,   1],
   // CHECK: [2,   3],
   // CHECK: [4,   5]
@@ -84,7 +84,7 @@ func.func @reshape_ranked_memref_to_unranked(%input : memref<2x3xf32>,
                 : (memref<2x3xf32>, memref<?xindex>) -> memref<*xf32>
 
   call @printMemrefF32(%output) : (memref<*xf32>) -> ()
-  // CHECK: rank = 2 offset = 0 sizes = [3, 2] strides = [2, 1] data =
+  // CHECK: rank = 2 sizes = [3, 2] strides = [2, 1] data =
   // CHECK: [0,   1],
   // CHECK: [2,   3],
   // CHECK: [4,   5]
@@ -99,7 +99,7 @@ func.func @reshape_unranked_memref_to_unranked(%input : memref<2x3xf32>,
                 : (memref<2x3xf32>, memref<?xindex>) -> memref<*xf32>
 
   call @printMemrefF32(%output) : (memref<*xf32>) -> ()
-  // CHECK: rank = 2 offset = 0 sizes = [3, 2] strides = [2, 1] data =
+  // CHECK: rank = 2 sizes = [3, 2] strides = [2, 1] data =
   // CHECK: [0,   1],
   // CHECK: [2,   3],
   // CHECK: [4,   5]
