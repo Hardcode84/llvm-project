@@ -299,7 +299,16 @@ private:
     UnrankedMemRefDescriptor unrankedDesc(adaptor.getSource());
     Value underlyingRankedDesc = unrankedDesc.memRefDescPtr(rewriter, loc);
 
-    Type elementType = typeConverter->convertType(scalarMemRefType);
+    auto elementType =
+        typeConverter->convertType<LLVM::LLVMStructType>(scalarMemRefType);
+    if (!elementType)
+      return failure();
+
+    // Add a fake index to the end of memref type and use is as anchor to access
+    // sizes array.
+    SmallVector<Type> fields(elementType.getBody());
+    fields.emplace_back(getIndexType());
+    elementType = LLVM::LLVMStructType::getLiteral(getContext(), fields);
 
     // Get pointer to offset field of memref<element_type> descriptor.
     auto indexPtrTy =
@@ -308,14 +317,9 @@ private:
         loc, indexPtrTy, elementType, underlyingRankedDesc,
         ArrayRef<LLVM::GEPArg>{0, 2});
 
-    // The size value that we have to extract can be obtained using GEPop with
-    // `dimOp.index() + 1` index argument.
-    Value idxPlusOne = rewriter.create<LLVM::AddOp>(
-        loc, createIndexAttrConstant(rewriter, loc, getIndexType(), 1),
-        adaptor.getIndex());
     Value sizePtr = rewriter.create<LLVM::GEPOp>(
         loc, indexPtrTy, getTypeConverter()->getIndexType(), offsetPtr,
-        idxPlusOne);
+        adaptor.getIndex());
     return rewriter
         .create<LLVM::LoadOp>(loc, getTypeConverter()->getIndexType(), sizePtr)
         .getResult();
