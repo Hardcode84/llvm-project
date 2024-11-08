@@ -320,7 +320,6 @@ void UnrankedMemRefDescriptor::computeSizes(
   Type indexType = typeConverter.getIndexType();
 
   // Initialize shared constants.
-  Value one = createIndexAttrConstant(builder, loc, indexType, 1);
   Value two = createIndexAttrConstant(builder, loc, indexType, 2);
   Value indexSize = createIndexAttrConstant(
       builder, loc, indexType,
@@ -330,9 +329,9 @@ void UnrankedMemRefDescriptor::computeSizes(
   for (auto [desc, addressSpace] : llvm::zip(values, addressSpaces)) {
     // Emit IR computing the memory necessary to store the descriptor. This
     // assumes the descriptor to be
-    //   { type*, type*, index, index[rank], index[rank] }
+    //   { type*, type*, index[rank], index[rank] }
     // and densely packed, so the total size is
-    //   2 * sizeof(pointer) + (1 + 2 * rank) * sizeof(index).
+    //   2 * sizeof(pointer) + (2 * rank) * sizeof(index).
     // TODO: consider including the actual size (including eventual padding due
     // to data layout) into the unranked descriptor.
     Value pointerSize = createIndexAttrConstant(
@@ -341,13 +340,11 @@ void UnrankedMemRefDescriptor::computeSizes(
     Value doublePointerSize =
         builder.create<LLVM::MulOp>(loc, indexType, two, pointerSize);
 
-    // (1 + 2 * rank) * sizeof(index)
+    // (2 * rank) * sizeof(index)
     Value rank = desc.rank(builder, loc);
     Value doubleRank = builder.create<LLVM::MulOp>(loc, indexType, two, rank);
-    Value doubleRankIncremented =
-        builder.create<LLVM::AddOp>(loc, indexType, doubleRank, one);
-    Value rankIndexSize = builder.create<LLVM::MulOp>(
-        loc, indexType, doubleRankIncremented, indexSize);
+    Value rankIndexSize =
+        builder.create<LLVM::MulOp>(loc, indexType, doubleRank, indexSize);
 
     // Total allocation size.
     Value allocationSize = builder.create<LLVM::AddOp>(
@@ -404,10 +401,10 @@ Value UnrankedMemRefDescriptor::sizeBasePtr(
     Value memRefDescPtr, LLVM::LLVMPointerType elemPtrType) {
   Type indexTy = typeConverter.getIndexType();
   Type structTy = LLVM::LLVMStructType::getLiteral(
-      indexTy.getContext(), {elemPtrType, elemPtrType, indexTy, indexTy});
+      indexTy.getContext(), {elemPtrType, elemPtrType, indexTy});
   auto resultType = LLVM::LLVMPointerType::get(builder.getContext());
   return builder.create<LLVM::GEPOp>(loc, resultType, structTy, memRefDescPtr,
-                                     ArrayRef<LLVM::GEPArg>{0, 3});
+                                     ArrayRef<LLVM::GEPArg>{0, 2});
 }
 
 Value UnrankedMemRefDescriptor::size(OpBuilder &builder, Location loc,
