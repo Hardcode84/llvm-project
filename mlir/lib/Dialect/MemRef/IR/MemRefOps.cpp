@@ -1936,8 +1936,13 @@ OpFoldResult ReinterpretCastOp::fold(FoldAdaptor /*operands*/) {
   Value src = getSource();
   auto getPrevSrc = [&]() -> Value {
     // reinterpret_cast(reinterpret_cast(x)) -> reinterpret_cast(x).
-    if (auto prev = src.getDefiningOp<ReinterpretCastOp>())
+    if (auto prev = src.getDefiningOp<ReinterpretCastOp>()) {
+      // Only fold if prev cast offset is 0.
+      if (!isConstantIntValue(prev.getConstifiedMixedOffset(), 0))
+        return nullptr;
+
       return prev.getSource();
+    }
 
     // reinterpret_cast(cast(x)) -> reinterpret_cast(x).
     if (auto prev = src.getDefiningOp<CastOp>())
