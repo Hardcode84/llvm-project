@@ -13,13 +13,12 @@
 func.func private @external(%arg0: memref<?x?xf32>, %arg1: memref<f32>)
   // Populate the descriptor for arg0.
   // CHECK: %[[DESC00:.*]] = llvm.mlir.undef : !llvm.struct<(ptr, ptr, array<2 x i64>, array<2 x i64>)>
-  // CHECK: %[[DESC01:.*]] = llvm.insertvalue %arg0, %[[DESC00]][0]
-  // CHECK: %[[DESC02:.*]] = llvm.insertvalue %arg1, %[[DESC01]][1]
-  // CHECK: %[[DESC03:.*]] = llvm.insertvalue %arg2, %[[DESC02]][2]
-  // CHECK: %[[DESC04:.*]] = llvm.insertvalue %arg3, %[[DESC03]][3, 0]
-  // CHECK: %[[DESC05:.*]] = llvm.insertvalue %arg5, %[[DESC04]][4, 0]
-  // CHECK: %[[DESC06:.*]] = llvm.insertvalue %arg4, %[[DESC05]][3, 1]
-  // CHECK: %[[DESC07:.*]] = llvm.insertvalue %arg6, %[[DESC06]][4, 1]
+  // CHECK: %[[DESC01:.*]] = llvm.insertvalue %[[ALLOC0]], %[[DESC00]][0]
+  // CHECK: %[[DESC02:.*]] = llvm.insertvalue %[[ALIGN0]], %[[DESC01]][1]
+  // CHECK: %[[DESC04:.*]] = llvm.insertvalue %[[SIZE00]], %[[DESC02]][2, 0]
+  // CHECK: %[[DESC05:.*]] = llvm.insertvalue %[[STRIDE00]], %[[DESC04]][3, 0]
+  // CHECK: %[[DESC06:.*]] = llvm.insertvalue %[[SIZE01]], %[[DESC05]][2, 1]
+  // CHECK: %[[DESC07:.*]] = llvm.insertvalue %[[STRIDE01]], %[[DESC06]][3, 1]
 
   // Allocate on stack and store to comply with C calling convention.
   // CHECK: %[[C1:.*]] = llvm.mlir.constant(1 : index)
@@ -28,14 +27,13 @@ func.func private @external(%arg0: memref<?x?xf32>, %arg1: memref<f32>)
 
   // Populate the descriptor for arg1.
   // CHECK: %[[DESC10:.*]] = llvm.mlir.undef : !llvm.struct<(ptr, ptr)>
-  // CHECK: %[[DESC11:.*]] = llvm.insertvalue %arg7, %[[DESC10]][0] : !llvm.struct<(ptr, ptr)>
-  // CHECK: %[[DESC12:.*]] = llvm.insertvalue %arg8, %[[DESC11]][1] : !llvm.struct<(ptr, ptr)>
-  // CHECK: %[[DESC13:.*]] = llvm.insertvalue %arg9, %[[DESC12]][2] : !llvm.struct<(ptr, ptr)>
+  // CHECK: %[[DESC11:.*]] = llvm.insertvalue %[[ALLOC1]], %[[DESC10]][0] : !llvm.struct<(ptr, ptr)>
+  // CHECK: %[[DESC12:.*]] = llvm.insertvalue %[[ALIGN1]], %[[DESC11]][1] : !llvm.struct<(ptr, ptr)>
 
   // Allocate on stack and store to comply with C calling convention.
   // CHECK: %[[C1:.*]] = llvm.mlir.constant(1 : index)
   // CHECK: %[[DESC1_ALLOCA:.*]] = llvm.alloca %[[C1]] x !llvm.struct<(ptr, ptr)>
-  // CHECK: llvm.store %[[DESC13]], %[[DESC1_ALLOCA]]
+  // CHECK: llvm.store %[[DESC12]], %[[DESC1_ALLOCA]]
 
   // Call the interface function.
   // CHECK: llvm.call @_mlir_ciface_external
@@ -63,10 +61,9 @@ func.func @caller() {
   // Extract individual values from the descriptor for the second memref.
   // CHECK: %[[ALLOC1:.*]] = llvm.extractvalue %[[DESC1:.*]][0] : !llvm.struct<(ptr, ptr)>
   // CHECK: %[[ALIGN1:.*]] = llvm.extractvalue %[[DESC1]][1]
-  // CHECK: %[[OFFSET1:.*]] = llvm.extractvalue %[[DESC1]][2]
 
   // Forward the values to the call.
-  // CHECK: llvm.call @external(%[[ALLOC0]], %[[ALIGN0]], %[[SIZE00]], %[[SIZE01]], %[[STRIDE00]], %[[STRIDE01]], %[[ALLOC1]], %[[ALIGN1]]) : (!llvm.ptr, !llvm.ptr, i64, i64, i64, i64, i64, !llvm.ptr, !llvm.ptr, i64) -> ()
+  // CHECK: llvm.call @external(%[[ALLOC0]], %[[ALIGN0]], %[[SIZE00]], %[[SIZE01]], %[[STRIDE00]], %[[STRIDE01]], %[[ALLOC1]], %[[ALIGN1]]) : (!llvm.ptr, !llvm.ptr, i64, i64, i64, i64, !llvm.ptr, !llvm.ptr) -> ()
   call @external(%0#0, %0#1) : (memref<?x?xf32>, memref<f32>) -> ()
   return
 }
@@ -87,12 +84,11 @@ func.func @callee(%arg0: memref<?xf32>, %arg1: index) {
   // Extract individual components of the descriptor.
   // CHECK: %[[ALLOC:.*]] = llvm.extractvalue %[[DESC]][0]
   // CHECK: %[[ALIGN:.*]] = llvm.extractvalue %[[DESC]][1]
-  // CHECK: %[[OFFSET:.*]] = llvm.extractvalue %[[DESC]][2]
-  // CHECK: %[[SIZE:.*]] = llvm.extractvalue %[[DESC]][3, 0]
-  // CHECK: %[[STRIDE:.*]] = llvm.extractvalue %[[DESC]][4, 0]
+  // CHECK: %[[SIZE:.*]] = llvm.extractvalue %[[DESC]][2, 0]
+  // CHECK: %[[STRIDE:.*]] = llvm.extractvalue %[[DESC]][3, 0]
 
   // Forward the descriptor components to the call.
-  // CHECK: llvm.call @callee(%[[ALLOC]], %[[ALIGN]], %[[OFFSET]], %[[SIZE]], %[[STRIDE]], %{{.*}}) : (!llvm.ptr, !llvm.ptr, i64, i64, i64, i64) -> ()
+  // CHECK: llvm.call @callee(%[[ALLOC]], %[[ALIGN]], %[[SIZE]], %[[STRIDE]], %{{.*}}) : (!llvm.ptr, !llvm.ptr, i64, i64, i64) -> ()
 
 //   EMIT_C_ATTRIBUTE-NOT: @mlir_ciface_callee
 
@@ -118,7 +114,6 @@ func.func @return_var_memref_caller(%arg0: memref<4x3xf32>) {
   // CHECK: %[[CALL_RES:.*]] = llvm.call @return_var_memref
   %0 = call @return_var_memref(%arg0) : (memref<4x3xf32>) -> memref<*xf32>
 
-  // CHECK: %[[ONE:.*]] = llvm.mlir.constant(1 : index)
   // CHECK: %[[TWO:.*]] = llvm.mlir.constant(2 : index)
   // These sizes may depend on the data layout, not matching specific values.
   // CHECK: %[[IDX_SIZE:.*]] = llvm.mlir.constant
@@ -127,8 +122,7 @@ func.func @return_var_memref_caller(%arg0: memref<4x3xf32>) {
   // CHECK: %[[DOUBLE_PTR_SIZE:.*]] = llvm.mul %[[TWO]], %[[PTR_SIZE]]
   // CHECK: %[[RANK:.*]] = llvm.extractvalue %[[CALL_RES]][0] : !llvm.struct<(i64, ptr)>
   // CHECK: %[[DOUBLE_RANK:.*]] = llvm.mul %[[TWO]], %[[RANK]]
-  // CHECK: %[[DOUBLE_RANK_INC:.*]] = llvm.add %[[DOUBLE_RANK]], %[[ONE]]
-  // CHECK: %[[TABLES_SIZE:.*]] = llvm.mul %[[DOUBLE_RANK_INC]], %[[IDX_SIZE]]
+  // CHECK: %[[TABLES_SIZE:.*]] = llvm.mul %[[DOUBLE_RANK]], %[[IDX_SIZE]]
   // CHECK: %[[ALLOC_SIZE:.*]] = llvm.add %[[DOUBLE_PTR_SIZE]], %[[TABLES_SIZE]]
   // CHECK: %[[ALLOCA:.*]] = llvm.alloca %[[ALLOC_SIZE]] x i8
   // CHECK: %[[SOURCE:.*]] = llvm.extractvalue %[[CALL_RES]][1]
@@ -151,7 +145,6 @@ func.func @return_var_memref(%arg0: memref<4x3xf32>) -> memref<*xf32> attributes
   // CHECK: %[[DESC_2:.*]] = llvm.insertvalue %[[ALLOCA]], %[[DESC_1]][1]
   %0 = memref.cast %arg0: memref<4x3xf32> to memref<*xf32>
 
-  // CHECK: %[[ONE:.*]] = llvm.mlir.constant(1 : index)
   // CHECK: %[[TWO:.*]] = llvm.mlir.constant(2 : index)
   // These sizes may depend on the data layout, not matching specific values.
   // CHECK: %[[IDX_SIZE:.*]] = llvm.mlir.constant
@@ -160,8 +153,7 @@ func.func @return_var_memref(%arg0: memref<4x3xf32>) -> memref<*xf32> attributes
   // CHECK: %[[DOUBLE_PTR_SIZE:.*]] = llvm.mul %[[TWO]], %[[PTR_SIZE]]
   // CHECK: %[[RANK_EXTR:.*]] = llvm.extractvalue %[[DESC_2]][0]
   // CHECK: %[[DOUBLE_RANK:.*]] = llvm.mul %[[TWO]], %[[RANK_EXTR]]
-  // CHECK: %[[DOUBLE_RANK_INC:.*]] = llvm.add %[[DOUBLE_RANK]], %[[ONE]]
-  // CHECK: %[[TABLES_SIZE:.*]] = llvm.mul %[[DOUBLE_RANK_INC]], %[[IDX_SIZE]]
+  // CHECK: %[[TABLES_SIZE:.*]] = llvm.mul %[[DOUBLE_RANK]], %[[IDX_SIZE]]
   // CHECK: %[[ALLOC_SIZE:.*]] = llvm.add %[[DOUBLE_PTR_SIZE]], %[[TABLES_SIZE]]
   // CHECK: %[[ALLOCATED:.*]] = llvm.call @malloc(%[[ALLOC_SIZE]])
   // CHECK: %[[ALLOCA_EXTRACTED:.*]] = llvm.extractvalue %[[DESC_2]][1]
@@ -253,16 +245,14 @@ func.func @bare_ptr_calling_conv(%arg0: memref<4x3xf32>, %arg1 : index, %arg2 : 
   // CHECK: %[[UNDEF_DESC:.*]] = llvm.mlir.undef : !llvm.struct<(ptr, ptr, array<2 x i64>, array<2 x i64>)>
   // CHECK: %[[INSERT_ALLOCPTR:.*]] = llvm.insertvalue %[[ARG0]], %[[UNDEF_DESC]][0]
   // CHECK: %[[INSERT_ALIGNEDPTR:.*]] = llvm.insertvalue %[[ARG0]], %[[INSERT_ALLOCPTR]][1]
-  // CHECK: %[[C0:.*]] = llvm.mlir.constant(0 : index) : i64
-  // CHECK: %[[INSERT_OFFSET:.*]] = llvm.insertvalue %[[C0]], %[[INSERT_ALIGNEDPTR]][2]
   // CHECK: %[[C4:.*]] = llvm.mlir.constant(4 : index) : i64
-  // CHECK: %[[INSERT_DIM0:.*]] = llvm.insertvalue %[[C4]], %[[INSERT_OFFSET]][3, 0]
+  // CHECK: %[[INSERT_DIM0:.*]] = llvm.insertvalue %[[C4]], %[[INSERT_ALIGNEDPTR]][2, 0]
   // CHECK: %[[C3:.*]] = llvm.mlir.constant(3 : index) : i64
-  // CHECK: %[[INSERT_STRIDE0:.*]] = llvm.insertvalue %[[C3]], %[[INSERT_DIM0]][4, 0]
+  // CHECK: %[[INSERT_STRIDE0:.*]] = llvm.insertvalue %[[C3]], %[[INSERT_DIM0]][3, 0]
   // CHECK: %[[C3:.*]] = llvm.mlir.constant(3 : index) : i64
-  // CHECK: %[[INSERT_DIM1:.*]] = llvm.insertvalue %[[C3]], %[[INSERT_STRIDE0]][3, 1]
+  // CHECK: %[[INSERT_DIM1:.*]] = llvm.insertvalue %[[C3]], %[[INSERT_STRIDE0]][2, 1]
   // CHECK: %[[C1:.*]] = llvm.mlir.constant(1 : index) : i64
-  // CHECK: %[[INSERT_STRIDE1:.*]] = llvm.insertvalue %[[C1]], %[[INSERT_DIM1]][4, 1]
+  // CHECK: %[[INSERT_STRIDE1:.*]] = llvm.insertvalue %[[C1]], %[[INSERT_DIM1]][3, 1]
 
   // CHECK: %[[ALIGNEDPTR:.*]] = llvm.extractvalue %[[INSERT_STRIDE1]][1]
   // CHECK: %[[STOREPTR:.*]] = llvm.getelementptr %[[ALIGNEDPTR]]
@@ -282,16 +272,14 @@ func.func @bare_ptr_calling_conv_multiresult(%arg0: memref<4x3xf32>, %arg1 : ind
   // CHECK: %[[UNDEF_DESC:.*]] = llvm.mlir.undef : !llvm.struct<(ptr, ptr, array<2 x i64>, array<2 x i64>)>
   // CHECK: %[[INSERT_ALLOCPTR:.*]] = llvm.insertvalue %[[ARG0]], %[[UNDEF_DESC]][0]
   // CHECK: %[[INSERT_ALIGNEDPTR:.*]] = llvm.insertvalue %[[ARG0]], %[[INSERT_ALLOCPTR]][1]
-  // CHECK: %[[C0:.*]] = llvm.mlir.constant(0 : index) : i64
-  // CHECK: %[[INSERT_OFFSET:.*]] = llvm.insertvalue %[[C0]], %[[INSERT_ALIGNEDPTR]][2]
   // CHECK: %[[C4:.*]] = llvm.mlir.constant(4 : index) : i64
-  // CHECK: %[[INSERT_DIM0:.*]] = llvm.insertvalue %[[C4]], %[[INSERT_OFFSET]][3, 0]
+  // CHECK: %[[INSERT_DIM0:.*]] = llvm.insertvalue %[[C4]], %[[INSERT_ALIGNEDPTR]][2, 0]
   // CHECK: %[[C3:.*]] = llvm.mlir.constant(3 : index) : i64
-  // CHECK: %[[INSERT_STRIDE0:.*]] = llvm.insertvalue %[[C3]], %[[INSERT_DIM0]][4, 0]
+  // CHECK: %[[INSERT_STRIDE0:.*]] = llvm.insertvalue %[[C3]], %[[INSERT_DIM0]][3, 0]
   // CHECK: %[[C3:.*]] = llvm.mlir.constant(3 : index) : i64
-  // CHECK: %[[INSERT_DIM1:.*]] = llvm.insertvalue %[[C3]], %[[INSERT_STRIDE0]][3, 1]
+  // CHECK: %[[INSERT_DIM1:.*]] = llvm.insertvalue %[[C3]], %[[INSERT_STRIDE0]][2, 1]
   // CHECK: %[[C1:.*]] = llvm.mlir.constant(1 : index) : i64
-  // CHECK: %[[INSERT_STRIDE1:.*]] = llvm.insertvalue %[[C1]], %[[INSERT_DIM1]][4, 1]
+  // CHECK: %[[INSERT_STRIDE1:.*]] = llvm.insertvalue %[[C1]], %[[INSERT_DIM1]][3, 1]
 
   // CHECK: %[[ALIGNEDPTR:.*]] = llvm.extractvalue %[[INSERT_STRIDE1]][1]
   // CHECK: %[[STOREPTR:.*]] = llvm.getelementptr %[[ALIGNEDPTR]]
