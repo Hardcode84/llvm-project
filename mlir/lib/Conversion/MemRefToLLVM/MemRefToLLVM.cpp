@@ -962,11 +962,11 @@ struct MemorySpaceCastOpLowering
 
       // Copy all the index-valued operands.
       Value sourceIndexVals =
-          sourceDesc.alignedPtr(rewriter, loc, *getTypeConverter(),
-                                sourceUnderlyingDesc, sourceElemPtrType);
+          sourceDesc.sizeBasePtr(rewriter, loc, *getTypeConverter(),
+                                 sourceUnderlyingDesc, sourceElemPtrType);
       Value resultIndexVals =
-          result.alignedPtr(rewriter, loc, *getTypeConverter(),
-                            resultUnderlyingDesc, resultElemPtrType);
+          result.sizeBasePtr(rewriter, loc, *getTypeConverter(),
+                             resultUnderlyingDesc, resultElemPtrType);
 
       int64_t bytesToSkip =
           2 * llvm::divideCeil(

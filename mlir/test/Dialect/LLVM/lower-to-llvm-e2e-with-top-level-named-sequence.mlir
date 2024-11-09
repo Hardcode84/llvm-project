@@ -28,11 +28,13 @@ func.func @subview(%0 : memref<64x4xf32, strided<[4, 1], offset: 0>>, %arg0 : in
 
   // CHECK-DAG: %[[STRIDE0:.*]] = llvm.mlir.constant(4 : index) : i64
   // CHECK-DAG: %[[DESCSTRIDE0:.*]] = llvm.mul %[[ARG0]], %[[STRIDE0]] : i64
+  // CHECK-DAG: %[[OFF2:.*]] = llvm.add %[[DESCSTRIDE0]], %[[ARG1]] : i64
+  // CHECK-DAG: %[[ALIGNED:.*]] = llvm.getelementptr %[[BASE_ALIGNED]][%[[OFF2]]] : (!llvm.ptr, i64) -> !llvm.ptr, f32
   // CHECK-DAG: %[[DESC:.*]] = llvm.mlir.undef : !llvm.struct<(ptr, ptr, array<2 x i64>, array<2 x i64>)>
 
   // Base address and algined address.
   // CHECK-DAG: %[[DESC0:.*]] = llvm.insertvalue %[[BASE]], %[[DESC]][0] : !llvm.struct<(ptr, ptr, array<2 x i64>, array<2 x i64>)>
-  // CHECK-DAG: %[[DESC1:.*]] = llvm.insertvalue %[[BASE_ALIGNED]], %[[DESC0]][1] : !llvm.struct<(ptr, ptr, array<2 x i64>, array<2 x i64>)>
+  // CHECK-DAG: %[[DESC1:.*]] = llvm.insertvalue %[[ALIGNED]], %[[DESC0]][1] : !llvm.struct<(ptr, ptr, array<2 x i64>, array<2 x i64>)>
 
   // Size 0.
   // CHECK: %[[DESC3:.*]] = llvm.insertvalue %[[ARG0]], %[[DESC1]][2, 0] : !llvm.struct<(ptr, ptr, array<2 x i64>, array<2 x i64>)>
