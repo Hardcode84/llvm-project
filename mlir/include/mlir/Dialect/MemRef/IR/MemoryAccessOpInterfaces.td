@@ -58,21 +58,24 @@ def IndexedAccessOpInterface : OpInterface<"IndexedAccessOpInterface"> {
       /*args=*/(ins),
       /*methodBody=*/[{}],
       /*defaultImplementation=*/[{
-        if ($_op.getNumResults() > 0)
-          return $_op.getResult(0).getType();
-        return $_op.getOperand(0).getType();
+        if ($_op->getNumResults() > 0)
+          return $_op->getResult(0).getType();
+        return $_op->getOperand(0).getType();
       }]>,
     InterfaceMethod<
       /*desc=*/[{
-        Return true if it is valid to replace the memref this op accesses with one
+        Succeed if it is valid to replace the memref this op accesses with one
         whose type is `newType`. If `willPreserveOffsets` is true, this function
         may assume that linear offsets past the getIndices() point are preserved
         by the reindexing - that is, that the new memref is a pure reassociation
-        of the current one which doesn't introduce new elements.
+        of the current one which doesn't introduce new elements. Similarly,
+        `willPreserveStrides` is a guarantee that the reindexing will preserve
+        strides within each rank - that is, that the stride for the `d`th dimension
+        will remain unchanged.
       }],
       /*retType=*/"::mlir::LogicalResult",
       /*methodName=*/"mayReindexTo",
-      /*args=*/(ins "::mlir::MemRefType":$newType, "bool":$preservesOffsets),
+      /*args=*/(ins "::mlir::MemRefType":$newType, "bool":$willPreserveOffsets, "bool":$willPreserveStrides),
       /*methodBody=*/[{}],
       /*defaultImplementation=*/[{
         return ::mlir::success();
@@ -181,20 +184,7 @@ def IndexedMemCopyOpInterface : OpInterface<"IndexedMemCopyOpInterface"> {
       /*args=*/(ins "::mlir::RewriterBase&":$rewriter,
         "::mlir::Value":$newSrc, "::mlir::ValueRange":$newIndices,
         "::mlir::Value":$newDst, "::mlir::ValueRange":$newDstIndices)
-    >,
-    InterfaceMethod<
-      /*desc=*/[{
-        Return true if, either by definition or due to some attribute,
-        it's known that all indices are non-negative and less than the size
-        of the dimension they index.
-      }],
-      /*retType=*/"bool",
-      /*methodName=*/"hasInboundsIndices",
-      /*args=*/(ins),
-      /*methodBody=*/[{}],
-      /*defaultImplementation=*/[{
-        return true;
-      }]>
+    >
   ];
 }
 #endif // MEMREF_MEMORY_ACCESS_OP_INTERFACES
