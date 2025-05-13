@@ -21,9 +21,9 @@ def IndexedAccessOpInterface : OpInterface<"IndexedAccessOpInterface"> {
     points to the same memory as `%a[%i0,%i1, ... %iK]`, it would be
     trivial to replace `%a[%i0, ..., %iK]` with %b[%j0, ... %jL]`.
 
-    Since this may not always be the case, as with 2-D or greater vector
-    loads, the `mayReindex(MemRefType)` allows determining if a reindexing
-    would lead to an invalid operation.
+    Operations may impose constaints on allowable reindexings.
+    Returning a non-empty result from `getAccessedShape()` imposes constraints
+    on the dimensions whose strides need to be preserved.
 
     This interface is intended to enable transformations such as folding in
     aliasing operations (like memref.subview or memref.collapse_shape) or
@@ -51,34 +51,17 @@ def IndexedAccessOpInterface : OpInterface<"IndexedAccessOpInterface"> {
       /*args=*/(ins)>,
     InterfaceMethod<
       /*desc=*/[{
-        Return the type of the value that is accessed by this operation.
+        Return the shape of the portion of the memref that is being accessed by
+        this operation, if known, ignoring leading unit dimensions.
+        Reindexing transformations may not modify the *strides* of the tlaining
+        N dimensions, where N is the size returned value.
       }],
-      /*retType=*/"::mlir::Type",
-      /*methodName=*/"getAccessedType",
+      /*retType=*/"::llvm::SmallVector<int64_t>",
+      /*methodName=*/"getAccessedShape",
       /*args=*/(ins),
       /*methodBody=*/[{}],
       /*defaultImplementation=*/[{
-        if ($_op->getNumResults() > 0)
-          return $_op->getResult(0).getType();
-        return $_op->getOperand(0).getType();
-      }]>,
-    InterfaceMethod<
-      /*desc=*/[{
-        Succeed if it is valid to replace the memref this op accesses with one
-        whose type is `newType`. If `willPreserveOffsets` is true, this function
-        may assume that linear offsets past the getIndices() point are preserved
-        by the reindexing - that is, that the new memref is a pure reassociation
-        of the current one which doesn't introduce new elements. Similarly,
-        `willPreserveStrides` is a guarantee that the reindexing will preserve
-        strides within each rank - that is, that the stride for the `d`th dimension
-        will remain unchanged.
-      }],
-      /*retType=*/"::mlir::LogicalResult",
-      /*methodName=*/"mayReindexTo",
-      /*args=*/(ins "::mlir::MemRefType":$newType, "bool":$willPreserveOffsets, "bool":$willPreserveStrides),
-      /*methodBody=*/[{}],
-      /*defaultImplementation=*/[{
-        return ::mlir::success();
+        return ::llvm::SmallVector<int64_t>{};
       }]>,
     InterfaceMethod<
       /*desc=*/[{
@@ -182,7 +165,7 @@ def IndexedMemCopyOpInterface : OpInterface<"IndexedMemCopyOpInterface"> {
       /*retType=*/"::mlir::Operation *",
       /*methodName=*/"cloneWithReindex",
       /*args=*/(ins "::mlir::RewriterBase&":$rewriter,
-        "::mlir::Value":$newSrc, "::mlir::ValueRange":$newIndices,
+        "::mlir::Value":$newSrc, "::mlir::ValueRange":$newSrcIndices,
         "::mlir::Value":$newDst, "::mlir::ValueRange":$newDstIndices)
     >
   ];

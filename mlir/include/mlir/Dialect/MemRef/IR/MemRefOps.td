@@ -693,7 +693,8 @@ def MemRef_DimOp : MemRef_Op<"dim", [
 // DmaStartOp
 //===----------------------------------------------------------------------===//
 
-def MemRef_DmaStartOp : MemRef_Op<"dma_start"> {
+def MemRef_DmaStartOp : MemRef_Op<"dma_start", [
+    DeclareOpInterfaceMethods<IndexedMemCopyOpInterface>]> {
   let summary = "non-blocking DMA operation that starts a transfer";
   let description = [{
     Syntax:
@@ -772,6 +773,8 @@ def MemRef_DmaStartOp : MemRef_Op<"dma_start"> {
       return {(*this)->operand_begin() + 1,
               (*this)->operand_begin() + 1 + getSrcMemRefRank()};
     }
+    // Alias to getSrcMemRef() for uniformity with other DMA-like ops.
+    Value getSrc() { return getDstMemRef() }
 
     // Returns the destination MemRefType for this DMA operations.
     Value getDstMemRef() { return getOperand(1 + getSrcMemRefRank()); }
@@ -780,6 +783,9 @@ def MemRef_DmaStartOp : MemRef_Op<"dma_start"> {
     unsigned getDstMemRefRank() {
       return ::llvm::cast<MemRefType>(getDstMemRef().getType()).getRank();
     }
+    // Alias to getDstMemRef() for uniformity with other DMA-like ops.
+    Value getDst() { return getDstMemRef() }
+
     unsigned getSrcMemorySpace() {
       return ::llvm::cast<MemRefType>(getSrcMemRef().getType()).getMemorySpaceAsInt();
     }
