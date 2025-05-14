@@ -1326,8 +1326,8 @@ Operation *DmaStartOp::cloneWithReindex(RewriterBase &rewriter, Value newSrc,
                                         ValueRange newSrcIndices, Value newDst,
                                         ValueRange newDstIndices) {
   return rewriter.create<DmaStartOp>(
-      getLoc(), newSrc, newSrcIndices, newDst, newDstIndices, getTagMemRef(),
-      getTagIndices(), getStride(), getNumElementsPerStride());
+      getLoc(), newSrc, newSrcIndices, newDst, newDstIndices, getNumElements(),
+      getTagMemRef(), getTagIndices(), getStride(), getNumElementsPerStride());
 }
 
 // ---------------------------------------------------------------------------
@@ -1865,7 +1865,7 @@ Operation *PrefetchOp::cloneWithReindex(RewriterBase &rewriter, Value newMemref,
                                         ValueRange newIndices) {
   return rewriter.create<PrefetchOp>(getLoc(), newMemref, newIndices,
                                      getIsWriteAttr(), getLocalityHintAttr(),
-                                     getisDataCacheAttr());
+                                     getIsDataCacheAttr());
 }
 
 //===----------------------------------------------------------------------===//

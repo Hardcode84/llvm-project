@@ -1,5 +1,6 @@
 add_mlir_dialect_library(MLIRVectorTransforms
   BufferizableOpInterfaceImpl.cpp
+  IndexedAccesOpInterfaceImpl.cpp
   LowerVectorBitCast.cpp
   LowerVectorBroadcast.cpp
   LowerVectorContract.cpp
@@ -34,8 +35,8 @@ add_mlir_dialect_library(MLIRVectorTransforms
   MLIRVectorTransformsIncGen
 
   LINK_LIBS PUBLIC
-  MLIRAffineDialect
   MLIRAffineAnalysis
+  MLIRAffineDialect
   MLIRAffineUtils
   MLIRArithDialect
   MLIRDialectUtils
@@ -46,6 +47,7 @@ add_mlir_dialect_library(MLIRVectorTransforms
   MLIRMemRefDialect
   MLIRMemRefTransforms
   MLIRMemRefUtils
+  MLIRMemoryAccessOpInterfaces
   MLIRSCFDialect
   MLIRSideEffectInterfaces
   MLIRSubsetOpInterface

@@ -34,7 +34,8 @@ def IndexedAccessOpInterface : OpInterface<"IndexedAccessOpInterface"> {
   let methods = [
     InterfaceMethod<
       /*desc=*/[{
-        Return the memref that this operation accesses.
+        Return the memref that this operation accesses. If the operation
+        is still in tensor form, return the null value.
       }],
       /*retType=*/"::mlir::TypedValue<::mlir::MemRefType>",
       /*methodName=*/"getMemref",
@@ -46,7 +47,7 @@ def IndexedAccessOpInterface : OpInterface<"IndexedAccessOpInterface"> {
         The size of this range must be equal to the rank of the memref returned by
         getMemref().
       }],
-      /*retType=*/"::mlir::ValueRange",
+      /*retType=*/"::mlir::Operation::operand_range",
       /*methodName=*/"getIndices",
       /*args=*/(ins)>,
     InterfaceMethod<
@@ -132,7 +133,7 @@ def IndexedMemCopyOpInterface : OpInterface<"IndexedMemCopyOpInterface"> {
         The size of this range must be equal to the rank of the memref returned by
         getSrc().
       }],
-      /*retType=*/"::mlir::ValueRange",
+      /*retType=*/"::mlir::Operation::operand_range",
       /*methodName=*/"getSrcIndices",
       /*args=*/(ins)>,
     InterfaceMethod<
@@ -149,7 +150,7 @@ def IndexedMemCopyOpInterface : OpInterface<"IndexedMemCopyOpInterface"> {
         The size of this range must be equal to the rank of the memref returned by
         getDst().
       }],
-      /*retType=*/"::mlir::ValueRange",
+      /*retType=*/"::mlir::Operation::operand_range",
       /*methodName=*/"getDstIndices",
       /*args=*/(ins)>,
     InterfaceMethod<

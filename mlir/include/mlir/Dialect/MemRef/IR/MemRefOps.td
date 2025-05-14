@@ -694,7 +694,7 @@ def MemRef_DimOp : MemRef_Op<"dim", [
 //===----------------------------------------------------------------------===//
 
 def MemRef_DmaStartOp : MemRef_Op<"dma_start", [
-    DeclareOpInterfaceMethods<IndexedMemCopyOpInterface>]> {
+    IndexedMemCopyOpInterface]> {
   let summary = "non-blocking DMA operation that starts a transfer";
   let description = [{
     Syntax:
@@ -774,7 +774,9 @@ def MemRef_DmaStartOp : MemRef_Op<"dma_start", [
               (*this)->operand_begin() + 1 + getSrcMemRefRank()};
     }
     // Alias to getSrcMemRef() for uniformity with other DMA-like ops.
-    Value getSrc() { return getDstMemRef() }
+    ::mlir::TypedValue<::mlir::MemRefType> getSrc() {
+      return ::llvm::cast<::mlir::TypedValue<::mlir::MemRefType>>(getSrcMemRef());
+    }
 
     // Returns the destination MemRefType for this DMA operations.
     Value getDstMemRef() { return getOperand(1 + getSrcMemRefRank()); }
@@ -784,7 +786,9 @@ def MemRef_DmaStartOp : MemRef_Op<"dma_start", [
       return ::llvm::cast<MemRefType>(getDstMemRef().getType()).getRank();
     }
     // Alias to getDstMemRef() for uniformity with other DMA-like ops.
-    Value getDst() { return getDstMemRef() }
+    ::mlir::TypedValue<::mlir::MemRefType> getDst() {
+      return ::llvm::cast<::mlir::TypedValue<::mlir::MemRefType>>(getDstMemRef());
+    }
 
     unsigned getSrcMemorySpace() {
       return ::llvm::cast<MemRefType>(getSrcMemRef().getType()).getMemorySpaceAsInt();
@@ -875,6 +879,10 @@ def MemRef_DmaStartOp : MemRef_Op<"dma_start", [
       effects.emplace_back(MemoryEffects::Read::get(), &getTagMemRefMutable(),
                            SideEffects::DefaultResource::get());
     }
+
+    Operation* cloneWithReindex(RewriterBase& rewriter,
+      Value newSrc, ValueRange newSrcIndices,
+      Value newDst, ValueRange newDstIndices);
   }];
   let hasCustomAssemblyFormat = 1;
   let hasFolder = 1;
