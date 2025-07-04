@@ -57,7 +57,7 @@ func.func @linearize_static(%arg0: index, %arg1: index, %arg2: index) -> index {
 
 // -----
 
-// CHECK-DAG: #[[$map0:.+]] =  affine_map<()[s0, s1, s2, s3, s4] -> (s1 * s2 + s3 + s0 * (s2 * s4))>
+// CHECK-DAG: #[[$map0:.+]] =  affine_map<()[s0, s1, s2, s3, s4] -> (s1 * s2 + s3 + (s0 * s2) * s4)>
 
 // CHECK-LABEL: @linearize_dynamic
 // CHECK-SAME: (%[[arg0:.+]]: index, %[[arg1:.+]]: index, %[[arg2:.+]]: index, %[[arg3:.+]]: index, %[[arg4:.+]]: index)

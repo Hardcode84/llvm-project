@@ -51,7 +51,8 @@
 // CHECK: #map{{[0-9]*}} = affine_map<(d0, d1)[s0] -> (d0 + d1 + 5, d1)>
 #map9 = affine_map<(i, j)[s0] -> ((i + j) + 5, j)>
 
-// CHECK: #map{{[0-9]*}} = affine_map<(d0, d1)[s0] -> (d0 + d1 + 5, d1)>
+// Folded into the same map as prev
+// CHECK-NOT: #map{{[0-9]*}} = affine_map<(d0, d1)[s0] -> (d0 + d1 + 5, d1)>
 #map10 = affine_map<(i, j)[s0] -> (i + (j + 5), j)>
 
 // CHECK: #map{{[0-9]*}} = affine_map<(d0, d1)[s0] -> (d0 * 2, d1 * 3)>
@@ -81,7 +82,7 @@
 // CHECK: #map{{[0-9]*}} = affine_map<(d0, d1) -> (d0, d0 + d1 * 3)>
 #map20 = affine_map<(i, j)  -> (i, i + 3*j)>
 
-// CHECK: #map{{[0-9]*}} = affine_map<(d0, d1)[s0] -> (d0, d0 * ((s0 * s0) * 9) + 3)>
+// CHECK: #map{{[0-9]*}} = affine_map<(d0, d1)[s0] -> (d0, ((d0 * s0) * s0) * 9 + 3)>
 #map18 = affine_map<(i, j)[N] -> (i, 2 + N*N*9*i + 1)>
 
 // CHECK: #map{{[0-9]*}} = affine_map<(d0, d1) -> (1, d0 + d1 * 3 + 5)>
@@ -90,7 +91,7 @@
 // CHECK: #map{{[0-9]*}} = affine_map<(d0, d1)[s0] -> (s0 * 5, d0 + d1 * 3 + d0 * 5)>
 #map22 = affine_map<(i, j)[s0] -> (5*s0, i + 3*j + 5*i)>
 
-// CHECK: #map{{[0-9]*}} = affine_map<(d0, d1)[s0, s1] -> (d0 * (s0 * s1), d1)>
+// CHECK: #map{{[0-9]*}} = affine_map<(d0, d1)[s0, s1] -> ((d0 * s0) * s1, d1)>
 #map23 = affine_map<(i, j)[s0, s1] -> (i*(s0*s1), j)>
 
 // CHECK: #map{{[0-9]*}} = affine_map<(d0, d1)[s0, s1] -> (d0, d1 mod 5)>

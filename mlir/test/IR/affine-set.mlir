@@ -38,7 +38,7 @@
 // CHECK-DAG: #set{{[0-9]*}} = affine_set<(d0, d1)[s0, s1] : (-(d0 + d1 + s0 + s1) >= 0, d0 + d1 - (s0 + s1) >= 0)>
 #set11 = affine_set<(i0, i1)[N, M] : (0 >= i0 + i1 + N + M, i0 + i1 >= N + M)>
 
-// CHECK-DAG: #set{{[0-9]*}} = affine_set<(d0, d1, d2, d3) : ((d0 + d1) mod 2 - (d2 + d3) floordiv 2 == 0, d0 mod 2 + d1 mod 2 - (d2 + d3 + d2) >= 0)>
+// CHECK-DAG: #set{{[0-9]*}} = affine_set<(d0, d1, d2, d3) : ((d0 + d1) mod 2 - (d2 + d3) floordiv 2 == 0, d0 mod 2 + d1 mod 2 - (d2 * 2 + d3) >= 0)>
 #set12 = affine_set<(d0, d1, r0, r1) : ((d0 + d1) mod 2 == (r0 + r1) floordiv 2, ((d0) mod 2) + ((d1) mod 2) >= (r0 + r1) + r0)>
 
 // Check if affine constraints with <= can be parsed.

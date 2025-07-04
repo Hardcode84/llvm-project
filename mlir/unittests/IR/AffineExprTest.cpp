@@ -90,12 +90,27 @@ TEST(AffineExprTest, commutative) {
   auto c2 = b.getAffineConstantExpr(1);
   auto d0 = b.getAffineDimExpr(0);
   auto d1 = b.getAffineDimExpr(1);
+  auto d2 = b.getAffineDimExpr(2);
   auto s0 = b.getAffineSymbolExpr(0);
   auto s1 = b.getAffineSymbolExpr(1);
 
   ASSERT_EQ(d0 * d1, d1 * d0);
   ASSERT_EQ(s0 + s1, s1 + s0);
   ASSERT_EQ(s0 * c2, c2 * s0);
+
+  ASSERT_EQ(d0 * d1 * d2, (d1 * d2) * d0);
+  ASSERT_EQ(d0 * d1 * d2, (d2 * d1) * d0);
+  ASSERT_EQ(d0 * d1 * d2, (d0 * d2) * d1);
+  ASSERT_EQ(d0 * d1 * d2, (d1 * d0) * d2);
+  ASSERT_EQ(d0 * d1 * d2, (d2 * d0) * d1);
+  ASSERT_EQ(d0 * d1 * d2, (d0 * d2) * d1);
+
+  ASSERT_EQ(d0 * d1 * d2, d1 * (d2 * d0));
+  ASSERT_EQ(d0 * d1 * d2, d2 * (d1 * d0));
+  ASSERT_EQ(d0 * d1 * d2, d0 * (d2 * d1));
+  ASSERT_EQ(d0 * d1 * d2, d1 * (d0 * d2));
+  ASSERT_EQ(d0 * d1 * d2, d2 * (d0 * d1));
+  ASSERT_EQ(d0 * d1 * d2, d0 * (d2 * d1));
 }
 
 TEST(AffineExprTest, divisionSimplification) {

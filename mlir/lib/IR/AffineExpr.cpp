@@ -659,6 +659,78 @@ mlir::getAffineConstantExprs(ArrayRef<int64_t> constants,
   }));
 }
 
+/// Get the canonical order of two commutative exprs arguments.
+static AffineExpr orderCommutativeArgs(AffineExpr expr1, AffineExpr expr2,
+                                       AffineExprKind kind) {
+  auto sym1 = dyn_cast<AffineSymbolExpr>(expr1);
+  auto sym2 = dyn_cast<AffineSymbolExpr>(expr2);
+  // Try to order by symbol/dim position first.
+  if (sym1 && sym2) {
+    if (sym1.getPosition() > sym2.getPosition())
+      return getAffineBinaryOpExpr(kind, expr2, expr1);
+
+    return nullptr;
+  }
+
+  auto dim1 = dyn_cast<AffineDimExpr>(expr1);
+  auto dim2 = dyn_cast<AffineDimExpr>(expr2);
+  if (dim1 && dim2) {
+    if (dim1.getPosition() > dim2.getPosition())
+      return getAffineBinaryOpExpr(kind, expr2, expr1);
+
+    return nullptr;
+  }
+
+  // Put dims before symbols.
+  if (dim1 && sym2)
+    return nullptr;
+
+  if (sym1 && dim2)
+    return getAffineBinaryOpExpr(kind, dim2, sym1);
+
+  if (auto lhsBin = dyn_cast<AffineBinaryOpExpr>(expr1)) {
+    if (lhsBin.getKind() != kind)
+      return nullptr;
+
+    auto lhsLhs = lhsBin.getLHS();
+    auto lhsRhs = lhsBin.getRHS();
+    if (dim2) {
+      if (auto lhsDim2 = dyn_cast<AffineDimExpr>(lhsRhs)) {
+        // (d0 * d2) * d1 -> (d0 * d1) * d2
+        if (lhsDim2.getPosition() > dim2.getPosition())
+          return getAffineBinaryOpExpr(
+              kind, getAffineBinaryOpExpr(kind, lhsLhs, dim2), lhsRhs);
+      } else if (lhsRhs.isSymbolicOrConstant()) {
+        // (d0 * s) * d1 -> (d0 * d1) * s
+        return getAffineBinaryOpExpr(
+            kind, getAffineBinaryOpExpr(kind, lhsLhs, dim2), lhsRhs);
+      }
+    } else if (sym2) {
+      if (auto lhsSym2 = dyn_cast<AffineSymbolExpr>(lhsRhs)) {
+        // (s0 * s2) * s1 -> (s0 * s1) * s2
+        if (lhsSym2.getPosition() > sym2.getPosition())
+          return getAffineBinaryOpExpr(
+              kind, getAffineBinaryOpExpr(kind, lhsLhs, sym2), lhsRhs);
+      }
+    }
+
+    return nullptr;
+  }
+
+  // a * (b * c) -> (a * b) * c
+  if (auto rhsBin = dyn_cast<AffineBinaryOpExpr>(expr2)) {
+    if (rhsBin.getKind() != kind)
+      return nullptr;
+
+    auto rhsLhs = rhsBin.getLHS();
+    auto rhsRhs = rhsBin.getRHS();
+    return getAffineBinaryOpExpr(
+        kind, getAffineBinaryOpExpr(kind, expr1, rhsLhs), rhsRhs);
+  }
+
+  return nullptr;
+}
+
 /// Simplify add expression. Return nullptr if it can't be simplified.
 static AffineExpr simplifyAdd(AffineExpr lhs, AffineExpr rhs) {
   auto lhsConst = dyn_cast<AffineConstantExpr>(lhs);
@@ -733,6 +805,9 @@ static AffineExpr simplifyAdd(AffineExpr lhs, AffineExpr rhs) {
     }
   }
 
+  if (auto simplified = orderCommutativeArgs(lhs, rhs, AffineExprKind::Add))
+    return simplified;
+
   // Detect and transform "expr - q * (expr floordiv q)" to "expr mod q", where
   // q may be a constant or symbolic expression. This leads to a much more
   // efficient form when 'c' is a power of two, and in general a more compact
@@ -784,33 +859,6 @@ static AffineExpr simplifyAdd(AffineExpr lhs, AffineExpr rhs) {
   return nullptr;
 }
 
-/// Get the canonical order of two commutative exprs arguments.
-static std::pair<AffineExpr, AffineExpr>
-orderCommutativeArgs(AffineExpr expr1, AffineExpr expr2) {
-  auto sym1 = dyn_cast<AffineSymbolExpr>(expr1);
-  auto sym2 = dyn_cast<AffineSymbolExpr>(expr2);
-  // Try to order by symbol/dim position first.
-  if (sym1 && sym2)
-    return sym1.getPosition() < sym2.getPosition() ? std::pair{expr1, expr2}
-                                                   : std::pair{expr2, expr1};
-
-  auto dim1 = dyn_cast<AffineDimExpr>(expr1);
-  auto dim2 = dyn_cast<AffineDimExpr>(expr2);
-  if (dim1 && dim2)
-    return dim1.getPosition() < dim2.getPosition() ? std::pair{expr1, expr2}
-                                                   : std::pair{expr2, expr1};
-
-  // Put dims before symbols.
-  if (dim1 && sym2)
-    return {dim1, sym2};
-
-  if (sym1 && dim2)
-    return {dim2, sym1};
-
-  // Otherwise, keep original order.
-  return {expr1, expr2};
-}
-
 AffineExpr AffineExpr::operator+(int64_t v) const {
   return *this + getAffineConstantExpr(v, getContext());
 }
@@ -818,11 +866,9 @@ AffineExpr AffineExpr::operator+(AffineExpr other) const {
   if (auto simplified = simplifyAdd(*this, other))
     return simplified;
 
-  auto [lhs, rhs] = orderCommutativeArgs(*this, other);
-
   StorageUniquer &uniquer = getContext()->getAffineUniquer();
   return uniquer.get<AffineBinaryOpExprStorage>(
-      /*initFn=*/{}, static_cast<unsigned>(AffineExprKind::Add), lhs, rhs);
+      /*initFn=*/{}, static_cast<unsigned>(AffineExprKind::Add), *this, other);
 }
 
 /// Simplify a multiply expression. Return nullptr if it can't be simplified.
@@ -837,6 +883,9 @@ static AffineExpr simplifyMul(AffineExpr lhs, AffineExpr rhs) {
     }
     return getAffineConstantExpr(product, lhs.getContext());
   }
+
+  if (auto simplified = orderCommutativeArgs(lhs, rhs, AffineExprKind::Mul))
+    return simplified;
 
   if (!lhs.isSymbolicOrConstant() && !rhs.isSymbolicOrConstant())
     return nullptr;
@@ -885,11 +934,9 @@ AffineExpr AffineExpr::operator*(AffineExpr other) const {
   if (auto simplified = simplifyMul(*this, other))
     return simplified;
 
-  auto [lhs, rhs] = orderCommutativeArgs(*this, other);
-
   StorageUniquer &uniquer = getContext()->getAffineUniquer();
   return uniquer.get<AffineBinaryOpExprStorage>(
-      /*initFn=*/{}, static_cast<unsigned>(AffineExprKind::Mul), lhs, rhs);
+      /*initFn=*/{}, static_cast<unsigned>(AffineExprKind::Mul), *this, other);
 }
 
 // Unary minus, delegate to operator*.
