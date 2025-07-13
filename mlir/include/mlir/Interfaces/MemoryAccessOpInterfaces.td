@@ -30,7 +30,7 @@ def IndexedAccessOpInterface : OpInterface<"IndexedAccessOpInterface"> {
     linearizing memrefs (making them 1-D) to be generic over in-tree and
     out-of-tree operations.
   }];
-  let cppNamespace = "::mlir::memref";
+  let cppNamespace = "::mlir";
   let methods = [
     InterfaceMethod<
       /*desc=*/[{
@@ -117,7 +117,7 @@ def IndexedMemCopyOpInterface : OpInterface<"IndexedMemCopyOpInterface"> {
     4 floats starting at the indices `[%x, %y]` is intended to read into
     the space between the length-three rows.
   }];
-  let cppNamespace = "::mlir::memref";
+  let cppNamespace = "::mlir";
   let methods = [
     InterfaceMethod<
       /*desc=*/[{

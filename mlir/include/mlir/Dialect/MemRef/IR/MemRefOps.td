@@ -11,17 +11,18 @@
 
 include "mlir/Dialect/Arith/IR/ArithBase.td"
 include "mlir/Dialect/MemRef/IR/MemRefBase.td"
+include "mlir/IR/OpAsmInterface.td"
+include "mlir/IR/SymbolInterfaces.td"
 include "mlir/Interfaces/CastInterfaces.td"
 include "mlir/Interfaces/ControlFlowInterfaces.td"
 include "mlir/Interfaces/CopyOpInterface.td"
 include "mlir/Interfaces/InferIntRangeInterface.td"
 include "mlir/Interfaces/InferTypeOpInterface.td"
+include "mlir/Interfaces/MemoryAccessOpInterfaces.td"
 include "mlir/Interfaces/MemorySlotInterfaces.td"
 include "mlir/Interfaces/ShapedOpInterfaces.td"
 include "mlir/Interfaces/SideEffectInterfaces.td"
 include "mlir/Interfaces/ViewLikeInterface.td"
-include "mlir/IR/OpAsmInterface.td"
-include "mlir/IR/SymbolInterfaces.td"
 
 /// A TypeAttr for memref types.
 def MemRefTypeAttr
@@ -154,7 +155,7 @@ def AssumeAlignmentOp : MemRef_Op<"assume_alignment", [
       The `assume_alignment` operation takes a memref and an integer alignment
       value. It returns a new SSA value of the same memref type, but associated
       with the assumption that the underlying buffer is aligned to the given
-      alignment. 
+      alignment.
 
       If the buffer isn't aligned to the given alignment, its result is poison.
       This operation doesn't affect the semantics of a program where the
@@ -169,7 +170,7 @@ def AssumeAlignmentOp : MemRef_Op<"assume_alignment", [
   let assemblyFormat = "$memref `,` $alignment attr-dict `:` type($memref)";
   let extraClassDeclaration = [{
     MemRefType getType() { return ::llvm::cast<MemRefType>(getResult().getType()); }
-    
+
     Value getViewSource() { return getMemref(); }
   }];
 
@@ -655,7 +656,9 @@ def MemRef_DimOp : MemRef_Op<"dim", [
 // DmaStartOp
 //===----------------------------------------------------------------------===//
 
-def MemRef_DmaStartOp : MemRef_Op<"dma_start"> {
+def MemRef_DmaStartOp : MemRef_Op<"dma_start", [
+    IndexedMemCopyOpInterface
+]> {
   let summary = "non-blocking DMA operation that starts a transfer";
   let description = [{
     Syntax:
@@ -734,6 +737,10 @@ def MemRef_DmaStartOp : MemRef_Op<"dma_start"> {
       return {(*this)->operand_begin() + 1,
               (*this)->operand_begin() + 1 + getSrcMemRefRank()};
     }
+    // Alias to getSrcMemRef() for uniformity with other DMA-like ops.
+    ::mlir::TypedValue<::mlir::MemRefType> getSrc() {
+      return ::llvm::cast<::mlir::TypedValue<::mlir::MemRefType>>(getSrcMemRef());
+    }
 
     // Returns the destination MemRefType for this DMA operations.
     Value getDstMemRef() { return getOperand(1 + getSrcMemRefRank()); }
@@ -742,6 +749,11 @@ def MemRef_DmaStartOp : MemRef_Op<"dma_start"> {
     unsigned getDstMemRefRank() {
       return ::llvm::cast<MemRefType>(getDstMemRef().getType()).getRank();
     }
+    // Alias to getDstMemRef() for uniformity with other DMA-like ops.
+    ::mlir::TypedValue<::mlir::MemRefType> getDst() {
+      return ::llvm::cast<::mlir::TypedValue<::mlir::MemRefType>>(getDstMemRef());
+    }
+
     unsigned getSrcMemorySpace() {
       return ::llvm::cast<MemRefType>(getSrcMemRef().getType()).getMemorySpaceAsInt();
     }
@@ -831,6 +843,10 @@ def MemRef_DmaStartOp : MemRef_Op<"dma_start"> {
       effects.emplace_back(MemoryEffects::Read::get(), &getTagMemRefMutable(),
                            SideEffects::DefaultResource::get());
     }
+
+    Operation *cloneWithReindex(RewriterBase & rewriter, Value newSrc,
+                                ValueRange newSrcIndices, Value newDst,
+                                ValueRange newDstIndices);
   }];
   let hasCustomAssemblyFormat = 1;
   let hasFolder = 1;
@@ -1022,7 +1038,8 @@ def GenericAtomicRMWOp : MemRef_Op<"generic_atomic_rmw", [
       SingleBlockImplicitTerminator<"AtomicYieldOp">,
       TypesMatchWith<"result type matches element type of memref",
                      "memref", "result",
-                     "::llvm::cast<MemRefType>($_self).getElementType()">
+                     "::llvm::cast<MemRefType>($_self).getElementType()">,
+      DeclareOpInterfaceMethods<IndexedAccessOpInterface>
     ]> {
   let summary = "atomic read-modify-write operation with a region";
   let description = [{
@@ -1196,7 +1213,8 @@ def LoadOp : MemRef_Op<"load",
                      "::llvm::cast<MemRefType>($_self).getElementType()">,
       MemRefsNormalizable,
       DeclareOpInterfaceMethods<PromotableMemOpInterface>,
-      DeclareOpInterfaceMethods<DestructurableAccessorOpInterface>]> {
+      DeclareOpInterfaceMethods<DestructurableAccessorOpInterface>,
+      DeclareOpInterfaceMethods<IndexedAccessOpInterface>]> {
   let summary = "load operation";
   let description = [{
     The `load` op reads an element from a memref at the specified indices.
@@ -1295,7 +1313,9 @@ def MemRef_MemorySpaceCastOp : MemRef_Op<"memory_space_cast", [
 // PrefetchOp
 //===----------------------------------------------------------------------===//
 
-def MemRef_PrefetchOp : MemRef_Op<"prefetch"> {
+def MemRef_PrefetchOp : MemRef_Op<"prefetch", [
+      DeclareOpInterfaceMethods<IndexedAccessOpInterface, ["getAccessedType"]>
+]> {
   let summary = "prefetch operation";
   let description = [{
     The "prefetch" op prefetches data from a memref location described with
@@ -1895,7 +1915,9 @@ def MemRef_StoreOp : MemRef_Op<"store",
                      "::llvm::cast<MemRefType>($_self).getElementType()">,
       MemRefsNormalizable,
       DeclareOpInterfaceMethods<PromotableMemOpInterface>,
-      DeclareOpInterfaceMethods<DestructurableAccessorOpInterface>]> {
+      DeclareOpInterfaceMethods<DestructurableAccessorOpInterface>,
+      DeclareOpInterfaceMethods<IndexedAccessOpInterface>
+]> {
   let summary = "store operation";
   let description = [{
     The `store` op stores an element into a memref at the specified indices.
@@ -2344,7 +2366,8 @@ def AtomicRMWOp : MemRef_Op<"atomic_rmw", [
       AllTypesMatch<["value", "result"]>,
       TypesMatchWith<"value type matches element type of memref",
                      "memref", "value",
-                     "::llvm::cast<MemRefType>($_self).getElementType()">
+                     "::llvm::cast<MemRefType>($_self).getElementType()">,
+      DeclareOpInterfaceMethods<IndexedAccessOpInterface>
     ]> {
   let summary = "atomic read-modify-write operation";
   let description = [{

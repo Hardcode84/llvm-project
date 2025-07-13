@@ -1269,6 +1269,14 @@ LogicalResult DmaStartOp::fold(FoldAdaptor adaptor,
   return foldMemRefCast(*this);
 }
 
+Operation *DmaStartOp::cloneWithReindex(RewriterBase &rewriter, Value newSrc,
+                                        ValueRange newSrcIndices, Value newDst,
+                                        ValueRange newDstIndices) {
+  return rewriter.create<DmaStartOp>(
+      getLoc(), newSrc, newSrcIndices, newDst, newDstIndices, getNumElements(),
+      getTagMemRef(), getTagIndices(), getStride(), getNumElementsPerStride());
+}
+
 // ---------------------------------------------------------------------------
 // DmaWaitOp
 // ---------------------------------------------------------------------------
@@ -1489,6 +1497,17 @@ void GenericAtomicRMWOp::print(OpAsmPrinter &p) {
   p.printOptionalAttrDict((*this)->getAttrs());
 }
 
+Operation *GenericAtomicRMWOp::cloneWithReindex(RewriterBase &rewriter,
+                                                Value newMemref,
+                                                ValueRange newIndices) {
+  auto result = cast<GenericAtomicRMWOp>(rewriter.clone(**this));
+  rewriter.modifyOpInPlace(result, [&]() {
+    result.getMemrefMutable().assign(newMemref);
+    result.getIndicesMutable().assign(newIndices);
+  });
+  return result;
+}
+
 //===----------------------------------------------------------------------===//
 // AtomicYieldOp
 //===----------------------------------------------------------------------===//
@@ -1647,6 +1666,12 @@ OpFoldResult LoadOp::fold(FoldAdaptor adaptor) {
   return OpFoldResult();
 }
 
+Operation *LoadOp::cloneWithReindex(RewriterBase &rewriter, Value newMemref,
+                                    ValueRange newIndices) {
+  return rewriter.create<LoadOp>(getLoc(), newMemref, newIndices,
+                                 getNontemporal());
+}
+
 //===----------------------------------------------------------------------===//
 // MemorySpaceCastOp
 //===----------------------------------------------------------------------===//
@@ -1756,6 +1781,13 @@ LogicalResult PrefetchOp::fold(FoldAdaptor adaptor,
                                SmallVectorImpl<OpFoldResult> &results) {
   // prefetch(memrefcast) -> prefetch
   return foldMemRefCast(*this);
+}
+
+Operation *PrefetchOp::cloneWithReindex(RewriterBase &rewriter, Value newMemref,
+                                        ValueRange newIndices) {
+  return rewriter.create<PrefetchOp>(getLoc(), newMemref, newIndices,
+                                     getIsWriteAttr(), getLocalityHintAttr(),
+                                     getIsDataCacheAttr());
 }
 
 //===----------------------------------------------------------------------===//
@@ -2669,6 +2701,12 @@ LogicalResult StoreOp::fold(FoldAdaptor adaptor,
                             SmallVectorImpl<OpFoldResult> &results) {
   /// store(memrefcast) -> store
   return foldMemRefCast(*this, getValueToStore());
+}
+
+Operation *StoreOp::cloneWithReindex(RewriterBase &rewriter, Value newMemref,
+                                     ValueRange newIndices) {
+  return rewriter.create<StoreOp>(getLoc(), getValue(), newMemref, newIndices,
+                                  getNontemporal());
 }
 
 //===----------------------------------------------------------------------===//
@@ -3612,6 +3650,13 @@ OpFoldResult AtomicRMWOp::fold(FoldAdaptor adaptor) {
   if (succeeded(foldMemRefCast(*this, getValue())))
     return getResult();
   return OpFoldResult();
+}
+
+Operation *AtomicRMWOp::cloneWithReindex(RewriterBase &rewriter,
+                                         Value newMemref,
+                                         ValueRange newIndices) {
+  return rewriter.create<AtomicRMWOp>(getLoc(), getKind(), getValue(),
+                                      newMemref, newIndices);
 }
 
 //===----------------------------------------------------------------------===//

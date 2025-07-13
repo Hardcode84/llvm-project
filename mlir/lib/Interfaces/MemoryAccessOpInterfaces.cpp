@@ -7,15 +7,15 @@
 //===----------------------------------------------------------------------===//
 
 #include "mlir/Interfaces/MemoryAccessOpInterfaces.h"
-// #include "mlir/IR/Operation.h"
-// #include "mlir/IR/Value.h"
+#include "mlir/IR/Operation.h"
+#include "mlir/IR/Value.h"
 
 //===----------------------------------------------------------------------===//
 // IndexedAccessOpInterface and IndexedMemCpyOpInterface
 //===----------------------------------------------------------------------===//
 
-namespace mlir::memref {
+namespace mlir {
 
 #include "mlir/Interfaces/MemoryAccessOpInterfaces.cpp.inc"
 
-} // namespace mlir::memref
+} // namespace mlir
