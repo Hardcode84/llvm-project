@@ -1,6 +1,6 @@
 add_mlir_dialect_library(MLIRVectorTransforms
   BufferizableOpInterfaceImpl.cpp
-  IndexedAccesOpInterfaceImpl.cpp
+  IndexedAccessOpInterfaceImpl.cpp
   LowerVectorBitCast.cpp
   LowerVectorBroadcast.cpp
   LowerVectorContract.cpp
