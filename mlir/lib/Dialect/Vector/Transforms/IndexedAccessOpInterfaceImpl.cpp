@@ -18,4 +18,122 @@ using namespace mlir;
 using namespace mlir::memref;
 using namespace mlir::vector;
 
-namespace {} // namespace
+namespace {
+template <typename LoadStoreOp>
+struct VectorLoadStoreLikeOpInterface final
+    : IndexedAccessOpInterface::ExternalModel<
+          VectorLoadStoreLikeOpInterface<LoadStoreOp>, LoadStoreOp> {
+  TypedValue<MemRefType> getMemref(Operation *op) const {
+    return dyn_cast<TypedValue<MemRefType>>(cast<LoadStoreOp>(op).getBase());
+  }
+
+  Operation::operand_range getIndices(Operation *op) const {
+    return cast<LoadStoreOp>(op).getIndices();
+  }
+
+  // Note: this is an upper bound on what's accessed in the case of operations
+  // like expandload or compressstore.
+  SmallVector<int64_t> getAccessedShape(Operation *op) const {
+    VectorType vecTy = cast<LoadStoreOp>(op).getVectorType();
+    // Drop leading unit dimensions, since they don't impact the vector
+    // semantics of operations. That is, none of these load/store variants
+    // change their behavior if the loaded/stored vector type is changed from
+    // vector<1x...x1x[shape]xT> to vector<[shape]xT>.
+    SmallVector<int64_t> result(
+        vecTy.getShape().drop_while([](int64_t l) { return l == 1; }));
+    return result;
+  }
+
+  Operation *cloneWithReindex(Operation *op, RewriterBase &rewriter,
+                              Value newMemref, ValueRange newIndices) const {
+    VectorType vecTy = cast<LoadStoreOp>(op).getVectorType();
+    bool droppedUnitDims =
+        static_cast<int64_t>(newIndices.size()) < vecTy.getRank();
+    VectorType droppedDimsTy;
+    IRMapping dropDimsMap;
+    if (LLVM_UNLIKELY(droppedUnitDims)) {
+      droppedDimsTy =
+          vecTy.cloneWith(vecTy.getShape().take_back(newIndices.size()),
+                          vecTy.getElementType());
+      for (Value arg : op->getOperands()) {
+        if (arg.getType() == vecTy) {
+          Value castArg = vector::ShapeCastOp::create(rewriter, arg.getLoc(),
+                                                      droppedDimsTy, arg);
+          dropDimsMap.map(arg, castArg);
+        }
+      }
+    }
+    Operation *newOp = rewriter.clone(*op, dropDimsMap);
+    rewriter.modifyOpInPlace(newOp, [&]() {
+      auto concreteOp = cast<LoadStoreOp>(newOp);
+      concreteOp.getBaseMutable().assign(newMemref);
+      concreteOp.getIndicesMutable().assign(newIndices);
+      if (LLVM_UNLIKELY(droppedUnitDims && newOp->getNumResults() == 0)) {
+        newOp->getResult(0).setType(droppedDimsTy);
+        newOp = ShapeCastOp::create(rewriter, newOp->getLoc(), vecTy,
+                                    newOp->getResult(0));
+      }
+    });
+    return newOp;
+  }
+
+  // TODO: The various load and store operations (at the very least
+  // vector.load and vector.store) sholud be taught a `startsInbounds`
+  // attribute that would let us optimize index generation.
+  bool hasInboundsIndices(Operation *) const { return false; }
+};
+
+template <typename GatherScatterOp>
+struct GatherScatterLikeOpInterface final
+    : IndexedAccessOpInterface::ExternalModel<
+          VectorLoadStoreLikeOpInterface<GatherScatterOp>, GatherScatterOp> {
+  TypedValue<MemRefType> getMemref(Operation *op) const {
+    return dyn_cast<TypedValue<MemRefType>>(
+        cast<GatherScatterOp>(op).getBase());
+  }
+
+  Operation::operand_range getIndices(Operation *op) const {
+    return cast<GatherScatterOp>(op).getIndices();
+  }
+
+  // We assume that the index offset could point anywhere within a dimension,
+  // but that it won't meaningfully alias outside of it.
+  SmallVector<int64_t> getAccessedShape(Operation *op) const {
+    VectorType vecTy = cast<GatherScatterOp>(op).getVectorType();
+    return SmallVector<int64_t>(vecTy.getRank(), ShapedType::kDynamic);
+  }
+
+  Operation *cloneWithReindex(Operation *op, RewriterBase &rewriter,
+                              Value newMemref, ValueRange newIndices) const {
+    Operation *newOp = rewriter.clone(*op);
+    rewriter.modifyOpInPlace(newOp, [&]() {
+      auto concreteOp = cast<GatherScatterOp>(newOp);
+      concreteOp.getBaseMutable().assign(newMemref);
+      concreteOp.getIndicesMutable().assign(newIndices);
+    });
+    return newOp;
+  }
+
+  bool hasInboundsIndices(Operation *) const { return false; }
+};
+} // namespace
+
+void mlir::vector::registerIndexedAccessOpInterfaceExternalModels(
+    DialectRegistry &registry) {
+  registry.addExtension(+[](MLIRContext *ctx, vector::VectorDialect *dialect) {
+#define LOADSTORELIKE(T)                                                       \
+  T::attachInterface<VectorLoadStoreLikeOpInterface<T>>(*ctx)
+    LOADSTORELIKE(vector::LoadOp);
+    LOADSTORELIKE(vector::StoreOp);
+    LOADSTORELIKE(vector::MaskedLoadOp);
+    LOADSTORELIKE(vector::MaskedStoreOp);
+    LOADSTORELIKE(vector::ExpandLoadOp);
+    LOADSTORELIKE(vector::CompressStoreOp);
+#undef LOADSTORELIKE
+#define GATHERSCATTERLIKE(T)                                                   \
+  T::attachInterface<GatherScatterLikeOpInterface<T>>(*ctx)
+    GATHERSCATTERLIKE(vector::GatherOp);
+    GATHERSCATTERLIKE(vector::ScatterOp);
+#undef GATHERSCATTERLIKE
+  });
+}

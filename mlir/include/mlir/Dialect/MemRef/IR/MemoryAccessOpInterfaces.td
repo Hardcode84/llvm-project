@@ -55,7 +55,8 @@ def IndexedAccessOpInterface : OpInterface<"IndexedAccessOpInterface"> {
         Return the shape of the portion of the memref that is being accessed by
         this operation, if known, ignoring leading unit dimensions.
         Reindexing transformations may not modify the *strides* of the tlaining
-        N dimensions, where N is the size returned value.
+        N dimensions, where N is the size returned value, and should ensure that
+        at least N indexing dimensions remain after the transformation.
       }],
       /*retType=*/"::llvm::SmallVector<int64_t>",
       /*methodName=*/"getAccessedShape",

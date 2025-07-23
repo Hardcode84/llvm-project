@@ -1717,8 +1717,11 @@ def Vector_LoadOp : Vector_Op<"load", [
 
     An optional `alignment` attribute allows to specify the byte alignment of the
     load operation. It must be a positive power of 2. The operation must access
-    memory at an address aligned to this boundary. Violating this requirement
-    triggers immediate undefined behavior.
+    memory at an address aligned to this boundary. Violations may lead to
+    architecture-specific faults or performance penalties.
+    A value of 0 indicates no specific alignment requirement.
+
+    Implements IndexedAccessOpInterface.
   }];
 
   let arguments = (ins Arg<AnyMemRef, "the reference to load from",
@@ -1832,8 +1835,11 @@ def Vector_StoreOp : Vector_Op<"store", [
 
     An optional `alignment` attribute allows to specify the byte alignment of the
     store operation. It must be a positive power of 2. The operation must access
-    memory at an address aligned to this boundary. Violating this requirement
-    triggers immediate undefined behavior.
+    memory at an address aligned to this boundary. Violations may lead to
+    architecture-specific faults or performance penalties.
+    A value of 0 indicates no specific alignment requirement.
+
+    Implements IndexedAccessOpInterface.
   }];
 
   let arguments = (ins
@@ -1905,6 +1911,8 @@ def Vector_MaskedLoadOp :
     hardware ISA support for a masked load. The semantics of the operation
     closely correspond to those of the `llvm.masked.load`
     [intrinsic](https://llvm.org/docs/LangRef.html#llvm-masked-load-intrinsics).
+
+    Implements IndexedAccessOpInterface.
 
     Examples:
 
@@ -1996,6 +2004,8 @@ def Vector_MaskedStoreOp :
     hardware ISA support for a masked store. The semantics of the operation
     closely correspond to those of the `llvm.masked.store`
     [intrinsic](https://llvm.org/docs/LangRef.html#llvm-masked-store-intrinsics).
+
+    Implements IndexedAccessOpInterface.
 
     Examples:
 
@@ -2111,6 +2121,8 @@ def Vector_GatherOp :
     applied as pure 1-D offsets and are not decomposed in order to apply
     the strides on the base.
 
+    Implements IndexedAccessOpInterface.
+
     Examples:
 
     ```mlir
@@ -2207,6 +2219,8 @@ def Vector_ScatterOp :
     applied as pure 1-D offsets and are not decomposed in order to apply
     the strides on the base.
 
+    Implements IndexedAccessOpInterface.
+
     Examples:
 
     ```mlir
@@ -2290,6 +2304,8 @@ def Vector_ExpandLoadOp :
     triggers immediate undefined behavior.
 
     Note, at the moment this Op is only available for fixed-width vectors.
+
+    Implements IndexedAccessOpInterface.
 
     Examples:
 
@@ -2377,6 +2393,8 @@ def Vector_CompressStoreOp :
     triggers immediate undefined behavior.
 
     Note, at the moment this Op is only available for fixed-width vectors.
+
+    Implements IndexedAccessOpInterface.
 
     Examples:
 
