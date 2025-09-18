@@ -86,14 +86,14 @@ struct VectorLoadStoreLikeOpInterface final
 template <typename GatherScatterOp>
 struct GatherScatterLikeOpInterface final
     : IndexedAccessOpInterface::ExternalModel<
-          VectorLoadStoreLikeOpInterface<GatherScatterOp>, GatherScatterOp> {
+          GatherScatterLikeOpInterface<GatherScatterOp>, GatherScatterOp> {
   TypedValue<MemRefType> getMemref(Operation *op) const {
     return dyn_cast<TypedValue<MemRefType>>(
         cast<GatherScatterOp>(op).getBase());
   }
 
   Operation::operand_range getIndices(Operation *op) const {
-    return cast<GatherScatterOp>(op).getIndices();
+    return cast<GatherScatterOp>(op).getOffsets();
   }
 
   // We assume that the index offset could point anywhere within a dimension,
@@ -109,7 +109,7 @@ struct GatherScatterLikeOpInterface final
     rewriter.modifyOpInPlace(newOp, [&]() {
       auto concreteOp = cast<GatherScatterOp>(newOp);
       concreteOp.getBaseMutable().assign(newMemref);
-      concreteOp.getIndicesMutable().assign(newIndices);
+      concreteOp.getOffsetsMutable().assign(newIndices);
     });
     return newOp;
   }
