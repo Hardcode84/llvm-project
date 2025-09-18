@@ -6,16 +6,16 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef MLIR_DIALECT_VECTOR_INDEXEDACCESSOPINTERFACEIMPL_H
-#define MLIR_DIALECT_VECTOR_INDEXEDACCESSOPINTERFACEIMPL_H
+#ifndef MLIR_DIALECT_GPU_INDEXEDACCESSOPINTERFACEIMPL_H
+#define MLIR_DIALECT_GPU_INDEXEDACCESSOPINTERFACEIMPL_H
 
 namespace mlir {
 
 class DialectRegistry;
 
-namespace vector {
+namespace gpu {
 void registerIndexedAccessOpInterfaceExternalModels(DialectRegistry &registry);
-} // namespace vector
+} // namespace gpu
 } // namespace mlir
 
-#endif // MLIR_DIALECT_VECTOR_INDEXEDACCESSOPINTERFACEIMPL_H
+#endif // MLIR_DIALECT_GPU_INDEXEDACCESSOPINTERFACEIMPL_H
