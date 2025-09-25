@@ -43,37 +43,48 @@ struct VectorLoadStoreLikeOpInterface final
     return result;
   }
 
-  Operation *cloneWithReindex(Operation *op, RewriterBase &rewriter,
-                              Value newMemref, ValueRange newIndices) const {
+  std::optional<SmallVector<Value>>
+  updateMemrefAndIndices(Operation *op, RewriterBase &rewriter, Value newMemref,
+                         ValueRange newIndices) const {
     VectorType vecTy = cast<LoadStoreOp>(op).getVectorType();
     bool droppedUnitDims =
         static_cast<int64_t>(newIndices.size()) < vecTy.getRank();
-    VectorType droppedDimsTy;
+    if (LLVM_LIKELY(!droppedUnitDims)) {
+      rewriter.modifyOpInPlace(op, [&]() {
+        auto concreteOp = cast<LoadStoreOp>(op);
+        concreteOp.getBaseMutable().assign(newMemref);
+        concreteOp.getIndicesMutable().assign(newIndices);
+      });
+      return std::nullopt;
+    }
+
     IRMapping dropDimsMap;
-    if (LLVM_UNLIKELY(droppedUnitDims)) {
-      droppedDimsTy =
-          vecTy.cloneWith(vecTy.getShape().take_back(newIndices.size()),
-                          vecTy.getElementType());
-      for (Value arg : op->getOperands()) {
-        if (arg.getType() == vecTy) {
-          Value castArg = vector::ShapeCastOp::create(rewriter, arg.getLoc(),
-                                                      droppedDimsTy, arg);
-          dropDimsMap.map(arg, castArg);
-        }
+    VectorType droppedDimsTy = vecTy.cloneWith(
+        vecTy.getShape().take_back(newIndices.size()), vecTy.getElementType());
+    for (Value arg : op->getOperands()) {
+      if (arg.getType() == vecTy) {
+        Value castArg = vector::ShapeCastOp::create(rewriter, arg.getLoc(),
+                                                    droppedDimsTy, arg);
+        dropDimsMap.map(arg, castArg);
       }
     }
+
+    Value castBack;
     Operation *newOp = rewriter.clone(*op, dropDimsMap);
     rewriter.modifyOpInPlace(newOp, [&]() {
       auto concreteOp = cast<LoadStoreOp>(newOp);
       concreteOp.getBaseMutable().assign(newMemref);
       concreteOp.getIndicesMutable().assign(newIndices);
-      if (LLVM_UNLIKELY(droppedUnitDims && newOp->getNumResults() == 0)) {
+      if (newOp->getNumResults() == 1) {
         newOp->getResult(0).setType(droppedDimsTy);
-        newOp = ShapeCastOp::create(rewriter, newOp->getLoc(), vecTy,
-                                    newOp->getResult(0));
+        castBack = ShapeCastOp::create(rewriter, newOp->getLoc(), vecTy,
+                                       newOp->getResult(0));
       }
     });
-    return newOp;
+    if (castBack) {
+      return {{castBack}};
+    }
+    return std::nullopt;
   }
 
   // TODO: The various load and store operations (at the very least
@@ -102,15 +113,15 @@ struct GatherScatterLikeOpInterface final
     return SmallVector<int64_t>(vecTy.getRank(), ShapedType::kDynamic);
   }
 
-  Operation *cloneWithReindex(Operation *op, RewriterBase &rewriter,
-                              Value newMemref, ValueRange newIndices) const {
-    Operation *newOp = rewriter.clone(*op);
-    rewriter.modifyOpInPlace(newOp, [&]() {
-      auto concreteOp = cast<GatherScatterOp>(newOp);
+  std::optional<SmallVector<Value>>
+  updateMemrefAndIndices(Operation *op, RewriterBase &rewriter, Value newMemref,
+                         ValueRange newIndices) const {
+    rewriter.modifyOpInPlace(op, [&]() {
+      auto concreteOp = cast<GatherScatterOp>(op);
       concreteOp.getBaseMutable().assign(newMemref);
       concreteOp.getOffsetsMutable().assign(newIndices);
     });
-    return newOp;
+    return std::nullopt;
   }
 
   bool hasInboundsIndices(Operation *) const { return false; }

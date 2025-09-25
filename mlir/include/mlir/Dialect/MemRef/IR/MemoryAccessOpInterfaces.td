@@ -67,17 +67,22 @@ def IndexedAccessOpInterface : OpInterface<"IndexedAccessOpInterface"> {
       }]>,
     InterfaceMethod<
       /*desc=*/[{
-        Return a clone of this operation with its memref replaced by
-        `newMemref` and indices replaced by `newIndices`, leaving other arguments
-        and properties unchanged unless they'd be invalidated by the change.
+        Updates the memref being accessed to `newMemref` and the indices to
+        `newIndices`. If `std::nullopt` is returned, the operation was
+        updated in-place (the common case), while if a vector of values
+        is returned, they sohuld be used to replace the operation being
+        updated.
+
+        The implementor is responsible for rewriter notifications - that is,
+        using modifyOpInPlace().
 
         The caller must ensure that the new memref/index pair points to the same
-        location in memory as the values being replaced.
+        location in memory as the existing arguments.
 
         The element types of the memref may not change.
       }],
-      /*retType=*/"::mlir::Operation *",
-      /*methodName=*/"cloneWithReindex",
+      /*retType=*/"std::optional<llvm::SmallVector<mlir::Value>>",
+      /*methodName=*/"updateMemrefAndIndices",
       /*args=*/(ins "::mlir::RewriterBase&":$rewriter, "::mlir::Value":$newMemref,
         "::mlir::ValueRange":$newIndices)
     >,
@@ -156,16 +161,24 @@ def IndexedMemCopyOpInterface : OpInterface<"IndexedMemCopyOpInterface"> {
       /*args=*/(ins)>,
     InterfaceMethod<
       /*desc=*/[{
-        Return a clone of this operation with `src`, `srcIndices`, `dst`, and
-        `dstIndices` replaced by `newSrc`, `newSrcIndices`, `newDst`, and `newDstIndices`
-        respectively. Other properties of the operation, such as the size of the copy,
-        should be preserved.
+        Update the operation with `newSrcMemref` as the new source memref,
+        `newSrcIndices` as the new source indices, `newDst` as the new destination
+        memref, and `newDstIndices` as the new destination indices, leaving
+        other properties unchanged.
+
+        Note that, unlike the method on indexed accessors, this method doesn't
+        currently allow for the possibility of cloning since DMA ops generally
+        do not return results. If needed, such suppport could be added in
+        the future.
+
+        The implementation is responsible for issuing rewriter notifications
+        vio modifyOpInPlace().
 
         The caller must ensure that the new memref/index pairs point to the same
         location in memory.
       }],
-      /*retType=*/"::mlir::Operation *",
-      /*methodName=*/"cloneWithReindex",
+      /*retType=*/"void",
+      /*methodName=*/"setMemrefsAndIndices",
       /*args=*/(ins "::mlir::RewriterBase&":$rewriter,
         "::mlir::Value":$newSrc, "::mlir::ValueRange":$newSrcIndices,
         "::mlir::Value":$newDst, "::mlir::ValueRange":$newDstIndices)

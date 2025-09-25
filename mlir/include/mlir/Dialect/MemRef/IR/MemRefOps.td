@@ -880,7 +880,7 @@ def MemRef_DmaStartOp : MemRef_Op<"dma_start", [
                            SideEffects::DefaultResource::get());
     }
 
-    Operation* cloneWithReindex(RewriterBase& rewriter,
+    void setMemrefsAndIndices(RewriterBase& rewriter,
       Value newSrc, ValueRange newSrcIndices,
       Value newDst, ValueRange newDstIndices);
   }];

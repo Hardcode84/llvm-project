@@ -56,12 +56,15 @@ struct SubgroupMmaLoadMatrixOpImpl final
                             loadOp.getTranspose().value_or(false))};
   }
 
-  Operation *cloneWithReindex(Operation *op, RewriterBase &rewriter,
-                              Value newMemref, ValueRange newIndices) const {
+  std::optional<SmallVector<Value>>
+  updateMemrefAndIndices(Operation *op, RewriterBase &rewriter, Value newMemref,
+                         ValueRange newIndices) const {
     auto loadOp = cast<SubgroupMmaLoadMatrixOp>(op);
-    SubgroupMmaLoadMatrixOp::create(
-        rewriter, loadOp.getLoc(), loadOp.getRes().getType(), newMemref,
-        newIndices, loadOp.getLeadDimensionAttr(), loadOp.getTransposeAttr());
+    rewriter.modifyOpInPlace(loadOp, [&]() {
+      loadOp.getSrcMemrefMutable().assign(newMemref);
+      loadOp.getIndicesMutable().assign(newIndices);
+    });
+    return std::nullopt;
   }
 
   bool hasInboundsIndices(Operation *) const { return true; }
@@ -87,12 +90,15 @@ struct SubgroupMmaStoreMatrixOpImpl final
                             storeOp.getTranspose().value_or(false))};
   }
 
-  Operation *cloneWithReindex(Operation *op, RewriterBase &rewriter,
-                              Value newMemref, ValueRange newIndices) const {
+  std::optional<SmallVector<Value>>
+  updateMemrefAndIndices(Operation *op, RewriterBase &rewriter, Value newMemref,
+                         ValueRange newIndices) const {
     auto storeOp = cast<SubgroupMmaStoreMatrixOp>(op);
-    SubgroupMmaStoreMatrixOp::create(
-        rewriter, storeOp.getLoc(), storeOp.getSrc(), newMemref, newIndices,
-        storeOp.getLeadDimensionAttr(), storeOp.getTransposeAttr());
+    rewriter.modifyOpInPlace(storeOp, [&]() {
+      storeOp.getDstMemrefMutable().assign(newMemref);
+      storeOp.getIndicesMutable().assign(newIndices);
+    });
+    return std::nullopt;
   }
 
   bool hasInboundsIndices(Operation *) const { return true; }
