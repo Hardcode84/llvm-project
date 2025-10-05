@@ -1717,9 +1717,8 @@ def Vector_LoadOp : Vector_Op<"load", [
 
     An optional `alignment` attribute allows to specify the byte alignment of the
     load operation. It must be a positive power of 2. The operation must access
-    memory at an address aligned to this boundary. Violations may lead to
-    architecture-specific faults or performance penalties.
-    A value of 0 indicates no specific alignment requirement.
+    memory at an address aligned to this boundary. Violating this requirement
+    triggers immediate undefined behavior.
 
     Implements IndexedAccessOpInterface.
   }];
@@ -1835,9 +1834,8 @@ def Vector_StoreOp : Vector_Op<"store", [
 
     An optional `alignment` attribute allows to specify the byte alignment of the
     store operation. It must be a positive power of 2. The operation must access
-    memory at an address aligned to this boundary. Violations may lead to
-    architecture-specific faults or performance penalties.
-    A value of 0 indicates no specific alignment requirement.
+    memory at an address aligned to this boundary. Violating this requirement
+    triggers immediate undefined behavior.
 
     Implements IndexedAccessOpInterface.
   }];

@@ -1733,12 +1733,6 @@ LoadOp::bubbleDownCasts(OpBuilder &builder) {
                                                             getResult());
 }
 
-Operation *LoadOp::cloneWithReindex(RewriterBase &rewriter, Value newMemref,
-                                    ValueRange newIndices) {
-  return rewriter.create<LoadOp>(getLoc(), newMemref, newIndices,
-                                 getNontemporal());
-}
-
 //===----------------------------------------------------------------------===//
 // MemorySpaceCastOp
 //===----------------------------------------------------------------------===//
@@ -2836,12 +2830,6 @@ StoreOp::bubbleDownCasts(OpBuilder &builder) {
                                                             ValueRange());
 }
 
-Operation *StoreOp::cloneWithReindex(RewriterBase &rewriter, Value newMemref,
-                                     ValueRange newIndices) {
-  return rewriter.create<StoreOp>(getLoc(), getValue(), newMemref, newIndices,
-                                  getNontemporal());
-}
-
 //===----------------------------------------------------------------------===//
 // SubViewOp
 //===----------------------------------------------------------------------===//
@@ -3805,13 +3793,6 @@ FailureOr<std::optional<SmallVector<Value>>>
 AtomicRMWOp::bubbleDownCasts(OpBuilder &builder) {
   return mlir::detail::bubbleDownInPlaceMemorySpaceCastImpl(getMemrefMutable(),
                                                             getResult());
-}
-
-Operation *AtomicRMWOp::cloneWithReindex(RewriterBase &rewriter,
-                                         Value newMemref,
-                                         ValueRange newIndices) {
-  return rewriter.create<AtomicRMWOp>(getLoc(), getKind(), getValue(),
-                                      newMemref, newIndices);
 }
 
 std::optional<SmallVector<Value>>
