@@ -134,6 +134,29 @@ def ConvertAMDGPUToROCDLPass : Pass<"convert-amdgpu-to-rocdl"> {
 }
 
 //===----------------------------------------------------------------------===//
+// LegalizeGPUOpsForROCDL
+//===----------------------------------------------------------------------===//
+
+def LegalizeGPUOpsForROCDLPass : Pass<"legalize-gpu-for-rocdl"> {
+  let summary = "Legalize high level GPU ops to lower the to ROCDL";
+  let description = [{
+    This pass lowers high-level operations from the GPU dialect that are not
+    directly supported by ROCDL, preparing them for conversion into ROCDL or
+    LLVM dialects, and eliminates constructs that cannot be directly mapped to
+    ROCDL intrinsics.
+
+    The pass serves as a bridge between GPU dialect and ROCDL by converting
+    operations into a form that can be further lowered to ROCDL using subsequent
+    conversion passes. This is typically used as part of a multi-pass lowering
+    pipeline targeting AMD ROCm backends.
+  }];
+  let dependentDialects = [
+    "::mlir::LLVM::LLVMDialect",
+    "::mlir::vector::VectorDialect",
+  ];
+}
+
+//===----------------------------------------------------------------------===//
 // ArithToAMDGPU
 //===----------------------------------------------------------------------===//
 def ArithToAMDGPUConversionPass : Pass<"convert-arith-to-amdgpu"> {

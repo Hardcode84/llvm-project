@@ -20,6 +20,7 @@ class TypeConverter;
 class Pass;
 
 #define GEN_PASS_DECL_CONVERTAMDGPUTOROCDLPASS
+#define GEN_PASS_DECL_LEGALIZEGPUOPSFORROCDLPASS
 #include "mlir/Conversion/Passes.h.inc"
 
 /// Note: This function will also add conversions for the AMDGPU-specific
