@@ -13,8 +13,9 @@
 #include "mlir/Dialect/Transform/Interfaces/TransformInterfaces.h"
 #include "mlir/IR/OpImplementation.h"
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace tensor {
@@ -22,7 +23,7 @@ void registerTransformDialectExtension(DialectRegistry &registry);
 void registerFindPayloadReplacementOpInterfaceExternalModels(
     DialectRegistry &registry);
 } // namespace tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/Tensor/TransformOps/TensorTransformOps.h.inc"

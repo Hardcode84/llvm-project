@@ -8,6 +8,8 @@
 #ifndef MLIR_CONVERSION_MEMREFTOEMITC_MEMREFTOEMITC_H
 #define MLIR_CONVERSION_MEMREFTOEMITC_MEMREFTOEMITC_H
 
+
+#include "mlir/Support/ABINamespace.h"
 constexpr const char *alignedAllocFunctionName = "aligned_alloc";
 constexpr const char *mallocFunctionName = "malloc";
 constexpr const char *memcpyFunctionName = "memcpy";
@@ -16,7 +18,7 @@ constexpr const char *cStandardLibraryHeader = "stdlib.h";
 constexpr const char *cppStringLibraryHeader = "cstring";
 constexpr const char *cStringLibraryHeader = "string.h";
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 class RewritePatternSet;
 class TypeConverter;
@@ -27,6 +29,6 @@ void populateMemRefToEmitCConversionPatterns(RewritePatternSet &patterns,
                                              const TypeConverter &converter);
 
 void registerConvertMemRefToEmitCInterface(DialectRegistry &registry);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_MEMREFTOEMITC_MEMREFTOEMITC_H

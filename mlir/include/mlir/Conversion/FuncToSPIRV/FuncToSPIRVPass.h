@@ -14,13 +14,14 @@
 #define MLIR_CONVERSION_FUNCTOSPIRV_FUNCTOSPIRVPASS_H
 
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ModuleOp;
 
 #define GEN_PASS_DECL_CONVERTFUNCTOSPIRVPASS
 #include "mlir/Conversion/Passes.h.inc"
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_FUNCTOSPIRV_FUNCTOSPIRVPASS_H

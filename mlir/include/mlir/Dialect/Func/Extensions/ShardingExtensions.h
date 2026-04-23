@@ -9,7 +9,9 @@
 #ifndef MLIR_DIALECT_FUNC_IR_SHARDINGINTERFACEIMPL_H_
 #define MLIR_DIALECT_FUNC_IR_SHARDINGINTERFACEIMPL_H_
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 
 class DialectRegistry;
 
@@ -18,6 +20,6 @@ namespace func {
 void registerShardingInterfaceExternalModels(DialectRegistry &registry);
 
 } // namespace func
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_FUNC_IR_SHARDINGINTERFACEIMPL_H_

@@ -19,8 +19,9 @@
 #include "mlir/Support/LLVM.h"
 #include "mlir/Transforms/RegionUtils.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class AffineMap;
 class LoopLikeOpInterface;
 class OpBuilder;
@@ -301,6 +302,6 @@ LogicalResult coalescePerfectlyNestedAffineLoops(AffineForOp op);
 /// This counts any LoopLikeOpInterface, not just affine.for.
 int64_t numEnclosingInvariantLoops(OpOperand &operand);
 } // namespace affine
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_AFFINE_LOOPUTILS_H

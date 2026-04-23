@@ -16,13 +16,14 @@
 #include "mlir/Transforms/DialectConversion.h"
 #include "llvm/Support/DebugLog.h"
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "convert-to-llvm"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_CONVERTTOLLVMPASS
 #include "mlir/Conversion/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 

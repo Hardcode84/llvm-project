@@ -15,8 +15,9 @@
 #define MLIR_DIALECT_SPIRV_IR_SPIRVOPTRAITS_H_
 
 #include "mlir/IR/OpDefinition.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace OpTrait {
 namespace spirv {
 
@@ -34,6 +35,6 @@ class UsableInSpecConstantOp
 
 } // namespace spirv
 } // namespace OpTrait
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SPIRV_IR_SPIRVOPTRAITS_H_

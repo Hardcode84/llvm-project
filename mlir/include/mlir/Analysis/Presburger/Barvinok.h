@@ -30,8 +30,9 @@
 #include "mlir/Analysis/Presburger/PresburgerRelation.h"
 #include "mlir/Analysis/Presburger/QuasiPolynomial.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace presburger {
 namespace detail {
 
@@ -144,6 +145,6 @@ QuasiPolynomial computeNumTerms(const GeneratingFunction &gf);
 
 } // namespace detail
 } // namespace presburger
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_ANALYSIS_PRESBURGER_BARVINOK_H

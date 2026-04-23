@@ -22,8 +22,9 @@
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
 #include "llvm/ADT/SmallSet.h"
 #include "llvm/Support/LogicalResult.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // Type Converter
@@ -214,6 +215,6 @@ LogicalResult unrollVectorsInSignatures(Operation *op);
 LogicalResult unrollVectorsInFuncBodies(Operation *op);
 
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SPIRV_TRANSFORMS_SPIRVCONVERSION_H

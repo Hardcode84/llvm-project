@@ -15,8 +15,9 @@
 #define MLIR_INTERFACES_CASTINTERFACES_H
 
 #include "mlir/IR/OpDefinition.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace impl {
@@ -32,7 +33,7 @@ LogicalResult verifyCastInterfaceOp(Operation *op);
 namespace builtin {
 void registerCastOpInterfaceExternalModels(DialectRegistry &registry);
 } // namespace builtin
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// Include the generated interface declarations.
 #include "mlir/Interfaces/CastInterfaces.h.inc"

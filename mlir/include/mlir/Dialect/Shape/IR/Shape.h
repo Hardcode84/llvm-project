@@ -29,8 +29,9 @@
 
 #define GET_TYPEDEF_CLASSES
 #include "mlir/Dialect/Shape/IR/ShapeOpsTypes.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class PatternRewriter;
 
 namespace shape {
@@ -46,7 +47,7 @@ bool isExtentTensorType(Type);
 LogicalResult getShapeVec(Value input, SmallVectorImpl<int64_t> &shapeValues);
 
 } // namespace shape
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/Shape/IR/ShapeOps.h.inc"

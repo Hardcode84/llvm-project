@@ -21,6 +21,7 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Support/Debug.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -368,7 +369,7 @@ LogicalResult spirv::Deserializer::processExtInst(ArrayRef<uint32_t> operands) {
       extendedInstSets[operands[2]], operands[3], slicedOperands);
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace spirv {
 
 template <>
@@ -645,4 +646,4 @@ LogicalResult Deserializer::processOp<spirv::GenericCastToPtrExplicitOp>(
 #include "mlir/Dialect/SPIRV/IR/SPIRVSerialization.inc"
 
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

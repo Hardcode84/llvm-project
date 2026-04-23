@@ -22,8 +22,9 @@
 #include "mlir/IR/Dominance.h"
 #include "mlir/IR/Operation.h"
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace memref {
 class GlobalOp;
 } // namespace memref
@@ -132,6 +133,6 @@ void removeSymbol(Operation *op, BufferizationState &state);
 void insertSymbol(Operation *op, BufferizationState &state);
 
 } // namespace bufferization
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_BUFFERIZATION_TRANSFORMS_BUFFERUTILS_H

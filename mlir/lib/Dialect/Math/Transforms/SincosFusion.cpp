@@ -10,6 +10,7 @@
 #include "mlir/Dialect/Math/Transforms/Passes.h"
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::math;
@@ -53,10 +54,12 @@ struct SincosFusionPattern : OpRewritePattern<math::SinOp> {
 
 } // namespace
 
-namespace mlir::math {
+MLIR_NAMESPACE_BEGIN
+namespace math {
 #define GEN_PASS_DEF_MATHSINCOSFUSIONPASS
 #include "mlir/Dialect/Math/Transforms/Passes.h.inc"
-} // namespace mlir::math
+}
+MLIR_NAMESPACE_END // namespace mlir::math
 
 namespace {
 

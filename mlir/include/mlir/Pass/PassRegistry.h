@@ -19,8 +19,9 @@
 #include <functional>
 #include <utility>
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class OpPassManager;
 class ParserConfig;
 class Pass;
@@ -311,6 +312,6 @@ private:
   std::optional<bool> disableThreading;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_PASS_PASSREGISTRY_H_

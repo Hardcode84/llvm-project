@@ -22,11 +22,14 @@
 #include "mlir/Support/LogicalResult.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
 #include "llvm/Support/MathExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::amdgpu {
+MLIR_NAMESPACE_BEGIN
+namespace amdgpu {
 #define GEN_PASS_DEF_AMDGPUMASKEDLOADTOLOADPASS
 #include "mlir/Dialect/AMDGPU/Transforms/Passes.h.inc"
-} // namespace mlir::amdgpu
+}
+MLIR_NAMESPACE_END // namespace mlir::amdgpu
 
 using namespace mlir;
 using namespace mlir::amdgpu;

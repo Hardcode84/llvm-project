@@ -21,8 +21,10 @@
 #include "llvm/Support/raw_ostream.h"
 #include <string>
 #include <vector>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::query::matcher::internal {
+MLIR_NAMESPACE_BEGIN
+namespace query::matcher::internal {
 
 // Diagnostics class to manage error messages.
 class Diagnostics {
@@ -77,6 +79,7 @@ private:
   std::vector<ErrorContent> errorValues;
 };
 
-} // namespace mlir::query::matcher::internal
+}
+MLIR_NAMESPACE_END // namespace mlir::query::matcher::internal
 
 #endif // MLIR_TOOLS_MLIRQUERY_MATCHER_DIAGNOSTICS_H

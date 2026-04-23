@@ -16,8 +16,9 @@
 #include "mlir/Analysis/Presburger/IntegerRelation.h"
 #include "mlir/Analysis/Presburger/Matrix.h"
 #include "llvm/ADT/SmallVector.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace presburger {
 
 class LinearTransform {
@@ -57,6 +58,6 @@ private:
 };
 
 } // namespace presburger
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_ANALYSIS_PRESBURGER_LINEARTRANSFORM_H

@@ -21,12 +21,13 @@
 #include "mlir/IR/BuiltinTypeInterfaces.h"
 #include "mlir/IR/Dialect.h"
 #include "mlir/IR/Operation.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::bufferization;
 using namespace mlir::tensor;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tensor {
 namespace {
 
@@ -1186,7 +1187,7 @@ struct ConcatOpInterface
 
 } // namespace
 } // namespace tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 void mlir::tensor::registerBufferizableOpInterfaceExternalModels(
     DialectRegistry &registry) {

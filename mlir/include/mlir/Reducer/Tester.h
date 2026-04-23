@@ -22,8 +22,9 @@
 #include "llvm/Support/Error.h"
 #include "llvm/Support/FileSystem.h"
 #include "llvm/Support/Program.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// This class is used to keep track of the testing environment of the tool. It
 /// contains a method to run the interestingness testing script on a MLIR test
@@ -57,6 +58,6 @@ private:
   ArrayRef<std::string> testScriptArgs;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif

@@ -13,8 +13,10 @@
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/DenseMapInfo.h"
 #include "llvm/Support/PointerLikeTypeTraits.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class AsmState;
 
 /// Instances of the Type class are uniqued, have an immutable identifier and an
@@ -306,9 +308,9 @@ inline ::llvm::hash_code hash_value(Type arg) {
   return DenseMapInfo<const Type::ImplType *>::getHashValue(arg.impl);
 }
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Type hash just like pointers.
 template <>
@@ -380,6 +382,6 @@ struct CastInfo<
   static inline To doCast(mlir::Type ty) { return To(ty.getImpl()); }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MLIR_IR_TYPES_H

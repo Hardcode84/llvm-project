@@ -11,10 +11,11 @@
 
 #include "mlir/IR/DialectInterface.h"
 #include "mlir/Reducer/Tester.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class RewritePatternSet;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Reducer/DialectReductionPatternInterface.h.inc"
 

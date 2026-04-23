@@ -9,13 +9,15 @@
 #ifndef MLIR_DIALECT_TRANSFORM_LOOPEXTENSION_LOOPEXTENSION_H
 #define MLIR_DIALECT_TRANSFORM_LOOPEXTENSION_LOOPEXTENSION_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace transform {
 /// Registers the loop extension of the Transform dialect in the given registry.
 void registerLoopExtension(DialectRegistry &dialectRegistry);
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TRANSFORM_LOOPEXTENSION_LOOPEXTENSION_H

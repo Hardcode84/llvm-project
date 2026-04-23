@@ -26,6 +26,7 @@
 #include "llvm/Support/Path.h"
 #include "llvm/Support/SourceMgr.h"
 #include "llvm/Support/ToolOutputFile.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -54,7 +55,7 @@ deserializeModule(const llvm::MemoryBuffer *input, MLIRContext *context,
   return spirv::deserialize(binary, context, options);
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerFromSPIRVTranslation() {
   static llvm::cl::opt<bool> enableControlFlowStructurization(
       "spirv-structurize-control-flow",
@@ -73,7 +74,7 @@ void registerFromSPIRVTranslation() {
             {enableControlFlowStructurization});
       });
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Serialization registration
@@ -120,7 +121,7 @@ serializeModule(spirv::ModuleOp moduleOp, raw_ostream &output,
   return mlir::success();
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerToSPIRVTranslation() {
   static llvm::cl::opt<std::string> validationFilesPrefix(
       "spirv-save-validation-files-with-prefix",
@@ -144,7 +145,7 @@ void registerToSPIRVTranslation() {
         registry.insert<spirv::SPIRVDialect>();
       });
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Round-trip registration
@@ -173,7 +174,7 @@ static LogicalResult roundTripModule(spirv::ModuleOp module, bool emitDebugInfo,
   return mlir::success();
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerTestRoundtripSPIRV() {
   TranslateFromMLIRRegistration roundtrip(
       "test-spirv-roundtrip", "test roundtrip in SPIR-V dialect",
@@ -195,4 +196,4 @@ void registerTestRoundtripDebugSPIRV() {
         registry.insert<spirv::SPIRVDialect>();
       });
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

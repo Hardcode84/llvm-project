@@ -16,8 +16,9 @@
 #include "mlir/IR/AffineExpr.h"
 #include "mlir/Support/StorageUniquer.h"
 #include "llvm/ADT/ArrayRef.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 
 struct IntegerSetStorage : public StorageUniquer::BaseStorage {
@@ -53,5 +54,5 @@ struct IntegerSetStorage : public StorageUniquer::BaseStorage {
 };
 
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 #endif // INTEGERSETDETAIL_H_

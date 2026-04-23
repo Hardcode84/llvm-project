@@ -14,8 +14,10 @@
 #include "llvm/ADT/Sequence.h"
 #include <complex>
 #include <optional>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class AffineMap;
 class AsmResourceBlob;
 class BoolAttr;
@@ -688,7 +690,7 @@ public:
 
 using DenseResourceElementsHandle = DialectResourceBlobHandle<BuiltinDialect>;
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Tablegen Attribute Declarations
@@ -701,7 +703,7 @@ using DenseResourceElementsHandle = DialectResourceBlobHandle<BuiltinDialect>;
 // C++ Attribute Declarations
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 /// DenseIntOrFPElementsAttr was renamed to DenseTypedElementsAttr. This alias
 /// is provided for backwards compatibility. It will be removed in the future.
 using DenseIntOrFPElementsAttr [[deprecated(
@@ -1068,13 +1070,13 @@ inline bool operator==(StringRef lhs, StringAttr rhs) {
 }
 inline bool operator!=(StringRef lhs, StringAttr rhs) { return !(lhs == rhs); }
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Attribute Utilities
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Given a list of strides (in which ShapedType::kDynamic
 /// represents a dynamic value), return the single result AffineMap which
@@ -1096,9 +1098,9 @@ namespace mlir {
 AffineMap makeStridedLinearLayoutMap(ArrayRef<int64_t> strides, int64_t offset,
                                      MLIRContext *context);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <>
 struct DenseMapInfo<mlir::StringAttr> : public DenseMapInfo<mlir::Attribute> {
@@ -1135,6 +1137,6 @@ struct PointerLikeTypeTraits<mlir::SymbolRefAttr>
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MLIR_IR_BUILTINATTRIBUTES_H

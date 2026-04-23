@@ -18,8 +18,9 @@
 #include "mlir/IR/IRMapping.h"
 #include "mlir/Interfaces/DataLayoutInterfaces.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace acc {
 
 /// Get the data layout for an operation.
@@ -63,6 +64,6 @@ ComputeRegionOp buildComputeRegion(Location loc, ValueRange launchArgs,
                                    ValueRange inputArgsToMap = {});
 
 } // namespace acc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_OPENACC_OPENACCUTILSCG_H_

@@ -14,8 +14,9 @@
 #define MLIR_DIALECT_LLVMIR_LLVMINTERFACES_H_
 
 #include "mlir/Dialect/LLVMIR/LLVMAttrs.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class LLVMTypeConverter;
 class RewriterBase;
@@ -37,7 +38,7 @@ LogicalResult verifyDereferenceableOpInterface(Operation *op);
 
 } // namespace detail
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Dialect/LLVMIR/LLVMInterfaces.h.inc"
 

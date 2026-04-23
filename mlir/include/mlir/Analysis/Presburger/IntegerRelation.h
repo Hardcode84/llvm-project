@@ -24,8 +24,9 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Support/LogicalResult.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace presburger {
 using llvm::DynamicAPInt;
 using llvm::failure;
@@ -1076,6 +1077,6 @@ public:
 };
 
 } // namespace presburger
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_ANALYSIS_PRESBURGER_INTEGERRELATION_H

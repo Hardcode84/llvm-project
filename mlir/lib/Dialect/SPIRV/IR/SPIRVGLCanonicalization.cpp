@@ -18,9 +18,10 @@ using namespace mlir;
 
 namespace {
 #include "SPIRVCanonicalization.inc"
+#include "mlir/Support/ABINamespace.h"
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace spirv {
 void populateSPIRVGLCanonicalizationPatterns(RewritePatternSet &results) {
   results.add<ConvertComparisonIntoClamp1_SPIRV_FOrdLessThanOp,
@@ -38,4 +39,4 @@ void populateSPIRVGLCanonicalizationPatterns(RewritePatternSet &results) {
       results.getContext());
 }
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

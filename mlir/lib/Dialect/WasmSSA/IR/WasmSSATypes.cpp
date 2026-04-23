@@ -12,7 +12,10 @@
 #include "llvm/Support/LogicalResult.h"
 
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::wasmssa {
+MLIR_NAMESPACE_BEGIN
+namespace wasmssa {
 #include "mlir/Dialect/WasmSSA/IR/WasmSSATypeConstraints.cpp.inc"
-} // namespace mlir::wasmssa
+}
+MLIR_NAMESPACE_END // namespace mlir::wasmssa

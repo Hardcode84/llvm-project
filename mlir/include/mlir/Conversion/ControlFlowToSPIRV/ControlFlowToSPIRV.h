@@ -13,7 +13,9 @@
 #ifndef MLIR_CONVERSION_CONTROLFLOWTOSPIRV_CONTROLFLOWTOSPIRV_H
 #define MLIR_CONVERSION_CONTROLFLOWTOSPIRV_CONTROLFLOWTOSPIRV_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class RewritePatternSet;
 class SPIRVTypeConverter;
 
@@ -23,6 +25,6 @@ namespace cf {
 void populateControlFlowToSPIRVPatterns(const SPIRVTypeConverter &typeConverter,
                                         RewritePatternSet &patterns);
 } // namespace cf
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_CONTROLFLOWTOSPIRV_CONTROLFLOWTOSPIRV_H

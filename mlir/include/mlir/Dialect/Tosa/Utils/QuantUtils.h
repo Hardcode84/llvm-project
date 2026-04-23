@@ -18,8 +18,9 @@
 
 #include "mlir/Dialect/Quant/Utils/FakeQuantSupport.h"
 #include "mlir/Dialect/Quant/Utils/UniformSupport.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tosa {
 
 //===----------------------------------------------------------------------===//
@@ -91,6 +92,6 @@ TypeAttr buildQTypeAttrFromMinMax(OpBuilder builder, Type inputDType,
 Type getStorageElementTypeFromQuantized(quant::QuantizedType quantizedType);
 
 } // namespace tosa
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TOSA_UTILS_QUANTUTILS_H

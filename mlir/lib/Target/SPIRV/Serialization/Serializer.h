@@ -19,8 +19,9 @@
 #include "llvm/ADT/SetVector.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Support/raw_ostream.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace spirv {
 
 void encodeInstructionInto(SmallVectorImpl<uint32_t> &binary, spirv::Opcode op,
@@ -506,6 +507,6 @@ private:
   DenseMap<Value, SmallVector<size_t, 1>> deferredPhiValues;
 };
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_LIB_TARGET_SPIRV_SERIALIZATION_SERIALIZER_H

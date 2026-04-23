@@ -15,8 +15,9 @@
 #define MLIR_TRANSFORMS_GREEDYPATTERNREWRITEDRIVER_H_
 
 #include "mlir/Rewrite/FrozenRewritePatternSet.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// This enum controls which ops are put on the worklist during a greedy
 /// pattern rewrite.
@@ -279,6 +280,6 @@ applyOpPatternsGreedily(ArrayRef<Operation *> ops,
                         const FrozenRewritePatternSet &patterns,
                         GreedyRewriteConfig config = GreedyRewriteConfig(),
                         bool *changed = nullptr, bool *allErased = nullptr);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRANSFORMS_GREEDYPATTERNREWRITEDRIVER_H_

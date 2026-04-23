@@ -14,8 +14,9 @@
 #include "llvm/ADT/SetVector.h"
 #include "llvm/ADT/StringMap.h"
 #include "llvm/Support/RWMutex.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// This class allows for representing and managing the symbol table used by
 /// operations with the 'SymbolTable' trait. Inserting into and erasing from
@@ -495,7 +496,7 @@ ParseResult parseOptionalVisibilityKeyword(OpAsmParser &parser,
                                            NamedAttrList &attrs);
 } // namespace impl
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// Include the generated symbol interfaces.
 #include "mlir/IR/SymbolInterfaces.h.inc"

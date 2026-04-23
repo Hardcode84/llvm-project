@@ -10,8 +10,9 @@
 #define MLIR_CONVERSION_VECTORTOGPU_VECTORTOGPU_H
 
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class MLIRContext;
 class Pass;
 class RewritePatternSet;
@@ -41,6 +42,6 @@ LogicalResult convertVectorToNVVMCompatibleMMASync(RewriterBase &rewriter,
 /// Convert from vector to GPU ops.
 std::unique_ptr<Pass> createConvertVectorToGPUPass(bool useNvGpu = false);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_VECTORTOGPU_VECTORTOGPU_H

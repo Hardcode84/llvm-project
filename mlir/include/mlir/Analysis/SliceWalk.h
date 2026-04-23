@@ -10,8 +10,9 @@
 #define MLIR_ANALYSIS_SLICEWALK_H
 
 #include "mlir/IR/ValueRange.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// A class to signal how to proceed with the walk of the backward slice:
 /// - Interrupt: Stops the walk.
@@ -93,6 +94,6 @@ WalkContinuation walkSlice(mlir::ValueRange rootValues,
 /// when the relevant operations are missing the interface implementations.
 std::optional<SmallVector<Value>> getControlFlowPredecessors(Value value);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_ANALYSIS_SLICEWALK_H

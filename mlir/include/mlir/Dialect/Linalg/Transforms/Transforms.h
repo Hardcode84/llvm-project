@@ -25,8 +25,9 @@
 #include "mlir/Interfaces/TilingInterface.h"
 #include "mlir/Transforms/DialectConversion.h"
 #include "llvm/ADT/SmallBitVector.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace bufferization {
 class AllocTensorOp;
 class OneShotAnalysisState;
@@ -2138,6 +2139,6 @@ void populateFoldPackUnpackIntoTensorEmptyPatterns(RewritePatternSet &patterns);
 void populateSimplifyPackAndUnpackPatterns(RewritePatternSet &patterns);
 
 } // namespace linalg
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_LINALG_TRANSFORMS_TRANSFORMS_H

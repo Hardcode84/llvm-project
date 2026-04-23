@@ -12,11 +12,12 @@
 
 #include "mlir/Dialect/SparseTensor/IR/SparseTensor.h"
 #include "mlir/Dialect/SparseTensor/Transforms/Passes.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_SPARSESPACECOLLAPSE
 #include "mlir/Dialect/SparseTensor/Transforms/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define DEBUG_TYPE "sparse-space-collapse"
 

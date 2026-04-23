@@ -15,8 +15,11 @@
 // TableGen'erated operation interfaces for querying versions, extensions, and
 // capabilities.
 #include "mlir/Dialect/SPIRV/IR/SPIRVAvailability.cpp.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::spirv {
+MLIR_NAMESPACE_BEGIN
+namespace spirv {
 // TableGen'erated operation availability interface implementations.
 #include "mlir/Dialect/SPIRV/IR/SPIRVOpAvailabilityImpl.inc"
-} // namespace mlir::spirv
+}
+MLIR_NAMESPACE_END // namespace mlir::spirv

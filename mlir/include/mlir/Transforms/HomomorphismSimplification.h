@@ -19,8 +19,9 @@
 #include <optional>
 #include <type_traits>
 #include <utility>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 // If `h` is an homomorphism with respect to the source algebraic structure
 // induced by function `s` and the target algebraic structure induced by
@@ -182,6 +183,6 @@ private:
   CreateTargetAlgebraicOpFn createTargetAlgebraicOpFn;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRANSFORMS_SIMPLIFY_HOMOMORPHISM_H_

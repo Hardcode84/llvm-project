@@ -9,7 +9,9 @@
 #ifndef MLIR_CONVERSION_ARITHTOEMITC_ARITHTOEMITC_H
 #define MLIR_CONVERSION_ARITHTOEMITC_ARITHTOEMITC_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 class RewritePatternSet;
 class TypeConverter;
@@ -18,6 +20,6 @@ void populateArithToEmitCPatterns(TypeConverter &typeConverter,
                                   RewritePatternSet &patterns);
 
 void registerConvertArithToEmitCInterface(DialectRegistry &registry);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_ARITHTOEMITC_ARITHTOEMITC_H

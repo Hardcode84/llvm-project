@@ -5,8 +5,9 @@
 #include "mlir/Dialect/Bufferization/IR/BufferizableOpInterface.h"
 #include "mlir/Dialect/MemRef/IR/MemRef.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class FunctionOpInterface;
 class MemRefType;
 class ModuleOp;
@@ -206,6 +207,6 @@ createPromoteBuffersToStackPass(std::function<bool(Value)> isSmallAlloc);
 #include "mlir/Dialect/Bufferization/Transforms/Passes.h.inc"
 
 } // namespace bufferization
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_BUFFERIZATION_TRANSFORMS_PASSES_H

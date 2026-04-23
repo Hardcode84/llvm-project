@@ -17,13 +17,16 @@
 #include "mlir/IR/Matchers.h"
 #include "mlir/IR/TypeUtilities.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir::math {
+MLIR_NAMESPACE_BEGIN
+namespace math {
 #define GEN_PASS_DEF_MATHEXPANDOPSPASS
 #include "mlir/Dialect/Math/Transforms/Passes.h.inc"
-} // namespace mlir::math
+}
+MLIR_NAMESPACE_END // namespace mlir::math
 
 /// Create a float constant.
 static Value createFloatConst(Location loc, Type type, APFloat value,

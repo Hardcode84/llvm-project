@@ -13,7 +13,9 @@
 #ifndef MLIR_CONVERSION_GPUTONVVM_GPUTONVVM_H
 #define MLIR_CONVERSION_GPUTONVVM_GPUTONVVM_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 namespace NVVM {
 /// Registers the `ConvertToLLVMAttrInterface` interface on the
@@ -22,6 +24,6 @@ namespace NVVM {
 /// to NVVM.
 void registerConvertGpuToNVVMInterface(DialectRegistry &registry);
 } // namespace NVVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_GPUTONVVM_GPUTONVVM_H

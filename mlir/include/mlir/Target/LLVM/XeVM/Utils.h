@@ -18,8 +18,9 @@
 #include "mlir/Dialect/LLVMIR/XeVMDialect.h"
 #include "mlir/IR/Attributes.h"
 #include "mlir/Target/LLVM/ModuleToObject.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace xevm {
 
 /// Base class for all XeVM serializations from GPU modules into binary strings.
@@ -70,6 +71,6 @@ protected:
   gpu::TargetOptions targetOptions;
 };
 } // namespace xevm
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_LLVM_XEVM_UTILS_H

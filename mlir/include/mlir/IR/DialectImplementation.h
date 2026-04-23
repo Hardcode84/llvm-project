@@ -16,6 +16,7 @@
 
 #include "mlir/IR/OpImplementation.h"
 #include <type_traits>
+#include "mlir/Support/ABINamespace.h"
 
 namespace {
 
@@ -32,7 +33,7 @@ struct HasStaticDialectName<
 
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // DialectAsmPrinter
@@ -202,6 +203,6 @@ struct FieldParser<AffineMap> {
   }
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_IR_DIALECTIMPLEMENTATION_H

@@ -9,8 +9,9 @@
 #define MLIR_CONVERSION_VECTORTOARMSME_VECTORTOARMSME_H_
 
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Pass;
 
 #define GEN_PASS_DECL_CONVERTVECTORTOARMSMEPASS
@@ -21,6 +22,6 @@ class Pass;
 void populateVectorToArmSMEPatterns(RewritePatternSet &patterns,
                                     MLIRContext &ctx);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_VECTORTOARMSME_VECTORTOARMSME_H_

@@ -15,8 +15,10 @@
 
 #include "llvm/ADT/StringRef.h"
 #include "llvm/LineEditor/LineEditor.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::query {
+MLIR_NAMESPACE_BEGIN
+namespace query {
 
 class QuerySession;
 
@@ -54,6 +56,7 @@ private:
   const QuerySession &qs;
 };
 
-} // namespace mlir::query
+}
+MLIR_NAMESPACE_END // namespace mlir::query
 
 #endif // MLIR_TOOLS_MLIRQUERY_QUERYPARSER_H

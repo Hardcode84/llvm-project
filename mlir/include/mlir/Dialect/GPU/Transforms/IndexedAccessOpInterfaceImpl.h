@@ -9,13 +9,15 @@
 #ifndef MLIR_DIALECT_GPU_TRANSFORMS_INDEXEDACCESSOPINTERFACEIMPL_H
 #define MLIR_DIALECT_GPU_TRANSFORMS_INDEXEDACCESSOPINTERFACEIMPL_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 
 class DialectRegistry;
 
 namespace gpu {
 void registerIndexedAccessOpInterfaceExternalModels(DialectRegistry &registry);
 } // namespace gpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_GPU_TRANSFORMS_INDEXEDACCESSOPINTERFACEIMPL_H

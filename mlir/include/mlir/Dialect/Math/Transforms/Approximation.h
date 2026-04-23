@@ -11,8 +11,9 @@
 
 #include "mlir/Dialect/Math/IR/Math.h"
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace math {
 
 struct ErfPolynomialApproximation : public OpRewritePattern<math::ErfOp> {
@@ -32,6 +33,6 @@ public:
 };
 
 } // namespace math
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_MATH_TRANSFORMS_APPROXIMATION_H

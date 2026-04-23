@@ -22,15 +22,16 @@
 #include "mlir/Transforms/DialectConversion.h"
 
 #include "llvm/Support/FormatVariadic.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace spirv {
 #define GEN_PASS_DEF_SPIRVCOMPOSITETYPELAYOUTPASS
 #include "mlir/Dialect/SPIRV/Transforms/Passes.h.inc"
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace {
 class SPIRVGlobalVariableOpLayoutInfoDecoration

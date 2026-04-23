@@ -16,8 +16,9 @@
 #include "mlir/Dialect/Linalg/Transforms/Transforms.h"
 #include "mlir/Dialect/Linalg/Utils/Utils.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace func {
 class FuncOp;
 } // namespace func
@@ -33,6 +34,6 @@ class FuncOp;
 #define GEN_PASS_REGISTRATION
 #include "mlir/Dialect/Linalg/Passes.h.inc"
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_LINALG_PASSES_H_

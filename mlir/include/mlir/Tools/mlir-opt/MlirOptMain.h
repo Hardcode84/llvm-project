@@ -20,13 +20,15 @@
 #include <cstdlib>
 #include <functional>
 #include <memory>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 class MemoryBuffer;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 class PassPipelineCLParser;
 class PassManager;
@@ -436,6 +438,6 @@ inline int asMainReturnCode(LogicalResult r) {
   return r.succeeded() ? EXIT_SUCCESS : EXIT_FAILURE;
 }
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_MLIROPT_MLIROPTMAIN_H

@@ -9,8 +9,9 @@
 #define MLIR_CONVERSION_SCFTOGPU_SCFTOGPU_H_
 
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ConversionTarget;
 class MLIRContext;
 class Value;
@@ -54,6 +55,6 @@ void configureParallelLoopToGPULegality(ConversionTarget &target);
 /// Clean up after applyPartialConversion/applyFullConversion call.
 void finalizeParallelLoopToGPUConversion(Operation *op);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_SCFTOGPU_SCFTOGPU_H_

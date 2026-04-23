@@ -16,8 +16,9 @@
 
 #include "mlir/IR/Block.h"
 #include "mlir/IR/Value.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 //===--------------------------------------------------------------------===//
 // Utilities used by OpAsm{Dialect,Op,Type,Attr}Interface.
@@ -47,6 +48,6 @@ enum class OpAsmAliasResult {
   FinalAlias
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_IR_OPASMSUPPORT_H_

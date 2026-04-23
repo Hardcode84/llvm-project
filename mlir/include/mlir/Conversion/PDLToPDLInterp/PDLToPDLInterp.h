@@ -15,8 +15,9 @@
 
 #include "mlir/Pass/Pass.h"
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ModuleOp;
 class Operation;
 template <typename OpT>
@@ -32,6 +33,6 @@ class PDLPatternConfigSet;
 std::unique_ptr<OperationPass<ModuleOp>> createConvertPDLToPDLInterpPass(
     DenseMap<Operation *, PDLPatternConfigSet *> &configMap);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_PDLTOPDLINTERP_PDLTOPDLINTERP_H

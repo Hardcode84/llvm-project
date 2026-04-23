@@ -18,12 +18,13 @@
 
 #include "mlir-c/Support.h"
 #include "llvm/Support/raw_ostream.h"
+#include "mlir/Support/ABINamespace.h"
 
 //===----------------------------------------------------------------------===//
 // Printing helper.
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 /// A simple raw ostream subclass that forwards write_impl calls to the
 /// user-supplied callback together with opaque user-supplied data.
@@ -48,6 +49,6 @@ private:
   uint64_t pos;
 };
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CAPI_UTILS_H

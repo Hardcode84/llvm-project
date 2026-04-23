@@ -16,10 +16,12 @@
 #include "SPIRVParsingUtils.h"
 
 #include "llvm/ADT/TypeSwitch.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir::spirv::AttrNames;
 
-namespace mlir::spirv {
+MLIR_NAMESPACE_BEGIN
+namespace spirv {
 
 static LogicalResult verifyCastOp(Operation *op,
                                   bool requireSameBitWidth = true,
@@ -293,4 +295,5 @@ LogicalResult spirv::UConvertOp::verify() {
   return verifyCastOp(*this, /*requireSameBitWidth=*/false);
 }
 
-} // namespace mlir::spirv
+}
+MLIR_NAMESPACE_END // namespace mlir::spirv

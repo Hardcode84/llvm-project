@@ -14,8 +14,10 @@
 #include "mlir/Dialect/MemRef/Utils/MemRefUtils.h"
 #include "mlir/Transforms/WalkPatternRewriteDriver.h"
 #include "llvm/ADT/TypeSwitch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::amdgpu {
+MLIR_NAMESPACE_BEGIN
+namespace amdgpu {
 #define GEN_PASS_DEF_AMDGPUFOLDMEMREFOPSPASS
 #include "mlir/Dialect/AMDGPU/Transforms/Passes.h.inc"
 
@@ -165,4 +167,5 @@ void populateAmdgpuFoldMemRefOpsPatterns(RewritePatternSet &patterns,
                FoldMemRefOpsIntoTransposeLoadOp>(patterns.getContext(),
                                                  benefit);
 }
-} // namespace mlir::amdgpu
+}
+MLIR_NAMESPACE_END // namespace mlir::amdgpu

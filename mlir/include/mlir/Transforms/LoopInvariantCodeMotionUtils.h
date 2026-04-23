@@ -12,8 +12,9 @@
 #include "mlir/Support/LLVM.h"
 
 #include "llvm/ADT/SmallVector.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class LoopLikeOpInterface;
 class Operation;
@@ -112,6 +113,6 @@ size_t moveLoopInvariantCode(LoopLikeOpInterface loopLike);
 LoopLikeOpInterface hoistLoopInvariantSubsets(RewriterBase &rewriter,
                                               LoopLikeOpInterface loopLike);
 
-} // end namespace mlir
+MLIR_NAMESPACE_END // end namespace mlir
 
 #endif // MLIR_TRANSFORMS_LOOPINVARIANTCODEMOTIONUTILS_H

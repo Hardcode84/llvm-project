@@ -18,8 +18,10 @@
 
 #include "mlir/Dialect/Transform/Interfaces/TransformAttrInterfaces.h.inc"
 #include "mlir/Dialect/Transform/Interfaces/TransformTypeInterfaces.h.inc"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace transform {
 
 class TransformOpInterface;
@@ -99,11 +101,11 @@ llvm::LogicalResult verifyNormalFormList(
     llvm::ArrayRef<mlir::transform::NormalFormAttrInterface> normalForms);
 } // namespace detail
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Dialect/Transform/Interfaces/TransformInterfaces.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace transform {
 
 /// Options controlling the application of transform operations by the
@@ -1569,7 +1571,7 @@ LogicalResult checkNestedConsumption(Location loc,
 
 } // namespace detail
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 template <typename OpTy>
 mlir::DiagnosedSilenceableFailure
@@ -1640,7 +1642,7 @@ mlir::transform::TransformEachOpTrait<OpTy>::verifyTrait(Operation *op) {
   return success();
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <>
 struct PointerLikeTypeTraits<mlir::transform::NormalFormAttrInterface>
     : public PointerLikeTypeTraits<mlir::Attribute> {
@@ -1650,6 +1652,6 @@ struct PointerLikeTypeTraits<mlir::transform::NormalFormAttrInterface>
         mlir::Attribute::getFromOpaquePointer(p));
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // DIALECT_TRANSFORM_INTERFACES_TRANSFORMINTERFACES_H

@@ -11,8 +11,9 @@
 #include "mlir/Dialect/Complex/IR/Complex.h"
 #include "mlir/Pass/Pass.h"
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class RewritePatternSet;
 class Pass;
 
@@ -25,6 +26,6 @@ void populateComplexToStandardConversionPatterns(
     mlir::complex::ComplexRangeFlags complexRange =
         mlir::complex::ComplexRangeFlags::improved);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_COMPLEXTOSTANDARD_COMPLEXTOSTANDARD_H_

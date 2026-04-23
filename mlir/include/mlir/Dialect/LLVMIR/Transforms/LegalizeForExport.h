@@ -10,8 +10,9 @@
 #define MLIR_DIALECT_LLVMIR_TRANSFORMS_LEGALIZEFOREXPORT_H
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Operation;
 class Pass;
 
@@ -28,6 +29,6 @@ namespace LLVM {
 void ensureDistinctSuccessors(Operation *op);
 
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_LLVMIR_TRANSFORMS_LEGALIZEFOREXPORT_H

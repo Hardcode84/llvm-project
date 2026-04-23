@@ -11,6 +11,7 @@
 #include "mlir/CAPI/Support.h"
 #include "mlir/IR/ExtensibleDialect.h"
 #include "mlir/IR/OperationSupport.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -58,7 +59,7 @@ void mlirDynamicOpTraitDestroy(MlirDynamicOpTrait dynamicOpTrait) {
   delete unwrap(dynamicOpTrait);
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class ExternalDynamicOpTrait : public DynamicOpTrait {
 public:
@@ -88,7 +89,7 @@ private:
   void *userData;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 MlirDynamicOpTrait mlirDynamicOpTraitCreate(
     MlirTypeID typeID, MlirDynamicOpTraitCallbacks callbacks, void *userData) {

@@ -15,13 +15,14 @@
 #include "mlir/Transforms/DialectConversion.h"
 #include "llvm/ADT/Repeated.h"
 #include <cassert>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace memref {
 #define GEN_PASS_DEF_ELIDEREINTERPRETCASTPASS
 #include "mlir/Dialect/MemRef/Transforms/Passes.h.inc"
 } // namespace memref
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 

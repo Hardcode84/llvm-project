@@ -23,17 +23,19 @@
 #include <functional>
 #include <memory>
 #include <optional>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T>
 class Expected;
 class Module;
 class ExecutionEngine;
 class JITEventListener;
 class MemoryBuffer;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class Operation;
 
@@ -261,6 +263,6 @@ private:
   bool isInitialized = false;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_EXECUTIONENGINE_EXECUTIONENGINE_H_

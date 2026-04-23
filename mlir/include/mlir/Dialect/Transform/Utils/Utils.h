@@ -13,8 +13,9 @@
 #include "mlir/IR/Value.h"
 #include "mlir/IR/ValueRange.h"
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class OpAsmPrinter;
 
 namespace transform {
@@ -63,6 +64,6 @@ inline ParseResult parsePackedOrDynamicIndexList(
                                        nullptr, integers);
 }
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TRANSFORMS_UTILS_UTILS_H

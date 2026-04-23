@@ -13,20 +13,21 @@
 #include "mlir/Dialect/Transform/IR/TransformDialect.h"
 #include "mlir/Dialect/Transform/IR/TransformTypes.h"
 #include "mlir/Dialect/Transform/Interfaces/TransformInterfaces.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace transform {
 class QueryOp;
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace dlti {
 void registerTransformDialectExtension(DialectRegistry &registry);
 } // namespace dlti
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 ////===----------------------------------------------------------------------===//
 //// DLTI Transform Operations

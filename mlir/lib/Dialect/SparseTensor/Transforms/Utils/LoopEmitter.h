@@ -18,8 +18,9 @@
 #include "mlir/Dialect/SparseTensor/Transforms/Passes.h"
 #include "mlir/Dialect/SparseTensor/Utils/Merger.h"
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace sparse_tensor {
 
 // A compressed <tensor id, level> pair.
@@ -448,6 +449,6 @@ std::pair<Operation *, Value> genCoIteration(OpBuilder &builder, Location loc,
                                              bool userReducFirst = false);
 
 } // namespace sparse_tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SPARSETENSOR_TRANSFORMS_UTILS_LOOPEMITTER_H_

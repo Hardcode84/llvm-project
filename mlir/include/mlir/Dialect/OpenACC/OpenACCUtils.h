@@ -17,8 +17,9 @@
 #include "llvm/ADT/Twine.h"
 #include <optional>
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DominanceInfo;
 class PostDominanceInfo;
 namespace acc {
@@ -139,6 +140,6 @@ emitRemark(mlir::Operation *op, const llvm::Twine &message,
 }
 
 } // namespace acc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_OPENACC_OPENACCUTILS_H_

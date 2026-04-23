@@ -10,8 +10,9 @@
 #define MLIR_CONVERSION_GPUTOLLVMSPV_GPUTOLLVMSPVPASS_H_
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 class LLVMTypeConverter;
 class RewritePatternSet;
@@ -27,6 +28,6 @@ void populateGpuToLLVMSPVConversionPatterns(const LLVMTypeConverter &converter,
 /// Populates memory space attribute conversion rules for lowering
 /// gpu.address_space to integer values.
 void populateGpuMemorySpaceAttributeConversions(TypeConverter &typeConverter);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_GPUTOLLVMSPV_GPUTOLLVMSPVPASS_H_

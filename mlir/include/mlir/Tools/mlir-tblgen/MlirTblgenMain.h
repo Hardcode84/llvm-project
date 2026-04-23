@@ -13,7 +13,9 @@
 #ifndef MLIR_TOOLS_MLIR_TBLGEN_MLIRTBLGENMAIN_H
 #define MLIR_TOOLS_MLIR_TBLGEN_MLIRTBLGENMAIN_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 /// Main Program for tools like 'mlir-tblgen' with custom backends. To add
 /// a new backend, simply create a new 'mlir::GenRegistration' global variable.
 /// See its documentation for more info.
@@ -21,6 +23,6 @@ namespace mlir {
 /// The 'argc' and 'argv' arguments are simply forwarded from a main function.
 /// The return value is the exit code from llvm::TableGenMain.
 int MlirTblgenMain(int argc, char **argv);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_MLIR_TBLGEN_MLIRTBLGENMAIN_H

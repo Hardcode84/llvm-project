@@ -14,8 +14,9 @@
 #include "mlir/Pass/Pass.h"
 #include "mlir/Support/LLVM.h"
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class MLIRContext;
 class ModuleOp;
 class Operation;
@@ -89,6 +90,6 @@ LogicalResult applyTransformNamedSequence(RaggedArray<MappedValue> bindings,
                                           const TransformOptions &options);
 
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TRANSFORM_TRANSFORMS_TRANSFORMINTERPRETERUTILS_H

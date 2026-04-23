@@ -12,7 +12,8 @@
 #include "mlir/Dialect/XeGPU/IR/XeGPU.h"
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/IR/OpDefinition.h"
-namespace mlir {
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 
 class VectorType;
 class OpOperand;
@@ -236,6 +237,6 @@ bool matchSplitDimExpansion(ArrayRef<int64_t> src, ArrayRef<int64_t> dst,
 
 } // namespace xegpu
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_XEGPU_UTILS_XEGPUUTILS_H_

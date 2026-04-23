@@ -20,8 +20,9 @@
 #include "mlir/Interfaces/InferTypeOpInterface.h"
 #include "mlir/Interfaces/SideEffectInterfaces.h"
 #include "llvm/Support/MathExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace shard {
 
 using GridAxis = int16_t;
@@ -30,14 +31,14 @@ using ShardShapeAttr = DenseI64ArrayAttr;
 using HaloSizePairAttr = DenseI64ArrayAttr;
 
 } // namespace shard
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Dialect/Shard/IR/ShardEnums.h.inc"
 
 #define GET_ATTRDEF_CLASSES
 #include "mlir/Dialect/Shard/IR/ShardAttributes.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace shard {
 
 class Sharding {
@@ -90,7 +91,7 @@ inline Diagnostic &operator<<(Diagnostic &diag, const Sharding &sharding) {
 }
 
 } // namespace shard
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define GET_TYPEDEF_CLASSES
 #include "mlir/Dialect/Shard/IR/ShardTypes.h.inc"
@@ -98,7 +99,7 @@ inline Diagnostic &operator<<(Diagnostic &diag, const Sharding &sharding) {
 #define GET_OP_CLASSES
 #include "mlir/Dialect/Shard/IR/ShardOps.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace shard {
 
 inline bool isReductionLoop(utils::IteratorType iType) {
@@ -219,6 +220,6 @@ SmallVector<Value> getMixedAsValues(OpBuilder b, const Location &loc,
                                     llvm::ArrayRef<int64_t> statics,
                                     ValueRange dynamics, Type type = Type());
 } // namespace shard
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SHARD_IR_SHARDOPS_H

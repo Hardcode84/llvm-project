@@ -12,13 +12,14 @@
 #include "mlir/Dialect/MemRef/Transforms/Transforms.h"
 #include "mlir/IR/TypeUtilities.h"
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace memref {
 #define GEN_PASS_DEF_EXPANDOPSPASS
 #include "mlir/Dialect/MemRef/Transforms/Passes.h.inc"
 } // namespace memref
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 

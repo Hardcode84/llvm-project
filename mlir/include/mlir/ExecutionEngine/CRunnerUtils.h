@@ -37,11 +37,12 @@
 #include <cstdint>
 #include <initializer_list>
 #include <vector>
+#include "mlir/Support/ABINamespace.h"
 
 //===----------------------------------------------------------------------===//
 // Codegen-compatible structures for Vector type.
 //===----------------------------------------------------------------------===//
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 
 constexpr bool isPowerOf2(int n) { return (!(n & (n - 1))); }
@@ -83,7 +84,7 @@ private:
   char padding[nextPowerOf2(sizeof(T[Dim])) - sizeof(T[Dim])];
 };
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 // N-D vectors recurse down to 1-D.
 template <typename T, int Dim, int... Dims>

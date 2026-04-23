@@ -28,13 +28,14 @@
 #include "llvm/Support/DebugLog.h"
 #include "llvm/Support/LogicalResult.h"
 #include "llvm/Support/raw_ostream.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "nvvm-to-llvm"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_CONVERTNVVMTOLLVMPASS
 #include "mlir/Conversion/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 using namespace NVVM;

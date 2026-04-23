@@ -16,8 +16,10 @@
 #include "llvm/Support/raw_ostream.h"
 #include <variant>
 #include <vector>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::irdl::detail {
+MLIR_NAMESPACE_BEGIN
+namespace irdl::detail {
 
 /// A dictionary stores a mapping of template variable names to their assigned
 /// string values.
@@ -85,6 +87,7 @@ private:
   std::vector<std::variant<LiteralToken, ReplacementToken>> bytecode;
 };
 
-} // namespace mlir::irdl::detail
+}
+MLIR_NAMESPACE_END // namespace mlir::irdl::detail
 
 #endif // MLIR_LIB_TARGET_IRDLTOCPP_TEMPLATINGUTILS_H

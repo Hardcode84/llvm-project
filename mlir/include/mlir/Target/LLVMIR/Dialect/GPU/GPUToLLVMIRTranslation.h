@@ -13,7 +13,9 @@
 #ifndef MLIR_TARGET_LLVMIR_DIALECT_GPU_GPUTOLLVMIRTRANSLATION_H
 #define MLIR_TARGET_LLVMIR_DIALECT_GPU_GPUTOLLVMIRTRANSLATION_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 
 class DialectRegistry;
 class MLIRContext;
@@ -33,6 +35,6 @@ void registerOffloadingLLVMTranslationInterfaceExternalModels(
     mlir::DialectRegistry &registry);
 } // namespace gpu
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_LLVMIR_DIALECT_GPU_GPUTOLLVMIRTRANSLATION_H

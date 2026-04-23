@@ -18,8 +18,9 @@
 #include "llvm/ADT/MapVector.h"
 #include "llvm/ADT/StringMap.h"
 #include <type_traits>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 // Forward declarations.
 class Attribute;
@@ -1550,6 +1551,6 @@ LogicalResult
 applyAnalysisConversion(Operation *op, ConversionTarget &target,
                         const FrozenRewritePatternSet &patterns,
                         ConversionConfig config = ConversionConfig());
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRANSFORMS_DIALECTCONVERSION_H_

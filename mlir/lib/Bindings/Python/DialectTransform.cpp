@@ -17,11 +17,12 @@
 #include "mlir/Bindings/Python/IRInterfaces.h"
 #include "nanobind/nanobind.h"
 #include <nanobind/trampoline.h>
+#include "mlir/Support/ABINamespace.h"
 
 namespace nb = nanobind;
 using namespace mlir::python::nanobind_adaptors;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace python {
 namespace MLIR_BINDINGS_PYTHON_DOMAIN {
 namespace transform {
@@ -568,7 +569,7 @@ static void populateDialectTransformSubmodule(nb::module_ &m) {
 } // namespace transform
 } // namespace MLIR_BINDINGS_PYTHON_DOMAIN
 } // namespace python
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 NB_MODULE(_mlirDialectsTransform, m) {
   m.doc() = "MLIR Transform dialect.";

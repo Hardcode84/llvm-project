@@ -13,8 +13,10 @@
 #include "mlir/Query/Matcher/Registry.h"
 #include "llvm/ADT/StringMap.h"
 #include "llvm/Support/SourceMgr.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::query {
+MLIR_NAMESPACE_BEGIN
+namespace query {
 
 class Registry;
 // Represents the state for a particular mlir-query session.
@@ -40,6 +42,7 @@ private:
   const matcher::Registry &matcherRegistry;
 };
 
-} // namespace mlir::query
+}
+MLIR_NAMESPACE_END // namespace mlir::query
 
 #endif // MLIR_TOOLS_MLIRQUERY_QUERYSESSION_H

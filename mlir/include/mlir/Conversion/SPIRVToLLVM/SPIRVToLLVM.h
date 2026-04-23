@@ -16,8 +16,9 @@
 #include "mlir/Transforms/DialectConversion.h"
 
 #include "mlir/Dialect/SPIRV/IR/SPIRVEnums.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class LLVMTypeConverter;
 class MLIRContext;
 class ModuleOp;
@@ -56,6 +57,6 @@ void populateSPIRVToLLVMFunctionConversionPatterns(
 void populateSPIRVToLLVMModuleConversionPatterns(
     const LLVMTypeConverter &typeConverter, RewritePatternSet &patterns);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_SPIRVTOLLVM_SPIRVTOLLVM_H

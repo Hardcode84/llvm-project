@@ -16,8 +16,9 @@
 #include "llvm/Support/raw_ostream.h"
 #include <complex>
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // ElementsAttr
@@ -278,7 +279,7 @@ LogicalResult getAffineMapStridesAndOffset(AffineMap map,
                                            int64_t &offset);
 } // namespace detail
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Tablegen Interface Declarations
@@ -291,7 +292,7 @@ LogicalResult getAffineMapStridesAndOffset(AffineMap map,
 // ElementsAttr
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 /// Return the value at the given index.
 template <typename IteratorT>
@@ -321,6 +322,6 @@ auto ElementsAttr::try_value_begin() const
     return std::nullopt;
   return iterator<T>(std::move(*indexer), 0);
 }
-} // namespace mlir.
+MLIR_NAMESPACE_END // namespace mlir.
 
 #endif // MLIR_IR_BUILTINATTRIBUTEINTERFACES_H

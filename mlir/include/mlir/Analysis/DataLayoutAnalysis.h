@@ -13,8 +13,9 @@
 #include "llvm/ADT/DenseMap.h"
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class Operation;
 class DataLayout;
@@ -43,6 +44,6 @@ private:
   std::unique_ptr<DataLayout> defaultLayout;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_ANALYSIS_DATALAYOUTANALYSIS_H

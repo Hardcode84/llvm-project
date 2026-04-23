@@ -19,11 +19,12 @@
 
 #include "llvm/Support/DebugLog.h"
 #include "llvm/Support/MemoryBuffer.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_OPTREDUCTIONPASS
 #include "mlir/Reducer/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define DEBUG_TYPE "mlir-reduce"
 

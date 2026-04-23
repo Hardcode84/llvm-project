@@ -17,8 +17,9 @@
 #include "mlir/IR/Value.h"
 #include <cstdint>
 #include <type_traits>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace bytecode {
 //===----------------------------------------------------------------------===//
 // General constants
@@ -136,6 +137,6 @@ static inline uint64_t getUseID(OperandT &val, unsigned ownerID) {
 }
 
 } // namespace bytecode
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif

@@ -16,8 +16,9 @@
 #include "mlir/Dialect/OpenACC/OpenACC.h"
 #include "mlir/IR/PatternMatch.h"
 #include "llvm/ADT/SmallVector.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace acc {
 
 /// Uncollapse tile loops with multiple IVs and collapseCount < tileCount.
@@ -78,6 +79,6 @@ mlir::acc::LoopOp tileACCLoops(llvm::SmallVector<mlir::acc::LoopOp> &tileLoops,
                                mlir::RewriterBase &rewriter);
 
 } // namespace acc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_OPENACC_OPENACCUTILSTILING_H_

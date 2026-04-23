@@ -20,8 +20,9 @@
 #include "mlir/Dialect/SCF/IR/SCF.h"
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 #include "mlir/Interfaces/RuntimeVerifiableOpInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace linalg {
 namespace {
 /// Verify that the runtime sizes of the operands to linalg structured ops are
@@ -148,7 +149,7 @@ void attachInterface(MLIRContext *ctx) {
 }
 } // namespace
 } // namespace linalg
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 void mlir::linalg::registerRuntimeVerifiableOpInterfaceExternalModels(
     DialectRegistry &registry) {

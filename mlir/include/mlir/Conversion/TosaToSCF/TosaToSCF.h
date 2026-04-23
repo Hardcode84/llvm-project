@@ -14,8 +14,9 @@
 #define MLIR_CONVERSION_TOSATOSCF_TOSATOSCF_H
 
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 #define GEN_PASS_DECL_TOSATOSCFPASS
 #include "mlir/Conversion/Passes.h.inc"
@@ -28,6 +29,6 @@ void populateTosaToSCFConversionPatterns(RewritePatternSet *patterns);
 void addTosaToSCFPasses(OpPassManager &pm);
 
 } // namespace tosa
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_TOSATOSCF_TOSATOSCF_H

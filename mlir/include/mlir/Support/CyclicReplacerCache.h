@@ -21,8 +21,9 @@
 #include <functional>
 #include <optional>
 #include <set>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // CyclicReplacerCache
@@ -277,6 +278,6 @@ private:
   CyclicReplacerCache<InT, OutT> cache;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_SUPPORT_CYCLICREPLACERCACHE_H

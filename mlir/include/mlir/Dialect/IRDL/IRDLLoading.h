@@ -13,21 +13,24 @@
 #ifndef MLIR_DIALECT_IRDL_IRDLREGISTRATION_H
 #define MLIR_DIALECT_IRDL_IRDLREGISTRATION_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
+LLVM_NAMESPACE_BEGIN
 struct LogicalResult;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ModuleOp;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace irdl {
 
 /// Load all the dialects defined in the module.
 llvm::LogicalResult loadDialects(ModuleOp op);
 
 } // namespace irdl
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_IRDL_IRDLREGISTRATION_H

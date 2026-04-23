@@ -10,10 +10,11 @@
 #define MLIR_SUPPORT_LOGICALRESULT_H
 
 #include "llvm/Support/LogicalResult.h"
+#include "mlir/Support/ABINamespace.h"
 
 // TODO: This header is a stop-gap to avoid breaking downstream, and is to be
 // removed eventually.
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 using llvm::failed;
 using llvm::failure;
 using llvm::FailureOr;
@@ -21,6 +22,6 @@ using llvm::LogicalResult;
 using llvm::ParseResult;
 using llvm::succeeded;
 using llvm::success;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_SUPPORT_LOGICALRESULT_H

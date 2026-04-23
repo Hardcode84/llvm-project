@@ -16,13 +16,14 @@
 #include "mlir/Dialect/Affine/Analysis/Utils.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Interfaces/SideEffectInterfaces.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace affine {
 #define GEN_PASS_DEF_AFFINELOOPINVARIANTCODEMOTION
 #include "mlir/Dialect/Affine/Transforms/Passes.h.inc"
 } // namespace affine
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define DEBUG_TYPE "affine-licm"
 

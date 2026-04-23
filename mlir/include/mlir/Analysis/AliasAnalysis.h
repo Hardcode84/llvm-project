@@ -15,8 +15,9 @@
 #define MLIR_ANALYSIS_ALIASANALYSIS_H_
 
 #include "mlir/IR/Operation.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // AliasResult
@@ -284,6 +285,6 @@ private:
   SmallVector<std::unique_ptr<Concept>, 4> aliasImpls;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_ANALYSIS_ALIASANALYSIS_H_

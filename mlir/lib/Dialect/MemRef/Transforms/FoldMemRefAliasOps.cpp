@@ -28,16 +28,17 @@
 #include "llvm/ADT/TypeSwitch.h"
 #include "llvm/Support/Debug.h"
 #include <cstdint>
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "fold-memref-alias-ops"
 #define DBGS() (llvm::dbgs() << "[" DEBUG_TYPE "]: ")
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace memref {
 #define GEN_PASS_DEF_FOLDMEMREFALIASOPSPASS
 #include "mlir/Dialect/MemRef/Transforms/Passes.h.inc"
 } // namespace memref
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 

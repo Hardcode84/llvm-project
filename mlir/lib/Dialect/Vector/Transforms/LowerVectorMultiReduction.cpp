@@ -18,13 +18,14 @@
 #include "mlir/IR/Builders.h"
 #include "mlir/IR/TypeUtilities.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace vector {
 #define GEN_PASS_DEF_LOWERVECTORMULTIREDUCTION
 #include "mlir/Dialect/Vector/Transforms/Passes.h.inc"
 } // namespace vector
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define DEBUG_TYPE "vector-multi-reduction"
 

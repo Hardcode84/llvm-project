@@ -15,8 +15,9 @@
 #define MLIR_DIALECT_LLVMIR_TRANSFORMS_DIEXPRESSIONLEGALIZATION_H
 
 #include "mlir/Dialect/LLVMIR/Transforms/DIExpressionRewriter.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace LLVM {
 
 //===----------------------------------------------------------------------===//
@@ -46,6 +47,6 @@ public:
 void legalizeDIExpressionsRecursively(Operation *op);
 
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_LLVMIR_TRANSFORMS_DIEXPRESSIONLEGALIZATION_H

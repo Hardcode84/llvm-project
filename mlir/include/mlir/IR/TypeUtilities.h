@@ -15,8 +15,9 @@
 
 #include "mlir/IR/Operation.h"
 #include "llvm/ADT/STLExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class Attribute;
 class TupleType;
@@ -109,6 +110,6 @@ public:
 
 using ResultElementTypeRange = iterator_range<ResultElementTypeIterator>;
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_IR_TYPEUTILITIES_H

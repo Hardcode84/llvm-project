@@ -24,6 +24,7 @@
 #include <cassert>
 #include <limits>
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "memref-to-spirv-pattern"
 
@@ -1208,7 +1209,7 @@ LogicalResult ExtractAlignedPointerAsIndexOpPattern::matchAndRewrite(
 // Pattern population
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void populateMemRefToSPIRVPatterns(const SPIRVTypeConverter &typeConverter,
                                    RewritePatternSet &patterns) {
   patterns.add<AllocaOpPattern, AllocOpPattern, AtomicRMWOpPattern,
@@ -1218,4 +1219,4 @@ void populateMemRefToSPIRVPatterns(const SPIRVTypeConverter &typeConverter,
                ExtractAlignedPointerAsIndexOpPattern>(typeConverter,
                                                       patterns.getContext());
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

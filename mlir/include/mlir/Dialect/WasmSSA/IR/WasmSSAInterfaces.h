@@ -15,8 +15,10 @@
 
 #include "mlir/IR/BuiltinAttributes.h"
 #include "mlir/IR/OpDefinition.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::wasmssa {
+MLIR_NAMESPACE_BEGIN
+namespace wasmssa {
 namespace detail {
 /// Verify that `op` conforms to the ConstantExpressionInterface.
 /// `op` must be initialized with valid constant expressions.
@@ -56,7 +58,8 @@ struct ConstantExpressionInitializerOpTrait
   }
 };
 
-} // namespace mlir::wasmssa
+}
+MLIR_NAMESPACE_END // namespace mlir::wasmssa
 #include "mlir/Dialect/WasmSSA/IR/WasmSSAInterfaces.h.inc"
 
 #endif // MLIR_DIALECT_WasmSSA_IR_WasmSSAINTERFACES_H_

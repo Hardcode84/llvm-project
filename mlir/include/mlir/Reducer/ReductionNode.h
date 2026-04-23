@@ -25,8 +25,9 @@
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/Support/Allocator.h"
 #include "llvm/Support/ToolOutputFile.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class ModuleOp;
 class Region;
@@ -191,6 +192,6 @@ class ReductionNode::iterator<SinglePath>
   ArrayRef<ReductionNode *> getNeighbors(ReductionNode *node);
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_REDUCER_REDUCTIONNODE_H

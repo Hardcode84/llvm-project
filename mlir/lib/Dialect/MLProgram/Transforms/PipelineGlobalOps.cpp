@@ -10,8 +10,9 @@
 
 #include "mlir/Dialect/MLProgram/IR/MLProgram.h"
 #include "mlir/IR/BuiltinOps.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace ml_program {
 #define GEN_PASS_DEF_MLPROGRAMPIPELINEGLOBALSPASS
 #include "mlir/Dialect/MLProgram/Transforms/Passes.h.inc"
@@ -228,4 +229,4 @@ void MLProgramPipelineGlobals::runOnOperation() {
 } // namespace
 
 } // namespace ml_program
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

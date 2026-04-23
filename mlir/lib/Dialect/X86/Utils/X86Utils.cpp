@@ -21,8 +21,9 @@
 
 #include "llvm/ADT/ArrayRef.h"
 #include <cassert>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace x86 {
 
 static FailureOr<SmallVector<mlir::utils::IteratorType>>
@@ -430,4 +431,4 @@ bool validatePairVectorContract(vector::ContractionOp contractOp,
 }
 
 } // namespace x86
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

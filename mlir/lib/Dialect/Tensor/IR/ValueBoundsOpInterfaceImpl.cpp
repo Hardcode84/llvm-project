@@ -10,10 +10,11 @@
 
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 #include "mlir/Interfaces/ValueBoundsOpInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tensor {
 namespace {
 
@@ -143,7 +144,7 @@ struct RankOpInterface
 
 } // namespace
 } // namespace tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 void mlir::tensor::registerValueBoundsOpInterfaceExternalModels(
     DialectRegistry &registry) {

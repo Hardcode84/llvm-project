@@ -17,6 +17,7 @@
 #include "mlir/Interfaces/ViewLikeInterface.h"
 
 #include "llvm/Support/Debug.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "xegpu"
 
@@ -1082,9 +1083,9 @@ LogicalResult DpasMxOp::verify() {
   return success();
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #include <mlir/Dialect/XeGPU/IR/XeGPUAttrInterface.cpp.inc>
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 #include <mlir/Dialect/XeGPU/IR/XeGPUEnums.cpp.inc>
 #define GET_OP_CLASSES
 #include <mlir/Dialect/XeGPU/IR/XeGPU.cpp.inc>

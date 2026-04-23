@@ -14,15 +14,16 @@
 #define MLIR_INTERFACES_SHAPEDOPINTERFACES_H_
 
 #include "mlir/IR/OpDefinition.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 
 /// Verify invariants of ops that implement the ShapedDimOpInterface.
 LogicalResult verifyShapedDimOpInterface(Operation *op);
 
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// Include the generated interface declarations.
 #include "mlir/Interfaces/ShapedOpInterfaces.h.inc"

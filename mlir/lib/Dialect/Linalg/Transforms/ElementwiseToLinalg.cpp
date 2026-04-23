@@ -13,11 +13,12 @@
 #include "mlir/Dialect/Linalg/Utils/Utils.h"
 #include "mlir/Transforms/DialectConversion.h"
 #include "llvm/ADT/SmallVectorExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_CONVERTELEMENTWISETOLINALGPASS
 #include "mlir/Dialect/Linalg/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 

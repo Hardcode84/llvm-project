@@ -13,8 +13,10 @@
 #include "Parser.h"
 
 #include <vector>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::query::matcher::internal {
+MLIR_NAMESPACE_BEGIN
+namespace query::matcher::internal {
 
 // Simple structure to hold information for one token from the parser.
 struct Parser::TokenInfo {
@@ -634,4 +636,5 @@ std::optional<DynMatcher> Parser::parseMatcherExpression(
   return result;
 }
 
-} // namespace mlir::query::matcher::internal
+}
+MLIR_NAMESPACE_END // namespace mlir::query::matcher::internal

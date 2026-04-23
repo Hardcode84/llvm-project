@@ -20,8 +20,9 @@
 #include "mlir/Support/CyclicReplacerCache.h"
 #include "llvm/ADT/MapVector.h"
 #include "llvm/IR/DebugInfoMetadata.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Operation;
 
 namespace LLVM {
@@ -117,6 +118,6 @@ private:
 
 } // namespace detail
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_LIB_TARGET_LLVMIR_DEBUGIMPORTER_H_

@@ -16,8 +16,9 @@
 #include <cstdint>
 #include <sstream>
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace python {
 
 /// RAII scope intercepting all diagnostics into a string. The message must be
@@ -67,6 +68,6 @@ private:
 };
 
 } // namespace python
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_BINDINGS_PYTHON_DIAGNOSTICS_H

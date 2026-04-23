@@ -17,8 +17,9 @@
 #include <iterator>
 #include <memory>
 #include <utility>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class SymbolTableCollection;
 
@@ -111,6 +112,6 @@ void populateFoldingPatterns(RewritePatternSet &patterns,
                              SymbolTableCollection &symbolTableCollection);
 
 } // namespace shard
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SHARD_TRANSFORMS_SIMPLIFY_H

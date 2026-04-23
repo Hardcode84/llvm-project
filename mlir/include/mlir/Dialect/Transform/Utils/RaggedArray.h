@@ -10,8 +10,9 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/SmallVector.h"
 #include <iterator>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 /// A 2D array where each row may have different length. Elements of each row
 /// are stored contiguously, but rows don't have a fixed order in the storage.
 template <typename T>
@@ -173,4 +174,4 @@ private:
   /// Dense storage for ragged array elements.
   SmallVector<T> storage;
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

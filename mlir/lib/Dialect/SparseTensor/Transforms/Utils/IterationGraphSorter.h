@@ -15,8 +15,9 @@
 
 #include "mlir/Dialect/SparseTensor/Transforms/Passes.h"
 #include "mlir/IR/AffineMap.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 // Forward declarations.
 class Value;
@@ -96,6 +97,6 @@ private:
 };
 
 } // namespace sparse_tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SPARSETENSOR_TRANSFORMS_UTILS_ITERATIONGRAPHSORTER_H_

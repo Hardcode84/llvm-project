@@ -13,7 +13,9 @@
 #ifndef LIB_MLIR_IR_BUILTINDIALECTBYTECODE_H
 #define LIB_MLIR_IR_BUILTINDIALECTBYTECODE_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class BuiltinDialect;
 
 namespace builtin_dialect_detail {
@@ -21,6 +23,6 @@ namespace builtin_dialect_detail {
 /// bytecode.
 void addBytecodeInterface(BuiltinDialect *dialect);
 } // namespace builtin_dialect_detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // LIB_MLIR_IR_BUILTINDIALECTBYTECODE_H

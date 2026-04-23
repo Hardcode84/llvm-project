@@ -11,8 +11,9 @@
 
 #include "mlir/Dialect/GPU/IR/GPUDialect.h"
 #include "mlir/Dialect/Vector/IR/VectorOps.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class RewritePatternSet;
 namespace vector {
 
@@ -111,5 +112,5 @@ void populateDistributeReduction(
     PatternBenefit benefit = 1);
 
 } // namespace vector
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 #endif // MLIR_DIALECT_VECTOR_TRANSFORMS_VECTORDISTRIBUTION_H_

@@ -15,15 +15,17 @@
 
 #include <memory>
 #include <string>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct Align;
 class MemoryBuffer;
 class ToolOutputFile;
 class StringRef;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Open the file specified by its name for reading. Write the error message to
 /// `errorMessage` if errors occur and `errorMessage` is not nullptr.
@@ -43,6 +45,6 @@ std::unique_ptr<llvm::ToolOutputFile>
 openOutputFile(llvm::StringRef outputFilename,
                std::string *errorMessage = nullptr);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_SUPPORT_FILEUTILITIES_H_

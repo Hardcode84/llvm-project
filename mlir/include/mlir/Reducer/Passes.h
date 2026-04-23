@@ -9,8 +9,9 @@
 #define MLIR_REDUCER_PASSES_H
 
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 #define GEN_PASS_DECL
 #include "mlir/Reducer/Passes.h.inc"
@@ -19,6 +20,6 @@ namespace mlir {
 #define GEN_PASS_REGISTRATION
 #include "mlir/Reducer/Passes.h.inc"
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_REDUCER_PASSES_H

@@ -14,8 +14,10 @@
 #include "mlir/Dialect/GPU/IR/GPUDialect.h"
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/IR/Value.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::gpu {
+MLIR_NAMESPACE_BEGIN
+namespace gpu {
 struct WarpDistributionPattern : OpRewritePattern<WarpExecuteOnLane0Op> {
   using OpRewritePattern::OpRewritePattern;
   using Base = WarpDistributionPattern;
@@ -54,6 +56,7 @@ protected:
                          SmallVectorImpl<Value> &delinearizedIds) const;
 };
 
-} // namespace mlir::gpu
+}
+MLIR_NAMESPACE_END // namespace mlir::gpu
 
 #endif // MLIR_DIALECT_GPU_TRANSFORMS_DISTRIBUTIONUTILS_H_

@@ -9,8 +9,9 @@
 #define MLIR_CONVERSION_VECTORTOLLVM_CONVERTVECTORTOLLVM_H_
 
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class LLVMTypeConverter;
 
 /// Collect a set of patterns to convert from the Vector dialect to LLVM.
@@ -22,6 +23,6 @@ void populateVectorToLLVMConversionPatterns(
 namespace vector {
 void registerConvertVectorToLLVMInterface(DialectRegistry &registry);
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_VECTORTOLLVM_CONVERTVECTORTOLLVM_H_

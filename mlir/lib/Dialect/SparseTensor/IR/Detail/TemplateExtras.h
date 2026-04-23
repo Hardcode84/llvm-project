@@ -13,8 +13,9 @@
 
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/Support/raw_ostream.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace sparse_tensor {
 namespace ir_detail {
 
@@ -53,6 +54,6 @@ static constexpr bool IsZeroCostAbstraction =
 
 } // namespace ir_detail
 } // namespace sparse_tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SPARSETENSOR_IR_DETAIL_TEMPLATEEXTRAS_H

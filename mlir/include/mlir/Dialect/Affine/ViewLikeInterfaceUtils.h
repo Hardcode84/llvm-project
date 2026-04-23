@@ -12,8 +12,9 @@
 #include "mlir/Dialect/Utils/StaticValueUtils.h"
 #include "mlir/IR/OpDefinition.h"
 #include "mlir/Interfaces/ViewLikeInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class RewriterBase;
 
 namespace affine {
@@ -102,6 +103,6 @@ void resolveSizesIntoOpWithSizes(
     SmallVectorImpl<OpFoldResult> &resolvedSizes);
 
 } // namespace affine
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_AFFINE_VIEWLIKEINTERFACEUTILS_H

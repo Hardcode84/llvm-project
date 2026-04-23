@@ -18,12 +18,14 @@
 
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Record;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tblgen {
 // Wrapper class that contains a MLIR dialect's information defined in TableGen
 // and provides helper methods for accessing them.
@@ -110,6 +112,6 @@ private:
   std::vector<StringRef> dependentDialects;
 };
 } // namespace tblgen
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TABLEGEN_DIALECT_H_

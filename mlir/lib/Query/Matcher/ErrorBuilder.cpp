@@ -10,8 +10,10 @@
 #include "Diagnostics.h"
 #include "llvm/ADT/Twine.h"
 #include <initializer_list>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::query::matcher::internal {
+MLIR_NAMESPACE_BEGIN
+namespace query::matcher::internal {
 
 void addError(Diagnostics *error, SourceRange range, ErrorType errorType,
               std::initializer_list<llvm::Twine> errorTexts) {
@@ -21,4 +23,5 @@ void addError(Diagnostics *error, SourceRange range, ErrorType errorType,
   }
 }
 
-} // namespace mlir::query::matcher::internal
+}
+MLIR_NAMESPACE_END // namespace mlir::query::matcher::internal

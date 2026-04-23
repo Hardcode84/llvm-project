@@ -67,13 +67,14 @@
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/Support/Debug.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace acc {
 #define GEN_PASS_DEF_ACCIFCLAUSELOWERING
 #include "mlir/Dialect/OpenACC/Transforms/Passes.h.inc"
 } // namespace acc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define DEBUG_TYPE "acc-if-clause-lowering"
 

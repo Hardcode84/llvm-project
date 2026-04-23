@@ -14,9 +14,10 @@
 #include "llvm/ADT/FunctionExtras.h"
 #include "llvm/Support/TypeName.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
 using llvm::SmallPtrSetImpl;
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class PatternRewriter;
 
@@ -808,12 +809,12 @@ public:
   virtual bool canRecoverFromRewriteFailure() const { return false; }
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 // Optionally expose PDL pattern matching methods.
 #include "PDLPatternMatch.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // RewritePatternSet
@@ -1025,6 +1026,6 @@ private:
   PDLPatternModule pdlPatterns;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_IR_PATTERNMATCH_H

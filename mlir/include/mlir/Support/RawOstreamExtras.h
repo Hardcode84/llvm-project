@@ -6,12 +6,14 @@
 //
 //===----------------------------------------------------------------------===//
 
-namespace llvm {
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 /// Returns a raw output stream that simply discards the output, but in a
 /// thread-safe manner. Similar to llvm::nulls.
 llvm::raw_ostream &thread_safe_nulls();
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

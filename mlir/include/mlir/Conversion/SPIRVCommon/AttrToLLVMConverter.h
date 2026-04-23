@@ -9,10 +9,11 @@
 #define MLIR_CONVERSION_SPIRVCOMMON_ATTRTOLLVMCONVERTER_H_
 
 #include "mlir/Dialect/SPIRV/IR/SPIRVEnums.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 unsigned storageClassToAddressSpace(spirv::ClientAPI clientAPI,
                                     spirv::StorageClass storageClass);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_SPIRVCOMMON_ATTRTOLLVMCONVERTER_H_

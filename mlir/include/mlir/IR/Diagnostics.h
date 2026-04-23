@@ -16,14 +16,16 @@
 #include "mlir/IR/Location.h"
 #include <functional>
 #include <optional>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MemoryBuffer;
 class SMLoc;
 class SourceMgr;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DiagnosticEngine;
 class MLIRContext;
 class Operation;
@@ -703,6 +705,6 @@ public:
 private:
   std::unique_ptr<detail::ParallelDiagnosticHandlerImpl> impl;
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif

@@ -23,8 +23,9 @@
 #include "llvm/ADT/SmallVectorExtras.h"
 #include <cassert>
 #include <utility>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace linalg {
 static bool hasAllOneValues(DenseIntElementsAttr attr) {
   return llvm::all_of(
@@ -745,4 +746,4 @@ void populateConvertConv2DToImg2ColPatterns(RewritePatternSet &patterns) {
                   ConvertConv2DNchwFchw, ConvertConv2DNhwcFhwc>(context);
 }
 } // end namespace linalg
-} // end namespace mlir
+MLIR_NAMESPACE_END // end namespace mlir

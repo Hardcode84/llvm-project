@@ -16,8 +16,10 @@
 #include "mlir/IR/Visitors.h"
 #include "mlir/Support/LLVM.h"
 #include "llvm/Support/LogicalResult.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::wasmssa {
+MLIR_NAMESPACE_BEGIN
+namespace wasmssa {
 #include "mlir/Dialect/WasmSSA/IR/WasmSSAInterfaces.cpp.inc"
 
 namespace detail {
@@ -66,4 +68,5 @@ LabelBranchingOpInterface::getTargetOpFromBlock(::mlir::Block *block,
   }
   return res;
 }
-} // namespace mlir::wasmssa
+}
+MLIR_NAMESPACE_END // namespace mlir::wasmssa

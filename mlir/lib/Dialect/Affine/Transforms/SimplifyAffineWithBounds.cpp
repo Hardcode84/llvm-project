@@ -20,6 +20,7 @@
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/Interfaces/ValueBoundsOpInterface.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "affine-simplify-with-bounds"
 
@@ -229,12 +230,12 @@ void affine::populateSimplifyAffineWithBoundsPatterns(
 // Pass definition
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace affine {
 #define GEN_PASS_DEF_SIMPLIFYAFFINEWITHBOUNDS
 #include "mlir/Dialect/Affine/Transforms/Passes.h.inc"
 } // namespace affine
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace {
 struct SimplifyAffineWithBoundsPass

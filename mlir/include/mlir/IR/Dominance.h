@@ -21,12 +21,14 @@
 
 #include "mlir/IR/RegionGraphTraits.h"
 #include "llvm/Support/GenericDomTree.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
 extern template class llvm::DominatorTreeBase<mlir::Block, false>;
 extern template class llvm::DominatorTreeBase<mlir::Block, true>;
 extern template class llvm::DomTreeNodeBase<mlir::Block>;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 using DominanceInfoNode = llvm::DomTreeNodeBase<Block>;
 class Operation;
 
@@ -235,9 +237,9 @@ public:
   }
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// DominatorTree GraphTraits specialization so the DominatorTree can be
 /// iterated by generic graph iterators.
@@ -261,5 +263,5 @@ struct GraphTraits<const mlir::DominanceInfoNode *> {
   static inline ChildIteratorType child_end(NodeRef N) { return N->end(); }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

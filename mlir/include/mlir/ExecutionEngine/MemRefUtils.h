@@ -29,11 +29,12 @@
 #include <initializer_list>
 #include <memory>
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
 #ifndef MLIR_EXECUTIONENGINE_MEMREFUTILS_H_
 #define MLIR_EXECUTIONENGINE_MEMREFUTILS_H_
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 using AllocFunType = llvm::function_ref<void *(size_t)>;
 
 namespace detail {
@@ -208,6 +209,6 @@ private:
   DescriptorType descriptor;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_EXECUTIONENGINE_MEMREFUTILS_H_

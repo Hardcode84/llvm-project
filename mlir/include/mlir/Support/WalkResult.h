@@ -14,8 +14,9 @@
 #define MLIR_SUPPORT_WALKRESULT_H
 
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Diagnostic;
 class InFlightDiagnostic;
 
@@ -54,6 +55,6 @@ public:
   bool wasSkipped() const { return result == Skip; }
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif

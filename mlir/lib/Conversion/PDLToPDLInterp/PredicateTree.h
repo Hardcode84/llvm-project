@@ -17,8 +17,9 @@
 #include "Predicate.h"
 #include "mlir/Dialect/PDL/IR/PDLOps.h"
 #include "llvm/ADT/MapVector.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ModuleOp;
 
 namespace pdl_to_pdl_interp {
@@ -213,6 +214,6 @@ private:
 };
 
 } // namespace pdl_to_pdl_interp
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_PDLTOPDLINTERP_PREDICATETREE_H_

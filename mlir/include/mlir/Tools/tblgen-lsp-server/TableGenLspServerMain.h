@@ -13,13 +13,16 @@
 #ifndef MLIR_TOOLS_TBLGENLSPSERVER_TABLEGENLSPSERVERMAIN_H
 #define MLIR_TOOLS_TBLGENLSPSERVER_TABLEGENLSPSERVERMAIN_H
 
-namespace llvm {
-struct LogicalResult;
-} // namespace llvm
 
-namespace mlir {
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
+LLVM_NAMESPACE_BEGIN
+struct LogicalResult;
+LLVM_NAMESPACE_END // namespace llvm
+
+MLIR_NAMESPACE_BEGIN
 /// Implementation for tools like `tblgen-lsp-server`.
 llvm::LogicalResult TableGenLspServerMain(int argc, char **argv);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_TBLGENLSPSERVER_TABLEGENLSPSERVERMAIN_H

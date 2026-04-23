@@ -11,8 +11,9 @@
 
 #include "mlir/Pass/Pass.h"
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class SPIRVTypeConverter;
 class RewritePatternSet;
@@ -27,6 +28,6 @@ void populateArithToSPIRVPatterns(const SPIRVTypeConverter &typeConverter,
 
 std::unique_ptr<OperationPass<>> createConvertArithToSPIRVPass();
 } // namespace arith
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_ARITHTOSPIRV_ARITHTOSPIRV_H

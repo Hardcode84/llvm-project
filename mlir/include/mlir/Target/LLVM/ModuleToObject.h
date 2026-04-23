@@ -16,12 +16,14 @@
 
 #include "mlir/IR/Operation.h"
 #include "llvm/IR/Module.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class TargetMachine;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace LLVM {
 class ModuleTranslation;
 /// Utility base class for transforming operations into binary objects, by
@@ -141,6 +143,6 @@ private:
   std::unique_ptr<llvm::TargetMachine> targetMachine;
 };
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_LLVM_MODULETOOBJECT_H

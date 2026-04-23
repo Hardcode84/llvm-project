@@ -46,8 +46,9 @@
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/Arith/IR/ArithOps.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace arith {
 
 /// Specialization of `arith.constant` op that returns an integer value.
@@ -128,13 +129,13 @@ public:
 };
 
 } // namespace arith
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Utility Functions
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace arith {
 
 /// Compute `lhs` `pred` `rhs`, where `pred` is one of the known integer
@@ -183,6 +184,6 @@ arith::CmpIPredicate invertPredicate(arith::CmpIPredicate pred);
 /// `arith.constant`.
 Value getZeroConstant(OpBuilder &builder, Location loc, Type type);
 } // namespace arith
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_ARITH_IR_ARITH_H_

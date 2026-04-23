@@ -15,8 +15,9 @@
 
 #include "mlir/Dialect/LLVMIR/LLVMDialect.h"
 #include <deque>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace LLVM {
 
 /// Rewriter for DIExpressionAttr.
@@ -62,6 +63,6 @@ private:
 };
 
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_LLVMIR_TRANSFORMS_DIEXPRESSIONREWRITER_H

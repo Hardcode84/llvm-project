@@ -16,8 +16,9 @@
 
 #include "mlir/Query/Matcher/Registry.h"
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class MLIRContext;
 
@@ -25,6 +26,6 @@ LogicalResult
 mlirQueryMain(int argc, char **argv, MLIRContext &context,
               const mlir::query::matcher::Registry &matcherRegistry);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_MLIRQUERY_MLIRQUERYMAIN_H

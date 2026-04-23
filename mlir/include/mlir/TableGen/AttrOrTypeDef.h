@@ -18,14 +18,16 @@
 #include "mlir/TableGen/Builder.h"
 #include "mlir/TableGen/Constraint.h"
 #include "mlir/TableGen/Trait.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DagInit;
 class Record;
 class SMLoc;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tblgen {
 class Dialect;
 
@@ -294,6 +296,6 @@ public:
 };
 
 } // namespace tblgen
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TABLEGEN_ATTRORTYPEDEF_H

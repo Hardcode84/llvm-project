@@ -14,8 +14,9 @@
 #include "mlir/Dialect/Transform/Interfaces/TransformInterfaces.h"
 #include "mlir/IR/OpImplementation.h"
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace gpu {
 class GPUOp;
 class LaunchOp;
@@ -174,6 +175,6 @@ findTopLevelForallOp(Operation *target, scf::ForallOp &topLevelForallOp,
 
 } // namespace gpu
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_GPU_TRANSFORMOPS_UTILS_H

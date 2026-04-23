@@ -7,8 +7,10 @@
 //===----------------------------------------------------------------------===//
 
 #include "mlir/Query/Matcher/MatchersInternal.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::query::matcher {
+MLIR_NAMESPACE_BEGIN
+namespace query::matcher {
 
 namespace internal {
 
@@ -29,4 +31,5 @@ bool anyOfVariadicOperator(Operation *op, SetVector<Operation *> *matchedOps,
   });
 }
 } // namespace internal
-} // namespace mlir::query::matcher
+}
+MLIR_NAMESPACE_END // namespace mlir::query::matcher

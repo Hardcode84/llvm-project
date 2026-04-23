@@ -11,8 +11,9 @@
 
 #include "mlir/Transforms/DialectConversion.h"
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 class Pass;
 class RewritePatternSet;
@@ -25,6 +26,6 @@ void populateSCFToEmitCConversionPatterns(RewritePatternSet &patterns,
                                           TypeConverter &typeConverter);
 
 void registerConvertSCFToEmitCInterface(DialectRegistry &registry);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_SCFTOEMITC_SCFTOEMITC_H

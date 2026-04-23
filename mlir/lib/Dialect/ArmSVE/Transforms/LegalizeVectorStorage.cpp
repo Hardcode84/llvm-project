@@ -12,11 +12,14 @@
 #include "mlir/Dialect/MemRef/IR/MemRef.h"
 #include "mlir/Dialect/Vector/IR/VectorOps.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::arm_sve {
+MLIR_NAMESPACE_BEGIN
+namespace arm_sve {
 #define GEN_PASS_DEF_LEGALIZEVECTORSTORAGE
 #include "mlir/Dialect/ArmSVE/Transforms/Passes.h.inc"
-} // namespace mlir::arm_sve
+}
+MLIR_NAMESPACE_END // namespace mlir::arm_sve
 
 using namespace mlir;
 using namespace mlir::arm_sve;

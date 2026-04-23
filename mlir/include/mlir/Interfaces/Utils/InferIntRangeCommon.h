@@ -18,8 +18,9 @@
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/BitmaskEnum.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class AffineExpr;
 class ShapedDimOpInterface;
 
@@ -159,6 +160,6 @@ ConstantIntRanges inferAffineExpr(AffineExpr expr,
                                   ArrayRef<ConstantIntRanges> symbolRanges);
 
 } // namespace intrange
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_INTERFACES_UTILS_INFERINTRANGECOMMON_H

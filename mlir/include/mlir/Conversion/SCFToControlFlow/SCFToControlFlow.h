@@ -10,8 +10,9 @@
 #define MLIR_CONVERSION_SCFTOCONTROLFLOW_SCFTOCONTROLFLOW_H_
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Pass;
 class RewritePatternSet;
 
@@ -22,6 +23,6 @@ class RewritePatternSet;
 /// operations within the ControlFlow dialect.
 void populateSCFToControlFlowConversionPatterns(RewritePatternSet &patterns);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_SCFTOCONTROLFLOW_SCFTOCONTROLFLOW_H_

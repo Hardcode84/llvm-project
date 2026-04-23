@@ -19,6 +19,7 @@
 #include "llvm/ADT/DepthFirstIterator.h"
 #include "llvm/ADT/StringExtras.h"
 #include "llvm/Support/Debug.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "spirv-serialization"
 
@@ -55,7 +56,7 @@ visitInPrettyBlockOrder(Block *headerBlock,
   return success();
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace spirv {
 LogicalResult Serializer::processConstantOp(spirv::ConstantOp op) {
   if (auto resultID =
@@ -1021,4 +1022,4 @@ LogicalResult Serializer::processOp<spirv::GenericCastToPtrExplicitOp>(
 #include "mlir/Dialect/SPIRV/IR/SPIRVSerialization.inc"
 
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

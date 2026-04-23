@@ -17,8 +17,9 @@
 #include "mlir/Rewrite/FrozenRewritePatternSet.h"
 
 #include "mlir/IR/Action.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class PatternRewriter;
 
 namespace detail {
@@ -96,6 +97,6 @@ private:
   std::unique_ptr<detail::PDLByteCodeMutableState> mutableByteCodeState;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_REWRITE_PATTERNAPPLICATOR_H

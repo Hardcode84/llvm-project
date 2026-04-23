@@ -11,11 +11,12 @@
 #include "mlir/Dialect/Affine/IR/AffineOps.h"
 #include "mlir/Interfaces/ValueBoundsOpInterface.h"
 #include "llvm/ADT/SmallVectorExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::affine;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace {
 
 struct AffineApplyOpInterface
@@ -151,7 +152,7 @@ struct AffineLinearizeIndexOpInterface
   }
 };
 } // namespace
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 void mlir::affine::registerValueBoundsOpInterfaceExternalModels(
     DialectRegistry &registry) {

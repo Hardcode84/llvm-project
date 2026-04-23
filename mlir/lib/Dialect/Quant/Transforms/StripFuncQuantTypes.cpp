@@ -17,8 +17,9 @@
 #include "mlir/Dialect/Quant/Transforms/Passes.h"
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace quant {
 
 #define GEN_PASS_DEF_STRIPFUNCQUANTTYPES
@@ -96,4 +97,4 @@ public:
 } // namespace
 
 } // namespace quant
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

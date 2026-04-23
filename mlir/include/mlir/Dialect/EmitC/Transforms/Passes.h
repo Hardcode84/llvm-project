@@ -10,8 +10,9 @@
 #define MLIR_DIALECT_EMITC_TRANSFORMS_PASSES_H_
 
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace emitc {
 
 #define GEN_PASS_DECL_FORMEXPRESSIONSPASS
@@ -27,6 +28,6 @@ namespace emitc {
 #include "mlir/Dialect/EmitC/Transforms/Passes.h.inc"
 
 } // namespace emitc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_EMITC_TRANSFORMS_PASSES_H_

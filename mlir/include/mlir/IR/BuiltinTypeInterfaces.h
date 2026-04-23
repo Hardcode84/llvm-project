@@ -11,12 +11,14 @@
 
 #include "mlir/IR/OpAsmSupport.h"
 #include "mlir/IR/Types.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct fltSemantics;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class FloatType;
 class MLIRContext;
 
@@ -42,7 +44,7 @@ llvm::APInt readBits(const char *rawData, size_t bitPos, size_t bitWidth);
 /// endianness correctly.
 void writeBits(char *rawData, size_t bitPos, llvm::APInt value);
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/IR/BuiltinTypeInterfaces.h.inc"
 #include "mlir/IR/OpAsmTypeInterface.h.inc"

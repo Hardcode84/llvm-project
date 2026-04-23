@@ -9,13 +9,15 @@
 #ifndef MLIR_DIALECT_TRANSFORM_TUNEEXTENSION_TUNEEXTENSION_H
 #define MLIR_DIALECT_TRANSFORM_TUNEEXTENSION_TUNEEXTENSION_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace transform {
 /// Registers the tune extension of the Transform dialect in the given registry.
 void registerTuneExtension(DialectRegistry &dialectRegistry);
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TRANSFORM_TUNEEXTENSION_TUNEEXTENSION_H

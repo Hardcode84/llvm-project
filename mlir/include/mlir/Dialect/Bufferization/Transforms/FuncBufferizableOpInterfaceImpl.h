@@ -13,8 +13,9 @@
 #include "mlir/Dialect/Bufferization/Transforms/OneShotAnalysis.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "llvm/ADT/SmallVector.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace func {
@@ -80,6 +81,6 @@ struct FuncAnalysisState : public OneShotAnalysisState::Extension {
 void registerBufferizableOpInterfaceExternalModels(DialectRegistry &registry);
 } // namespace func_ext
 } // namespace bufferization
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_BUFFERIZATION_TRANSFORMS_FUNCBUFFERIZABLEOPINTERFACEIMPL_H

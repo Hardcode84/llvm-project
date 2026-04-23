@@ -15,8 +15,9 @@
 #define MLIR_IR_IRMAPPING_H
 
 #include "mlir/IR/Block.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 /// This is a utility class for mapping one set of IR entities to another. New
 /// mappings can be inserted via 'map'. Existing mappings can be
 /// found via the 'lookup*' functions. There are three variants that differ only
@@ -115,6 +116,6 @@ private:
   DenseMap<Operation *, Operation *> operationMap;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_IR_IRMAPPING_H

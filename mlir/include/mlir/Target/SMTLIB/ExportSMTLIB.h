@@ -14,8 +14,9 @@
 #define MLIR_TARGET_EXPORTSMTLIB_H
 
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Operation;
 namespace smt {
 
@@ -40,6 +41,6 @@ exportSMTLIB(Operation *module, llvm::raw_ostream &os,
 void registerExportSMTLIBTranslation();
 
 } // namespace smt
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_EXPORTSMTLIB_H

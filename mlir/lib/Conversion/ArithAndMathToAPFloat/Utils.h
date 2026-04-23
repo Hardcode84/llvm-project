@@ -11,8 +11,9 @@
 
 #include "mlir/Dialect/Vector/IR/VectorOps.h"
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Value;
 class OpBuilder;
 class Location;
@@ -33,6 +34,6 @@ Value forEachScalarValue(mlir::RewriterBase &rewriter, Location loc,
 /// 2. The bitwidth of the operands / results must be <= 64.
 LogicalResult checkPreconditions(RewriterBase &rewriter, Operation *op);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_ARITHANDMATHTOAPFLOAT_UTILS_H_

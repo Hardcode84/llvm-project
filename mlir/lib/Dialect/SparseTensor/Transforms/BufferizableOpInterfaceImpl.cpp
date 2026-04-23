@@ -16,11 +16,12 @@
 #include "mlir/Dialect/SparseTensor/IR/SparseTensor.h"
 #include "mlir/IR/Operation.h"
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir::bufferization;
 using namespace mlir::sparse_tensor;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace sparse_tensor {
 namespace {
 
@@ -339,7 +340,7 @@ struct ToValuesOpInterface
 
 } // namespace
 } // namespace sparse_tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 void mlir::sparse_tensor::registerBufferizableOpInterfaceExternalModels(
     DialectRegistry &registry) {

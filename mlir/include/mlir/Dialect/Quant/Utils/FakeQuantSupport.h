@@ -38,8 +38,9 @@
 #define MLIR_DIALECT_QUANT_UTILS_FAKEQUANTSUPPORT_H_
 
 #include "mlir/Dialect/Quant/IR/QuantTypes.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace quant {
 
 /// Converts per-layer FakeQuant attributes to the corresponding type.
@@ -62,6 +63,6 @@ fakeQuantAttrsToType(Location loc, unsigned numBits, int32_t quantizedDimension,
                      bool narrowRange, Type expressedType,
                      bool isSigned = false);
 } // namespace quant
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_QUANT_UTILS_FAKEQUANTSUPPORT_H_

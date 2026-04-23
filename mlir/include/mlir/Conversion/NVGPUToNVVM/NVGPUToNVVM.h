@@ -9,8 +9,9 @@
 #define MLIR_CONVERSION_NVGPUTONVVM_NVGPUTONVVMPASS_H_
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class Attribute;
 class LLVMTypeConverter;
@@ -43,6 +44,6 @@ void populateCommonGPUTypeAndAttributeConversions(TypeConverter &typeConverter);
 
 void populateNVGPUToNVVMConversionPatterns(const LLVMTypeConverter &converter,
                                            RewritePatternSet &patterns);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_NVGPUTONVVM_NVGPUTONVVMPASS_H_

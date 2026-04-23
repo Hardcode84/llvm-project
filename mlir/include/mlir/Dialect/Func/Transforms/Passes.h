@@ -16,8 +16,9 @@
 
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class RewritePatternSet;
 
 namespace func {
@@ -34,6 +35,6 @@ namespace func {
 #include "mlir/Dialect/Func/Transforms/Passes.h.inc"
 
 } // namespace func
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_FUNC_TRANSFORMS_PASSES_H

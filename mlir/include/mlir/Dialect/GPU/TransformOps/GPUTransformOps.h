@@ -12,12 +12,13 @@
 #include "mlir/Dialect/SCF/IR/SCF.h"
 #include "mlir/Dialect/Transform/Interfaces/TransformInterfaces.h"
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace gpu {
 class GpuOp;
 } // namespace gpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // GPU Transform Operations
@@ -26,7 +27,7 @@ class GpuOp;
 #define GET_OP_CLASSES
 #include "mlir/Dialect/GPU/TransformOps/GPUTransformOps.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 namespace transform {
 namespace gpu {
@@ -82,6 +83,6 @@ mapNestedForallToThreadsImpl(RewriterBase &rewriter,
 namespace gpu {
 void registerTransformDialectExtension(DialectRegistry &registry);
 } // namespace gpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_GPU_TRANSFORMOPS_GPUTRANSFORMOPS_H

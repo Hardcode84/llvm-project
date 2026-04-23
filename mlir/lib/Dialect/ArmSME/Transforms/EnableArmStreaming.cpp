@@ -38,15 +38,16 @@
 #include "mlir/Dialect/ArmSME/Transforms/PassesEnums.cpp.inc"
 
 #include "mlir/Dialect/Func/IR/FuncOps.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "enable-arm-streaming"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace arm_sme {
 #define GEN_PASS_DEF_ENABLEARMSTREAMING
 #include "mlir/Dialect/ArmSME/Transforms/Passes.h.inc"
 } // namespace arm_sme
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 using namespace mlir::arm_sme;

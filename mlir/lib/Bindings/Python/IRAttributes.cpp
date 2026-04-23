@@ -24,6 +24,7 @@
 #include "mlir/Bindings/Python/Nanobind.h"
 #include "mlir/Bindings/Python/NanobindAdaptors.h"
 #include "mlir/Bindings/Python/NanobindUtils.h"
+#include "mlir/Support/ABINamespace.h"
 
 namespace nb = nanobind;
 using namespace nanobind::literals;
@@ -149,7 +150,7 @@ template <typename Callable>
 scope_exit(Callable) -> scope_exit<Callable>;
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace python {
 namespace MLIR_BINDINGS_PYTHON_DOMAIN {
 
@@ -1542,4 +1543,4 @@ void populateIRAttributes(nb::module_ &m) {
 }
 } // namespace MLIR_BINDINGS_PYTHON_DOMAIN
 } // namespace python
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

@@ -18,8 +18,9 @@
 #include "mlir/Dialect/Quant/Transforms/Passes.h"
 #include "mlir/Transforms/DialectConversion.h"
 #include "llvm/ADT/SmallVectorExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace quant {
 
 #define GEN_PASS_DEF_NORMALIZEQUANTTYPES
@@ -176,4 +177,4 @@ public:
 } // namespace
 
 } // namespace quant
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

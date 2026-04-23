@@ -10,8 +10,9 @@
 #define MLIR_CONVERSION_ARMNEON2DTOINTR_ARMNEON2DTOINTR_H_
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Pass;
 class RewritePatternSet;
 
@@ -22,6 +23,6 @@ class RewritePatternSet;
 /// See createConvertArmNeon2dToIntrPass.
 void populateConvertArmNeon2dToIntrPatterns(RewritePatternSet &patterns);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_ARMNEON2DTOINTR_ARMNEON2DTOINTR_H_

@@ -30,6 +30,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <variant>
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "wasm-translate"
 
@@ -1950,7 +1951,8 @@ LogicalResult WasmBinaryParser::parseSectionItem<WasmSectionType::CODE>(
 }
 } // namespace
 
-namespace mlir::wasm {
+MLIR_NAMESPACE_BEGIN
+namespace wasm {
 OwningOpRef<ModuleOp> importWebAssemblyToModule(llvm::SourceMgr &source,
                                                 MLIRContext *context) {
   WasmBinaryParser wBN{source, context};
@@ -1960,4 +1962,5 @@ OwningOpRef<ModuleOp> importWebAssemblyToModule(llvm::SourceMgr &source,
 
   return {nullptr};
 }
-} // namespace mlir::wasm
+}
+MLIR_NAMESPACE_END // namespace mlir::wasm

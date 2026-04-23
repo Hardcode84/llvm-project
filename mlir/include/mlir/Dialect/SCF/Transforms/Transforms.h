@@ -17,8 +17,9 @@
 #include "mlir/Dialect/SCF/Utils/AffineCanonicalizationUtils.h"
 #include "mlir/Support/LLVM.h"
 #include "llvm/ADT/ArrayRef.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Region;
 class RewriterBase;
 class Operation;
@@ -250,6 +251,6 @@ FailureOr<WhileOp> wrapWhileLoopInZeroTripCheck(WhileOp whileOp,
 FailureOr<ForOp> upliftWhileToForLoop(RewriterBase &rewriter, WhileOp loop);
 
 } // namespace scf
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SCF_TRANSFORMS_TRANSFORMS_H_

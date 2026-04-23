@@ -10,8 +10,9 @@
 #define MLIR_CONVERSION_VECTORTOXEGPU_VECTORTOXEGPU_H
 
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Pass;
 class RewritePatternSet;
 
@@ -21,6 +22,6 @@ class RewritePatternSet;
 /// Collect a set of patterns to convert from the vector to XeGPU ops.
 void populateVectorToXeGPUConversionPatterns(RewritePatternSet &patterns);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_VECTORTOXEGPU_VECTORTOXEGPU_H

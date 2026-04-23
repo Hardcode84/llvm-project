@@ -16,12 +16,14 @@
 #include "mlir/IR/Attributes.h"
 #include "mlir/IR/BuiltinAttributes.h"
 #include "llvm/IR/Module.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class IRBuilderBase;
-}
+LLVM_NAMESPACE_END
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class SymbolTable;
 namespace LLVM {
 class ModuleTranslation;
@@ -190,7 +192,7 @@ private:
 };
 
 } // namespace gpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 MLIR_DECLARE_EXPLICIT_TYPE_ID(::mlir::gpu::TargetOptions)
 

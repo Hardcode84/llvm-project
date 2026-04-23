@@ -36,8 +36,9 @@
 #include "mlir/IR/OperationSupport.h"
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/IR/Types.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace pdl_to_pdl_interp {
 namespace Predicates {
 /// An enumeration of the kinds of predicates.
@@ -779,6 +780,6 @@ private:
 };
 
 } // namespace pdl_to_pdl_interp
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_PDLTOPDLINTERP_PREDICATE_H_

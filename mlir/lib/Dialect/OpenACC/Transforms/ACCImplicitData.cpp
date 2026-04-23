@@ -217,13 +217,14 @@
 #include "llvm/ADT/TypeSwitch.h"
 #include "llvm/Support/ErrorHandling.h"
 #include <type_traits>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace acc {
 #define GEN_PASS_DEF_ACCIMPLICITDATA
 #include "mlir/Dialect/OpenACC/Transforms/Passes.h.inc"
 } // namespace acc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define DEBUG_TYPE "acc-implicit-data"
 

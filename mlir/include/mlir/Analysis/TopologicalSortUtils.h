@@ -10,8 +10,9 @@
 #define MLIR_ANALYSIS_TOPOLOGICALSORTUTILS_H
 
 #include "mlir/IR/Block.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Given a block, sort a range operations in said block in topological order.
 /// The main purpose is readability of graph regions, potentially faster
@@ -112,6 +113,6 @@ SetVector<Block *> getBlocksSortedByDominance(Region &region);
 /// semantics. Does not support multi-sets.
 SetVector<Operation *> topologicalSort(const SetVector<Operation *> &toSort);
 
-} // end namespace mlir
+MLIR_NAMESPACE_END // end namespace mlir
 
 #endif // MLIR_ANALYSIS_TOPOLOGICALSORTUTILS_H

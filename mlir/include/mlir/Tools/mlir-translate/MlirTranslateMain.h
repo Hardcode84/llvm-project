@@ -15,14 +15,15 @@
 
 #include "mlir/Support/LLVM.h"
 #include "llvm/ADT/StringRef.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 /// Translate to/from an MLIR module from/to an external representation (e.g.
 /// LLVM IR, SPIRV binary, ...). This is the entry point for the implementation
 /// of tools like `mlir-translate`. The translation to perform is parsed from
 /// the command line. The `toolName` argument is used for the header displayed
 /// by `--help`.
 LogicalResult mlirTranslateMain(int argc, char **argv, StringRef toolName);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_MLIRTRANSLATE_MLIRTRANSLATEMAIN_H

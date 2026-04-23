@@ -20,8 +20,9 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Compiler.h"
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class OpPassManager;
 
 namespace detail {
@@ -393,13 +394,13 @@ public:
 /// any options.
 struct EmptyPipelineOptions : public PassPipelineOptions<EmptyPipelineOptions> {
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // MLIR Options
 //===----------------------------------------------------------------------===//
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace cl {
 //===----------------------------------------------------------------------===//
 // std::vector+SmallVector
@@ -554,6 +555,6 @@ public:
 };
 
 } // namespace cl
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MLIR_PASS_PASSOPTIONS_H_

@@ -18,13 +18,14 @@
 #include "mlir/Dialect/GPU/Transforms/ParallelLoopMapper.h"
 #include "mlir/Dialect/SCF/IR/SCF.h"
 #include "mlir/IR/AffineMap.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_GPUMAPPARALLELLOOPSPASS
 #include "mlir/Dialect/GPU/Transforms/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 using scf::ParallelOp;
 
@@ -190,4 +191,4 @@ struct GpuMapParallelLoopsPass
 
 } // namespace
 } // namespace gpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

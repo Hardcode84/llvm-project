@@ -15,8 +15,9 @@
 #include "llvm/ADT/PointerIntPair.h"
 #include "llvm/ADT/Statistic.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class PassInstrumentation;
 namespace detail {
 class OpToOpPassAdaptor;
@@ -535,7 +536,7 @@ public:
   Operation *op;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// Define a TypeID for this PassExecutionAction.
 MLIR_DECLARE_EXPLICIT_TYPE_ID(::mlir::PassExecutionAction)

@@ -10,8 +10,9 @@
 #define MLIR_TRANSFORMS_CONTROLFLOWSINKUTILS_H
 
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class DominanceInfo;
 class Operation;
@@ -73,6 +74,6 @@ controlFlowSink(RegionRange regions, DominanceInfo &domInfo,
 void getSinglyExecutedRegionsToSink(RegionBranchOpInterface branch,
                                     SmallVectorImpl<Region *> &regions);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRANSFORMS_CONTROLFLOWSINKUTILS_H

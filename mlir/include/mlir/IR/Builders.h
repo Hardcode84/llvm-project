@@ -12,8 +12,9 @@
 #include "mlir/IR/OpDefinition.h"
 #include "llvm/Support/Compiler.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class AffineExpr;
 class IRMapping;
@@ -716,6 +717,6 @@ private:
   Location curLoc;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif

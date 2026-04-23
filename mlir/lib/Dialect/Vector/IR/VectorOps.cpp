@@ -55,6 +55,7 @@
 #include "mlir/Dialect/Vector/IR/VectorDialect.cpp.inc"
 // Pull in all enum type and utility function definitions.
 #include "mlir/Dialect/Vector/IR/VectorEnums.cpp.inc"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::vector;
@@ -431,7 +432,7 @@ static Attribute convertNumericAttr(Attribute attr, Type expectedType) {
 // CombiningKindAttr
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace vector {
 namespace detail {
 struct BitmaskEnumStorage : public AttributeStorage {
@@ -451,7 +452,7 @@ struct BitmaskEnumStorage : public AttributeStorage {
 };
 } // namespace detail
 } // namespace vector
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // VectorDialect

@@ -11,11 +11,12 @@
 
 #include "mlir/Conversion/MathToEmitC/MathToEmitC.h"
 #include <memory>
-namespace mlir {
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class Pass;
 
 #define GEN_PASS_DECL_CONVERTMATHTOEMITC
 #include "mlir/Conversion/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_MATHTOEMITC_MATHTOEMITCPASS_H

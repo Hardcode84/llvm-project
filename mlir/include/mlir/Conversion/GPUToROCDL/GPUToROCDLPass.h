@@ -11,8 +11,9 @@
 #include "mlir/Conversion/GPUToROCDL/Runtimes.h"
 #include "mlir/Conversion/LLVMCommon/LoweringOptions.h"
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Pass;
 class LLVMTypeConverter;
 class ConversionTarget;
@@ -43,6 +44,6 @@ void populateGpuToROCDLConversionPatterns(const LLVMTypeConverter &converter,
 /// Configure target to convert from the GPU dialect to ROCDL.
 void configureGpuToROCDLConversionLegality(ConversionTarget &target);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_GPUTOROCDL_GPUTOROCDLPASS_H_

@@ -16,8 +16,9 @@
 #include "mlir/Analysis/DataFlow/ConstantPropagationAnalysis.h"
 #include "mlir/Analysis/DataFlow/DeadCodeAnalysis.h"
 #include "mlir/Analysis/DataFlowFramework.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace dataflow {
 
 /// Populates a DataFlowSolver with analyses that are required to ensure
@@ -32,6 +33,6 @@ inline void loadBaselineAnalyses(DataFlowSolver &solver) {
 }
 
 } // end namespace dataflow
-} // end namespace mlir
+MLIR_NAMESPACE_END // end namespace mlir
 
 #endif // MLIR_ANALYSIS_DATAFLOW_INTEGERANGEANALYSIS_H

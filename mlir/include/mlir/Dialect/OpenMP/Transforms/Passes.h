@@ -10,8 +10,9 @@
 #define MLIR_DIALECT_OPENMP_TRANSFORMS_PASSES_H
 
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 namespace omp {
 
@@ -21,6 +22,6 @@ namespace omp {
 #include "mlir/Dialect/OpenMP/Transforms/Passes.h.inc"
 
 } // namespace omp
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_LLVMIR_TRANSFORMS_PASSES_H

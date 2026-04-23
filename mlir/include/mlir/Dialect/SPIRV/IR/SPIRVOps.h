@@ -32,20 +32,22 @@
 // TableGen'erated operation interfaces for querying versions, extensions, and
 // capabilities.
 #include "mlir/Dialect/SPIRV/IR/SPIRVAvailability.h.inc"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class OpBuilder;
 
 namespace spirv {
 class VerCapExtAttr;
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 // TablenGen'erated operation declarations.
 #define GET_OP_CLASSES
 #include "mlir/Dialect/SPIRV/IR/SPIRVOps.h.inc"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Allow stealing the low bits of spirv::Function ops.
 template <>
@@ -60,6 +62,6 @@ public:
   static constexpr int NumLowBitsAvailable = 3;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MLIR_DIALECT_SPIRV_IR_SPIRVOPS_H_

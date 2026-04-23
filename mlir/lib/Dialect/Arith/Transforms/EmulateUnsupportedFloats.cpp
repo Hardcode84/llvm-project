@@ -22,11 +22,14 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/Support/ErrorHandling.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::arith {
+MLIR_NAMESPACE_BEGIN
+namespace arith {
 #define GEN_PASS_DEF_ARITHEMULATEUNSUPPORTEDFLOATS
 #include "mlir/Dialect/Arith/Transforms/Passes.h.inc"
-} // namespace mlir::arith
+}
+MLIR_NAMESPACE_END // namespace mlir::arith
 
 using namespace mlir;
 

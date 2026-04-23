@@ -17,8 +17,9 @@
 
 #include "mlir/IR/OpImplementation.h"
 #include "mlir/Interfaces/FunctionInterfaces.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 namespace function_interface_impl {
 
@@ -90,6 +91,6 @@ void printFunctionAttributes(OpAsmPrinter &p, Operation *op,
 
 } // namespace function_interface_impl
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_IR_FUNCTIONIMPLEMENTATION_H_

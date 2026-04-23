@@ -14,8 +14,9 @@
 #include "mlir/Dialect/XeGPU/uArch/IntelGpuXe2.h"
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/IR/OpDefinition.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class VectorType;
 class OpOperand;
@@ -206,6 +207,6 @@ DistributeLayoutAttr getConsumerLayoutAt(OpOperand &operand);
 
 } // namespace xegpu
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_XEGPU_UTILS_XEGPUUTILS_H_

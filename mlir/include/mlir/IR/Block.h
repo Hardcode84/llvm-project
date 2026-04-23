@@ -17,13 +17,15 @@
 #include "mlir/IR/Visitors.h"
 
 #include "llvm/ADT/SmallPtrSet.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BitVector;
 class raw_ostream;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class TypeRange;
 template <typename ValueRangeT>
 class ValueTypeRange;
@@ -435,9 +437,9 @@ private:
 };
 
 raw_ostream &operator<<(raw_ostream &, Block &);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <>
 struct DenseMapInfo<mlir::Block::iterator> {
   static mlir::Block::iterator getEmptyKey() {
@@ -456,6 +458,6 @@ struct DenseMapInfo<mlir::Block::iterator> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // MLIR_IR_BLOCK_H

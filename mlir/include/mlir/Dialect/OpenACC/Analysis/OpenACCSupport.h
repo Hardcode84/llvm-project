@@ -60,8 +60,9 @@
 #include <functional>
 #include <memory>
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace acc {
 
 namespace detail {
@@ -319,6 +320,6 @@ private:
 };
 
 } // namespace acc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_OPENACC_ANALYSIS_OPENACCSUPPORT_H

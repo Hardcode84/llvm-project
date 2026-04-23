@@ -23,8 +23,9 @@
 #include "llvm/ADT/APFloat.h"
 #include "llvm/Support/Allocator.h"
 #include <mutex>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 
 //===----------------------------------------------------------------------===//
@@ -335,6 +336,6 @@ private:
   std::mutex allocatorMutex;
 };
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // ATTRIBUTEDETAIL_H_

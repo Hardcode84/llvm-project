@@ -16,8 +16,9 @@
 #include "mlir/Support/LLVM.h"
 #include "llvm/ADT/ArrayRef.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class AffineExpr;
 class AffineMap;
 class BlockArgument;
@@ -128,6 +129,6 @@ bool isTilingValid(ArrayRef<AffineForOp> loops);
 bool hasCyclicDependence(AffineForOp root);
 
 } // namespace affine
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_AFFINE_ANALYSIS_LOOPANALYSIS_H

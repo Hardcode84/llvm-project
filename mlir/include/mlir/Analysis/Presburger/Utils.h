@@ -20,8 +20,9 @@
 #include "llvm/Support/raw_ostream.h"
 #include <optional>
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace presburger {
 class IntegerRelation;
 
@@ -343,6 +344,6 @@ void printWithPrintMetrics(raw_ostream &os, T val, unsigned minSpacing,
     os << " ";
 }
 } // namespace presburger
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_ANALYSIS_PRESBURGER_UTILS_H

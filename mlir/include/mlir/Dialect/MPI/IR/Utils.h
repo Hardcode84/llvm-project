@@ -12,8 +12,9 @@
 #include "mlir/Dialect/DLTI/DLTI.h"
 #include "mlir/Dialect/MPI/IR/MPI.h"
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace mpi {
 template <typename OpT>
 LogicalResult FoldToDLTIConst(OpT op, const char *key,
@@ -39,6 +40,6 @@ LogicalResult FoldToDLTIConst(OpT op, const char *key,
   return mlir::success();
 }
 } // namespace mpi
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_MPI_IR_UTILS_H_

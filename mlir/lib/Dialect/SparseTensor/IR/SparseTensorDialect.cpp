@@ -40,17 +40,20 @@ static void printLevelRange(mlir::AsmPrinter &, mlir::sparse_tensor::Level,
 
 #define GET_TYPEDEF_CLASSES
 #include "mlir/Dialect/SparseTensor/IR/SparseTensorTypes.cpp.inc"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::sparse_tensor;
 
 // Support hashing LevelType such that SparseTensorEncodingAttr can be hashed as
 // well.
-namespace mlir::sparse_tensor {
+MLIR_NAMESPACE_BEGIN
+namespace sparse_tensor {
 static llvm::hash_code hash_value(LevelType lt) {
   return llvm::hash_value(static_cast<uint64_t>(lt));
 }
-} // namespace mlir::sparse_tensor
+}
+MLIR_NAMESPACE_END // namespace mlir::sparse_tensor
 
 //===----------------------------------------------------------------------===//
 // Local Convenience Methods.

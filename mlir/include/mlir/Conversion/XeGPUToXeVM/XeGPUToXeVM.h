@@ -9,8 +9,9 @@
 #define MLIR_CONVERSION_XEGPUTOXEVM_XEGPUTOXEVM_H_
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 class LLVMTypeConverter;
 class RewritePatternSet;
@@ -22,6 +23,6 @@ class Pass;
 void populateXeGPUToXeVMConversionPatterns(
     const LLVMTypeConverter &typeConverter, RewritePatternSet &patterns);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_XEGPUTOXEVM_XEGPUTOXEVM_H_

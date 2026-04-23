@@ -14,8 +14,9 @@
 #define MLIR_CONVERSION_TOSATOTENSOR_TOSATOTENSOR_H
 
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class TypeConverter;
 
 #define GEN_PASS_DECL_TOSATOTENSORPASS
@@ -27,6 +28,6 @@ void populateTosaToTensorConversionPatterns(const TypeConverter &converter,
                                             RewritePatternSet *patterns);
 
 } // namespace tosa
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_TOSATOTENSOR_TOSATOTENSOR_H

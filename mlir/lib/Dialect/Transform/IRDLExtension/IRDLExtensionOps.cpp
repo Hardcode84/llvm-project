@@ -19,8 +19,10 @@ using namespace mlir;
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/Transform/IRDLExtension/IRDLExtensionOps.cpp.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::transform {
+MLIR_NAMESPACE_BEGIN
+namespace transform {
 
 DiagnosedSilenceableFailure
 IRDLCollectMatchingOp::apply(TransformRewriter &rewriter,
@@ -81,4 +83,5 @@ LogicalResult IRDLCollectMatchingOp::verify() {
   return success();
 }
 
-} // namespace mlir::transform
+}
+MLIR_NAMESPACE_END // namespace mlir::transform

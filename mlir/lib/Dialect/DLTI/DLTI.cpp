@@ -24,6 +24,7 @@ using namespace mlir;
 
 #define GET_ATTRDEF_CLASSES
 #include "mlir/Dialect/DLTI/DLTIAttrs.cpp.inc"
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "dlti"
 
@@ -158,7 +159,7 @@ static LogicalResult verifyEntries(function_ref<InFlightDiagnostic()> emitError,
 //===----------------------------------------------------------------------===//
 // DataLayoutEntryAttr
 //===----------------------------------------------------------------------===//
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 class DataLayoutEntryAttrStorage : public AttributeStorage {
 public:
@@ -181,7 +182,7 @@ public:
   Attribute value;
 };
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 DataLayoutEntryAttr DataLayoutEntryAttr::get(StringAttr key, Attribute value) {
   return Base::get(key.getContext(), key, value);

@@ -62,13 +62,14 @@
 #include "mlir/Dialect/OpenACC/Transforms/ACCSpecializePatterns.h"
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace acc {
 #define GEN_PASS_DEF_ACCSPECIALIZEFORDEVICE
 #include "mlir/Dialect/OpenACC/Transforms/Passes.h.inc"
 } // namespace acc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 using namespace mlir::acc;

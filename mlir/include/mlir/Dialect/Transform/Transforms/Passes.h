@@ -11,8 +11,9 @@
 
 #include "mlir/Dialect/Transform/IR/TransformDialect.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Pass;
 
 namespace transform {
@@ -22,6 +23,6 @@ namespace transform {
 #define GEN_PASS_REGISTRATION
 #include "mlir/Dialect/Transform/Transforms/Passes.h.inc"
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TRANSFORM_TRANSFORMS_PASSES_H

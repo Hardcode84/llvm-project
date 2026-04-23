@@ -28,12 +28,13 @@
 #include "mlir/Transforms/RegionUtils.h"
 #include "llvm/Support/Debug.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_ASYNCTOASYNCRUNTIMEPASS
 #define GEN_PASS_DEF_ASYNCFUNCTOASYNCRUNTIMEPASS
 #include "mlir/Dialect/Async/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 using namespace mlir::async;

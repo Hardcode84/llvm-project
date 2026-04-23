@@ -13,13 +13,14 @@
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Dialect/SCF/IR/SCF.h"
 #include "mlir/Dialect/SCF/Utils/Utils.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace affine {
 #define GEN_PASS_DEF_LOOPCOALESCING
 #include "mlir/Dialect/Affine/Transforms/Passes.h.inc"
 } // namespace affine
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define PASS_NAME "loop-coalescing"
 #define DEBUG_TYPE PASS_NAME

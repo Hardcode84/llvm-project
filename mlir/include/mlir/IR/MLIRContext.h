@@ -15,12 +15,14 @@
 #include <functional>
 #include <memory>
 #include <vector>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class ThreadPoolInterface;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tracing {
 class Action;
 }
@@ -324,6 +326,6 @@ private:
 /// an MLIR context for initialization.
 void registerMLIRContextCLOptions();
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_IR_MLIRCONTEXT_H

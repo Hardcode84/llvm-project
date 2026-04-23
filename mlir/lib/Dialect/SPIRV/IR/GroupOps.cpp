@@ -15,10 +15,12 @@
 
 #include "SPIRVOpUtils.h"
 #include "SPIRVParsingUtils.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir::spirv::AttrNames;
 
-namespace mlir::spirv {
+MLIR_NAMESPACE_BEGIN
+namespace spirv {
 
 template <typename OpTy>
 static LogicalResult verifyGroupNonUniformArithmeticOp(Operation *groupOp) {
@@ -360,4 +362,5 @@ LogicalResult GroupIMulKHROp::verify() { return verifyGroupOp(*this); }
 
 LogicalResult GroupFMulKHROp::verify() { return verifyGroupOp(*this); }
 
-} // namespace mlir::spirv
+}
+MLIR_NAMESPACE_END // namespace mlir::spirv

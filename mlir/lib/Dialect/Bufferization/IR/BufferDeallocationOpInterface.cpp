@@ -14,18 +14,19 @@
 #include "mlir/IR/TypeUtilities.h"
 #include "mlir/IR/Value.h"
 #include "llvm/ADT/SetOperations.h"
+#include "mlir/Support/ABINamespace.h"
 
 //===----------------------------------------------------------------------===//
 // BufferDeallocationOpInterface
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace bufferization {
 
 #include "mlir/Dialect/Bufferization/IR/BufferDeallocationOpInterface.cpp.inc"
 
 } // namespace bufferization
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 using namespace bufferization;

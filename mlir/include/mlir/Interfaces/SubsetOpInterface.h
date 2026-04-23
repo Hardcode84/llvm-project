@@ -11,8 +11,9 @@
 
 #include "mlir/IR/OpDefinition.h"
 #include "mlir/Interfaces/ValueBoundsOpInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class SubsetOpInterface;
 class SubsetExtractionOpInterface;
 class SubsetInsertionOpInterface;
@@ -52,7 +53,7 @@ LogicalResult verifySubsetOpInterface(SubsetOpInterface op);
 LogicalResult verifySubsetExtractionOpInterface(SubsetExtractionOpInterface op);
 
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Interfaces/SubsetOpInterface.h.inc"
 

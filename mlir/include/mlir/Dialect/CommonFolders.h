@@ -26,8 +26,9 @@
 #include <cassert>
 #include <cstddef>
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace ub {
 class PoisonAttr;
 }
@@ -403,6 +404,6 @@ Attribute constFoldCastOp(ArrayRef<Attribute> operands, Type resType,
   }
   return {};
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_COMMONFOLDERS_H

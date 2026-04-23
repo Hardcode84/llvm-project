@@ -11,11 +11,14 @@
 #include "mlir/Dialect/AMDGPU/IR/AMDGPUDialect.h"
 #include "mlir/Dialect/MemRef/IR/MemRef.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::amdgpu {
+MLIR_NAMESPACE_BEGIN
+namespace amdgpu {
 #define GEN_PASS_DEF_AMDGPURESOLVESTRIDEDMETADATAPASS
 #include "mlir/Dialect/AMDGPU/Transforms/Passes.h.inc"
-} // namespace mlir::amdgpu
+}
+MLIR_NAMESPACE_END // namespace mlir::amdgpu
 
 using namespace mlir;
 using namespace mlir::amdgpu;

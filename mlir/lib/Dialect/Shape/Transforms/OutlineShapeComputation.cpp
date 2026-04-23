@@ -18,11 +18,12 @@
 #include "llvm/Support/Debug.h"
 #include <queue>
 #include <vector>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_OUTLINESHAPECOMPUTATIONPASS
 #include "mlir/Dialect/Shape/Transforms/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define DEBUG_TYPE "outline-shape-computation"
 

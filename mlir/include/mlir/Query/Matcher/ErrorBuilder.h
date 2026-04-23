@@ -16,8 +16,10 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/ADT/Twine.h"
 #include <initializer_list>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::query::matcher::internal {
+MLIR_NAMESPACE_BEGIN
+namespace query::matcher::internal {
 class Diagnostics;
 
 // Represents the line and column numbers in a source query.
@@ -63,6 +65,7 @@ enum class ErrorType {
 void addError(Diagnostics *error, SourceRange range, ErrorType errorType,
               std::initializer_list<llvm::Twine> errorTexts);
 
-} // namespace mlir::query::matcher::internal
+}
+MLIR_NAMESPACE_END // namespace mlir::query::matcher::internal
 
 #endif // MLIR_TOOLS_MLIRQUERY_MATCHER_ERRORBUILDER_H

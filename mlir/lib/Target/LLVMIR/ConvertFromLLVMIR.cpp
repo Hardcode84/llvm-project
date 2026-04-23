@@ -20,10 +20,11 @@
 #include "llvm/IR/Verifier.h"
 #include "llvm/IRReader/IRReader.h"
 #include "llvm/Support/SourceMgr.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerFromLLVMIRTranslation() {
   static llvm::cl::opt<bool> emitExpensiveWarnings(
       "emit-expensive-warnings",
@@ -96,4 +97,4 @@ void registerFromLLVMIRTranslation() {
         registerAllFromLLVMIRTranslations(registry);
       });
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

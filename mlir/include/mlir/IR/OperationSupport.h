@@ -32,12 +32,14 @@
 #include "llvm/Support/TrailingObjects.h"
 #include <memory>
 #include <optional>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BitVector;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Dialect;
 class DictionaryAttr;
 class ElementsAttr;
@@ -1446,9 +1448,9 @@ private:
   std::array<uint8_t, 20> hash;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <>
 struct DenseMapInfo<mlir::OperationName> {
   static mlir::OperationName getEmptyKey() {
@@ -1498,6 +1500,6 @@ struct PointerLikeTypeTraits<mlir::RegisteredOperationName>
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

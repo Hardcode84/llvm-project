@@ -10,8 +10,9 @@
 #define MLIR_DIALECT_EMITC_TRANSFORMS_TYPECONVERSIONS_H
 
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class TypeConverter;
 class Type;
 void populateEmitCSizeTTypeConversions(TypeConverter &converter);
@@ -21,6 +22,6 @@ std::optional<Type> getUnsignedTypeFor(Type ty);
 std::optional<Type> getSignedTypeFor(Type ty);
 } // namespace emitc
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_EMITC_TRANSFORMS_TYPECONVERSIONS_H

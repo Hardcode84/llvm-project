@@ -18,8 +18,9 @@
 #include "mlir/Support/StorageUniquer.h"
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/Support/TrailingObjects.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 
 struct AffineMapStorage final
@@ -64,6 +65,6 @@ struct AffineMapStorage final
 };
 
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // AFFINEMAPDETAIL_H_

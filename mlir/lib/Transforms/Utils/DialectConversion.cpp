@@ -27,6 +27,7 @@
 #include "llvm/Support/ScopedPrinter.h"
 #include <optional>
 #include <utility>
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::detail;
@@ -887,7 +888,7 @@ static bool hasRewrite(R &&rewrites, Block *block) {
 //===----------------------------------------------------------------------===//
 // ConversionPatternRewriterImpl
 //===----------------------------------------------------------------------===//
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 struct ConversionPatternRewriterImpl : public RewriterBase::Listener {
   explicit ConversionPatternRewriterImpl(ConversionPatternRewriter &rewriter,
@@ -1193,7 +1194,7 @@ struct ConversionPatternRewriterImpl : public RewriterBase::Listener {
 #endif
 };
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 const ConversionConfig &IRRewrite::getConfig() const {
   return rewriterImpl.config;
@@ -3241,7 +3242,7 @@ void mlir::reconcileUnrealizedCasts(
       remainingCastOps);
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 static void reconcileUnrealizedCasts(
     const llvm::MapVector<UnrealizedConversionCastOp,
                           UnresolvedMaterializationInfo> &castOps,
@@ -3253,13 +3254,13 @@ static void reconcileUnrealizedCasts(
       },
       remainingCastOps);
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // OperationConverter
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 // This class converts operations to a given conversion target via a set of
 // rewrite patterns. The conversion behaves differently depending on the
 // conversion mode.
@@ -3305,7 +3306,7 @@ private:
   /// The conversion mode to use when legalizing operations.
   OpConversionMode mode;
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 LogicalResult OperationConverter::convert(Operation *op,
                                           bool isRecursiveLegalization) {

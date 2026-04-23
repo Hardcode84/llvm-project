@@ -7,8 +7,9 @@
 //===----------------------------------------------------------------------===//
 
 #include <mlir/Conversion/SPIRVCommon/AttrToLLVMConverter.h>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace {
 
 //===----------------------------------------------------------------------===//
@@ -57,4 +58,4 @@ unsigned storageClassToAddressSpace(spirv::ClientAPI clientAPI,
     return defaultAddressSpace;
   }
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

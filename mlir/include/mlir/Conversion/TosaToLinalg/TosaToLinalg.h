@@ -15,8 +15,9 @@
 
 #include "mlir/Dialect/Tosa/Transforms/Passes.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 #define GEN_PASS_DECL_TOSATOLINALG
 #define GEN_PASS_DECL_TOSATOLINALGNAMED
@@ -55,6 +56,6 @@ void populateTosaToLinalgNamedConversionPatterns(
     const TosaToLinalgNamedOptions &options);
 
 } // namespace tosa
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_TOSATOLINALG_TOSATOLINALG_H

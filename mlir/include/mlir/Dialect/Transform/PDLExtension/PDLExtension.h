@@ -9,13 +9,15 @@
 #ifndef MLIR_DIALECT_TRANSFORM_PDLEXTENSION_PDLEXTENSION_H
 #define MLIR_DIALECT_TRANSFORM_PDLEXTENSION_PDLEXTENSION_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace transform {
 /// Registers the PDL extension of the Transform dialect in the given registry.
 void registerPDLExtension(DialectRegistry &dialectRegistry);
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TRANSFORM_PDLEXTENSION_PDLEXTENSION_H

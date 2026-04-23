@@ -13,6 +13,7 @@
 
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/Support/Allocator.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::affine;
@@ -128,7 +129,7 @@ static bool isAffineForOp(Operation &op) { return isa<AffineForOp>(op); }
 
 static bool isAffineIfOp(Operation &op) { return isa<AffineIfOp>(op); }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace affine {
 namespace matcher {
 
@@ -177,4 +178,4 @@ bool isLoadOrStore(Operation &op) {
 
 } // namespace matcher
 } // namespace affine
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

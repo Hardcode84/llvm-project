@@ -27,8 +27,10 @@
 #include "llvm/ADT/SetVector.h"
 #include "llvm/IR/FPEnv.h"
 #include "llvm/IR/Module.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BasicBlock;
 class CallBase;
 class CanonicalLoopInfo;
@@ -36,9 +38,9 @@ class Function;
 class IRBuilderBase;
 class OpenMPIRBuilder;
 class Value;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Attribute;
 class Block;
 class Location;
@@ -571,6 +573,6 @@ llvm::CallInst *createIntrinsicCall(
 } // namespace detail
 
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_LLVMIR_MODULETRANSLATION_H

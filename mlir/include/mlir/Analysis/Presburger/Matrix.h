@@ -19,8 +19,9 @@
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/Support/raw_ostream.h"
 #include <cassert>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace presburger {
 using llvm::ArrayRef;
 using llvm::MutableArrayRef;
@@ -342,6 +343,6 @@ public:
 };
 
 } // namespace presburger
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_ANALYSIS_PRESBURGER_MATRIX_H

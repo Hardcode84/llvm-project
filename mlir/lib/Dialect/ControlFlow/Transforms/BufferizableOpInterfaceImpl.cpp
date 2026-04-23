@@ -11,11 +11,12 @@
 #include "mlir/Dialect/Bufferization/IR/UnstructuredControlFlow.h"
 #include "mlir/Dialect/ControlFlow/IR/ControlFlowOps.h"
 #include "mlir/IR/Operation.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::bufferization;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace cf {
 namespace {
 
@@ -56,7 +57,7 @@ struct CondBranchOpInterface
 
 } // namespace
 } // namespace cf
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 void mlir::cf::registerBufferizableOpInterfaceExternalModels(
     DialectRegistry &registry) {

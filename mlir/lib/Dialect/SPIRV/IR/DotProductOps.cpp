@@ -16,10 +16,12 @@
 #include "SPIRVParsingUtils.h"
 
 #include "llvm/Support/FormatVariadic.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir::spirv::AttrNames;
 
-namespace mlir::spirv {
+MLIR_NAMESPACE_BEGIN
+namespace spirv {
 
 //===----------------------------------------------------------------------===//
 // Dot Product ops
@@ -180,4 +182,5 @@ SPIRV_IMPL_INTEGER_DOT_PRODUCT_OP(UDotAccSatOp)
 
 #undef SPIRV_IMPL_INTEGER_DOT_PRODUCT_OP
 
-} // namespace mlir::spirv
+}
+MLIR_NAMESPACE_END // namespace mlir::spirv

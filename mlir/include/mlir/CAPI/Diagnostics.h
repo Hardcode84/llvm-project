@@ -11,10 +11,11 @@
 
 #include "mlir-c/Diagnostics.h"
 #include <cassert>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Diagnostic;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 inline mlir::Diagnostic &unwrap(MlirDiagnostic diagnostic) {
   assert(diagnostic.ptr && "unexpected null diagnostic");

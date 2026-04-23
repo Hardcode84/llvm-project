@@ -7,9 +7,10 @@
 //===----------------------------------------------------------------------===//
 
 #include "mlir/Support/StateStack.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 void StateStackFrame::anchor() {}
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

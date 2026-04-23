@@ -16,8 +16,9 @@
 #include "mlir/IR/AffineMap.h"
 #include "mlir/IR/OperationSupport.h"
 #include "mlir/IR/Value.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace affine {
 
 /// An AffineValueMap is an affine map plus its ML value operands and
@@ -103,6 +104,6 @@ private:
 };
 
 } // namespace affine
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_AFFINE_IR_AFFINEVALUEMAP_H

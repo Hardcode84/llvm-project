@@ -8,8 +8,10 @@
 
 #include "Diagnostics.h"
 #include "mlir/Query/Matcher/ErrorBuilder.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::query::matcher::internal {
+MLIR_NAMESPACE_BEGIN
+namespace query::matcher::internal {
 
 Diagnostics::ArgStream &
 Diagnostics::ArgStream::operator<<(const llvm::Twine &arg) {
@@ -135,4 +137,5 @@ void Diagnostics::print(llvm::raw_ostream &os) const {
   }
 }
 
-} // namespace mlir::query::matcher::internal
+}
+MLIR_NAMESPACE_END // namespace mlir::query::matcher::internal

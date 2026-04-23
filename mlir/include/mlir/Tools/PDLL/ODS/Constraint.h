@@ -19,8 +19,9 @@
 #include "mlir/Support/LLVM.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/ADT/StringMap.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace pdll {
 namespace ods {
 
@@ -99,6 +100,6 @@ private:
 
 } // namespace ods
 } // namespace pdll
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_PDLL_ODS_CONSTRAINT_H_

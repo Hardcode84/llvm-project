@@ -10,8 +10,9 @@
 #define MLIR_DIALECT_ARITH_TRANSFORMS_TRANSFORMS_H
 
 #include "mlir/Interfaces/ValueBoundsOpInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Location;
 class OpBuilder;
 class OpFoldResult;
@@ -69,6 +70,6 @@ FailureOr<OpFoldResult> reifyShapedValueDimBound(
     bool closedUB = false);
 
 } // namespace arith
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_ARITH_TRANSFORMS_TRANSFORMS_H

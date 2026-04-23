@@ -16,8 +16,9 @@
 
 #include "mlir/IR/OpDefinition.h"
 #include "llvm/ADT/Twine.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace SideEffects {
 //===----------------------------------------------------------------------===//
 // Effects
@@ -582,7 +583,7 @@ bool isSpeculatable(Operation *op);
 /// This function is the C++ equivalent of the `Pure` trait.
 bool isPure(Operation *op);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // SideEffect Interfaces

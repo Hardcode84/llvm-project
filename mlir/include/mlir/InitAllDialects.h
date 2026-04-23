@@ -14,7 +14,9 @@
 #ifndef MLIR_INITALLDIALECTS_H_
 #define MLIR_INITALLDIALECTS_H_
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 class MLIRContext;
 
@@ -24,6 +26,6 @@ void registerAllDialects(DialectRegistry &registry);
 /// Append all the MLIR dialects to the registry contained in the given context.
 void registerAllDialects(MLIRContext &context);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_INITALLDIALECTS_H_

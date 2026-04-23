@@ -20,8 +20,9 @@
 #include "mlir/Interfaces/CallInterfaces.h"
 #include "mlir/Interfaces/ControlFlowInterfaces.h"
 #include "llvm/ADT/SmallPtrSet.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace dataflow {
 
 //===----------------------------------------------------------------------===//
@@ -593,6 +594,6 @@ private:
 };
 
 } // end namespace dataflow
-} // end namespace mlir
+MLIR_NAMESPACE_END // end namespace mlir
 
 #endif // MLIR_ANALYSIS_DATAFLOW_SPARSEANALYSIS_H

@@ -20,8 +20,9 @@
 #include "llvm/ADT/SmallVector.h"
 
 #include "mlir/Dialect/OpenMP/OpenMPClauseOps.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace omp {
 
 //===----------------------------------------------------------------------===//
@@ -52,6 +53,6 @@ using DeclareTargetOperands = detail::Clauses<DeviceTypeClauseOps>;
 using TargetEnterExitUpdateDataOperands = TargetEnterDataOperands;
 
 } // namespace omp
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_OPENMP_OPENMPCLAUSEOPERANDS_H_

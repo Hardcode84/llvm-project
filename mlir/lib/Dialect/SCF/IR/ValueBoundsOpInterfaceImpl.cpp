@@ -10,10 +10,11 @@
 
 #include "mlir/Dialect/SCF/IR/SCF.h"
 #include "mlir/Interfaces/ValueBoundsOpInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace scf {
 namespace {
 
@@ -232,7 +233,7 @@ struct IfOpInterface
 
 } // namespace
 } // namespace scf
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 void mlir::scf::registerValueBoundsOpInterfaceExternalModels(
     DialectRegistry &registry) {

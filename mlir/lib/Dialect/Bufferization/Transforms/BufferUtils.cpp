@@ -18,6 +18,7 @@
 #include "mlir/Dialect/MemRef/Utils/MemRefUtils.h"
 #include "mlir/IR/Operation.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::bufferization;
@@ -156,7 +157,8 @@ bufferization::getGlobalFor(arith::ConstantOp constantOp,
   return global;
 }
 
-namespace mlir::bufferization {
+MLIR_NAMESPACE_BEGIN
+namespace bufferization {
 void removeSymbol(Operation *op, BufferizationState &state) {
   SymbolTable &symbolTable = state.getSymbolTables().getSymbolTable(
       op->getParentWithTrait<OpTrait::SymbolTable>());
@@ -170,4 +172,5 @@ void insertSymbol(Operation *op, BufferizationState &state) {
 
   symbolTable.insert(op);
 }
-} // namespace mlir::bufferization
+}
+MLIR_NAMESPACE_END // namespace mlir::bufferization

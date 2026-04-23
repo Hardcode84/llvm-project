@@ -9,12 +9,14 @@
 #ifndef MLIR_DIALECT_CONTROLFLOW_BUFFERIZABLEOPINTERFACEIMPL_H
 #define MLIR_DIALECT_CONTROLFLOW_BUFFERIZABLEOPINTERFACEIMPL_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace cf {
 void registerBufferizableOpInterfaceExternalModels(DialectRegistry &registry);
 } // namespace cf
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_CONTROLFLOW_BUFFERIZABLEOPINTERFACEIMPL_H

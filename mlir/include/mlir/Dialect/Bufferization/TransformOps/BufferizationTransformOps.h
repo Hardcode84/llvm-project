@@ -14,12 +14,13 @@
 #include "mlir/Dialect/Transform/IR/TransformTypes.h"
 #include "mlir/Dialect/Transform/Interfaces/TransformInterfaces.h"
 #include "mlir/IR/OpImplementation.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tensor {
 class EmptyOp;
 } // namespace tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Bufferization Transform Operations
@@ -28,12 +29,12 @@ class EmptyOp;
 #define GET_OP_CLASSES
 #include "mlir/Dialect/Bufferization/TransformOps/BufferizationTransformOps.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace bufferization {
 void registerTransformDialectExtension(DialectRegistry &registry);
 } // namespace bufferization
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_BUFFERIZATION_TRANSFORMOPS_BUFFERIZATIONTRANSFORMOPS_H

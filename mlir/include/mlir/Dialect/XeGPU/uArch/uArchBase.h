@@ -24,8 +24,9 @@
 
 #include "mlir/IR/Types.h"
 #include "llvm/ADT/SmallVector.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace xegpu {
 namespace uArch {
 
@@ -278,6 +279,6 @@ struct StoreScatterInstructionInterface : public Instruction {
 
 } // namespace uArch
 } // namespace xegpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_XEGPU_UARCH_UARCHBASE_H

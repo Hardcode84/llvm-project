@@ -7,8 +7,9 @@
 //===----------------------------------------------------------------------===//
 
 #include <mlir/Conversion/GPUCommon/AttrToSPIRVConverter.h>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 spirv::StorageClass addressSpaceToStorageClass(gpu::AddressSpace addressSpace) {
   switch (addressSpace) {
   case gpu::AddressSpace::Global:
@@ -22,4 +23,4 @@ spirv::StorageClass addressSpaceToStorageClass(gpu::AddressSpace addressSpace) {
   }
   llvm_unreachable("Unhandled storage class");
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

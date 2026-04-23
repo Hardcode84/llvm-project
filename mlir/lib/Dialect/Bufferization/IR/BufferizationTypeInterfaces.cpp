@@ -7,15 +7,16 @@
 //===----------------------------------------------------------------------===//
 
 #include "mlir/Dialect/Bufferization/IR/BufferizationTypeInterfaces.h"
+#include "mlir/Support/ABINamespace.h"
 
 //===----------------------------------------------------------------------===//
 // Bufferization Type Interfaces
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace bufferization {
 
 #include "mlir/Dialect/Bufferization/IR/BufferizationTypeInterfaces.cpp.inc"
 
 } // namespace bufferization
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

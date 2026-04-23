@@ -15,8 +15,9 @@
 #define MLIR_CONVERSION_LLVMCOMMON_LOWERINGOPTIONS_H
 
 #include "llvm/IR/DataLayout.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class DataLayout;
 class MLIRContext;
@@ -69,6 +70,6 @@ private:
   unsigned indexBitwidth;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_LLVMCOMMON_LOWERINGOPTIONS_H

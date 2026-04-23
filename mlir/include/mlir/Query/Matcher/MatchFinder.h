@@ -18,8 +18,10 @@
 #include "mlir/Query/Query.h"
 #include "mlir/Query/QuerySession.h"
 #include "llvm/ADT/SetVector.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::query::matcher {
+MLIR_NAMESPACE_BEGIN
+namespace query::matcher {
 
 /// Finds and collects matches from the IR. After construction
 /// `collectMatches` can be used to traverse the IR and apply
@@ -56,6 +58,7 @@ public:
   flattenMatchedOps(std::vector<MatchResult> &matches) const;
 };
 
-} // namespace mlir::query::matcher
+}
+MLIR_NAMESPACE_END // namespace mlir::query::matcher
 
 #endif // MLIR_TOOLS_MLIRQUERY_MATCHER_MATCHERFINDER_H

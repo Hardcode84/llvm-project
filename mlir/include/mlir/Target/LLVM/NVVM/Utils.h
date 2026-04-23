@@ -16,8 +16,9 @@
 #include "mlir/Dialect/GPU/IR/CompilationInterfaces.h"
 #include "mlir/Dialect/LLVMIR/NVVMDialect.h"
 #include "mlir/Target/LLVM/ModuleToObject.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace NVVM {
 /// Searches & returns the path CUDA toolkit path, the search order is:
 /// 1. The `CUDA_ROOT` environment variable.
@@ -71,6 +72,6 @@ protected:
   SmallVector<Attribute> librariesToLink;
 };
 } // namespace NVVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_LLVM_NVVM_UTILS_H

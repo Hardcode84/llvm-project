@@ -14,8 +14,9 @@
 #define MLIR_CONVERSION_VECTORTOSPIRV_VECTORTOSPIRV_H
 
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class SPIRVTypeConverter;
 
 /// Appends to a pattern list additional patterns for translating Vector Ops to
@@ -32,6 +33,6 @@ void populateVectorToSPIRVPatterns(const SPIRVTypeConverter &typeConverter,
 void populateVectorReductionToSPIRVDotProductPatterns(
     RewritePatternSet &patterns);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_VECTORTOSPIRV_VECTORTOSPIRV_H

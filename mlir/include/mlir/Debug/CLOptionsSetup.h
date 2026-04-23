@@ -13,8 +13,9 @@
 #include "llvm/ADT/StringRef.h"
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class MLIRContext;
 namespace tracing {
 class BreakpointManager;
@@ -93,6 +94,6 @@ private:
 };
 
 } // namespace tracing
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DEBUG_CLOPTIONSSETUP_H

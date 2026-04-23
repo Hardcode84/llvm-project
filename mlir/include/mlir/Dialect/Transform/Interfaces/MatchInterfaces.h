@@ -15,8 +15,9 @@
 #include "mlir/Dialect/Transform/Interfaces/TransformInterfaces.h"
 #include "mlir/IR/OpDefinition.h"
 #include "llvm/ADT/STLExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace transform {
 class MatchOpInterface;
 
@@ -216,7 +217,7 @@ expandTargetSpecification(Location loc, bool isAll, bool isInverted,
                           SmallVectorImpl<int64_t> &result);
 
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Dialect/Transform/Interfaces/MatchInterfaces.h.inc"
 

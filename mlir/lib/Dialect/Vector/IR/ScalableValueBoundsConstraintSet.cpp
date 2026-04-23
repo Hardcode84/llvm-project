@@ -7,8 +7,10 @@
 //===----------------------------------------------------------------------===//
 
 #include "mlir/Dialect/Vector/IR/ScalableValueBoundsConstraintSet.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::vector {
+MLIR_NAMESPACE_BEGIN
+namespace vector {
 
 FailureOr<ConstantOrScalableBound::BoundSize>
 ConstantOrScalableBound::getSize() const {
@@ -121,4 +123,5 @@ ScalableValueBoundsConstraintSet::computeScalableBound(
   return ConstantOrScalableBound{bound};
 }
 
-} // namespace mlir::vector
+}
+MLIR_NAMESPACE_END // namespace mlir::vector

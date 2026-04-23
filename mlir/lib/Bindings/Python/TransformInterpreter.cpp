@@ -17,10 +17,11 @@
 #include "mlir/Bindings/Python/IRCore.h"
 #include "mlir/Bindings/Python/Nanobind.h"
 #include "mlir/Bindings/Python/NanobindAdaptors.h"
+#include "mlir/Support/ABINamespace.h"
 
 namespace nb = nanobind;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace python {
 namespace MLIR_BINDINGS_PYTHON_DOMAIN {
 namespace transform_interpreter {
@@ -39,7 +40,7 @@ struct PyTransformOptions {
 } // namespace transform_interpreter
 } // namespace MLIR_BINDINGS_PYTHON_DOMAIN
 } // namespace python
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 static void populateTransformInterpreterSubmodule(nb::module_ &m) {
   using namespace mlir::python::MLIR_BINDINGS_PYTHON_DOMAIN;

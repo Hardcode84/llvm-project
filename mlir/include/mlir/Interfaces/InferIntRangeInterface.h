@@ -16,8 +16,9 @@
 
 #include "mlir/IR/OpDefinition.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 /// A set of arbitrary-precision integers representing bounds on a given integer
 /// value. These bounds are inclusive on both ends, so
 /// bounds of [4, 5] mean 4 <= x <= 5. Separate bounds are tracked for
@@ -192,7 +193,7 @@ void defaultInferResultRangesFromOptional(InferIntRangeInterface interface,
                                           ArrayRef<ConstantIntRanges> argRanges,
                                           SetIntRangeFn setResultRanges);
 } // end namespace intrange::detail
-} // end namespace mlir
+MLIR_NAMESPACE_END // end namespace mlir
 
 #include "mlir/Interfaces/InferIntRangeInterface.h.inc"
 

@@ -19,8 +19,9 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/StringMap.h"
 #include "llvm/Support/FormatVariadic.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tblgen {
 
 /// Format context containing substitutions for special placeholders.
@@ -277,6 +278,6 @@ inline FmtStrVecObject tgfmt(StringRef fmt, const FmtContext *ctx,
 }
 
 } // namespace tblgen
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TABLEGEN_FORMAT_H_

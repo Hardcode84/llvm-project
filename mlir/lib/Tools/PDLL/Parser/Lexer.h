@@ -12,12 +12,14 @@
 #include "mlir/Support/LLVM.h"
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/SMLoc.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SourceMgr;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace pdll {
 class CodeCompleteContext;
 
@@ -223,6 +225,6 @@ private:
   const char *codeCompletionLocation;
 };
 } // namespace pdll
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // LIB_TOOLS_PDLL_PARSER_LEXER_H_

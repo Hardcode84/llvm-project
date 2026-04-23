@@ -14,8 +14,9 @@
 #define MLIR_DIALECT_ASYNC_PASSES_H_
 
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ModuleOp;
 class ConversionTarget;
 
@@ -33,6 +34,6 @@ void populateAsyncFuncToAsyncRuntimeConversionPatterns(
 #define GEN_PASS_REGISTRATION
 #include "mlir/Dialect/Async/Passes.h.inc"
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_ASYNC_PASSES_H_

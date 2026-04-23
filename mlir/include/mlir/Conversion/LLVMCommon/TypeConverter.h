@@ -17,8 +17,9 @@
 #include "mlir/Conversion/LLVMCommon/LoweringOptions.h"
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class DataLayoutAnalysis;
 class FunctionOpInterface;
@@ -284,6 +285,6 @@ LogicalResult barePtrFuncArgTypeConverter(const LLVMTypeConverter &converter,
                                           Type type,
                                           SmallVectorImpl<Type> &result);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_LLVMCOMMON_TYPECONVERTER_H

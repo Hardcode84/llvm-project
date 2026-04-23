@@ -19,8 +19,9 @@
 #include "llvm/ADT/SmallString.h"
 #include "llvm/ADT/StringMap.h"
 #include "llvm/IR/DIBuilder.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Operation;
 
 namespace LLVM {
@@ -154,6 +155,6 @@ private:
 
 } // namespace detail
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_LIB_TARGET_LLVMIR_DEBUGTRANSLATION_H_

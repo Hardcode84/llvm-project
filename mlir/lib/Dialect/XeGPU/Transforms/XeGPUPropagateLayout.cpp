@@ -38,13 +38,14 @@
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/LogicalResult.h"
 #include "llvm/Support/raw_ostream.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace xegpu {
 #define GEN_PASS_DEF_XEGPUPROPAGATELAYOUT
 #include "mlir/Dialect/XeGPU/Transforms/Passes.h.inc"
 } // namespace xegpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define DEBUG_TYPE "xegpu-propagate-layout"
 #define DBGS() (llvm::dbgs() << "[" DEBUG_TYPE "]: ")

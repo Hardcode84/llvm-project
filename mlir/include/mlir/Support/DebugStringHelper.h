@@ -20,8 +20,9 @@
 #include "llvm/ADT/Twine.h"
 #include "llvm/Support/raw_os_ostream.h"
 #include "llvm/Support/raw_ostream.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 // Simple helper function that returns a string as printed from a op.
 template <typename T>
@@ -32,7 +33,7 @@ static std::string debugString(T &&op) {
   return os.str();
 }
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 inline std::ostream &operator<<(std::ostream &out, const llvm::Twine &twine) {
   llvm::raw_os_ostream rout(out);

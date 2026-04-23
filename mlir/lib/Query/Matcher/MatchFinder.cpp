@@ -11,7 +11,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "mlir/Query/Matcher/MatchFinder.h"
-namespace mlir::query::matcher {
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
+namespace query::matcher {
 
 MatchFinder::MatchResult::MatchResult(Operation *rootOp,
                                       std::vector<Operation *> matchedOps)
@@ -67,4 +69,5 @@ MatchFinder::flattenMatchedOps(std::vector<MatchResult> &matches) const {
   return newVector;
 }
 
-} // namespace mlir::query::matcher
+}
+MLIR_NAMESPACE_END // namespace mlir::query::matcher

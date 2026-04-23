@@ -9,13 +9,15 @@
 #ifndef MLIR_DIALECT_VECTOR_BUFFERIZABLEOPINTERFACEIMPL_H
 #define MLIR_DIALECT_VECTOR_BUFFERIZABLEOPINTERFACEIMPL_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 
 class DialectRegistry;
 
 namespace vector {
 void registerBufferizableOpInterfaceExternalModels(DialectRegistry &registry);
 } // namespace vector
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_VECTOR_BUFFERIZABLEOPINTERFACEIMPL_H

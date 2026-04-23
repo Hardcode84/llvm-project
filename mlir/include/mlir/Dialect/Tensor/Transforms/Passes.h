@@ -10,8 +10,9 @@
 #define MLIR_DIALECT_TENSOR_TRANSFORMS_PASSES_H_
 
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tensor {
 
 //===----------------------------------------------------------------------===//
@@ -31,6 +32,6 @@ namespace tensor {
 #include "mlir/Dialect/Tensor/Transforms/Passes.h.inc"
 
 } // namespace tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TENSOR_TRANSFORMS_PASSES_H_

@@ -11,8 +11,9 @@
 
 #include "mlir/Support/LLVM.h"
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ModuleOp;
 
 namespace pdll {
@@ -23,6 +24,6 @@ class Module;
 void codegenPDLLToCPP(const ast::Module &astModule, ModuleOp module,
                       raw_ostream &os);
 } // namespace pdll
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_PDLL_CODEGEN_CPPGEN_H_

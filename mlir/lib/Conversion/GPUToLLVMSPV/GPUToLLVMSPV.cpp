@@ -31,15 +31,16 @@
 
 #include "llvm/ADT/TypeSwitch.h"
 #include "llvm/Support/FormatVariadic.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "gpu-to-llvm-spv"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_CONVERTGPUOPSTOLLVMSPVOPS
 #include "mlir/Conversion/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Helper Functions
@@ -515,7 +516,7 @@ struct GPUToLLVMSPVConversionPass final
 // GPU To LLVM-SPV Patterns.
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace {
 static unsigned
 gpuAddressSpaceToOCLAddressSpace(gpu::AddressSpace addressSpace) {
@@ -559,4 +560,4 @@ void populateGpuMemorySpaceAttributeConversions(TypeConverter &typeConverter) {
   populateGpuMemorySpaceAttributeConversions(typeConverter,
                                              gpuAddressSpaceToOCLAddressSpace);
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

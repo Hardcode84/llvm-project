@@ -17,17 +17,18 @@
 #include "mlir/Support/LLVM.h"
 #include "llvm/ADT/DenseMapInfo.h"
 #include "llvm/ADT/StringRef.h"
+#include "mlir/Support/ABINamespace.h"
 
 // Forward declare enum classes related to op availability. Their definitions
 // are in the TableGen'erated SPIRVEnums.h.inc and can be referenced by other
 // declarations in SPIRVEnums.h.inc.
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace spirv {
 enum class Version : uint32_t;
 enum class Extension : uint32_t;
 enum class Capability : uint32_t;
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 // Pull in all enum type definitions and utility function declarations
 #include "mlir/Dialect/SPIRV/IR/SPIRVEnums.h.inc"
@@ -35,7 +36,7 @@ enum class Capability : uint32_t;
 // Pull in all enum type availability query function declarations
 #include "mlir/Dialect/SPIRV/IR/SPIRVEnumAvailability.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace spirv {
 /// Returns the implied extensions for the given version. These extensions are
 /// incorporated into the current version so they are implicitly declared when
@@ -57,6 +58,6 @@ SmallVector<Capability, 0> getRecursiveImpliedCapabilities(Capability cap);
 std::string getDecorationString(Decoration decoration);
 
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SPIRV_IR_SPIRVENUMS_H_

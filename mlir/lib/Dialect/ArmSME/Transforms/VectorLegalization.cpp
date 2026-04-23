@@ -27,13 +27,16 @@
 #include "mlir/Dialect/Vector/Utils/VectorUtils.h"
 #include "mlir/Transforms/DialectConversion.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "arm-sme-vector-legalization"
 
-namespace mlir::arm_sme {
+MLIR_NAMESPACE_BEGIN
+namespace arm_sme {
 #define GEN_PASS_DEF_VECTORLEGALIZATION
 #include "mlir/Dialect/ArmSME/Transforms/Passes.h.inc"
-} // namespace mlir::arm_sme
+}
+MLIR_NAMESPACE_END // namespace mlir::arm_sme
 
 using namespace mlir;
 using namespace mlir::arm_sme;

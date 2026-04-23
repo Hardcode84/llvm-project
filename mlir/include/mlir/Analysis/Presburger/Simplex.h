@@ -22,8 +22,9 @@
 #include "mlir/Analysis/Presburger/Utils.h"
 #include "llvm/ADT/SmallBitVector.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace presburger {
 
 class GBRSimplex;
@@ -884,6 +885,6 @@ private:
 };
 
 } // namespace presburger
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_ANALYSIS_PRESBURGER_SIMPLEX_H

@@ -10,12 +10,14 @@
 #define MLIR_TOOLS_PDLL_CODEGEN_MLIRGEN_H_
 
 #include <memory>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SourceMgr;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class MLIRContext;
 class ModuleOp;
 template <typename OpT>
@@ -34,6 +36,6 @@ OwningOpRef<ModuleOp> codegenPDLLToMLIR(MLIRContext *mlirContext,
                                         const llvm::SourceMgr &sourceMgr,
                                         const ast::Module &module);
 } // namespace pdll
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_PDLL_CODEGEN_MLIRGEN_H_

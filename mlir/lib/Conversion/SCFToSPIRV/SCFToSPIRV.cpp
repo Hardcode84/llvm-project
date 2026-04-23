@@ -17,6 +17,7 @@
 #include "mlir/Dialect/SPIRV/Transforms/SPIRVConversion.h"
 #include "mlir/Transforms/DialectConversion.h"
 #include "llvm/Support/FormatVariadic.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -24,14 +25,14 @@ using namespace mlir;
 // Context
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 struct ScfToSPIRVContextImpl {
   // Map between the spirv region control flow operation (spirv.mlir.loop or
   // spirv.mlir.selection) to the VariableOp created to store the region
   // results. The order of the VariableOp matches the order of the results.
   DenseMap<Operation *, SmallVector<spirv::VariableOp, 8>> outputVars;
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// We use ScfToSPIRVContext to store information about the lowering of the scf
 /// region that need to be used later on. When we lower scf.for/scf.if we create

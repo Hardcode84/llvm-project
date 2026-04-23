@@ -18,10 +18,11 @@
 #include "llvm/IR/DebugProgramInstruction.h"
 #include "llvm/IR/LLVMContext.h"
 #include "llvm/IR/Module.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerToLLVMIRTranslation() {
   TranslateFromMLIRRegistration registration(
       "mlir-to-llvmir", "Translate MLIR to LLVMIR",
@@ -40,4 +41,4 @@ void registerToLLVMIRTranslation() {
         registerAllToLLVMIRTranslations(registry);
       });
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

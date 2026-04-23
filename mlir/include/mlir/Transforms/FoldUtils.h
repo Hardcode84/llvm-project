@@ -19,8 +19,9 @@
 #include "mlir/IR/DialectInterface.h"
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/Interfaces/FoldInterfaces.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Operation;
 class Value;
 
@@ -120,6 +121,6 @@ private:
   IRRewriter rewriter;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRANSFORMS_FOLDUTILS_H

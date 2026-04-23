@@ -13,15 +13,16 @@
 #include "mlir/IR/Visitors.h"
 #include "mlir/Interfaces/FunctionInterfaces.h"
 #include "llvm/ADT/DenseSet.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace transform {
 #define GEN_PASS_DEF_INFEREFFECTSPASS
 #include "mlir/Dialect/Transform/Transforms/Passes.h.inc"
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 static LogicalResult inferSideEffectAnnotations(Operation *op) {
   if (!isa<transform::TransformOpInterface>(op))

@@ -20,8 +20,9 @@
 #include "mlir/IR/Value.h"
 #include "llvm/ADT/SmallVector.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Operation;
 
 namespace affine {
@@ -196,6 +197,6 @@ void getDependenceComponents(
     std::vector<SmallVector<DependenceComponent, 2>> *depCompsVec);
 
 } // namespace affine
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_AFFINE_ANALYSIS_AFFINEANALYSIS_H

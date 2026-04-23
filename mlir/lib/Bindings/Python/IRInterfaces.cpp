@@ -18,10 +18,11 @@
 #include "mlir-c/Support.h"
 #include "mlir/Bindings/Python/IRCore.h"
 #include "mlir/Bindings/Python/IRInterfaces.h"
+#include "mlir/Support/ABINamespace.h"
 
 namespace nb = nanobind;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace python {
 namespace MLIR_BINDINGS_PYTHON_DOMAIN {
 constexpr static const char *inferReturnTypesDoc =
@@ -410,4 +411,4 @@ void populateIRInterfaces(nb::module_ &m) {
 }
 } // namespace MLIR_BINDINGS_PYTHON_DOMAIN
 } // namespace python
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

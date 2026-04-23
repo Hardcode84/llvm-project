@@ -8,8 +8,10 @@
 
 #include "mlir/Dialect/AMDGPU/Utils/Chipset.h"
 #include "llvm/ADT/StringRef.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::amdgpu {
+MLIR_NAMESPACE_BEGIN
+namespace amdgpu {
 
 FailureOr<Chipset> Chipset::parse(StringRef name) {
   if (!name.consume_front("gfx"))
@@ -33,4 +35,5 @@ FailureOr<Chipset> Chipset::parse(StringRef name) {
   return Chipset(major, minor, stepping);
 }
 
-} // namespace mlir::amdgpu
+}
+MLIR_NAMESPACE_END // namespace mlir::amdgpu

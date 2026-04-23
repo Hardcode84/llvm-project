@@ -9,7 +9,9 @@
 #ifndef MLIR_DIALECT_LINALG_TILINGINTERFACEIMPL_H
 #define MLIR_DIALECT_LINALG_TILINGINTERFACEIMPL_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace linalg {
@@ -20,6 +22,6 @@ void registerTilingInterfaceExternalModels(DialectRegistry &registry);
 void registerTilingInterfaceExternalModelsForPackUnPackOps(
     DialectRegistry &registry);
 } // namespace linalg
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_LINALG_TILINGINTERFACEIMPL_H

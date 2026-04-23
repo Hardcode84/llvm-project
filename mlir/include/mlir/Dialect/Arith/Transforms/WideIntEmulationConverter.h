@@ -10,8 +10,10 @@
 #define MLIR_DIALECT_ARITH_WIDE_INT_EMULATION_CONVERTER_H_
 
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::arith {
+MLIR_NAMESPACE_BEGIN
+namespace arith {
 /// Converts integer types that are too wide for the target by splitting them in
 /// two halves and thus turning into supported ones, i.e., i2*N --> iN, where N
 /// is the widest integer bitwidth supported by the target.
@@ -29,6 +31,7 @@ public:
 private:
   unsigned maxIntWidth;
 };
-} // namespace mlir::arith
+}
+MLIR_NAMESPACE_END // namespace mlir::arith
 
 #endif // MLIR_DIALECT_ARITH_WIDE_INT_EMULATION_CONVERTER_H_

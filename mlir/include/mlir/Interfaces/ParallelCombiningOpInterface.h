@@ -15,13 +15,14 @@
 #define MLIR_INTERFACES_PARALLELCOMBININGOPINTERFACE_H_
 
 #include "mlir/IR/OpDefinition.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 // TODO: Single region single block interface on interfaces ?
 LogicalResult verifyInParallelOpInterface(Operation *op);
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// Include the generated interface declarations.
 #include "mlir/Interfaces/ParallelCombiningOpInterface.h.inc"

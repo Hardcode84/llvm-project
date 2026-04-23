@@ -18,8 +18,9 @@
 #include "mlir/IR/Types.h"
 #include "llvm/ADT/PointerIntPair.h"
 #include "llvm/ADT/Twine.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 //===----------------------------------------------------------------------===//
 // AbstractAttribute
 //===----------------------------------------------------------------------===//
@@ -322,6 +323,6 @@ decltype(auto) unwrapForCustomParse(FailureOr<T> &failureOr) {
 
 } // namespace detail
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif

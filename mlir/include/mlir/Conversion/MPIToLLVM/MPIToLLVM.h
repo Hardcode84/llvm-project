@@ -10,8 +10,9 @@
 #define MLIR_CONVERSION_MPITOLLVM_H
 
 #include "mlir/IR/DialectRegistry.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class LLVMTypeConverter;
 class RewritePatternSet;
@@ -24,6 +25,6 @@ void populateMPIToLLVMConversionPatterns(LLVMTypeConverter &converter,
 void registerConvertMPIToLLVMInterface(DialectRegistry &registry);
 
 } // namespace mpi
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_MPITOLLVM_H

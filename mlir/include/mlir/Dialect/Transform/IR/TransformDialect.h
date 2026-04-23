@@ -16,8 +16,9 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/StringMap.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace transform {
 
 namespace detail {
@@ -81,11 +82,11 @@ void checkImplementsTransformHandleTypeInterface(TypeID typeID,
 } // namespace detail
 #endif // LLVM_ENABLE_ABI_BREAKING_CHECKS
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Dialect/Transform/IR/TransformDialect.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace transform {
 
 /// Base class for extensions of the Transform dialect that supports injecting
@@ -346,6 +347,6 @@ public:
 };
 
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TRANSFORM_IR_TRANSFORMDIALECT_H

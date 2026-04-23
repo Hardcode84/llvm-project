@@ -10,8 +10,9 @@
 #define MLIR_CONVERSION_ASYNCTOLLVM_ASYNCTOLLVM_H
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class ConversionTarget;
 class Pass;
@@ -34,6 +35,6 @@ void populateAsyncStructuralTypeConversionsAndLegality(
     TypeConverter &typeConverter, RewritePatternSet &patterns,
     ConversionTarget &target);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_ASYNCTOLLVM_ASYNCTOLLVM_H

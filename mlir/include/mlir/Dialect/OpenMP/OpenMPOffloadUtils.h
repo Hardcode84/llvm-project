@@ -23,8 +23,10 @@
 #include <cstdint>
 #include <string>
 #include <vector>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::omp {
+MLIR_NAMESPACE_BEGIN
+namespace omp {
 
 struct OffloadModuleOpts {
   OffloadModuleOpts() = default;
@@ -100,6 +102,7 @@ getOpenMPVersionAttribute(ModuleOp module, int64_t fallback = -1) {
   return fallback;
 }
 
-} // namespace mlir::omp
+}
+MLIR_NAMESPACE_END // namespace mlir::omp
 
 #endif // MLIR_DIALECT_OPENMP_OPENMPOFFLOADUTILS_H_

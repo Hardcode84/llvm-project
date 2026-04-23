@@ -10,10 +10,11 @@
 
 #include "mlir/Dialect/MemRef/IR/MemRef.h"
 #include "mlir/Interfaces/ValueBoundsOpInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace memref {
 namespace {
 
@@ -144,7 +145,7 @@ struct SubViewOpInterface
 
 } // namespace
 } // namespace memref
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 void mlir::memref::registerValueBoundsOpInterfaceExternalModels(
     DialectRegistry &registry) {

@@ -22,10 +22,11 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/Support/DebugLog.h"
 #include "llvm/Support/ErrorHandling.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "walk-rewriter"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 // Find all reachable blocks in the region and add them to the visitedBlocks
 // set.
@@ -219,4 +220,4 @@ void walkAndApplyPatterns(Operation *op,
 #endif // MLIR_ENABLE_EXPENSIVE_PATTERN_API_CHECKS
 }
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

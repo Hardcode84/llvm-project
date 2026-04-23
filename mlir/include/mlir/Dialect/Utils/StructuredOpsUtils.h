@@ -25,8 +25,9 @@
 
 // Pull in all enum type definitions and utility function declarations.
 #include "mlir/Dialect/Utils/DialectUtilsEnums.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class OpBuilder;
 class RewriterBase;
@@ -158,6 +159,6 @@ Operation *cloneWithoutRegions(OpBuilder &b, Operation *op,
 SmallVector<NamedAttribute>
 getPrunedAttributeList(Operation *op, ArrayRef<StringRef> elidedAttrs);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_UTILS_STRUCTUREDOPSUTILS_H

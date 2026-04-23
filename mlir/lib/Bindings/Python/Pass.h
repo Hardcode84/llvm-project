@@ -10,14 +10,15 @@
 #define MLIR_BINDINGS_PYTHON_PASS_H
 
 #include "mlir/Bindings/Python/NanobindUtils.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace python {
 namespace MLIR_BINDINGS_PYTHON_DOMAIN {
 void populatePassManagerSubmodule(nanobind::module_ &m);
 }
 
 } // namespace python
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_BINDINGS_PYTHON_PASS_H

@@ -16,6 +16,7 @@
 
 #include <cstddef>
 #include <stdint.h>
+#include "mlir/Support/ABINamespace.h"
 
 #ifdef _WIN32
 #ifndef MLIR_ASYNC_RUNTIME_EXPORT
@@ -32,7 +33,7 @@
 #define MLIR_ASYNC_RUNTIME_EXPORT __attribute__((visibility("default")))
 #endif // _WIN32
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace runtime {
 
 //===----------------------------------------------------------------------===//
@@ -163,6 +164,6 @@ extern "C" MLIR_ASYNC_RUNTIME_EXPORT void
 mlirAsyncRuntimePrintCurrentThreadId();
 
 } // namespace runtime
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_EXECUTIONENGINE_ASYNCRUNTIME_H_

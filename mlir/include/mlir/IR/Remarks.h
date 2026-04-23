@@ -24,8 +24,11 @@
 #include "mlir/IR/Value.h"
 
 #include <atomic>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::remark {
+MLIR_NAMESPACE_BEGIN
+namespace remark {
 
 //===----------------------------------------------------------------------===//
 // RemarkId - Unique identifier for linking related remarks
@@ -139,9 +142,11 @@ struct RemarkOpts {
   inline RemarkOpts relatedTo(const detail::InFlightRemark &r) const;
 };
 
-} // namespace mlir::remark
+}
+MLIR_NAMESPACE_END // namespace mlir::remark
 
-namespace mlir::remark::detail {
+MLIR_NAMESPACE_BEGIN
+namespace remark::detail {
 //===----------------------------------------------------------------------===//
 // Remark Base Class
 //===----------------------------------------------------------------------===//
@@ -624,7 +629,8 @@ inline InFlightRemark withEngine(Fn fn, Location loc, Args &&...args) {
   return {};
 }
 
-} // namespace mlir::remark::detail
+}
+MLIR_NAMESPACE_END // namespace mlir::remark::detail
 
 // Deferred definition: needs InFlightRemark to be complete.
 inline mlir::remark::RemarkOpts
@@ -632,7 +638,8 @@ mlir::remark::RemarkOpts::relatedTo(const detail::InFlightRemark &r) const {
   return relatedTo(r.getId());
 }
 
-namespace mlir::remark {
+MLIR_NAMESPACE_BEGIN
+namespace remark {
 
 //===----------------------------------------------------------------------===//
 // Remark Emitting Policies
@@ -743,10 +750,11 @@ LogicalResult enableOptimizationRemarks(
         remarkEmittingPolicy,
     const remark::RemarkCategories &cats, bool printAsEmitRemarks = false);
 
-} // namespace mlir::remark
+}
+MLIR_NAMESPACE_END // namespace mlir::remark
 
 // DenseMapInfo specialization for Remark
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <>
 struct DenseMapInfo<mlir::remark::detail::Remark> {
   static constexpr StringRef kEmptyKey = "<EMPTY_KEY>";
@@ -800,5 +808,5 @@ struct DenseMapInfo<mlir::remark::detail::Remark> {
            lhs.getRemarkKind() == rhs.getRemarkKind();
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // MLIR_IR_REMARKS_H

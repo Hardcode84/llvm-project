@@ -25,9 +25,11 @@
 // We include this header because large portions of mlir would have to include
 // it anyway.
 #include "llvm/Support/LogicalResult.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
 // Forward declarations.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // String types
 template <unsigned N>
 class SmallString;
@@ -87,9 +89,9 @@ class iterator_range;
 class raw_ostream;
 class SMLoc;
 class SMRange;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 // Casting operators.
 using llvm::cast;
 using llvm::cast_if_present;
@@ -158,6 +160,6 @@ using llvm::LogicalResult;
 using llvm::ParseResult;
 using llvm::succeeded;
 using llvm::success;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_SUPPORT_LLVM_H

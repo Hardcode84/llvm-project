@@ -10,8 +10,9 @@
 #define MLIR_DIALECT_CONTROL_FLOW_TRANSFORMS_STRUCTURAL_TYPE_CONVERSIONS_H
 
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class ConversionTarget;
 class TypeConverter;
@@ -43,6 +44,6 @@ void populateCFStructuralTypeConversionTarget(
     const TypeConverter &typeConverter, ConversionTarget &target);
 
 } // namespace cf
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_CONTROL_FLOW_TRANSFORMS_STRUCTURAL_TYPE_CONVERSIONS_H

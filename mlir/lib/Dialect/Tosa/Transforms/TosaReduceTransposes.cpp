@@ -75,13 +75,14 @@
 #include "llvm/ADT/TypeSwitch.h"
 #include <set>
 #include <stack>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tosa {
 #define GEN_PASS_DEF_TOSAREDUCETRANSPOSES
 #include "mlir/Dialect/Tosa/Transforms/Passes.h.inc"
 } // namespace tosa
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 using namespace mlir::tosa;

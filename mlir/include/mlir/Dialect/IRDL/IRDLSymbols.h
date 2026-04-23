@@ -15,8 +15,9 @@
 
 #include "mlir/IR/Operation.h"
 #include "mlir/IR/SymbolTable.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace irdl {
 
 /// Looks up a symbol from the symbol table containing the source operation's
@@ -32,6 +33,6 @@ Operation *lookupSymbolNearDialect(SymbolTableCollection &symbolTable,
 Operation *lookupSymbolNearDialect(Operation *source, SymbolRefAttr symbol);
 
 } // namespace irdl
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_IRDL_IRDLSYMBOLS_H

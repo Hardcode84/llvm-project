@@ -15,8 +15,9 @@
 
 #include <type_traits>
 #include <utility>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Operation;
 
 /// This class acts as an owning reference to an op, and will automatically
@@ -74,6 +75,6 @@ private:
   OpTy op;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_IR_OWNINGOPREF_H

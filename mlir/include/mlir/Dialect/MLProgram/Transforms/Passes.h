@@ -12,8 +12,9 @@
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace ml_program {
 
 #define GEN_PASS_DECL
@@ -28,6 +29,6 @@ namespace ml_program {
 #include "mlir/Dialect/MLProgram/Transforms/Passes.h.inc"
 
 } // namespace ml_program
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_MLPROGRAM_TRANSFORMS_PASSES_H_

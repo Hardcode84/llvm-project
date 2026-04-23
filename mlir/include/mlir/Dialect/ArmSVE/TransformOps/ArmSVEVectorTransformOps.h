@@ -18,14 +18,15 @@
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/ArmSVE/TransformOps/ArmSVEVectorTransformOps.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace arm_sve {
 void registerTransformDialectExtension(DialectRegistry &registry);
 
 } // namespace arm_sve
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_ARM_SVE_VECTOR_TRANSFORMOPS_H

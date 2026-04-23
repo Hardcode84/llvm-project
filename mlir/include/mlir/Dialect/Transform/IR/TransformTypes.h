@@ -13,12 +13,13 @@
 #include "mlir/Dialect/Transform/Utils/DiagnosedSilenceableFailure.h"
 #include "mlir/IR/Types.h"
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DiagnosedSilenceableFailure;
 class Operation;
 class Type;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define GET_TYPEDEF_CLASSES
 #include "mlir/Dialect/Transform/IR/TransformTypes.h.inc"

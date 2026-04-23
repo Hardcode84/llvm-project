@@ -10,8 +10,9 @@
 #define MLIR_DIALECT_SPARSETENSOR_IR_SPARSETENSORINTERFACES_H_
 
 #include "mlir/IR/OpDefinition.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class PatternRewriter;
 
 namespace sparse_tensor {
@@ -22,7 +23,7 @@ LogicalResult stageWithSortImpl(sparse_tensor::StageWithSortSparseOp op,
                                 PatternRewriter &rewriter, Value &tmpBufs);
 } // namespace detail
 } // namespace sparse_tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// Include the generated interface declarations.
 #include "mlir/Dialect/SparseTensor/IR/SparseTensorInterfaces.h.inc"

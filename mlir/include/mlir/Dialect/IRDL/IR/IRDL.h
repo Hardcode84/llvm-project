@@ -21,14 +21,15 @@
 #include "mlir/Interfaces/SideEffectInterfaces.h"
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
 // Forward declaration.
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace irdl {
 class OpDef;
 class OpDefAttr;
 } // namespace irdl
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // IRDL Dialect

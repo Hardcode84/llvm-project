@@ -21,14 +21,16 @@
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/Interfaces/FunctionInterfaces.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Location;
 class PatternRewriter;
 class Value;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace mlir::arm_sme {
+MLIR_NAMESPACE_BEGIN
+namespace arm_sme {
 
 constexpr unsigned MinStreamingVectorLengthInBits = 128;
 
@@ -98,6 +100,7 @@ OpOperand *getTileOpOperand(arm_sme::ArmSMETileOpInterface tileOp);
 /// Returns true `typeA` is >= (in terms of bytes) than `typeB`.
 bool isTileTypeGreaterOrEqual(ArmSMETileType typeA, ArmSMETileType typeB);
 
-} // namespace mlir::arm_sme
+}
+MLIR_NAMESPACE_END // namespace mlir::arm_sme
 
 #endif // MLIR_DIALECT_ARMSME_UTILS_UTILS_H_

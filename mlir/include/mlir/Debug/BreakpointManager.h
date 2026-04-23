@@ -11,8 +11,9 @@
 
 #include "mlir/IR/Action.h"
 #include "llvm/ADT/MapVector.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tracing {
 
 /// This abstract class represents a breakpoint.
@@ -90,6 +91,6 @@ public:
 };
 
 } // namespace tracing
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRACING_BREAKPOINTMANAGER_H

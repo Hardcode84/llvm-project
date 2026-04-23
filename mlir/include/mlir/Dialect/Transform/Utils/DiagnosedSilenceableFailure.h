@@ -15,11 +15,12 @@
 #include "mlir/IR/Diagnostics.h"
 #include "mlir/IR/Operation.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
 #ifndef MLIR_DIALECT_TRANSFORM_UTILS_DIAGNOSEDSILENCEABLEFAILURE_H
 #define MLIR_DIALECT_TRANSFORM_UTILS_DIAGNOSEDSILENCEABLEFAILURE_H
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 /// The result of a transform IR operation application. This can have one of the
 /// three states:
 ///   - success;
@@ -262,6 +263,6 @@ inline DiagnosedSilenceableFailure
 emitSilenceableFailure(Operation *op, const Twine &message = {}) {
   return emitSilenceableFailure(op->getLoc(), message);
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TRANSFORM_UTILS_DIAGNOSEDSILENCEABLEFAILURE_H

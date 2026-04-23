@@ -18,8 +18,9 @@
 #include "mlir/Support/LLVM.h"
 
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Operation;
 class Value;
 
@@ -49,5 +50,5 @@ LogicalResult sinkOperationsIntoLaunchOp(
     gpu::LaunchOp launchOp,
     llvm::function_ref<bool(Operation *)> isSinkingBeneficiary);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 #endif // MLIR_DIALECT_GPU_TRANSFORMS_UTILS_H_

@@ -55,11 +55,14 @@
 #include "llvm/ADT/IntervalMap.h"
 #include "llvm/ADT/SmallVectorExtras.h"
 #include "llvm/ADT/TypeSwitch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::arm_sme {
+MLIR_NAMESPACE_BEGIN
+namespace arm_sme {
 #define GEN_PASS_DEF_TESTTILEALLOCATION
 #include "mlir/Dialect/ArmSME/Transforms/Passes.h.inc"
-} // namespace mlir::arm_sme
+}
+MLIR_NAMESPACE_END // namespace mlir::arm_sme
 
 using namespace mlir;
 using namespace mlir::arm_sme;

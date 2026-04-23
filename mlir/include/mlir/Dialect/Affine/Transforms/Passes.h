@@ -17,8 +17,9 @@
 #include "mlir/Interfaces/FunctionInterfaces.h"
 #include "mlir/Pass/Pass.h"
 #include <limits>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class RewritePatternSet;
 
 namespace func {
@@ -140,6 +141,6 @@ void populateAffineFoldMemRefAliasOpPatterns(RewritePatternSet &patterns);
 #include "mlir/Dialect/Affine/Transforms/Passes.h.inc"
 
 } // namespace affine
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_AFFINE_PASSES_H

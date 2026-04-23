@@ -17,8 +17,9 @@
 #define MLIR_DIALECT_MEMREF_UTILS_MEMREFUTILS_H
 
 #include "mlir/Dialect/MemRef/IR/MemRef.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class MemRefType;
 
@@ -173,6 +174,6 @@ LogicalResult resolveSourceIndicesRankReducingSubview(
     SmallVectorImpl<Value> &sourceIndices);
 
 } // namespace memref
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_MEMREF_UTILS_MEMREFUTILS_H

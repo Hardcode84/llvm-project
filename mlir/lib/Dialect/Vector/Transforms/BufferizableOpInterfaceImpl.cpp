@@ -15,12 +15,13 @@
 #include "mlir/IR/Dialect.h"
 #include "mlir/IR/Operation.h"
 #include "mlir/IR/Value.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::bufferization;
 using namespace mlir::vector;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace vector {
 namespace {
 
@@ -374,7 +375,7 @@ struct YieldOpInterface
 
 } // namespace
 } // namespace vector
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 void mlir::vector::registerBufferizableOpInterfaceExternalModels(
     DialectRegistry &registry) {

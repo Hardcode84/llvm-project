@@ -19,18 +19,19 @@
 #include "mlir/Interfaces/ControlFlowInterfaces.h"
 #include "llvm/ADT/ScopeExit.h"
 #include "llvm/ADT/SmallVectorExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
 //===----------------------------------------------------------------------===//
 // BufferizableOpInterface
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace bufferization {
 
 #include "mlir/Dialect/Bufferization/IR/BufferizableOpInterface.cpp.inc"
 
 } // namespace bufferization
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 MLIR_DEFINE_EXPLICIT_TYPE_ID(mlir::bufferization::AnalysisState)
 

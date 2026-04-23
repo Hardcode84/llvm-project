@@ -19,10 +19,12 @@
 
 #include "SPIRVOpUtils.h"
 #include "SPIRVParsingUtils.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir::spirv::AttrNames;
 
-namespace mlir::spirv {
+MLIR_NAMESPACE_BEGIN
+namespace spirv {
 
 /// Parses Function, Selection and Loop control attributes. If no control is
 /// specified, "None" is used as a default.
@@ -700,4 +702,5 @@ LogicalResult spirv::UnreachableOp::verify() {
   return success();
 }
 
-} // namespace mlir::spirv
+}
+MLIR_NAMESPACE_END // namespace mlir::spirv

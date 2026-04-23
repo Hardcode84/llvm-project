@@ -23,8 +23,9 @@
 
 #include <cstdint>
 #include <tuple>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace spirv {
 
 namespace detail {
@@ -528,6 +529,6 @@ public:
 };
 
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SPIRV_IR_SPIRVTYPES_H_

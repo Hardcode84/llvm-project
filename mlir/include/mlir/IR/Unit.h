@@ -12,11 +12,13 @@
 #include "mlir/IR/OperationSupport.h"
 #include "llvm/ADT/PointerUnion.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-} // namespace llvm
-namespace mlir {
+LLVM_NAMESPACE_END // namespace llvm
+MLIR_NAMESPACE_BEGIN
 class Operation;
 class Region;
 class Block;
@@ -37,9 +39,9 @@ public:
 
 raw_ostream &operator<<(raw_ostream &os, const IRUnit &unit);
 
-} // end namespace mlir
+MLIR_NAMESPACE_END // end namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Allow llvm::cast style functions.
 template <typename To>
@@ -50,6 +52,6 @@ template <typename To>
 struct CastInfo<To, const mlir::IRUnit>
     : public CastInfo<To, const mlir::IRUnit::PointerUnion> {};
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MLIR_IR_UNIT_H

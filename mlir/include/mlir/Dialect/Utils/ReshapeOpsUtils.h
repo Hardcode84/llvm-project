@@ -21,8 +21,9 @@
 #include "mlir/Support/LLVM.h"
 #include "llvm/ADT/StringRef.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 using ReassociationIndices = SmallVector<int64_t, 2>;
 using ReassociationIndicesRef = ArrayRef<int64_t>;
@@ -628,6 +629,6 @@ PackingMetadata computePackingMetadata(int64_t packedRank,
 /// splat value matches the value in the attribute.
 OpFoldResult reshapeConstantSource(DenseElementsAttr source, TensorType result,
                                    std::optional<Attribute> cst = std::nullopt);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_UTILS_RESHAPEOPSUTILS_H

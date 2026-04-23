@@ -13,10 +13,12 @@
 #ifndef MLIR_TARGET_IRDLTOCPP_TRANSLATIONREGISTRATION_H
 #define MLIR_TARGET_IRDLTOCPP_TRANSLATIONREGISTRATION_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 
 void registerIRDLToCppTranslation();
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_IRDLTOCPP_TRANSLATIONREGISTRATION_H

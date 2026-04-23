@@ -16,8 +16,9 @@
 #include "mlir/Dialect/MemRef/IR/MemRef.h"
 #include "mlir/Interfaces/ViewLikeInterface.h"
 #include "llvm/ADT/STLExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace memref {
 
 bool isStaticShapeAndContiguousRowMajor(MemRefType type) {
@@ -328,4 +329,4 @@ LogicalResult resolveSourceIndicesRankReducingSubview(
 }
 
 } // namespace memref
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

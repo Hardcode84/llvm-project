@@ -16,8 +16,9 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/Allocator.h"
 #include <utility>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 struct StorageUniquerImpl;
 
@@ -322,6 +323,6 @@ private:
       return DenseMapInfo<DerivedKey>::getHashValue(derivedKey);
   }
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif

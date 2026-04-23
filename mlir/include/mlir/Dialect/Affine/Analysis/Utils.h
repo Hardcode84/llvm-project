@@ -20,8 +20,9 @@
 #include "mlir/Dialect/Affine/IR/AffineOps.h"
 #include <memory>
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Block;
 class Location;
 class Operation;
@@ -636,6 +637,6 @@ mlir::Block *findInnermostCommonBlockInScope(mlir::Operation *a,
                                              mlir::Operation *b);
 
 } // namespace affine
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_AFFINE_ANALYSIS_UTILS_H

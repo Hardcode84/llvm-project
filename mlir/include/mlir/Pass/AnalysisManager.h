@@ -17,8 +17,9 @@
 #include "llvm/ADT/SmallPtrSet.h"
 #include "llvm/Support/TypeName.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class AnalysisManager;
 
 //===----------------------------------------------------------------------===//
@@ -405,6 +406,6 @@ private:
   detail::NestedAnalysisMap analyses;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_PASS_ANALYSISMANAGER_H

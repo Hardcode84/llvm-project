@@ -13,15 +13,16 @@
 #include "mlir/IR/OpDefinition.h"
 #include "mlir/IR/Operation.h"
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class RewriterBase;
 
 namespace memref::detail {
 LogicalResult verifyIndexedAccessOpInterface(Operation *op);
 LogicalResult verifyIndexedMemCopyOpInterface(Operation *op);
 } // namespace memref::detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Memory Access Op Interfaces

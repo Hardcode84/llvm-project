@@ -14,8 +14,9 @@
 #include "mlir/IR/TypeUtilities.h"
 #include "mlir/Transforms/DialectConversion.h"
 #include "llvm/Support/FormatVariadic.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace spirv {
 
 /// Converts elementwise unary, binary and ternary standard operations to SPIR-V
@@ -49,6 +50,6 @@ struct ElementwiseOpPattern : public OpConversionPattern<Op> {
 };
 
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_SPIRVCOMMON_PATTERN_H

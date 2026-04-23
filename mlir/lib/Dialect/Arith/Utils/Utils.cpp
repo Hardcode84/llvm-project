@@ -19,6 +19,7 @@
 #include "llvm/ADT/SmallBitVector.h"
 #include "llvm/ADT/SmallVectorExtras.h"
 #include <numeric>
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -343,7 +344,8 @@ Value ArithBuilder::select(Value cmp, Value lhs, Value rhs) {
   return arith::SelectOp::create(b, loc, cmp, lhs, rhs);
 }
 
-namespace mlir::arith {
+MLIR_NAMESPACE_BEGIN
+namespace arith {
 
 Value createProduct(OpBuilder &builder, Location loc, ArrayRef<Value> values) {
   return createProduct(builder, loc, values, values.front().getType());
@@ -370,4 +372,5 @@ FloatType parseFloatType(MLIRContext *ctx, StringRef name) {
   return dyn_cast_or_null<FloatType>(mlir::parseType(name, ctx));
 }
 
-} // namespace mlir::arith
+}
+MLIR_NAMESPACE_END // namespace mlir::arith

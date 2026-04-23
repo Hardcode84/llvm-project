@@ -14,8 +14,9 @@
 #define MLIR_CONVERSION_SCFTOSPIRV_SCFTOSPIRVPASS_H
 
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ModuleOp;
 
 #define GEN_PASS_DECL_SCFTOSPIRV
@@ -24,6 +25,6 @@ class ModuleOp;
 /// Creates a pass to convert SCF ops into SPIR-V ops.
 std::unique_ptr<OperationPass<>> createConvertSCFToSPIRVPass();
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_SCFTOSPIRV_SCFTOSPIRVPASS_H

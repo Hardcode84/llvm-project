@@ -10,6 +10,7 @@
 
 #include "mlir/IR/BuiltinDialect.h"
 #include "mlir/IR/BuiltinOps.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -62,7 +63,7 @@ LogicalResult impl::verifyCastInterfaceOp(Operation *op) {
 // External model for BuiltinDialect ops
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace {
 // This interface cannot be implemented directly on the op because the IR build
 // unit cannot depend on the Interfaces build unit.
@@ -75,7 +76,7 @@ struct UnrealizedConversionCastOpInterface
   }
 };
 } // namespace
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 void mlir::builtin::registerCastOpInterfaceExternalModels(
     DialectRegistry &registry) {

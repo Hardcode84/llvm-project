@@ -14,14 +14,15 @@
 #define MLIR_DIALECT_SPIRV_IR_SPIRVDIALECT_H_
 
 #include "mlir/IR/Dialect.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace spirv {
 
 enum class Decoration : uint32_t;
 
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Dialect/SPIRV/IR/SPIRVOpsDialect.h.inc"
 

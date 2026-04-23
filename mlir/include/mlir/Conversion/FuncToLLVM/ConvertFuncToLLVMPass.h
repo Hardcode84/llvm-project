@@ -11,14 +11,15 @@
 
 #include <memory>
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Pass;
 
 #define GEN_PASS_DECL_CONVERTFUNCTOLLVMPASS
 #define GEN_PASS_DECL_SETLLVMMODULEDATALAYOUTPASS
 #include "mlir/Conversion/Passes.h.inc"
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_FUNCTOLLVM_CONVERTFUNCTOLLVMPASS_H_

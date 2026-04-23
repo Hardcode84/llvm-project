@@ -16,8 +16,9 @@
 
 #include "mlir/Conversion/LLVMCommon/StructBuilder.h"
 #include "mlir/IR/OperationSupport.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class LLVMTypeConverter;
 class MemRefType;
@@ -269,6 +270,6 @@ public:
                         Value strideBasePtr, Value index, Value stride);
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_LLVMCOMMON_MEMREFBUILDER_H

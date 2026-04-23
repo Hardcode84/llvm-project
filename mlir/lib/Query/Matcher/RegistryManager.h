@@ -23,8 +23,10 @@
 #include "llvm/ADT/StringMap.h"
 #include "llvm/ADT/StringRef.h"
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::query::matcher {
+MLIR_NAMESPACE_BEGIN
+namespace query::matcher {
 
 using MatcherCtor = const internal::MatcherDescriptor *;
 
@@ -66,6 +68,7 @@ public:
                                          internal::Diagnostics *error);
 };
 
-} // namespace mlir::query::matcher
+}
+MLIR_NAMESPACE_END // namespace mlir::query::matcher
 
 #endif // MLIR_TOOLS_MLIRQUERY_MATCHER_REGISTRYMANAGER_H

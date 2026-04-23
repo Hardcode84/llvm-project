@@ -15,10 +15,11 @@
 #include "mlir/Dialect/SCF/IR/SCF.h"
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 #include "mlir/Interfaces/RuntimeVerifiableOpInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tensor {
 namespace {
 /// Generate a runtime check for lb <= value < ub.
@@ -239,7 +240,7 @@ struct ExtractSliceOpInterface
 };
 } // namespace
 } // namespace tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 void mlir::tensor::registerRuntimeVerifiableOpInterfaceExternalModels(
     DialectRegistry &registry) {

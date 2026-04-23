@@ -16,8 +16,9 @@
 #include "mlir/IR/SymbolTable.h"
 #include "llvm/ADT/iterator.h"
 #include "llvm/Support/Casting.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Base symbol cache class to allow for cache lookup through a pointer to some
 /// abstract cache. A symbol cache stores lookup tables to make manipulating and
@@ -128,6 +129,6 @@ public:
   }
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_SUPPORT_SYMCACHE_H

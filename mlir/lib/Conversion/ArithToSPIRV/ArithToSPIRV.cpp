@@ -25,11 +25,12 @@
 #include "llvm/Support/MathExtras.h"
 #include <cassert>
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_CONVERTARITHTOSPIRVPASS
 #include "mlir/Conversion/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define DEBUG_TYPE "arith-to-spirv-pattern"
 

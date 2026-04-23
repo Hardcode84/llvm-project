@@ -14,8 +14,9 @@
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/Transforms/DialectConversion.h"
 #include "llvm/ADT/SmallVector.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace linalg {
 namespace {
 // clang-format off
@@ -139,4 +140,4 @@ void populateTransposeConv2DPatterns(RewritePatternSet &patterns) {
       context);
 }
 } // namespace linalg
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

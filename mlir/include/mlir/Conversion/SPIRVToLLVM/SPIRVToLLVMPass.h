@@ -16,14 +16,15 @@
 #include <memory>
 
 #include "mlir/Dialect/SPIRV/IR/SPIRVEnums.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Pass;
 
 #define GEN_PASS_DECL_LOWERHOSTCODETOLLVMPASS
 #define GEN_PASS_DECL_CONVERTSPIRVTOLLVMPASS
 #include "mlir/Conversion/Passes.h.inc"
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_SPIRVTOLLVM_SPIRVTOLLVMPASS_H

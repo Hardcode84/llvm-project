@@ -22,11 +22,14 @@
 #include "llvm/Support/FormatVariadic.h"
 #include "llvm/Support/MathExtras.h"
 #include <cassert>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::arith {
+MLIR_NAMESPACE_BEGIN
+namespace arith {
 #define GEN_PASS_DEF_ARITHEMULATEWIDEINT
 #include "mlir/Dialect/Arith/Transforms/Passes.h.inc"
-} // namespace mlir::arith
+}
+MLIR_NAMESPACE_END // namespace mlir::arith
 
 using namespace mlir;
 

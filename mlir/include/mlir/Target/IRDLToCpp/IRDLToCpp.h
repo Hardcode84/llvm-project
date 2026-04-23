@@ -14,8 +14,9 @@
 #define MLIR_TARGET_IRDLTOCPP_IRDLTOCPP_H
 
 #include "mlir/Dialect/IRDL/IR/IRDL.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace irdl {
 
 /// Translates an IRDL dialect definition to a C++ definition that can be used
@@ -33,6 +34,6 @@ translateIRDLDialectToCpp(llvm::ArrayRef<irdl::DialectOp> dialects,
                           raw_ostream &output);
 
 } // namespace irdl
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_IRDLTOCPP_IRDLTOCPP_H

@@ -14,12 +14,13 @@
 #define MLIR_DIALECT_PDL_IR_PDLTYPES_H_
 
 #include "mlir/IR/Types.h"
+#include "mlir/Support/ABINamespace.h"
 
 //===----------------------------------------------------------------------===//
 // PDL Dialect Types
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace pdl {
 /// This class represents the base class of all PDL types.
 class PDLType : public Type {
@@ -34,7 +35,7 @@ public:
 Type getRangeElementTypeOrSelf(Type type);
 
 } // namespace pdl
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define GET_TYPEDEF_CLASSES
 #include "mlir/Dialect/PDL/IR/PDLOpsTypes.h.inc"

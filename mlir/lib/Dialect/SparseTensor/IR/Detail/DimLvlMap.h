@@ -13,8 +13,9 @@
 
 #include "mlir/Dialect/SparseTensor/IR/SparseTensor.h"
 #include "llvm/ADT/STLForwardCompat.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace sparse_tensor {
 namespace ir_detail {
 
@@ -275,6 +276,6 @@ private:
 
 } // namespace ir_detail
 } // namespace sparse_tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SPARSETENSOR_IR_DETAIL_DIMLVLMAP_H

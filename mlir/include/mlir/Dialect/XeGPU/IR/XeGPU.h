@@ -20,8 +20,9 @@
 #include "mlir/Interfaces/ShapedOpInterfaces.h"
 #include "mlir/Interfaces/SideEffectInterfaces.h"
 #include "mlir/Interfaces/ViewLikeInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace xegpu {
 class TensorDescType;
 class DistributeLayoutAttr;
@@ -32,7 +33,7 @@ class SliceAttr;
 enum class LayoutKind { Lane, InstData, Subgroup };
 
 } // namespace xegpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 // clang-format off
 #include <mlir/Dialect/XeGPU/IR/XeGPUEnums.h.inc>

@@ -14,10 +14,12 @@
 
 #include "SPIRVOpUtils.h"
 #include "SPIRVParsingUtils.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir::spirv::AttrNames;
 
-namespace mlir::spirv {
+MLIR_NAMESPACE_BEGIN
+namespace spirv {
 
 template <typename T>
 static StringRef stringifyTypeName();
@@ -149,4 +151,5 @@ LogicalResult AtomicXorOp::verify() {
   return verifyAtomicUpdateOp<AtomicXorOp, IntegerType>(getOperation());
 }
 
-} // namespace mlir::spirv
+}
+MLIR_NAMESPACE_END // namespace mlir::spirv

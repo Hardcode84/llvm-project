@@ -12,8 +12,9 @@
 #include "mlir/Conversion/LLVMCommon/TypeConverter.h"
 #include "mlir/Dialect/ArmSME/Transforms/PassesEnums.h.inc"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class RewritePatternSet;
 
@@ -46,6 +47,6 @@ std::unique_ptr<Pass> createVectorLegalizationPass();
 #include "mlir/Dialect/ArmSME/Transforms/Passes.h.inc"
 
 } // namespace arm_sme
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_ARMSME_TRANSFORMS_PASSES_H

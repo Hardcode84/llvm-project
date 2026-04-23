@@ -14,8 +14,9 @@
 #define MLIR_CONVERSION_FUNCTOSPIRV_FUNCTOSPIRV_H
 
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class SPIRVTypeConverter;
 
 /// Appends to a pattern list additional patterns for translating Func ops
@@ -24,6 +25,6 @@ class SPIRVTypeConverter;
 void populateFuncToSPIRVPatterns(const SPIRVTypeConverter &typeConverter,
                                  RewritePatternSet &patterns);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_FUNCTOSPIRV_FUNCTOSPIRV_H

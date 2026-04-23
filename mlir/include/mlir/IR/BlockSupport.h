@@ -17,8 +17,10 @@
 #include "llvm/ADT/PointerUnion.h"
 #include "llvm/ADT/ilist.h"
 #include "llvm/ADT/ilist_node.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Block;
 
 //===----------------------------------------------------------------------===//
@@ -169,9 +171,9 @@ public:
   operator const IteratorT &() const { return this->wrapped(); }
 };
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Provide support for hashing successor ranges.
 template <>
@@ -255,6 +257,6 @@ private:
   mlir::Region *getParentRegion();
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MLIR_IR_BLOCKSUPPORT_H

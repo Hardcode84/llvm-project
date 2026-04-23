@@ -10,8 +10,10 @@
 //===----------------------------------------------------------------------===//
 
 #include "mlir/Query/Matcher/VariantValue.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::query::matcher {
+MLIR_NAMESPACE_BEGIN
+namespace query::matcher {
 
 VariantMatcher::Payload::~Payload() = default;
 
@@ -220,4 +222,5 @@ std::string VariantValue::getTypeAsString() const {
   llvm_unreachable("Invalid Type");
 }
 
-} // namespace mlir::query::matcher
+}
+MLIR_NAMESPACE_END // namespace mlir::query::matcher

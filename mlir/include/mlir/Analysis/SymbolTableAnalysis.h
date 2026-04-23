@@ -11,8 +11,9 @@
 
 #include "mlir/IR/SymbolTable.h"
 #include "mlir/Pass/AnalysisManager.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 /// This is a simple analysis that contains a symbol table collection and, for
 /// simplicity, a reference to the top-level symbol table. This allows symbol
 /// tables to be preserved across passes. Most often, symbol tables are
@@ -49,6 +50,6 @@ private:
   /// The symbol table of the top-level operation.
   SymbolTable &topLevelSymbolTable;
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_ANALYSIS_SYMBOLTABLEANALYSIS_H

@@ -14,8 +14,9 @@
 #define MLIR_DIALECT_TENSOR_IR_TENSORINFERTYPEOPINTERFACEIMPL_H_
 
 #include "mlir/IR/Dialect.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tensor {
 
 /// Registers external models for Infer Type interfaces for tensor ops.
@@ -33,6 +34,6 @@ void registerInferTypeOpInterfaceExternalModels(
     mlir::DialectRegistry &registry);
 
 } // namespace tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TENSOR_IR_TENSORINFERTYPEOPINTERFACEIMPL_H_

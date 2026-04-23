@@ -14,13 +14,14 @@
 #define MLIR_CONVERSION_TENSORTOLINALG_TENSORTOLINALG_H
 
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Appends to a pattern list additional patterns for translating tensor ops
 /// to Linalg ops.
 void populateTensorToLinalgPatterns(RewritePatternSet &patterns);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_TENSORTOLINALG_TENSORTOLINALG_H

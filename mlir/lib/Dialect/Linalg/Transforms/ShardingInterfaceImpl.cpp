@@ -33,8 +33,10 @@
 #include "llvm/ADT/TypeSwitch.h"
 #include <numeric>
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::linalg {
+MLIR_NAMESPACE_BEGIN
+namespace linalg {
 
 using GridAxis = shard::GridAxis;
 using ReductionKind = shard::ReductionKind;
@@ -345,4 +347,5 @@ void registerShardingInterfaceExternalModels(DialectRegistry &registry) {
   });
 }
 
-} // namespace mlir::linalg
+}
+MLIR_NAMESPACE_END // namespace mlir::linalg

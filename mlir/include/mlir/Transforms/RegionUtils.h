@@ -14,8 +14,9 @@
 #include "mlir/IR/ValueRange.h"
 
 #include "llvm/ADT/SetVector.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DominanceInfo;
 class RewriterBase;
 
@@ -130,6 +131,6 @@ LogicalResult eraseUnreachableBlocks(RewriterBase &rewriter,
 LogicalResult runRegionDCE(RewriterBase &rewriter,
                            MutableArrayRef<Region> regions);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRANSFORMS_REGIONUTILS_H_

@@ -19,8 +19,9 @@
 #include "mlir/Support/StorageUniquer.h"
 #include "mlir/Support/TypeID.h"
 #include "llvm/ADT/FunctionExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class InFlightDiagnostic;
 class Location;
 class MLIRContext;
@@ -260,6 +261,6 @@ private:
   }
 };
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif

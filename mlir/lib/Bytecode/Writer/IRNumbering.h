@@ -19,8 +19,9 @@
 #include "llvm/ADT/SetVector.h"
 #include "llvm/ADT/StringMap.h"
 #include <cstdint>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class BytecodeDialectInterface;
 class BytecodeWriterConfig;
 
@@ -277,6 +278,6 @@ private:
 };
 } // namespace detail
 } // namespace bytecode
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif

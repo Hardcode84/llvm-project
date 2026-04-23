@@ -11,8 +11,9 @@
 
 #include "mlir/Support/LLVM.h"
 #include <cstdint>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 class Value;
 
@@ -32,6 +33,6 @@ void registerValueBoundsOpInterfaceExternalModels(DialectRegistry &registry);
 FailureOr<int64_t> fullyComposeAndComputeConstantDelta(Value value1,
                                                        Value value2);
 } // namespace affine
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_AFFINE_IR_VALUEBOUNDSOPINTERFACEIMPL_H

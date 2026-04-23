@@ -23,8 +23,9 @@
 #include <map>
 #include <string>
 #include <tuple>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Dialect;
 
 using DialectAllocatorFunction = std::function<Dialect *(MLIRContext *)>;
@@ -309,6 +310,6 @@ private:
   llvm::MapVector<TypeID, std::unique_ptr<DialectExtensionBase>> extensions;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_IR_DIALECTREGISTRY_H

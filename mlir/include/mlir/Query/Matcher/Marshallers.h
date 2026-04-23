@@ -21,8 +21,10 @@
 #include "VariantValue.h"
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/StringRef.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::query::matcher::internal {
+MLIR_NAMESPACE_BEGIN
+namespace query::matcher::internal {
 
 // Helper template class for jumping from argument type to the correct is/get
 // functions in VariantValue. This is used for verifying and extracting the
@@ -285,6 +287,7 @@ makeMatcherAutoMarshall(VariadicOperatorMatcherFunc<MinCount, MaxCount> func,
   return std::make_unique<VariadicOperatorMatcherDescriptor>(
       MinCount, MaxCount, func.varOp, matcherName);
 }
-} // namespace mlir::query::matcher::internal
+}
+MLIR_NAMESPACE_END // namespace mlir::query::matcher::internal
 
 #endif // MLIR_TOOLS_MLIRQUERY_MATCHER_MARSHALLERS_H

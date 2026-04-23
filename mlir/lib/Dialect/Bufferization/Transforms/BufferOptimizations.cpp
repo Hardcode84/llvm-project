@@ -22,15 +22,16 @@
 #include "mlir/Interfaces/DataLayoutInterfaces.h"
 #include "mlir/Interfaces/LoopLikeInterface.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace bufferization {
 #define GEN_PASS_DEF_BUFFERHOISTINGPASS
 #define GEN_PASS_DEF_BUFFERLOOPHOISTINGPASS
 #define GEN_PASS_DEF_PROMOTEBUFFERSTOSTACKPASS
 #include "mlir/Dialect/Bufferization/Transforms/Passes.h.inc"
 } // namespace bufferization
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 using namespace mlir::bufferization;

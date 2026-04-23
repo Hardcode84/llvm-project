@@ -20,17 +20,19 @@
 #include "mlir/Interfaces/FunctionInterfaces.h"
 #include "mlir/Interfaces/InferTypeOpInterface.h"
 #include "mlir/Interfaces/SideEffectInterfaces.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class PatternRewriter;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/Func/IR/FuncOps.h.inc"
 
 #include "mlir/Dialect/Func/IR/FuncOpsDialect.h.inc"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Allow stealing the low bits of FuncOp.
 template <>
@@ -43,6 +45,6 @@ struct PointerLikeTypeTraits<mlir::func::FuncOp> {
   }
   static constexpr int NumLowBitsAvailable = 3;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MLIR_DIALECT_FUNC_IR_OPS_H

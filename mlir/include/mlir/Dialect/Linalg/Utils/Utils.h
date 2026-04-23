@@ -14,8 +14,9 @@
 #include "mlir/Dialect/Utils/StructuredOpsUtils.h"
 #include "llvm/ADT/StringSet.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class AffineExpr;
 class AffineMap;
 class PatternRewriter;
@@ -407,6 +408,6 @@ SmallVector<NamedAttribute> getPrunedAttributeList(OpTy op) {
 }
 
 } // namespace linalg
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_LINALG_UTILS_UTILS_H

@@ -10,11 +10,12 @@
 
 #include "mlir/Analysis/TopologicalSortUtils.h"
 #include "mlir/IR/RegionKindInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_TOPOLOGICALSORTPASS
 #include "mlir/Transforms/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 

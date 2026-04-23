@@ -15,17 +15,18 @@
 #define MLIR_DIALECT_SHAPE_TRANSFORMS_PASSES_H_
 
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ConversionTarget;
 class ModuleOp;
 class TypeConverter;
 namespace func {
 class FuncOp;
 } // namespace func
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 #define GEN_PASS_DECL
 #include "mlir/Dialect/Shape/Transforms/Passes.h.inc"
@@ -49,6 +50,6 @@ void populateRemoveShapeConstraintsPatterns(RewritePatternSet &patterns);
 #define GEN_PASS_REGISTRATION
 #include "mlir/Dialect/Shape/Transforms/Passes.h.inc"
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SHAPE_TRANSFORMS_PASSES_H_

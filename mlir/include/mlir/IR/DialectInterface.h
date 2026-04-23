@@ -13,8 +13,9 @@
 #include "llvm/ADT/DenseSet.h"
 #include "llvm/ADT/STLExtras.h"
 #include <vector>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Dialect;
 class MLIRContext;
 class Operation;
@@ -183,6 +184,6 @@ private:
   using detail::DialectInterfaceCollectionBase::interface_end;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif

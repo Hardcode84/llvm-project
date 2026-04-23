@@ -16,8 +16,9 @@
 #include "mlir/Support/LLVM.h"
 #include <cstdint>
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class MLIRContext;
 
 namespace spirv {
@@ -58,6 +59,6 @@ LogicalResult serialize(ModuleOp moduleOp, SmallVectorImpl<uint32_t> &binary,
                         const SerializationOptions &options = {});
 
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_SPIRV_SERIALIZATION_H

@@ -18,13 +18,15 @@
 #include "mlir/Interfaces/DataLayoutInterfaces.h"
 #include "mlir/Interfaces/MemorySlotInterfaces.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class ElementCount;
 class TypeSize;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class AsmParser;
 class AsmPrinter;
@@ -40,7 +42,7 @@ struct LLVMStructTypeStorage;
 struct LLVMTypeAndSizeStorage;
 } // namespace detail
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // ODS-Generated Declarations
@@ -51,7 +53,7 @@ struct LLVMTypeAndSizeStorage;
 #define GET_TYPEDEF_CLASSES
 #include "mlir/Dialect/LLVMIR/LLVMTypes.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace LLVM {
 
 //===----------------------------------------------------------------------===//
@@ -154,6 +156,6 @@ std::optional<uint64_t> extractPointerSpecValue(Attribute attr,
                                                 PtrDLEntryPos pos);
 
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_LLVMIR_LLVMTYPES_H_

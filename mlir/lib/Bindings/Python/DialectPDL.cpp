@@ -11,11 +11,12 @@
 #include "mlir/Bindings/Python/IRCore.h"
 #include "mlir/Bindings/Python/Nanobind.h"
 #include "mlir/Bindings/Python/NanobindAdaptors.h"
+#include "mlir/Support/ABINamespace.h"
 
 namespace nb = nanobind;
 using namespace mlir::python::nanobind_adaptors;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace python {
 namespace MLIR_BINDINGS_PYTHON_DOMAIN {
 namespace pdl {
@@ -170,7 +171,7 @@ static void populateDialectPDLSubmodule(nanobind::module_ &m) {
 } // namespace pdl
 } // namespace MLIR_BINDINGS_PYTHON_DOMAIN
 } // namespace python
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 NB_MODULE(_mlirDialectsPDL, m) {
   m.doc() = "MLIR PDL dialect.";

@@ -16,8 +16,9 @@
 #include "mlir/IR/Operation.h"
 #include "llvm/Support/CommandLine.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 template <typename OpTy>
 class OwningOpRef;
 
@@ -169,6 +170,6 @@ struct TranslationParser : public llvm::cl::parser<const Translation *> {
 /// Register command-line options used by the translation registry.
 void registerTranslationCLOptions();
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_MLIRTRANSLATE_TRANSLATION_H

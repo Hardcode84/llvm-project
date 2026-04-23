@@ -17,8 +17,9 @@
 
 #include "mlir/IR/Region.h"
 #include "llvm/ADT/GraphTraits.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <>
 struct GraphTraits<mlir::Block *> {
   using ChildIteratorType = mlir::Block::succ_iterator;
@@ -116,6 +117,6 @@ struct GraphTraits<Inverse<mlir::Region *>>
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

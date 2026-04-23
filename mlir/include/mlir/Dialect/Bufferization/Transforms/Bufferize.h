@@ -20,8 +20,9 @@
 #define MLIR_DIALECT_BUFFERIZATION_TRANSFORMS_BUFFERIZE_H
 
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace bufferization {
 
 class AnalysisState;
@@ -67,6 +68,6 @@ LogicalResult bufferizeBlockSignature(Block *block, RewriterBase &rewriter,
                                       BufferizationState &state);
 
 } // namespace bufferization
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_BUFFERIZATION_TRANSFORMS_BUFFERIZE_H

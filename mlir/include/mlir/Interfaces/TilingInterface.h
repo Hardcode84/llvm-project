@@ -20,8 +20,9 @@
 #include "mlir/IR/Operation.h"
 #include "mlir/Interfaces/ViewLikeInterface.h"
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Container for result values of tiling.
 /// - `tiledOps` contains operations created by the tiling implementation that
@@ -66,7 +67,7 @@ struct MergeResult {
   SmallVector<Value> replacements;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// Include the ODS generated interface header files.
 #include "mlir/Interfaces/TilingInterface.h.inc"

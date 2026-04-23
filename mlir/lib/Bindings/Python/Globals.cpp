@@ -21,6 +21,7 @@
 // clang-format on
 #include "mlir-c/Support.h"
 #include "mlir/Bindings/Python/Nanobind.h"
+#include "mlir/Support/ABINamespace.h"
 
 namespace nb = nanobind;
 using namespace mlir;
@@ -41,7 +42,7 @@ static std::string escapeRegex(std::string_view String) {
 // PyGlobals
 // -----------------------------------------------------------------------------
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace python {
 namespace MLIR_BINDINGS_PYTHON_DOMAIN {
 PyGlobals *PyGlobals::instance = nullptr;
@@ -366,4 +367,4 @@ bool PyGlobals::TracebackLoc::isUserTracebackFilename(
 }
 } // namespace MLIR_BINDINGS_PYTHON_DOMAIN
 } // namespace python
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

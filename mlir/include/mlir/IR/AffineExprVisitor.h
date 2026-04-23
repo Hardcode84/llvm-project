@@ -16,8 +16,9 @@
 #include "mlir/IR/AffineExpr.h"
 #include "mlir/Support/LLVM.h"
 #include "llvm/ADT/ArrayRef.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Base class for AffineExpr visitors/walkers.
 ///
@@ -451,6 +452,6 @@ private:
   inline unsigned getDimStartIndex() const { return 0; }
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_IR_AFFINEEXPRVISITOR_H

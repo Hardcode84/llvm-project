@@ -28,13 +28,14 @@
 #include "llvm/Support/MathExtras.h"
 
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "memref-to-llvm"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_FINALIZEMEMREFTOLLVMCONVERSIONPASS
 #include "mlir/Conversion/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 

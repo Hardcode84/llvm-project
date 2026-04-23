@@ -14,7 +14,9 @@
 #ifndef MLIR_INITALLPASSES_H_
 #define MLIR_INITALLPASSES_H_
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 
 // This function may be called to register the MLIR passes with the
 // global registry.
@@ -25,6 +27,6 @@ namespace mlir {
 // The global registry is interesting to interact with the command-line tools.
 void registerAllPasses();
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_INITALLPASSES_H_

@@ -11,8 +11,10 @@
 
 #include "mlir/IR/AttributeSupport.h"
 #include "llvm/Support/PointerLikeTypeTraits.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class AsmState;
 class StringAttr;
 
@@ -295,9 +297,9 @@ struct IsLocation : public AttributeTrait::TraitBase<ConcreteType, IsLocation> {
 };
 } // namespace AttributeTrait
 
-} // namespace mlir.
+MLIR_NAMESPACE_END // namespace mlir.
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Attribute hash just like pointers.
 template <>
@@ -391,6 +393,6 @@ struct CastInfo<To, From,
   static inline To doCast(mlir::Attribute attr) { return To(attr.getImpl()); }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

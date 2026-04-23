@@ -20,8 +20,9 @@
 
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/TypeSwitch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 // Forward declarations.
 class AffineMap;
@@ -368,6 +369,6 @@ namespace matcher {
 bool operatesOnSuperVectorsOf(Operation &op, VectorType subVectorType);
 
 } // namespace matcher
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_VECTOR_UTILS_VECTORUTILS_H_

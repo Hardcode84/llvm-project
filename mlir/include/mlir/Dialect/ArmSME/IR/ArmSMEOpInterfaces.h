@@ -10,8 +10,10 @@
 #define MLIR_DIALECT_ARMSME_OPINTERFACES_H
 
 #include "mlir/Dialect/Vector/IR/VectorOps.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::arm_sme {
+MLIR_NAMESPACE_BEGIN
+namespace arm_sme {
 
 namespace detail {
 LogicalResult verifyArmSMETileOpInterface(Operation *);
@@ -22,6 +24,7 @@ LogicalResult verifyArmSMETileOpInterface(Operation *);
 static constexpr unsigned kInMemoryTileIdBase = 16;
 
 #include "mlir/Dialect/ArmSME/IR/ArmSMEOpInterfaces.h.inc"
-} // namespace mlir::arm_sme
+}
+MLIR_NAMESPACE_END // namespace mlir::arm_sme
 
 #endif // MLIR_DIALECT_ARMSME_OPINTERFACES_H

@@ -16,22 +16,24 @@
 #include "mlir/Dialect/LLVMIR/LLVMDialect.h"
 #include "mlir/IR/BuiltinAttributes.h"
 #include "mlir/IR/DialectInterface.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Instruction;
 class IRBuilderBase;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace LLVM {
 class ModuleTranslation;
 class LLVMFuncOp;
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Target/LLVMIR/LLVMTranslationDialectInterface.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Interface collection for translation to LLVM IR, dispatches to a concrete
 /// interface implementation based on the dialect to which the given op belongs.
@@ -81,6 +83,6 @@ public:
   }
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_LLVMIR_LLVMTRANSLATIONINTERFACE_H

@@ -14,7 +14,10 @@
 #ifndef LIB_MLIR_DIALECT_LLVM_IR_LLVMDIALECTBYTECODE_H
 #define LIB_MLIR_DIALECT_LLVM_IR_LLVMDIALECTBYTECODE_H
 
-namespace mlir::LLVM {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
+namespace LLVM {
 class LLVMDialect;
 
 namespace detail {
@@ -22,6 +25,7 @@ namespace detail {
 /// bytecode.
 void addBytecodeInterface(LLVMDialect *dialect);
 } // namespace detail
-} // namespace mlir::LLVM
+}
+MLIR_NAMESPACE_END // namespace mlir::LLVM
 
 #endif // LIB_MLIR_DIALECT_LLVM_IR_LLVMDIALECTBYTECODE_H

@@ -10,8 +10,9 @@
 #define MLIR_DIALECT_XEGPU_TRANSFORMS_PASSES_H
 
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 namespace xegpu {
 
@@ -30,6 +31,6 @@ namespace xegpu {
 #include "mlir/Dialect/XeGPU/Transforms/Passes.h.inc"
 
 } // namespace xegpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_XEGPU_TRANSFORMS_PASSES_H

@@ -15,8 +15,9 @@
 
 #include <chrono>
 #include <mutex>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tracing {
 
 /// This class defines an observer that profiles events before and after
@@ -46,6 +47,6 @@ private:
 };
 
 } // namespace tracing
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRACING_OBSERVERS_ACTIONPROFILER_H

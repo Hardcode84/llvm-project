@@ -18,8 +18,9 @@
 #include <functional>
 #include <optional>
 #include <utility>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class RewritePatternSet;
 
 namespace xegpu {
@@ -102,6 +103,6 @@ void populateXeGPUUnrollPatterns(RewritePatternSet &patterns,
                                  const UnrollOptions &options);
 
 } // namespace xegpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_XEGPU_TRANSFORMS_TRANSFORMS_H

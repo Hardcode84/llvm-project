@@ -13,12 +13,14 @@
 #ifndef MLIR_TOOLS_MLIR_LSP_SERVER_MLIRLSPSERVERMAIN_H
 #define MLIR_TOOLS_MLIR_LSP_SERVER_MLIRLSPSERVERMAIN_H
 #include "mlir/Tools/mlir-lsp-server/MlirLspRegistryFunction.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct LogicalResult;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Implementation for tools like `mlir-lsp-server`.
 /// - registry should contain all the dialects that can be parsed in source IR
@@ -33,6 +35,6 @@ llvm::LogicalResult MlirLspServerMain(int argc, char **argv,
 llvm::LogicalResult MlirLspServerMain(int argc, char **argv,
                                       lsp::DialectRegistryFn registry_fn);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_MLIR_LSP_SERVER_MLIRLSPSERVERMAIN_H

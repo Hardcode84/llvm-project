@@ -14,8 +14,9 @@
 #define MLIR_CONVERSION_TENSORTOSPIRV_TENSORTOSPIRV_H
 
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class SPIRVTypeConverter;
 
 /// Appends to a pattern list additional patterns for translating tensor ops
@@ -34,6 +35,6 @@ void populateTensorToSPIRVPatterns(const SPIRVTypeConverter &typeConverter,
                                    int64_t byteCountThreshold,
                                    RewritePatternSet &patterns);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_TENSORTOSPIRV_TENSORTOSPIRV_H

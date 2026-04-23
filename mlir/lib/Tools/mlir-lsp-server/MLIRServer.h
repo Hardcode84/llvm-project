@@ -15,8 +15,9 @@
 #include "llvm/Support/Error.h"
 #include <memory>
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace lsp {
@@ -97,6 +98,6 @@ private:
 };
 
 } // namespace lsp
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // LIB_MLIR_TOOLS_MLIRLSPSERVER_SERVER_H_

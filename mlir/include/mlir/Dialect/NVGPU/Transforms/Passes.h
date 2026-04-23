@@ -13,8 +13,9 @@
 #define MLIR_DIALECT_NVGPU_PASSES_H_
 
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace nvgpu {
 
 #define GEN_PASS_DECL
@@ -33,6 +34,6 @@ std::unique_ptr<Pass> createOptimizeSharedMemoryPass();
 #define GEN_PASS_REGISTRATION
 #include "mlir/Dialect/NVGPU/Transforms/Passes.h.inc"
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_NVGPU_PASSES_H_

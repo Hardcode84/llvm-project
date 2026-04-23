@@ -28,8 +28,9 @@
 
 #define GET_OP_CLASSES
 #include "mlir/IR/BuiltinOps.h.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Allow stealing the low bits of ModuleOp.
 template <>
 struct PointerLikeTypeTraits<mlir::ModuleOp> {
@@ -42,6 +43,6 @@ public:
   }
   static constexpr int NumLowBitsAvailable = 3;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MLIR_IR_BUILTINOPS_H_

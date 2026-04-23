@@ -10,8 +10,9 @@
 #define MLIR_DIALECT_GPU_PIPELINES_PASSES_H_
 
 #include "mlir/Pass/PassOptions.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace gpu {
 
 /// Options for the gpu to nvvm pipeline.
@@ -131,6 +132,6 @@ void registerGPUToNVVMPipeline();
 void registerGPUToXeVMPipeline();
 
 } // namespace gpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif

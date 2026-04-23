@@ -19,8 +19,9 @@
 #include "mlir/Pass/PassManager.h"
 #include "mlir/Transforms/InliningUtils.h"
 #include "llvm/ADT/StringMap.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class OpPassManager;
 class Operation;
 
@@ -157,6 +158,6 @@ private:
   /// Forward declaration of the class providing the actual implementation.
   class Impl;
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRANSFORMS_INLINER_H

@@ -13,8 +13,9 @@
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 #include "mlir/IR/Operation.h"
 #include "mlir/Interfaces/SubsetOpInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace bufferization {
 class AnalysisState;
 struct BufferizationStatistics;
@@ -90,6 +91,6 @@ LogicalResult insertTensorCopies(Operation *op,
 void populateEmptyTensorToAllocTensorPattern(RewritePatternSet &patterns);
 
 } // namespace bufferization
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_BUFFERIZATION_TRANSFORMS_TRANSFORMS_H

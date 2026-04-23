@@ -20,8 +20,9 @@
 #include "llvm/ADT/Repeated.h"
 #include "llvm/ADT/Sequence.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ValueRange;
 template <typename ValueRangeT>
 class ValueTypeRange;
@@ -435,6 +436,6 @@ private:
   friend RangeBaseT;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_IR_VALUERANGE_H

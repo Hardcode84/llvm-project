@@ -46,13 +46,14 @@
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/IR/SymbolTable.h"
 #include "mlir/IR/Value.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace acc {
 #define GEN_PASS_DEF_ACCROUTINELOWERING
 #include "mlir/Dialect/OpenACC/Transforms/Passes.h.inc"
 } // namespace acc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define DEBUG_TYPE "acc-routine-lowering"
 

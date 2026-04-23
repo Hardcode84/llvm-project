@@ -11,10 +11,11 @@
 
 #include "mlir/IR/OpDefinition.h"
 #include "llvm/Support/Alignment.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class MLIRContext;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Interfaces/AlignmentAttrInterface.h.inc"
 

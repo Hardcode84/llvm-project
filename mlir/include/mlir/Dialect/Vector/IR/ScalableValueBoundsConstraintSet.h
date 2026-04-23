@@ -12,8 +12,10 @@
 #include "mlir/Analysis/Presburger/IntegerRelation.h"
 #include "mlir/Dialect/Vector/IR/VectorOps.h"
 #include "mlir/Interfaces/ValueBoundsOpInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::vector {
+MLIR_NAMESPACE_BEGIN
+namespace vector {
 
 namespace detail {
 
@@ -103,6 +105,7 @@ private:
 using ConstantOrScalableBound =
     ScalableValueBoundsConstraintSet::ConstantOrScalableBound;
 
-} // namespace mlir::vector
+}
+MLIR_NAMESPACE_END // namespace mlir::vector
 
 #endif // MLIR_DIALECT_VECTOR_IR_SCALABLEVALUEBOUNDSCONSTRAINTSET_H

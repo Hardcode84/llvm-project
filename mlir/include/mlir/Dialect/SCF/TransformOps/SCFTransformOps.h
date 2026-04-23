@@ -14,8 +14,9 @@
 #include "mlir/Dialect/Transform/Interfaces/TransformInterfaces.h"
 #include "mlir/IR/OpImplementation.h"
 #include "mlir/Interfaces/LoopLikeInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace func {
 class FuncOp;
 } // namespace func
@@ -24,17 +25,17 @@ class ForallOp;
 class ForOp;
 class IfOp;
 } // namespace scf
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/SCF/TransformOps/SCFTransformOps.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace scf {
 void registerTransformDialectExtension(DialectRegistry &registry);
 } // namespace scf
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SCF_TRANSFORMOPS_SCFTRANSFORMOPS_H

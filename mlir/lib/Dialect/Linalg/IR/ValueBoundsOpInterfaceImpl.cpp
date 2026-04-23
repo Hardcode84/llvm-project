@@ -10,10 +10,11 @@
 
 #include "mlir/Dialect/Linalg/IR/Linalg.h"
 #include "mlir/Interfaces/ValueBoundsOpInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace linalg {
 namespace {
 
@@ -49,7 +50,7 @@ struct IndexOpInterface
 
 } // namespace
 } // namespace linalg
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 void mlir::linalg::registerValueBoundsOpInterfaceExternalModels(
     DialectRegistry &registry) {

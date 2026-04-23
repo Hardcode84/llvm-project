@@ -18,6 +18,7 @@
 #include "llvm/Support/DebugLog.h"
 
 #include <utility>
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "value-bounds-op-interface"
 
@@ -25,9 +26,9 @@ using namespace mlir;
 using presburger::BoundType;
 using presburger::VarKind;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #include "mlir/Interfaces/ValueBoundsOpInterface.cpp.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 static Operation *getOwnerOfValue(Value value) {
   if (auto bbArg = dyn_cast<BlockArgument>(value))

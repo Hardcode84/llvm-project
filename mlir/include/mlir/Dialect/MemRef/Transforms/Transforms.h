@@ -16,8 +16,9 @@
 
 #include "mlir/Support/LLVM.h"
 #include "llvm/ADT/STLFunctionalExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class OpBuilder;
 class RewritePatternSet;
 class RewriterBase;
@@ -220,6 +221,6 @@ memref::AllocaOp allocToAlloca(
     RewriterBase &rewriter, memref::AllocOp alloc,
     function_ref<bool(memref::AllocOp, memref::DeallocOp)> filter = nullptr);
 } // namespace memref
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif

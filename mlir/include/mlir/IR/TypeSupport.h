@@ -16,8 +16,9 @@
 #include "mlir/IR/MLIRContext.h"
 #include "mlir/IR/StorageUniquerSupport.h"
 #include "llvm/ADT/Twine.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Dialect;
 class MLIRContext;
 
@@ -295,6 +296,6 @@ struct TypeUniquer {
 };
 } // namespace detail
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif

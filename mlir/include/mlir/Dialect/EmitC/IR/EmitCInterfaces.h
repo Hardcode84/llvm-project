@@ -15,12 +15,13 @@
 #define MLIR_DIALECT_EMITC_IR_EMITCINTERFACES_H
 
 #include "mlir/IR/OpDefinition.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace emitc {
 //
 } // namespace emitc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // EmitC Dialect Interfaces

@@ -35,8 +35,10 @@
 #include <optional>
 #include <tuple>
 #include <utility>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::shard {
+MLIR_NAMESPACE_BEGIN
+namespace shard {
 
 template <typename SourceAxes, typename TargetAxes>
 static bool arePartialAxesCompatible(const SourceAxes &sourceAxes,
@@ -907,4 +909,5 @@ struct Partition : public impl::PartitionBase<Partition> {
 
 } // namespace
 
-} // namespace mlir::shard
+}
+MLIR_NAMESPACE_END // namespace mlir::shard

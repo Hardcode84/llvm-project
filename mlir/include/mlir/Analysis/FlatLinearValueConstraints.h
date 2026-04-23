@@ -14,8 +14,9 @@
 #include "mlir/IR/AffineExpr.h"
 #include "mlir/IR/OpDefinition.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class AffineMap;
 class IntegerSet;
@@ -581,6 +582,6 @@ AffineMap alignAffineMapWithValues(AffineMap map, ValueRange operands,
                                    ValueRange dims, ValueRange syms,
                                    SmallVector<Value> *newSyms = nullptr);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_ANALYSIS_FLATLINEARVALUECONSTRAINTS_H

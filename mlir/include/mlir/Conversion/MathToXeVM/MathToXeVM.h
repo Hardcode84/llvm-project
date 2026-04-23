@@ -12,8 +12,9 @@
 #include "mlir/Dialect/LLVMIR/XeVMDialect.h"
 #include "mlir/IR/PatternMatch.h"
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Pass;
 
 #define GEN_PASS_DECL_CONVERTMATHTOXEVM
@@ -22,6 +23,6 @@ class Pass;
 /// Populate the given list with patterns that convert from Math to XeVM calls.
 void populateMathToXeVMConversionPatterns(RewritePatternSet &patterns,
                                           bool convertArith);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_MATHTOXEVM_MATHTOXEVM_H_

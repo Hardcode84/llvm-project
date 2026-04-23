@@ -24,8 +24,9 @@
 #include "llvm/Support/raw_ostream.h"
 #include <functional>
 #include <type_traits>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tracing {
 
 /// An action is a specific action that is to be taken by the compiler,
@@ -88,6 +89,6 @@ public:
 };
 
 } // namespace tracing
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_IR_ACTION_H

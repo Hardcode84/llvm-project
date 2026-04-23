@@ -10,8 +10,9 @@
 #define MLIR_DIALECT_TRANSFORM_IR_UTILS_H
 
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class InFlightDiagnostic;
 class Operation;
 template <typename>
@@ -41,6 +42,6 @@ LogicalResult verifyNoRecursionInCallGraph(Operation *root);
 
 } // namespace detail
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TRANSFORM_IR_UTILS_H

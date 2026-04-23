@@ -11,8 +11,10 @@
 
 #include "mlir/Conversion/LLVMCommon/TypeConverter.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::arm_sve {
+MLIR_NAMESPACE_BEGIN
+namespace arm_sve {
 
 #define GEN_PASS_DECL
 #include "mlir/Dialect/ArmSVE/Transforms/Passes.h.inc"
@@ -31,6 +33,7 @@ void populateLegalizeVectorStoragePatterns(RewritePatternSet &patterns);
 #define GEN_PASS_REGISTRATION
 #include "mlir/Dialect/ArmSVE/Transforms/Passes.h.inc"
 
-} // namespace mlir::arm_sve
+}
+MLIR_NAMESPACE_END // namespace mlir::arm_sve
 
 #endif // MLIR_DIALECT_ARMSVE_TRANSFORMS_PASSES_H

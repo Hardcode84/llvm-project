@@ -22,8 +22,9 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/PointerLikeTypeTraits.h"
 #include "llvm/Support/TypeName.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 //===----------------------------------------------------------------------===//
 // TypeID
 //===----------------------------------------------------------------------===//
@@ -381,7 +382,7 @@ public:
   TypeID getTypeID() const { return TypeID::getFromOpaquePointer(this); }
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Builtin TypeIDs
@@ -391,7 +392,7 @@ public:
 /// `void` must be self-owning, it can't be fully resolved.
 MLIR_DECLARE_EXPLICIT_SELF_OWNING_TYPE_ID(void)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <>
 struct DenseMapInfo<mlir::TypeID> {
   static inline mlir::TypeID getEmptyKey() {
@@ -420,6 +421,6 @@ struct PointerLikeTypeTraits<mlir::TypeID> {
   static constexpr int NumLowBitsAvailable = 3;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MLIR_SUPPORT_TYPEID_H

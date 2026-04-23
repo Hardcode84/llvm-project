@@ -17,8 +17,9 @@
 #include <cinttypes>
 #include <limits>
 #include <type_traits>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace sparse_tensor {
 namespace detail {
 
@@ -128,6 +129,6 @@ inline uint64_t checkedMul(uint64_t lhs, uint64_t rhs) {
 
 } // namespace detail
 } // namespace sparse_tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_EXECUTIONENGINE_SPARSETENSOR_ARITHMETICUTILS_H

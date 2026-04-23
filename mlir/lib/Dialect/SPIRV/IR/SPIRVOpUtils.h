@@ -7,8 +7,10 @@
 //===----------------------------------------------------------------------===//
 
 #include "mlir/Dialect/SPIRV/IR/SPIRVOps.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::spirv {
+MLIR_NAMESPACE_BEGIN
+namespace spirv {
 
 /// Returns the bit width of the `type`.
 inline unsigned getBitWidth(Type type) {
@@ -37,4 +39,5 @@ LogicalResult extractValueFromConstOp(Operation *op, int32_t &value);
 LogicalResult verifyMemorySemantics(Operation *op,
                                     spirv::MemorySemantics memorySemantics);
 
-} // namespace mlir::spirv
+}
+MLIR_NAMESPACE_END // namespace mlir::spirv

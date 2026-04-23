@@ -15,13 +15,15 @@
 
 #include "mlir/IR/AsmState.h"
 #include <cstddef>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SourceMgr;
 class StringRef;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class AsmParserState;
 class AsmParserCodeCompleteContext;
 
@@ -73,6 +75,6 @@ Type parseType(llvm::StringRef typeStr, MLIRContext *context,
 AffineMap parseAffineMap(llvm::StringRef str, MLIRContext *context);
 IntegerSet parseIntegerSet(llvm::StringRef str, MLIRContext *context);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_ASMPARSER_ASMPARSER_H

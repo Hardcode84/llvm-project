@@ -13,8 +13,9 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/SMLoc.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// This represents a token in the MLIR syntax.
 class Token {
@@ -134,6 +135,6 @@ private:
   StringRef spelling;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_LIB_PARSER_TOKEN_H

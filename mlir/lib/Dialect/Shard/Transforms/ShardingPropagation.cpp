@@ -19,13 +19,14 @@
 #include "llvm/Support/raw_ostream.h"
 #include <algorithm>
 #include <vector>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace shard {
 #define GEN_PASS_DEF_SHARDINGPROPAGATION
 #include "mlir/Dialect/Shard/Transforms/Passes.h.inc"
 } // namespace shard
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define DEBUG_TYPE "sharding-propagation"
 #define DBGS() (llvm::dbgs() << "[" DEBUG_TYPE << "]: ")

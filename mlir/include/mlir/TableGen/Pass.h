@@ -11,12 +11,14 @@
 
 #include "mlir/Support/LLVM.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Record;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tblgen {
 //===----------------------------------------------------------------------===//
 // PassOption
@@ -113,6 +115,6 @@ private:
 };
 
 } // namespace tblgen
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TABLEGEN_PASS_H_

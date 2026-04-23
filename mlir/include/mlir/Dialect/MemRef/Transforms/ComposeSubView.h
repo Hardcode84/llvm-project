@@ -13,7 +13,9 @@
 #ifndef MLIR_DIALECT_MEMREF_TRANSFORMS_COMPOSESUBVIEW_H_
 #define MLIR_DIALECT_MEMREF_TRANSFORMS_COMPOSESUBVIEW_H_
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class MLIRContext;
 class RewritePatternSet;
 
@@ -23,6 +25,6 @@ void populateComposeSubViewPatterns(RewritePatternSet &patterns,
                                     MLIRContext *context);
 
 } // namespace memref
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_MEMREF_TRANSFORMS_COMPOSESUBVIEW_H_

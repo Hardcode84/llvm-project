@@ -17,8 +17,9 @@
 #include "mlir/IR/AffineExpr.h"
 #include "mlir/IR/MLIRContext.h"
 #include "mlir/Support/StorageUniquer.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class MLIRContext;
 
@@ -93,5 +94,5 @@ struct AffineConstantExprStorage : public AffineExprStorage {
 };
 
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 #endif // MLIR_IR_AFFINEEXPRDETAIL_H_

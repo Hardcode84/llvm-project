@@ -14,8 +14,9 @@
 #define MLIR_INTERFACES_LOOPLIKEINTERFACE_H_
 
 #include "mlir/IR/OpDefinition.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class RewriterBase;
 
 /// A function that returns the additional yielded values during
@@ -81,7 +82,7 @@ struct JamBlockGatherer {
   }
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Interfaces

@@ -11,8 +11,9 @@
 
 #include "mlir/Dialect/Bufferization/IR/BufferizableOpInterface.h"
 #include "mlir/Interfaces/DestinationStyleOpInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace bufferization {
 
 /// Bufferizable ops that implement the DestinationStyleOpInterface can use this
@@ -47,6 +48,6 @@ struct DstBufferizableOpInterfaceExternalModel
 };
 
 } // namespace bufferization
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_BUFFERIZATION_IR_DSTBUFFERIZABLEOPINTERFACEIMPL_H_

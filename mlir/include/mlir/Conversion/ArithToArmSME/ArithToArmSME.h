@@ -10,8 +10,9 @@
 #define MLIR_CONVERSION_ARITHTOARMSME_ARITHTOARMSME_H
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class RewritePatternSet;
 class Pass;
@@ -22,6 +23,6 @@ class Pass;
 namespace arith {
 void populateArithToArmSMEConversionPatterns(RewritePatternSet &patterns);
 } // namespace arith
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_ARITHTOARMSME_ARITHTOARMSME_H

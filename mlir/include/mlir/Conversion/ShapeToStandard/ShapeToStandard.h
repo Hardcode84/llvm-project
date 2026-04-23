@@ -10,8 +10,9 @@
 #define MLIR_CONVERSION_SHAPETOSTANDARD_SHAPETOSTANDARD_H_
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class ModuleOp;
 class Pass;
@@ -28,6 +29,6 @@ void populateShapeToStandardConversionPatterns(RewritePatternSet &patterns);
 void populateConvertShapeConstraintsConversionPatterns(
     RewritePatternSet &patterns);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_SHAPETOSTANDARD_SHAPETOSTANDARD_H_

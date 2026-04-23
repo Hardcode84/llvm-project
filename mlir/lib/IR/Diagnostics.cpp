@@ -23,6 +23,7 @@
 #include "llvm/Support/SourceMgr.h"
 #include "llvm/Support/raw_ostream.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::detail;
@@ -224,7 +225,7 @@ void InFlightDiagnostic::abandon() { owner = nullptr; }
 // DiagnosticEngineImpl
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 struct DiagnosticEngineImpl {
   /// Emit a diagnostic using the registered issue handle if present, or with
@@ -244,7 +245,7 @@ struct DiagnosticEngineImpl {
   DiagnosticEngine::HandlerID uniqueHandlerId = 1;
 };
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// Emit a diagnostic using the registered issue handle if present, or with
 /// the default behavior if not.
@@ -362,7 +363,7 @@ ScopedDiagnosticHandler::~ScopedDiagnosticHandler() {
 //===----------------------------------------------------------------------===//
 // SourceMgrDiagnosticHandler
 //===----------------------------------------------------------------------===//
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 struct SourceMgrDiagnosticHandlerImpl {
   /// Return the SrcManager buffer id for the specified file, or zero if none
@@ -392,7 +393,7 @@ struct SourceMgrDiagnosticHandlerImpl {
   llvm::StringMap<unsigned> filenameToBufId;
 };
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// Return a processable CallSiteLoc from the given location.
 static std::optional<CallSiteLoc> getCallSiteLoc(Location loc) {
@@ -589,7 +590,7 @@ SMLoc SourceMgrDiagnosticHandler::convertLocToSMLoc(FileLineColLoc loc) {
 // SourceMgrDiagnosticVerifierHandler
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 /// This class represents an expected output diagnostic.
 struct ExpectedDiag {
@@ -709,7 +710,7 @@ struct SourceMgrDiagnosticVerifierHandlerImpl {
       SourceMgrDiagnosticVerifierHandler::Level::All;
 };
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// Given a diagnostic kind, return a human readable string for it.
 static StringRef getDiagKindStr(DiagnosticSeverity kind) {
@@ -942,7 +943,7 @@ void SourceMgrDiagnosticVerifierHandler::process(LocationAttr loc,
 // ParallelDiagnosticHandler
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 struct ParallelDiagnosticHandlerImpl : public llvm::PrettyStackTraceEntry {
   struct ThreadDiagnostic {
@@ -1063,7 +1064,7 @@ struct ParallelDiagnosticHandlerImpl : public llvm::PrettyStackTraceEntry {
   MLIRContext *context;
 };
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 ParallelDiagnosticHandler::ParallelDiagnosticHandler(MLIRContext *ctx)
     : impl(new ParallelDiagnosticHandlerImpl(ctx)) {}

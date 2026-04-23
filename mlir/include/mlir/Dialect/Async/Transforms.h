@@ -15,8 +15,9 @@
 
 #include "mlir/Dialect/SCF/IR/SCF.h"
 #include "mlir/IR/ImplicitLocOpBuilder.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace async {
 
 /// Emit the IR to compute the minimum number of iterations of scf.parallel body
@@ -35,6 +36,6 @@ void populateAsyncParallelForPatterns(
     const AsyncMinTaskSizeComputationFunction &computeMinTaskSize);
 
 } // namespace async
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_ASYNC_TRANSFORMS_H_

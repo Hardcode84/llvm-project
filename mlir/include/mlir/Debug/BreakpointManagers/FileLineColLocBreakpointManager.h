@@ -17,8 +17,9 @@
 #include "llvm/ADT/DenseMap.h"
 #include <memory>
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tracing {
 
 /// This breakpoing intends to match a FileLineColLocation, that is a tuple of
@@ -132,6 +133,6 @@ private:
 };
 
 } // namespace tracing
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRACING_BREAKPOINTMANAGERS_FILELINECOLLOCBREAKPOINTMANAGER_H

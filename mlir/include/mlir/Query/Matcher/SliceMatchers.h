@@ -16,6 +16,7 @@
 
 #include "mlir/Analysis/SliceAnalysis.h"
 #include "mlir/IR/Operation.h"
+#include "mlir/Support/ABINamespace.h"
 
 /// Computes the backward-slice of all transitive defs reachable from `rootOp`,
 /// if `innerMatcher` matches. The traversal stops once the desired depth level
@@ -37,7 +38,8 @@
 ///
 /// Assuming all local orders match the numbering order:
 ///     {1, 5, 6, 7, 8, 9}
-namespace mlir::query::matcher {
+MLIR_NAMESPACE_BEGIN
+namespace query::matcher {
 
 template <typename Matcher>
 class BackwardSliceMatcher {
@@ -233,6 +235,7 @@ m_GetUsersByPredicate(BaseMatcher innerMatcher, Filter filterMatcher,
       std::move(innerMatcher), std::move(filterMatcher), inclusive);
 }
 
-} // namespace mlir::query::matcher
+}
+MLIR_NAMESPACE_END // namespace mlir::query::matcher
 
 #endif // MLIR_TOOLS_MLIRQUERY_MATCHERS_SLICEMATCHERS_H

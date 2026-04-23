@@ -16,8 +16,10 @@
 
 #include "mlir/Dialect/UB/IR/UBOps.h"
 #include "mlir/IR/Matchers.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::ub {
+MLIR_NAMESPACE_BEGIN
+namespace ub {
 namespace detail {
 
 /// Matches a poison attribute (any attribute implementing PoisonAttrInterface).
@@ -47,6 +49,7 @@ inline detail::poison_attr_matcher m_Poison() {
   return detail::poison_attr_matcher();
 }
 
-} // namespace mlir::ub
+}
+MLIR_NAMESPACE_END // namespace mlir::ub
 
 #endif // MLIR_DIALECT_UB_IR_UBMATCHERS_H

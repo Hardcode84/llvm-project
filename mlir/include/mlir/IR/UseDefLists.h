@@ -16,8 +16,9 @@
 #include "mlir/IR/Location.h"
 #include "llvm/ADT/PointerIntPair.h"
 #include "llvm/ADT/iterator_range.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class Operation;
 template <typename OperandType>
@@ -354,6 +355,6 @@ public:
   Operation *operator->() { return **this; }
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif

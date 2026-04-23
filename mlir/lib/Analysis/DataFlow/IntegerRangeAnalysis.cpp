@@ -34,13 +34,15 @@
 #include <cassert>
 #include <optional>
 #include <utility>
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "int-range-analysis"
 
 using namespace mlir;
 using namespace mlir::dataflow;
 
-namespace mlir::dataflow {
+MLIR_NAMESPACE_BEGIN
+namespace dataflow {
 LogicalResult staticallyNonNegative(DataFlowSolver &solver, Value v) {
   auto *result = solver.lookupState<IntegerValueRangeLattice>(v);
   if (!result || result->getValue().isUninitialized())
@@ -56,7 +58,8 @@ LogicalResult staticallyNonNegative(DataFlowSolver &solver, Operation *op) {
   return success(llvm::all_of(op->getOperands(), nonNegativePred) &&
                  llvm::all_of(op->getResults(), nonNegativePred));
 }
-} // namespace mlir::dataflow
+}
+MLIR_NAMESPACE_END // namespace mlir::dataflow
 
 LogicalResult IntegerRangeAnalysis::visitOperation(
     Operation *op, ArrayRef<const IntegerValueRangeLattice *> operands,

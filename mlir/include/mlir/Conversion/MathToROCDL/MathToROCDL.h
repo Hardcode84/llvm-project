@@ -12,8 +12,9 @@
 #include "mlir/Dialect/AMDGPU/Utils/Chipset.h"
 #include "mlir/IR/PatternMatch.h"
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Pass;
 
 #define GEN_PASS_DECL_CONVERTMATHTOROCDL
@@ -25,6 +26,6 @@ class Pass;
 void populateMathToROCDLConversionPatterns(
     const LLVMTypeConverter &converter, RewritePatternSet &patterns,
     std::optional<amdgpu::Chipset> chipset);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_MATHTOROCDL_MATHTOROCDL_H_

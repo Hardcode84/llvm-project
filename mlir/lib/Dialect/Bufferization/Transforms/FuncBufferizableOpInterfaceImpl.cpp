@@ -16,8 +16,9 @@
 #include "mlir/IR/Dialect.h"
 #include "mlir/IR/Operation.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 /// Return all func.return ops in the given function.
 SmallVector<func::ReturnOp> bufferization::getReturnOps(func::FuncOp funcOp) {
   SmallVector<func::ReturnOp> result;
@@ -535,7 +536,7 @@ struct FuncOpInterface
 
 } // namespace func_ext
 } // namespace bufferization
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 void mlir::bufferization::func_ext::
     registerBufferizableOpInterfaceExternalModels(DialectRegistry &registry) {

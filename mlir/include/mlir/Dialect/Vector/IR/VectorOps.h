@@ -41,8 +41,9 @@
 
 #define GET_ATTRDEF_CLASSES
 #include "mlir/Dialect/Vector/IR/VectorAttributes.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class MLIRContext;
 class RewritePatternSet;
 
@@ -211,7 +212,7 @@ Value selectPassthru(OpBuilder &builder, Value mask, Value newValue,
                      Value passthru);
 
 } // namespace vector
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/Vector/IR/VectorDialect.h.inc"

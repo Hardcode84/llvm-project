@@ -23,12 +23,14 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/TableGen/CodeGenHelpers.h"
 #include <utility>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class RecordKeeper;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tblgen {
 class Constraint;
 class DagLeaf;
@@ -266,6 +268,6 @@ std::string buildErrorStreamingString(
     ErrorStreamType errorStreamType = ErrorStreamType::InString);
 
 } // namespace tblgen
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TABLEGEN_CODEGENHELPERS_H

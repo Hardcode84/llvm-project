@@ -18,15 +18,16 @@
 #include "mlir/Support/LLVM.h"
 #include "llvm/ADT/SmallPtrSet.h"
 #include "llvm/ADT/TypeSwitch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace omp {
 
 #define GEN_PASS_DEF_MARKDECLARETARGETPASS
 #include "mlir/Dialect/OpenMP/Transforms/Passes.h.inc"
 
 } // namespace omp
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 namespace {

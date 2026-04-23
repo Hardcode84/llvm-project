@@ -14,8 +14,10 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/Support/InterleavedRange.h"
 #include <algorithm>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::spirv {
+MLIR_NAMESPACE_BEGIN
+namespace spirv {
 
 //===----------------------------------------------------------------------===//
 // SPIRV Tosa Custom formatters
@@ -113,4 +115,5 @@ LogicalResult TosaSelectOp::verify() {
   return success();
 }
 
-} // namespace mlir::spirv
+}
+MLIR_NAMESPACE_END // namespace mlir::spirv

@@ -44,6 +44,7 @@
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/OpenACC/OpenACCOps.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
 #define ACC_DATA_ENTRY_OPS                                                     \
   mlir::acc::CopyinOp, mlir::acc::CreateOp, mlir::acc::PresentOp,              \
@@ -75,7 +76,7 @@
 #define ACC_COMPUTE_LOOP_AND_DATA_CONSTRUCT_OPS                                \
   ACC_COMPUTE_CONSTRUCT_AND_LOOP_OPS, ACC_DATA_CONSTRUCT_OPS
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace acc {
 
 /// Enumeration used to encode the execution mapping on a loop construct.
@@ -232,6 +233,6 @@ struct CurrentDeviceIdResource
 };
 
 } // namespace acc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_OPENACC_OPENACC_H_

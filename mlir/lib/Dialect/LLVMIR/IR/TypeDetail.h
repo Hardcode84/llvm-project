@@ -20,8 +20,9 @@
 
 #include "llvm/ADT/Bitfields.h"
 #include "llvm/ADT/PointerIntPair.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace LLVM {
 namespace detail {
 
@@ -385,6 +386,6 @@ struct LLVMTypeAndSizeStorage : public TypeStorage {
 
 } // namespace detail
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // DIALECT_LLVMIR_IR_TYPEDETAIL_H

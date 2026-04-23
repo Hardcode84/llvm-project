@@ -19,6 +19,7 @@
 #include "mlir/Transforms/DialectConversion.h"
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/Support/FormatVariadic.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "math-to-spirv-pattern"
 
@@ -491,7 +492,7 @@ struct RoundOpPattern final : public OpConversionPattern<math::RoundOp> {
 // Pattern population
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void populateMathToSPIRVPatterns(const SPIRVTypeConverter &typeConverter,
                                  RewritePatternSet &patterns) {
   // Core patterns
@@ -565,4 +566,4 @@ void populateMathToSPIRVPatterns(const SPIRVTypeConverter &typeConverter,
       typeConverter, patterns.getContext());
 }
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

@@ -37,6 +37,7 @@
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/OpenMP/OpenMPOps.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
 /// Operations implementing LoopWrapperInterface.
 #define OMP_LOOP_WRAPPER_OPS                                                   \
@@ -48,9 +49,11 @@
   mlir::omp::ParallelOp, mlir::omp::TeamsOp, mlir::omp::TaskOp,                \
       mlir::omp::TargetOp
 
-namespace mlir::omp {
+MLIR_NAMESPACE_BEGIN
+namespace omp {
 /// Find the omp.new_cli, generator, and consumer of a canonical loop info.
 std::tuple<NewCliOp, OpOperand *, OpOperand *> decodeCli(mlir::Value cli);
-} // namespace mlir::omp
+}
+MLIR_NAMESPACE_END // namespace mlir::omp
 
 #endif // MLIR_DIALECT_OPENMP_OPENMPDIALECT_H_

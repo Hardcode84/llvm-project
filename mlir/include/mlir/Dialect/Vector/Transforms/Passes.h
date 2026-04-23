@@ -12,8 +12,9 @@
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Dialect/Vector/Transforms/VectorTransforms.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace vector {
 #define GEN_PASS_DECL
 #include "mlir/Dialect/Vector/Transforms/Passes.h.inc"
@@ -34,6 +35,6 @@ std::unique_ptr<Pass> createLowerVectorMultiReductionPass(
 #define GEN_PASS_REGISTRATION
 #include "mlir/Dialect/Vector/Transforms/Passes.h.inc"
 } // namespace vector
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_VECTOR_TRANSFORMS_PASSES_H_

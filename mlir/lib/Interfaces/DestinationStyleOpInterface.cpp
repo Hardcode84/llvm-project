@@ -7,12 +7,13 @@
 //===----------------------------------------------------------------------===//
 
 #include "mlir/Interfaces/DestinationStyleOpInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #include "mlir/Interfaces/DestinationStyleOpInterface.cpp.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace {
 size_t getNumTensorResults(Operation *op) {

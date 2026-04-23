@@ -38,8 +38,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "mlir/Dialect/Tosa/IR/TosaAvailability.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class PatternRewriter;
 
 namespace tosa {
@@ -154,7 +155,7 @@ constexpr int64_t kInferableDimSize = -1;
 
 } // namespace tosa
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define GET_ATTRDEF_CLASSES
 #include "mlir/Dialect/Tosa/IR/TosaAttributes.h.inc"
@@ -165,7 +166,7 @@ constexpr int64_t kInferableDimSize = -1;
 #define GET_OP_CLASSES
 #include "mlir/Dialect/Tosa/IR/TosaOps.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tosa {
 
 // Create a rank-1 const tensor for zero point of the source tensor.
@@ -183,6 +184,6 @@ RankedTensorType getVariableType(VariableOp variableOp);
 unsigned getBitWidth(Type type);
 
 } // namespace tosa
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TOSA_IR_TOSAOPS_H

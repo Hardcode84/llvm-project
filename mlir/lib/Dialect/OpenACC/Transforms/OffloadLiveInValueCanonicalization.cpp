@@ -83,13 +83,14 @@
 #include "mlir/Pass/Pass.h"
 #include "mlir/Support/LLVM.h"
 #include "mlir/Transforms/RegionUtils.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace acc {
 #define GEN_PASS_DEF_OFFLOADLIVEINVALUECANONICALIZATION
 #include "mlir/Dialect/OpenACC/Transforms/Passes.h.inc"
 } // namespace acc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define DEBUG_TYPE "offload-livein-value-canonicalization"
 

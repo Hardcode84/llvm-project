@@ -15,8 +15,10 @@
 
 #include "llvm/Remarks/RemarkStreamer.h"
 #include "llvm/Support/ToolOutputFile.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::remark::detail {
+MLIR_NAMESPACE_BEGIN
+namespace remark::detail {
 
 /// Concrete streamer that writes LLVM optimization remarks to a file
 /// (YAML or Bitstream). Lives outside core.
@@ -36,9 +38,11 @@ private:
   // RemarkStreamer must be destructed before file is destroyed!
   std::unique_ptr<class llvm::remarks::RemarkStreamer> remarkStreamer;
 };
-} // namespace mlir::remark::detail
+}
+MLIR_NAMESPACE_END // namespace mlir::remark::detail
 
-namespace mlir::remark {
+MLIR_NAMESPACE_BEGIN
+namespace remark {
 /// Enable optimization remarks to a file with the given path and format.
 /// The remark categories are used to filter the remarks that are emitted.
 /// If the printAsEmitRemarks flag is set, remarks will also be printed using
@@ -48,4 +52,5 @@ LogicalResult enableOptimizationRemarksWithLLVMStreamer(
     std::unique_ptr<detail::RemarkEmittingPolicyBase> remarkEmittingPolicy,
     const RemarkCategories &cat, bool printAsEmitRemarks = false);
 
-} // namespace mlir::remark
+}
+MLIR_NAMESPACE_END // namespace mlir::remark

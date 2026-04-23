@@ -41,13 +41,14 @@
 #include "mlir/Dialect/Affine/LoopUtils.h"
 #include "llvm/Support/CommandLine.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace affine {
 #define GEN_PASS_DEF_AFFINELOOPUNROLLANDJAM
 #include "mlir/Dialect/Affine/Transforms/Passes.h.inc"
 } // namespace affine
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define DEBUG_TYPE "affine-loop-unroll-jam"
 

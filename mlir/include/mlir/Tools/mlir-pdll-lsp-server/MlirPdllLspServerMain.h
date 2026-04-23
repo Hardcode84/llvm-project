@@ -14,14 +14,17 @@
 #ifndef MLIR_TOOLS_MLIR_PDLL_LSP_SERVER_MLIRPDLLLSPSERVERMAIN_H
 #define MLIR_TOOLS_MLIR_PDLL_LSP_SERVER_MLIRPDLLLSPSERVERMAIN_H
 
-namespace llvm {
-struct LogicalResult;
-} // namespace llvm
 
-namespace mlir {
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
+LLVM_NAMESPACE_BEGIN
+struct LogicalResult;
+LLVM_NAMESPACE_END // namespace llvm
+
+MLIR_NAMESPACE_BEGIN
 /// Implementation for tools like `mlir-pdll-lsp-server`.
 llvm::LogicalResult MlirPdllLspServerMain(int argc, char **argv);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_MLIR_PDLL_LSP_SERVER_MLIRPDLLLSPSERVERMAIN_H

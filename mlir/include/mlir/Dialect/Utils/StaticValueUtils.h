@@ -21,8 +21,9 @@
 #include "mlir/Support/LLVM.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/ADT/SmallVectorExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Return "true" if `v` is an integer value/attribute with constant value `0`.
 bool isZeroInteger(OpFoldResult v);
@@ -276,6 +277,6 @@ struct SaturatedInteger {
   int64_t v = 0;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_UTILS_STATICVALUEUTILS_H

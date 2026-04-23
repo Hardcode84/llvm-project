@@ -24,8 +24,9 @@
 #include "llvm/ADT/SmallVector.h"
 #include <functional>
 #include <vector>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace pdl_to_pdl_interp {
 
 /// The information associated with an edge in the cost graph. Each node in
@@ -132,6 +133,6 @@ private:
 };
 
 } // namespace pdl_to_pdl_interp
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_PDLTOPDLINTERP_ROOTORDERING_H_

@@ -22,8 +22,9 @@
 #include "llvm/Support/RWMutex.h"
 #include "llvm/Support/SMLoc.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 //===----------------------------------------------------------------------===//
 // DialectResourceBlobManager
 //===---------------------------------------------------------------------===//
@@ -216,6 +217,6 @@ struct DialectResourceBlobHandle
   }
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_IR_DIALECTRESOURCEBLOBMANAGER_H

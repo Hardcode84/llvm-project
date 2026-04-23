@@ -18,14 +18,15 @@
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/X86/TransformOps/X86TransformOps.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace x86 {
 void registerTransformDialectExtension(DialectRegistry &registry);
 
 } // namespace x86
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_X86_TRANSFORMOPS_X86TRANSFORMOPS_H

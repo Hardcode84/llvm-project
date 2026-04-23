@@ -17,12 +17,13 @@
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/Pass/Pass.h"
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
 //===----------------------------------------------------------------------===//
 // Include the generated pass header (which needs some early definitions).
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 namespace bufferization {
 struct OneShotBufferizationOptions;
@@ -296,6 +297,6 @@ std::unique_ptr<Pass> createSparseSpaceCollapsePass();
 #define GEN_PASS_REGISTRATION
 #include "mlir/Dialect/SparseTensor/Transforms/Passes.h.inc"
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SPARSETENSOR_TRANSFORMS_PASSES_H_

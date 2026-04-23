@@ -11,8 +11,9 @@
 
 #include "mlir/IR/Operation.h"
 #include "llvm/ADT/SmallPtrSet.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// A straight-forward alias analysis which ensures that all dependencies of all
 /// values will be determined. This is a requirement for the BufferPlacement
@@ -114,6 +115,6 @@ private:
   BufferViewFlowAnalysis analysis;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_BUFFERIZATION_TRANSFORMS_BUFFERVIEWFLOWANALYSIS_H

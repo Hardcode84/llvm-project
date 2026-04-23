@@ -22,11 +22,14 @@
 #include "mlir/Transforms/DialectConversion.h"
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/SetVector.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::math {
+MLIR_NAMESPACE_BEGIN
+namespace math {
 #define GEN_PASS_DEF_MATHEXTENDTOSUPPORTEDTYPES
 #include "mlir/Dialect/Math/Transforms/Passes.h.inc"
-} // namespace mlir::math
+}
+MLIR_NAMESPACE_END // namespace mlir::math
 
 using namespace mlir;
 

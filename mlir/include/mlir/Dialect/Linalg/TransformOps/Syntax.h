@@ -10,8 +10,9 @@
 #define MLIR_DIALECT_LINALG_TRANSFORMOPS_SYNTAX_H
 
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class OpAsmParser;
 class OpAsmPrinter;
 class Type;
@@ -42,6 +43,6 @@ void printSemiFunctionType(OpAsmPrinter &printer, Operation *op,
 void printSemiFunctionType(OpAsmPrinter &printer, Operation *op,
                            Type argumentType, Type resultType,
                            bool resultOptional = true);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_LINALG_TRANSFORMOPS_SYNTAX_H

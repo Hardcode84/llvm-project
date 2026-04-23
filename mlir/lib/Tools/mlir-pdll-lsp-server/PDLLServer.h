@@ -16,8 +16,9 @@
 #include <optional>
 #include <string>
 #include <vector>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace lsp {
 using llvm::lsp::CompletionList;
 using llvm::lsp::Diagnostic;
@@ -117,6 +118,6 @@ private:
 };
 
 } // namespace lsp
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // LIB_MLIR_TOOLS_MLIRPDLLSPSERVER_SERVER_H_

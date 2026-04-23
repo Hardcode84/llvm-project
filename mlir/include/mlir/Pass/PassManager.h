@@ -18,8 +18,9 @@
 
 #include <functional>
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class AnalysisManager;
 class MLIRContext;
 class Operation;
@@ -514,6 +515,6 @@ LogicalResult applyPassManagerCLOptions(PassManager &pm);
 /// to the pass manager.
 void applyDefaultTimingPassManagerCLOptions(PassManager &pm);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_PASS_PASSMANAGER_H

@@ -10,9 +10,10 @@
 
 #include <mlir/Dialect/GPU/IR/GPUDialect.h>
 #include <mlir/Dialect/SPIRV/IR/SPIRVEnums.h>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 spirv::StorageClass addressSpaceToStorageClass(gpu::AddressSpace addressSpace);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_GPUCOMMON_ATTRTOSPIRVCONVERTER_H_

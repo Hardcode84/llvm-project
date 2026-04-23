@@ -17,8 +17,10 @@
 #include "mlir/IR/UseDefLists.h"
 #include "mlir/Support/LLVM.h"
 #include "llvm/Support/PointerLikeTypeTraits.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class AsmState;
 class Block;
 class BlockArgument;
@@ -494,9 +496,9 @@ template <typename Ty, typename Value = mlir::Value>
 using TypedValue = std::conditional_t<std::is_same_v<Ty, mlir::Type>,
                                       mlir::Value, detail::TypedValue<Ty>>;
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <>
 struct DenseMapInfo<mlir::Value> {
@@ -616,6 +618,6 @@ struct CastInfo<
   static inline To doCast(mlir::Value value) { return To(value.getImpl()); }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

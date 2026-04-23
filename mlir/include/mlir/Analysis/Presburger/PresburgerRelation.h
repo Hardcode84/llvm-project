@@ -15,8 +15,9 @@
 
 #include "mlir/Analysis/Presburger/IntegerRelation.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace presburger {
 
 /// The SetCoalescer class contains all functionality concerning the coalesce
@@ -275,6 +276,6 @@ protected:
 };
 
 } // namespace presburger
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_ANALYSIS_PRESBURGER_PRESBURGERRELATION_H

@@ -15,13 +15,14 @@
 #include "mlir/IR/OpDefinition.h"
 #include "mlir/IR/Value.h"
 #include "llvm/ADT/SmallVector.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 /// Verify that `op` conforms to the invariants of DestinationStyleOpInterface
 LogicalResult verifyDestinationStyleOpInterface(Operation *op);
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// Include the generated interface declarations.
 #include "mlir/Interfaces/DestinationStyleOpInterface.h.inc"

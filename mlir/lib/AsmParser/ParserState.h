@@ -14,8 +14,9 @@
 #include "mlir/IR/OpImplementation.h"
 #include "llvm/ADT/SetVector.h"
 #include "llvm/ADT/StringMap.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class OpAsmDialectInterface;
 
 namespace detail {
@@ -94,6 +95,6 @@ struct ParserState {
 };
 
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_LIB_ASMPARSER_PARSERSTATE_H

@@ -12,8 +12,9 @@
 #include <memory>
 
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 #define GEN_PASS_DECL_CONVERTTOLLVMPASS
 #include "mlir/Conversion/Passes.h.inc"
@@ -22,6 +23,6 @@ namespace mlir {
 /// conversion. This is useful to implement a pass similar to "convert-to-llvm".
 void registerConvertToLLVMDependentDialectLoading(DialectRegistry &registry);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_CONVERTTOLLVM_TOLLVM_PASS_H

@@ -21,8 +21,9 @@
 #include "mlir/ExecutionEngine/SparseTensor/ArithmeticUtils.h"
 #include "mlir/ExecutionEngine/SparseTensor/COO.h"
 #include "mlir/ExecutionEngine/SparseTensor/MapRef.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace sparse_tensor {
 
 //===----------------------------------------------------------------------===//
@@ -737,6 +738,6 @@ SparseTensorStorage<P, C, V>::SparseTensorStorage(
 }
 
 } // namespace sparse_tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_EXECUTIONENGINE_SPARSETENSOR_STORAGE_H

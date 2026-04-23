@@ -16,8 +16,9 @@
 #include "mlir/IR/OpDefinition.h"
 #include "mlir/IR/Types.h"
 #include "llvm/Support/MathExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace quant {
 namespace detail {
 
@@ -548,6 +549,6 @@ public:
 };
 
 } // namespace quant
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_QUANT_IR_QUANTTYPES_H

@@ -16,8 +16,9 @@
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 #include "mlir/Dialect/Tosa/IR/TosaOps.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class TypeConverter;
 namespace tosa {
 
@@ -48,6 +49,6 @@ createTosaInputShapePass(std::vector<std::string> args = {});
 #include "mlir/Dialect/Tosa/Transforms/Passes.h.inc"
 
 } // namespace tosa
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TOSA_TRANSFORMS_PASSES_H

@@ -21,8 +21,9 @@
 #include "llvm/Support/Error.h"
 #include <cstdint>
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 extern "C" {
 /// Information about the plugin required to load its dialects & passes
 ///
@@ -84,7 +85,7 @@ private:
   llvm::sys::DynamicLibrary library;
   DialectPluginLibraryInfo info;
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// The public entry point for a dialect plugin.
 ///

@@ -15,8 +15,9 @@
 #define MLIR_CONVERSION_FUNCTOLLVM_CONVERTFUNCTOLLVM_H
 
 #include "mlir/Interfaces/FunctionInterfaces.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 namespace LLVM {
 class LLVMFuncOp;
@@ -64,6 +65,6 @@ void populateFuncToLLVMConversionPatterns(
 
 void registerConvertFuncToLLVMInterface(DialectRegistry &registry);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_FUNCTOLLVM_CONVERTFUNCTOLLVM_H

@@ -18,15 +18,16 @@
 #include "mlir/Dialect/Vector/Transforms/Passes.h"
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "lower-vector-mask"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace vector {
 #define GEN_PASS_DEF_LOWERVECTORMASKPASS
 #include "mlir/Dialect/Vector/Transforms/Passes.h.inc"
 } // namespace vector
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 using namespace mlir::vector;

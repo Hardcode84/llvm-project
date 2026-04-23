@@ -15,8 +15,9 @@
 #define MLIR_DIALECT_TRAITS_H
 
 #include "mlir/IR/OpDefinition.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace OpTrait {
 
 // These functions are out-of-line implementations of the methods in the
@@ -94,6 +95,6 @@ public:
 };
 
 } // namespace OpTrait
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TRAITS_H

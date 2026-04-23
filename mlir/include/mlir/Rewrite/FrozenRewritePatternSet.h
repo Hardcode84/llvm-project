@@ -10,8 +10,9 @@
 #define MLIR_REWRITE_FROZENREWRITEPATTERNSET_H
 
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 class PDLByteCode;
 } // namespace detail
@@ -95,6 +96,6 @@ private:
   std::shared_ptr<Impl> impl;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_REWRITE_FROZENREWRITEPATTERNSET_H

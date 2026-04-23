@@ -13,8 +13,9 @@
 #include "mlir/Pass/PassManager.h"
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/Support/FormatVariadic.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 
 //===----------------------------------------------------------------------===//
@@ -129,5 +130,5 @@ private:
 };
 
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 #endif // MLIR_PASS_PASSDETAIL_H_

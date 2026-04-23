@@ -10,8 +10,9 @@
 #define MLIR_TRANSFORMS_SIMPLIFY_ENDOMORPHISM_H_
 
 #include "mlir/Transforms/HomomorphismSimplification.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 namespace detail {
 struct CreateAlgebraicOpForEndomorphismSimplification {
@@ -88,6 +89,6 @@ struct EndomorphismSimplification
             std::forward<RewritePatternArgs>(args)...) {}
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRANSFORMS_SIMPLIFY_ENDOMORPHISM_H_

@@ -15,11 +15,14 @@
 #include "mlir/Dialect/Math/Transforms/Passes.h"
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::math {
+MLIR_NAMESPACE_BEGIN
+namespace math {
 #define GEN_PASS_DEF_MATHUPLIFTTOFMA
 #include "mlir/Dialect/Math/Transforms/Passes.h.inc"
-} // namespace mlir::math
+}
+MLIR_NAMESPACE_END // namespace mlir::math
 
 using namespace mlir;
 

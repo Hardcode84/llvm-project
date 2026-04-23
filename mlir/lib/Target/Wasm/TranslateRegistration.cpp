@@ -10,10 +10,11 @@
 #include "mlir/IR/OwningOpRef.h"
 #include "mlir/Target/Wasm/WasmImporter.h"
 #include "mlir/Tools/mlir-translate/Translation.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerFromWasmTranslation() {
   TranslateToMLIRRegistration registration{
       "import-wasm", "Translate WASM to MLIR",
@@ -25,4 +26,4 @@ void registerFromWasmTranslation() {
         registry.insert<wasmssa::WasmSSADialect>();
       }};
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

@@ -29,13 +29,14 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/Support/Debug.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace affine {
 #define GEN_PASS_DEF_AFFINEVECTORIZE
 #include "mlir/Dialect/Affine/Transforms/Passes.h.inc"
 } // namespace affine
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 using namespace affine;

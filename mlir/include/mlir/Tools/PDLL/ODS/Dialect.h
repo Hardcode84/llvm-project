@@ -15,8 +15,9 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/ADT/StringMap.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace pdll {
 namespace ods {
 class Operation;
@@ -61,6 +62,6 @@ private:
 };
 } // namespace ods
 } // namespace pdll
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_PDLL_ODS_DIALECT_H_

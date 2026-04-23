@@ -13,8 +13,9 @@
 #define MLIR_CONVERSION_SCFTOSPIRV_SCFTOSPIRV_H_
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Pass;
 
 // Owning list of rewriting patterns.
@@ -37,6 +38,6 @@ private:
 void populateSCFToSPIRVPatterns(const SPIRVTypeConverter &typeConverter,
                                 ScfToSPIRVContext &scfToSPIRVContext,
                                 RewritePatternSet &patterns);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_SCFTOSPIRV_SCFTOSPIRV_H_

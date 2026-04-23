@@ -12,6 +12,7 @@
 #include "mlir/IR/OperationSupport.h"
 #include "mlir/IR/StorageUniquerSupport.h"
 #include "llvm/Support/InterleavedRange.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -88,7 +89,7 @@ void DynamicTypeDefinition::registerInTypeUniquer() {
   detail::TypeUniquer::registerType<DynamicType>(&getContext(), getTypeID());
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 /// Storage of DynamicType.
 /// Contains a pointer to the type definition and type parameters.
@@ -121,7 +122,7 @@ struct DynamicTypeStorage : public TypeStorage {
   ArrayRef<Attribute> params;
 };
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 DynamicType DynamicType::get(DynamicTypeDefinition *typeDef,
                              ArrayRef<Attribute> params) {
@@ -206,7 +207,7 @@ void DynamicAttrDefinition::registerInAttrUniquer() {
                                                            getTypeID());
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 /// Storage of DynamicAttr.
 /// Contains a pointer to the attribute definition and attribute parameters.
@@ -238,7 +239,7 @@ struct DynamicAttrStorage : public AttributeStorage {
   ArrayRef<Attribute> params;
 };
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 DynamicAttr DynamicAttr::get(DynamicAttrDefinition *attrDef,
                              ArrayRef<Attribute> params) {

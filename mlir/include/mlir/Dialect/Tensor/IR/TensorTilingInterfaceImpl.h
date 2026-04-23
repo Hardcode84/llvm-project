@@ -14,8 +14,9 @@
 #define MLIR_DIALECT_TENSOR_IR_TENSORTILINGINTERFACEIMPL_H_
 
 #include "mlir/IR/Dialect.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 struct TilingResult;
 
@@ -65,6 +66,6 @@ void registerTilingInterfaceExternalModelsForPackUnPackOps(
     DialectRegistry &registry);
 
 } // namespace tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TENSOR_IR_TENSORTILINGINTERFACEIMPL_H_

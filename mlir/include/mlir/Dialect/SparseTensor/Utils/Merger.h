@@ -20,8 +20,9 @@
 #include "llvm/ADT/BitVector.h"
 
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace sparse_tensor {
 
 namespace detail {
@@ -666,6 +667,6 @@ private:
 };
 
 } // namespace sparse_tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SPARSETENSOR_UTILS_MERGER_H_

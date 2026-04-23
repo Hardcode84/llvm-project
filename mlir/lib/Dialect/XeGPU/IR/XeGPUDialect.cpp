@@ -16,10 +16,11 @@
 #include "llvm/ADT/SmallVectorExtras.h"
 #include "llvm/ADT/TypeSwitch.h"
 #include "llvm/Support/Debug.h"
+#include "mlir/Support/ABINamespace.h"
 
 using std::optional;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace xegpu {
 
 void XeGPUDialect::initialize() {
@@ -1585,7 +1586,7 @@ Value MemDescType::getLinearOffsets(OpBuilder &builder, Location loc,
 }
 
 } // namespace xegpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include <mlir/Dialect/XeGPU/IR/XeGPUDialect.cpp.inc>
 #define GET_ATTRDEF_CLASSES

@@ -16,8 +16,9 @@
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/IR/IRMapping.h"
 #include "llvm/ADT/STLExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace acc {
 
 std::optional<DataLayout> getDataLayout(Operation *op, bool allowDefault) {
@@ -129,4 +130,4 @@ ComputeRegionOp buildComputeRegion(Location loc, ValueRange launchArgs,
 }
 
 } // namespace acc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

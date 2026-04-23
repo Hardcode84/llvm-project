@@ -15,8 +15,9 @@
 #define MLIR_INITALLTRANSLATIONS_H
 
 #include "mlir/Target/IRDLToCpp/TranslationRegistration.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 void registerFromLLVMIRTranslation();
 void registerFromSPIRVTranslation();
@@ -46,6 +47,6 @@ inline void registerAllTranslations() {
   }();
   (void)initOnce;
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_INITALLTRANSLATIONS_H

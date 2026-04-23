@@ -14,7 +14,9 @@
 #ifndef MLIR_INITALLEXTENSIONS_H_
 #define MLIR_INITALLEXTENSIONS_H_
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 /// This function may be called to register all MLIR dialect extensions with the
@@ -24,6 +26,6 @@ class DialectRegistry;
 /// pipelines and transformations you are using.
 void registerAllExtensions(DialectRegistry &registry);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_INITALLEXTENSIONS_H_

@@ -14,6 +14,7 @@
 // clang-format off
 #include "mlir/Bindings/Python/Nanobind.h"
 #include "mlir-c/Bindings/Python/Interop.h" // This is expected after nanobind.
+#include "mlir/Support/ABINamespace.h"
 // clang-format on
 
 namespace nb = nanobind;
@@ -21,7 +22,7 @@ using namespace nb::literals;
 using namespace mlir;
 using namespace mlir::python::MLIR_BINDINGS_PYTHON_DOMAIN;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace python {
 namespace MLIR_BINDINGS_PYTHON_DOMAIN {
 
@@ -279,4 +280,4 @@ void populatePassManagerSubmodule(nb::module_ &m) {
 }
 } // namespace MLIR_BINDINGS_PYTHON_DOMAIN
 } // namespace python
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

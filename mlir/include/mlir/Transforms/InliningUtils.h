@@ -19,8 +19,9 @@
 #include "mlir/IR/Region.h"
 #include "mlir/IR/ValueRange.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class Block;
 class IRMapping;
@@ -154,7 +155,7 @@ inlineCall(InlinerInterface &interface,
            CallOpInterface call, CallableOpInterface callable, Region *src,
            bool shouldCloneInlinedRegion = true);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Transforms/DialectInlinerInterface.h.inc"
 

@@ -10,13 +10,14 @@
 #define MLIR_TOOLS_MLIR_REDUCE_MLIRREDUCEMAIN_H
 
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class MLIRContext;
 
 LogicalResult mlirReduceMain(int argc, char **argv, MLIRContext &context);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_MLIR_REDUCE_MLIRREDUCEMAIN_H

@@ -11,8 +11,9 @@
 #include "mlir/Dialect/AMDGPU/Utils/Chipset.h"
 #include <memory>
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class LLVMTypeConverter;
 class RewritePatternSet;
@@ -41,6 +42,6 @@ void populateCommonGPUTypeAndAttributeConversions(TypeConverter &typeConverter);
 /// amdgpu::AddressSpace::fat_strided_buffer to ptr addrspace(9).
 void populateAMDGPUTypeAndAttributeConversions(TypeConverter &typeConverter);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_AMDGPUTOROCDL_AMDGPUTOROCDL_H_

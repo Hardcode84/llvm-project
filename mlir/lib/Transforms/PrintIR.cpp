@@ -9,13 +9,14 @@
 #include "mlir/Pass/Pass.h"
 #include "mlir/Transforms/Passes.h"
 #include "llvm/Support/Debug.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_PRINTIRPASS
 #include "mlir/Transforms/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace {
 
 struct PrintIRPass : public impl::PrintIRPassBase<PrintIRPass> {
@@ -33,4 +34,4 @@ struct PrintIRPass : public impl::PrintIRPassBase<PrintIRPass> {
 
 } // namespace
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

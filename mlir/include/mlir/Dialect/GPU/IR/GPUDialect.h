@@ -30,8 +30,9 @@
 #include "mlir/Interfaces/InferTypeOpInterface.h"
 #include "mlir/Interfaces/SideEffectInterfaces.h"
 #include "llvm/ADT/STLExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace gpu {
 
 /// Utility class for the GPU dialect to represent triples of `Value`s
@@ -205,7 +206,7 @@ public:
 };
 
 } // namespace gpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Dialect/GPU/IR/GPUOpsEnums.h.inc"
 
@@ -221,12 +222,14 @@ public:
 #define GET_OP_CLASSES
 #include "mlir/Dialect/GPU/IR/GPUOps.h.inc"
 
-namespace mlir::gpu {
+MLIR_NAMESPACE_BEGIN
+namespace gpu {
 /// Retrieve the constant bounds for a given dimension and dimension kind
 /// from the context surrounding `op`, if known, and return them. This will
 /// check the bounds on an enclosing `gpu.launch`, an enclosing `gpu.func`, and
 /// any `gpu.known_*_size` on other function-like operations, in that order.
 std::optional<uint32_t>
 getKnownDimensionSizeAround(Operation *op, DimensionKind kind, Dimension dim);
-} // namespace mlir::gpu
+}
+MLIR_NAMESPACE_END // namespace mlir::gpu
 #endif // MLIR_DIALECT_GPU_IR_GPUDIALECT_H

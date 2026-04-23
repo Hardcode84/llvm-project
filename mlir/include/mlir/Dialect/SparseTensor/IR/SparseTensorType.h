@@ -14,8 +14,9 @@
 #define MLIR_DIALECT_SPARSETENSOR_IR_SPARSETENSORTYPE_H_
 
 #include "mlir/Dialect/SparseTensor/IR/SparseTensor.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace sparse_tensor {
 
 //===----------------------------------------------------------------------===//
@@ -381,6 +382,6 @@ inline std::optional<SparseTensorType> tryGetSparseTensorType(Value val) {
 }
 
 } // namespace sparse_tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SPARSETENSOR_IR_SPARSETENSORTYPE_H_

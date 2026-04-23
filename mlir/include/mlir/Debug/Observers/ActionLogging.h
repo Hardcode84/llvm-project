@@ -14,8 +14,9 @@
 #include "mlir/IR/Action.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Support/raw_ostream.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tracing {
 
 /// This class defines an observer that print Actions before and after execution
@@ -48,6 +49,6 @@ private:
 };
 
 } // namespace tracing
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRACING_OBSERVERS_ACTIONLOGGING_H

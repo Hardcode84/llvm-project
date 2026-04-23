@@ -19,8 +19,9 @@
 #define MLIR_DIALECT_OPENACC_OPENACCVARIABLEINFO_H
 
 #include "mlir/IR/Attributes.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace acc {
 namespace AttributeTrait {
 /// Trait attached to attributes that are OpenACC variable info attributes.
@@ -41,6 +42,6 @@ public:
 };
 
 } // namespace acc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_OPENACC_OPENACCVARIABLEINFO_H

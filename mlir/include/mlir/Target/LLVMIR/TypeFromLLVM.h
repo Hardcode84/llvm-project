@@ -15,12 +15,14 @@
 #define MLIR_TARGET_LLVMIR_TYPEFROMLLVM_H
 
 #include <memory>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Type;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class Type;
 class MLIRContext;
@@ -49,6 +51,6 @@ private:
 };
 
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_LLVMIR_TYPEFROMLLVM_H

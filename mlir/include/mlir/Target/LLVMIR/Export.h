@@ -11,13 +11,15 @@
 
 #include "llvm/ADT/StringRef.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LLVMContext;
 class Module;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Operation;
 
 /// Translates a given LLVM dialect `module` into an LLVM IR module living in
@@ -29,6 +31,6 @@ std::unique_ptr<llvm::Module>
 translateModuleToLLVMIR(Operation *module, llvm::LLVMContext &llvmContext,
                         llvm::StringRef name = "LLVMDialectModule",
                         bool disableVerification = false);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_LLVMIR_EXPORT_H

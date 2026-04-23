@@ -17,8 +17,9 @@
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/ADT/StringRef.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Attribute;
 class DialectBytecodeReader;
 class Type;
@@ -114,6 +115,6 @@ private:
       typeBytecodeParsers;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_BYTECODE_BYTECODEREADERCONFIG_H

@@ -24,6 +24,7 @@
 #include <functional>
 #include <optional>
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
 namespace nb = nanobind;
 using namespace nb::literals;
@@ -73,7 +74,7 @@ createCustomDialectWrapper(const std::string &dialectNamespace,
   return (*dialectClass)(std::move(dialectDescriptor));
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace python {
 namespace MLIR_BINDINGS_PYTHON_DOMAIN {
 
@@ -2648,7 +2649,7 @@ void PyDynamicOpTraits::NoTerminator::bind(nb::module_ &m) {
 
 } // namespace MLIR_BINDINGS_PYTHON_DOMAIN
 } // namespace python
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace {
 
@@ -2803,7 +2804,7 @@ maybeGetTracebackLocation(const std::optional<PyLocation> &location) {
 }
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace python {
 namespace MLIR_BINDINGS_PYTHON_DOMAIN {
 
@@ -5129,4 +5130,4 @@ void populateIRCore(nb::module_ &m) {
 }
 } // namespace MLIR_BINDINGS_PYTHON_DOMAIN
 } // namespace python
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

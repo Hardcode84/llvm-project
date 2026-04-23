@@ -16,18 +16,19 @@
 #include "mlir/Dialect/SPIRV/IR/SPIRVTypes.h"
 #include "mlir/IR/BuiltinAttributes.h"
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace spirv {
 class VerCapExtAttr;
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 // Pull in TableGen'erated SPIR-V attribute definitions for target and ABI.
 #define GET_ATTRDEF_CLASSES
 #include "mlir/Dialect/SPIRV/IR/SPIRVAttributes.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace spirv {
 enum class Capability : uint32_t;
 enum class DeviceType : uint32_t;
@@ -193,6 +194,6 @@ public:
   static constexpr StringLiteral name = "spirv.target_env";
 };
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SPIRV_IR_SPIRVATTRIBUTES_H

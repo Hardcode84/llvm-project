@@ -17,8 +17,9 @@
 #include <cstdint>
 #include <optional>
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class AffineMap;
 class Operation;
 
@@ -64,6 +65,6 @@ LogicalResult shuffleBeforeWriteLikeOp(PatternRewriter &rewriter,
                                        int64_t nonUnitDimAcc, VectorType accTy);
 
 } // namespace x86
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_X86_UTILS_X86UTILS_H_

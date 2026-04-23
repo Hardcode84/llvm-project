@@ -15,8 +15,9 @@
 #include "mlir/IR/OpImplementation.h"
 #include "llvm/Support/Base64.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 //===----------------------------------------------------------------------===//
 // AsmParserImpl
@@ -646,6 +647,6 @@ protected:
   bool emittedError = false;
 };
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_LIB_ASMPARSER_ASMPARSERIMPL_H

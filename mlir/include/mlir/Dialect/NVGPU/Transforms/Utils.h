@@ -7,8 +7,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "mlir/IR/Operation.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace nvgpu {
 
 /// Get the indices that the given load/store operation is operating on.
@@ -25,4 +26,4 @@ Value getValueStored(Operation *op);
 Value getMemrefOperand(Operation *op);
 
 } // namespace nvgpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

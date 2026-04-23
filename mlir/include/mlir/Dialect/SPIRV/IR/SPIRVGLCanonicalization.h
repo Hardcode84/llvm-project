@@ -16,12 +16,13 @@
 
 #include "mlir/IR/MLIRContext.h"
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
 //===----------------------------------------------------------------------===//
 // GLSL canonicalization patterns
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace spirv {
 /// Populates patterns to run canoncalization that involves GL ops.
 ///
@@ -29,6 +30,6 @@ namespace spirv {
 /// aren't always available. So they should be involed specifically when needed.
 void populateSPIRVGLCanonicalizationPatterns(RewritePatternSet &results);
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SPIRV_IR_SPIRVGLCANONICALIZATION_H_

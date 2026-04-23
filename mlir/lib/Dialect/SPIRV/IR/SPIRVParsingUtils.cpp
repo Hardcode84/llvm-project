@@ -13,10 +13,12 @@
 #include "SPIRVParsingUtils.h"
 
 #include "llvm/ADT/StringExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir::spirv::AttrNames;
 
-namespace mlir::spirv {
+MLIR_NAMESPACE_BEGIN
+namespace spirv {
 
 ParseResult parseVariableDecorations(OpAsmParser &parser,
                                      OperationState &state) {
@@ -55,4 +57,5 @@ ParseResult parseVariableDecorations(OpAsmParser &parser,
   return success();
 }
 
-} // namespace mlir::spirv
+}
+MLIR_NAMESPACE_END // namespace mlir::spirv

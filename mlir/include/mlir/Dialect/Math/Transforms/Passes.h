@@ -11,8 +11,9 @@
 
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace math {
 #define GEN_PASS_DECL
 #define GEN_PASS_REGISTRATION
@@ -80,6 +81,6 @@ void populateExtendToSupportedTypesConversionTarget(
 void populateExtendToSupportedTypesPatterns(RewritePatternSet &patterns,
                                             const TypeConverter &typeConverter);
 } // namespace math
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_MATH_TRANSFORMS_PASSES_H_

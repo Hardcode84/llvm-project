@@ -21,8 +21,9 @@
 #include "llvm/ADT/iterator.h"
 #include <optional>
 #include <utility>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ArrayAttr;
 
 //===----------------------------------------------------------------------===//
@@ -409,6 +410,6 @@ private:
   IteratorTy beginValue;
   IteratorTy pastEndValue;
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_UTILS_INDEXINGUTILS_H

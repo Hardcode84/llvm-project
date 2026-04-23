@@ -12,8 +12,9 @@
 #include "mlir/Interfaces/MemorySlotInterfaces.h"
 #include "mlir/Support/LLVM.h"
 #include "llvm/ADT/Statistic.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Statistics collected while applying SROA.
 struct SROAStatistics {
@@ -36,6 +37,6 @@ LogicalResult tryToDestructureMemorySlots(
     OpBuilder &builder, const DataLayout &dataLayout,
     SROAStatistics statistics = {});
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRANSFORMS_SROA_H

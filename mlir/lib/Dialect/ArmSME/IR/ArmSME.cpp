@@ -14,15 +14,18 @@
 #include "mlir/Dialect/MemRef/IR/MemRef.h"
 #include "mlir/IR/DialectImplementation.h"
 #include "llvm/ADT/TypeSwitch.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::arm_sme;
 
-namespace mlir::arm_sme::detail {
+MLIR_NAMESPACE_BEGIN
+namespace arm_sme::detail {
 LogicalResult verifyArmSMETileOpInterface(Operation *op) {
   return verifyOperationHasValidTileId(op);
 }
-} // namespace mlir::arm_sme::detail
+}
+MLIR_NAMESPACE_END // namespace mlir::arm_sme::detail
 
 //===----------------------------------------------------------------------===//
 // Tablegen Definitions

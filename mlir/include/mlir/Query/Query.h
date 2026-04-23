@@ -14,8 +14,10 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/LineEditor/LineEditor.h"
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::query {
+MLIR_NAMESPACE_BEGIN
+namespace query {
 
 enum class QueryKind { Invalid, NoOp, Help, Match, Quit };
 
@@ -103,6 +105,7 @@ struct MatchQuery : Query {
   }
 };
 
-} // namespace mlir::query
+}
+MLIR_NAMESPACE_END // namespace mlir::query
 
 #endif

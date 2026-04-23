@@ -19,8 +19,9 @@
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/Transform/PDLExtension/PDLExtensionOps.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace transform {
 /// PDL constraint callbacks that can be used by the PDL extension of the
 /// Transform dialect. These are owned by the Transform dialect and can be
@@ -45,7 +46,7 @@ private:
   PDLPatternModule pdlMatchHooks;
 };
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 MLIR_DECLARE_EXPLICIT_TYPE_ID(mlir::transform::PDLMatchHooks)
 

@@ -11,8 +11,9 @@
 
 #include "mlir/Dialect/EmitC/IR/EmitC.h"
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace emitc {
 
 //===----------------------------------------------------------------------===//
@@ -35,6 +36,6 @@ void populateExpressionPatterns(RewritePatternSet &patterns);
 void populateWrapFuncInClass(RewritePatternSet &patterns, StringRef fName);
 
 } // namespace emitc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_EMITC_TRANSFORMS_TRANSFORMS_H

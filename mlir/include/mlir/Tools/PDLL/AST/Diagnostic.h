@@ -15,8 +15,9 @@
 #include "mlir/Support/LLVM.h"
 #include "llvm/ADT/FunctionExtras.h"
 #include "llvm/Support/SourceMgr.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace pdll {
 namespace ast {
 class DiagnosticEngine;
@@ -177,6 +178,6 @@ private:
 
 } // namespace ast
 } // namespace pdll
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_PDLL_AST_DIAGNOSTIC_H

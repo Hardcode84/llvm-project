@@ -19,6 +19,7 @@
 #include "llvm/ADT/Hashing.h"
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/StringMap.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -79,7 +80,7 @@ static llvm::hash_code computeHash(SymbolOpInterface symbolOp) {
                             llvm::hash_combine_range(range));
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace spirv {
 
 OwningOpRef<spirv::ModuleOp> combine(ArrayRef<spirv::ModuleOp> inputModules,
@@ -245,4 +246,4 @@ OwningOpRef<spirv::ModuleOp> combine(ArrayRef<spirv::ModuleOp> inputModules,
 }
 
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

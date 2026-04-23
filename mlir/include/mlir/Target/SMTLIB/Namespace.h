@@ -19,8 +19,9 @@
 #include "llvm/ADT/SmallString.h"
 #include "llvm/ADT/StringSet.h"
 #include "llvm/ADT/Twine.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// A namespace that is used to store existing names and generate new names in
 /// some scope within the IR. This exists to work around limitations of
@@ -165,6 +166,6 @@ protected:
   bool locked = false;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_SUPPORT_NAMESPACE_H

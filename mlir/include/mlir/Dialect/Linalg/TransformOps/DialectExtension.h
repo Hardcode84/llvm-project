@@ -6,10 +6,11 @@
 //
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace linalg {
 void registerTransformDialectExtension(DialectRegistry &registry);
 } // namespace linalg
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

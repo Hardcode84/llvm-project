@@ -10,8 +10,9 @@
 #define MLIR_CONVERSION_MEMREFTOLLVM_MEMREFTOLLVM_H
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 class Pass;
 class LLVMTypeConverter;
@@ -29,6 +30,6 @@ void populateFinalizeMemRefToLLVMConversionPatterns(
 
 void registerConvertMemRefToLLVMInterface(DialectRegistry &registry);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_MEMREFTOLLVM_MEMREFTOLLVM_H

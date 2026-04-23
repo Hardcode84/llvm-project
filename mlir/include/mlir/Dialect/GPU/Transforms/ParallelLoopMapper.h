@@ -17,16 +17,17 @@
 #include "mlir/Dialect/GPU/IR/GPUDialect.h"
 #include "mlir/Support/LLVM.h"
 #include "llvm/ADT/StringRef.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class AffineMap;
 class Operation;
 class Region;
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace scf {
 class ParallelOp;
 } // namespace scf
@@ -44,5 +45,5 @@ StringRef getMappingAttrName();
 LogicalResult setMappingAttr(scf::ParallelOp ploopOp,
                              ArrayRef<ParallelLoopDimMappingAttr> mapping);
 } // namespace gpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 #endif // MLIR_DIALECT_GPU_TRANSFORMS_PARALLELLOOPMAPPER_H

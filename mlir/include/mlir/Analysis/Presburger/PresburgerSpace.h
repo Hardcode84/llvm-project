@@ -19,8 +19,9 @@
 #include "llvm/Support/PointerLikeTypeTraits.h"
 #include "llvm/Support/TypeName.h"
 #include "llvm/Support/raw_ostream.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace presburger {
 using llvm::ArrayRef;
 using llvm::SmallVector;
@@ -342,6 +343,6 @@ private:
 };
 
 } // namespace presburger
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_ANALYSIS_PRESBURGER_PRESBURGERSPACE_H

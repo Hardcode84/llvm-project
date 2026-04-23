@@ -9,7 +9,9 @@
 #ifndef MLIR_DIALECT_TRANSFORM_DEBUGEXTENSION_DEBUGEXTENSION_H
 #define MLIR_DIALECT_TRANSFORM_DEBUGEXTENSION_DEBUGEXTENSION_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace transform {
@@ -17,6 +19,6 @@ namespace transform {
 /// registry.
 void registerDebugExtension(DialectRegistry &dialectRegistry);
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TRANSFORM_DEBUGEXTENSION_DEBUGEXTENSION_H

@@ -35,6 +35,7 @@
 #include "llvm/Support/Debug.h"
 
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "linalg-utils"
 
@@ -170,7 +171,7 @@ computePackUnPackPerm(int64_t rank, ArrayRef<int64_t> &innerDimsPos,
   return packInverseDestPermutation;
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace linalg {
 
 SmallVector<int64_t> getPackInverseDestPerm(PackOp packOp,
@@ -2927,4 +2928,4 @@ getReassociationMapForFoldingUnitDims(ArrayRef<OpFoldResult> mixedSizes) {
 }
 
 } // namespace linalg
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

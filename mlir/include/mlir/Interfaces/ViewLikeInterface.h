@@ -19,8 +19,9 @@
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/IR/OpImplementation.h"
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class OffsetSizeAndStrideOpInterface;
 
@@ -38,12 +39,12 @@ unsigned getNumDynamicEntriesUpToIdx(ArrayRef<int64_t> staticVals,
                                      unsigned idx);
 
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// Include the generated interface declarations.
 #include "mlir/Interfaces/ViewLikeInterface.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Result for slice bounds verification;
 struct SliceBoundsVerificationResult {
@@ -246,6 +247,6 @@ class DistinctObjectsTrait
     : public TraitBase<ConcreteType, DistinctObjectsTrait> {};
 } // namespace OpTrait
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_INTERFACES_VIEWLIKEINTERFACE_H_

@@ -15,8 +15,9 @@
 #define MLIR_DIALECT_SPIRV_UTILS_LAYOUTUTILS_H_
 
 #include <cstdint>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Type;
 class VectorType;
 
@@ -78,6 +79,6 @@ private:
   static Size getScalarTypeAlignment(Type scalarType);
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SPIRV_UTILS_LAYOUTUTILS_H_

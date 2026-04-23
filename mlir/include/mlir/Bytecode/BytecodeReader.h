@@ -17,13 +17,15 @@
 #include "mlir/Support/LLVM.h"
 #include <functional>
 #include <memory>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MemoryBufferRef;
 class SourceMgr;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 /// The BytecodeReader allows to load MLIR bytecode files, while keeping the
 /// state explicitly available in order to support lazy loading.
 /// The `finalize` method must be called before destruction.
@@ -91,6 +93,6 @@ LogicalResult
 readBytecodeFile(const std::shared_ptr<llvm::SourceMgr> &sourceMgr,
                  Block *block, const ParserConfig &config);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_BYTECODE_BYTECODEREADER_H

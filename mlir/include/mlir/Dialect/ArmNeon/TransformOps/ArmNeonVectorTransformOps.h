@@ -18,14 +18,15 @@
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/ArmNeon/TransformOps/ArmNeonVectorTransformOps.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace arm_neon {
 void registerTransformDialectExtension(DialectRegistry &registry);
 
 } // namespace arm_neon
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_ARM_NEON_TRANSFORMOPS_VECTORTRANSFORMOPS_H

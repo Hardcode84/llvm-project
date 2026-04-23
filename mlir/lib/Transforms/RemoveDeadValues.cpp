@@ -54,13 +54,14 @@
 #include <memory>
 #include <optional>
 #include <vector>
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "remove-dead-values"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_REMOVEDEADVALUESPASS
 #include "mlir/Transforms/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 using namespace mlir::dataflow;

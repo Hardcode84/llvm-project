@@ -16,8 +16,9 @@
 #define MLIR_ANALYSIS_ALIASANALYSIS_LOCALALIASANALYSIS_H_
 
 #include "mlir/Analysis/AliasAnalysis.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 /// This class implements a local form of alias analysis that tries to identify
 /// the underlying values addressed by each value and performs a few basic
 /// checks to see if they alias.
@@ -35,6 +36,6 @@ protected:
   /// Given the two values, return their aliasing behavior.
   virtual AliasResult aliasImpl(Value lhs, Value rhs);
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_ANALYSIS_ALIASANALYSIS_LOCALALIASANALYSIS_H_

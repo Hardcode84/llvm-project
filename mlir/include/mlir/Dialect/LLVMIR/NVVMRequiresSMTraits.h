@@ -16,8 +16,9 @@
 #include "mlir/IR/OpDefinition.h"
 #include "mlir/IR/StorageUniquerSupport.h"
 #include "llvm/ADT/StringExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 namespace NVVM {
 
@@ -97,11 +98,11 @@ private:
 };
 
 } // namespace NVVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Dialect/LLVMIR/NVVMRequiresSMTraits.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 namespace OpTrait {
 
@@ -120,5 +121,5 @@ public:
   };
 };
 } // namespace OpTrait
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 #endif // NVVM_DIALECT_NVVM_IR_NVVMREQUIRESSMTRAITS_H_

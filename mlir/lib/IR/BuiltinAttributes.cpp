@@ -44,6 +44,7 @@ void BuiltinDialect::registerAttributes() {
   addAttributes<
 #define GET_ATTRDEF_LIST
 #include "mlir/IR/BuiltinAttributes.cpp.inc"
+#include "mlir/Support/ABINamespace.h"
       >();
   addAttributes<DistinctAttr>();
 }
@@ -845,7 +846,7 @@ bool DenseArrayAttrImpl<T>::classof(Attribute attr) {
   return false;
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 // Explicit instantiation for all the supported DenseArrayAttr.
 template class DenseArrayAttrImpl<bool>;
@@ -856,7 +857,7 @@ template class DenseArrayAttrImpl<int64_t>;
 template class DenseArrayAttrImpl<float>;
 template class DenseArrayAttrImpl<double>;
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // DenseElementsAttr
@@ -1504,7 +1505,7 @@ bool DenseResourceElementsAttrBase<T>::classof(Attribute attr) {
                              resourceAttr.getElementType());
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 // Explicit instantiation for all the supported DenseResourceElementsAttr.
 template class DenseResourceElementsAttrBase<bool>;
@@ -1519,7 +1520,7 @@ template class DenseResourceElementsAttrBase<uint64_t>;
 template class DenseResourceElementsAttrBase<float>;
 template class DenseResourceElementsAttrBase<double>;
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // SparseElementsAttr

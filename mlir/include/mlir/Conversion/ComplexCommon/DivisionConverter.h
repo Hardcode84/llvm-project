@@ -12,8 +12,9 @@
 #include "mlir/Conversion/LLVMCommon/ConversionTarget.h"
 #include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/LLVMIR/LLVMDialect.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace complex {
 /// convert a complex division to the LLVM dialect using algebraic method
 void convertDivToLLVMUsingAlgebraic(ConversionPatternRewriter &rewriter,
@@ -43,6 +44,6 @@ void convertDivToStandardUsingRangeReduction(
     Value *resultIm);
 
 } // namespace complex
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_COMPLEXCOMMON_DIVISIONCONVERTER_H

@@ -29,8 +29,10 @@
 #include "llvm/ADT/StringMap.h"
 #include "llvm/Support/ErrorHandling.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class AsmParser;
 class AsmPrinter;
 class DynamicAttr;
@@ -718,9 +720,9 @@ public:
   virtual void printAttribute(Attribute attr,
                               DialectAsmPrinter &printer) const override;
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Provide isa functionality for ExtensibleDialect.
 /// This is to override the isa functionality for Dialect.
 template <>
@@ -738,6 +740,6 @@ struct isa_impl<mlir::DynamicDialect, mlir::Dialect> {
     return mlir::DynamicDialect::classof(&dialect);
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MLIR_IR_EXTENSIBLEDIALECT_H

@@ -10,11 +10,12 @@
 
 #include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/Bufferization/IR/BufferViewFlowOpInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::bufferization;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace arith {
 namespace {
 
@@ -34,7 +35,7 @@ struct SelectOpInterface
 
 } // namespace
 } // namespace arith
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 void arith::registerBufferViewFlowOpInterfaceExternalModels(
     DialectRegistry &registry) {

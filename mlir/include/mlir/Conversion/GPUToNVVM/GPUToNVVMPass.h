@@ -12,8 +12,9 @@
 #include "mlir/Dialect/LLVMIR/LLVMTypes.h"
 #include "mlir/IR/PatternMatch.h"
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class LLVMTypeConverter;
 class ConversionTarget;
 class RewritePatternSet;
@@ -51,6 +52,6 @@ void populateGpuSubgroupReduceOpLoweringPattern(
 void populateGpuWMMAToNVVMConversionPatterns(const LLVMTypeConverter &converter,
                                              RewritePatternSet &patterns,
                                              PatternBenefit benefit = 1);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_GPUTONVVM_GPUTONVVMPASS_H_

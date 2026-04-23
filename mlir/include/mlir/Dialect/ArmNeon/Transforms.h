@@ -9,7 +9,9 @@
 #ifndef MLIR_DIALECT_ARMNEON_TRANSFORMS_H
 #define MLIR_DIALECT_ARMNEON_TRANSFORMS_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class RewritePatternSet;
 
 namespace arm_neon {
@@ -17,6 +19,6 @@ void populateLowerContractionToNeonI8MMPatterns(RewritePatternSet &patterns);
 void populateLowerContractionToNeonBFMMLAPatterns(RewritePatternSet &patterns);
 } // namespace arm_neon
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_ARMNEON_TRANSFORMS_H

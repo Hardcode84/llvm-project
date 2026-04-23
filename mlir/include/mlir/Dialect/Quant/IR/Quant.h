@@ -20,8 +20,9 @@
 #include "llvm/Support/MathExtras.h"
 
 #include "mlir/Dialect/Quant/IR/QuantOpsDialect.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace quant {
 
 class QuantizedType;
@@ -29,7 +30,7 @@ class UniformQuantizedType;
 class UniformQuantizedPerAxisType;
 
 } // namespace quant
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/Quant/IR/QuantOps.h.inc"

@@ -10,8 +10,9 @@
 #define MLIR_DIALECT_QUANT_TRANSFORMS_PASSES_H_
 
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace quant {
 
 #define GEN_PASS_DECL
@@ -24,6 +25,6 @@ namespace quant {
 void populateLowerQuantOpsPatterns(RewritePatternSet &patterns);
 
 } // namespace quant
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_QUANT_TRANSFORMS_PASSES_H_

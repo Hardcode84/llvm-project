@@ -12,8 +12,9 @@
 #include "mlir/Debug/BreakpointManager.h"
 #include "mlir/IR/Action.h"
 #include "llvm/ADT/SmallVector.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tracing {
 
 /// This class is used to keep track of the active actions in the stack.
@@ -137,6 +138,6 @@ private:
 };
 
 } // namespace tracing
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRACING_EXECUTIONCONTEXT_H

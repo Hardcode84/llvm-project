@@ -15,8 +15,10 @@
 #include "mlir/Query/QuerySession.h"
 #include "llvm/Support/SourceMgr.h"
 #include "llvm/Support/raw_ostream.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::query {
+MLIR_NAMESPACE_BEGIN
+namespace query {
 
 QueryRef parse(llvm::StringRef line, const QuerySession &qs) {
   return QueryParser::parse(line, qs);
@@ -154,4 +156,5 @@ LogicalResult MatchQuery::run(llvm::raw_ostream &os, QuerySession &qs) const {
   return mlir::success();
 }
 
-} // namespace mlir::query
+}
+MLIR_NAMESPACE_END // namespace mlir::query

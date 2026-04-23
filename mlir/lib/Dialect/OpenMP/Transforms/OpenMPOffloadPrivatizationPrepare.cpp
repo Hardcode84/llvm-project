@@ -20,6 +20,7 @@
 #include <cstdint>
 #include <iterator>
 #include <utility>
+#include "mlir/Support/ABINamespace.h"
 
 //===----------------------------------------------------------------------===//
 // A pass that prepares OpenMP code for translation of delayed privatization
@@ -29,14 +30,14 @@
 
 #define DEBUG_TYPE "omp-prepare-for-offload-privatization"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace omp {
 
 #define GEN_PASS_DEF_PREPAREFOROMPOFFLOADPRIVATIZATIONPASS
 #include "mlir/Dialect/OpenMP/Transforms/Passes.h.inc"
 
 } // namespace omp
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 namespace {

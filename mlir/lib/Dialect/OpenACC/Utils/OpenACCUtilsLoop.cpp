@@ -20,6 +20,7 @@
 #include "mlir/IR/IRMapping.h"
 #include "mlir/Transforms/RegionUtils.h"
 #include "llvm/Support/ErrorHandling.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -99,7 +100,7 @@ static Block::iterator cloneACCRegionIntoForLoop(Region *src, Block *dest,
 
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace acc {
 
 std::pair<SmallVector<Value>, Block::iterator>
@@ -335,4 +336,4 @@ convertUnstructuredACCLoopToSCFExecuteRegion(LoopOp loopOp,
 }
 
 } // namespace acc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

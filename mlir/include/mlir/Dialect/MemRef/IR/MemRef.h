@@ -28,8 +28,9 @@
 #include "mlir/Interfaces/ViewLikeInterface.h"
 
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 namespace arith {
 enum class AtomicRMWKind : uint64_t;
@@ -78,7 +79,7 @@ Value createCanonicalRankReducingSubViewOp(OpBuilder &b, Location loc,
                                            Value memref,
                                            ArrayRef<int64_t> targetShape);
 } // namespace memref
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // MemRef Dialect

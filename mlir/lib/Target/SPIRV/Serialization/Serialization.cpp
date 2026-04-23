@@ -16,10 +16,11 @@
 #include "mlir/Target/SPIRV/Serialization.h"
 
 #include "llvm/Support/Debug.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "spirv-serialization"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 LogicalResult spirv::serialize(spirv::ModuleOp module,
                                SmallVectorImpl<uint32_t> &binary,
                                const SerializationOptions &options) {
@@ -37,4 +38,4 @@ LogicalResult spirv::serialize(spirv::ModuleOp module,
   serializer.collect(binary);
   return success();
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

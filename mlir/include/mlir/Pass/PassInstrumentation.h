@@ -12,8 +12,10 @@
 #include "mlir/Support/LLVM.h"
 #include "mlir/Support/TypeID.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class OperationName;
 class Operation;
 class Pass;
@@ -127,9 +129,9 @@ private:
   std::unique_ptr<detail::PassInstrumentorImpl> impl;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <>
 struct DenseMapInfo<mlir::PassInstrumentation::PipelineParentInfo> {
   using T = mlir::PassInstrumentation::PipelineParentInfo;
@@ -151,6 +153,6 @@ struct DenseMapInfo<mlir::PassInstrumentation::PipelineParentInfo> {
            lhs.parentPass == rhs.parentPass;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MLIR_PASS_PASSINSTRUMENTATION_H_

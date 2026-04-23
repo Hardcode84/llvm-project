@@ -12,8 +12,9 @@
 #include "mlir/Dialect/LLVMIR/LLVMDialect.h"
 #include "llvm/ADT/StringRef.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class OpBuilder;
 class LLVMTypeConverter;
@@ -31,6 +32,6 @@ LogicalResult createPrintStrCall(
     SymbolTableCollection *symbolTables = nullptr);
 } // namespace LLVM
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif

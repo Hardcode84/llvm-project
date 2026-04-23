@@ -16,8 +16,10 @@
 #include "mlir/IR/DialectRegistry.h"
 #include "mlir/IR/OperationSupport.h"
 #include "mlir/Support/TypeID.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectAsmParser;
 class DialectAsmPrinter;
 class DialectInterface;
@@ -371,9 +373,9 @@ private:
   friend class MLIRContext;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Provide isa functionality for Dialects.
 template <typename T>
 struct isa_impl<T, ::mlir::Dialect,
@@ -423,6 +425,6 @@ struct cast_convert_val<T, ::mlir::Dialect *, ::mlir::Dialect *> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

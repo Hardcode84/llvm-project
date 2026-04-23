@@ -16,8 +16,9 @@
 
 #include "mlir/Support/LLVM.h"
 #include "llvm/Support/raw_ostream.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// raw_ostream subclass that simplifies indention a sequence of code.
 class raw_indented_ostream : public raw_ostream {
@@ -177,5 +178,5 @@ inline void mlir::raw_indented_ostream::write_impl(const char *ptr,
   }
 }
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 #endif // MLIR_SUPPORT_INDENTEDOSTREAM_H_

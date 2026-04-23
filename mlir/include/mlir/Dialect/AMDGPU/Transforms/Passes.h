@@ -16,8 +16,9 @@
 #include "mlir/Dialect/AMDGPU/Utils/Chipset.h"
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ConversionTarget;
 namespace amdgpu {
 
@@ -43,6 +44,6 @@ void populateAmdgpuFoldMemRefOpsPatterns(RewritePatternSet &patterns,
                                          PatternBenefit benefit = 1);
 
 } // namespace amdgpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_AMDGPU_TRANSFORMS_PASSES_H_

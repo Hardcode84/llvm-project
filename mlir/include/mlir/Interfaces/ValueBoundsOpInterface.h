@@ -19,8 +19,9 @@
 #include "llvm/Support/ExtensibleRTTI.h"
 
 #include <queue>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class OffsetSizeAndStrideOpInterface;
 
 /// A hyperrectangular slice, represented as a list of offsets, sizes and
@@ -439,7 +440,7 @@ protected:
   bool addConservativeSemiAffineBounds = false;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Interfaces/ValueBoundsOpInterface.h.inc"
 

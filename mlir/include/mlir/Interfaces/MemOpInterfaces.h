@@ -15,8 +15,9 @@
 #define MLIR_INTERFACES_MEMOPINTERFACES_H
 
 #include "mlir/IR/OpDefinition.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 /// Attempt to verify the given memory space cast operation.
 LogicalResult verifyMemorySpaceCastOpInterface(Operation *op);
@@ -28,7 +29,7 @@ LogicalResult verifyMemorySpaceCastOpInterface(Operation *op);
 FailureOr<std::optional<SmallVector<Value>>>
 bubbleDownInPlaceMemorySpaceCastImpl(OpOperand &operand, ValueRange results);
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// Include the generated interface declarations.
 #include "mlir/Interfaces/MemOpInterfaces.h.inc"

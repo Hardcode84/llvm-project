@@ -21,6 +21,7 @@
 #include "llvm/ADT/IntEqClasses.h"
 #include "llvm/Support/DebugLog.h"
 #include "llvm/Support/InterleavedRange.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "affine-min-max"
 
@@ -224,12 +225,12 @@ struct SimplifyAffineApplyOp : public OpRewritePattern<AffineApplyOp> {
 
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace affine {
 #define GEN_PASS_DEF_SIMPLIFYAFFINEMINMAXPASS
 #include "mlir/Dialect/Affine/Transforms/Passes.h.inc"
 } // namespace affine
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// Creates a simplification pass for affine min/max/apply.
 struct SimplifyAffineMinMaxPass

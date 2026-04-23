@@ -10,8 +10,9 @@
 #define MLIR_CONVERSION_INDEXTOLLVM_INDEXTOLLVM_H
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 class LLVMTypeConverter;
 class RewritePatternSet;
@@ -27,6 +28,6 @@ void populateIndexToLLVMConversionPatterns(const LLVMTypeConverter &converter,
 void registerConvertIndexToLLVMInterface(DialectRegistry &registry);
 
 } // namespace index
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_INDEXTOLLVM_INDEXTOLLVM_H

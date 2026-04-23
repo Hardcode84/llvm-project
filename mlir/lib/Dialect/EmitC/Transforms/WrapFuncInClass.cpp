@@ -14,11 +14,12 @@
 #include "mlir/IR/BuiltinAttributes.h"
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/Transforms/WalkPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace emitc;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace emitc {
 #define GEN_PASS_DEF_WRAPFUNCINCLASSPASS
 #include "mlir/Dialect/EmitC/Transforms/Passes.h.inc"
@@ -39,7 +40,7 @@ struct WrapFuncInClassPass
 
 } // namespace
 } // namespace emitc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 class WrapFuncInClass : public OpRewritePattern<emitc::FuncOp> {
 public:

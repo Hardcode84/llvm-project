@@ -11,12 +11,13 @@
 
 #include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/LLVMIR/LLVMDialect.h"
+#include "mlir/Support/ABINamespace.h"
 
 //===----------------------------------------------------------------------===//
 // Support for converting Arith FastMathFlags to LLVM FastmathFlags
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace arith {
 /// Maps arithmetic fastmath enum values to LLVM enum values.
 LLVM::FastmathFlags
@@ -174,6 +175,6 @@ private:
 };
 
 } // namespace arith
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_ARITHCOMMON_ATTRTOLLVMCONVERTER_H

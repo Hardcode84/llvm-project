@@ -21,8 +21,9 @@
 #define LIB_MLIR_TOOLS_MLIRPDLLLSPSERVER_PROTOCOL_H_
 
 #include "llvm/Support/LSP/Protocol.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace lsp {
 using llvm::lsp::URIForFile;
 
@@ -66,6 +67,6 @@ struct PDLLViewOutputResult {
 llvm::json::Value toJSON(const PDLLViewOutputResult &value);
 
 } // namespace lsp
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif

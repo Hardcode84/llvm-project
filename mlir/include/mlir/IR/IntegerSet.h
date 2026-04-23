@@ -26,8 +26,10 @@
 
 #include "mlir/IR/AffineExpr.h"
 #include "llvm/ADT/ArrayRef.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 namespace detail {
 struct IntegerSetStorage;
@@ -125,8 +127,8 @@ inline ::llvm::hash_code hash_value(IntegerSet arg) {
   return ::llvm::hash_value(arg.set);
 }
 
-} // namespace mlir
-namespace llvm {
+MLIR_NAMESPACE_END // namespace mlir
+LLVM_NAMESPACE_BEGIN
 
 // IntegerSet hash just like pointers.
 template <>
@@ -147,5 +149,5 @@ struct DenseMapInfo<mlir::IntegerSet> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // MLIR_IR_INTEGERSET_H

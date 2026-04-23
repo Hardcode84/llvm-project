@@ -12,8 +12,9 @@
 #include "mlir/Support/LLVM.h"
 #include "llvm/Support/SourceMgr.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace pdll {
 namespace ast {
 class CallableDecl;
@@ -96,6 +97,6 @@ private:
   SMLoc codeCompleteLoc;
 };
 } // namespace pdll
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_PDLL_PARSER_CODECOMPLETE_H_

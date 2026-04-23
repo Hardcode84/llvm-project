@@ -17,8 +17,9 @@
 #include "mlir/Dialect/Vector/IR/VectorOps.h"
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/IR/Types.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace nvgpu {
 
 /// Represents the role of an operand in an MMA instruction:
@@ -106,6 +107,6 @@ bool canLowerToWarpMatrixOperation(vector::TransferReadOp op);
 bool canLowerToWarpMatrixOperation(vector::TransferWriteOp op);
 
 } // namespace nvgpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_NVGPU_UTILS_MMAUTILS_H

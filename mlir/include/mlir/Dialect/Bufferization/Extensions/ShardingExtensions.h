@@ -9,7 +9,9 @@
 #ifndef MLIR_DIALECT_BUFFERIZATION_SHARDINGEXTENSIONS_H
 #define MLIR_DIALECT_BUFFERIZATION_SHARDINGEXTENSIONS_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace bufferization {
@@ -17,6 +19,6 @@ namespace shard_ext {
 void registerShardingInterfaceExternalModels(DialectRegistry &registry);
 } // namespace shard_ext
 } // namespace bufferization
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_BUFFERIZATION_SHARDINGEXTENSIONS_H

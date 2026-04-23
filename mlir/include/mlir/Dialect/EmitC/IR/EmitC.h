@@ -28,8 +28,9 @@
 #include "mlir/Dialect/EmitC/IR/EmitCEnums.h.inc"
 
 #include <variant>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace emitc {
 void buildTerminatedBody(OpBuilder &builder, Location loc);
 
@@ -57,7 +58,7 @@ using ReplacementItem = std::variant<StringRef, Placeholder>;
 bool isFundamentalType(mlir::Type type);
 
 } // namespace emitc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define GET_ATTRDEF_CLASSES
 #include "mlir/Dialect/EmitC/IR/EmitCAttributes.h.inc"

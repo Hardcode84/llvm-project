@@ -9,12 +9,14 @@
 #ifndef MLIR_DIALECT_SPARSETENSOR_TRANSFORMS_BUFFERIZABLEOPINTERFACEIMPL_H_
 #define MLIR_DIALECT_SPARSETENSOR_TRANSFORMS_BUFFERIZABLEOPINTERFACEIMPL_H_
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace sparse_tensor {
 void registerBufferizableOpInterfaceExternalModels(DialectRegistry &registry);
 } // namespace sparse_tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SPARSETENSOR_TRANSFORMS_BUFFERIZABLEOPINTERFACEIMPL_H_

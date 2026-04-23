@@ -24,6 +24,7 @@
 // clang-format on
 #include "mlir-c/IntegerSet.h"
 #include "mlir/Bindings/Python/Nanobind.h"
+#include "mlir/Support/ABINamespace.h"
 
 namespace nb = nanobind;
 using namespace mlir;
@@ -70,7 +71,7 @@ static bool isPermutation(const std::vector<PermutationTy> &permutation) {
   return true;
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace python {
 namespace MLIR_BINDINGS_PYTHON_DOMAIN {
 
@@ -346,7 +347,7 @@ public:
 
 } // namespace MLIR_BINDINGS_PYTHON_DOMAIN
 } // namespace python
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 bool PyAffineExpr::operator==(const PyAffineExpr &other) const {
   return mlirAffineExprEqual(affineExpr, other.affineExpr);
@@ -389,7 +390,7 @@ nb::typed<nb::object, PyAffineExpr> PyAffineExpr::maybeDownCast() {
 //------------------------------------------------------------------------------
 // PyAffineMap and utilities.
 //------------------------------------------------------------------------------
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace python {
 namespace MLIR_BINDINGS_PYTHON_DOMAIN {
 
@@ -429,7 +430,7 @@ private:
 };
 } // namespace MLIR_BINDINGS_PYTHON_DOMAIN
 } // namespace python
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 bool PyAffineMap::operator==(const PyAffineMap &other) const {
   return mlirAffineMapEqual(affineMap, other.affineMap);
@@ -451,7 +452,7 @@ PyAffineMap PyAffineMap::createFromCapsule(const nb::object &capsule) {
 //------------------------------------------------------------------------------
 // PyIntegerSet and utilities.
 //------------------------------------------------------------------------------
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace python {
 namespace MLIR_BINDINGS_PYTHON_DOMAIN {
 
@@ -509,7 +510,7 @@ private:
 };
 } // namespace MLIR_BINDINGS_PYTHON_DOMAIN
 } // namespace python
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 bool PyIntegerSet::operator==(const PyIntegerSet &other) const {
   return mlirIntegerSetEqual(integerSet, other.integerSet);
@@ -528,7 +529,7 @@ PyIntegerSet PyIntegerSet::createFromCapsule(const nb::object &capsule) {
       rawIntegerSet);
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace python {
 namespace MLIR_BINDINGS_PYTHON_DOMAIN {
 void populateIRAffine(nb::module_ &m) {
@@ -1021,4 +1022,4 @@ void populateIRAffine(nb::module_ &m) {
 }
 } // namespace MLIR_BINDINGS_PYTHON_DOMAIN
 } // namespace python
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

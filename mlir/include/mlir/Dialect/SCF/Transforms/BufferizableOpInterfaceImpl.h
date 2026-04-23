@@ -9,12 +9,14 @@
 #ifndef MLIR_DIALECT_SCF_TRANSFORMS_BUFFERIZABLEOPINTERFACEIMPL_H
 #define MLIR_DIALECT_SCF_TRANSFORMS_BUFFERIZABLEOPINTERFACEIMPL_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace scf {
 void registerBufferizableOpInterfaceExternalModels(DialectRegistry &registry);
 } // namespace scf
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SCF_BUFFERIZABLEOPINTERFACEIMPL_H

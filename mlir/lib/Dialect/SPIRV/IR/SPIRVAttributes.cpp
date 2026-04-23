@@ -13,6 +13,7 @@
 #include "mlir/IR/DialectImplementation.h"
 #include "llvm/ADT/TypeSwitch.h"
 #include "llvm/Support/InterleavedRange.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::spirv;
@@ -21,7 +22,7 @@ using namespace mlir::spirv;
 // TableGen'erated attribute utility functions
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace spirv {
 #include "mlir/Dialect/SPIRV/IR/SPIRVAttrUtils.inc"
 } // namespace spirv
@@ -114,7 +115,7 @@ struct TargetEnvAttributeStorage : public AttributeStorage {
 };
 } // namespace detail
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // InterfaceVarABIAttr

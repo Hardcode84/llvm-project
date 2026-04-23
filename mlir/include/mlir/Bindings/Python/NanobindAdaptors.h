@@ -30,8 +30,9 @@
 #include "mlir-c/Bindings/Python/Interop.h" // This is expected after nanobind.
 // clang-format on
 #include "mlir/Bindings/Python/NanobindUtils.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace python {
 namespace {
 
@@ -45,7 +46,7 @@ nanobind::module_ &irModule() {
 
 } // namespace
 } // namespace python
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 // Raw CAPI type casters need to be declared before use, so always include them
 // first.
@@ -396,7 +397,7 @@ struct type_caster<MlirStringRef> {
 } // namespace detail
 } // namespace nanobind
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace python {
 namespace nanobind_adaptors {
 
@@ -724,6 +725,6 @@ public:
 } // namespace nanobind_adaptors
 
 } // namespace python
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_BINDINGS_PYTHON_NANOBINDADAPTORS_H

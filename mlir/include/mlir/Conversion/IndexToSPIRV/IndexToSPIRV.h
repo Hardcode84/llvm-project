@@ -11,8 +11,9 @@
 
 #include "mlir/Pass/Pass.h"
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class RewritePatternSet;
 class SPIRVTypeConverter;
 class Pass;
@@ -25,6 +26,6 @@ void populateIndexToSPIRVPatterns(const SPIRVTypeConverter &converter,
                                   RewritePatternSet &patterns);
 std::unique_ptr<OperationPass<>> createConvertIndexToSPIRVPass();
 } // namespace index
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_INDEXTOSPIRV_INDEXTOSPIRV_H

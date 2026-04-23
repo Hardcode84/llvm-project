@@ -8,8 +8,9 @@
 
 #include "mlir/Dialect/Tosa/IR/TargetEnv.h"
 #include "llvm/Support/FormatVariadic.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tosa {
 
 llvm::SmallString<4> stringifyVersion(TosaSpecificationVersion version) {
@@ -180,4 +181,4 @@ TargetEnvAttr lookupTargetEnvOrDefault(Operation *op) {
 }
 
 } // namespace tosa
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

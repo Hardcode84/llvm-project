@@ -16,8 +16,9 @@
 
 #include "mlir/IR/Operation.h"
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Location;
 class ModuleOp;
 class OpBuilder;
@@ -107,6 +108,6 @@ lookupOrCreateFn(OpBuilder &b, Operation *moduleOp, StringRef name,
                  SymbolTableCollection *symbolTables = nullptr);
 
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_LLVMIR_FUNCTIONCALLUTILS_H_

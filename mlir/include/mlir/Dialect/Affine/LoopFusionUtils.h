@@ -19,8 +19,9 @@
 #include "mlir/Support/LLVM.h"
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/SmallVector.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Operation;
 
 namespace affine {
@@ -162,6 +163,6 @@ void gatherProducerConsumerMemrefs(ArrayRef<Operation *> srcOps,
                                    DenseSet<Value> &producerConsumerMemrefs);
 
 } // namespace affine
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_AFFINE_LOOPFUSIONUTILS_H

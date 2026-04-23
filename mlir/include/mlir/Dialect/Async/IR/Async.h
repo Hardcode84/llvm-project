@@ -40,12 +40,14 @@
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/Async/IR/AsyncOps.h.inc"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
 //===----------------------------------------------------------------------===//
 // Helper functions of Async dialect transformations.
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace async {
 
 /// Returns true if the type is reference counted at runtime.
@@ -54,9 +56,9 @@ inline bool isRefCounted(Type type) {
 }
 
 } // namespace async
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Allow stealing the low bits of async::FuncOp.
 template <>
@@ -69,6 +71,6 @@ struct PointerLikeTypeTraits<mlir::async::FuncOp> {
   }
   static constexpr int NumLowBitsAvailable = 3;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MLIR_DIALECT_ASYNC_IR_ASYNC_H

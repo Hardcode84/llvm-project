@@ -13,8 +13,9 @@
 #include "mlir/Support/LLVM.h"
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 template <typename T>
 class InterfacePass;
 class Pass;
@@ -23,6 +24,6 @@ class Pass;
 #define GEN_PASS_DECL_CONVERTPARALLELLOOPTOGPUPASS
 #include "mlir/Conversion/Passes.h.inc"
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_SCFTOGPU_SCFTOGPUPASS_H_

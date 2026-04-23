@@ -12,8 +12,9 @@
 #include "mlir/IR/Action.h"
 #include "llvm/ADT/StringMap.h"
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tracing {
 
 /// This class implements an action handler that attaches a counter value
@@ -75,6 +76,6 @@ private:
 };
 
 } // namespace tracing
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRACING_DEBUGCOUNTER_H

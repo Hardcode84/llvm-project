@@ -13,13 +13,15 @@
 #ifndef MLIR_CONVERSION_GPUCOMMON_GPUTOLLVM_H
 #define MLIR_CONVERSION_GPUCOMMON_GPUTOLLVM_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 namespace gpu {
 /// Registers the `ConvertToLLVMOpInterface` interface on the `gpu::GPUModuleOP`
 /// operation.
 void registerConvertGpuToLLVMInterface(DialectRegistry &registry);
 } // namespace gpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_GPUCOMMON_GPUTOLLVM_H

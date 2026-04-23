@@ -13,12 +13,14 @@
 #include "llvm/ADT/StringRef.h"
 #include <functional>
 #include <utility>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class RecordKeeper;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Generator function to invoke.
 using GenFunction =
@@ -69,6 +71,6 @@ struct GenRegistration {
                   const GenFunction &function);
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TABLEGEN_GENINFO_H_

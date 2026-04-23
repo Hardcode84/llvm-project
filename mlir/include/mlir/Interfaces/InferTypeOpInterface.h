@@ -22,8 +22,9 @@
 #include "mlir/Support/LLVM.h"
 #include "llvm/ADT/PointerUnion.h"
 #include "llvm/ADT/SmallVector.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class ShapedTypeComponents;
 using ReifiedRankedShapedTypeDims = SmallVector<SmallVector<OpFoldResult>>;
@@ -258,12 +259,12 @@ namespace OpTrait {
 template <typename ConcreteType>
 class InferTensorType;
 } // namespace OpTrait
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// Include the generated interface declarations.
 #include "mlir/Interfaces/InferTypeOpInterface.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace OpTrait {
 
 template <typename ConcreteType>
@@ -285,6 +286,6 @@ template <typename ConcreteType>
 class InferTensorType : public TraitBase<ConcreteType, InferTensorType> {};
 
 } // namespace OpTrait
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_INTERFACES_INFERTYPEOPINTERFACE_H_

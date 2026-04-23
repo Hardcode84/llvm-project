@@ -11,8 +11,9 @@
 
 #include "mlir/Analysis/DataFlow/SparseAnalysis.h"
 #include "mlir/Interfaces/InferStridedMetadataInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace dataflow {
 
 /// This lattice element represents the strided metadata of an SSA value.
@@ -49,6 +50,6 @@ private:
   int32_t indexBitwidth = 64;
 };
 } // namespace dataflow
-} // end namespace mlir
+MLIR_NAMESPACE_END // end namespace mlir
 
 #endif // MLIR_ANALYSIS_DATAFLOW_STRIDEDMETADATARANGE_H

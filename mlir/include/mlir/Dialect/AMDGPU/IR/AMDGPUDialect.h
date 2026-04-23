@@ -28,8 +28,10 @@
 
 #include "mlir/Dialect/AMDGPU/IR/AMDGPUAttrs.h.inc"
 #include "mlir/Dialect/AMDGPU/IR/AMDGPUTypes.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::amdgpu {
+MLIR_NAMESPACE_BEGIN
+namespace amdgpu {
 /// Parser for the `custom<MNKDimensionList>` custom assembly format used by
 /// WMMAOp.
 ParseResult parseMNKDimensionList(OpAsmParser &parser, IntegerAttr &m,
@@ -50,7 +52,8 @@ inline void printMNKDimensionList(OpAsmPrinter &printer, Operation *,
                                   IntegerAttr m, IntegerAttr n, IntegerAttr k) {
   printMNKDimensionList(printer, m, n, k);
 }
-} // namespace mlir::amdgpu
+}
+MLIR_NAMESPACE_END // namespace mlir::amdgpu
 
 #define GET_ATTRDEF_CLASSES
 #include "mlir/Dialect/AMDGPU/IR/AMDGPUAttrs.h.inc"

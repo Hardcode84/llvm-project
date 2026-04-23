@@ -16,8 +16,9 @@
 #include <memory>
 
 #include "mlir/Transforms/CFGToSCF.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Pass;
 
 /// Implementation of `CFGToSCFInterface` used to lift Control Flow Dialect
@@ -75,6 +76,6 @@ public:
 #define GEN_PASS_DECL_LIFTCONTROLFLOWTOSCFPASS
 #include "mlir/Conversion/Passes.h.inc"
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_CONTROLFLOWTOSCF_CONTROLFLOWTOSCF_H

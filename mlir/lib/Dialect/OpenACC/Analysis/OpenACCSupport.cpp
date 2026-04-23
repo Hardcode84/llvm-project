@@ -13,8 +13,9 @@
 #include "mlir/Dialect/OpenACC/Analysis/OpenACCSupport.h"
 #include "mlir/Dialect/OpenACC/OpenACCUtils.h"
 #include "mlir/Dialect/OpenACC/OpenACCUtilsGPU.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace acc {
 
 std::string OpenACCSupport::getVariableName(Value v) {
@@ -73,4 +74,4 @@ OpenACCSupport::getOrCreateGPUModule(ModuleOp mod, bool create,
 }
 
 } // namespace acc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

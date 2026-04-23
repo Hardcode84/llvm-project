@@ -18,8 +18,9 @@
 #include "llvm/ADT/StringMapEntry.h"
 #include "llvm/Support/raw_ostream.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class Timer;
 class TimingManager;
@@ -478,6 +479,6 @@ void applyDefaultTimingManagerCLOptions(DefaultTimingManager &tm);
 std::unique_ptr<OutputStrategy>
 createOutputStrategy(DefaultTimingManager::OutputFormat fmt, raw_ostream &os);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_SUPPORT_TIMING_H

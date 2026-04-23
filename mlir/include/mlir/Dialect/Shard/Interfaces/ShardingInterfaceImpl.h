@@ -13,8 +13,9 @@
 #include "mlir/Dialect/Shard/Interfaces/ShardingInterface.h"
 #include "mlir/IR/AffineMap.h"
 #include "mlir/IR/Value.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class Operation;
 class IRMapping;
@@ -142,6 +143,6 @@ struct ElementwiseShardingInterface
 };
 
 } // namespace shard
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SHARD_INTERFACES_SHARDINGINTERFACEIMPL_H_

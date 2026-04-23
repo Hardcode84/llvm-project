@@ -27,8 +27,10 @@
 #include "llvm/ADT/SmallVector.h"
 #include <iterator>
 #include <numeric>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::shard {
+MLIR_NAMESPACE_BEGIN
+namespace shard {
 
 namespace {
 
@@ -232,4 +234,5 @@ TypedValue<IndexType> createProcessLinearIndex(ImplicitLocOpBuilder &builder,
       ProcessMultiIndexOp::create(builder, grid, gridAxes).getResults(),
       gridAxes);
 }
-} // namespace mlir::shard
+}
+MLIR_NAMESPACE_END // namespace mlir::shard

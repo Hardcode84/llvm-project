@@ -28,12 +28,13 @@
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/Bufferization/IR/BufferizationOps.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
 //===----------------------------------------------------------------------===//
 // Helper functions
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace bufferization {
 /// Populate `dynamicDims` with tensor::DimOp / memref::DimOp results for all
 /// dynamic dimensions of the given shaped value.
@@ -68,6 +69,6 @@ void populateDeallocOpCanonicalizationPatterns(RewritePatternSet &patterns,
                                                MLIRContext *context);
 
 } // namespace bufferization
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_BUFFERIZATION_IR_BUFFERIZATION_H_

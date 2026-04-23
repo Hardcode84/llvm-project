@@ -17,14 +17,16 @@
 #include "mlir/IR/Builders.h"
 #include "mlir/IR/OwningOpRef.h"
 #include <cstddef>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SourceMgr;
 class SMDiagnostic;
 class StringRef;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 
 /// Given a block containing operations that have just been parsed, if the block
@@ -253,6 +255,6 @@ inline OwningOpRef<ContainerOpT> parseSourceString(llvm::StringRef sourceStr,
       &block, config.getContext(), sourceFileLoc);
 }
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_PARSER_PARSER_H

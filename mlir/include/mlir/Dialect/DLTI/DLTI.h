@@ -16,13 +16,14 @@
 #include "mlir/IR/Attributes.h"
 #include "mlir/IR/Dialect.h"
 #include "mlir/Interfaces/DataLayoutInterfaces.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 class DataLayoutEntryAttrStorage;
 } // namespace detail
-} // namespace mlir
-namespace mlir {
+MLIR_NAMESPACE_END // namespace mlir
+MLIR_NAMESPACE_BEGIN
 namespace dlti {
 /// Perform a DLTI-query at `op`, recursively querying each key of `keys` on
 /// query interface-implementing attrs, starting from attr obtained from `op`.
@@ -35,7 +36,7 @@ FailureOr<Attribute> query(Operation *op, ArrayRef<DataLayoutEntryKey> keys,
 FailureOr<Attribute> query(Operation *op, ArrayRef<StringRef> keys,
                            bool emitError = false);
 } // namespace dlti
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define GET_ATTRDEF_CLASSES
 #include "mlir/Dialect/DLTI/DLTIAttrs.h.inc"

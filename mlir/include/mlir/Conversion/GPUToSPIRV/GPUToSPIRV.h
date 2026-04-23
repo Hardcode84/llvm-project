@@ -16,8 +16,9 @@
 #include "mlir/Dialect/SPIRV/IR/SPIRVDialect.h"
 #include "mlir/Dialect/SPIRV/IR/SPIRVOps.h"
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class SPIRVTypeConverter;
 
 /// Appends to a pattern list additional patterns for translating GPU Ops to
@@ -35,6 +36,6 @@ void populateGpuWMMAToSPIRVCoopMatrixKHRConversionPatterns(
 /// conversion to the type converter.
 void populateMMAToSPIRVCoopMatrixTypeConversion(
     SPIRVTypeConverter &typeConverter);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_GPUTOSPIRV_GPUTOSPIRV_H

@@ -10,8 +10,9 @@
 #define MLIR_DIALECT_ARMSME_TRANSFORMS_H
 
 #include "mlir/Interfaces/FunctionInterfaces.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class LLVMConversionTarget;
 class LLVMTypeConverter;
@@ -28,6 +29,6 @@ LogicalResult allocateSMETiles(FunctionOpInterface function,
 
 } // namespace arm_sme
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_ARMSME_TRANSFORMS_H

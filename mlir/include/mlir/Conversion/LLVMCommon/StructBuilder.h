@@ -16,8 +16,9 @@
 
 #include "mlir/IR/Types.h"
 #include "mlir/IR/Value.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class OpBuilder;
 
@@ -46,6 +47,6 @@ protected:
   void setPtr(OpBuilder &builder, Location loc, unsigned pos, Value ptr);
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_LLVMCOMMON_STRUCTBUILDER_H

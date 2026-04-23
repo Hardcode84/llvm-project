@@ -10,6 +10,7 @@
 #include "mlir/Dialect/Vector/IR/ScalableValueBoundsConstraintSet.h"
 #include "mlir/Dialect/Vector/Transforms/VectorTransforms.h"
 #include "mlir/Interfaces/FunctionInterfaces.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::vector;
@@ -90,7 +91,8 @@ LogicalResult resolveAllTrueCreateMaskOp(IRRewriter &rewriter,
 
 } // namespace
 
-namespace mlir::vector {
+MLIR_NAMESPACE_BEGIN
+namespace vector {
 
 void eliminateVectorMasks(IRRewriter &rewriter, FunctionOpInterface function,
                           std::optional<VscaleRange> vscaleRange) {
@@ -117,4 +119,5 @@ void eliminateVectorMasks(IRRewriter &rewriter, FunctionOpInterface function,
     (void)resolveAllTrueCreateMaskOp(rewriter, mask, *vscaleRange);
 }
 
-} // namespace mlir::vector
+}
+MLIR_NAMESPACE_END // namespace mlir::vector

@@ -21,13 +21,14 @@
 #include "mlir/Interfaces/SideEffectInterfaces.h"
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/Support/MathExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace nvgpu {
 #define GEN_PASS_DEF_OPTIMIZESHAREDMEMORY
 #include "mlir/Dialect/NVGPU/Transforms/Passes.h.inc"
 } // namespace nvgpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 using namespace mlir::nvgpu;

@@ -10,8 +10,9 @@
 #define MLIR_DIALECT_ARITH_TRANSFORMS_PASSES_H_
 
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DataFlowSolver;
 class ConversionTarget;
 class TypeConverter;
@@ -107,6 +108,6 @@ void populateControlFlowValuesNarrowingPatterns(
 #include "mlir/Dialect/Arith/Transforms/Passes.h.inc"
 
 } // namespace arith
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_ARITH_TRANSFORMS_PASSES_H_

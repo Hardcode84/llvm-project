@@ -11,8 +11,9 @@
 
 #include "mlir/Dialect/Shard/IR/ShardOps.h"
 #include "mlir/IR/DialectRegistry.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace shard {
 
 // Insert resharding partition of the value `sourceShardValue`
@@ -45,6 +46,6 @@ TypedValue<ShapedType> reshard(OpBuilder &builder, ShardOp source,
 void reshardingRegisterDependentDialects(DialectRegistry &registry);
 
 } // namespace shard
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SHARD_TRANSFORMS_PARTITION_H

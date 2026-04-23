@@ -13,10 +13,11 @@
 #include "mlir/Tools/mlir-translate/Translation.h"
 #include "llvm/ADT/TypeSwitch.h"
 #include "llvm/Support/Casting.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // Translation registration
@@ -46,4 +47,4 @@ void registerIRDLToCppTranslation() {
       [](DialectRegistry &registry) { registry.insert<irdl::IRDLDialect>(); });
 }
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

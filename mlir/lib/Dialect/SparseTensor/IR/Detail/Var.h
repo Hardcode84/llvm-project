@@ -16,8 +16,9 @@
 #include "llvm/ADT/STLForwardCompat.h"
 #include "llvm/ADT/SmallBitVector.h"
 #include "llvm/ADT/StringMap.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace sparse_tensor {
 namespace ir_detail {
 
@@ -398,6 +399,6 @@ public:
 
 } // namespace ir_detail
 } // namespace sparse_tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SPARSETENSOR_IR_DETAIL_VAR_H

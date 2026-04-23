@@ -15,13 +15,14 @@
 #include "mlir/Dialect/EmitC/Transforms/Passes.h"
 #include "mlir/Dialect/EmitC/Transforms/Transforms.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace emitc {
 #define GEN_PASS_DEF_FORMEXPRESSIONSPASS
 #include "mlir/Dialect/EmitC/Transforms/Passes.h.inc"
 } // namespace emitc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 using namespace emitc;

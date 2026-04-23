@@ -7,12 +7,13 @@
 //===----------------------------------------------------------------------===//
 
 #include "mlir/Interfaces/IndexingMapOpInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #include "mlir/Interfaces/IndexingMapOpInterface.cpp.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 static LogicalResult verifyIndexingMapOperandType(Operation *op, Type t,
                                                   unsigned operandNumber) {

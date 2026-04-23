@@ -19,8 +19,9 @@
 #include "mlir/IR/AffineExpr.h"
 #include "mlir/IR/OpDefinition.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class AffineMap;
 class IntegerSet;
 class MemRefType;
@@ -267,6 +268,6 @@ LogicalResult getRelationFromMap(const AffineValueMap &map,
                                  presburger::IntegerRelation &rel);
 
 } // namespace affine
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_AFFINE_ANALYSIS_AFFINESTRUCTURES_H

@@ -29,6 +29,7 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Support/DebugLog.h"
 #include "llvm/Support/InterleavedRange.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::gpu;
@@ -273,7 +274,7 @@ static GpuIdBuilderFnType laneIdBuilderFn(int64_t warpSize) {
   return res;
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace transform {
 namespace gpu {
 
@@ -458,4 +459,4 @@ DiagnosedSilenceableFailure alterGpuLaunch(
 
 } // namespace gpu
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

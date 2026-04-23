@@ -16,8 +16,9 @@
 
 #include "llvm/ADT/DynamicAPInt.h"
 #include "llvm/Support/raw_ostream.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace presburger {
 using llvm::DynamicAPInt;
 
@@ -164,6 +165,6 @@ inline llvm::raw_ostream &operator<<(llvm::raw_ostream &os, const Fraction &x) {
 }
 
 } // namespace presburger
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_ANALYSIS_PRESBURGER_FRACTION_H

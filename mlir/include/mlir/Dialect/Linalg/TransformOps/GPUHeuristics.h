@@ -11,8 +11,9 @@
 
 #include "mlir/IR/Attributes.h"
 #include "mlir/IR/MLIRContext.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace transform {
 namespace gpu {
 
@@ -127,6 +128,6 @@ inline llvm::raw_ostream &operator<<(llvm::raw_ostream &os,
 
 } // namespace gpu
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_LINALG_TRANSFORMOPS_GPUHEURISTICS_H

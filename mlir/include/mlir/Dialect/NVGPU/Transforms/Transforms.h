@@ -14,8 +14,9 @@
 #define MLIR_DIALECT_NVGPU_TRANSFORMS_TRANSFORMS_H_
 
 #include "mlir/IR/Operation.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class RewriterBase;
 
 namespace nvgpu {
@@ -77,6 +78,6 @@ void populateMmaSyncF32ToTF32Patterns(
 void createAsyncGroups(RewriterBase &rewriter, Operation *op, bool bypassL1);
 
 } // namespace nvgpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_NVGPU_TRANSFORMS_TRANSFORMS_H_

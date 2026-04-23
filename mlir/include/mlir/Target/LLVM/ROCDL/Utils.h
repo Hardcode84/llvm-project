@@ -19,8 +19,9 @@
 #include "mlir/IR/Attributes.h"
 #include "mlir/Support/LLVM.h"
 #include "mlir/Target/LLVM/ModuleToObject.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace ROCDL {
 /// Searches & returns the path ROCM toolkit path, the search order is:
 /// 1. The `ROCM_PATH` environment variable.
@@ -134,6 +135,6 @@ getAMDHSAKernelsELFMetadata(Builder &builder, ArrayRef<char> elfData);
 gpu::KernelTableAttr getKernelMetadata(Operation *gpuModule,
                                        ArrayRef<char> elfData = {});
 } // namespace ROCDL
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_LLVM_ROCDL_UTILS_H

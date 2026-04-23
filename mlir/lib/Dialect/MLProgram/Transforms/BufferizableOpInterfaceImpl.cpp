@@ -12,12 +12,13 @@
 #include "mlir/Dialect/Bufferization/Transforms/BufferUtils.h"
 #include "mlir/Dialect/MLProgram/IR/MLProgram.h"
 #include "mlir/Dialect/MemRef/IR/MemRef.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::bufferization;
 using namespace mlir::ml_program;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace ml_program {
 namespace {
 
@@ -165,4 +166,4 @@ void registerBufferizableOpInterfaceExternalModels(DialectRegistry &registry) {
   });
 }
 } // namespace ml_program
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

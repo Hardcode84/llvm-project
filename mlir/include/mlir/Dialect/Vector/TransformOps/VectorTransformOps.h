@@ -13,13 +13,14 @@
 #include "mlir/Dialect/Vector/Transforms/VectorRewritePatterns.h"
 #include "mlir/Dialect/Vector/Transforms/VectorTransforms.h"
 #include "mlir/IR/OpImplementation.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace vector {
 class VectorOp;
 struct LowerVectorsOptions;
 } // namespace vector
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Vector Transform Operations
@@ -28,7 +29,7 @@ struct LowerVectorsOptions;
 #define GET_OP_CLASSES
 #include "mlir/Dialect/Vector/TransformOps/VectorTransformOps.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace vector {
@@ -81,6 +82,6 @@ struct LowerVectorsOptions : public VectorTransformsOptions {
   }
 };
 } // namespace vector
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_VECTOR_TRANSFORMOPS_VECTORTRANSFORMOPS_H

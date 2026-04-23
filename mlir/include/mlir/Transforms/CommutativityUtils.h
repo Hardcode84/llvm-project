@@ -16,12 +16,13 @@
 #define MLIR_TRANSFORMS_COMMUTATIVITYUTILS_H
 
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Populates the commutativity utility patterns.
 void populateCommutativityUtilsPatterns(RewritePatternSet &patterns);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRANSFORMS_COMMUTATIVITYUTILS_H

@@ -10,11 +10,12 @@
 
 #include "mlir/Dialect/Bufferization/IR/BufferViewFlowOpInterface.h"
 #include "mlir/Dialect/MemRef/IR/MemRef.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::bufferization;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace memref {
 namespace {
 
@@ -38,7 +39,7 @@ struct ReallocOpInterface
 
 } // namespace
 } // namespace memref
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 void memref::registerBufferViewFlowOpInterfaceExternalModels(
     DialectRegistry &registry) {

@@ -18,8 +18,9 @@
 #include "mlir/Interfaces/InferTypeOpInterface.h"
 #include "llvm/ADT/Sequence.h"
 #include "llvm/ADT/SmallVector.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tosa {
 /// Statically known information for a particular Value.
 ///
@@ -178,6 +179,6 @@ struct ValueKnowledge {
   Type dtype;
 };
 } // namespace tosa
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TOSA_UTILS_SHAPEUTILS_H

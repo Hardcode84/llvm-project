@@ -11,8 +11,9 @@
 
 #include "mlir/IR/OpDefinition.h"
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ValueRange;
 
 namespace bufferization {
@@ -20,7 +21,7 @@ namespace bufferization {
 using RegisterDependenciesFn = std::function<void(ValueRange, ValueRange)>;
 
 } // namespace bufferization
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Dialect/Bufferization/IR/BufferViewFlowOpInterface.h.inc"
 

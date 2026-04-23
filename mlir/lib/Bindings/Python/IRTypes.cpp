@@ -19,12 +19,13 @@
 #include "mlir-c/BuiltinTypes.h"
 #include "mlir-c/Support.h"
 #include "mlir/Bindings/Python/NanobindUtils.h"
+#include "mlir/Support/ABINamespace.h"
 
 namespace nb = nanobind;
 using namespace mlir;
 using namespace mlir::python::MLIR_BINDINGS_PYTHON_DOMAIN;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace python {
 namespace MLIR_BINDINGS_PYTHON_DOMAIN {
 
@@ -956,4 +957,4 @@ void populateIRTypes(nb::module_ &m) {
 }
 } // namespace MLIR_BINDINGS_PYTHON_DOMAIN
 } // namespace python
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

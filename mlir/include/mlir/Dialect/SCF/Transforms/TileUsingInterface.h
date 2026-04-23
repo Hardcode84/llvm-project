@@ -18,14 +18,15 @@
 #include "mlir/Rewrite/FrozenRewritePatternSet.h"
 
 #include <deque>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Operation;
 class RewriterBase;
 class TilingInterface;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace scf {
 
 using SCFTileSizeComputationFunction =
@@ -473,6 +474,6 @@ tileReductionUsingScf(RewriterBase &b, PartialReductionOpInterface op,
                       ArrayRef<OpFoldResult> tileSizes);
 
 } // namespace scf
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SCF_TRANSFORMS_TILEUSINGINTERFACE_H

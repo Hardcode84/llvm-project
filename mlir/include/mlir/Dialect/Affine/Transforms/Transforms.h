@@ -16,8 +16,9 @@
 
 #include "mlir/Interfaces/ValueBoundsOpInterface.h"
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class AffineMap;
 class Location;
 class OpBuilder;
@@ -165,6 +166,6 @@ LogicalResult simplifyAffineMinMaxOps(RewriterBase &rewriter,
                                       ArrayRef<Operation *> ops,
                                       bool *modified = nullptr);
 } // namespace affine
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_AFFINE_TRANSFORMS_TRANSFORMS_H

@@ -9,15 +9,16 @@
 #include "mlir/Dialect/Transform/IR/TransformDialect.h"
 #include "mlir/Dialect/Transform/Transforms/Passes.h"
 #include "mlir/Dialect/Transform/Transforms/TransformInterpreterUtils.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace transform {
 #define GEN_PASS_DEF_PRELOADLIBRARYPASS
 #include "mlir/Dialect/Transform/Transforms/Passes.h.inc"
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace {
 class PreloadLibraryPass

@@ -17,6 +17,7 @@
 #include "mlir-c/IR.h"
 #include "mlir/Debug/ExecutionContext.h"
 #include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
 extern "C" {
 struct MLIRBreakpoint;
@@ -86,11 +87,11 @@ void mlirDebuggerAddFileLineColLocBreakpoint(const char *file, int line,
 
 } // extern "C"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 // Setup the debugger hooks as a callback on the provided ExecutionContext.
 void setupDebuggerExecutionContextHook(
     tracing::ExecutionContext &executionContext);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_SUPPORT_DEBUGGEREXECUTIONCONTEXTHOOK_H

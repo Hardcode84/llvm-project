@@ -16,8 +16,9 @@
 
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/Parser/Parser.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 /// This parses the file specified by the indicated SourceMgr. If parsing was
 /// not successful, null is returned and an error message is emitted through the
 /// error handler registered in the context.
@@ -32,6 +33,6 @@ parseSourceFileForTool(const std::shared_ptr<llvm::SourceMgr> &sourceMgr,
   }
   return parseSourceFile(sourceMgr, config);
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_PARSEUTILITIES_H

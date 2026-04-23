@@ -11,8 +11,9 @@
 
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/IR/SymbolTable.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace shard {
 
 template <typename Op>
@@ -30,6 +31,6 @@ protected:
 };
 
 } // namespace shard
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SHARD_TRANSFORMS_TRANSFORMSDETAIL_H

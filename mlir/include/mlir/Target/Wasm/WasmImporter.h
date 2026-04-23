@@ -18,14 +18,17 @@
 #include "mlir/IR/MLIRContext.h"
 #include "mlir/IR/OwningOpRef.h"
 #include "llvm/Support/SourceMgr.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::wasm {
+MLIR_NAMESPACE_BEGIN
+namespace wasm {
 
 /// If `source` contains a valid Wasm binary file, this function returns a
 /// a ModuleOp containing the representation of the Wasm module encoded in
 /// the source file in the `wasmssa` dialect.
 OwningOpRef<ModuleOp> importWebAssemblyToModule(llvm::SourceMgr &source,
                                                 MLIRContext *context);
-} // namespace mlir::wasm
+}
+MLIR_NAMESPACE_END // namespace mlir::wasm
 
 #endif // MLIR_TARGET_WASM_WASMIMPORTER_H

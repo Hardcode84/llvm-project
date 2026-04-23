@@ -12,8 +12,9 @@
 #include "mlir/Dialect/Linalg/IR/Linalg.h"
 #include "mlir/Pass/Pass.h"
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ModuleOp;
 template <typename T>
 class OperationPass;
@@ -47,6 +48,6 @@ public:
 void populateLinalgToStandardConversionPatterns(RewritePatternSet &patterns);
 
 } // namespace linalg
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_LINALGTOSTANDARD_LINALGTOSTANDARD_H_

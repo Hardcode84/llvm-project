@@ -13,8 +13,9 @@
 #include "mlir/IR/Types.h"
 #include "llvm/Support/SMLoc.h"
 #include <cstddef>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Block;
 class BlockArgument;
 class FileLineColLoc;
@@ -234,6 +235,6 @@ private:
   std::unique_ptr<Impl> impl;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_ASMPARSER_ASMPARSERSTATE_H

@@ -19,8 +19,9 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/SmallVector.h"
 #include <numeric>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace shard {
 
 #define GEN_PASS_DEF_SHARDSIMPLIFY
@@ -182,4 +183,4 @@ struct ShardSimplifyPass : public impl::ShardSimplifyBase<ShardSimplifyPass> {
 } // namespace
 
 } // namespace shard
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

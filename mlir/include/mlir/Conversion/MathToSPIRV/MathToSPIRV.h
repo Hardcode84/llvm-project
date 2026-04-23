@@ -14,8 +14,9 @@
 #define MLIR_CONVERSION_MATHTOSPIRV_MATHTOSPIRV_H
 
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class SPIRVTypeConverter;
 
 /// Appends to a pattern list additional patterns for translating Math ops
@@ -23,6 +24,6 @@ class SPIRVTypeConverter;
 void populateMathToSPIRVPatterns(const SPIRVTypeConverter &typeConverter,
                                  RewritePatternSet &patterns);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_MATHTOSPIRV_MATHTOSPIRV_H

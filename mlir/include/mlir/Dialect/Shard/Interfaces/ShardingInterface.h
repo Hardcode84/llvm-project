@@ -13,8 +13,9 @@
 #include "mlir/Dialect/Utils/StructuredOpsUtils.h"
 #include "mlir/IR/Value.h"
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class Operation;
 class IRMapping;
@@ -80,7 +81,7 @@ void partitionFullyReplicatedOperation(Operation &op,
                                        OpBuilder &builder);
 
 } // namespace shard
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// Include the ODS generated interface header files.
 #include "mlir/Dialect/Shard/Interfaces/ShardingInterface.h.inc"

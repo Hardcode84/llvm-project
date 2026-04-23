@@ -12,12 +12,14 @@
 #include <memory>
 
 #include "mlir/Support/LLVM.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SourceMgr;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace pdll {
 class CodeCompleteContext;
 
@@ -37,6 +39,6 @@ parsePDLLAST(ast::Context &ctx, llvm::SourceMgr &sourceMgr,
              bool enableDocumentation = false,
              CodeCompleteContext *codeCompleteContext = nullptr);
 } // namespace pdll
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_PDLL_PARSER_PARSER_H_

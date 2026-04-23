@@ -18,8 +18,9 @@
 #include "mlir/Dialect/Affine/IR/AffineOps.h"
 #include "mlir/IR/OpDefinition.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DominanceInfo;
 class Operation;
 class PostDominanceInfo;
@@ -410,6 +411,6 @@ private:
 };
 
 } // namespace affine
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_AFFINE_UTILS_H

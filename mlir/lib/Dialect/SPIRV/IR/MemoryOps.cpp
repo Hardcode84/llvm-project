@@ -20,10 +20,12 @@
 
 #include "llvm/ADT/StringExtras.h"
 #include "llvm/Support/Casting.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir::spirv::AttrNames;
 
-namespace mlir::spirv {
+MLIR_NAMESPACE_BEGIN
+namespace spirv {
 
 /// Parses optional memory access (a.k.a. memory operand) attributes attached to
 /// a memory access operand/pointer. Specifically, parses the following syntax:
@@ -702,4 +704,5 @@ LogicalResult VariableOp::verify() {
   return success();
 }
 
-} // namespace mlir::spirv
+}
+MLIR_NAMESPACE_END // namespace mlir::spirv

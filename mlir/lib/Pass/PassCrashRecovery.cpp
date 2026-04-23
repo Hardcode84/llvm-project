@@ -21,6 +21,7 @@
 #include "llvm/Support/Signals.h"
 #include "llvm/Support/Threading.h"
 #include "llvm/Support/ToolOutputFile.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::detail;
@@ -29,7 +30,7 @@ using namespace mlir::detail;
 // RecoveryReproducerContext
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 /// This class contains all of the context for generating a recovery reproducer.
 /// Each recovery context is registered globally to allow for generating
@@ -81,7 +82,7 @@ private:
       reproducerSet;
 };
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 llvm::ManagedStatic<llvm::sys::SmartMutex<true>>
     RecoveryReproducerContext::reproducerMutex;

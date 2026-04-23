@@ -14,8 +14,9 @@
 #define MLIR_TARGET_WASMBINARYENCODING
 
 #include <cstddef>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 struct WasmBinaryEncoding {
   /// Byte encodings for Wasm instructions.
   struct OpCode {
@@ -209,6 +210,6 @@ struct WasmBinaryEncoding {
 
   static constexpr std::byte endByte{0x0B};
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif

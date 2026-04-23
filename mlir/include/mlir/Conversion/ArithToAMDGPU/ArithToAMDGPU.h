@@ -13,8 +13,9 @@
 #include "mlir/IR/PatternMatch.h"
 #include <memory>
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class RewritePatternSet;
 class Pass;
@@ -33,6 +34,6 @@ void populateArithToAMDGPUConversionPatterns(
     bool saturateFP8Truncf, bool allowPackedF16Rtz, bool supportsScaledExtTrunc,
     amdgpu::Chipset chipset, PatternBenefit benefit = 1);
 } // namespace arith
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_ARITHTOAMDGPU_ARITHTOAMDGPU_H

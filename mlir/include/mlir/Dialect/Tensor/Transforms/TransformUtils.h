@@ -10,8 +10,9 @@
 
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tensor {
 
 //===----------------------------------------------------------------------===//
@@ -265,6 +266,6 @@ FailureOr<Operation *>
 simplifyCollapseShapeWithRankReducingExtractSlice(tensor::CollapseShapeOp op,
                                                   RewriterBase &rewriter);
 } // namespace tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TENSOR_TRANSFORMS_TRANSFORMUTILS_H

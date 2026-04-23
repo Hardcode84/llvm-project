@@ -10,8 +10,9 @@
 #define MLIR_IR_VERIFIER_H
 
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Operation;
 
 /// Perform (potentially expensive) checks of invariants, used to detect
@@ -22,6 +23,6 @@ class Operation;
 /// on nested operations.
 LogicalResult verify(Operation *op, bool verifyRecursively = true);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif

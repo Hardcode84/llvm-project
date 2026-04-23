@@ -9,11 +9,14 @@
 #ifndef MLIR_DIALECT_BUFFERIZATION_TRANSFORMS_ONESHOTMODULEBUFFERIZE_H
 #define MLIR_DIALECT_BUFFERIZATION_TRANSFORMS_ONESHOTMODULEBUFFERIZE_H
 
-namespace llvm {
-struct LogicalResult;
-} // namespace llvm
 
-namespace mlir {
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
+LLVM_NAMESPACE_BEGIN
+struct LogicalResult;
+LLVM_NAMESPACE_END // namespace llvm
+
+MLIR_NAMESPACE_BEGIN
 class Operation;
 
 namespace bufferization {
@@ -56,6 +59,6 @@ llvm::LogicalResult runOneShotModuleBufferize(
     BufferizationState &state, BufferizationStatistics *statistics = nullptr);
 
 } // namespace bufferization
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_BUFFERIZATION_TRANSFORMS_ONESHOTMODULEBUFFERIZE_H

@@ -17,8 +17,9 @@
 #include "mlir/Support/LLVM.h"
 
 #include <cstdint>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace spirv {
 
 /// SPIR-V binary header word count
@@ -59,6 +60,6 @@ inline StringRef decodeStringLiteral(ArrayRef<uint32_t> words,
 }
 
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_SPIRV_SPIRVBINARYUTILS_H

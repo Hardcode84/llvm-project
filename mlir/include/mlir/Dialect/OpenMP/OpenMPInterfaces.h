@@ -26,8 +26,10 @@
 #include "mlir/Dialect/OpenMP/OpenMPOps.h.inc"
 
 #include "mlir/Dialect/OpenMP/OpenMPOpsInterfaces.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::omp {
+MLIR_NAMESPACE_BEGIN
+namespace omp {
 // You can override defaults here or implement more complex implementations of
 // functions. Or define a completely separate external model implementation,
 // to override the existing implementation.
@@ -40,6 +42,7 @@ struct DeclareTargetDefaultModel
     : public DeclareTargetInterface::ExternalModel<DeclareTargetDefaultModel<T>,
                                                    T> {};
 
-} // namespace mlir::omp
+}
+MLIR_NAMESPACE_END // namespace mlir::omp
 
 #endif // MLIR_DIALECT_OPENMP_OPENMPINTERFACES_H_

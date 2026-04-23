@@ -15,8 +15,9 @@
 
 #include "mlir/Dialect/Bufferization/IR/BufferDeallocationOpInterface.h"
 #include "mlir/Pass/PassOptions.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace bufferization {
 
 /// Options for the buffer deallocation pipeline.
@@ -54,6 +55,6 @@ void buildBufferDeallocationPipeline(OpPassManager &pm);
 void registerBufferizationPipelines();
 
 } // namespace bufferization
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_BUFFERIZATION_PIPELINES_PASSES_H

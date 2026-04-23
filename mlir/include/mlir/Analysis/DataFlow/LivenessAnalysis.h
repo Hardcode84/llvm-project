@@ -25,8 +25,10 @@
 
 #include <mlir/Analysis/DataFlow/SparseAnalysis.h>
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::dataflow {
+MLIR_NAMESPACE_BEGIN
+namespace dataflow {
 
 //===----------------------------------------------------------------------===//
 // Liveness
@@ -110,6 +112,7 @@ private:
   DataFlowSolver solver;
 };
 
-} // end namespace mlir::dataflow
+}
+MLIR_NAMESPACE_END // end namespace mlir::dataflow
 
 #endif // MLIR_ANALYSIS_DATAFLOW_LIVENESSANALYSIS_H

@@ -20,8 +20,9 @@
 #include "llvm/Support/Error.h"
 #include <cstdint>
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 /// \macro MLIR_PLUGIN_API_VERSION
 /// Identifies the API version understood by this plugin.
 ///
@@ -90,7 +91,7 @@ private:
   llvm::sys::DynamicLibrary library;
   PassPluginLibraryInfo info;
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// The public entry point for a pass plugin.
 ///

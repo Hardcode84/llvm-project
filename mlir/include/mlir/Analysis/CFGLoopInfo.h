@@ -18,19 +18,21 @@
 #include "mlir/IR/Dominance.h"
 #include "mlir/IR/RegionGraphTraits.h"
 #include "llvm/Support/GenericLoopInfo.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class CFGLoop;
 class CFGLoopInfo;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Implementation in LLVM's LoopInfoImpl.h
 extern template class LoopBase<mlir::Block, mlir::CFGLoop>;
 extern template class LoopInfoBase<mlir::Block, mlir::CFGLoop>;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Representation of a single loop formed by blocks. The inherited LoopBase
 /// class provides accessors to the loop analysis.
@@ -49,6 +51,6 @@ public:
   CFGLoopInfo(const llvm::DominatorTreeBase<mlir::Block, false> &domTree);
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_ANALYSIS_LOOPINFO_H

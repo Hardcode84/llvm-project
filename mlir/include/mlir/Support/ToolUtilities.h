@@ -18,13 +18,15 @@
 #include "llvm/ADT/StringRef.h"
 
 #include <memory>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MemoryBuffer;
 class MemoryBufferRef;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 // A function that processes a chunk of a buffer and writes the result to an
 // output stream.
 using ChunkBufferHandler = function_ref<LogicalResult(
@@ -60,6 +62,6 @@ splitAndProcessBuffer(std::unique_ptr<llvm::MemoryBuffer> originalBuffer,
                       raw_ostream &os,
                       llvm::StringRef inputSplitMarker = kDefaultSplitMarker,
                       llvm::StringRef outputSplitMarker = "");
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_SUPPORT_TOOLUTILITIES_H

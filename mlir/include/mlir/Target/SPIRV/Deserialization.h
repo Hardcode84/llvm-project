@@ -16,8 +16,9 @@
 #include "mlir/IR/OwningOpRef.h"
 #include "mlir/Support/LLVM.h"
 #include <cstdint>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class MLIRContext;
 
 namespace spirv {
@@ -38,6 +39,6 @@ deserialize(ArrayRef<uint32_t> binary, MLIRContext *context,
             const DeserializationOptions &options = {});
 
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_SPIRV_DESERIALIZATION_H

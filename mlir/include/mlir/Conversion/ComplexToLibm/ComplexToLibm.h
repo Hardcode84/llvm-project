@@ -10,8 +10,9 @@
 
 #include "mlir/Pass/Pass.h"
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 template <typename T>
 class OperationPass;
 
@@ -23,6 +24,6 @@ class OperationPass;
 void populateComplexToLibmConversionPatterns(RewritePatternSet &patterns,
                                              PatternBenefit benefit);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_COMPLEXTOLIBM_COMPLEXTOLIBM_H_

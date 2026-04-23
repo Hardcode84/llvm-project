@@ -21,8 +21,9 @@
 #include "mlir/IR/ImplicitLocOpBuilder.h"
 #include "mlir/IR/PatternMatch.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tosa {
 
 // Creates a SmallVector of Stringrefs for N parallel loops
@@ -272,6 +273,6 @@ std::optional<ArrayRef<T>> tryGetDenseResourceValues(ElementsAttr attr) {
 }
 
 } // namespace tosa
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // DIALECT_TOSA_UTILS_COVERSION_UTILS_H_

@@ -16,13 +16,15 @@
 #include "mlir/Support/LLVM.h"
 #include "mlir/TableGen/Constraint.h"
 #include "mlir/TableGen/Dialect.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DefInit;
 class Record;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tblgen {
 
 // Wrapper class with helper methods for accessing Type constraints defined in
@@ -70,6 +72,6 @@ public:
 };
 
 } // namespace tblgen
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TABLEGEN_TYPE_H_

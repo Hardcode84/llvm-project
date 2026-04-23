@@ -13,11 +13,12 @@
 #include "mlir/Dialect/SCF/Utils/Utils.h"
 #include "llvm/ADT/SmallSet.h"
 #include "llvm/Support/Debug.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_TESTSCFPARALLELLOOPCOLLAPSING
 #include "mlir/Dialect/SCF/Transforms/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define DEBUG_TYPE "parallel-loop-collapsing"
 

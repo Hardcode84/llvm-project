@@ -13,8 +13,9 @@
 
 #include "mlir/Dialect/OpenACC/OpenACCUtilsGPU.h"
 #include "mlir/IR/SymbolTable.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace acc {
 
 std::optional<gpu::GPUModuleOp> getOrCreateGPUModule(ModuleOp mod, bool create,
@@ -44,4 +45,4 @@ std::optional<gpu::GPUModuleOp> getOrCreateGPUModule(ModuleOp mod, bool create,
 }
 
 } // namespace acc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

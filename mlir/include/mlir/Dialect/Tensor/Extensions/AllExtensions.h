@@ -14,7 +14,9 @@
 #ifndef MLIR_DIALECT_TENSOR_EXTENSIONS_ALLEXTENSIONS_H
 #define MLIR_DIALECT_TENSOR_EXTENSIONS_ALLEXTENSIONS_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace tensor {
@@ -25,6 +27,6 @@ namespace tensor {
 void registerAllExtensions(DialectRegistry &registry);
 } // namespace tensor
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TENSOR_EXTENSIONS_ALLEXTENSIONS_H

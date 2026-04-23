@@ -14,13 +14,15 @@
 #ifndef MLIR_DIALECT_LINALG_TRANSFORMS_ALLINTERFACES_H
 #define MLIR_DIALECT_LINALG_TRANSFORMS_ALLINTERFACES_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace linalg {
 void registerAllDialectInterfaceImplementations(DialectRegistry &registry);
 } // namespace linalg
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_LINALG_TRANSFORMS_ALLINTERFACES_H

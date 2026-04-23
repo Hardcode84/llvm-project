@@ -29,13 +29,14 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/SmallVector.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace xegpu {
 #define GEN_PASS_DEF_XEGPUPEEPHOLEOPTIMIZER
 #include "mlir/Dialect/XeGPU/Transforms/Passes.h.inc"
 } // namespace xegpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define DEBUG_TYPE "xegpu-optimize-peephole"
 #define DBGS() (llvm::dbgs() << "[" DEBUG_TYPE "]: ")

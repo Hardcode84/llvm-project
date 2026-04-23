@@ -17,8 +17,10 @@
 #include "SPIRVParsingUtils.h"
 
 #include "mlir/IR/TypeUtilities.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::spirv {
+MLIR_NAMESPACE_BEGIN
+namespace spirv {
 /// Returns true if the given op is a function-like op or nested in a
 /// function-like op without a module-like op in the middle.
 static bool isNestedInFunctionOpInterface(Operation *op) {
@@ -159,7 +161,8 @@ printSwitchOpCases(OpAsmPrinter &p, SwitchOp op, Type selectorType,
   p.printNewline();
 }
 
-} // namespace mlir::spirv
+}
+MLIR_NAMESPACE_END // namespace mlir::spirv
 
 // TablenGen'erated operation definitions.
 #define GET_OP_CLASSES

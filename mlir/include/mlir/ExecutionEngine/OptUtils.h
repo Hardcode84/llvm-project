@@ -16,14 +16,16 @@
 
 #include <functional>
 #include <string>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 class Error;
 class TargetMachine;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Create a module transformer function for MLIR ExecutionEngine that runs
 /// LLVM IR passes corresponding to the given speed and size optimization
@@ -34,6 +36,6 @@ std::function<llvm::Error(llvm::Module *)>
 makeOptimizingTransformer(unsigned optLevel, unsigned sizeLevel,
                           llvm::TargetMachine *targetMachine);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_EXECUTIONENGINE_OPTUTILS_H

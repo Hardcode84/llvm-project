@@ -14,7 +14,9 @@
 #ifndef MLIR_DIALECT_BUFFERIZATION_EXTENSIONS_ALLEXTENSIONS_H
 #define MLIR_DIALECT_BUFFERIZATION_EXTENSIONS_ALLEXTENSIONS_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace bufferization {
@@ -25,6 +27,6 @@ namespace bufferization {
 void registerAllExtensions(DialectRegistry &registry);
 } // namespace bufferization
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_BUFFERIZATION_EXTENSIONS_ALLEXTENSIONS_H

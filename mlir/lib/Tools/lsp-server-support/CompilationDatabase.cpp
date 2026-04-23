@@ -13,6 +13,7 @@
 #include "llvm/Support/LSP/Logging.h"
 #include "llvm/Support/LSP/Protocol.h"
 #include "llvm/Support/YAMLTraits.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace mlir;
 using namespace mlir::lsp;
@@ -37,7 +38,7 @@ struct YamlFileInfo {
 
 LLVM_YAML_IS_DOCUMENT_LIST_VECTOR(YamlFileInfo)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <>
 struct MappingTraits<YamlFileInfo> {
@@ -62,7 +63,7 @@ struct MappingTraits<YamlFileInfo> {
   }
 };
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 CompilationDatabase::CompilationDatabase(ArrayRef<std::string> databases) {
   for (StringRef filename : databases)

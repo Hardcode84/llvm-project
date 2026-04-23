@@ -12,8 +12,10 @@
 
 #include "mlir/Dialect/GPU/Utils/GPUUtils.h"
 #include "llvm/Support/ErrorHandling.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::gpu {
+MLIR_NAMESPACE_BEGIN
+namespace gpu {
 
 vector::CombiningKind convertReductionKind(gpu::AllReduceOperation mode) {
   switch (mode) {
@@ -41,4 +43,5 @@ vector::CombiningKind convertReductionKind(gpu::AllReduceOperation mode) {
   llvm_unreachable("Vector and GPU reduction kinds should match 1:1");
 }
 
-} // namespace mlir::gpu
+}
+MLIR_NAMESPACE_END // namespace mlir::gpu

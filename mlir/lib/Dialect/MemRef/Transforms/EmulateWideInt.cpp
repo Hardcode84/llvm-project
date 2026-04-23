@@ -17,11 +17,14 @@
 #include "llvm/Support/FormatVariadic.h"
 #include "llvm/Support/MathExtras.h"
 #include <cassert>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::memref {
+MLIR_NAMESPACE_BEGIN
+namespace memref {
 #define GEN_PASS_DEF_MEMREFEMULATEWIDEINT
 #include "mlir/Dialect/MemRef/Transforms/Passes.h.inc"
-} // namespace mlir::memref
+}
+MLIR_NAMESPACE_END // namespace mlir::memref
 
 using namespace mlir;
 

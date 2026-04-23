@@ -19,8 +19,9 @@
 #include "mlir/Dialect/Utils/StructuredOpsUtils.h"
 #include "mlir/IR/OpImplementation.h"
 #include "mlir/IR/RegionKindInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class TilingInterface;
 class RewriterBase;
 
@@ -47,9 +48,9 @@ namespace transform {
 struct TileSizesSpec {};
 struct NumThreadsSpec {};
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace transform {
@@ -64,7 +65,7 @@ tileToForallOpImpl(RewriterBase &rewriter, transform::TransformState &state,
                    scf::SCFTilingResult &tilingResult);
 
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Linalg Transform Operations

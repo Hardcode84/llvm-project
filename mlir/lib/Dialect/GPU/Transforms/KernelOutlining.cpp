@@ -27,12 +27,13 @@
 #include "mlir/Support/LLVM.h"
 #include "mlir/Transforms/RegionUtils.h"
 #include <limits>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_GPULAUNCHSINKINDEXCOMPUTATIONSPASS
 #define GEN_PASS_DEF_GPUKERNELOUTLININGPASS
 #include "mlir/Dialect/GPU/Transforms/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 

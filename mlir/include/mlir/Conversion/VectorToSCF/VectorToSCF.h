@@ -10,8 +10,9 @@
 #define MLIR_CONVERSION_VECTORTOSCF_VECTORTOSCF_H_
 
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class MLIRContext;
 class Pass;
 class RewritePatternSet;
@@ -88,6 +89,6 @@ void populateVectorToSCFConversionPatterns(
 std::unique_ptr<Pass> createConvertVectorToSCFPass(
     const VectorTransferToSCFOptions &options = VectorTransferToSCFOptions());
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_VECTORTOSCF_VECTORTOSCF_H_

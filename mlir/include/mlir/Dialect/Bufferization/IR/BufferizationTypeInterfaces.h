@@ -15,11 +15,14 @@
 
 #include "mlir/IR/Diagnostics.h"
 #include "mlir/IR/Types.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::bufferization {
+MLIR_NAMESPACE_BEGIN
+namespace bufferization {
 struct BufferizationOptions;
 class BufferLikeType;
-} // namespace mlir::bufferization
+}
+MLIR_NAMESPACE_END // namespace mlir::bufferization
 
 #include "mlir/Dialect/Bufferization/IR/BufferizationTypeInterfaces.h.inc"
 

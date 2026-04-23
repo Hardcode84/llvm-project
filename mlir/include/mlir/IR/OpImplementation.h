@@ -20,6 +20,8 @@
 #include "llvm/ADT/Twine.h"
 #include "llvm/Support/SMLoc.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
 namespace {
 // reference https://stackoverflow.com/a/16000226
@@ -34,7 +36,7 @@ struct HasStaticName<T,
                          void>::type> : std::true_type {};
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class AsmParsedResourceEntry;
 class AsmResourceBuilder;
 class Builder;
@@ -1825,7 +1827,7 @@ void printDimensionList(OpAsmPrinter &printer, Operation *op,
 ParseResult parseDimensionList(OpAsmParser &parser,
                                DenseI64ArrayAttr &dimensions);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===--------------------------------------------------------------------===//
 // Operation OpAsm interface.
@@ -1841,7 +1843,7 @@ ParseResult parseDimensionList(OpAsmParser &parser,
 /// The OpAsmDialectInterface, see OpAsmDialectInterface.td
 #include "mlir/IR/OpAsmDialectInterface.h.inc"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <>
 struct DenseMapInfo<mlir::AsmDialectResourceHandle> {
   static inline mlir::AsmDialectResourceHandle getEmptyKey() {
@@ -1860,6 +1862,6 @@ struct DenseMapInfo<mlir::AsmDialectResourceHandle> {
     return lhs.getResource() == rhs.getResource();
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -10,8 +10,9 @@
 #define MLIR_DIALECT_LLVMIR_TRANSFORMS_REQUESTCWRAPPERS_H
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Pass;
 
 namespace LLVM {
@@ -20,6 +21,6 @@ namespace LLVM {
 #include "mlir/Dialect/LLVMIR/Transforms/Passes.h.inc"
 
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_LLVMIR_TRANSFORMS_REQUESTCWRAPPERS_H

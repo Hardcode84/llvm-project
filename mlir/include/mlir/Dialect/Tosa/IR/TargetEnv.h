@@ -16,8 +16,9 @@
 #include "mlir/Dialect/Tosa/IR/TosaOps.h"
 #include "mlir/Support/LLVM.h"
 #include "llvm/ADT/SmallSet.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tosa {
 
 struct TosaLevel {
@@ -180,6 +181,6 @@ private:
 };
 
 } // namespace tosa
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TOSA_IR_TARGETENV_H

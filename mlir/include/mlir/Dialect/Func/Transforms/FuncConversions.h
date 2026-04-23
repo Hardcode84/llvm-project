@@ -16,8 +16,9 @@
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/Support/LLVM.h"
 #include "llvm/ADT/STLExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 // Forward declarations.
 class BranchOpInterface;
@@ -72,6 +73,6 @@ bool isLegalForReturnOpTypeConversionPattern(Operation *op,
 /// `isLegalForBranchOpInterfaceTypeConversionPattern` and
 /// `isLegalForReturnOpTypeConversionPattern`.
 bool isNotBranchOpInterfaceOrReturnLikeOp(Operation *op);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_FUNC_TRANSFORMS_FUNCCONVERSIONS_H_

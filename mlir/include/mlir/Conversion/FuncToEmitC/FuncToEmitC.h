@@ -9,7 +9,9 @@
 #ifndef MLIR_CONVERSION_FUNCTOEMITC_FUNCTOEMITC_H
 #define MLIR_CONVERSION_FUNCTOEMITC_FUNCTOEMITC_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 class RewritePatternSet;
 class TypeConverter;
@@ -18,6 +20,6 @@ void populateFuncToEmitCPatterns(const TypeConverter &typeConverter,
                                  RewritePatternSet &patterns);
 
 void registerConvertFuncToEmitCInterface(DialectRegistry &registry);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_FUNCTOEMITC_FUNCTOEMITC_H

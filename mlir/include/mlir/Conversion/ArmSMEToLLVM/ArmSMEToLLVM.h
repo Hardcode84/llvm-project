@@ -13,8 +13,9 @@
 
 #include "mlir/Dialect/ArmSME/Transforms/Passes.h"
 #include "mlir/Interfaces/FunctionInterfaces.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Pass;
 class RewritePatternSet;
 
@@ -33,6 +34,6 @@ void configureArmSMEToLLVMConversionLegality(ConversionTarget &target);
 void populateArmSMEToLLVMConversionPatterns(LLVMTypeConverter &converter,
                                             RewritePatternSet &patterns);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_ARMSMETOLLVM_ARMSMETOLLVM_H_

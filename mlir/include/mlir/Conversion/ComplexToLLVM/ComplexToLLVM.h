@@ -11,8 +11,9 @@
 #include "mlir/Conversion/LLVMCommon/StructBuilder.h"
 #include "mlir/Dialect/Complex/IR/Complex.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 class LLVMTypeConverter;
 class Pass;
@@ -48,6 +49,6 @@ void populateComplexToLLVMConversionPatterns(
 
 void registerConvertComplexToLLVMInterface(DialectRegistry &registry);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_COMPLEXTOLLVM_COMPLEXTOLLVM_H_

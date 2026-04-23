@@ -12,8 +12,9 @@
 #include "mlir/Dialect/Bufferization/IR/BufferizableOpInterface.h"
 #include "llvm/ADT/EquivalenceClasses.h"
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DominanceInfo;
 
 namespace bufferization {
@@ -284,7 +285,7 @@ runOneShotBufferize(Operation *op, const OneShotBufferizationOptions &options,
                     BufferizationStatistics *statistics = nullptr);
 
 } // namespace bufferization
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 MLIR_DECLARE_EXPLICIT_TYPE_ID(mlir::bufferization::OneShotAnalysisState)
 

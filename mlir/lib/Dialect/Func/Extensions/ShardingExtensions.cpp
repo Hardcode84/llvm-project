@@ -10,8 +10,10 @@
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Dialect/Shard/Interfaces/ShardingInterfaceImpl.h"
 #include "mlir/IR/MLIRContext.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::func {
+MLIR_NAMESPACE_BEGIN
+namespace func {
 
 void registerShardingInterfaceExternalModels(DialectRegistry &registry) {
   registry.addExtension(+[](MLIRContext *ctx, FuncDialect *dialect) {
@@ -21,4 +23,5 @@ void registerShardingInterfaceExternalModels(DialectRegistry &registry) {
   });
 }
 
-} // namespace mlir::func
+}
+MLIR_NAMESPACE_END // namespace mlir::func

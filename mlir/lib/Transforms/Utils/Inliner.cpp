@@ -22,6 +22,7 @@
 #include "llvm/ADT/SCCIterator.h"
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/Support/DebugLog.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "inlining"
 
@@ -417,7 +418,7 @@ struct InlinerInterfaceImpl : public InlinerInterface {
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class Inliner::Impl {
 public:
@@ -767,4 +768,4 @@ LogicalResult Inliner::doInlining() {
   inlinerIface.eraseDeadCallables();
   return success();
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

@@ -19,8 +19,9 @@
 #include "mlir/IR/SymbolTable.h"
 #include "mlir/Interfaces/CallInterfaces.h"
 #include "mlir/Interfaces/ControlFlowInterfaces.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace dataflow {
 
 //===----------------------------------------------------------------------===//
@@ -649,6 +650,6 @@ protected:
 };
 
 } // end namespace dataflow
-} // end namespace mlir
+MLIR_NAMESPACE_END // end namespace mlir
 
 #endif // MLIR_ANALYSIS_DENSEDATAFLOWANALYSIS_H

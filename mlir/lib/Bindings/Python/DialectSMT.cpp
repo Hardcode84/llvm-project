@@ -16,6 +16,7 @@
 #include "mlir/Bindings/Python/IRCore.h"
 #include "mlir/Bindings/Python/Nanobind.h"
 #include "mlir/Bindings/Python/NanobindAdaptors.h"
+#include "mlir/Support/ABINamespace.h"
 
 namespace nb = nanobind;
 
@@ -23,7 +24,7 @@ using namespace nanobind::literals;
 using namespace mlir;
 using namespace mlir::python::nanobind_adaptors;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace python {
 namespace MLIR_BINDINGS_PYTHON_DOMAIN {
 namespace smt {
@@ -126,7 +127,7 @@ static void populateDialectSMTSubmodule(nanobind::module_ &m) {
 } // namespace smt
 } // namespace MLIR_BINDINGS_PYTHON_DOMAIN
 } // namespace python
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 NB_MODULE(_mlirDialectsSMT, m) {
   m.doc() = "MLIR SMT Dialect";

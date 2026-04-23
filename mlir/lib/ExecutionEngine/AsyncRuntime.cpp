@@ -24,6 +24,7 @@
 
 #include "llvm/ADT/StringMap.h"
 #include "llvm/Support/ThreadPool.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir::runtime;
 
@@ -31,7 +32,7 @@ using namespace mlir::runtime;
 // Async runtime API.
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace runtime {
 namespace {
 
@@ -523,4 +524,4 @@ extern "C" MLIR_ASYNC_RUNTIME_EXPORT void __mlir_execution_engine_destroy() {
 }
 
 } // namespace runtime
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

@@ -15,8 +15,9 @@
 #define MLIR_TABLEGEN_GENNAMEPARSER_H_
 
 #include "llvm/Support/CommandLine.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class GenInfo;
 
 /// Adds command line option for each registered generator.
@@ -26,6 +27,6 @@ struct GenNameParser : public llvm::cl::parser<const GenInfo *> {
   void printOptionInfo(const llvm::cl::Option &o,
                        size_t globalWidth) const override;
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TABLEGEN_GENNAMEPARSER_H_

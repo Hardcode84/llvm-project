@@ -17,8 +17,9 @@
 #include "mlir/Support/LLVM.h"
 #include "llvm/ADT/SmallSet.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Operation;
 
 namespace spirv {
@@ -141,6 +142,6 @@ FailureOr<ExecutionModel> getExecutionModel(TargetEnvAttr targetAttr);
 FailureOr<MemoryModel> getMemoryModel(TargetEnvAttr targetAttr);
 
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SPIRV_IR_TARGETANDABI_H

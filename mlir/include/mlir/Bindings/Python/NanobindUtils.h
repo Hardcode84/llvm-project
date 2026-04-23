@@ -23,6 +23,7 @@
 #include <type_traits>
 #include <typeinfo>
 #include <variant>
+#include "mlir/Support/ABINamespace.h"
 
 template <>
 struct std::iterator_traits<nanobind::detail::fast_iterator> {
@@ -33,7 +34,7 @@ struct std::iterator_traits<nanobind::detail::fast_iterator> {
   using iterator_category = std::forward_iterator_tag;
 };
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace python {
 
 /// Safely calls Python initialization code on first use, avoiding deadlocks.
@@ -115,7 +116,7 @@ private:
 };
 
 } // namespace python
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace nanobind {
 namespace detail {
@@ -166,7 +167,7 @@ struct MlirDefaultingCaster {
 // Conversion utilities.
 //------------------------------------------------------------------------------
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Accumulates into a python string from a method that accepts an
 /// MlirStringCallback.
@@ -518,6 +519,6 @@ public:
   intptr_t step;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_BINDINGS_PYTHON_PYBINDUTILS_H

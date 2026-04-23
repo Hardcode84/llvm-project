@@ -15,8 +15,9 @@
 #include "mlir/IR/Operation.h"
 #include "llvm/Support/Debug.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace sparse_tensor {
 
 enum class ExpArity {
@@ -1778,4 +1779,4 @@ Value Merger::buildExp(RewriterBase &rewriter, Location loc, ExprId e, Value v0,
 }
 
 } // namespace sparse_tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

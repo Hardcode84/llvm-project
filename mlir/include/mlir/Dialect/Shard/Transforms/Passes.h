@@ -10,8 +10,9 @@
 #define MLIR_DIALECT_SHARD_TRANSFORMS_PASSES_H
 
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 namespace func {
 class FuncOp;
@@ -46,6 +47,6 @@ enum class TraversalOrder {
 #include "mlir/Dialect/Shard/Transforms/Passes.h.inc"
 
 } // namespace shard
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SHARD_TRANSFORMS_PASSES_H

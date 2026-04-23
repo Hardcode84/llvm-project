@@ -15,8 +15,9 @@
 
 #include "mlir/IR/OwningOpRef.h"
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class OpBuilder;
 
 namespace spirv {
@@ -71,6 +72,6 @@ OwningOpRef<spirv::ModuleOp> combine(ArrayRef<spirv::ModuleOp> inputModules,
                                      OpBuilder &combinedModuleBuilder,
                                      SymbolRenameListener symRenameListener);
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SPIRV_LINKING_MODULECOMBINER_H_

@@ -26,6 +26,7 @@
 #include "llvm/Support/Signals.h"
 #include "llvm/Support/Threading.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "pass-manager"
 
@@ -110,7 +111,7 @@ void Pass::printAsTextualPipeline(raw_ostream &os, bool pretty) {
 // OpPassManagerImpl
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 struct OpPassManagerImpl {
   OpPassManagerImpl(OperationName opName, OpPassManager::Nesting nesting)
@@ -202,7 +203,7 @@ struct OpPassManagerImpl {
   OpPassManager::Nesting nesting;
 };
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 void OpPassManagerImpl::mergeInto(OpPassManagerImpl &rhs) {
   assert(name == rhs.name && "merging unrelated pass managers");
@@ -1217,7 +1218,7 @@ void PassInstrumentation::signalPassFailure(Pass *pass) {
 // PassInstrumentor
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 struct PassInstrumentorImpl {
   /// Mutex to keep instrumentation access thread-safe.
@@ -1227,7 +1228,7 @@ struct PassInstrumentorImpl {
   std::vector<std::unique_ptr<PassInstrumentation>> instrumentations;
 };
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 PassInstrumentor::PassInstrumentor() : impl(new PassInstrumentorImpl()) {}
 PassInstrumentor::~PassInstrumentor() = default;

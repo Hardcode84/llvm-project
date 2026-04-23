@@ -10,8 +10,9 @@
 
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 template <typename T>
 class OperationPass;
 
@@ -23,6 +24,6 @@ class OperationPass;
 void populateMathToLibmConversionPatterns(RewritePatternSet &patterns,
                                           PatternBenefit benefit = 1);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_MATHTOLIBM_MATHTOLIBM_H_

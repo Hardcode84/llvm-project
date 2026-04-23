@@ -19,8 +19,9 @@
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/IR/Value.h"
 #include "llvm/Support/LogicalResult.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace NVVM {
 /// Register read/write modifier to build constraint string for PTX inline
 /// https://docs.nvidia.com/cuda/inline-ptx-assembly/index.html#parameters
@@ -48,12 +49,12 @@ inline llvm::raw_ostream &operator<<(llvm::raw_ostream &os,
   llvm_unreachable("Unknown PTXRegisterMod value");
 }
 } // namespace NVVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// Include the generated interface declarations.
 #include "mlir/Dialect/LLVMIR/BasicPtxBuilderInterface.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 namespace NVVM {
 
@@ -106,6 +107,6 @@ void countPlaceholderNumbers(StringRef ptxCode,
                              llvm::SmallVectorImpl<unsigned> &rNums);
 
 } // namespace NVVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // NVVM_DIALECT_NVVM_IR_BASICPTXBUILDERINTERFACE_H_

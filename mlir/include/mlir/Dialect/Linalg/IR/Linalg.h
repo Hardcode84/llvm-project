@@ -31,8 +31,9 @@
 #include "llvm/ADT/STLFunctionalExtras.h"
 
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace linalg {
 
 class LinalgOp;
@@ -90,7 +91,7 @@ OpFoldResult createFoldedDimOp(OpBuilder &b, Location loc, Value val,
                                int64_t dim);
 
 } // namespace linalg
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Linalg Dialect
@@ -104,7 +105,7 @@ OpFoldResult createFoldedDimOp(OpBuilder &b, Location loc, Value val,
 
 #include "mlir/Dialect/Linalg/IR/LinalgOpsEnums.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace linalg {
 
 /// Converts the given `m` and `r` parameters to a WinogradConv2DFmr enumeration
@@ -116,7 +117,7 @@ std::optional<WinogradConv2DFmr> getWinogradConv2DFmr(int64_t m, int64_t r);
 std::pair<int64_t, int64_t> getFmrFromWinogradConv2DFmr(WinogradConv2DFmr fmr);
 
 } // namespace linalg
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Linalg Attributes
@@ -144,7 +145,8 @@ std::pair<int64_t, int64_t> getFmrFromWinogradConv2DFmr(WinogradConv2DFmr fmr);
 #define GET_OP_CLASSES
 #include "mlir/Dialect/Linalg/IR/LinalgRelayoutOps.h.inc"
 
-namespace mlir::linalg {
+MLIR_NAMESPACE_BEGIN
+namespace linalg {
 
 /// Returns the outer shape in the packed domain before applying the
 /// transposition.
@@ -341,6 +343,7 @@ public:
   static bool classof(Operation *op);
 };
 
-} // namespace mlir::linalg
+}
+MLIR_NAMESPACE_END // namespace mlir::linalg
 
 #endif // MLIR_DIALECT_LINALG_IR_LINALG_H

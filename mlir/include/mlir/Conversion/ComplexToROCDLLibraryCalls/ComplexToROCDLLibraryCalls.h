@@ -11,8 +11,9 @@
 
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class RewritePatternSet;
 
 #define GEN_PASS_DECL_CONVERTCOMPLEXTOROCDLLIBRARYCALLS
@@ -22,6 +23,6 @@ class RewritePatternSet;
 /// calls.
 void populateComplexToROCDLLibraryCallsConversionPatterns(
     RewritePatternSet &patterns);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_COMPLEXTOROCDLLIBRARYCALLS_COMPLEXTOROCDLLIBRARYCALLS_H_

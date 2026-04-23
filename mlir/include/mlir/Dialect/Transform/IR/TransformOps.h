@@ -24,8 +24,9 @@
 #include "mlir/Interfaces/ControlFlowInterfaces.h"
 #include "mlir/Interfaces/FunctionInterfaces.h"
 #include "mlir/Interfaces/LoopLikeInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace transform {
 
 enum class FailurePropagationMode : uint32_t;
@@ -39,7 +40,7 @@ using SequenceBodyBuilderArgsFn =
                               ::mlir::BlockArgument, ::mlir::ValueRange)>;
 
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/Transform/IR/TransformOps.h.inc"

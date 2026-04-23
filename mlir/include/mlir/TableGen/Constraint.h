@@ -17,12 +17,14 @@
 #include "mlir/TableGen/Predicate.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Record;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tblgen {
 
 // Wrapper class with helper methods for accessing Constraint defined in
@@ -111,9 +113,9 @@ struct AppliedConstraint {
 };
 
 } // namespace tblgen
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Unique constraints by their predicate and summary. Constraints that share
 /// the same predicate may have different descriptions; ensure that the
 /// correct error message is reported when verification fails.
@@ -127,6 +129,6 @@ struct DenseMapInfo<mlir::tblgen::Constraint> {
   static bool isEqual(mlir::tblgen::Constraint lhs,
                       mlir::tblgen::Constraint rhs);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MLIR_TABLEGEN_CONSTRAINT_H_

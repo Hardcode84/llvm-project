@@ -18,8 +18,9 @@
 
 #include "mlir/Dialect/Bufferization/IR/BufferizationEnums.h.inc"
 #include "mlir/Dialect/Bufferization/IR/BufferizationTypeInterfaces.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class OpBuilder;
 namespace func {
 class FuncOp;
@@ -760,7 +761,7 @@ bool typesMatchAfterBufferization(Operation &op, Value tensor, Value buffer);
 } // namespace detail
 
 } // namespace bufferization
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 MLIR_DECLARE_EXPLICIT_TYPE_ID(mlir::bufferization::AnalysisState)
 

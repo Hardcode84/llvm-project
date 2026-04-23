@@ -19,8 +19,9 @@
 #include "mlir/IR/TypeRange.h"
 #include "llvm/ADT/bit.h"
 #include "llvm/Support/TrailingObjects.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 namespace detail {
 
@@ -149,6 +150,6 @@ Attribute skipDefaultMemorySpace(Attribute memorySpace);
 unsigned getMemorySpaceAsInt(Attribute memorySpace);
 
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // TYPEDETAIL_H_

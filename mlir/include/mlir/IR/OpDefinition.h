@@ -26,8 +26,10 @@
 
 #include <optional>
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Builder;
 class OpBuilder;
 class ImplicitLocOpBuilder;
@@ -287,9 +289,9 @@ public:
 // this uses it. The CastInfo must come after the OpFoldResult definition and
 // before any cast function calls depending on CastInfo.
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Allow llvm::cast style functions.
 template <typename To>
@@ -300,9 +302,9 @@ template <typename To>
 struct CastInfo<To, const mlir::OpFoldResult>
     : public CastInfo<To, const mlir::OpFoldResult::PointerUnion> {};
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Allow printing to a stream.
 inline raw_ostream &operator<<(raw_ostream &os, OpFoldResult ofr) {
@@ -2130,9 +2132,9 @@ protected:
   friend InterfaceBase;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T>
 struct DenseMapInfo<T,
@@ -2151,7 +2153,7 @@ struct DenseMapInfo<T,
   }
   static bool isEqual(T lhs, T rhs) { return lhs == rhs; }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 MLIR_DECLARE_EXPLICIT_TYPE_ID(mlir::EmptyProperties)
 

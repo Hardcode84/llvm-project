@@ -14,8 +14,9 @@
 
 #define GET_TYPEDEF_CLASSES
 #include "mlir/Dialect/SMT/IR/SMTTypes.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace smt {
 
 /// Returns whether the given type is an SMT value type.
@@ -25,6 +26,6 @@ bool isAnySMTValueType(mlir::Type type);
 bool isAnyNonFuncSMTValueType(mlir::Type type);
 
 } // namespace smt
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SMT_IR_SMTTYPES_H

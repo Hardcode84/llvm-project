@@ -13,8 +13,9 @@
 #include "mlir/Debug/ExecutionContext.h"
 #include "mlir/IR/Action.h"
 #include "llvm/ADT/MapVector.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tracing {
 
 /// Simple breakpoint matching an action "tag".
@@ -60,6 +61,6 @@ private:
 };
 
 } // namespace tracing
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DEBUG_BREAKPOINTMANAGERS_TAGBREAKPOINTMANAGER_H

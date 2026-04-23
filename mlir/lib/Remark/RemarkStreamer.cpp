@@ -7,8 +7,10 @@
 #include "llvm/Support/Error.h"
 #include "llvm/Support/FileSystem.h"
 #include "llvm/Support/ToolOutputFile.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::remark::detail {
+MLIR_NAMESPACE_BEGIN
+namespace remark::detail {
 
 FailureOr<std::unique_ptr<MLIRRemarkStreamerBase>>
 LLVMRemarkStreamer::createToFile(llvm::StringRef path,
@@ -55,9 +57,11 @@ void LLVMRemarkStreamer::finalize() {
     return;
   remarkStreamer->releaseSerializer();
 }
-} // namespace mlir::remark::detail
+}
+MLIR_NAMESPACE_END // namespace mlir::remark::detail
 
-namespace mlir::remark {
+MLIR_NAMESPACE_BEGIN
+namespace remark {
 LogicalResult enableOptimizationRemarksWithLLVMStreamer(
     MLIRContext &ctx, StringRef path, llvm::remarks::Format fmt,
     std::unique_ptr<detail::RemarkEmittingPolicyBase> remarkEmittingPolicy,
@@ -73,4 +77,5 @@ LogicalResult enableOptimizationRemarksWithLLVMStreamer(
                                            printAsEmitRemarks);
 }
 
-} // namespace mlir::remark
+}
+MLIR_NAMESPACE_END // namespace mlir::remark

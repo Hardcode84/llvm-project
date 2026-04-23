@@ -12,8 +12,9 @@
 #include "mlir/IR/DialectInterface.h"
 #include "mlir/IR/MLIRContext.h"
 #include "mlir/IR/OpDefinition.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ConversionTarget;
 class LLVMTypeConverter;
 class MLIRContext;
@@ -36,7 +37,7 @@ void populateOpConvertToLLVMConversionPatterns(Operation *op,
                                                ConversionTarget &target,
                                                LLVMTypeConverter &typeConverter,
                                                RewritePatternSet &patterns);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Conversion/ConvertToLLVM/ToLLVMAttrInterface.h.inc"
 

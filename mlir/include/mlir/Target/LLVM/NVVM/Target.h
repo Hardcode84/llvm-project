@@ -13,7 +13,9 @@
 #ifndef MLIR_TARGET_LLVM_NVVM_TARGET_H
 #define MLIR_TARGET_LLVM_NVVM_TARGET_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 class MLIRContext;
 namespace NVVM {
@@ -25,6 +27,6 @@ void registerNVVMTargetInterfaceExternalModels(DialectRegistry &registry);
 /// registry associated with the given context.
 void registerNVVMTargetInterfaceExternalModels(MLIRContext &context);
 } // namespace NVVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_LLVM_NVVM_TARGET_H

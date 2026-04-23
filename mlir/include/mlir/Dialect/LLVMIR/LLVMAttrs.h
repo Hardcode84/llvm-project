@@ -21,8 +21,9 @@
 #include <optional>
 
 #include "mlir/Dialect/LLVMIR/LLVMOpsEnums.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace LLVM {
 
 /// This class represents the base attribute for all debug info attributes.
@@ -102,7 +103,7 @@ bool isValidLoadStoreImpl(Type type, ptr::AtomicOrdering ordering,
                           function_ref<InFlightDiagnostic()> emitError);
 } // namespace detail
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Dialect/LLVMIR/LLVMAttrInterfaces.h.inc"
 

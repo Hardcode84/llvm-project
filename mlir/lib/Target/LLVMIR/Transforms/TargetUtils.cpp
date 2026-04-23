@@ -16,10 +16,11 @@
 #include "llvm/Support/DebugLog.h"
 #include "llvm/Support/TargetSelect.h"
 #include "llvm/Target/TargetMachine.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "mlir-llvm-target-utils"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace LLVM {
 namespace detail {
 void initializeBackendsOnce() {
@@ -69,4 +70,4 @@ getDataLayout(mlir::LLVM::TargetAttrInterface attr) {
 
 } // namespace detail
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

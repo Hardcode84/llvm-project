@@ -12,8 +12,9 @@
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/Interfaces/ViewLikeInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 struct TilingResult;
 
@@ -169,6 +170,6 @@ getExpandedExtractSliceInfo(OpBuilder &b, tensor::ExtractSliceOp sliceOp,
                             SmallVectorImpl<OpFoldResult> &expandedStrides);
 
 } // namespace tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TENSOR_TRANSFORMS_TRANSFORMS_H

@@ -8,8 +8,10 @@
 
 #include "QueryParser.h"
 #include "llvm/ADT/StringSwitch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::query {
+MLIR_NAMESPACE_BEGIN
+namespace query {
 
 // Lex any amount of whitespace followed by a "word" (any sequence of
 // non-whitespace characters) from the start of region [begin,end).  If no word
@@ -209,4 +211,5 @@ QueryParser::complete(llvm::StringRef line, size_t pos,
   return queryParser.completions;
 }
 
-} // namespace mlir::query
+}
+MLIR_NAMESPACE_END // namespace mlir::query

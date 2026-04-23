@@ -17,8 +17,10 @@
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/Support/TypeName.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 //===----------------------------------------------------------------------===//
 // Interface
@@ -290,9 +292,9 @@ template <typename T>
 using IsInterface = llvm::is_detected<is_interface_t, T>;
 
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T>
 struct DenseMapInfo<T, std::enable_if_t<mlir::detail::IsInterface<T>::value>> {
@@ -311,6 +313,6 @@ struct DenseMapInfo<T, std::enable_if_t<mlir::detail::IsInterface<T>::value>> {
   static bool isEqual(T lhs, T rhs) { return ValueTypeInfo::isEqual(lhs, rhs); }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

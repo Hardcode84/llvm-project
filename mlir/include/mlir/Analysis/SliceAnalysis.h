@@ -14,8 +14,9 @@
 #include "mlir/Support/LLVM.h"
 
 #include "llvm/ADT/SetVector.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class BlockArgument;
 class Operation;
 class Value;
@@ -264,6 +265,6 @@ getSlice(Operation *op, const BackwardSliceOptions &backwardSliceOptions = {},
 Value matchReduction(ArrayRef<BlockArgument> iterCarriedArgs, unsigned redPos,
                      SmallVectorImpl<Operation *> &combinerOps);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_ANALYSIS_SLICEANALYSIS_H_

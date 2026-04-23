@@ -9,6 +9,7 @@
 #include "mlir/TableGen/Class.h"
 #include "llvm/ADT/Twine.h"
 #include "llvm/Support/Debug.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::tblgen;
@@ -243,7 +244,7 @@ void Constructor::MemberInitializer::writeTo(raw_indented_ostream &os) const {
 // Visibility definitions
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tblgen {
 raw_ostream &operator<<(raw_ostream &os, Visibility visibility) {
   switch (visibility) {
@@ -257,7 +258,7 @@ raw_ostream &operator<<(raw_ostream &os, Visibility visibility) {
   return os;
 }
 } // namespace tblgen
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // ParentClass definitions

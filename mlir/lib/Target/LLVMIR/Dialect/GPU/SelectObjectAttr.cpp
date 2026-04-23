@@ -24,6 +24,7 @@
 #include "llvm/IR/Module.h"
 #include "llvm/Support/FormatVariadic.h"
 #include "llvm/Transforms/Utils/ModuleUtils.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace mlir;
 
@@ -91,7 +92,7 @@ static Twine getModuleIdentifier(StringRef moduleName) {
   return moduleName + "_module";
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 static LogicalResult embedBinaryImpl(StringRef moduleName,
                                      gpu::ObjectAttr object, Module &module) {
 
@@ -180,7 +181,7 @@ static LogicalResult embedBinaryImpl(StringRef moduleName,
 
   return success();
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 LogicalResult SelectObjectAttrImpl::embedBinary(
     Attribute attribute, Operation *operation, llvm::IRBuilderBase &builder,
@@ -203,7 +204,7 @@ LogicalResult SelectObjectAttrImpl::embedBinary(
                          *moduleTranslation.getLLVMModule());
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace {
 class LaunchKernel {
 public:
@@ -248,7 +249,7 @@ private:
   PointerType *ptrTy{};
 };
 } // namespace
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 LogicalResult SelectObjectAttrImpl::launchKernel(
     Attribute attribute, Operation *launchFuncOperation,

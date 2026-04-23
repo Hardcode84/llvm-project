@@ -26,6 +26,7 @@
 
 #include <chrono>
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace detail;
@@ -39,7 +40,7 @@ constexpr llvm::StringLiteral kTimingDescription =
 // TimingManager
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 /// Private implementation details of the `TimingManager`.
 class TimingManagerImpl {
@@ -57,7 +58,7 @@ public:
   TimingManagerImpl() : identifiers(identifierAllocator) {}
 };
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 TimingManager::TimingManager() : impl(std::make_unique<TimingManagerImpl>()) {}
 
@@ -477,7 +478,7 @@ public:
 // DefaultTimingManager
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 
 /// Implementation details of the `DefaultTimingManager`.
@@ -494,7 +495,7 @@ public:
 };
 
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 DefaultTimingManager::DefaultTimingManager()
     : impl(std::make_unique<DefaultTimingManagerImpl>()),

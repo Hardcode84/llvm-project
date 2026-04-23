@@ -13,6 +13,7 @@
 #include "mlir/Dialect/SCF/Transforms/Patterns.h"
 
 #include "mlir/Dialect/SCF/IR/SCF.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -35,10 +36,10 @@ struct RotateWhileLoopPattern : OpRewritePattern<scf::WhileOp> {
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace scf {
 void populateSCFRotateWhileLoopPatterns(RewritePatternSet &patterns) {
   patterns.add<RotateWhileLoopPattern>(patterns.getContext());
 }
 } // namespace scf
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

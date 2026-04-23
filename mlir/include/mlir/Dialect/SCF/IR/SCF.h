@@ -26,19 +26,20 @@
 #include "mlir/Interfaces/ParallelCombiningOpInterface.h"
 #include "mlir/Interfaces/SideEffectInterfaces.h"
 #include "mlir/Interfaces/ViewLikeInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace scf {
 void buildTerminatedBody(OpBuilder &builder, Location loc);
 } // namespace scf
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Dialect/SCF/IR/SCFOpsDialect.h.inc"
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/SCF/IR/SCFOps.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace scf {
 
 /// Returns the loop parent of an induction variable. If the provided value is
@@ -118,5 +119,5 @@ SmallVector<Value> replaceAndCastForOpIterArg(RewriterBase &rewriter,
 std::optional<llvm::APSInt> computeUbMinusLb(Value lb, Value ub, bool isSigned);
 
 } // namespace scf
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 #endif // MLIR_DIALECT_SCF_SCF_H

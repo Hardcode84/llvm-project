@@ -16,8 +16,9 @@
 #include "mlir/IR/Attributes.h"
 #include "mlir/IR/MLIRContext.h"
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // Support for properties
@@ -121,6 +122,6 @@ Attribute convertToAttribute(MLIRContext *ctx, ArrayRef<int64_t> storage);
 /// Convert the provided ArrayRef<int32_t> to a DenseI32ArrayAttr attribute.
 Attribute convertToAttribute(MLIRContext *ctx, ArrayRef<int32_t> storage);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_IR_ODSSUPPORT_H

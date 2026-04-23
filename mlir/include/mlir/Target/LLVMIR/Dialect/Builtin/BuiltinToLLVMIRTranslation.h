@@ -13,7 +13,9 @@
 #ifndef MLIR_TARGET_LLVMIR_DIALECT_BUILTIN_BUILTINTOLLVMIRTRANSLATION_H
 #define MLIR_TARGET_LLVMIR_DIALECT_BUILTIN_BUILTINTOLLVMIRTRANSLATION_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 
 class DialectRegistry;
 class MLIRContext;
@@ -26,6 +28,6 @@ void registerBuiltinDialectTranslation(DialectRegistry &registry);
 /// with the given context.
 void registerBuiltinDialectTranslation(MLIRContext &context);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_LLVMIR_DIALECT_BUILTIN_BUILTINTOLLVMIRTRANSLATION_H

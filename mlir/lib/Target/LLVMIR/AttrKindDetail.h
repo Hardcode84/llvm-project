@@ -11,8 +11,9 @@
 
 #include "mlir/Dialect/LLVMIR/LLVMDialect.h"
 #include "llvm/IR/Attributes.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace LLVM {
 namespace detail {
 
@@ -86,6 +87,6 @@ getAttrNameToKindMapping() {
 
 } // namespace detail
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // ATTRKINDDETAIL_H_

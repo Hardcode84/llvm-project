@@ -22,8 +22,9 @@
 
 #include "llvm/ADT/DepthFirstIterator.h"
 #include "llvm/ADT/PostOrderIterator.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 /// This iterator enumerates elements in "reverse" order. It is a wrapper around
 /// llvm::reverse.
 struct ReverseIterator {
@@ -121,6 +122,6 @@ struct ReverseDominanceIterator {
     return Traversal(&region);
   }
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_IR_ITERATORS_H

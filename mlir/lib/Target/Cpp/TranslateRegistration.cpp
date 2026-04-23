@@ -12,10 +12,11 @@
 #include "mlir/Target/Cpp/CppEmitter.h"
 #include "mlir/Tools/mlir-translate/Translation.h"
 #include "llvm/Support/CommandLine.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // Cpp registration
@@ -48,4 +49,4 @@ void registerToCppTranslation() {
       });
 }
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

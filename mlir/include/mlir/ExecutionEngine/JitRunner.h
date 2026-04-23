@@ -20,8 +20,10 @@
 
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ExecutionEngine/Orc/Core.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 class LLVMContext;
 struct LogicalResult;
@@ -29,9 +31,9 @@ struct LogicalResult;
 namespace orc {
 class MangleAndInterner;
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class DialectRegistry;
 class Operation;
@@ -70,6 +72,6 @@ struct JitRunnerConfig {
 int JitRunnerMain(int argc, char **argv, const DialectRegistry &registry,
                   JitRunnerConfig config = {});
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_EXECUTIONENGINE_JITRUNNER_H

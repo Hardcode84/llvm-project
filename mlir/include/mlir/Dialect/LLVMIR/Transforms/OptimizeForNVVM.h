@@ -10,13 +10,14 @@
 #define MLIR_DIALECT_LLVMIR_TRANSFORMS_OPTIMIZENVVM_H
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Pass;
 namespace LLVM {
 #define GEN_PASS_DECL_NVVMOPTIMIZEFORTARGETPASS
 #include "mlir/Dialect/LLVMIR/Transforms/Passes.h.inc"
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_LLVMIR_TRANSFORMS_OPTIMIZENVVM_H

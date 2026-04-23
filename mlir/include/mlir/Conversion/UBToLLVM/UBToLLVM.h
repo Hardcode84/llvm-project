@@ -10,8 +10,9 @@
 #define MLIR_CONVERSION_UBTOLLVM_UBLLVM_H
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class DialectRegistry;
 class LLVMTypeConverter;
@@ -27,6 +28,6 @@ void populateUBToLLVMConversionPatterns(const LLVMTypeConverter &converter,
 
 void registerConvertUBToLLVMInterface(DialectRegistry &registry);
 } // namespace ub
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_UBTOLLVM_UBLLVM_H

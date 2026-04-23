@@ -13,8 +13,9 @@
 #include "mlir/Bindings/Python/IRCore.h"
 
 #include <nanobind/nanobind.h>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace python {
 namespace MLIR_BINDINGS_PYTHON_DOMAIN {
 
@@ -113,6 +114,6 @@ private:
 void MLIR_PYTHON_API_EXPORTED populateRewriteSubmodule(nanobind::module_ &m);
 } // namespace MLIR_BINDINGS_PYTHON_DOMAIN
 } // namespace python
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_BINDINGS_PYTHON_REWRITE_H

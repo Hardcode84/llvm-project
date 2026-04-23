@@ -9,13 +9,15 @@
 #ifndef MLIR_DIALECT_NVGPU_TRANSFORMS_MEMORYACCESSOPINTERFACESIMPL_H
 #define MLIR_DIALECT_NVGPU_TRANSFORMS_MEMORYACCESSOPINTERFACESIMPL_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 
 class DialectRegistry;
 
 namespace nvgpu {
 void registerMemoryAccessOpInterfacesExternalModels(DialectRegistry &registry);
 } // namespace nvgpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_NVGPU_TRANSFORMS_MEMORYACCESSOPINTERFACESIMPL_H

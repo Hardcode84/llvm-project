@@ -10,10 +10,11 @@
 
 #include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Interfaces/ValueBoundsOpInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace arith {
 namespace {
 
@@ -162,7 +163,7 @@ struct SelectOpInterface
 };
 } // namespace
 } // namespace arith
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 void mlir::arith::registerValueBoundsOpInterfaceExternalModels(
     DialectRegistry &registry) {

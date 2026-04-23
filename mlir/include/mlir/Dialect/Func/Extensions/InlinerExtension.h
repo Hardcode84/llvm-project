@@ -14,7 +14,9 @@
 #ifndef MLIR_DIALECT_FUNC_EXTENSIONS_INLINEREXTENSION_H
 #define MLIR_DIALECT_FUNC_EXTENSIONS_INLINEREXTENSION_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace func {
@@ -22,6 +24,6 @@ namespace func {
 void registerInlinerExtension(DialectRegistry &registry);
 } // namespace func
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_FUNC_EXTENSIONS_INLINEREXTENSION_H

@@ -17,8 +17,9 @@
 #include "llvm/Support/SourceMgr.h"
 #include "llvm/Support/TrailingObjects.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace pdll {
 namespace ast {
 class Context;
@@ -1351,6 +1352,6 @@ inline bool Stmt::classof(const Node *node) {
 
 } // namespace ast
 } // namespace pdll
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_PDLL_AST_NODES_H_

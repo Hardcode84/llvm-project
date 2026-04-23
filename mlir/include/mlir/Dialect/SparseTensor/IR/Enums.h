@@ -36,8 +36,9 @@
 #include <complex>
 #include <optional>
 #include <vector>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace sparse_tensor {
 
 /// This type is used in the public API at all places where MLIR expects
@@ -497,6 +498,6 @@ constexpr uint64_t decodeMulc(uint64_t v) { return (v >> 20) & 0xfffffu; }
 constexpr uint64_t decodeMuli(uint64_t v) { return (v >> 40) & 0xfffffu; }
 
 } // namespace sparse_tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SPARSETENSOR_IR_ENUMS_H

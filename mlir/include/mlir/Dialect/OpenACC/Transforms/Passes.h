@@ -14,8 +14,9 @@
 #include "mlir/Dialect/OpenACC/OpenACC.h"
 #include "mlir/Dialect/SCF/IR/SCF.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 namespace func {
 class FuncOp;
@@ -62,6 +63,6 @@ void populateACCHostFallbackPatterns(RewritePatternSet &patterns,
 #include "mlir/Dialect/OpenACC/Transforms/Passes.h.inc"
 
 } // namespace acc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_OPENACC_TRANSFORMS_PASSES_H

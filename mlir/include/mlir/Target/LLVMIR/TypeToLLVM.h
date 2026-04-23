@@ -15,14 +15,16 @@
 #define MLIR_TARGET_LLVMIR_TYPETOLLVM_H
 
 #include <memory>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DataLayout;
 class LLVMContext;
 class Type;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class Type;
 class MLIRContext;
@@ -56,6 +58,6 @@ private:
 };
 
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_LLVMIR_TYPETOLLVM_H

@@ -14,8 +14,9 @@
 #define MLIR_DIALECT_BUFFERIZATION_IR_ALLOCATIONOPINTERFACE_H_
 
 #include "mlir/IR/Builders.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 // Enum class representing different hoisting kinds for the allocation
 // operation
 enum class HoistingKind : uint8_t {
@@ -24,7 +25,7 @@ enum class HoistingKind : uint8_t {
   Block = 1 << 1, // Indicates dominated block hoisting kind
   LLVM_MARK_AS_BITMASK_ENUM(/* LargestValue = */ Block)
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Dialect/Bufferization/IR/AllocationOpInterface.h.inc"
 

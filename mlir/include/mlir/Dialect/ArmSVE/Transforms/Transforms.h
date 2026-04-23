@@ -9,7 +9,9 @@
 #ifndef MLIR_DIALECT_ARMSVE_TRANSFORMS_H
 #define MLIR_DIALECT_ARMSVE_TRANSFORMS_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 
 class LLVMConversionTarget;
 class LLVMTypeConverter;
@@ -28,6 +30,6 @@ void populateLowerContractionToSVEBFMMLAPatterns(RewritePatternSet &patterns);
 /// intrinsics.
 void configureArmSVELegalizeForExportTarget(LLVMConversionTarget &target);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_ARMSVE_TRANSFORMS_H

@@ -15,8 +15,9 @@
 
 #include "mlir/IR/Visitors.h"
 #include "mlir/Rewrite/FrozenRewritePatternSet.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// A fast walk-based pattern rewrite driver. Rewrites ops nested under the
 /// given operation by walking it and applying the highest benefit patterns.
@@ -34,6 +35,6 @@ void walkAndApplyPatterns(Operation *op,
                           const FrozenRewritePatternSet &patterns,
                           RewriterBase::Listener *listener = nullptr);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRANSFORMS_WALKPATTERNREWRITEDRIVER_H_

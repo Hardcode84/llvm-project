@@ -14,8 +14,9 @@
 #define MLIR_IR_REGION_H
 
 #include "mlir/IR/Block.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class TypeRange;
 template <typename ValueRangeT>
 class ValueTypeRange;
@@ -392,6 +393,6 @@ private:
 
 llvm::raw_ostream &operator<<(llvm::raw_ostream &os, Region &region);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_IR_REGION_H

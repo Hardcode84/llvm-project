@@ -23,6 +23,7 @@
 #include "mlir/Interfaces/SideEffectInterfaces.h"
 
 #include "llvm/ADT/bit.h"
+#include "mlir/Support/ABINamespace.h"
 
 //===----------------------------------------------------------------------===//
 //
@@ -32,7 +33,7 @@
 //
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace sparse_tensor {
 
 /// The type of dimension identifiers and dimension-ranks.
@@ -128,7 +129,7 @@ public:
 };
 
 } // namespace sparse_tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // TableGen-defined classes
@@ -152,7 +153,7 @@ public:
 // Additional convenience methods.
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace sparse_tensor {
 
 /// Convenience method to abbreviate casting `getType()`.
@@ -242,6 +243,6 @@ Dimension toDim(SparseTensorEncodingAttr enc, Level l);
 Level toLvl(SparseTensorEncodingAttr enc, Dimension d);
 
 } // namespace sparse_tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SPARSETENSOR_IR_SPARSETENSOR_H_

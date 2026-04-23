@@ -19,8 +19,9 @@
 #include "llvm/ADT/STLExtras.h"
 #include <optional>
 #include <tuple>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Location;
 class Operation;
 class OpBuilder;
@@ -261,6 +262,6 @@ getConstLoopBounds(mlir::LoopLikeOpInterface loopOp);
 llvm::SmallVector<llvm::APInt>
 getConstLoopTripCounts(mlir::LoopLikeOpInterface loopOp);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SCF_UTILS_UTILS_H_

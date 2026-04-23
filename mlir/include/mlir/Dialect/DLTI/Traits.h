@@ -11,8 +11,9 @@
 
 #include "mlir/IR/OpDefinition.h"
 #include "mlir/Interfaces/DataLayoutInterfaces.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DataLayoutSpecAttr;
 
 namespace impl {
@@ -45,6 +46,6 @@ public:
     return impl::getTargetSystemSpec(this->getOperation());
   }
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_DLTI_TRAITS_H

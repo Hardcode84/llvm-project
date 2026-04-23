@@ -15,14 +15,16 @@
 
 #include "mlir/IR/OwningOpRef.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
 // Forward-declare LLVM classes.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DataLayout;
 class Module;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class DataLayoutSpecInterface;
 class MLIRContext;
@@ -60,6 +62,6 @@ OwningOpRef<ModuleOp> translateLLVMIRToModule(
 DataLayoutSpecInterface translateDataLayout(const llvm::DataLayout &dataLayout,
                                             MLIRContext *context);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_LLVMIR_IMPORT_H

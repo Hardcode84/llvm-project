@@ -10,8 +10,9 @@
 #define MLIR_CONVERSION_AFFINETOSTANDARD_AFFINETOSTANDARD_H
 
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Location;
 class OpBuilder;
 class Pass;
@@ -44,6 +45,6 @@ Value lowerAffineLowerBound(affine::AffineForOp op, OpBuilder &builder);
 /// standard arithmetic operations.
 Value lowerAffineUpperBound(affine::AffineForOp op, OpBuilder &builder);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_AFFINETOSTANDARD_AFFINETOSTANDARD_H

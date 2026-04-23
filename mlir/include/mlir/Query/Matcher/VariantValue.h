@@ -17,8 +17,10 @@
 #include "ErrorBuilder.h"
 #include "MatchersInternal.h"
 #include "llvm/ADT/StringRef.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::query::matcher {
+MLIR_NAMESPACE_BEGIN
+namespace query::matcher {
 
 // All types that VariantValue can contain.
 enum class ArgKind { Boolean, Matcher, Signed, String };
@@ -149,6 +151,7 @@ struct ParserValue {
   VariantValue value;
 };
 
-} // namespace mlir::query::matcher
+}
+MLIR_NAMESPACE_END // namespace mlir::query::matcher
 
 #endif // MLIR_TOOLS_MLIRQUERY_MATCHER_VARIANTVALUE_H

@@ -39,12 +39,13 @@
 #include "llvm/Support/DebugLog.h"
 #include "llvm/Support/FormatVariadic.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_CONVERTFUNCTOLLVMPASS
 #define GEN_PASS_DEF_SETLLVMMODULEDATALAYOUTPASS
 #include "mlir/Conversion/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 

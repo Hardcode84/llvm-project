@@ -20,8 +20,10 @@
 #include "mlir/IR/Region.h"
 #include "llvm/ADT/Twine.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 /// This is a "tag" used for mapping the properties storage in
 /// llvm::TrailingObjects.
@@ -1180,9 +1182,9 @@ inline raw_ostream &operator<<(raw_ostream &os,
   return os;
 }
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Cast from an (const) Operation * to a derived operation type.
 template <typename T>
 struct CastInfo<T, ::mlir::Operation *>
@@ -1228,6 +1230,6 @@ struct CastInfo<const ::mlir::Operation *, const ::mlir::Operation *>
     : public ConstStrippingForwardingCast<
           const ::mlir::Operation *, const ::mlir::Operation *,
           CastInfo<::mlir::Operation *, ::mlir::Operation *>> {};
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MLIR_IR_OPERATION_H

@@ -24,13 +24,14 @@
 #include "mlir/Transforms/FoldUtils.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
 #include "llvm/ADT/TypeSwitch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_CONVERTLINALGTOAFFINELOOPSPASS
 #define GEN_PASS_DEF_CONVERTLINALGTOLOOPSPASS
 #define GEN_PASS_DEF_CONVERTLINALGTOPARALLELLOOPSPASS
 #include "mlir/Dialect/Linalg/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 using namespace mlir::linalg;

@@ -27,14 +27,17 @@
 #include "mlir/Interfaces/SideEffectInterfaces.h"
 #include "mlir/Transforms/FoldUtils.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::arith {
+MLIR_NAMESPACE_BEGIN
+namespace arith {
 #define GEN_PASS_DEF_ARITHINTRANGEOPTS
 #include "mlir/Dialect/Arith/Transforms/Passes.h.inc"
 
 #define GEN_PASS_DEF_ARITHINTRANGENARROWING
 #include "mlir/Dialect/Arith/Transforms/Passes.h.inc"
-} // namespace mlir::arith
+}
+MLIR_NAMESPACE_END // namespace mlir::arith
 
 using namespace mlir;
 using namespace mlir::arith;
@@ -60,7 +63,8 @@ static void copyIntegerRange(DataFlowSolver &solver, Value oldVal,
       *oldState);
 }
 
-namespace mlir::dataflow {
+MLIR_NAMESPACE_BEGIN
+namespace dataflow {
 /// Patterned after SCCP
 LogicalResult maybeReplaceWithConstant(DataFlowSolver &solver,
                                        RewriterBase &rewriter, Value value) {
@@ -101,7 +105,8 @@ LogicalResult maybeReplaceWithConstant(DataFlowSolver &solver,
   rewriter.replaceAllUsesWith(value, res);
   return success();
 }
-} // namespace mlir::dataflow
+}
+MLIR_NAMESPACE_END // namespace mlir::dataflow
 
 namespace {
 class DataFlowListener : public RewriterBase::Listener {

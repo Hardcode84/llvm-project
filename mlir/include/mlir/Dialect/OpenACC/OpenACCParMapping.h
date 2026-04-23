@@ -20,8 +20,9 @@
 #include "mlir/Dialect/OpenACC/OpenACC.h"
 #include "mlir/IR/MLIRContext.h"
 #include "llvm/Support/ErrorHandling.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace acc {
 
 //===----------------------------------------------------------------------===//
@@ -159,6 +160,6 @@ using ACCToGPUMappingPolicy =
     ACCParMappingPolicy<mlir::acc::GPUParallelDimAttr>;
 
 } // namespace acc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_OPENACC_OPENACCPARMAPPING_H_

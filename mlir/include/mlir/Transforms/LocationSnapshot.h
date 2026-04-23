@@ -18,8 +18,9 @@
 #include "llvm/ADT/StringRef.h"
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Location;
 class Operation;
 class OpPrintingFlags;
@@ -51,6 +52,6 @@ void generateLocationsFromIR(raw_ostream &os, StringRef fileName, StringRef tag,
 LogicalResult generateLocationsFromIR(StringRef fileName, StringRef tag,
                                       Operation *op, OpPrintingFlags flags);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRANSFORMS_LOCATIONSNAPSHOT_H

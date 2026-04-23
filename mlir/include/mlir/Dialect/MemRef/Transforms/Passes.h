@@ -14,8 +14,9 @@
 #define MLIR_DIALECT_MEMREF_TRANSFORMS_PASSES_H
 
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class AffineDialect;
 class ModuleOp;
@@ -53,6 +54,6 @@ namespace memref {
 #include "mlir/Dialect/MemRef/Transforms/Passes.h.inc"
 
 } // namespace memref
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_MEMREF_TRANSFORMS_PASSES_H

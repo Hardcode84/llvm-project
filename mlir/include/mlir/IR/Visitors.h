@@ -16,8 +16,9 @@
 #include "mlir/Support/LLVM.h"
 #include "mlir/Support/WalkResult.h"
 #include "llvm/ADT/STLExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Diagnostic;
 class InFlightDiagnostic;
 class Operation;
@@ -433,6 +434,6 @@ template <typename FnT>
 using walkResultType = decltype(walk(nullptr, std::declval<FnT>()));
 } // namespace detail
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif

@@ -15,13 +15,14 @@
 #include "mlir/Target/LLVMIR/Import.h"
 
 #include "llvm/MC/MCSubtargetInfo.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace LLVM {
 #define GEN_PASS_DEF_LLVMTARGETTOTARGETFEATURES
 #include "mlir/Target/LLVMIR/Transforms/Passes.h.inc"
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 

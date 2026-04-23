@@ -11,10 +11,12 @@
 #include "mlir/Dialect/Vector/IR/ScalableValueBoundsConstraintSet.h"
 #include "mlir/Dialect/Vector/IR/VectorOps.h"
 #include "mlir/Interfaces/ValueBoundsOpInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir::vector {
+MLIR_NAMESPACE_BEGIN
+namespace vector {
 namespace {
 
 struct VectorScaleOpInterface
@@ -40,7 +42,8 @@ struct VectorScaleOpInterface
 };
 
 } // namespace
-} // namespace mlir::vector
+}
+MLIR_NAMESPACE_END // namespace mlir::vector
 
 void mlir::vector::registerValueBoundsOpInterfaceExternalModels(
     DialectRegistry &registry) {

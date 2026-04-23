@@ -11,8 +11,9 @@
 
 #include "mlir/Interfaces/MemorySlotInterfaces.h"
 #include "llvm/ADT/Statistic.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Statistics collected while applying mem2reg.
 struct Mem2RegStatistics {
@@ -31,6 +32,6 @@ tryToPromoteMemorySlots(ArrayRef<PromotableAllocationOpInterface> allocators,
                         DominanceInfo &dominance,
                         Mem2RegStatistics statistics = {});
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRANSFORMS_MEM2REG_H

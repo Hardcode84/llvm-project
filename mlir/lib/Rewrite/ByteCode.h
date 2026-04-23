@@ -15,10 +15,11 @@
 #define MLIR_REWRITE_BYTECODE_H_
 
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
 #if MLIR_ENABLE_PDL_IN_PATTERNMATCH
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace pdl_interp {
 class RecordMatchOp;
 } // namespace pdl_interp
@@ -223,11 +224,12 @@ private:
 };
 
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #else
 
-namespace mlir::detail {
+MLIR_NAMESPACE_BEGIN
+namespace detail {
 
 class PDLByteCodeMutableState {
 public:
@@ -255,7 +257,8 @@ public:
   ArrayRef<PDLByteCodePattern> getPatterns() const { return {}; }
 };
 
-} // namespace mlir::detail
+}
+MLIR_NAMESPACE_END // namespace mlir::detail
 
 #endif // MLIR_ENABLE_PDL_IN_PATTERNMATCH
 

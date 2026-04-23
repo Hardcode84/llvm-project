@@ -15,8 +15,9 @@
 #include "llvm/ADT/SmallVectorExtras.h"
 #include "llvm/Support/DebugLog.h"
 #include "llvm/Support/MathExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 bool isZeroInteger(OpFoldResult v) { return isConstantIntValue(v, 0); }
 
@@ -457,4 +458,4 @@ LogicalResult foldDynamicStrideList(SmallVectorImpl<OpFoldResult> &strides) {
                               /*onlyNonZero=*/true);
 }
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

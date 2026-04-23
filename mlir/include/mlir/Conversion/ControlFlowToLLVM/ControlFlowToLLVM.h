@@ -14,8 +14,9 @@
 #define MLIR_CONVERSION_CONTROLFLOWTOLLVM_CONTROLFLOWTOLLVM_H
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 class LLVMTypeConverter;
 class RewritePatternSet;
@@ -47,6 +48,6 @@ void populateAssertToLLVMConversionPattern(
 void registerConvertControlFlowToLLVMInterface(DialectRegistry &registry);
 
 } // namespace cf
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_CONTROLFLOWTOLLVM_CONTROLFLOWTOLLVM_H

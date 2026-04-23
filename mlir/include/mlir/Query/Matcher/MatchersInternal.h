@@ -23,8 +23,10 @@
 
 #include "mlir/IR/Matchers.h"
 #include "llvm/ADT/IntrusiveRefCntPtr.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::query::matcher {
+MLIR_NAMESPACE_BEGIN
+namespace query::matcher {
 class DynMatcher;
 namespace internal {
 
@@ -221,6 +223,7 @@ const VariadicOperatorMatcherFunc<1, std::numeric_limits<unsigned>::max()>
 const VariadicOperatorMatcherFunc<1, std::numeric_limits<unsigned>::max()>
     allOf = {DynMatcher::AllOf};
 } // namespace internal
-} // namespace mlir::query::matcher
+}
+MLIR_NAMESPACE_END // namespace mlir::query::matcher
 
 #endif // MLIR_TOOLS_MLIRQUERY_MATCHER_MATCHERSINTERNAL_H

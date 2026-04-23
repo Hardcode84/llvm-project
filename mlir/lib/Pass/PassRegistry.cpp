@@ -19,6 +19,8 @@
 
 #include <optional>
 #include <utility>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace detail;
@@ -419,7 +421,8 @@ size_t detail::PassOptions::getOptionWidth() const {
 // OpPassManager: OptionValue
 //===----------------------------------------------------------------------===//
 
-namespace llvm::cl {
+LLVM_NAMESPACE_BEGIN
+namespace cl {
 
 OptionValue<OpPassManager>::OptionValue() = default;
 OptionValue<OpPassManager>::OptionValue(const mlir::OpPassManager &value) {
@@ -466,15 +469,18 @@ bool OptionValue<OpPassManager>::compare(const mlir::OpPassManager &rhs) const {
 
 void OptionValue<OpPassManager>::anchor() {}
 
-} // namespace llvm::cl
+}
+LLVM_NAMESPACE_END // namespace llvm::cl
 
 //===----------------------------------------------------------------------===//
 // OpPassManager: Parser
 //===----------------------------------------------------------------------===//
 
-namespace llvm::cl {
+LLVM_NAMESPACE_BEGIN
+namespace cl {
 template class basic_parser<OpPassManager>;
-} // namespace llvm::cl
+}
+LLVM_NAMESPACE_END // namespace llvm::cl
 
 bool llvm::cl::parser<OpPassManager>::parse(Option &, StringRef, StringRef arg,
                                             ParsedPassManager &value) {
@@ -819,7 +825,7 @@ struct PassArgData {
 };
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace cl {
 /// Define a valid OptionValue for the command line pass argument.
 template <>
@@ -836,7 +842,7 @@ struct OptionValue<PassArgData> final
   PassArgData value;
 };
 } // namespace cl
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 
@@ -945,7 +951,7 @@ bool PassNameParser::parse(llvm::cl::Option &opt, StringRef argName,
 // PassPipelineCLParser
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 struct PassPipelineCLParserImpl {
   PassPipelineCLParserImpl(StringRef arg, StringRef description,
@@ -967,7 +973,7 @@ struct PassPipelineCLParserImpl {
   llvm::cl::list<PassArgData, bool, PassNameParser> passList;
 };
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// Construct a pass pipeline parser with the given command line description.
 PassPipelineCLParser::PassPipelineCLParser(StringRef arg, StringRef description)

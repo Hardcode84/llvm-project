@@ -15,8 +15,9 @@
 
 #include "mlir/Dialect/SMT/IR/SMTOps.h"
 #include "llvm/ADT/TypeSwitch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace smt {
 
 /// This helps visit SMT nodes.
@@ -196,6 +197,6 @@ public:
 };
 
 } // namespace smt
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SMT_IR_SMTVISITORS_H

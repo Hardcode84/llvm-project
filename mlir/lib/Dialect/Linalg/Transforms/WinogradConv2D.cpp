@@ -19,8 +19,9 @@
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 #include "mlir/Dialect/Utils/StaticValueUtils.h"
 #include "llvm/Support/MathExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace linalg {
 
 namespace {
@@ -1225,4 +1226,4 @@ void populateDecomposeWinogradOpsPatterns(RewritePatternSet &patterns) {
 }
 
 } // end namespace linalg
-} // end namespace mlir
+MLIR_NAMESPACE_END // end namespace mlir

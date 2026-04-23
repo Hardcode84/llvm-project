@@ -20,8 +20,9 @@
 #include "mlir/Interfaces/ControlFlowInterfaces.h"
 #include "llvm/ADT/SmallPtrSet.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class CallOpInterface;
 class CallableOpInterface;
@@ -249,6 +250,6 @@ private:
 };
 
 } // end namespace dataflow
-} // end namespace mlir
+MLIR_NAMESPACE_END // end namespace mlir
 
 #endif // MLIR_ANALYSIS_DATAFLOW_DEADCODEANALYSIS_H

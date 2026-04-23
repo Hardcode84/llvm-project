@@ -20,11 +20,12 @@
 #include "mlir/Support/TypeID.h"
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/LogicalResult.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class ThreadPoolInterface;
 class raw_fd_ostream;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 /// Converts a StringRef into its MLIR C API equivalent.
 inline MlirStringRef wrap(llvm::StringRef ref) {

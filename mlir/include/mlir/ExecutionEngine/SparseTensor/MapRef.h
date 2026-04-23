@@ -16,8 +16,9 @@
 #include <cinttypes>
 
 #include <cassert>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace sparse_tensor {
 
 /// A class for capturing the sparse tensor type map with a compact encoding.
@@ -96,6 +97,6 @@ private:
 };
 
 } // namespace sparse_tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif //  MLIR_EXECUTIONENGINE_SPARSETENSOR_MAPREF_H

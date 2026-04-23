@@ -18,8 +18,9 @@
 #include "mlir/IR/Builders.h"
 #include "mlir/IR/Dominance.h"
 #include "mlir/IR/Operation.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Interface that should be implemented by any caller of `transformCFGToSCF`.
 /// The transformation requires the caller to 1) create switch-like control
@@ -159,6 +160,6 @@ public:
 FailureOr<bool> transformCFGToSCF(Region &region, CFGToSCFInterface &interface,
                                   DominanceInfo &dominanceInfo);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRANSFORMS_CFGTOSCF_H

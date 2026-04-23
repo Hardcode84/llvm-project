@@ -127,6 +127,7 @@ void OpAsmPrinter::printFunctionalType(Operation *op) {
 #include "mlir/IR/OpAsmAttrInterface.cpp.inc"
 #include "mlir/IR/OpAsmOpInterface.cpp.inc"
 #include "mlir/IR/OpAsmTypeInterface.cpp.inc"
+#include "mlir/Support/ABINamespace.h"
 
 LogicalResult
 OpAsmDialectInterface::parseResource(AsmParsedResourceEntry &entry) const {
@@ -409,7 +410,7 @@ static raw_ostream &operator<<(raw_ostream &os, NewLineCounter &newLine) {
 // AsmPrinter::Impl
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class AsmPrinter::Impl {
 public:
   Impl(raw_ostream &os, AsmStateImpl &state);
@@ -560,7 +561,7 @@ protected:
   /// This is the current indentation level for nested structures.
   unsigned currentIndent = 0;
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // AliasInitializer
@@ -1980,7 +1981,7 @@ void FallbackAsmResourceMap::ResourceCollection::buildResources(
 // AsmState
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 class AsmStateImpl {
 public:
@@ -2086,7 +2087,7 @@ static void printDimensionList(raw_ostream &stream, Range &&shape) {
 }
 
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// Verifies the operation and switches to generic op printing if verification
 /// fails. We need to do this because custom print functions may fail for
@@ -4269,7 +4270,7 @@ raw_ostream &mlir::operator<<(raw_ostream &os, Block &block) {
 //===--------------------------------------------------------------------===//
 // Custom printers
 //===--------------------------------------------------------------------===//
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 void printDimensionList(OpAsmPrinter &printer, Operation *op,
                         ArrayRef<int64_t> dimensions) {
@@ -4308,4 +4309,4 @@ ParseResult parseDimensionList(OpAsmParser &parser,
   return success();
 }
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

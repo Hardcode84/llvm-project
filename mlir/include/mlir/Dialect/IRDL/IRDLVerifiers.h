@@ -19,14 +19,15 @@
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/SmallVector.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class InFlightDiagnostic;
 class DynamicAttrDefinition;
 class DynamicTypeDefinition;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace irdl {
 
 class AttributeOp;
@@ -257,6 +258,6 @@ llvm::unique_function<LogicalResult(Operation *) const> createVerifier(
     const DenseMap<irdl::AttributeOp, std::unique_ptr<DynamicAttrDefinition>>
         &attrDefs);
 } // namespace irdl
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_IRDL_IRDLVERIFIERS_H

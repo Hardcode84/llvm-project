@@ -18,8 +18,10 @@
 #include "mlir/Support/TypeID.h"
 #include "mlir/Support/WalkResult.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Common CRTP base class for StateStack frames.
 class StateStackFrame {
@@ -114,15 +116,15 @@ private:
   HostClass &host;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T>
 struct isa_impl<T, ::mlir::StateStackFrame> {
   static inline bool doit(const ::mlir::StateStackFrame &frame) {
     return frame.getTypeID() == ::mlir::TypeID::get<T>();
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MLIR_SUPPORT_STACKFRAME_H

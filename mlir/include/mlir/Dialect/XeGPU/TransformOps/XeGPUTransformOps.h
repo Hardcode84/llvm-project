@@ -16,13 +16,14 @@
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/XeGPU/TransformOps/XeGPUTransformOps.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace xegpu {
 void registerTransformDialectExtension(DialectRegistry &registry);
 } // namespace xegpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_XEGPU_TRANSFORMOPS_XEGPUTRANSFORMOPS_H

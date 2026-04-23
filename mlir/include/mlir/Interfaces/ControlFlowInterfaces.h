@@ -20,8 +20,9 @@
 #include "llvm/ADT/PointerUnion.h"
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/Support/raw_ostream.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class BranchOpInterface;
 class RegionBranchOpInterface;
 class RegionBranchTerminatorOpInterface;
@@ -382,7 +383,7 @@ struct ReturnLike : public TraitBase<ConcreteType, ReturnLike> {
 };
 } // namespace OpTrait
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // ControlFlow Interfaces
@@ -391,7 +392,7 @@ struct ReturnLike : public TraitBase<ConcreteType, ReturnLike> {
 /// Include the generated interface declarations.
 #include "mlir/Interfaces/ControlFlowInterfaces.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 inline RegionBranchPoint::RegionBranchPoint(
     RegionBranchTerminatorOpInterface predecessor)
     : predecessor(predecessor.getOperation()) {}
@@ -428,6 +429,6 @@ inline llvm::raw_ostream &operator<<(llvm::raw_ostream &os,
   return os << "<to region #" << successor.getSuccessor()->getRegionNumber()
             << ">";
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_INTERFACES_CONTROLFLOWINTERFACES_H

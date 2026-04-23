@@ -15,8 +15,10 @@
 #include "mlir/Dialect/SPIRV/IR/SPIRVOps.h"
 #include "mlir/Dialect/SPIRV/Transforms/Passes.h"
 #include "mlir/Transforms/WalkPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::spirv {
+MLIR_NAMESPACE_BEGIN
+namespace spirv {
 #define GEN_PASS_DEF_SPIRVREPLICATEDCONSTANTCOMPOSITEPASS
 #include "mlir/Dialect/SPIRV/Transforms/Passes.h.inc"
 
@@ -126,4 +128,5 @@ struct ConvertToReplicatedConstantCompositePass final
 };
 
 } // namespace
-} // namespace mlir::spirv
+}
+MLIR_NAMESPACE_END // namespace mlir::spirv

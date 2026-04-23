@@ -9,8 +9,9 @@
 #define MLIR_CONVERSION_OPENMPTOLLVM_CONVERTOPENMPTOLLVM_H
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 class LLVMTypeConverter;
 class ConversionTarget;
@@ -33,6 +34,6 @@ void populateOpenMPToLLVMConversionPatterns(LLVMTypeConverter &converter,
 /// Registers the `ConvertToLLVMPatternInterface` interface in the `OpenMP`
 /// dialect.
 void registerConvertOpenMPToLLVMInterface(DialectRegistry &registry);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_OPENMPTOLLVM_CONVERTOPENMPTOLLVM_H

@@ -10,8 +10,9 @@
 #define MLIR_DIALECT_X86_TRANSFORMS_H
 
 #include "mlir/IR/Value.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class ImplicitLocOpBuilder;
 class LLVMConversionTarget;
@@ -216,6 +217,6 @@ void configureX86LegalizeForExportTarget(LLVMConversionTarget &target);
 /// Register LLVM conversion interface for X86 dialect.
 void registerConvertX86ToLLVMInterface(DialectRegistry &registry);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_X86_TRANSFORMS_H

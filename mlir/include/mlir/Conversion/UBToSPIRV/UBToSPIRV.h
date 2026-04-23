@@ -10,8 +10,9 @@
 #define MLIR_CONVERSION_UBTOSPIRV_UBSPIRV_H
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class SPIRVTypeConverter;
 class RewritePatternSet;
@@ -24,6 +25,6 @@ namespace ub {
 void populateUBToSPIRVConversionPatterns(const SPIRVTypeConverter &converter,
                                          RewritePatternSet &patterns);
 } // namespace ub
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_UBTOSPIRV_UBSPIRV_H

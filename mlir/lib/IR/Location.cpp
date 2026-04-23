@@ -23,11 +23,13 @@
 #include <cassert>
 #include <tuple>
 #include <utility>
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::detail;
 
-namespace mlir::detail {
+MLIR_NAMESPACE_BEGIN
+namespace detail {
 struct FileLineColRangeAttrStorage final
     : public ::mlir::AttributeStorage,
       private llvm::TrailingObjects<FileLineColRangeAttrStorage, unsigned> {
@@ -108,7 +110,8 @@ struct FileLineColRangeAttrStorage final
   llvm::PointerIntPair<StringAttr, 2> filenameAndTrailing;
   unsigned startLine = 0;
 };
-} // namespace mlir::detail
+}
+MLIR_NAMESPACE_END // namespace mlir::detail
 
 //===----------------------------------------------------------------------===//
 /// Tablegen Attribute Definitions

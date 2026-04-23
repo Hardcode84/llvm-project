@@ -22,20 +22,22 @@
 #include "llvm/IR/Instruction.h"
 #include "llvm/IR/Instructions.h"
 #include "llvm/Support/FormatVariadic.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class IRBuilderBase;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace LLVM {
 class ModuleImport;
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Target/LLVMIR/LLVMImportDialectInterface.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 /// Interface collection for the import of LLVM IR that dispatches to a concrete
 /// dialect interface implementation. Queries the dialect interfaces to obtain a
 /// list of the supported LLVM IR constructs and then builds a mapping for the
@@ -168,6 +170,6 @@ private:
   DenseMap<unsigned, SmallVector<Dialect *, 1>> metadataToDialect;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_LLVMIR_LLVMIMPORTINTERFACE_H

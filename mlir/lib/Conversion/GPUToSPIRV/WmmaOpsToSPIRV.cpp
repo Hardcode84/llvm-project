@@ -26,8 +26,9 @@
 #include "llvm/ADT/StringSwitch.h"
 
 #include <cassert>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 //===----------------------------------------------------------------------===//
 // Patterns and helpers.
 //===----------------------------------------------------------------------===//
@@ -351,7 +352,7 @@ struct WmmaMmaOpToSPIRVLowering final
 
 } // namespace
 } // namespace khr
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 void mlir::populateGpuWMMAToSPIRVCoopMatrixKHRConversionPatterns(
     const SPIRVTypeConverter &converter, RewritePatternSet &patterns) {

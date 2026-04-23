@@ -15,8 +15,9 @@
 #define MLIR_DIALECT_SCF_UTILS_AFFINECANONICALIZATIONUTILS_H_
 
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class AffineMap;
 class Operation;
 class OpFoldResult;
@@ -78,6 +79,6 @@ LogicalResult rewritePeeledMinMaxOp(RewriterBase &rewriter, Operation *op,
                                     bool insideLoop);
 
 } // namespace scf
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SCF_UTILS_AFFINECANONICALIZATIONUTILS_H_

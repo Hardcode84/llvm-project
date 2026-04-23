@@ -21,8 +21,9 @@
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/IR/Value.h"
 #include "llvm/ADT/ArrayRef.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 using ReassociationIndices = SmallVector<int64_t, 2>;
 
@@ -148,6 +149,6 @@ Value createProduct(OpBuilder &builder, Location loc, ArrayRef<Value> values,
 FloatType parseFloatType(MLIRContext *ctx, StringRef name);
 
 } // namespace arith
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_ARITH_UTILS_UTILS_H

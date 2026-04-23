@@ -21,8 +21,9 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace lsp {
 /// This class contains a collection of compilation information for files
 /// provided to the language server, such as the available include directories.
@@ -66,6 +67,6 @@ private:
   FileInfo defaultFileInfo;
 };
 } // namespace lsp
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_LSPSERVERSUPPORT_COMPILATIONDATABASE_H

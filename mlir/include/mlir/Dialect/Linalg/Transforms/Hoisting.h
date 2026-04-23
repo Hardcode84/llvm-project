@@ -9,7 +9,9 @@
 #ifndef MLIR_DIALECT_LINALG_TRANSFORMS_HOISTING_H_
 #define MLIR_DIALECT_LINALG_TRANSFORMS_HOISTING_H_
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class Operation;
 class RewriterBase;
 namespace scf {
@@ -63,6 +65,6 @@ void hoistRedundantVectorTransfers(Operation *root,
 void hoistRedundantVectorBroadcasts(RewriterBase &rewriter, Operation *root);
 
 } // namespace linalg
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_LINALG_TRANSFORMS_HOISTING_H_

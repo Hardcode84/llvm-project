@@ -19,15 +19,16 @@
 
 #include <functional>
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Operation;
 class DataLayout;
 namespace ptr {
 enum class AtomicBinOp : uint32_t;
 enum class AtomicOrdering : uint32_t;
 } // namespace ptr
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Dialect/Ptr/IR/MemorySpaceAttrInterfaces.h.inc"
 

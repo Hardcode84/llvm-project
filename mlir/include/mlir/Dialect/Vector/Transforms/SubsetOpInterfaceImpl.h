@@ -9,12 +9,14 @@
 #ifndef MLIR_DIALECT_VECTOR_SUBSETOPINTERFACEIMPL_H
 #define MLIR_DIALECT_VECTOR_SUBSETOPINTERFACEIMPL_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace vector {
 void registerSubsetOpInterfaceExternalModels(DialectRegistry &registry);
 } // namespace vector
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_VECTOR_SUBSETOPINTERFACEIMPL_H

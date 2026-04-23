@@ -17,8 +17,9 @@
 #include "mlir/Transforms/InliningUtils.h"
 
 #include "mlir/Dialect/Quant/IR/QuantOpsDialect.cpp.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace quant {
 
 namespace {
@@ -324,7 +325,7 @@ QuantizedType StorageCastOp::getQuantizedType() {
 }
 
 } // namespace quant
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/Quant/IR/QuantOps.cpp.inc"

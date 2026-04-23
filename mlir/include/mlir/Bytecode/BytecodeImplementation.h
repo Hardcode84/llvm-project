@@ -21,8 +21,9 @@
 #include "mlir/IR/OpImplementation.h"
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/Twine.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 //===--------------------------------------------------------------------===//
 // Dialect Version Interface.
 //===--------------------------------------------------------------------===//
@@ -482,7 +483,7 @@ auto getChecked(function_ref<InFlightDiagnostic()> emitError,
   }
 }
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Bytecode/BytecodeDialectInterface.h.inc"
 

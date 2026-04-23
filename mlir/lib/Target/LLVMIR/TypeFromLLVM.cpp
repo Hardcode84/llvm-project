@@ -14,10 +14,11 @@
 #include "llvm/ADT/TypeSwitch.h"
 #include "llvm/IR/DerivedTypes.h"
 #include "llvm/IR/Type.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace LLVM {
 namespace detail {
 /// Support for translating LLVM IR types to MLIR LLVM dialect types.
@@ -167,7 +168,7 @@ private:
 
 } // namespace detail
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 LLVM::TypeFromLLVMIRTranslator::TypeFromLLVMIRTranslator(
     MLIRContext &context, bool importStructsAsLiterals)

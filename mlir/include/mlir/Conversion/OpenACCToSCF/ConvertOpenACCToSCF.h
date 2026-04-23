@@ -10,8 +10,9 @@
 
 #include "mlir/Pass/Pass.h"
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ModuleOp;
 template <typename T>
 class OperationPass;
@@ -24,6 +25,6 @@ class RewritePatternSet;
 /// SCF dialect.
 void populateOpenACCToSCFConversionPatterns(RewritePatternSet &patterns);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_OPENACCTOSCF_CONVERTOPENACCTOSCF_H

@@ -18,8 +18,9 @@
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/IR/Operation.h"
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Verify that the number of dynamic size operands matches the number of
 /// dynamic dimensions in the shaped type. Returns failure and emits an error
@@ -38,6 +39,6 @@ LogicalResult verifyElementTypesMatch(Operation *op, ShapedType lhs,
                                       ShapedType rhs, StringRef lhsName,
                                       StringRef rhsName);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_UTILS_VERIFICATIONUTILS_H

@@ -14,7 +14,10 @@
 #ifndef LIB_MLIR_DIALECT_QUANT_IR_QUANTDIALECTBYTECODE_H
 #define LIB_MLIR_DIALECT_QUANT_IR_QUANTDIALECTBYTECODE_H
 
-namespace mlir::quant {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
+namespace quant {
 class QuantDialect;
 
 namespace detail {
@@ -22,6 +25,7 @@ namespace detail {
 /// components in bytecode.
 void addBytecodeInterface(QuantDialect *dialect);
 } // namespace detail
-} // namespace mlir::quant
+}
+MLIR_NAMESPACE_END // namespace mlir::quant
 
 #endif // LIB_MLIR_DIALECT_QUANT_IR_QUANTDIALECTBYTECODE_H

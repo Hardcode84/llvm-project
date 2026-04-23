@@ -2475,6 +2475,7 @@ OpFoldResult IndexOp::fold(FoldAdaptor adaptor) {
 #include "mlir/Dialect/Linalg/IR/LinalgStructuredOps.cpp.inc"
 #define GET_OP_CLASSES
 #include "mlir/Dialect/Linalg/IR/LinalgRelayoutOps.cpp.inc"
+#include "mlir/Support/ABINamespace.h"
 
 AffineMap mlir::linalg::extractOrIdentityMap(std::optional<AffineMap> maybeMap,
                                              unsigned rank,
@@ -3766,7 +3767,7 @@ verifyExtendedBatchVariantMatmulSemantic(OpTy batchVariantMatmulOp,
   return success();
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace linalg {
 
 std::optional<WinogradConv2DFmr> getWinogradConv2DFmr(int64_t m, int64_t r) {
@@ -6709,7 +6710,7 @@ Speculation::Speculatability BatchReduceMatmulOp::getSpeculatability() {
 }
 
 } // namespace linalg
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // LinalgDialect

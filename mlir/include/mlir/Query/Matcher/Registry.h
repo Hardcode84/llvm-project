@@ -19,8 +19,10 @@
 #include "Marshallers.h"
 #include "llvm/ADT/StringMap.h"
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::query::matcher {
+MLIR_NAMESPACE_BEGIN
+namespace query::matcher {
 
 using ConstructorMap =
     llvm::StringMap<std::unique_ptr<const internal::MatcherDescriptor>>;
@@ -46,6 +48,7 @@ private:
   ConstructorMap constructorMap;
 };
 
-} // namespace mlir::query::matcher
+}
+MLIR_NAMESPACE_END // namespace mlir::query::matcher
 
 #endif // MLIR_TOOLS_MLIRQUERY_MATCHER_REGISTRY_H

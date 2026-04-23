@@ -19,8 +19,9 @@
 
 #include "llvm/Frontend/OpenMP/OMPIRBuilder.h"
 #include "llvm/IR/IRBuilder.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace LLVM {
 
 /// Create a constant string location from the MLIR Location information.
@@ -35,6 +36,6 @@ llvm::Constant *createMappingInformation(Location loc,
                                          llvm::OpenMPIRBuilder &builder);
 
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_LLVMIR_DIALECT_OPENMPCOMMON_H

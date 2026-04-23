@@ -10,8 +10,9 @@
 
 #include "mlir/Conversion/LLVMCommon/TypeConverter.h"
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Pass;
 
 #define GEN_PASS_DECL_CONVERTMATHTONVVM
@@ -22,6 +23,6 @@ class Pass;
 void populateLibDeviceConversionPatterns(const LLVMTypeConverter &converter,
                                          RewritePatternSet &patterns,
                                          PatternBenefit benefit = 1);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_MATHTONVVM_MATHTONVVM_H_

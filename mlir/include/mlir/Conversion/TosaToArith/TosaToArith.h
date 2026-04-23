@@ -14,8 +14,9 @@
 #define MLIR_CONVERSION_TOSATOARITH_TOSATOARITH_H
 
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 #define GEN_PASS_DECL_TOSATOARITHPASS
 #include "mlir/Conversion/Passes.h.inc"
@@ -28,6 +29,6 @@ void populateTosaRescaleToArithConversionPatterns(RewritePatternSet *patterns,
                                                   bool include32Bit = false);
 
 } // namespace tosa
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_TOSATOARITH_TOSATOARITH_H

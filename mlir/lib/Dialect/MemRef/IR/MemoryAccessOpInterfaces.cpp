@@ -10,12 +10,14 @@
 #include "mlir/Dialect/MemRef/IR/MemRef.h"
 #include "mlir/IR/Operation.h"
 #include "mlir/IR/Value.h"
+#include "mlir/Support/ABINamespace.h"
 
 //===----------------------------------------------------------------------===//
 // IndexedAccessOpInterface and IndexedMemCpyOpInterface
 //===----------------------------------------------------------------------===//
 
-namespace mlir::memref {
+MLIR_NAMESPACE_BEGIN
+namespace memref {
 #include "mlir/Dialect/MemRef/IR/MemoryAccessOpInterfaces.cpp.inc"
 
 LogicalResult detail::verifyIndexedAccessOpInterface(Operation *op) {
@@ -62,4 +64,5 @@ LogicalResult detail::verifyIndexedMemCopyOpInterface(Operation *op) {
            << iface.getDstIndices().size();
   return success();
 }
-} // namespace mlir::memref
+}
+MLIR_NAMESPACE_END // namespace mlir::memref

@@ -15,8 +15,9 @@
 #define MLIR_INTERFACES_INFERSTRIDEDMETADATAINTERFACE_H
 
 #include "mlir/Interfaces/InferIntRangeInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 /// A class that represents the strided metadata range information, including
 /// offsets, sizes, and strides as integer ranges.
 class StridedMetadataRange {
@@ -138,7 +139,7 @@ inline raw_ostream &operator<<(raw_ostream &os,
 /// Callback function type for setting the strided metadata of a value.
 using SetStridedMetadataRangeFn =
     function_ref<void(Value, const StridedMetadataRange &)>;
-} // end namespace mlir
+MLIR_NAMESPACE_END // end namespace mlir
 
 #include "mlir/Interfaces/InferStridedMetadataInterface.h.inc"
 

@@ -20,13 +20,14 @@
 #include "mlir/IR/Visitors.h"
 #include "llvm/ADT/StringExtras.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace spirv {
 #define GEN_PASS_DEF_SPIRVUPDATEVCEPASS
 #include "mlir/Dialect/SPIRV/Transforms/Passes.h.inc"
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 

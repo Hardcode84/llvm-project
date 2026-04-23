@@ -13,7 +13,9 @@
 #ifndef MLIR_TARGET_LLVM_ROCDL_TARGET_H
 #define MLIR_TARGET_LLVM_ROCDL_TARGET_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 class MLIRContext;
 namespace ROCDL {
@@ -25,6 +27,6 @@ void registerROCDLTargetInterfaceExternalModels(DialectRegistry &registry);
 /// registry associated with the given context.
 void registerROCDLTargetInterfaceExternalModels(MLIRContext &context);
 } // namespace ROCDL
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_LLVM_ROCDL_TARGET_H

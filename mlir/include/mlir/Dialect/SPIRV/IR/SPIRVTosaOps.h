@@ -12,8 +12,10 @@
 #include "mlir/IR/BuiltinAttributes.h"
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/IR/OpImplementation.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::spirv {
+MLIR_NAMESPACE_BEGIN
+namespace spirv {
 
 ParseResult parseSPIRV_I32_1DArmTensor(OpAsmParser &parser,
                                        DenseIntElementsAttr &attr);
@@ -21,6 +23,7 @@ ParseResult parseSPIRV_I32_1DArmTensor(OpAsmParser &parser,
 void printSPIRV_I32_1DArmTensor(OpAsmPrinter &printer, Operation *,
                                 DenseIntElementsAttr attr);
 
-} // namespace mlir::spirv
+}
+MLIR_NAMESPACE_END // namespace mlir::spirv
 
 #endif // MLIR_DIALECT_SPIRV_IR_SPIRVTOSAOPS_H_

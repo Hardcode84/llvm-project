@@ -25,8 +25,9 @@
 #include "llvm/Support/TypeName.h"
 #include <queue>
 #include <tuple>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // ChangeResult
@@ -264,13 +265,13 @@ struct LatticeAnchor
 /// Forward declaration of the data-flow analysis class.
 class DataFlowAnalysis;
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 template <>
 struct llvm::DenseMapInfo<mlir::LatticeAnchor>
     : public llvm::DenseMapInfo<mlir::LatticeAnchor::ParentTy> {};
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // DataFlowConfig
@@ -779,9 +780,9 @@ inline raw_ostream &operator<<(raw_ostream &os, const LatticeAnchor &anchor) {
   return os;
 }
 
-} // end namespace mlir
+MLIR_NAMESPACE_END // end namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Allow hashing of lattice anchors and program points.
 template <>
 struct DenseMapInfo<mlir::ProgramPoint> {
@@ -814,6 +815,6 @@ template <typename To>
 struct CastInfo<To, const mlir::LatticeAnchor>
     : public CastInfo<To, const mlir::LatticeAnchor::PointerUnion> {};
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // MLIR_ANALYSIS_DATAFLOWFRAMEWORK_H

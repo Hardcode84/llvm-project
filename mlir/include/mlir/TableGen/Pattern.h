@@ -25,14 +25,16 @@
 
 #include <optional>
 #include <unordered_map>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DagInit;
 class Init;
 class Record;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tblgen {
 
 // Mapping from TableGen Record to Operator wrapper object.
@@ -667,9 +669,9 @@ private:
 };
 
 } // namespace tblgen
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <>
 struct DenseMapInfo<mlir::tblgen::DagNode> {
   static mlir::tblgen::DagNode getEmptyKey() {
@@ -705,6 +707,6 @@ struct DenseMapInfo<mlir::tblgen::DagLeaf> {
     return lhs.def == rhs.def;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MLIR_TABLEGEN_PATTERN_H_

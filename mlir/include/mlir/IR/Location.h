@@ -16,8 +16,10 @@
 
 #include "mlir/IR/Attributes.h"
 #include "llvm/Support/PointerLikeTypeTraits.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class Location;
 class WalkResult;
@@ -123,21 +125,23 @@ inline ::llvm::hash_code hash_value(Location arg) {
   return hash_value(arg.impl);
 }
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Tablegen Attribute Declarations
 //===----------------------------------------------------------------------===//
 
 // Forward declaration for class created later.
-namespace mlir::detail {
+MLIR_NAMESPACE_BEGIN
+namespace detail {
 struct FileLineColRangeAttrStorage;
-} // namespace mlir::detail
+}
+MLIR_NAMESPACE_END // namespace mlir::detail
 
 #define GET_ATTRDEF_CLASSES
 #include "mlir/IR/BuiltinLocationAttributes.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // FusedLoc
@@ -217,13 +221,13 @@ struct AttrTypeSubElementHandler<Location> {
   }
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // LLVM Utilities
 //===----------------------------------------------------------------------===//
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Type hash just like pointers.
 template <>
@@ -291,6 +295,6 @@ struct CastInfo<To, From,
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

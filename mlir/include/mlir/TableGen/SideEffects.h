@@ -15,8 +15,9 @@
 
 #include "mlir/Support/LLVM.h"
 #include "mlir/TableGen/Operator.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tblgen {
 
 // This class represents a specific instance of an effect that is being
@@ -59,6 +60,6 @@ public:
 };
 
 } // namespace tblgen
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TABLEGEN_SIDEEFFECTS_H_

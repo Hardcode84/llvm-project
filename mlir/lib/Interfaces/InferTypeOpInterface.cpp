@@ -16,12 +16,13 @@
 #include "mlir/IR/Matchers.h"
 #include "llvm/Support/FormatVariadic.h"
 #include "llvm/Support/InterleavedRange.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #include "mlir/Interfaces/InferTypeOpInterface.cpp.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 LogicalResult
 mlir::reifyResultShapes(OpBuilder &b, Operation *op,

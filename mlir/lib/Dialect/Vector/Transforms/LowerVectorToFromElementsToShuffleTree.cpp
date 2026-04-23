@@ -21,15 +21,16 @@
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/MathExtras.h"
 #include "llvm/Support/raw_ostream.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace vector {
 
 #define GEN_PASS_DEF_LOWERVECTORTOFROMELEMENTSTOSHUFFLETREE
 #include "mlir/Dialect/Vector/Transforms/Passes.h.inc"
 
 } // namespace vector
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define DEBUG_TYPE "lower-vector-to-from-elements-to-shuffle-tree"
 

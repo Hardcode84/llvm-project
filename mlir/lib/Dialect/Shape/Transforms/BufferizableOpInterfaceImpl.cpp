@@ -13,12 +13,13 @@
 #include "mlir/Dialect/Shape/IR/Shape.h"
 #include "mlir/IR/Operation.h"
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::bufferization;
 using namespace mlir::shape;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace shape {
 namespace {
 
@@ -134,7 +135,7 @@ struct AssumingYieldOpInterface
 
 } // namespace
 } // namespace shape
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 void mlir::shape::registerBufferizableOpInterfaceExternalModels(
     DialectRegistry &registry) {

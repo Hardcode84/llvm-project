@@ -24,8 +24,9 @@
 #include "mlir/Interfaces/InferTypeOpInterface.h"
 #include "mlir/Interfaces/ViewLikeInterface.h"
 #include "mlir/Support/RawOstreamExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace linalg {
 class IteratorTypeAttr;
 class LinalgOp;
@@ -226,7 +227,7 @@ LogicalResult verifyStructuredOpInterface(Operation *op);
 
 } // namespace detail
 } // namespace linalg
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Dialect/Linalg/IR/LinalgStructuredOps.h.inc"
 

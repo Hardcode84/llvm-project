@@ -15,8 +15,9 @@
 
 #include "Token.h"
 #include "mlir/AsmParser/AsmParser.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Location;
 
 /// This class breaks up the current file into a token stream.
@@ -80,6 +81,6 @@ private:
   void operator=(const Lexer &) = delete;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_LIB_ASMPARSER_LEXER_H

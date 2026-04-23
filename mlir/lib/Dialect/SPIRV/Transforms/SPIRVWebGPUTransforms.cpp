@@ -24,15 +24,16 @@
 
 #include <array>
 #include <cstdint>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace spirv {
 #define GEN_PASS_DEF_SPIRVWEBGPUPREPAREPASS
 #include "mlir/Dialect/SPIRV/Transforms/Passes.h.inc"
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace spirv {
 namespace {
 //===----------------------------------------------------------------------===//
@@ -263,4 +264,4 @@ void populateSPIRVExpandNonFiniteArithmeticPatterns(
 }
 
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

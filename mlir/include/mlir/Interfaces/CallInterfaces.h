@@ -17,8 +17,10 @@
 #include "mlir/IR/OpImplementation.h"
 #include "mlir/IR/SymbolTable.h"
 #include "llvm/ADT/PointerUnion.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 /// A callable is either a symbol, or an SSA value, that is referenced by a
 /// call-like operation. This represents the destination of the call.
 struct CallInterfaceCallable : public PointerUnion<SymbolRefAttr, Value> {
@@ -98,9 +100,9 @@ void addArgAndResultAttrs(Builder &builder, OperationState &result,
 
 } // namespace call_interface_impl
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Allow llvm::cast style functions.
 template <typename To>
@@ -111,7 +113,7 @@ template <typename To>
 struct CastInfo<To, const mlir::CallInterfaceCallable>
     : public CastInfo<To, const mlir::CallInterfaceCallable::PointerUnion> {};
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 /// Include the generated interface declarations.
 #include "mlir/Interfaces/CallInterfaces.h.inc"

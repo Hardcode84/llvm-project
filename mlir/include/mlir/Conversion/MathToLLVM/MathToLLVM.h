@@ -11,8 +11,9 @@
 
 #include "mlir/IR/PatternMatch.h"
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class DialectRegistry;
 class LLVMTypeConverter;
@@ -29,6 +30,6 @@ void populateMathToLLVMConversionPatterns(const LLVMTypeConverter &converter,
 
 void registerConvertMathToLLVMInterface(DialectRegistry &registry);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_MATHTOLLVM_MATHTOLLVM_H

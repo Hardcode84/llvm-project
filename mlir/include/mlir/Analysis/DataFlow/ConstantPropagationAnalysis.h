@@ -18,8 +18,9 @@
 
 #include "mlir/Analysis/DataFlow/SparseAnalysis.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace dataflow {
 
 //===----------------------------------------------------------------------===//
@@ -110,6 +111,6 @@ public:
 };
 
 } // end namespace dataflow
-} // end namespace mlir
+MLIR_NAMESPACE_END // end namespace mlir
 
 #endif // MLIR_ANALYSIS_DATAFLOW_CONSTANTPROPAGATIONANALYSIS_H

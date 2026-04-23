@@ -18,8 +18,9 @@
 #include "llvm/Support/LSP/Protocol.h"
 #include "llvm/Support/SourceMgr.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace lsp {
 //===----------------------------------------------------------------------===//
 // Utils
@@ -66,6 +67,6 @@ void gatherIncludeFiles(llvm::SourceMgr &sourceMgr,
                         SmallVectorImpl<SourceMgrInclude> &includes);
 
 } // namespace lsp
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif

@@ -17,8 +17,9 @@
 #include "mlir/Dialect/GPU/IR/GPUDialect.h"
 #include "mlir/IR/BuiltinOps.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace acc {
 
 /// Default GPU module name used by OpenACC.
@@ -40,6 +41,6 @@ getOrCreateGPUModule(ModuleOp mod, bool create = true,
                      llvm::StringRef name = kDefaultGPUModuleName);
 
 } // namespace acc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_OPENACC_OPENACCUTILSGPU_H_

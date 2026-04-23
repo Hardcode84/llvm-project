@@ -13,8 +13,9 @@
 #include "mlir/IR/Operation.h"
 #include "mlir/IR/SymbolTable.h"
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace bufferization {
 
 /// Compare two SSA values in a deterministic manner. Two block arguments are
@@ -236,7 +237,7 @@ insertDeallocOpForReturnLike(DeallocationState &state, Operation *op,
 } // namespace deallocation_impl
 
 } // namespace bufferization
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Buffer Deallocation Interface

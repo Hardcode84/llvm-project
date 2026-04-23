@@ -15,8 +15,9 @@
 
 #include "mlir/IR/AsmState.h"
 #include "llvm/Config/llvm-config.h" // for LLVM_VERSION_STRING
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectBytecodeWriter;
 class DialectVersion;
 class Operation;
@@ -192,6 +193,6 @@ private:
 LogicalResult writeBytecodeToFile(Operation *op, raw_ostream &os,
                                   const BytecodeWriterConfig &config = {});
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_BYTECODE_BYTECODEWRITER_H

@@ -14,8 +14,9 @@
 #define MLIR_TRANSFORMS_CSE_H_
 
 #include <cstdint>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class DominanceInfo;
 class Operation;
@@ -43,6 +44,6 @@ void eliminateCommonSubExpressions(RewriterBase &rewriter,
                                    DominanceInfo &domInfo, Region &region,
                                    bool *changed = nullptr);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRANSFORMS_CSE_H_

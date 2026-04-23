@@ -14,8 +14,9 @@
 #define MLIR_CONVERSION_GPUTOSPIRV_GPUTOSPIRVPASS_H
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class ModuleOp;
 template <typename T>
@@ -31,5 +32,5 @@ class OperationPass;
 std::unique_ptr<OperationPass<ModuleOp>>
 createConvertGPUToSPIRVPass(bool mapMemorySpace = true);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 #endif // MLIR_CONVERSION_GPUTOSPIRV_GPUTOSPIRVPASS_H

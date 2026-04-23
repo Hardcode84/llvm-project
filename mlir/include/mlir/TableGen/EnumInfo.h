@@ -17,13 +17,16 @@
 #include "mlir/Support/LLVM.h"
 #include "mlir/TableGen/Attribute.h"
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DefInit;
 class Record;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir::tblgen {
+MLIR_NAMESPACE_BEGIN
+namespace tblgen {
 
 // Wrapper class providing around enum cases defined in TableGen.
 class EnumCase {
@@ -132,6 +135,7 @@ protected:
   const llvm::Record *def;
 };
 
-} // namespace mlir::tblgen
+}
+MLIR_NAMESPACE_END // namespace mlir::tblgen
 
 #endif

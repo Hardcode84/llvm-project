@@ -32,6 +32,7 @@ using namespace mlir::linalg;
 
 /// Include the definitions of the copy operation interface.
 #include "mlir/Dialect/Linalg/IR/LinalgInterfaces.cpp.inc"
+#include "mlir/Support/ABINamespace.h"
 
 //===----------------------------------------------------------------------===//
 // Interface utility functions
@@ -515,7 +516,8 @@ mlir::linalg::inferContractionDims(ArrayRef<AffineMap> indexingMaps) {
   return inferContractionDimsImpl(indexingMaps, iterators.value());
 }
 
-namespace mlir::linalg::detail {
+MLIR_NAMESPACE_BEGIN
+namespace linalg::detail {
 enum class MatchContractionResult {
   Success = 0,
   NotLinalgOp,
@@ -524,7 +526,8 @@ enum class MatchContractionResult {
   NotProjectedPermutations,
   NotAddMul
 };
-} // namespace mlir::linalg::detail
+}
+MLIR_NAMESPACE_END // namespace mlir::linalg::detail
 
 mlir::linalg::detail::MatchContractionResult
 mlir::linalg::detail::isContractionInterfaceImpl(
@@ -899,7 +902,8 @@ mlir::linalg::inferConvolutionDims(LinalgOp linalgOp) {
                                   /*allowEmptyConvolvedDims=*/false);
 }
 
-namespace mlir::linalg::detail {
+MLIR_NAMESPACE_BEGIN
+namespace linalg::detail {
 enum class MatchConvolutionResult {
   Success = 0,
   NotLinalgOp,
@@ -911,7 +915,8 @@ enum class MatchConvolutionResult {
   NonOutputDimNotReduction,
   EmptyConvolvedDims
 };
-} // namespace mlir::linalg::detail
+}
+MLIR_NAMESPACE_END // namespace mlir::linalg::detail
 
 mlir::linalg::detail::MatchConvolutionResult
 mlir::linalg::detail::isConvolutionInterfaceImpl(

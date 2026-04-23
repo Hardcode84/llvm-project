@@ -12,8 +12,9 @@
 #include "mlir/Dialect/SCF/IR/SCF.h"
 #include "mlir/Dialect/SCF/Transforms/Transforms.h"
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class ConversionTarget;
 class TypeConverter;
@@ -84,6 +85,6 @@ void populateUpliftWhileToForPatterns(RewritePatternSet &patterns);
 /// from `while` loops.
 void populateSCFRotateWhileLoopPatterns(RewritePatternSet &patterns);
 } // namespace scf
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SCF_TRANSFORMS_PATTERNS_H

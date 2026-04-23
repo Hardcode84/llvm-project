@@ -31,8 +31,9 @@
 
 #define GET_TYPEDEF_CLASSES
 #include "mlir/Dialect/X86/X86Types.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace x86 {
 namespace amx {
 // Alias to allow access to AMX type through nested namespaces
@@ -40,7 +41,7 @@ namespace amx {
 using TileType = mlir::x86::AMXTileType;
 } // namespace amx
 } // namespace x86
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/X86/X86.h.inc"

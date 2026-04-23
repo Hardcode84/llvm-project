@@ -12,8 +12,9 @@
 #include "mlir/Support/LLVM.h"
 #include "llvm/ADT/StringMap.h"
 #include "llvm/Support/SourceMgr.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Attribute;
 class Type;
 
@@ -73,6 +74,6 @@ private:
   /// The location used to code complete.
   SMLoc codeCompleteLoc;
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_ASMPARSER_CODECOMPLETE_H

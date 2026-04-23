@@ -17,13 +17,14 @@
 #include "mlir/Config/mlir-config.h"
 #include "nanobind/nanobind.h"
 #include <type_traits>
+#include "mlir/Support/ABINamespace.h"
 
 namespace nb = nanobind;
 using namespace mlir;
 using namespace nb::literals;
 using namespace mlir::python::MLIR_BINDINGS_PYTHON_DOMAIN;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace python {
 namespace MLIR_BINDINGS_PYTHON_DOMAIN {
 
@@ -816,4 +817,4 @@ void populateRewriteSubmodule(nb::module_ &m) {
 }
 } // namespace MLIR_BINDINGS_PYTHON_DOMAIN
 } // namespace python
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

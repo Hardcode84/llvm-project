@@ -17,8 +17,9 @@
 #include "mlir/IR/PatternMatch.h"
 
 #include "mlir/Dialect/Vector/Transforms/VectorTransformsEnums.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ConversionTarget;
 class RewritePatternSet;
 class TypeConverter;
@@ -467,6 +468,6 @@ void populateVectorLinearizeShuffleLikeOpsPatterns(const TypeConverter &,
                                                    RewritePatternSet &patterns);
 
 } // namespace vector
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_VECTOR_TRANSFORMS_VECTORREWRITEPATTERNS_H

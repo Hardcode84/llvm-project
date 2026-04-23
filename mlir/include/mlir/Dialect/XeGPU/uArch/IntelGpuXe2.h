@@ -22,11 +22,12 @@
 #include "llvm/Support/DebugLog.h"
 #include <map>
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::xegpu::uArch;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace xegpu {
 namespace uArch {
 
@@ -319,7 +320,7 @@ inline const uArch *getUArch(llvm::StringRef archName) {
 
 } // namespace uArch
 } // namespace xegpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Instruction implementations

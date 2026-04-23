@@ -10,8 +10,9 @@
 #define MLIR_TARGET_LLVMIR_TRANSFORMS_PASSES_H
 
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace LLVM {
 
 #define GEN_PASS_DECL
@@ -21,6 +22,6 @@ namespace LLVM {
 void registerTargetLLVMPasses();
 
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_LLVMIR_TRANSFORMS_PASSES_H

@@ -14,7 +14,9 @@
 #ifndef MLIR_DIALECT_GPU_TRANSFORMS_MEMORYPROMOTION_H
 #define MLIR_DIALECT_GPU_TRANSFORMS_MEMORYPROMOTION_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 
 namespace gpu {
 class GPUFuncOp;
@@ -24,6 +26,6 @@ class GPUFuncOp;
 /// copies will be inserted in the beginning and in the end of the function.
 void promoteToWorkgroupMemory(gpu::GPUFuncOp op, unsigned arg);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_GPU_TRANSFORMS_MEMORYPROMOTION_H

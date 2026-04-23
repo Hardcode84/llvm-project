@@ -22,8 +22,9 @@
 #include "mlir/Interfaces/CallInterfaces.h"
 #include "llvm/ADT/BitVector.h"
 #include "llvm/ADT/SmallString.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class FunctionOpInterface;
 
 namespace function_interface_impl {
@@ -230,7 +231,7 @@ LogicalResult verifyTrait(ConcreteOp op) {
   return op.verifyBody();
 }
 } // namespace function_interface_impl
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Tablegen Interface Declarations

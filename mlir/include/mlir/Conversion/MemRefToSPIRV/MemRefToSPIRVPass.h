@@ -15,8 +15,9 @@
 
 #include "mlir/Dialect/SPIRV/IR/SPIRVEnums.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ModuleOp;
 
 #define GEN_PASS_DECL_MAPMEMREFSTORAGECLASS
@@ -27,6 +28,6 @@ class ModuleOp;
 /// storage classes. The mapping is read from the command-line option.
 std::unique_ptr<OperationPass<>> createMapMemRefStorageClassPass();
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_MEMREFTOSPIRV_MEMREFTOSPIRVPASS_H

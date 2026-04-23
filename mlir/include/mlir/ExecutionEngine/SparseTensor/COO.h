@@ -18,8 +18,9 @@
 #include <cinttypes>
 #include <functional>
 #include <vector>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace sparse_tensor {
 
 /// An element of a sparse tensor in coordinate-scheme representation
@@ -145,6 +146,6 @@ private:
 };
 
 } // namespace sparse_tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_EXECUTIONENGINE_SPARSETENSOR_COO_H

@@ -37,8 +37,10 @@
 #include "llvm/ADT/StringRef.h"
 #include <memory>
 #include <vector>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::query::matcher::internal {
+MLIR_NAMESPACE_BEGIN
+namespace query::matcher::internal {
 
 // Matcher expression parser.
 class Parser {
@@ -188,6 +190,7 @@ private:
   std::vector<MatcherCompletion> completions;
 };
 
-} // namespace mlir::query::matcher::internal
+}
+MLIR_NAMESPACE_END // namespace mlir::query::matcher::internal
 
 #endif // MLIR_TOOLS_MLIRQUERY_MATCHER_PARSER_H

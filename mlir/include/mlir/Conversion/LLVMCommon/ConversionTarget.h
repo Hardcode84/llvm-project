@@ -10,14 +10,15 @@
 #define MLIR_CONVERSION_LLVMCOMMON_CONVERSIONTARGET_H
 
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 /// Derived class that automatically populates legalization information for
 /// different LLVM ops.
 class LLVMConversionTarget : public ConversionTarget {
 public:
   explicit LLVMConversionTarget(MLIRContext &ctx);
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_LLVMCOMMON_CONVERSIONTARGET_H

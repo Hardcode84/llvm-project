@@ -22,12 +22,14 @@
 #include "llvm/ADT/SmallBitVector.h"
 #include "llvm/ADT/SmallVectorExtras.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SmallBitVector;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 namespace detail {
 struct AffineMapStorage;
@@ -708,9 +710,9 @@ static void getMaxDimAndSymbol(ArrayRef<AffineExprContainer> exprsList,
   }
 }
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // AffineExpr hash just like pointers
 template <>
@@ -731,6 +733,6 @@ struct DenseMapInfo<mlir::AffineMap> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MLIR_IR_AFFINEMAP_H

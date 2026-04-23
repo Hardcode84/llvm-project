@@ -9,8 +9,9 @@
 #define MLIR_CONVERSION_XEVMTOLLVM_XEVMTOLLVMPASS_H_
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ConversionTarget;
 class DialectRegistry;
 class LLVMTypeConverter;
@@ -24,6 +25,6 @@ void populateXeVMToLLVMConversionPatterns(ConversionTarget &target,
                                           RewritePatternSet &patterns);
 
 void registerConvertXeVMToLLVMInterface(DialectRegistry &registry);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_XEVMTOLLVM_XEVMTOLLVMPASS_H_

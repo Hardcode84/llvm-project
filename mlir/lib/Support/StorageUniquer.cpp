@@ -12,6 +12,7 @@
 #include "mlir/Support/ThreadLocalCache.h"
 #include "mlir/Support/TypeID.h"
 #include "llvm/Support/RWMutex.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::detail;
@@ -245,7 +246,7 @@ private:
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace detail {
 /// This is the implementation of the StorageUniquer class.
 struct StorageUniquerImpl {
@@ -356,7 +357,7 @@ struct StorageUniquerImpl {
   bool threadingIsEnabled = true;
 };
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 StorageUniquer::StorageUniquer() : impl(new StorageUniquerImpl()) {}
 StorageUniquer::~StorageUniquer() = default;

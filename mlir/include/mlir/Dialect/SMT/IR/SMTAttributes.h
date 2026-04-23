@@ -12,8 +12,9 @@
 #include "mlir/IR/Attributes.h"
 #include "mlir/IR/BuiltinAttributeInterfaces.h"
 #include "mlir/IR/BuiltinAttributes.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace smt {
 namespace detail {
 
@@ -21,7 +22,7 @@ struct BitVectorAttrStorage;
 
 } // namespace detail
 } // namespace smt
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define GET_ATTRDEF_CLASSES
 #include "mlir/Dialect/SMT/IR/SMTAttributes.h.inc"

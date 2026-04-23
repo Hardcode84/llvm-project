@@ -19,8 +19,9 @@
 #include "mlir/IR/PatternMatch.h"
 #include "llvm/ADT/ArrayRef.h"
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class ModuleOp;
 
@@ -84,6 +85,6 @@ lookupOrCreateFnDecl(OpBuilder &b, SymbolOpInterface symTable, StringRef name,
                      Type resultType = {});
 
 } // namespace func
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_FUNC_UTILS_H

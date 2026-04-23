@@ -32,17 +32,19 @@
 #include "mlir/Interfaces/ViewLikeInterface.h"
 #include "mlir/Support/ThreadLocalCache.h"
 #include "llvm/ADT/PointerEmbeddedInt.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Type;
 class LLVMContext;
 namespace sys {
 template <bool mt_only>
 class SmartMutex;
 } // namespace sys
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace LLVM {
 class LLVMDialect;
 
@@ -51,9 +53,9 @@ struct LLVMTypeStorage;
 struct LLVMDialectImpl;
 } // namespace detail
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace LLVM {
 template <typename Values>
 class GEPIndicesAdaptor;
@@ -81,14 +83,14 @@ public:
   using BaseT::operator=;
 };
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace LLVM {
 struct AssumeAlignTag {};
 struct AssumeSeparateStorageTag {};
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 ///// Ops /////
 #define GET_OP_CLASSES
@@ -98,7 +100,7 @@ struct AssumeSeparateStorageTag {};
 
 #include "mlir/Dialect/LLVMIR/LLVMOpsDialect.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace LLVM {
 
 /// Class used for convenient access and iteration over GEP indices.
@@ -240,9 +242,9 @@ SmallVector<IntT> convertArrayToIndices(ArrayAttr attrs) {
 }
 
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Allow llvm::cast style functions.
 template <typename To>
@@ -253,6 +255,6 @@ template <typename To>
 struct CastInfo<To, const mlir::LLVM::GEPArg>
     : public CastInfo<To, const mlir::LLVM::GEPArg::PointerUnion> {};
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MLIR_DIALECT_LLVMIR_LLVMDIALECT_H_

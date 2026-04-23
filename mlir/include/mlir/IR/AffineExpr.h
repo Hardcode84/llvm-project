@@ -21,8 +21,10 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Support/Casting.h"
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class MLIRContext;
 class AffineMap;
@@ -347,9 +349,9 @@ getBoundForAffineExpr(AffineExpr expr, unsigned numDims, unsigned numSymbols,
                       ArrayRef<std::optional<int64_t>> constUpperBounds,
                       bool isUpper);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // AffineExpr hash just like pointers
 template <>
@@ -399,6 +401,6 @@ struct CastInfo<To, From,
   static inline To doCast(mlir::AffineExpr expr) { return To(expr.getImpl()); }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MLIR_IR_AFFINEEXPR_H

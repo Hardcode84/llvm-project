@@ -12,8 +12,9 @@
 #include "mlir/IR/Location.h"
 #include "mlir/IR/PatternMatch.h"
 #include "llvm/ADT/STLExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace emitc {
 
 ExpressionOp createExpression(Operation *op, OpBuilder &builder) {
@@ -48,7 +49,7 @@ ExpressionOp createExpression(Operation *op, OpBuilder &builder) {
 }
 
 } // namespace emitc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using namespace mlir;
 using namespace mlir::emitc;

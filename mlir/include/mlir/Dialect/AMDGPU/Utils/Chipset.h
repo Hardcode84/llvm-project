@@ -10,8 +10,10 @@
 
 #include "mlir/Support/LLVM.h"
 #include <tuple>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::amdgpu {
+MLIR_NAMESPACE_BEGIN
+namespace amdgpu {
 
 /// Represents the amdgpu gfx chipset version, e.g., gfx90a, gfx942, gfx1103.
 /// Note that the leading digits form a decimal number, while the last two
@@ -54,6 +56,7 @@ inline bool hasOcpFp8(const Chipset &chipset) {
          chipset.majorVersion >= 12;
 }
 
-} // namespace mlir::amdgpu
+}
+MLIR_NAMESPACE_END // namespace mlir::amdgpu
 
 #endif

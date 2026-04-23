@@ -11,9 +11,10 @@
 //===----------------------------------------------------------------------===//
 
 #include "mlir/Interfaces/DerivedAttributeOpInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #include "mlir/Interfaces/DerivedAttributeOpInterface.cpp.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

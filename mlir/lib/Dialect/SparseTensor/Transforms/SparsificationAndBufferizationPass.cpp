@@ -25,10 +25,11 @@
 #include "mlir/Dialect/Vector/IR/VectorOps.h"
 #include "mlir/Pass/PassManager.h"
 #include "mlir/Transforms/Passes.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 #define GEN_PASS_DEF_SPARSIFICATIONANDBUFFERIZATION
 #include "mlir/Dialect/SparseTensor/Transforms/Passes.h.inc"
@@ -212,7 +213,7 @@ private:
 };
 
 } // namespace sparse_tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 mlir::bufferization::OneShotBufferizationOptions
 mlir::getBufferizationOptionsForSparsification(bool analysisOnly) {

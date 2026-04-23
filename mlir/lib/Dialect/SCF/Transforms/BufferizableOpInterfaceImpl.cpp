@@ -20,12 +20,13 @@
 #include "mlir/IR/Operation.h"
 #include "mlir/IR/PatternMatch.h"
 #include "llvm/ADT/SmallVectorExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::bufferization;
 using namespace mlir::scf;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace scf {
 namespace {
 
@@ -1375,7 +1376,7 @@ struct InParallelOpInterface
 
 } // namespace
 } // namespace scf
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 void mlir::scf::registerBufferizableOpInterfaceExternalModels(
     DialectRegistry &registry) {

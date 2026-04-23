@@ -14,8 +14,9 @@
 #if MLIR_ENABLE_PDL_IN_PATTERNMATCH
 #include "mlir/IR/Builders.h"
 #include "mlir/IR/BuiltinOps.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 //===----------------------------------------------------------------------===//
 // PDL Patterns
 //===----------------------------------------------------------------------===//
@@ -945,11 +946,11 @@ private:
   llvm::StringMap<PDLConstraintFunction> constraintFunctions;
   llvm::StringMap<PDLRewriteFunction> rewriteFunctions;
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #else
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 // Stubs for when PDL in pattern rewrites is not enabled.
 
 class PDLValue {
@@ -989,7 +990,7 @@ private:
   llvm::StringMap<PDLConstraintFunction> constraintFunctions;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 #endif
 
 #endif // MLIR_IR_PDLPATTERNMATCH_H

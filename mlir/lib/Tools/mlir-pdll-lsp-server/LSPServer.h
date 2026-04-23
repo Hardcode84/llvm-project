@@ -10,15 +10,17 @@
 #define LIB_MLIR_TOOLS_MLIRPDLLLSPSERVER_LSPSERVER_H
 
 #include <memory>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct LogicalResult;
 namespace lsp {
 class JSONTransport;
 } // namespace lsp
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace lsp {
 class PDLLServer;
 
@@ -28,6 +30,6 @@ llvm::LogicalResult runPdllLSPServer(PDLLServer &server,
                                      llvm::lsp::JSONTransport &transport);
 
 } // namespace lsp
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // LIB_MLIR_TOOLS_MLIRPDLLLSPSERVER_LSPSERVER_H

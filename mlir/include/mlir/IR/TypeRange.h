@@ -19,8 +19,10 @@
 #include "llvm/ADT/PointerUnion.h"
 #include "llvm/ADT/Repeated.h"
 #include "llvm/ADT/Sequence.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // TypeRange
@@ -198,9 +200,9 @@ struct AttrTypeSubElementHandler<TypeRange> {
   }
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Provide DenseMapInfo for TypeRange.
 template <>
@@ -247,6 +249,6 @@ private:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MLIR_IR_TYPERANGE_H

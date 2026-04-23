@@ -15,8 +15,10 @@
 
 #include <set>
 #include <utility>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::query::matcher {
+MLIR_NAMESPACE_BEGIN
+namespace query::matcher {
 namespace {
 
 // Enum to string for autocomplete.
@@ -149,4 +151,5 @@ VariantMatcher RegistryManager::constructMatcher(
   return {};
 }
 
-} // namespace mlir::query::matcher
+}
+MLIR_NAMESPACE_END // namespace mlir::query::matcher

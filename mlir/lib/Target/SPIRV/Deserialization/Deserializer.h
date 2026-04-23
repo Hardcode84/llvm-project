@@ -23,8 +23,9 @@
 #include "llvm/Support/ScopedPrinter.h"
 #include <cstdint>
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace spirv {
 
 //===----------------------------------------------------------------------===//
@@ -729,6 +730,6 @@ private:
 };
 
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_SPIRV_DESERIALIZER_H

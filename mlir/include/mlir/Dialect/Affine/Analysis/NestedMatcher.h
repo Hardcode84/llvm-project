@@ -12,8 +12,9 @@
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/IR/Operation.h"
 #include "llvm/Support/Allocator.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Operation;
 
 namespace affine {
@@ -193,6 +194,6 @@ bool isLoadOrStore(Operation &op);
 
 } // namespace matcher
 } // namespace affine
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_AFFINE_ANALYSIS_NESTEDMATCHER_H

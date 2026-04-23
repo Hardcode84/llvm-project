@@ -8,7 +8,9 @@
 
 #ifndef MLIR_CONVERSION_MATHTOEMITC_MATHTOEMITC_H
 #define MLIR_CONVERSION_MATHTOEMITC_MATHTOEMITC_H
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class RewritePatternSet;
 namespace emitc {
 
@@ -19,6 +21,6 @@ enum class LanguageTarget { c99, cpp11 };
 
 void populateConvertMathToEmitCPatterns(RewritePatternSet &patterns,
                                         emitc::LanguageTarget languageTarget);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_MATHTOEMITC_MATHTOEMITC_H

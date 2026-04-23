@@ -22,8 +22,9 @@
 
 #include <memory>
 #include <variant>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class AsmResourcePrinter;
 class AsmDialectResourceHandle;
 class Operation;
@@ -610,6 +611,6 @@ private:
 /// various flags within the AsmPrinter.
 void registerAsmPrinterCLOptions();
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_IR_ASMSTATE_H_

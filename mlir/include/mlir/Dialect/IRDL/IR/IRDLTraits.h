@@ -16,8 +16,9 @@
 
 #include "mlir/IR/OpDefinition.h"
 #include "llvm/Support/Casting.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace OpTrait {
 
 /// Characterize operations that have at most a single operation of certain
@@ -75,6 +76,6 @@ public:
   };
 };
 } // namespace OpTrait
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_IRDL_IR_IRDLTRAITS_H_

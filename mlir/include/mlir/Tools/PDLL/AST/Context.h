@@ -11,8 +11,9 @@
 
 #include "mlir/Support/StorageUniquer.h"
 #include "mlir/Tools/PDLL/AST/Diagnostic.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace pdll {
 namespace ods {
 class Context;
@@ -58,6 +59,6 @@ private:
 
 } // namespace ast
 } // namespace pdll
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_PDLL_AST_CONTEXT_H_

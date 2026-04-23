@@ -21,8 +21,10 @@
 #include "llvm/ADT/MapVector.h"
 #include "llvm/ADT/PointerIntPair.h"
 #include "llvm/ADT/SetVector.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class CallOpInterface;
 struct CallInterfaceCallable;
 class Operation;
@@ -224,9 +226,9 @@ private:
   CallGraphNode unknownCalleeNode;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Provide graph traits for traversing call graphs using standard graph
 // traversals.
 template <>
@@ -262,6 +264,6 @@ struct GraphTraits<const mlir::CallGraph *>
   static nodes_iterator nodes_begin(mlir::CallGraph *cg) { return cg->begin(); }
   static nodes_iterator nodes_end(mlir::CallGraph *cg) { return cg->end(); }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MLIR_ANALYSIS_CALLGRAPH_H

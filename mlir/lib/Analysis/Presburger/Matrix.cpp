@@ -14,6 +14,7 @@
 #include <algorithm>
 #include <cassert>
 #include <utility>
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace presburger;
@@ -453,12 +454,12 @@ bool Matrix<T>::hasConsistentState() const {
   return true;
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace presburger {
 template class Matrix<DynamicAPInt>;
 template class Matrix<Fraction>;
 } // namespace presburger
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 IntMatrix IntMatrix::identity(unsigned dimension) {
   IntMatrix matrix(dimension, dimension);

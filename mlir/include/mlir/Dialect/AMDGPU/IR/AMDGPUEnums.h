@@ -12,8 +12,10 @@
 #include "mlir/IR/BuiltinAttributeInterfaces.h"
 #include "mlir/IR/OpImplementation.h"
 #include "llvm/ADT/STLExtras.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::amdgpu {
+MLIR_NAMESPACE_BEGIN
+namespace amdgpu {
 
 inline int32_t getGlobalPrefetchLLVMEncoding(amdgpu::LoadTemporalHint hint,
                                              amdgpu::Scope scope,
@@ -32,6 +34,7 @@ inline int32_t getGlobalPrefetchLLVMEncoding(amdgpu::LoadTemporalHint hint,
   return static_cast<int32_t>(scope) << 3 | immArg;
 }
 
-} // namespace mlir::amdgpu
+}
+MLIR_NAMESPACE_END // namespace mlir::amdgpu
 
 #endif

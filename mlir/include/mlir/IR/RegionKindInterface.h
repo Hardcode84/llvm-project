@@ -15,8 +15,9 @@
 #define MLIR_IR_REGIONKINDINTERFACE_H_
 
 #include "mlir/IR/OpDefinition.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// The kinds of regions contained in an operation. SSACFG regions
 /// require the SSA-Dominance property to hold. Graph regions do not
@@ -49,7 +50,7 @@ bool mayHaveSSADominance(Region &region);
 /// implement the RegionKindInterface.
 bool mayBeGraphRegion(Region &region);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/IR/RegionKindInterface.h.inc"
 

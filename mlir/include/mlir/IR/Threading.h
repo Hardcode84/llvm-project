@@ -21,8 +21,9 @@
 #include "llvm/ADT/Sequence.h"
 #include "llvm/Support/ThreadPool.h"
 #include <atomic>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Invoke the given function on the elements between [begin, end)
 /// asynchronously. If the given function returns a failure when processing any
@@ -142,6 +143,6 @@ void parallelFor(MLIRContext *context, size_t begin, size_t end, FuncT &&func) {
   parallelForEach(context, llvm::seq(begin, end), std::forward<FuncT>(func));
 }
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_IR_THREADING_H

@@ -16,8 +16,9 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/Hashing.h"
 #include "llvm/ADT/bit.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace quant {
 namespace detail {
 
@@ -424,6 +425,6 @@ struct CalibratedQuantizedTypeStorage : public QuantizedTypeStorage {
 
 } // namespace detail
 } // namespace quant
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // TYPE_DETAIL_H_

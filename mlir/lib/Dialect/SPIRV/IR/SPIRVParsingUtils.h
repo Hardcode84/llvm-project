@@ -17,8 +17,10 @@
 #include "llvm/ADT/StringRef.h"
 
 #include <type_traits>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::spirv {
+MLIR_NAMESPACE_BEGIN
+namespace spirv {
 namespace AttrNames {
 
 inline constexpr char kClusterSize[] = "cluster_size"; // no ODS generation
@@ -123,4 +125,5 @@ parseEnumKeywordAttr(EnumClass &value, OpAsmParser &parser,
 ParseResult parseVariableDecorations(OpAsmParser &parser,
                                      OperationState &state);
 
-} // namespace mlir::spirv
+}
+MLIR_NAMESPACE_END // namespace mlir::spirv

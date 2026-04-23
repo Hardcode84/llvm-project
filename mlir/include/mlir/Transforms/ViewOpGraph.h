@@ -15,8 +15,9 @@
 
 #include "mlir/Support/LLVM.h"
 #include "llvm/Support/raw_ostream.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Pass;
 
 #define GEN_PASS_DECL_VIEWOPGRAPHPASS
@@ -25,6 +26,6 @@ class Pass;
 /// Creates a pass to print op graphs with the specified output stream.
 std::unique_ptr<Pass> createViewOpGraphPass(raw_ostream &os);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRANSFORMS_VIEWOPGRAPH_H_

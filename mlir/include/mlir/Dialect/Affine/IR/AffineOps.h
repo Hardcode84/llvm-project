@@ -21,7 +21,8 @@
 #include "mlir/IR/Builders.h"
 #include "mlir/Interfaces/ControlFlowInterfaces.h"
 #include "mlir/Interfaces/LoopLikeInterface.h"
-namespace mlir {
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 namespace affine {
 
 class AffineApplyOp;
@@ -156,14 +157,14 @@ void fullyComposeAffineMapAndOperands(AffineMap *map,
                                       bool composeAffineMin = false);
 
 } // namespace affine
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Dialect/Affine/IR/AffineOpsDialect.h.inc"
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/Affine/IR/AffineOps.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace affine {
 
 /// Returns true if the provided value is the induction variable of an
@@ -246,6 +247,6 @@ private:
 };
 
 } // namespace affine
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif

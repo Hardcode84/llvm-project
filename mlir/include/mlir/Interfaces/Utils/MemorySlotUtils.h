@@ -15,8 +15,9 @@
 #define MLIR_INTERFACES_UTILS_MEMORYSLOTUTILS_H
 
 #include "mlir/IR/PatternMatch.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace memoryslot {
 
 /// Appends the reaching definition for the given block as an operand to its
@@ -31,6 +32,6 @@ Operation *replaceWithNewResults(RewriterBase &rewriter, Operation *op,
                                  TypeRange resultTypes);
 
 } // namespace memoryslot
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_INTERFACES_UTILS_MEMORYSLOTUTILS_H

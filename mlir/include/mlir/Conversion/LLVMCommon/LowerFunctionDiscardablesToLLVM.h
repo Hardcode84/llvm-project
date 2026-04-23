@@ -17,8 +17,9 @@
 #include "mlir/Dialect/LLVMIR/LLVMDialect.h"
 #include "mlir/IR/OperationSupport.h"
 #include "mlir/Interfaces/FunctionInterfaces.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Result of lowering discardable attributes from a `FunctionOpInterface` to
 /// what `llvm.func` expects: typed inherent properties plus remaining
@@ -35,6 +36,6 @@ struct LoweredLLVMFuncAttrs {
 FailureOr<LoweredLLVMFuncAttrs>
 lowerDiscardableAttrsForLLVMFunc(FunctionOpInterface funcOp, Type llvmFuncType);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_LLVMCOMMON_LOWERFUNCTIONDISCARDABLESTOLLVM_H

@@ -12,8 +12,9 @@
 #include "mlir/Dialect/Vector/Transforms/VectorRewritePatterns.h"
 #include "mlir/Dialect/Vector/Utils/VectorUtils.h"
 #include "mlir/Interfaces/FunctionInterfaces.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class MLIRContext;
 class VectorTransferOpInterface;
 class RewritePatternSet;
@@ -133,6 +134,6 @@ void eliminateVectorMasks(IRRewriter &rewriter, FunctionOpInterface function,
                           std::optional<VscaleRange> vscaleRange = {});
 
 } // namespace vector
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_VECTOR_TRANSFORMS_VECTORTRANSFORMS_H

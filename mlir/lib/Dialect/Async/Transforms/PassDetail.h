@@ -12,8 +12,9 @@
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/IR/Dialect.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 namespace arith {
 class ArithDialect;
@@ -45,6 +46,6 @@ void cloneConstantsIntoTheRegion(Region &region, OpBuilder &builder);
 
 } // namespace async
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // DIALECT_ASYNC_TRANSFORMS_PASSDETAIL_H_

@@ -10,8 +10,9 @@
 #define MLIR_DIALECT_TENSOR_UTILS_UTILS_H_
 
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tensor {
 
 // Return a PadOp that pads `source` to `resType` size. The op performs "high"
@@ -58,6 +59,6 @@ bool isCastLikeInsertSliceOp(InsertSliceOp op);
 bool isCastLikeExtractSliceOp(ExtractSliceOp op);
 
 } // namespace tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TENSOR_UTILS_UTILS_H_

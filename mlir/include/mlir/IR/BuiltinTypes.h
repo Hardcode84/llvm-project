@@ -12,17 +12,19 @@
 #include "mlir/IR/BuiltinAttributeInterfaces.h"
 #include "mlir/IR/BuiltinTypeInterfaces.h"
 #include "mlir/Support/ADTExtras.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BitVector;
 struct fltSemantics;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 //===----------------------------------------------------------------------===//
 // Tablegen Interface Declarations
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class AffineExpr;
 class AffineMap;
 class IndexType;
@@ -161,7 +163,7 @@ public:
   }
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Tablegen Type Declarations
@@ -172,7 +174,7 @@ public:
 #define GET_TYPEDEF_CLASSES
 #include "mlir/IR/BuiltinTypes.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #include "mlir/IR/BuiltinTypeConstraints.h.inc"
 
 //===----------------------------------------------------------------------===//
@@ -449,6 +451,6 @@ AffineExpr makeCanonicalStridedLayoutExpr(ArrayRef<int64_t> sizes,
 /// where `exprs` is {d0, d1, .., d_(sizes.size()-1)}
 AffineExpr makeCanonicalStridedLayoutExpr(ArrayRef<int64_t> sizes,
                                           MLIRContext *context);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_IR_BUILTINTYPES_H

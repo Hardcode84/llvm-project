@@ -25,12 +25,13 @@
 #include "mlir/Interfaces/SideEffectInterfaces.h"
 #include "mlir/Interfaces/TilingInterface.h"
 #include "mlir/Interfaces/ViewLikeInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
 //===----------------------------------------------------------------------===//
 // Tensor Dialect Helpers
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 /// Return the list of Range (i.e. offset, size, stride). Each Range
 /// entry contains either the dynamic value or a ConstantIndexOp constructed
@@ -38,7 +39,7 @@ namespace mlir {
 SmallVector<Range, 8> getOrCreateRanges(OffsetSizeAndStrideOpInterface op,
                                         OpBuilder &b, Location loc);
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Tensor Dialect
@@ -57,7 +58,7 @@ SmallVector<Range, 8> getOrCreateRanges(OffsetSizeAndStrideOpInterface op,
 // Tensor Dialect Helpers
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tensor {
 
 /// Returns true if `target` is a ranked tensor type that preserves static
@@ -181,6 +182,6 @@ void populateFoldConstantExtractSlicePatterns(
 void populateFoldCollapseExtractPatterns(RewritePatternSet &patterns);
 
 } // namespace tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_TENSOR_IR_TENSOR_H_

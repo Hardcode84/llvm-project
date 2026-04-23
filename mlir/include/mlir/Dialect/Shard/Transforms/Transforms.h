@@ -14,8 +14,9 @@
 #include "mlir/IR/Value.h"
 #include "mlir/Support/LLVM.h"
 #include "llvm/ADT/ArrayRef.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class RewritePatternSet;
 class SymbolTableCollection;
 class DialectRegistry;
@@ -49,6 +50,6 @@ createProcessLinearIndex(ImplicitLocOpBuilder &builder, StringRef grid,
                          ArrayRef<GridAxis> gridAxes = {});
 
 } // namespace shard
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SHARD_TRANSFORMS_TRANSFORMS_H

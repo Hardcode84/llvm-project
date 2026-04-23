@@ -34,8 +34,9 @@
 
 #include <set>
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tblgen {
 class FmtObjectBase;
 
@@ -482,7 +483,7 @@ private:
 };
 
 } // namespace tblgen
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// The OR of two method properties should return method properties. Ensure that
 /// this function is visible to `Class`.
@@ -500,7 +501,7 @@ operator|=(mlir::tblgen::Method::Properties &lhs,
                                                 static_cast<unsigned>(rhs));
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tblgen {
 
 template <typename ParamT>
@@ -898,6 +899,6 @@ protected:
 };
 
 } // namespace tblgen
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TABLEGEN_CLASS_H_

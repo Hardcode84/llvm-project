@@ -21,8 +21,9 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/MapVector.h"
 #include "llvm/Support/TypeSize.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DataLayout;
 class DataLayoutEntryInterface;
 class DLTIQueryInterface;
@@ -150,14 +151,14 @@ LogicalResult verifyTargetSystemSpec(TargetSystemSpecInterface spec,
 /// the result up to the next integer. Preserves the scalable flag.
 llvm::TypeSize divideCeil(llvm::TypeSize numerator, uint64_t denominator);
 } // namespace detail
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Interfaces/DataLayoutAttrInterface.h.inc"
 #include "mlir/Interfaces/DataLayoutDialectInterface.h.inc"
 #include "mlir/Interfaces/DataLayoutOpInterface.h.inc"
 #include "mlir/Interfaces/DataLayoutTypeInterface.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // DataLayout
@@ -278,6 +279,6 @@ private:
   mutable std::optional<Attribute> legalIntWidths;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_INTERFACES_DATALAYOUTINTERFACES_H

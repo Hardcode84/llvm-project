@@ -41,6 +41,7 @@
 
 #include <cstdint>
 #include <cstdlib>
+#include "llvm/Support/Compiler.h"
 
 using namespace mlir;
 using namespace mlir::xevm;
@@ -468,14 +469,14 @@ static const std::vector<std::string> getDefaultSPIRVExtensions() {
   };
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 
 extern "C" bool
 SPIRVTranslateModule(Module *M, std::string &SpirvObj, std::string &ErrMsg,
                      const std::vector<std::string> &AllowExtNames,
                      const std::vector<std::string> &Opts);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif
 
 // There is 1 way to finalize IL to native code: IGC

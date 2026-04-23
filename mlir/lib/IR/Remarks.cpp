@@ -14,6 +14,7 @@
 
 #include "llvm/ADT/StringExtras.h"
 #include "llvm/ADT/StringRef.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir::remark::detail;
 using namespace mlir::remark;
@@ -344,7 +345,8 @@ llvm::LogicalResult mlir::remark::enableOptimizationRemarks(
 // Remark emitting policies
 //===----------------------------------------------------------------------===//
 
-namespace mlir::remark {
+MLIR_NAMESPACE_BEGIN
+namespace remark {
 RemarkEmittingPolicyAll::RemarkEmittingPolicyAll() = default;
 RemarkEmittingPolicyFinal::RemarkEmittingPolicyFinal() = default;
 
@@ -380,4 +382,5 @@ void RemarkEmittingPolicyFinal::finalize() {
   }
 }
 
-} // namespace mlir::remark
+}
+MLIR_NAMESPACE_END // namespace mlir::remark

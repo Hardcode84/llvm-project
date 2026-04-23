@@ -11,12 +11,13 @@
 #include "mlir/IR/DialectInterface.h"
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/SmallVector.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Attribute;
 class OpFoldResult;
 class Region;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "mlir/Interfaces/DialectFoldInterface.h.inc"
 

@@ -22,8 +22,9 @@
 #include "llvm/Support/Debug.h"
 #include <limits>
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class GreedyRewriteConfig;
 
@@ -101,6 +102,6 @@ std::unique_ptr<Pass> createCompositeFixedPointPass(
 #define GEN_PASS_REGISTRATION
 #include "mlir/Transforms/Passes.h.inc"
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRANSFORMS_PASSES_H

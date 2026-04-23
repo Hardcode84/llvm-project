@@ -39,6 +39,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <memory>
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "mlircontext"
 
@@ -115,7 +116,7 @@ struct ScopedWriterLock {
 // MLIRContextImpl
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 /// This is the implementation of the MLIRContext class, using the pImpl idiom.
 /// This class is completely private to this file, so everything is public.
 class MLIRContextImpl {
@@ -284,7 +285,7 @@ public:
       attrMapping.second->~AbstractAttribute();
   }
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 MLIRContext::MLIRContext(Threading setting)
     : MLIRContext(DialectRegistry(), setting) {}

@@ -26,6 +26,7 @@
 #include "llvm/Support/Debug.h"
 #include <cstdint>
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "spirv-serialization"
 
@@ -105,7 +106,7 @@ static void moveFuncDeclarationsToTop(spirv::ModuleOp moduleOp) {
         funcOp->moveBefore(&firstOp);
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace spirv {
 
 /// Encodes an SPIR-V instruction with the given `opcode` and `operands` into
@@ -1694,4 +1695,4 @@ LogicalResult Serializer::emitDebugLine(SmallVectorImpl<uint32_t> &binary,
   return success();
 }
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

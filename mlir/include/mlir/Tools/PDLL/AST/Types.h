@@ -13,8 +13,10 @@
 #include "mlir/Support/StorageUniquer.h"
 #include "llvm/ADT/SmallVectorExtras.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace pdll {
 namespace ods {
 class Operation;
@@ -380,7 +382,7 @@ public:
 
 } // namespace ast
 } // namespace pdll
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 MLIR_DECLARE_EXPLICIT_TYPE_ID(mlir::pdll::ast::detail::AttributeTypeStorage)
 MLIR_DECLARE_EXPLICIT_TYPE_ID(mlir::pdll::ast::detail::ConstraintTypeStorage)
@@ -391,7 +393,7 @@ MLIR_DECLARE_EXPLICIT_TYPE_ID(mlir::pdll::ast::detail::TupleTypeStorage)
 MLIR_DECLARE_EXPLICIT_TYPE_ID(mlir::pdll::ast::detail::TypeTypeStorage)
 MLIR_DECLARE_EXPLICIT_TYPE_ID(mlir::pdll::ast::detail::ValueTypeStorage)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <>
 struct DenseMapInfo<mlir::pdll::ast::Type> {
   static mlir::pdll::ast::Type getEmptyKey() {
@@ -434,6 +436,6 @@ struct CastInfo<
   }
   static inline To doCast(mlir::pdll::ast::Type ty) { return To(ty.getImpl()); }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MLIR_TOOLS_PDLL_AST_TYPES_H_

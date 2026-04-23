@@ -16,11 +16,12 @@
 #include "mlir/Conversion/VectorToLLVM/ConvertVectorToLLVMPass.h"
 #include "mlir/Dialect/SparseTensor/Transforms/Passes.h"
 #include "mlir/Pass/PassOptions.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir::detail;
 using namespace llvm::cl;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace sparse_tensor {
 
 /// Options for the "sparsifier" pipeline.  So far this only contains
@@ -191,6 +192,6 @@ void buildSparsifier(OpPassManager &pm, const SparsifierOptions &options);
 void registerSparseTensorPipelines();
 
 } // namespace sparse_tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SPARSETENSOR_PIPELINES_PASSES_H_

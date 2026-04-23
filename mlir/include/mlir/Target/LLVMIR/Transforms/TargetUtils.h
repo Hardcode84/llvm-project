@@ -12,8 +12,9 @@
 #include "mlir/Dialect/LLVMIR/LLVMInterfaces.h"
 #include "llvm/Support/Threading.h"
 #include "llvm/Target/TargetMachine.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace LLVM {
 namespace detail {
 /// Idempotent helper to register/initialize all backends that LLVM has been
@@ -30,6 +31,6 @@ getTargetMachine(mlir::LLVM::TargetAttrInterface attr);
 FailureOr<llvm::DataLayout> getDataLayout(mlir::LLVM::TargetAttrInterface attr);
 } // namespace detail
 } // namespace LLVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TARGET_LLVMIR_TRANSFORMS_TARGETUTILS_H

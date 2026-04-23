@@ -13,7 +13,9 @@
 #ifndef MLIR_DIALECT_LLVMIR_TRANSFORMS_INLINERINTERFACEIMPL_H
 #define MLIR_DIALECT_LLVMIR_TRANSFORMS_INLINERINTERFACEIMPL_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 
 namespace LLVM {
@@ -30,6 +32,6 @@ namespace NVVM {
 void registerInlinerInterface(DialectRegistry &registry);
 } // namespace NVVM
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_LLVMIR_TRANSFORMS_INLINERINTERFACEIMPL_H

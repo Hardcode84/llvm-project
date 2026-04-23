@@ -9,12 +9,14 @@
 #ifndef MLIR_TRANSFORMS_BUBBLEDOWNMEMORYSPACECASTS_H
 #define MLIR_TRANSFORMS_BUBBLEDOWNMEMORYSPACECASTS_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class PatternBenefit;
 class RewritePatternSet;
 /// Collect a set of patterns to bubble-down memory-space cast operations.
 void populateBubbleDownMemorySpaceCastPatterns(RewritePatternSet &patterns,
                                                PatternBenefit benefit);
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TRANSFORMS_BUBBLEDOWNMEMORYSPACECASTS_H

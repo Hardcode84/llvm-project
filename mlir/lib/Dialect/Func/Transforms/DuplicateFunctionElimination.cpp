@@ -8,8 +8,9 @@
 
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Dialect/Func/Transforms/Passes.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace func {
 #define GEN_PASS_DEF_DUPLICATEFUNCTIONELIMINATIONPASS
 #include "mlir/Dialect/Func/Transforms/Passes.h.inc"
@@ -117,4 +118,4 @@ struct DuplicateFunctionEliminationPass
 };
 
 } // namespace
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

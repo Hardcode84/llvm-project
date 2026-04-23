@@ -24,8 +24,9 @@
 #include "mlir/ExecutionEngine/SparseTensor/Storage.h"
 
 #include <fstream>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace sparse_tensor {
 
 namespace detail {
@@ -361,6 +362,6 @@ bool SparseTensorReader::readToBuffersLoop(const MapRef &map, C *lvlCoordinates,
 }
 
 } // namespace sparse_tensor
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_EXECUTIONENGINE_SPARSETENSOR_FILE_H

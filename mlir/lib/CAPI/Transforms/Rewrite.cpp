@@ -21,6 +21,7 @@
 #include "mlir/Transforms/DialectConversion.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
 #include "mlir/Transforms/WalkPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -606,7 +607,7 @@ MlirType mlirTypeConverterConvertType(MlirTypeConverter typeConverter,
 /// ConversionPattern API
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class ExternalConversionPattern : public mlir::ConversionPattern {
 public:
@@ -644,7 +645,7 @@ private:
   void *userData;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 MlirConversionPattern mlirOpConversionPatternCreate(
     MlirStringRef rootName, unsigned benefit, MlirContext context,
@@ -673,7 +674,7 @@ mlirConversionPatternAsRewritePattern(MlirConversionPattern pattern) {
 /// RewritePattern API
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class ExternalRewritePattern : public mlir::RewritePattern {
 public:
@@ -704,7 +705,7 @@ private:
   void *userData;
 };
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 MlirRewritePattern mlirOpRewritePatternCreate(
     MlirStringRef rootName, unsigned benefit, MlirContext context,

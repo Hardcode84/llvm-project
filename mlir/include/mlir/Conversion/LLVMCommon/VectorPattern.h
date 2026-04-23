@@ -11,8 +11,9 @@
 
 #include "mlir/Conversion/LLVMCommon/Pattern.h"
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 namespace LLVM {
 namespace detail {
@@ -122,6 +123,6 @@ public:
         *this->getTypeConverter(), rewriter);
   }
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_CONVERSION_LLVMCOMMON_VECTORPATTERN_H

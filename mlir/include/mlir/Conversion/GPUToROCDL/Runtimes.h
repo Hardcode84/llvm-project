@@ -8,7 +8,9 @@
 #ifndef MLIR_CONVERSION_GPUTOROCDL_RUNTIMES_H
 #define MLIR_CONVERSION_GPUTOROCDL_RUNTIMES_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 namespace gpu {
 namespace amd {
 /// Potential runtimes for AMD GPU kernels
@@ -19,6 +21,6 @@ enum Runtime {
 };
 } // end namespace amd
 } // end namespace gpu
-} // end namespace mlir
+MLIR_NAMESPACE_END // end namespace mlir
 
 #endif // MLIR_CONVERSION_GPUTOROCDL_RUNTIMES_H

@@ -18,8 +18,9 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/Support/ManagedStatic.h"
 #include "llvm/Support/Mutex.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 /// This class provides support for defining a thread local object with non
 /// static storage duration. This is very useful for situations in which a data
 /// cache has very large lock contention.
@@ -182,6 +183,6 @@ private:
   std::shared_ptr<PerInstanceState> perInstanceState =
       std::make_shared<PerInstanceState>();
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_SUPPORT_THREADLOCALCACHE_H

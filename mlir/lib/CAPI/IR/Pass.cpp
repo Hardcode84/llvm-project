@@ -15,6 +15,7 @@
 #include "mlir/Pass/PassManager.h"
 #include "llvm/Support/ErrorHandling.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -143,12 +144,12 @@ MlirLogicalResult mlirParsePassPipeline(MlirOpPassManager passManager,
 // External Pass API.
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ExternalPass;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 DEFINE_C_API_PTR_METHODS(MlirExternalPass, mlir::ExternalPass)
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 /// This pass class wraps external passes defined in other languages using the
 /// MLIR C-interface
 class ExternalPass : public Pass {
@@ -214,7 +215,7 @@ private:
   MlirExternalPassCallbacks callbacks;
   void *userData;
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 MlirPass mlirCreateExternalPass(MlirTypeID passID, MlirStringRef name,
                                 MlirStringRef argument,

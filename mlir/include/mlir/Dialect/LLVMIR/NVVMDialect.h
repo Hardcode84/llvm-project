@@ -28,8 +28,9 @@
 #include "llvm/IR/IntrinsicsNVPTX.h"
 
 #include "mlir/Dialect/LLVMIR/NVVMOpsEnums.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace NVVM {
 /// Utility functions to compare NVVMMemorySpace with unsigned values.
 inline bool operator==(unsigned as, NVVMMemorySpace memSpace) {
@@ -61,7 +62,7 @@ std::pair<mlir::Type, unsigned> inferMMAType(mlir::NVVM::MMATypes type,
                                              int nCol,
                                              mlir::MLIRContext *context);
 } // namespace NVVM
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 ///// Ops /////
 #define GET_ATTRDEF_CLASSES

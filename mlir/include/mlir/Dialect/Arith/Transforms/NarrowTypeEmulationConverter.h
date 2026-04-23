@@ -11,8 +11,10 @@
 #define MLIR_DIALECT_ARITH_NARROW_TYPE_EMULATION_CONVERTER_H_
 
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::arith {
+MLIR_NAMESPACE_BEGIN
+namespace arith {
 /// Converts narrow integer or float types that are not supported
 /// by the target hardware to wider types. Currently, we only
 /// handle power-of-two integer types and convert them to wider
@@ -26,6 +28,7 @@ public:
 private:
   unsigned loadStoreBitwidth;
 };
-} // namespace mlir::arith
+}
+MLIR_NAMESPACE_END // namespace mlir::arith
 
 #endif // MLIR_DIALECT_ARITH_NARROW_TYPE_EMULATION_CONVERTER_H_

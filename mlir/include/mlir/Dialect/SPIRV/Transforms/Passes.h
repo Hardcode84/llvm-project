@@ -15,8 +15,9 @@
 
 #include "mlir/Dialect/SPIRV/IR/SPIRVAttributes.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 class ModuleOp;
 
@@ -46,6 +47,6 @@ createUnifyAliasedResourcePass(GetTargetEnvFn getTargetEnv = nullptr);
 #include "mlir/Dialect/SPIRV/Transforms/Passes.h.inc"
 
 } // namespace spirv
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_DIALECT_SPIRV_TRANSFORMS_PASSES_H_

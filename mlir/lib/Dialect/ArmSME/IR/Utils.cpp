@@ -11,8 +11,10 @@
 //===----------------------------------------------------------------------===//
 
 #include "mlir/Dialect/ArmSME/Utils/Utils.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::arm_sme {
+MLIR_NAMESPACE_BEGIN
+namespace arm_sme {
 
 unsigned getSizeInBytes(TypeSize type) {
   switch (type) {
@@ -180,4 +182,5 @@ bool isTileTypeGreaterOrEqual(ArmSMETileType typeA, ArmSMETileType typeB) {
   return static_cast<unsigned>(typeA) <= static_cast<unsigned>(typeB);
 }
 
-} // namespace mlir::arm_sme
+}
+MLIR_NAMESPACE_END // namespace mlir::arm_sme
