@@ -93,7 +93,7 @@ public:
 void RuntimeLibcallEmitter::emitGetRuntimeLibcallEnum(raw_ostream &OS) const {
   IfDefEmitter IfDef(OS, "GET_RUNTIME_LIBCALL_ENUM");
 
-  OS << "namespace llvm {\n"
+  OS << "LLVM_NAMESPACE_BEGIN\n"
         "namespace RTLIB {\n"
         "enum Libcall : unsigned short {\n";
 
@@ -118,7 +118,7 @@ void RuntimeLibcallEmitter::emitGetRuntimeLibcallEnum(raw_ostream &OS) const {
      << Libcalls.getRuntimeLibcallImplDefList().size() + 1
      << ";\n"
         "} // End namespace RTLIB\n"
-        "} // End namespace llvm\n";
+        "LLVM_NAMESPACE_END\n";
 }
 
 // StringMap uses xxh3_64bits, truncated to uint32_t.

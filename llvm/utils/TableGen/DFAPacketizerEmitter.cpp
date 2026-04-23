@@ -212,7 +212,7 @@ void DFAPacketizerEmitter::run(raw_ostream &OS) {
   emitSourceFileHeader("Target DFA Packetizer Tables", OS);
   OS << "\n"
      << "#include \"llvm/CodeGen/DFAPacketizer.h\"\n";
-  OS << "namespace llvm {\n";
+  OS << "LLVM_NAMESPACE_BEGIN\n";
 
   CodeGenTarget CGT(Records);
   CodeGenSchedModels CGS(Records, CGT);
@@ -228,13 +228,13 @@ void DFAPacketizerEmitter::run(raw_ostream &OS) {
 
   for (auto &KV : ItinsByNamespace)
     emitForItineraries(OS, KV.second, KV.first);
-  OS << "} // end namespace llvm\n";
+  OS << "LLVM_NAMESPACE_END\n";
 }
 
 void DFAPacketizerEmitter::emitForItineraries(
     raw_ostream &OS, std::vector<const CodeGenProcModel *> &ProcModels,
     std::string DFAName) {
-  OS << "} // end namespace llvm\n\n";
+  OS << "LLVM_NAMESPACE_END\n\n";
   OS << "namespace {\n";
   collectAllFuncUnits(ProcModels);
   collectAllComboFuncs(Records.getAllDerivedDefinitions("ComboFuncUnits"));
@@ -359,7 +359,7 @@ void DFAPacketizerEmitter::emitForItineraries(
   OS << "} // end anonymous namespace\n\n";
 
   std::string SubTargetClassName = TargetName + "GenSubtargetInfo";
-  OS << "namespace llvm {\n";
+  OS << "LLVM_NAMESPACE_BEGIN\n";
   OS << "DFAPacketizer *" << SubTargetClassName << "::" << "create" << DFAName
      << "DFAPacketizer(const InstrItineraryData *IID) const {\n"
      << "  static Automaton<uint64_t> A(ArrayRef<" << TargetAndDFAName
