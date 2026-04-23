@@ -14,6 +14,7 @@
 #include <memory>
 #include <mutex>
 #include <new>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jobserver"
 
@@ -138,7 +139,7 @@ JobserverClient *GJobserver = nullptr;
 
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class JobserverClientImpl : public JobserverClient {
   bool IsInitialized = false;
   std::atomic<bool> HasImplicitSlot{true};
@@ -163,7 +164,7 @@ private:
   void *Semaphore = nullptr;
 #endif
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Include the platform-specific parts of the class.
 #if defined(LLVM_ON_UNIX)
@@ -178,7 +179,7 @@ JobSlot JobserverClientImpl::tryAcquire() { return JobSlot(); }
 void JobserverClientImpl::release(JobSlot Slot) {}
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 JobserverClient::~JobserverClient() = default;
 
 uint8_t JobSlot::getExplicitValue() const {
@@ -251,4 +252,4 @@ void JobserverClient::resetForTesting() {
   // Re-construct the std::once_flag in place to reset the singleton state.
   new (&GJobserverOnceFlag) std::once_flag();
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

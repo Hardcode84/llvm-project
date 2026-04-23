@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Struct for tracking the known zeros and ones of a value.
 struct KnownBits {
@@ -611,6 +611,6 @@ inline raw_ostream &operator<<(raw_ostream &OS, const KnownBits &Known) {
   return OS;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

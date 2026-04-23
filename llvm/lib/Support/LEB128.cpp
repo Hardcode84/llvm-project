@@ -12,8 +12,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/Support/LEB128.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Utility function to get the size of the ULEB128-encoded value.
 unsigned getULEB128Size(uint64_t Value) {
@@ -40,4 +41,4 @@ unsigned getSLEB128Size(int64_t Value) {
   return Size;
 }
 
-}  // namespace llvm
+LLVM_NAMESPACE_END  // namespace llvm

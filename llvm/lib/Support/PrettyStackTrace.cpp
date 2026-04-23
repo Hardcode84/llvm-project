@@ -67,7 +67,7 @@ static LLVM_THREAD_LOCAL PrettyStackTraceEntry *PrettyStackTraceHead = nullptr;
 static volatile std::atomic<unsigned> GlobalSigInfoGenerationCounter = 1;
 static LLVM_THREAD_LOCAL unsigned ThreadLocalSigInfoGenerationCounter = 0;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 PrettyStackTraceEntry *ReverseStackTrace(PrettyStackTraceEntry *Head) {
   PrettyStackTraceEntry *Prev = nullptr;
   while (Head)
@@ -75,7 +75,7 @@ PrettyStackTraceEntry *ReverseStackTrace(PrettyStackTraceEntry *Head) {
         std::make_tuple(Head, Head->NextEntry, Prev);
   return Prev;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static void PrintStack(raw_ostream &OS) {
   // Print out the stack in reverse order. To avoid recursion (which is likely

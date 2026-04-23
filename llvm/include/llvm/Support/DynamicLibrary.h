@@ -16,7 +16,7 @@
 #include "llvm/Support/Compiler.h"
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class StringRef;
 
@@ -150,6 +150,6 @@ public:
 };
 
 } // End sys namespace
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

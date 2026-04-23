@@ -23,8 +23,9 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Format object class for interleaved ranges. Supports specifying the
 /// separator and, optionally, the prefix and suffix to be printed surrounding
@@ -91,6 +92,6 @@ InterleavedRange<Range> interleaved_array(const Range &R,
   return {R, Separator, "[", "]"};
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_INTERLEAVED_RANGE_H

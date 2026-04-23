@@ -51,7 +51,7 @@
 #include "llvm/Support/IntegerInclusiveInterval.h"
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -181,5 +181,5 @@ protected:
 #define DEBUG_COUNTER(VARNAME, COUNTERNAME, DESC)                              \
   static DebugCounter::CounterInfo VARNAME(COUNTERNAME, DESC)
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

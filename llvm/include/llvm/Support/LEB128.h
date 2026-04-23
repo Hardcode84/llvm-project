@@ -17,7 +17,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/raw_ostream.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Utility function to encode a SLEB128 value to an output stream. Returns
 /// the length in bytes of the encoded value.
@@ -252,6 +252,6 @@ LLVM_ABI extern unsigned getULEB128Size(uint64_t Value);
 /// Utility function to get the size of the SLEB128-encoded value.
 LLVM_ABI extern unsigned getSLEB128Size(int64_t Value);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_LEB128_H

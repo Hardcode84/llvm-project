@@ -19,7 +19,7 @@
 #include "llvm/Support/Error.h"
 #include "llvm/Support/MemoryBuffer.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This class wraps an output stream for a file. Most clients should just be
 /// able to return an instance of this base class from the stream callback, but
@@ -118,6 +118,6 @@ LLVM_ABI Expected<FileCache> localCache(
     const Twine &CacheDirectoryPathRef,
     AddBufferFn AddBuffer = [](size_t Task, const Twine &ModuleName,
                                std::unique_ptr<MemoryBuffer> MB) {});
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

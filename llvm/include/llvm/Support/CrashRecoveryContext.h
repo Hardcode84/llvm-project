@@ -12,7 +12,7 @@
 #include "llvm/ADT/STLFunctionalExtras.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class CrashRecoveryContextCleanup;
 
 /// Crash recovery helper object.
@@ -265,6 +265,6 @@ public:
     cleanup = nullptr;
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_CRASHRECOVERYCONTEXT_H

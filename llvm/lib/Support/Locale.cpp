@@ -1,8 +1,9 @@
 #include "llvm/Support/Locale.h"
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/Unicode.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 namespace locale {
 
@@ -16,4 +17,4 @@ bool isPrint(int UCS) {
 
 } // namespace locale
 } // namespace sys
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

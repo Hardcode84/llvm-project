@@ -24,7 +24,7 @@
 #include <cstdint>
 #include <type_traits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// StackOffset holds a fixed and a scalable offset in bytes.
 class StackOffset {
@@ -449,6 +449,6 @@ template <> struct DenseMapInfo<ElementCount, void> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_TYPESIZE_H

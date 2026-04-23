@@ -15,6 +15,7 @@
 #include "llvm/Support/Mutex.h"
 #include <Availability.h>
 #include <os/signpost.h>
+#include "llvm/Support/Compiler.h"
 #endif // if LLVM_SUPPORT_XCODE_SIGNPOSTS
 
 using namespace llvm;
@@ -36,7 +37,7 @@ struct LogDeleter {
 };
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SignpostEmitterImpl {
   using LogPtrTy = std::unique_ptr<os_log_t, LogDeleter>;
   using LogTy = LogPtrTy::element_type;
@@ -88,7 +89,7 @@ public:
     }
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #else
 /// Definition necessary for use of std::unique_ptr in SignpostEmitter::Impl.
 class llvm::SignpostEmitterImpl {};

@@ -20,8 +20,9 @@
 #include <cstdint>
 #include <cstring>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// An implementation of BinaryStream which holds its entire data set
 /// in a single contiguous buffer.  BinaryByteStream guarantees that no read
@@ -262,6 +263,6 @@ private:
   StreamImpl Impl;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_BINARYBYTESTREAM_H

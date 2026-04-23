@@ -34,7 +34,7 @@
 #include <array>
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <unsigned N> class SmallString;
 template <typename T> class ArrayRef;
@@ -119,6 +119,6 @@ inline uint64_t MD5Hash(StringRef Str) {
   return Result.low();
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_MD5_H

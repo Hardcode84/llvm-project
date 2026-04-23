@@ -14,8 +14,9 @@
 #define LLVM_SUPPORT_NVVMATTRIBUTES_H
 
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace NVVMAttr {
 
 constexpr StringLiteral MaxNTID("nvvm.maxntid");
@@ -28,6 +29,6 @@ constexpr StringLiteral BlocksAreClusters("nvvm.blocksareclusters");
 constexpr StringLiteral GridConstant("nvvm.grid_constant");
 
 } // namespace NVVMAttr
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_NVVMATTRIBUTES_H

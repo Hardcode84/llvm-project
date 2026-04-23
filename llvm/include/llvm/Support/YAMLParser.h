@@ -51,7 +51,7 @@
 #include <string>
 #include <system_error>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MemoryBufferRef;
 class raw_ostream;
@@ -630,6 +630,6 @@ private:
 
 } // end namespace yaml
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_YAMLPARSER_H

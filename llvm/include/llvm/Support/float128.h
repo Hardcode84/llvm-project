@@ -6,10 +6,11 @@
 //
 //===----------------------------------------------------------------------===//
 
+#include "llvm/Support/Compiler.h"
 #ifndef LLVM_FLOAT128
 #define LLVM_FLOAT128
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 #if defined(__clang__) && defined(__FLOAT128__) &&                             \
     defined(__SIZEOF_INT128__) && !defined(__LONG_DOUBLE_IBM128__)
@@ -22,5 +23,5 @@ using float128 = __float128;
 typedef _Float128 float128;
 #endif
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_FLOAT128

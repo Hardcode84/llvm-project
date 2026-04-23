@@ -16,8 +16,9 @@
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/Support/SHA1.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A raw_ostream that hash the content using the sha1 algorithm.
 class raw_sha1_ostream : public raw_ostream {
@@ -41,6 +42,6 @@ public:
   uint64_t current_pos() const override { return 0; }
 };
 
-} // end llvm namespace
+LLVM_NAMESPACE_END // end llvm namespace
 
 #endif

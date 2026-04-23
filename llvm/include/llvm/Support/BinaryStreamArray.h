@@ -29,8 +29,9 @@
 #include "llvm/Support/Error.h"
 #include <cassert>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// VarStreamArrayExtractor is intended to be specialized to provide customized
 /// extraction logic.  On input it receives a BinaryStreamRef pointing to the
@@ -369,6 +370,6 @@ private:
   uint32_t Index;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_BINARYSTREAMARRAY_H

@@ -14,7 +14,7 @@
 #include "llvm/Support/Compiler.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Tag to string: ELF compact build attribute section
 struct TagNameItem {
@@ -63,5 +63,5 @@ LLVM_ABI std::optional<unsigned> attrTypeFromString(StringRef tag,
 enum AttrMagic { Format_Version = 0x41 };
 
 } // namespace ELFAttrs
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

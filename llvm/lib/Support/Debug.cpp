@@ -33,6 +33,7 @@
 #include <utility>
 
 #include "DebugOptions.h"
+#include "llvm/Support/Compiler.h"
 
 #undef isCurrentDebugType
 #undef setCurrentDebugType
@@ -63,7 +64,7 @@ parseDebugType(StringRef DbgType) {
 
 // Even though LLVM might be built with NDEBUG, define symbols that the code
 // built without NDEBUG can depend on via the llvm/Support/Debug.h header.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Exported boolean set by the -debug option.
 bool DebugFlag = false;
 
@@ -115,7 +116,7 @@ void setCurrentDebugTypes(const char **Types, unsigned Count) {
     CurrentDebugType->push_back(parseDebugType(Type));
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // All Debug.h functionality is a no-op in NDEBUG mode.
 #ifndef NDEBUG
@@ -226,12 +227,12 @@ raw_ostream &llvm::dbgs() {
 
 #else
 // Avoid "has no symbols" warning.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   /// dbgs - Return errs().
   raw_ostream &dbgs() {
     return errs();
   }
-}
+LLVM_NAMESPACE_END
 void llvm::initDebugOptions() {}
 #endif
 

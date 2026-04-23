@@ -16,9 +16,9 @@
 #include "llvm/Support/Threading.h"
 #include <cassert>
 #include <mutex>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm
-{
+LLVM_NAMESPACE_BEGIN
   namespace sys
   {
     /// SmartMutex - A mutex with a compile time constant parameter that
@@ -70,6 +70,6 @@ namespace llvm
 
     using ScopedLock = SmartScopedLock<false>;
   }
-}
+LLVM_NAMESPACE_END
 
 #endif

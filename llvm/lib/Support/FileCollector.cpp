@@ -12,6 +12,7 @@
 #include "llvm/Support/FileSystem.h"
 #include "llvm/Support/Path.h"
 #include "llvm/Support/Process.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -252,7 +253,7 @@ std::error_code FileCollector::writeMapping(StringRef MappingFile) {
   return {};
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class FileCollectorFileSystem : public vfs::FileSystem {
 public:
@@ -308,7 +309,7 @@ private:
   std::shared_ptr<FileCollector> Collector;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 IntrusiveRefCntPtr<vfs::FileSystem>
 FileCollector::createCollectorVFS(IntrusiveRefCntPtr<vfs::FileSystem> BaseFS,

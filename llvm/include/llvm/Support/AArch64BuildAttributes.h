@@ -19,8 +19,9 @@
 #define LLVM_SUPPORT_AARCH64BUILDATTRIBUTES_H
 
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace AArch64BuildAttributes {
 
@@ -70,6 +71,6 @@ enum FeatureAndBitsFlag : unsigned {
   Feature_GCS_Flag = 1 << 2
 };
 } // namespace AArch64BuildAttributes
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_AARCH64BUILDATTRIBUTES_H

@@ -19,8 +19,9 @@
 #define LLVM_SUPPORT_MSVCERRORWORKAROUNDS_H
 
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // A default-constructible llvm::Error that is suitable for use with MSVC's
 // std::future implementation which requires default constructible types.
@@ -75,6 +76,6 @@ public:
       : Expected<T>(std::move(Other)) {}
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_MSVCERRORWORKAROUNDS_H

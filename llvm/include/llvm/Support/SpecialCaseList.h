@@ -18,8 +18,9 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MemoryBuffer;
 class StringRef;
 
@@ -163,6 +164,6 @@ private:
                       std::string &Error);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_SPECIALCASELIST_H

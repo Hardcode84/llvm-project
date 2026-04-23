@@ -12,8 +12,9 @@
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/FormatVariadic.h"
 #include <mutex>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace lsp {
 
 /// This class represents the main interface for logging, and allows for
@@ -55,6 +56,6 @@ private:
   std::mutex Mutex;
 };
 } // namespace lsp
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_LSP_LOGGING_H

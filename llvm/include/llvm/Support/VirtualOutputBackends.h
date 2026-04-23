@@ -25,8 +25,10 @@
 #include "llvm/ADT/IntrusiveRefCntPtr.h"
 #include "llvm/Support/VirtualOutputBackend.h"
 #include "llvm/Support/VirtualOutputConfig.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::vfs {
+LLVM_NAMESPACE_BEGIN
+namespace vfs {
 
 /// Create a backend that ignores all output.
 LLVM_ABI IntrusiveRefCntPtr<OutputBackend> makeNullOutputBackend();
@@ -119,6 +121,7 @@ public:
   OutputSettings Settings;
 };
 
-} // namespace llvm::vfs
+}
+LLVM_NAMESPACE_END // namespace llvm::vfs
 
 #endif // LLVM_SUPPORT_VIRTUALOUTPUTBACKENDS_H

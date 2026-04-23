@@ -15,8 +15,9 @@
 #define LLVM_SUPPORT_CIRCULAR_RAW_OSTREAM_H
 
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   /// circular_raw_ostream - A raw_ostream which *can* save its data
   /// to a circular buffer, or can pass it through directly to an
   /// underlying stream if specified with a buffer of zero.
@@ -153,6 +154,6 @@ namespace llvm {
         delete TheStream;
     }
   };
-} // end llvm namespace
+LLVM_NAMESPACE_END // end llvm namespace
 
 #endif

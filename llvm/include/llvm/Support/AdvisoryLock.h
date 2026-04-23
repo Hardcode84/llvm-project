@@ -12,8 +12,9 @@
 #include "llvm/Support/Error.h"
 
 #include <chrono>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Describes the result of waiting for the owner to release the lock.
 enum class WaitForUnlockResult {
   /// The lock was released successfully.
@@ -53,6 +54,6 @@ public:
   /// Unlocks the lock if its ownership was previously acquired by \c tryLock().
   virtual ~AdvisoryLock() = default;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

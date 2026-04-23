@@ -14,8 +14,9 @@
 #include "llvm/Support/Unicode.h"
 #include "llvm/Support/ConvertUTF.h"
 #include "llvm/Support/UnicodeCharRanges.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 namespace unicode {
 
@@ -510,4 +511,4 @@ int columnWidthUTF8(StringRef Text) {
 
 } // namespace unicode
 } // namespace sys
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

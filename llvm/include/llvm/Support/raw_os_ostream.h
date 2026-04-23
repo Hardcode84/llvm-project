@@ -17,7 +17,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <iosfwd>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// raw_os_ostream - A raw_ostream that writes to an std::ostream.  This is a
 /// simple adaptor class.  It does not check for output errors; clients should
@@ -37,6 +37,6 @@ public:
   ~raw_os_ostream() override;
 };
 
-} // end llvm namespace
+LLVM_NAMESPACE_END // end llvm namespace
 
 #endif

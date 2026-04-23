@@ -19,7 +19,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// formatted_raw_ostream - A raw_ostream that wraps another one and keeps track
 /// of line and column position, allowing padding out to specific column
@@ -218,7 +218,7 @@ LLVM_ABI formatted_raw_ostream &ferrs();
 /// debug output.  Use it like: fdbgs() << "foo" << "bar";
 LLVM_ABI formatted_raw_ostream &fdbgs();
 
-} // end llvm namespace
+LLVM_NAMESPACE_END // end llvm namespace
 
 
 #endif

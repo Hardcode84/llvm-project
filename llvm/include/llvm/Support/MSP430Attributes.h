@@ -21,7 +21,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/ELFAttributes.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace MSP430Attrs {
 
 LLVM_ABI const TagNameMap &getMSP430AttributeTags();
@@ -40,6 +40,6 @@ enum DataModel { DMSmall = 1, DMLarge = 2, DMRestricted = 3 };
 enum EnumSize { ESSmall = 1, ESInteger = 2, ESDontCare = 3 };
 
 } // namespace MSP430Attrs
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -15,8 +15,10 @@
 #define LLVM_SUPPORT_PATTERNMATCHHELPERS_H
 
 #include "llvm/Support/Casting.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::PatternMatchHelpers {
+LLVM_NAMESPACE_BEGIN
+namespace PatternMatchHelpers {
 /// Matching or combinator leaf case.
 template <typename... Tys> struct match_combine_or { // NOLINT
   template <typename ITy> bool match(ITy *) const { return false; }
@@ -100,6 +102,7 @@ template <typename Ty> struct match_bind { // NOLINT
     return false;
   }
 };
-} // namespace llvm::PatternMatchHelpers
+}
+LLVM_NAMESPACE_END // namespace llvm::PatternMatchHelpers
 
 #endif // LLVM_SUPPORT_PATTERNMATCHHELPERS_H

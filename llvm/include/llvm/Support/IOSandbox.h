@@ -15,7 +15,8 @@
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/SaveAndRestore.h"
 
-namespace llvm::sys::sandbox {
+LLVM_NAMESPACE_BEGIN
+namespace sys::sandbox {
 inline LLVM_THREAD_LOCAL bool Enabled = false;
 struct ScopedSetting {
   SaveAndRestore<bool> Impl;
@@ -26,16 +27,19 @@ inline void violationIfEnabled() {
   if (Enabled)
     reportFatalInternalError("IO sandbox violation");
 }
-} // namespace llvm::sys::sandbox
+}
+LLVM_NAMESPACE_END // namespace llvm::sys::sandbox
 
 #else
 
-namespace llvm::sys::sandbox {
+LLVM_NAMESPACE_BEGIN
+namespace sys::sandbox {
 struct [[maybe_unused]] ScopedSetting {};
 inline ScopedSetting scopedEnable() { return {}; }
 inline ScopedSetting scopedDisable() { return {}; }
 inline void violationIfEnabled() {}
-} // namespace llvm::sys::sandbox
+}
+LLVM_NAMESPACE_END // namespace llvm::sys::sandbox
 
 #endif
 

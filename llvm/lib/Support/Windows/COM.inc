@@ -15,8 +15,9 @@
 //===----------------------------------------------------------------------===//
 
 #include <objbase.h>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 
 InitializeCOMRAII::InitializeCOMRAII(COMThreadingMode Threading,
@@ -33,4 +34,4 @@ InitializeCOMRAII::InitializeCOMRAII(COMThreadingMode Threading,
 
 InitializeCOMRAII::~InitializeCOMRAII() { ::CoUninitialize(); }
 } // namespace sys
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

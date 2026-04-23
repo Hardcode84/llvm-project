@@ -15,8 +15,9 @@
 #include "llvm/ADT/APFloat.h"
 
 #include <cmath>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 void FixedPointSemantics::print(llvm::raw_ostream &OS) const {
   OS << "width=" << getWidth() << ", ";
@@ -626,4 +627,4 @@ APFixedPoint::getFromFloatValue(const APFloat &Value,
   return APFixedPoint(Res, DstFXSema);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

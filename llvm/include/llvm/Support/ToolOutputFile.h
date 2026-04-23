@@ -17,7 +17,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CleanupInstaller {
 public:
@@ -72,6 +72,6 @@ public:
   const std::string &outputFilename() { return Installer.Filename; }
 };
 
-} // end llvm namespace
+LLVM_NAMESPACE_END // end llvm namespace
 
 #endif

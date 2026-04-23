@@ -40,7 +40,7 @@
 #include "llvm/Support/Compiler.h"
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A field in a structure.
 struct OptimizedStructLayoutField {
@@ -139,6 +139,6 @@ struct OptimizedStructLayoutField {
 LLVM_ABI std::pair<uint64_t, Align> performOptimizedStructLayout(
     MutableArrayRef<OptimizedStructLayoutField> Fields);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

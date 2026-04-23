@@ -39,7 +39,7 @@
 #include <type_traits>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace vfs {
 class FileSystem;
@@ -2336,6 +2336,6 @@ LLVM_ABI bool ProvidePositionalOption(Option *Handler, StringRef Arg, int i);
 
 } // end namespace cl
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_COMMANDLINE_H

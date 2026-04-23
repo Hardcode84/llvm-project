@@ -16,7 +16,7 @@
 
 #include <type_traits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T, typename Enable = void> struct format_provider {};
 class Error;
 
@@ -152,6 +152,6 @@ build_format_adapter(T &&) {
 }
 } // namespace detail
 } // namespace support
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

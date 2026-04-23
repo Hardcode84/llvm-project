@@ -15,7 +15,7 @@
 #include "llvm/Support/Allocator.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Saves strings in the provided stable storage and returns a
 /// StringRef with a stable character pointer.
@@ -56,5 +56,5 @@ public:
   StringRef save(const std::string &S) { return save(StringRef(S)); }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

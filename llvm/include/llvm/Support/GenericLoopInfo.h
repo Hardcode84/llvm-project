@@ -46,8 +46,9 @@
 #include "llvm/ADT/SetOperations.h"
 #include "llvm/Support/Allocator.h"
 #include "llvm/Support/GenericDomTree.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <class N, class M> class LoopInfoBase;
 template <class N, class M> class LoopBase;
@@ -780,6 +781,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_GENERICLOOPINFO_H

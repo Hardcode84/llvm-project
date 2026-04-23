@@ -16,8 +16,9 @@
 
 #include <cstdint>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   // Relocation model types.
   namespace Reloc {
@@ -190,6 +191,6 @@ namespace llvm {
     Dispatch = 2,
   };
 
-  } // namespace llvm
+  LLVM_NAMESPACE_END // namespace llvm
 
 #endif

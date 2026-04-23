@@ -9,7 +9,9 @@
 #ifndef LLVM_SUPPORT_LLVMDRIVER_H
 #define LLVM_SUPPORT_LLVMDRIVER_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 struct ToolContext {
   const char *Path;
@@ -22,6 +24,6 @@ struct ToolContext {
   bool NeedsPrependArg;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

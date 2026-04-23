@@ -11,6 +11,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <cctype>
 #include <sstream>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "mustache"
 
@@ -81,7 +82,8 @@ static Accessor splitMustacheString(StringRef Str, MustacheContext &Ctx) {
 }
 } // namespace
 
-namespace llvm::mustache {
+LLVM_NAMESPACE_BEGIN
+namespace mustache {
 
 class MustacheOutputStream : public raw_ostream {
 public:
@@ -928,6 +930,7 @@ Template::Template(Template &&Other) noexcept
 
 Template::~Template() = default;
 
-} // namespace llvm::mustache
+}
+LLVM_NAMESPACE_END // namespace llvm::mustache
 
 #undef DEBUG_TYPE

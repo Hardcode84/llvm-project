@@ -20,7 +20,7 @@
 #include "llvm/Support/Error.h"
 #include <type_traits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Provides read only access to a subclass of `BinaryStream`.  Provides
 /// bounds checking and helpers for writing certain common data types such as
@@ -270,6 +270,6 @@ private:
   BinaryStreamRef Stream;
   uint64_t Offset = 0;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_BINARYSTREAMREADER_H

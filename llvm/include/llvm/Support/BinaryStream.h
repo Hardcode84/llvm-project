@@ -14,8 +14,9 @@
 #include "llvm/Support/BinaryStreamError.h"
 #include "llvm/Support/Error.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 enum BinaryStreamFlags {
   BSF_None = 0,
@@ -95,6 +96,6 @@ protected:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_BINARYSTREAM_H

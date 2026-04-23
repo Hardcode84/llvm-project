@@ -12,8 +12,9 @@
 
 #include "llvm/Support/Allocator.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace detail {
 
@@ -36,4 +37,4 @@ void PrintRecyclerStats(size_t Size,
          << "Number of elements free for recycling: " << FreeListSize << '\n';
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

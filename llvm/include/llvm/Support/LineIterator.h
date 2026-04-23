@@ -16,7 +16,7 @@
 #include <iterator>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MemoryBuffer;
 
@@ -96,6 +96,6 @@ private:
   /// Advance the iterator to the next line.
   LLVM_ABI void advance();
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

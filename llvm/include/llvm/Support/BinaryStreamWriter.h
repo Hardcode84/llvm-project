@@ -22,7 +22,7 @@
 #include <type_traits>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Provides write only access to a subclass of `WritableBinaryStream`.
 /// Provides bounds checking and helpers for writing certain common data types
@@ -186,6 +186,6 @@ protected:
   uint64_t Offset = 0;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_BINARYSTREAMWRITER_H

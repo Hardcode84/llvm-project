@@ -34,7 +34,7 @@
 #include <type_traits>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace DOT {  // Private functions...
 
@@ -451,6 +451,6 @@ void ViewGraph(const GraphType &G, const Twine &Name,
   DisplayGraph(Filename, false, Program);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_GRAPHWRITER_H

@@ -54,7 +54,7 @@ extern "C" {
 #include "llvm/Config/TargetMCAs.def"
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   /// InitializeAllTargetInfos - The main program should call this function if
   /// it wants access to all available targets that LLVM is configured to
   /// support, to make them available via the TargetRegistry.
@@ -178,6 +178,6 @@ namespace llvm {
 #define LLVM_TARGETMCA(TargetName) LLVMInitialize##TargetName##TargetMCA();
 #include "llvm/Config/TargetMCAs.def"
   }
-}
+LLVM_NAMESPACE_END
 
 #endif

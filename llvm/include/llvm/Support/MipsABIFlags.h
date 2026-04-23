@@ -16,7 +16,9 @@
 #ifndef LLVM_SUPPORT_MIPSABIFLAGS_H
 #define LLVM_SUPPORT_MIPSABIFLAGS_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 namespace Mips {
 
 // Values for the xxx_size bytes of an ABI flags structure.
@@ -98,6 +100,6 @@ enum Val_GNU_MIPS_ABI_MSA {
   Val_GNU_MIPS_ABI_MSA_128 = 1  // 128-bit MSA
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

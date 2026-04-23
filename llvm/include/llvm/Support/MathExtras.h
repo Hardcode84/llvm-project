@@ -23,7 +23,7 @@
 #include <limits>
 #include <type_traits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Some template parameter helpers to optimize for bitwidth, for functions that
 /// take multiple arguments.
 
@@ -789,6 +789,6 @@ using stack_float_t = float;
 /// Returns the number of digits in the given integer.
 int NumDigitsBase10(uint64_t X);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

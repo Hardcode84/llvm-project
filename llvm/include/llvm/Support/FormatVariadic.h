@@ -41,7 +41,7 @@
 #include <tuple>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 enum class ReplacementType { Format, Literal };
 
@@ -257,6 +257,6 @@ template <typename... Ts> inline auto formatv(const char *Fmt, Ts &&...Vals) {
   return formatv<Ts...>(true, Fmt, std::forward<Ts>(Vals)...);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_FORMATVARIADIC_H

@@ -13,7 +13,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Endian.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace ARM {
 namespace WinEH {
 enum class RuntimeFunctionFlag {
@@ -517,6 +517,6 @@ inline size_t HeaderWords(const ExceptionDataRecord &XR) {
 }
 }
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

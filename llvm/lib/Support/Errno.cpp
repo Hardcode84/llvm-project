@@ -14,13 +14,14 @@
 #include "llvm/Config/config.h"
 #include <cstring>
 #include <errno.h>
+#include "llvm/Support/Compiler.h"
 
 //===----------------------------------------------------------------------===//
 //=== WARNING: Implementation here must contain only TRULY operating system
 //===          independent code.
 //===----------------------------------------------------------------------===//
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 
 std::string StrError() {
@@ -60,4 +61,4 @@ std::string StrError(int errnum) {
 }
 
 }  // namespace sys
-}  // namespace llvm
+LLVM_NAMESPACE_END  // namespace llvm

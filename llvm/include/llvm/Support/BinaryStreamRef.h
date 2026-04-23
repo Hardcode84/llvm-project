@@ -18,7 +18,7 @@
 #include <memory>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Common stuff for mutable and immutable StreamRefs.
 template <class RefType, class StreamType> class BinaryStreamRefBase {
@@ -267,6 +267,6 @@ public:
   LLVM_ABI Error commit();
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_BINARYSTREAMREF_H

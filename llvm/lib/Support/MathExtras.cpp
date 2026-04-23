@@ -16,9 +16,10 @@
 #include <limits>
 #else
 #include <cmath>
+#include "llvm/Support/Compiler.h"
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 #if defined(_MSC_VER)
   // Visual Studio defines the HUGE_VAL class of macros using purposeful
@@ -63,4 +64,4 @@ namespace llvm {
     return Digits + (X >= Data.Boundaries[Digits]);
   }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

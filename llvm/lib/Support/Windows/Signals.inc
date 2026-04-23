@@ -34,6 +34,7 @@
 #include <dbghelp.h>
 #endif
 #include <psapi.h>
+#include "llvm/Support/Compiler.h"
 
 #ifdef _MSC_VER
 #pragma comment(lib, "psapi.lib")
@@ -343,7 +344,7 @@ static void PrintStackTraceForThread(llvm::raw_ostream &OS, HANDLE hProcess,
   }
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 //=== WARNING: Implementation here must contain only Win32 specific code
@@ -482,7 +483,7 @@ void sys::PrintStackTraceOnErrorSignal(StringRef Argv0,
   RegisterHandler();
   LeaveCriticalSection(&CriticalSection);
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #if LLVM_ENABLE_DEBUGLOC_TRACKING_ORIGIN
 #error DebugLoc origin-tracking currently unimplemented for Windows.

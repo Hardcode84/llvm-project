@@ -49,7 +49,7 @@
 #include <random>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ThreadPoolInterface;
 /// A function with a set of utility nodes where it is beneficial to order two
@@ -198,6 +198,6 @@ protected:
   friend class BalancedPartitioningTest_MoveGain_Test;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_BALANCED_PARTITIONING_H

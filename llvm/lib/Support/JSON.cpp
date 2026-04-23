@@ -17,8 +17,9 @@
 #include <cctype>
 #include <cerrno>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace json {
 
 Value &Object::operator[](const ObjectKey &K) {
@@ -921,7 +922,7 @@ void llvm::json::OStream::rawValueEnd() {
 }
 
 } // namespace json
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 void llvm::format_provider<llvm::json::Value>::format(
     const llvm::json::Value &E, raw_ostream &OS, StringRef Options) {

@@ -14,7 +14,7 @@
 #include "llvm/Support/DataTypes.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// An auxiliary type to facilitate extraction of 3-byte entities.
 struct Uint24 {
@@ -723,6 +723,6 @@ private:
   T *getUs(uint64_t *OffsetPtr, T *Dst, uint32_t Count, Error *Err) const;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

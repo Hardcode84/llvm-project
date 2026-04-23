@@ -18,8 +18,9 @@
 #define LLVM_SUPPORT_ATOMICORDERING_H
 
 #include <cstddef>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Atomic ordering for C11 / C++11's memory models.
 ///
@@ -158,6 +159,6 @@ inline AtomicOrderingCABI toCABI(AtomicOrdering AO) {
   return lookup[static_cast<size_t>(AO)];
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_ATOMICORDERING_H

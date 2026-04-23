@@ -21,7 +21,7 @@
 #include <optional>
 #include <type_traits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // simplify_type
@@ -891,6 +891,6 @@ inline constexpr detail::DynCastIfPresentFunc<To> DynCastIfPresentTo{};
 
 template <typename To> inline constexpr detail::DynCastFunc<To> DynCastTo{};
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_CASTING_H

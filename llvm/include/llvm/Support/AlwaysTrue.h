@@ -10,8 +10,9 @@
 #define LLVM_SUPPORT_ALWAYS_TRUE_H
 
 #include <cstdlib>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 inline bool getNonFoldableAlwaysTrue() {
   // Some parts of the codebase require a "constant true value" used as a
   // predicate. These cases require that even with LTO and static linking,
@@ -20,6 +21,6 @@ inline bool getNonFoldableAlwaysTrue() {
   // the job.
   return std::getenv("LLVM_IGNORED_ENV_VAR") != (char *)-1;
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_ALWAYS_TRUE_H

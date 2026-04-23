@@ -80,7 +80,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_pwrite_stream;
 
@@ -205,6 +205,6 @@ private:
   TimeTraceProfilerEntry *Entry = nullptr;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

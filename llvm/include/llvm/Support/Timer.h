@@ -18,7 +18,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class TimerGlobals;
 class TimerGroup;
@@ -275,6 +275,6 @@ private:
                       const char *suffix, double Value);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

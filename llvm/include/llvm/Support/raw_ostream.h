@@ -27,7 +27,7 @@
 #include <system_error>
 #include <type_traits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Duration;
 class formatv_object_base;
@@ -851,6 +851,6 @@ raw_ostream &operator<<(raw_ostream &OS, const std::optional<T> &O) {
   return OS;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_RAW_OSTREAM_H

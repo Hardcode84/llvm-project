@@ -66,6 +66,7 @@
 #include <stdio.h>
 #endif
 #include <assert.h>
+#include "llvm/Support/Compiler.h"
 
 /*
  * This code extensively uses fall-through switches.
@@ -95,7 +96,7 @@
 
 ConvertUTF_DISABLE_WARNINGS
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static const int halfShift  = 10; /* used for shifting by 10 bits */
 
@@ -759,6 +760,6 @@ ConversionResult ConvertUTF8toUTF32(const UTF8 **sourceStart,
 
    --------------------------------------------------------------------- */
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 ConvertUTF_RESTORE_WARNINGS

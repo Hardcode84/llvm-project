@@ -18,8 +18,9 @@
 #include "llvm/ADT/Hashing.h"
 #include <cstdint>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 namespace fs {
 
@@ -74,6 +75,6 @@ template <> struct DenseMapInfo<llvm::sys::fs::UniqueID> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_FILESYSTEM_UNIQUEID_H

@@ -16,8 +16,9 @@
 #include "llvm-c/blake3.h"
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// The constant \p LLVM_BLAKE3_OUT_LEN provides the default output length,
 /// 32 bytes, which is recommended for most callers.
@@ -125,6 +126,6 @@ public:
   BLAKE3Result<NumBytes> result() { return BLAKE3::result<NumBytes>(); }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

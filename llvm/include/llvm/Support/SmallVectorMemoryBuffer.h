@@ -19,7 +19,7 @@
 #include "llvm/Support/MemoryBuffer.h"
 #include "llvm/Support/raw_ostream.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// SmallVector-backed MemoryBuffer instance.
 ///
@@ -59,6 +59,6 @@ private:
   std::string BufferName;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

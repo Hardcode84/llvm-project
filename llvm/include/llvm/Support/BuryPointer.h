@@ -12,7 +12,7 @@
 #include "llvm/Support/Compiler.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // In tools that will exit soon anyway, going through the process of explicitly
 // deallocating resources can be unnecessary - better to leak the resources and
@@ -25,6 +25,6 @@ template <typename T> void BuryPointer(std::unique_ptr<T> Ptr) {
   BuryPointer(Ptr.release());
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

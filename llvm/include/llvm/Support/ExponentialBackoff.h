@@ -18,7 +18,7 @@
 #include <chrono>
 #include <random>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A class to help implement exponential backoff.
 ///
@@ -61,6 +61,6 @@ private:
   int64_t CurrentMultiplier = 1;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXPONENTIALBACKOFF_H

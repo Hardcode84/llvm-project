@@ -30,7 +30,7 @@
 #include <type_traits>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// CRTP base class providing obvious overloads for the core \c
 /// Allocate() methods of LLVM-style allocators.
@@ -128,6 +128,6 @@ public:
 
 } // namespace detail
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_ALLOCATORBASE_H

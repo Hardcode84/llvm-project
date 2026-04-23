@@ -15,7 +15,7 @@
 
 #define DEBUG_TYPE "unicode"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 
 /// Represents a closed range of Unicode code points [Lower, Upper].
@@ -93,7 +93,7 @@ private:
 };
 
 } // namespace sys
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #undef DEBUG_TYPE // "unicode"
 

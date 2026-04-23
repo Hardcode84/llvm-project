@@ -17,8 +17,9 @@
 #include "llvm/ADT/StringRef.h"
 #include <cstdint>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Modes for generating allocation token IDs.
 enum class AllocTokenMode {
@@ -66,6 +67,6 @@ LLVM_ABI std::optional<uint64_t>
 getAllocToken(AllocTokenMode Mode, const AllocTokenMetadata &Metadata,
               uint64_t MaxTokens);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_ALLOCTOKEN_H

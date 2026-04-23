@@ -16,8 +16,10 @@
 
 #include "llvm/Support/Error.h"
 #include "llvm/Support/VirtualOutputConfig.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::vfs {
+LLVM_NAMESPACE_BEGIN
+namespace vfs {
 
 const std::error_category &output_category();
 
@@ -125,6 +127,7 @@ inline Error convertToTempFileOutputError(const Twine &TempPath,
   return Error::success();
 }
 
-} // namespace llvm::vfs
+}
+LLVM_NAMESPACE_END // namespace llvm::vfs
 
 #endif // LLVM_SUPPORT_VIRTUALOUTPUTERROR_H

@@ -143,6 +143,7 @@ Globals &getGlobals() {
 #else
 
 #include "Unix/DynamicLibrary.inc"
+#include "llvm/Support/Compiler.h"
 
 #endif
 
@@ -150,11 +151,11 @@ char DynamicLibrary::Invalid;
 DynamicLibrary::SearchOrdering DynamicLibrary::SearchOrder =
     DynamicLibrary::SO_Linker;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 void *SearchForAddressOfSpecialSymbol(const char *SymbolName) {
   return DoSearch(SymbolName); // DynamicLibrary.inc
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 void DynamicLibrary::AddSymbol(StringRef SymbolName, void *SymbolValue) {
   auto &G = getGlobals();

@@ -15,7 +15,7 @@
 
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 enum class stream_error_code {
   unspecified,
   stream_too_short,
@@ -43,6 +43,6 @@ private:
   std::string ErrMsg;
   stream_error_code Code;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_BINARYSTREAMERROR_H

@@ -37,7 +37,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/SuffixTreeNode.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SuffixTree {
 public:
   /// Each element is an integer representing an instruction in the module.
@@ -224,6 +224,6 @@ public:
   iterator end() { return iterator(nullptr); }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_SUFFIXTREE_H

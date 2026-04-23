@@ -14,8 +14,9 @@
 #include "llvm/Support/Windows/WindowsSupport.h"
 #include <atomic>
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// The constructor for the Windows jobserver client. It attempts to open a
 /// handle to an existing named semaphore, the name of which is provided by
 /// GNU make in the --jobserver-auth argument. If the semaphore is opened
@@ -76,4 +77,4 @@ void JobserverClientImpl::release(JobSlot Slot) {
   // Release the slot by incrementing the semaphore count.
   (void)::ReleaseSemaphore((HANDLE)Semaphore, 1, NULL);
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

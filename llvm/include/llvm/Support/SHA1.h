@@ -19,7 +19,7 @@
 #include <array>
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T> class ArrayRef;
 class StringRef;
 
@@ -78,6 +78,6 @@ private:
   void final(std::array<uint32_t, HASH_LENGTH / 4> &HashResult);
 };
 
-} // end llvm namespace
+LLVM_NAMESPACE_END // end llvm namespace
 
 #endif

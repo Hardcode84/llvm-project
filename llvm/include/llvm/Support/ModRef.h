@@ -19,7 +19,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/raw_ostream.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Flags indicating whether a memory access modifies or references memory.
 ///
@@ -496,6 +496,6 @@ public:
 
 LLVM_ABI raw_ostream &operator<<(raw_ostream &OS, CaptureInfo Info);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

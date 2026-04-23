@@ -57,7 +57,7 @@
 #include <cmath>
 #include <map>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace json {
 
 // === String encodings ===
@@ -1115,6 +1115,6 @@ template <> struct format_provider<llvm::json::Value> {
   LLVM_ABI static void format(const llvm::json::Value &, raw_ostream &,
                               StringRef);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

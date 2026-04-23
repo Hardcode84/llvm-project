@@ -24,7 +24,7 @@
 
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   struct PluginLoader {
     LLVM_ABI void operator=(const std::string &Filename);
     LLVM_ABI static unsigned getNumPlugins();
@@ -37,6 +37,6 @@ namespace llvm {
       LoadOpt("load", cl::value_desc("pluginfilename"),
               cl::desc("Load the specified plugin"));
 #endif
-}
+LLVM_NAMESPACE_END
 
 #endif

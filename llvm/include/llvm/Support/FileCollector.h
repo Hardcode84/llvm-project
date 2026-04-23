@@ -16,7 +16,7 @@
 #include <mutex>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class FileCollectorFileSystem;
 class Twine;
 
@@ -151,6 +151,6 @@ protected:
   PathCanonicalizer Canonicalizer;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_FILECOLLECTOR_H

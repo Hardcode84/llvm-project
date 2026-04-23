@@ -19,8 +19,9 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/SetOperations.h"
 #include "llvm/Support/GenericLoopInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // APIs for simple analysis of the loop. See header notes.
@@ -819,6 +820,6 @@ void LoopInfoBase<BlockT, LoopT>::verify(
 #endif
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_GENERICLOOPINFOIMPL_H

@@ -26,7 +26,7 @@
 #include <array>
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> class ArrayRef;
 class StringRef;
@@ -85,6 +85,6 @@ private:
   void final(std::array<uint32_t, HASH_LENGTH / 4> &HashResult);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_SHA256_H

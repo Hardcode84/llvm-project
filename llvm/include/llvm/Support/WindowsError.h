@@ -12,9 +12,9 @@
 #include "llvm/Support/Compiler.h"
 #include <system_error>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 LLVM_ABI std::error_code mapLastWindowsError();
 LLVM_ABI std::error_code mapWindowsError(unsigned EV);
-}
+LLVM_NAMESPACE_END
 
 #endif

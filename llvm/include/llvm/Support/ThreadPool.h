@@ -30,7 +30,7 @@
 #include <mutex>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ThreadPoolTaskGroup;
 
@@ -289,6 +289,6 @@ private:
   ThreadPoolInterface &Pool;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_THREADPOOL_H

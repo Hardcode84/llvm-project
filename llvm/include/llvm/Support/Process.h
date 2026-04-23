@@ -32,7 +32,7 @@
 #include <optional>
 #include <system_error>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T> class ArrayRef;
 class StringRef;
 
@@ -221,6 +221,6 @@ private:
 };
 
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

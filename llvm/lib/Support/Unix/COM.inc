@@ -15,7 +15,8 @@
 //===          is guaranteed to work on *all* UNIX variants.
 //===----------------------------------------------------------------------===//
 
-namespace llvm {
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 
 InitializeCOMRAII::InitializeCOMRAII(COMThreadingMode Threading,
@@ -23,4 +24,4 @@ InitializeCOMRAII::InitializeCOMRAII(COMThreadingMode Threading,
 
 InitializeCOMRAII::~InitializeCOMRAII() = default;
 } // namespace sys
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

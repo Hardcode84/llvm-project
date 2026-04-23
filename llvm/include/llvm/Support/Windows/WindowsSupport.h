@@ -49,7 +49,7 @@
 // Must be included after windows.h
 #include <wincrypt.h>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Determines if the program is running on Windows 8 or newer. This
 /// reimplements one of the helpers in the Windows 8.1 SDK, which are intended
@@ -256,6 +256,6 @@ LLVM_ABI std::error_code makeLongFormPath(const Twine &Path8,
                                           llvm::SmallVectorImpl<char> &Result8);
 } // end namespace windows
 } // end namespace sys
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.
 
 #endif

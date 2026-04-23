@@ -23,7 +23,7 @@
 #include <optional>
 #include <system_error>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BitVector;
 namespace sys {
 
@@ -244,6 +244,6 @@ LLVM_ABI ErrorOr<std::wstring>
 flattenWindowsCommandLine(ArrayRef<StringRef> Args);
 #endif
 } // namespace sys
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -26,7 +26,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Simple helper function that returns a string as printed from a op.
 template <typename T> static std::string debugString(T &&Op) {
   std::string InstrStr;
@@ -287,6 +287,6 @@ private:
 };
 
 } // namespace lsp
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

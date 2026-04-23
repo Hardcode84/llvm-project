@@ -19,7 +19,7 @@
 #include <chrono>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> class Expected;
 class StringRef;
@@ -84,6 +84,6 @@ parseCachePruningPolicy(StringRef PolicyStr);
 LLVM_ABI bool
 pruneCache(StringRef Path, CachePruningPolicy Policy,
            const std::vector<std::unique_ptr<MemoryBuffer>> &Files = {});
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

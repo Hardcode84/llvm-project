@@ -15,8 +15,9 @@
 #define LLVM_SUPPORT_RECYCLINGALLOCATOR_H
 
 #include "llvm/Support/Recycler.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// RecyclingAllocator - This class wraps an Allocator, adding the
 /// functionality of recycling deleted objects.
@@ -56,7 +57,7 @@ public:
   }
 };
 
-}
+LLVM_NAMESPACE_END
 
 template<class AllocatorType, class T, size_t Size, size_t Align>
 inline void *operator new(size_t size,

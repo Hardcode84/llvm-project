@@ -19,7 +19,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <class InputBytes> std::string encodeBase64(InputBytes const &Bytes) {
   static const char Table[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -58,6 +58,6 @@ template <class InputBytes> std::string encodeBase64(InputBytes const &Bytes) {
 LLVM_ABI llvm::Error decodeBase64(llvm::StringRef Input,
                                   std::vector<char> &Output);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -22,7 +22,7 @@
 #include "llvm/Support/SMLoc.h"
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace vfs {
 class FileSystem;
@@ -338,6 +338,6 @@ public:
                       bool ShowLocation = true) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_SOURCEMGR_H

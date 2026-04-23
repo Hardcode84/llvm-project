@@ -15,8 +15,9 @@
 #define LLVM_SUPPORT_CAPACITY_H
 
 #include <cstddef>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T>
 static inline size_t capacity_in_bytes(const T &x) {
@@ -25,7 +26,7 @@ static inline size_t capacity_in_bytes(const T &x) {
   return x.capacity() * sizeof(typename T::value_type);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif
 

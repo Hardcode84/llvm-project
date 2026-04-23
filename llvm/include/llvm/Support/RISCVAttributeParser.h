@@ -13,7 +13,7 @@
 #include "llvm/Support/ELFAttrParserCompact.h"
 #include "llvm/Support/RISCVAttributes.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LLVM_ABI RISCVAttributeParser : public ELFCompactAttrParser {
   struct DisplayHandler {
     RISCVAttrs::AttrType attribute;
@@ -35,6 +35,6 @@ public:
       : ELFCompactAttrParser(RISCVAttrs::getRISCVAttributeTags(), "riscv") {}
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

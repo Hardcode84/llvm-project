@@ -80,6 +80,7 @@
 
 #if defined(__linux__)
 #include <sys/syscall.h>
+#include "llvm/Support/Compiler.h"
 #endif
 
 using namespace llvm;
@@ -572,7 +573,7 @@ static int dl_iterate_phdr_cb(dl_phdr_info *info, size_t size, void *arg) {
 #if !defined(HAVE_BACKTRACE)
 #error DebugLoc origin-tracking currently requires `backtrace()`.
 #endif
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 template <unsigned long MaxDepth>
 int getStackTrace(std::array<void *, MaxDepth> &StackTrace) {
@@ -580,7 +581,7 @@ int getStackTrace(std::array<void *, MaxDepth> &StackTrace) {
 }
 template int getStackTrace<16ul>(std::array<void *, 16ul> &);
 } // namespace sys
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif
 
 /// If this is an ELF platform, we can find all loaded modules and their virtual

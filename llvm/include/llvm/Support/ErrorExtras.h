@@ -11,8 +11,9 @@
 
 #include "llvm/Support/Error.h"
 #include "llvm/Support/FormatVariadic.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // LLVM formatv versions of llvm::createStringError
 
@@ -29,6 +30,6 @@ inline Error createStringErrorV(char const *Fmt, Ts &&...Vals) {
                             std::forward<Ts>(Vals)...);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_ERROREXTRAS_H

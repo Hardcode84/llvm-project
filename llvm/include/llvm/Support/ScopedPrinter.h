@@ -22,7 +22,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <type_traits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> struct EnumEntry {
   StringRef Name;
@@ -895,6 +895,6 @@ struct ListScope : DelimitedScope {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

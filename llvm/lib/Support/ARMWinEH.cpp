@@ -7,8 +7,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/Support/ARMWinEH.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace ARM {
 namespace WinEH {
 std::pair<uint16_t, uint32_t> SavedRegisterMask(const RuntimeFunction &RF,
@@ -45,5 +46,5 @@ std::pair<uint16_t, uint32_t> SavedRegisterMask(const RuntimeFunction &RF,
 }
 } // namespace WinEH
 } // namespace ARM
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 

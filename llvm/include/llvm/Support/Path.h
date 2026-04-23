@@ -21,7 +21,7 @@
 #include "llvm/Support/DataTypes.h"
 #include <iterator>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 namespace path {
 
@@ -588,6 +588,6 @@ LLVM_ABI void make_absolute(const Twine &current_directory,
 
 } // end namespace path
 } // end namespace sys
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

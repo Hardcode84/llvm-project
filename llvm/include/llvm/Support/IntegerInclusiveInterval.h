@@ -22,12 +22,13 @@
 #include "llvm/Support/Error.h"
 #include <cassert>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Represents an inclusive integer interval [Begin, End] where Begin <= End.
 class IntegerInclusiveInterval {
@@ -114,6 +115,6 @@ mergeAdjacentIntervals(ArrayRef<IntegerInclusiveInterval> Intervals);
 
 } // end namespace IntegerInclusiveIntervalUtils
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_INTEGER_INCLUSIVE_INTERVAL_H

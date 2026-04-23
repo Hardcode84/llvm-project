@@ -16,7 +16,7 @@
 #include "llvm/Support/Compiler.h"
 #include <type_traits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Metafunction that determines whether the given type is either an
 /// integral type or an enumeration type, including enum classes.
@@ -55,6 +55,6 @@ template <typename T> struct const_pointer_or_const_ref {
                          typename add_const_past_pointer<T>::type, const T &>;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_TYPE_TRAITS_H

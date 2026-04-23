@@ -19,7 +19,7 @@
 #include <optional>
 #include <unordered_map>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 class ScopedPrinter;
 
@@ -89,5 +89,5 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_SUPPORT_ELFCOMPACTATTRPARSER_H

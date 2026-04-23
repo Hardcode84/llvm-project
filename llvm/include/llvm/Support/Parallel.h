@@ -22,7 +22,7 @@
 #include <functional>
 #include <mutex>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace parallel {
 
@@ -283,6 +283,6 @@ Error parallelForEachError(RangeTy &&R, FuncTy Fn) {
       [&Fn](auto &&V) { return wrap(Fn(V)); }));
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_PARALLEL_H

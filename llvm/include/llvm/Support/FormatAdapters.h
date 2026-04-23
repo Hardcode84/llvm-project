@@ -14,8 +14,9 @@
 #include "llvm/Support/FormatCommon.h"
 #include "llvm/Support/FormatVariadicDetails.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T>
 class FormatAdapter : public support::detail::format_adapter {
 protected:
@@ -108,6 +109,6 @@ support::detail::RepeatAdapter<T> fmt_repeat(T &&Item, size_t Count) {
 inline support::detail::ErrorAdapter fmt_consume(Error &&Item) {
   return support::detail::ErrorAdapter(std::move(Item));
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

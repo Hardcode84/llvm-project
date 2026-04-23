@@ -44,7 +44,7 @@
 #include "llvm/Support/Atomic.h"
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Twine;
 
 /// Returns true if LLVM is compiled with support for multi-threading, and
@@ -284,6 +284,6 @@ using once_flag = std::once_flag;
   };
   enum class SetThreadPriorityResult { FAILURE, SUCCESS };
   LLVM_ABI SetThreadPriorityResult set_thread_priority(ThreadPriority Priority);
-}
+LLVM_NAMESPACE_END
 
 #endif

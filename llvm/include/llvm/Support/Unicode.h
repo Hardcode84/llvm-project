@@ -19,7 +19,7 @@
 #include <optional>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 namespace sys {
@@ -89,6 +89,6 @@ nearestMatchesForCodepointName(StringRef Pattern, std::size_t MaxMatchesCount);
 
 } // namespace unicode
 } // namespace sys
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

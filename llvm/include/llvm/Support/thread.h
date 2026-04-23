@@ -32,7 +32,7 @@ typedef PVOID HANDLE;
 
 #include <thread>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 #if defined(LLVM_ON_UNIX) || defined(_WIN32)
 
@@ -214,14 +214,14 @@ inline thread::id get_id() { return std::this_thread::get_id(); }
 
 #endif // LLVM_ON_UNIX || _WIN32
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #else // !LLVM_ENABLE_THREADS
 
 #include "llvm/Support/ErrorHandling.h"
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct thread {
   thread() {}
@@ -245,7 +245,7 @@ struct thread {
   static unsigned hardware_concurrency() { return 1; };
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ENABLE_THREADS
 

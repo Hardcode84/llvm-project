@@ -40,8 +40,9 @@
 #include <new>
 #include <type_traits>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename NodeT, bool IsPostDom>
 class DominatorTreeBase;
@@ -1049,6 +1050,6 @@ bool DominatorTreeBase<NodeT, IsPostDom>::properlyDominates(
   return dominates(getNode(A), getNode(B));
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_GENERICDOMTREE_H

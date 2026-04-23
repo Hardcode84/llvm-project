@@ -29,6 +29,7 @@
 #include <shellapi.h>
 #include <shlobj.h>
 #include <winioctl.h>
+#include "llvm/Support/Compiler.h"
 
 #undef max
 
@@ -88,7 +89,7 @@ static void stripLongPathPrefix(wchar_t *&Data, DWORD &CountChars) {
   }
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 namespace windows {
 
@@ -1974,4 +1975,4 @@ std::error_code UTF16ToCurCP(const wchar_t *utf16, size_t utf16_len,
 
 } // end namespace windows
 } // end namespace sys
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

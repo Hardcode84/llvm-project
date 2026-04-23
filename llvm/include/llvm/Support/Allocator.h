@@ -30,7 +30,7 @@
 #include <optional>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace detail {
 
@@ -447,7 +447,7 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 template <typename AllocatorT, size_t SlabSize, size_t SizeThreshold,
           size_t GrowthDelay>

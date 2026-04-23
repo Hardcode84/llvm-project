@@ -21,7 +21,7 @@
 #include <atomic>
 #include <chrono>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_socket_stream;
 
@@ -150,6 +150,6 @@ public:
       const std::chrono::milliseconds &Timeout = std::chrono::milliseconds(-1));
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

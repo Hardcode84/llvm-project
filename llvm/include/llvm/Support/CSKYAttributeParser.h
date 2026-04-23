@@ -13,7 +13,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/ELFAttrParserCompact.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LLVM_ABI CSKYAttributeParser : public ELFCompactAttrParser {
   struct DisplayHandler {
     CSKYAttrs::AttrType attribute;
@@ -39,6 +39,6 @@ public:
       : ELFCompactAttrParser(CSKYAttrs::getCSKYAttributeTags(), "csky") {}
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

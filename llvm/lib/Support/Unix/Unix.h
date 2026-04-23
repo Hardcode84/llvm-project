@@ -41,6 +41,7 @@
 #include <dlfcn.h>
 
 # include <fcntl.h>
+#include "llvm/Support/Compiler.h"
 
 /// This function builds an error message into \p ErrMsg using the \p prefix
 /// string and the Unix error number given by \p errnum. If errnum is -1, the
@@ -66,7 +67,7 @@ static inline bool MakeErrMsg(
   llvm::report_fatal_error(llvm::Twine(ErrMsg));
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 
 /// Convert a struct timeval to a duration. Note that timeval can be used both
@@ -97,6 +98,6 @@ inline struct timeval toTimeVal(TimePoint<std::chrono::microseconds> TP) {
 }
 
 } // namespace sys
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

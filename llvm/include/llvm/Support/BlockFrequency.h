@@ -18,7 +18,7 @@
 #include <cstdint>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 class BranchProbability;
@@ -126,6 +126,6 @@ LLVM_ABI raw_ostream &operator<<(raw_ostream &OS, BlockFrequency Freq);
 LLVM_ABI void printRelativeBlockFreq(raw_ostream &OS, BlockFrequency EntryFreq,
                                      BlockFrequency Freq);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -15,8 +15,9 @@
 
 #include "llvm/ADT/StringRef.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 enum class KCFIHashAlgorithm { xxHash64, FNV1a };
 
@@ -32,6 +33,6 @@ LLVM_ABI StringRef stringifyKCFIHashAlgorithm(KCFIHashAlgorithm Algorithm);
 LLVM_ABI uint32_t getKCFITypeID(StringRef MangledTypeName,
                                 KCFIHashAlgorithm Algorithm);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_HASH_H

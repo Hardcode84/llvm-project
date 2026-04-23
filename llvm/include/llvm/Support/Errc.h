@@ -30,8 +30,9 @@
 #define LLVM_SUPPORT_ERRC_H
 
 #include <system_error>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 enum class errc {
   argument_list_too_long = int(std::errc::argument_list_too_long),
   argument_out_of_domain = int(std::errc::argument_out_of_domain),
@@ -82,7 +83,7 @@ enum class errc {
 inline std::error_code make_error_code(errc E) {
   return std::error_code(static_cast<int>(E), std::generic_category());
 }
-}
+LLVM_NAMESPACE_END
 
 namespace std {
 template <> struct is_error_code_enum<llvm::errc> : std::true_type {};

@@ -23,15 +23,15 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/DenseSet.h"
 #include "llvm/ADT/SmallVector.h"
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Typedefs that are convenient but only used by the stack-trace-collection code
 // added if DebugLoc origin-tracking is enabled.
 using AddressSet = DenseSet<void *>;
 using SymbolizedAddressMap = DenseMap<void *, SmallVector<std::string, 0>>;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 class raw_ostream;
 
@@ -165,6 +165,6 @@ LLVM_ABI void CleanupOnSignal(uintptr_t Context);
 
 LLVM_ABI void unregisterHandlers();
 } // namespace sys
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

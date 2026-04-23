@@ -15,7 +15,9 @@
 #ifndef LLVM_SUPPORT_NVPTXADDRSPACE_H
 #define LLVM_SUPPORT_NVPTXADDRSPACE_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 namespace NVPTXAS {
 
 enum AddressSpace : unsigned {
@@ -53,6 +55,6 @@ enum DWARF_AddressSpace : unsigned {
 };
 
 } // end namespace NVPTXAS
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_NVPTXADDRSPACE_H

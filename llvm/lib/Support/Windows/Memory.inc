@@ -18,6 +18,7 @@
 
 // The Windows.h header must be the last one included.
 #include "llvm/Support/Windows/WindowsSupport.h"
+#include "llvm/Support/Compiler.h"
 
 static DWORD getWindowsProtectionFlags(unsigned Flags) {
   switch (Flags & llvm::sys::Memory::MF_RWE_MASK) {
@@ -88,7 +89,7 @@ static size_t enableProcessLargePages() {
   return 0;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 
 //===----------------------------------------------------------------------===//
@@ -190,4 +191,4 @@ void Memory::InvalidateInstructionCache(const void *Addr, size_t Len) {
 }
 
 } // namespace sys
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -18,13 +18,14 @@
 #include <process.h>
 
 #include <bitset>
+#include "llvm/Support/Compiler.h"
 
 // Windows will at times define MemoryFence.
 #ifdef MemoryFence
 #undef MemoryFence
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 HANDLE
 llvm_execute_on_thread_impl(unsigned(__stdcall *ThreadFunc)(void *), void *Arg,
                             std::optional<unsigned> StackSizeInBytes) {
@@ -53,7 +54,7 @@ DWORD llvm_thread_get_id_impl(HANDLE hThread) { return ::GetThreadId(hThread); }
 
 DWORD llvm_thread_get_current_id_impl() { return ::GetCurrentThreadId(); }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 uint64_t llvm::get_threadid() { return uint64_t(::GetCurrentThreadId()); }
 

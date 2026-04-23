@@ -12,8 +12,9 @@
 #define LLVM_SUPPORT_CODEGENCOVERAGE_H
 
 #include "llvm/ADT/BitVector.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MemoryBuffer;
 
 class CodeGenCoverage {
@@ -33,6 +34,6 @@ public:
   bool emit(StringRef FilePrefix, StringRef BackendName) const;
   void reset();
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_CODEGENCOVERAGE_H

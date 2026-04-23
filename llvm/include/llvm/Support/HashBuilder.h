@@ -25,8 +25,9 @@
 #include <iterator>
 #include <optional>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace hashbuilder_detail {
 /// Trait to indicate whether a type's bits can be hashed directly (after
@@ -404,6 +405,6 @@ hash_value(const T &Value) {
   HBuilder.add(Value);
   return HBuilder.getHasher().Code;
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_HASHBUILDER_H

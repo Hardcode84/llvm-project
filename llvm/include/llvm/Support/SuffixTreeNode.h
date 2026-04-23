@@ -28,7 +28,7 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A node in a suffix tree which represents a substring or suffix.
 struct SuffixTreeNode {
@@ -191,5 +191,5 @@ public:
 
   ~SuffixTreeLeafNode() override = default;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_SUPPORT_SUFFIXTREE_NODE_H

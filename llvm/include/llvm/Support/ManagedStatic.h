@@ -17,7 +17,7 @@
 #include <atomic>
 #include <cstddef>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// object_creator - Helper method for ManagedStatic.
 template <class C> struct object_creator {
@@ -122,6 +122,6 @@ struct llvm_shutdown_obj {
   ~llvm_shutdown_obj() { llvm_shutdown(); }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_MANAGEDSTATIC_H

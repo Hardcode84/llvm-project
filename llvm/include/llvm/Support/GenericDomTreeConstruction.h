@@ -45,10 +45,11 @@
 #include "llvm/Support/GenericDomTree.h"
 #include <optional>
 #include <queue>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "dom-tree-builder"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace DomTreeBuilder {
 
 template <typename DomTreeT> struct SemiNCAInfo {
@@ -1635,7 +1636,7 @@ bool Verify(const DomTreeT &DT, typename DomTreeT::VerificationLevel VL) {
 }
 
 } // namespace DomTreeBuilder
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #undef DEBUG_TYPE
 

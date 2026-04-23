@@ -12,7 +12,7 @@
 #include "llvm/ADT/STLFunctionalExtras.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// \returns an address close to the current value of the stack pointer.
 ///
@@ -46,6 +46,6 @@ auto runOnNewStack(unsigned StackSize, function_ref<R(Ts...)> Fn,
   }
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_PROGRAMSTACK_H

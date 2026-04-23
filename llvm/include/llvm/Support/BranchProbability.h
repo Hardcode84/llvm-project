@@ -21,7 +21,7 @@
 #include <iterator>
 #include <numeric>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -259,6 +259,6 @@ void BranchProbability::normalizeProbabilities(ProbabilityIter Begin,
     I->N = (I->N * uint64_t(D) + Sum / 2) / Sum;
 }
 
-}
+LLVM_NAMESPACE_END
 
 #endif

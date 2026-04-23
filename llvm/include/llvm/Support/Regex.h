@@ -22,7 +22,7 @@
 
 struct llvm_regex;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class StringRef;
   template<typename T> class SmallVectorImpl;
 
@@ -111,6 +111,6 @@ namespace llvm {
     struct llvm_regex *preg;
     int error;
   };
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_SUPPORT_REGEX_H

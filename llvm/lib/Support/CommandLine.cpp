@@ -53,7 +53,7 @@ using namespace cl;
 //===----------------------------------------------------------------------===//
 // Template instantiations and anchors.
 //
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace cl {
 template class LLVM_EXPORT_TEMPLATE basic_parser<bool>;
 template class LLVM_EXPORT_TEMPLATE basic_parser<boolOrDefault>;
@@ -82,7 +82,7 @@ template class LLVM_EXPORT_TEMPLATE opt<int>;
 template class LLVM_EXPORT_TEMPLATE opt<unsigned>;
 
 } // namespace cl
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Pin the vtables to this file.
 void GenericOptionValue::anchor() {}

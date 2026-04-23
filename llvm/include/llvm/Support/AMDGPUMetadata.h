@@ -22,7 +22,7 @@
 #include <system_error>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace AMDGPU {
 
 //===----------------------------------------------------------------------===//
@@ -526,6 +526,6 @@ enum Key : uint32_t {
 
 } // end namespace PALMD
 } // end namespace AMDGPU
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_AMDGPUMETADATA_H

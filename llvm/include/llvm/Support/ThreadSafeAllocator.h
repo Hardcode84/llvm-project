@@ -12,8 +12,9 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/Support/Allocator.h"
 #include <atomic>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Thread-safe allocator adaptor. Uses a spin lock on the assumption that
 /// contention here is extremely rare.
@@ -57,6 +58,6 @@ private:
   std::atomic_flag Flag = ATOMIC_FLAG_INIT;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_THREADSAFEALLOCATOR_H

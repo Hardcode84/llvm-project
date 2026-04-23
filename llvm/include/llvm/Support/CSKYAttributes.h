@@ -15,7 +15,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/ELFAttributes.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace CSKYAttrs {
 
 LLVM_ABI const TagNameMap &getCSKYAttributeTags();
@@ -91,6 +91,6 @@ enum FPU_HARDFP {
 };
 
 } // namespace CSKYAttrs
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

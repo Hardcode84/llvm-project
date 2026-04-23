@@ -16,7 +16,7 @@
 #include "llvm/ADT/APInt.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Magic data for optimising signed division by a constant.
 struct SignedDivisionByConstantInfo {
@@ -38,6 +38,6 @@ struct UnsignedDivisionByConstantInfo {
   bool Widen;           ///< use widen optimization
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

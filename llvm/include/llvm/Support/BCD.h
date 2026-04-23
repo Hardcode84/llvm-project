@@ -16,8 +16,9 @@
 #include <assert.h>
 #include <cstddef>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Decode a packed BCD value.
 // Maximum value of int64_t is 9,223,372,036,854,775,807. These are 18 usable
@@ -48,6 +49,6 @@ inline ResultT decodePackedBCD(const ValT Val, bool IsSigned = true) {
       reinterpret_cast<const uint8_t *>(&Val), sizeof(ValT), IsSigned));
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_BCD_H

@@ -62,7 +62,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Base class for the extensible RTTI hierarchy.
 ///
@@ -147,6 +147,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_EXTENSIBLERTTI_H

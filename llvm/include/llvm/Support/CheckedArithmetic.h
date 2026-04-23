@@ -18,6 +18,7 @@
 
 #include <optional>
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
 namespace {
 
@@ -37,7 +38,7 @@ checkedOp(T LHS, T RHS, F Op, bool Signed = true) {
 }
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Add two signed integers \p LHS and \p RHS.
 /// \return Optional of sum if no signed overflow occurred,
@@ -106,6 +107,6 @@ checkedMulAddUnsigned(T A, T B, T C) {
   return std::nullopt;
 }
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

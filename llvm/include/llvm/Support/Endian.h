@@ -22,7 +22,7 @@
 #include <cstring>
 #include <type_traits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace support {
 
 // These are named values for common alignments.
@@ -491,6 +491,6 @@ inline void write64be(void *P, uint64_t V) {
 } // end namespace endian
 
 } // end namespace support
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_ENDIAN_H

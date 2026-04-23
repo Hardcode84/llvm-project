@@ -18,7 +18,7 @@
 #include "llvm/Support/ELFAttrParserCompact.h"
 #include "llvm/Support/MSP430Attributes.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LLVM_ABI MSP430AttributeParser : public ELFCompactAttrParser {
   struct DisplayHandler {
     MSP430Attrs::AttrType Attribute;
@@ -40,6 +40,6 @@ public:
   MSP430AttributeParser()
       : ELFCompactAttrParser(MSP430Attrs::getMSP430AttributeTags(), "mspabi") {}
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -16,7 +16,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 
 /// Determine if the raw_ostream provided is connected to a terminal. If so,
@@ -27,6 +27,6 @@ LLVM_ABI bool CheckBitcodeOutputToConsole(
     raw_ostream &stream_to_check ///< The stream to be checked
 );
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

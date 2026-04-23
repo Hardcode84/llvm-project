@@ -12,7 +12,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/ELFAttributes.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace HexagonAttrs {
 
 LLVM_ABI const TagNameMap &getHexagonAttributeTags();
@@ -28,6 +28,6 @@ enum AttrType : unsigned {
 };
 
 } // namespace HexagonAttrs
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

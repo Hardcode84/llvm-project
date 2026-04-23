@@ -21,7 +21,7 @@
 #include "llvm/Support/DynamicLibrary.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// A simple registry entry which provides only a name, description, and
 /// an `CtorParamTypes&&` variadic parameterized constructor.
 template <typename T, typename... CtorParamTypes> class SimpleRegistryEntry {
@@ -206,7 +206,7 @@ public:
   };
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 /// Helper macro to declare registry class.
 ///

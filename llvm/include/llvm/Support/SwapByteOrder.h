@@ -18,8 +18,9 @@
 #include "llvm/ADT/bit.h"
 #include <cstdint>
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace sys {
 
@@ -63,6 +64,6 @@ inline void swapByteOrder(T &Value) {
 }
 
 } // end namespace sys
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

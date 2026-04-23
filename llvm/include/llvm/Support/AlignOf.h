@@ -14,8 +14,9 @@
 #define LLVM_SUPPORT_ALIGNOF_H
 
 #include <algorithm>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A suitably aligned and sized character array member which can hold elements
 /// of any type.
@@ -26,6 +27,6 @@ template <typename T, typename... Ts> struct AlignedCharArrayUnion {
   alignas(Align) char buffer[std::max({sizeof(T), sizeof(Ts)...})];
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_ALIGNOF_H

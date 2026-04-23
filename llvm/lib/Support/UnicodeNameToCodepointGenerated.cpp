@@ -65,7 +65,7 @@ written authorization of the copyright holder.
 #include "llvm/Support/Compiler.h"
 #include <cstddef>
 #include <cstdint>
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 namespace unicode {
 extern const char *const UnicodeNameToCodepointDict;
@@ -21175,4 +21175,4 @@ const std::size_t UnicodeNameToCodepointLargestNameSize = 74;
 
 } // namespace unicode
 } // namespace sys
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

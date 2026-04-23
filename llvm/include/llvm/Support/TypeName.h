@@ -22,9 +22,10 @@
 #define LLVM_GET_TYPE_NAME_CONSTEXPR
 #define LLVM_GET_TYPE_NAME_STATIC_ASSERT 0
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// We provide a function which tries to compute the (demangled) name of a type
 /// statically.
@@ -105,7 +106,7 @@ inline LLVM_GET_TYPE_NAME_CONSTEXPR StringRef getTypeName() {
 #endif
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Don't leak out of this header file
 #undef LLVM_GET_TYPE_NAME_CONSTEXPR

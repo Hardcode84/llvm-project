@@ -7,9 +7,10 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/Config/abi-breaking.h"
+#include "llvm/Support/Compiler.h"
 
 #ifndef _MSC_VER
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // One of these two variables will be referenced by a symbol defined in
 // llvm-config.h. We provide a link-time (or load time for DSO) failure when
@@ -20,5 +21,5 @@ int EnableABIBreakingChecks;
 int DisableABIBreakingChecks;
 #endif
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif

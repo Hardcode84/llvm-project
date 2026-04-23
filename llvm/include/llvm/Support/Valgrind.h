@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cstddef>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
   // True if Valgrind is controlling this process.
 LLVM_ABI bool RunningOnValgrind();
@@ -27,6 +27,6 @@ LLVM_ABI bool RunningOnValgrind();
 // Otherwise valgrind may continue to execute the old version of the code.
 LLVM_ABI void ValgrindDiscardTranslations(const void *Addr, size_t Len);
 } // namespace sys
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_VALGRIND_H

@@ -16,8 +16,9 @@
 #define LLVM_SUPPORT_AMDGPUADDRSPACE_H
 
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// OpenCL uses address spaces to differentiate between
 /// various memory regions on the hardware. On the CPU
 /// all of the address spaces point to the same memory,
@@ -182,6 +183,6 @@ constexpr int64_t getNullPointerValue(unsigned AS) {
 }
 } // end namespace AMDGPU
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_AMDGPUADDRSPACE_H

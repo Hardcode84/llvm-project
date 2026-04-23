@@ -16,7 +16,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 
 enum class COMThreadingMode { SingleThreaded, MultiThreaded };
@@ -32,6 +32,6 @@ private:
   void operator=(const InitializeCOMRAII &) = delete;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

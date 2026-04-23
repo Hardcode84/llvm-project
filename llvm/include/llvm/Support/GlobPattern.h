@@ -20,7 +20,7 @@
 #include "llvm/Support/Error.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This class implements a glob pattern matcher similar to the one found in
 /// bash, but with some key differences. Namely, that `*` matches all
@@ -105,6 +105,6 @@ private:
   };
   SmallVector<SubGlobPattern, 1> SubGlobs;
 };
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_SUPPORT_GLOBPATTERN_H

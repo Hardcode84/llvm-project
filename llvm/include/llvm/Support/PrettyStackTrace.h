@@ -18,7 +18,7 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class raw_ostream;
 
   /// Enables dumping a "pretty" stack trace when the program crashes.
@@ -113,6 +113,6 @@ namespace llvm {
   /// CrashRecoveryContext.
   LLVM_ABI void RestorePrettyStackState(const void *State);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

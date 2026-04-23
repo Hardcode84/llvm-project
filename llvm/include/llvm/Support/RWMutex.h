@@ -18,12 +18,13 @@
 #include <cassert>
 #include <mutex>
 #include <shared_mutex>
+#include "llvm/Support/Compiler.h"
 
 #if defined(__APPLE__)
 #define LLVM_USE_RW_MUTEX_IMPL
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 
 #if defined(LLVM_USE_RW_MUTEX_IMPL)
@@ -199,6 +200,6 @@ template <bool mt_only> struct SmartScopedWriter {
 using ScopedWriter = SmartScopedWriter<false>;
 
 } // end namespace sys
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_RWMUTEX_H

@@ -3,8 +3,9 @@
 
 #include "llvm/Config/abi-breaking.h"
 #include "llvm/Support/PointerLikeTypeTraits.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <class T = void *> constexpr bool shouldReverseIterate() {
 #if LLVM_ENABLE_REVERSE_ITERATION
@@ -14,5 +15,5 @@ template <class T = void *> constexpr bool shouldReverseIterate() {
 #endif
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

@@ -21,7 +21,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/ELFAttributes.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace ARMBuildAttrs {
 
 LLVM_ABI const TagNameMap &getARMAttributeTags();
@@ -265,6 +265,6 @@ enum {
 };
 
 } // namespace ARMBuildAttrs
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

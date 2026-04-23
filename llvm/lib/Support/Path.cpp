@@ -28,6 +28,7 @@
 #include <unistd.h>
 #else
 #include <io.h>
+#include "llvm/Support/Compiler.h"
 #endif
 
 using namespace llvm;
@@ -220,7 +221,7 @@ createUniqueEntity(const Twine &Model, int &ResultFD,
   return EC;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys  {
 namespace path {
 
@@ -1224,7 +1225,7 @@ Error readNativeFileToEOF(file_t FileHandle, SmallVectorImpl<char> &Buffer,
 
 } // end namespace fs
 } // end namespace sys
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 // Include the truly platform-specific parts.
 #if defined(LLVM_ON_UNIX)
@@ -1234,7 +1235,7 @@ Error readNativeFileToEOF(file_t FileHandle, SmallVectorImpl<char> &Buffer,
 #include "Windows/Path.inc"
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 namespace fs {
 
@@ -1384,4 +1385,4 @@ Expected<TempFile> TempFile::create(const Twine &Model, unsigned Mode,
 } // namespace fs
 
 } // namespace sys
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

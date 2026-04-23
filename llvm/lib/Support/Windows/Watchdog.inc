@@ -15,9 +15,10 @@
 // on Windows. Roughly, a Windows implementation would use CreateWaitableTimer
 // and a second thread to run the TimerAPCProc.
 
-namespace llvm {
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 Watchdog::Watchdog(unsigned int seconds) {}
 Watchdog::~Watchdog() {}
 } // namespace sys
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

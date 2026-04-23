@@ -23,8 +23,10 @@
 #include "llvm/Support/Error.h"
 #include "llvm/Support/ExtensibleRTTI.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::vfs {
+LLVM_NAMESPACE_BEGIN
+namespace vfs {
 
 class OutputFileImpl : public RTTIExtends<OutputFileImpl, RTTIRoot> {
   LLVM_ABI void anchor() override;
@@ -164,6 +166,7 @@ inline Expected<OutputFile> consumeDiscardOnDestroy(Expected<OutputFile> File) {
   return File;
 }
 
-} // namespace llvm::vfs
+}
+LLVM_NAMESPACE_END // namespace llvm::vfs
 
 #endif // LLVM_SUPPORT_VIRTUALOUTPUTFILE_H

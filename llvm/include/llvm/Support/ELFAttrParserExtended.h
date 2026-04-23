@@ -18,7 +18,7 @@
 #include <optional>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 class ScopedPrinter;
 
@@ -54,5 +54,5 @@ public:
       const std::vector<SubsectionAndTagToTagName> TagsNamesMap)
       : Sw(nullptr), TagsNamesMap(TagsNamesMap) {}
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_SUPPORT_ELFEXTENDEDATTRPARSER_H

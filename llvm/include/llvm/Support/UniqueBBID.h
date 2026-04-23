@@ -16,8 +16,9 @@
 
 #include "llvm/ADT/DenseMapInfo.h"
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // This structure represents the information for a basic block pertaining to
 // the basic block sections profile.
@@ -65,6 +66,6 @@ template <> struct DenseMapInfo<UniqueBBID> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_UNIQUEBBID_H

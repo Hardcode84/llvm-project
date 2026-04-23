@@ -15,14 +15,15 @@
 #define LLVM_SUPPORT_DURATION_H
 
 #include <chrono>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Duration {
   std::chrono::milliseconds Value;
   public:
   Duration(std::chrono::milliseconds Value) : Value(Value) {}
   std::chrono::milliseconds getDuration() const { return Value; }
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

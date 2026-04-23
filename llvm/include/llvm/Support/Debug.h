@@ -30,7 +30,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -113,6 +113,6 @@ LLVM_ABI raw_ostream &dbgs();
 //
 #define LLVM_DEBUG(...) DEBUG_WITH_TYPE(DEBUG_TYPE, __VA_ARGS__)
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_DEBUG_H

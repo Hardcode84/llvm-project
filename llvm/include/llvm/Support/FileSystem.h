@@ -45,7 +45,7 @@
 #include <system_error>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 namespace fs {
 
@@ -1627,6 +1627,6 @@ public:
 
 } // end namespace fs
 } // end namespace sys
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_FILESYSTEM_H

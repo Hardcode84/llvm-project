@@ -28,8 +28,9 @@
 #include "llvm/ADT/iterator_range.h"
 #include "llvm/Support/GenericDomTree.h"
 #include <queue>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace IDFCalculatorDetail {
 
@@ -208,6 +209,6 @@ void IDFCalculatorBase<NodeTy, IsPostDom>::calculate(
   }
 }
 
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm
 
 #endif

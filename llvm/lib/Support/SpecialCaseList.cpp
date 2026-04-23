@@ -35,7 +35,7 @@
 #include <variant>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace {
 
@@ -458,4 +458,4 @@ bool SpecialCaseList::Section::hasPrefix(StringRef Prefix) const {
   return Impl->Entries.contains(Prefix);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

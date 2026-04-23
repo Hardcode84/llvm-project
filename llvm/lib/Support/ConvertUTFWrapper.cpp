@@ -12,8 +12,9 @@
 #include "llvm/Support/ErrorHandling.h"
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 bool ConvertUTF8toWide(unsigned WideCharWidth, llvm::StringRef Source,
                        char *&ResultPtr, const UTF8 *&ErrorPtr) {
@@ -313,5 +314,5 @@ bool IsSingleCodeUnitUTF32Codepoint(unsigned V) {
   return V <= 0xD7FF || (V >= 0xE000 && V <= 0x10FFFF);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 

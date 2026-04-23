@@ -42,7 +42,7 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 LLVM_ABI uint64_t xxHash64(llvm::StringRef Data);
 LLVM_ABI uint64_t xxHash64(llvm::ArrayRef<uint8_t> Data);
@@ -75,6 +75,6 @@ struct XXH128_hash_t {
 /// XXH3's 128-bit variant.
 LLVM_ABI XXH128_hash_t xxh3_128bits(ArrayRef<uint8_t> data);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -15,8 +15,9 @@
 
 #include <functional>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -47,6 +48,6 @@ inline raw_ostream &operator<<(raw_ostream &OS, const Printable &P) {
   return OS;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

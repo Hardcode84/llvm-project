@@ -28,6 +28,7 @@
 
 #ifdef __Fuchsia__
 #include <zircon/syscalls.h>
+#include "llvm/Support/Compiler.h"
 #endif
 
 #if defined(__APPLE__)
@@ -67,7 +68,7 @@ static int getPosixProtectionFlags(unsigned Flags) {
   return PROT_NONE;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 
 MemoryBlock Memory::allocateMappedMemory(size_t NumBytes,
@@ -252,4 +253,4 @@ void Memory::InvalidateInstructionCache(const void *Addr, size_t Len) {
 }
 
 } // namespace sys
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

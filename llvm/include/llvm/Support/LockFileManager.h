@@ -16,7 +16,7 @@
 #include <string>
 #include <variant>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Class that manages the creation of a lock file to aid implicit coordination
 /// between different processes.
 ///
@@ -66,6 +66,6 @@ public:
   /// Unlocks the lock if previously acquired by \c tryLock().
   ~LockFileManager() override;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_LOCKFILEMANAGER_H

@@ -24,13 +24,14 @@
 #include <io.h>
 #include <malloc.h>
 #include <psapi.h>
+#include "llvm/Support/Compiler.h"
 
 //===----------------------------------------------------------------------===//
 //=== WARNING: Implementation here must contain only Win32 specific code
 //===          and must not be UNIX code
 //===----------------------------------------------------------------------===//
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 ProcessInfo::ProcessInfo() : Pid(0), Process(0), ReturnCode(0) {}
 
@@ -168,7 +169,7 @@ static HANDLE RedirectIO(std::optional<StringRef> Path, int fd,
   return h;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static bool Execute(ProcessInfo &PI, StringRef Program,
                     ArrayRef<StringRef> Args,
@@ -394,7 +395,7 @@ static std::string quoteSingleArg(StringRef Arg) {
   return Result;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 ErrorOr<std::wstring> sys::flattenWindowsCommandLine(ArrayRef<StringRef> Args) {
   std::string Command;
   for (StringRef Arg : Args) {
@@ -577,4 +578,4 @@ bool llvm::sys::commandLineFitsWithinSystemLimits(StringRef Program,
   assert(!Result.getError());
   return (Result->size() + 1) <= MaxCommandStringLength;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

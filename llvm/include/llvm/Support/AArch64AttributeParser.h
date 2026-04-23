@@ -13,7 +13,7 @@
 #include "llvm/Support/ELFAttrParserExtended.h"
 #include "llvm/Support/ELFAttributes.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AArch64AttributeParser : public ELFExtendedAttrParser {
   LLVM_ABI static std::vector<SubsectionAndTagToTagName> &returnTagsNamesMap();
@@ -36,6 +36,6 @@ struct AArch64BuildAttrSubsections {
 
 LLVM_ABI AArch64BuildAttrSubsections
 extractBuildAttributesSubsections(const llvm::AArch64AttributeParser &);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_AARCH64ATTRIBUTEPARSER_H

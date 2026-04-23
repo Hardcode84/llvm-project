@@ -38,7 +38,7 @@
 // disabling one check here.
 // NOLINTBEGIN(readability-identifier-naming)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace lsp {
 
 enum class ErrorCode {
@@ -1316,9 +1316,9 @@ llvm::json::Value toJSON(const MessageActionItem &Params);
 llvm::json::Value toJSON(const ShowMessageParams &Params);
 
 } // namespace lsp
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct format_provider<llvm::lsp::Position> {
   static void format(const llvm::lsp::Position &pos, raw_ostream &os,
                      StringRef style) {
@@ -1326,7 +1326,7 @@ template <> struct format_provider<llvm::lsp::Position> {
     os << pos;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif
 

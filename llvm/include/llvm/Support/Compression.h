@@ -17,7 +17,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/DataTypes.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T> class SmallVectorImpl;
 class Error;
 
@@ -131,6 +131,6 @@ LLVM_ABI Error decompress(DebugCompressionType T, ArrayRef<uint8_t> Input,
 
 } // End of namespace compression
 
-} // End of namespace llvm
+LLVM_NAMESPACE_END // End of namespace llvm
 
 #endif

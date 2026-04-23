@@ -15,7 +15,7 @@
 #include "llvm/Support/Error.h"
 #include "llvm/Support/raw_ostream.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class TarWriter {
 public:
   LLVM_ABI static Expected<std::unique_ptr<TarWriter>>
@@ -29,6 +29,6 @@ private:
   std::string BaseDir;
   StringSet<> Files;
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

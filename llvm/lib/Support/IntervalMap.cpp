@@ -12,8 +12,9 @@
 
 #include "llvm/ADT/IntervalMap.h"
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace IntervalMapImpl {
 
 void Path::replaceRoot(void *Root, unsigned Size, IdxPair Offsets) {
@@ -157,5 +158,5 @@ IdxPair distribute(unsigned Nodes, unsigned Elements, unsigned Capacity,
 }
 
 } // namespace IntervalMapImpl
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 

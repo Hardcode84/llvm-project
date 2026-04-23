@@ -18,7 +18,7 @@
 #include <map>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace RISCVISAUtils {
 constexpr StringLiteral AllStdExts = "mafdqlcbkjtpvnh";
@@ -45,6 +45,6 @@ using OrderedExtensionMap =
 
 } // namespace RISCVISAUtils
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

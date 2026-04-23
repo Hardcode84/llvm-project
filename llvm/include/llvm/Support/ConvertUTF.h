@@ -116,7 +116,7 @@
 // Wrap everything in namespace llvm so that programs can link with llvm and
 // their own version of the unicode libraries.
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /* ---------------------------------------------------------------------
     The following 4 definitions are compiler-specific.
@@ -364,6 +364,6 @@ LLVM_ABI std::error_code UTF16ToCurCP(const wchar_t *utf16, size_t utf16_len,
 } // namespace sys
 #endif
 
-} /* end namespace llvm */
+LLVM_NAMESPACE_END /* end namespace llvm */
 
 #endif

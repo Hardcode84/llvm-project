@@ -13,7 +13,7 @@
 #include "llvm/Support/ELFAttrParserCompact.h"
 #include "llvm/Support/HexagonAttributes.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LLVM_ABI HexagonAttributeParser : public ELFCompactAttrParser {
   struct DisplayHandler {
     HexagonAttrs::AttrType Attribute;
@@ -33,6 +33,6 @@ public:
                              "hexagon") {}
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

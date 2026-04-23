@@ -30,7 +30,7 @@
 #include <tuple>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace ScaledNumbers {
 
 /// Maximum scale; same as APFloat for easy debug printing.
@@ -415,9 +415,9 @@ inline std::pair<uint64_t, int16_t> getDifference64(uint64_t LDigits,
 }
 
 } // end namespace ScaledNumbers
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 class ScaledNumberBase {
@@ -891,6 +891,6 @@ template <class DigitsT> void ScaledNumber<DigitsT>::shiftRight(int32_t Shift) {
 }
 
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_SCALEDNUMBER_H

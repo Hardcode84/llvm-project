@@ -26,6 +26,7 @@
 #include <io.h>
 #include <psapi.h>
 #include <shellapi.h>
+#include "llvm/Support/Compiler.h"
 
 #if !defined(__MINGW32__)
 #pragma comment(lib, "psapi.lib")
@@ -522,7 +523,8 @@ bool llvm::RunningWindows11OrGreater() {
   llvm_unreachable("TerminateProcess doesn't return");
 }
 
-namespace llvm::sys::windows {
+LLVM_NAMESPACE_BEGIN
+namespace sys::windows {
 HMODULE loadSystemModuleSecure(LPCWSTR lpModuleName) {
   // Ensure we load indeed a module from system32 path.
   // As per GetModuleHandle documentation:
@@ -549,4 +551,5 @@ HMODULE loadSystemModuleSecure(LPCWSTR lpModuleName) {
 
   return ::GetModuleHandleW(Buf.data());
 }
-} // namespace llvm::sys::windows
+}
+LLVM_NAMESPACE_END // namespace llvm::sys::windows

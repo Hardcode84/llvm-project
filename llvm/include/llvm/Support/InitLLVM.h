@@ -32,7 +32,7 @@
 //
 // InitLLVM calls llvm_shutdown() on destruction, which cleans up
 // ManagedStatic objects.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class InitLLVM {
 public:
   LLVM_ABI InitLLVM(int &Argc, const char **&Argv,
@@ -51,6 +51,6 @@ private:
   SmallVector<const char *, 0> Args;
   std::optional<PrettyStackTraceProgram> StackPrinter;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

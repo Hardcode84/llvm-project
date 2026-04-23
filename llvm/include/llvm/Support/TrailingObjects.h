@@ -54,7 +54,7 @@
 #include <new>
 #include <type_traits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace trailing_objects_internal {
 
@@ -421,6 +421,6 @@ public:
   };
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

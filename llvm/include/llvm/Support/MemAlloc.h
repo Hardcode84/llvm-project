@@ -20,7 +20,7 @@
 #include "llvm/Support/ErrorHandling.h"
 #include <cstdlib>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 LLVM_ATTRIBUTE_RETURNS_NONNULL inline void *safe_malloc(size_t Sz) {
   void *Result = std::malloc(Sz);
@@ -83,5 +83,5 @@ allocate_buffer(size_t Size, size_t Alignment);
 /// most likely using the above helper.
 LLVM_ABI void deallocate_buffer(void *Ptr, size_t Size, size_t Alignment);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

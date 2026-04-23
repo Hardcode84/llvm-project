@@ -117,7 +117,7 @@ void MappingNode::anchor() {}
 void SequenceNode::anchor() {}
 void AliasNode::anchor() {}
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 /// Token - A single YAML token.
@@ -159,7 +159,7 @@ struct Token {
 };
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 using TokenQueueT = BumpPtrList<Token>;
 
@@ -240,7 +240,7 @@ static UTF8Decoded decodeUTF8(StringRef Range) {
   return {0, 0};
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 /// Scans YAML tokens from a MemoryBuffer.
@@ -573,7 +573,7 @@ private:
 };
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 /// encodeUTF8 - Encode \a UnicodeScalarValue in UTF-8 and append it to result.
 static void encodeUTF8( uint32_t UnicodeScalarValue

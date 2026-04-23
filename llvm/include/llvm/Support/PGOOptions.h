@@ -17,7 +17,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// A struct capturing PGO tunables.
 struct PGOOptions {
   enum PGOAction { NoAction, IRInstr, IRUse, SampleUse };
@@ -46,6 +46,6 @@ struct PGOOptions {
   bool PseudoProbeForProfiling;
   bool AtomicCounterUpdate;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

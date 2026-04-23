@@ -331,7 +331,7 @@ static bool Execute(ProcessInfo &PI, StringRef Program,
   return true;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 
 #if defined(_AIX)
@@ -341,7 +341,7 @@ using ::wait4;
 #endif
 
 } // namespace sys
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #ifdef _AIX
 #ifndef _ALL_SOURCE

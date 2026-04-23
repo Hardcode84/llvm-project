@@ -33,8 +33,9 @@
 #include <deque>
 #include <map>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using NfaPath = SmallVector<uint64_t, 4>;
 
@@ -256,6 +257,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_AUTOMATON_H

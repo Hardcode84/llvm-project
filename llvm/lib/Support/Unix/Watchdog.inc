@@ -14,9 +14,10 @@
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
+#include "llvm/Support/Compiler.h"
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 Watchdog::Watchdog(unsigned int seconds) {
 #ifdef HAVE_UNISTD_H
@@ -30,4 +31,4 @@ Watchdog::~Watchdog() {
 #endif
 }
 } // namespace sys
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

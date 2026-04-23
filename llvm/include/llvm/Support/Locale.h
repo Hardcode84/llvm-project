@@ -3,7 +3,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 namespace sys {
@@ -13,6 +13,6 @@ LLVM_ABI int columnWidth(StringRef s);
 LLVM_ABI bool isPrint(int c);
 }
 }
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_SUPPORT_LOCALE_H

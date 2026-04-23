@@ -33,7 +33,7 @@
 #include <tuple>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This is a helper class used for handling formatted output.  It is the
 /// abstract base class of a templated derived class.
@@ -259,6 +259,6 @@ format_bytes_with_ascii(ArrayRef<uint8_t> Bytes,
                         ByteGroupSize, Upper, true);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

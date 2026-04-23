@@ -16,8 +16,9 @@
 #define LLVM_SUPPORT_SAVEANDRESTORE_H
 
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A utility class that uses RAII to save and restore the value of a variable.
 template <typename T> struct SaveAndRestore {
@@ -39,6 +40,6 @@ template <typename T> SaveAndRestore(T &) -> SaveAndRestore<T>;
 template <typename T> SaveAndRestore(T &, const T &) -> SaveAndRestore<T>;
 template <typename T> SaveAndRestore(T &, T &&) -> SaveAndRestore<T>;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

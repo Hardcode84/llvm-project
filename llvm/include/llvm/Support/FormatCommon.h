@@ -12,8 +12,9 @@
 #include "llvm/ADT/SmallString.h"
 #include "llvm/Support/FormatVariadicDetails.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 enum class AlignStyle { Left, Center, Right };
 
 /// Helper class to format to a \p Width wide field, with alignment \p Where
@@ -73,6 +74,6 @@ private:
       S << Fill;
   }
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

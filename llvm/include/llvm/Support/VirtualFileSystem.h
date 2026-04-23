@@ -37,7 +37,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MemoryBuffer;
 class MemoryBufferRef;
@@ -1208,6 +1208,6 @@ protected:
 };
 
 } // namespace vfs
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_VIRTUALFILESYSTEM_H

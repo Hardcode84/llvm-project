@@ -10,7 +10,7 @@
 #include "llvm/Support/Compiler.h"
 #include <atomic>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 void BuryPointer(const void *Ptr) {
   // This function may be called only a small fixed amount of times per each
@@ -27,4 +27,4 @@ void BuryPointer(const void *Ptr) {
   GraveYard[Idx] = Ptr;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

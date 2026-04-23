@@ -13,7 +13,7 @@
 #include <cstdint>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 enum class FloatStyle { Exponent, ExponentUpper, Fixed, Percent };
 enum class IntegerStyle {
@@ -44,7 +44,7 @@ LLVM_ABI void write_hex(raw_ostream &S, uint64_t N, HexPrintStyle Style,
                         std::optional<size_t> Width = std::nullopt);
 LLVM_ABI void write_double(raw_ostream &S, double D, FloatStyle Style,
                            std::optional<size_t> Precision = std::nullopt);
-}
+LLVM_NAMESPACE_END
 
 #endif
 

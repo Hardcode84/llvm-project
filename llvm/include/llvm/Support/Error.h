@@ -35,7 +35,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ErrorSuccess;
 
@@ -1513,6 +1513,6 @@ inline Error unwrap(LLVMErrorRef ErrRef) {
       reinterpret_cast<ErrorInfoBase *>(ErrRef)));
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_ERROR_H

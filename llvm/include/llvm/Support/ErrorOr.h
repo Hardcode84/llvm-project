@@ -20,8 +20,9 @@
 #include <system_error>
 #include <type_traits>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Represents either an error or a value T.
 ///
@@ -267,6 +268,6 @@ operator==(const ErrorOr<T> &Err, E Code) {
   return Err.getError() == Code;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_ERROROR_H

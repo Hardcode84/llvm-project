@@ -21,7 +21,7 @@
 
 #include <system_error>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// DiffFilesWithTolerance - Compare the two files specified, returning 0 if
 /// the files match, 1 if they are different, and 2 if there is a file error.
@@ -98,6 +98,6 @@ private:
   StringRef InputFilename;
   sys::fs::file_status InputStatus;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -21,7 +21,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Generic base class for SMT sorts
 class SMTSort {
@@ -470,6 +470,6 @@ using SMTSolverRef = std::shared_ptr<SMTSolver>;
 /// Convenience method to create and Z3Solver object
 LLVM_ABI SMTSolverRef CreateZ3Solver();
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

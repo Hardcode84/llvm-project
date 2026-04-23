@@ -11,8 +11,9 @@
 
 #include <cassert>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// This class represents an efficient way to signal success or failure. It
 /// should be preferred over the use of `bool` when appropriate, as it avoids
 /// all of the ambiguity that arises in interpreting a boolean result. This
@@ -123,6 +124,6 @@ public:
   /// Failure is true in a boolean context.
   constexpr explicit operator bool() const { return failed(); }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_LOGICALRESULT_H

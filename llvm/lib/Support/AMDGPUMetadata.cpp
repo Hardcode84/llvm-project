@@ -15,6 +15,7 @@
 #include "llvm/Support/AMDGPUMetadata.h"
 #include "llvm/Support/YAMLTraits.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm::AMDGPU;
 using namespace llvm::AMDGPU::HSAMD;
@@ -22,7 +23,7 @@ using namespace llvm::AMDGPU::HSAMD;
 LLVM_YAML_IS_SEQUENCE_VECTOR(Kernel::Arg::Metadata)
 LLVM_YAML_IS_SEQUENCE_VECTOR(Kernel::Metadata)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <>
@@ -226,4 +227,4 @@ std::error_code toString(Metadata HSAMetadata, std::string &String) {
 
 } // end namespace HSAMD
 } // end namespace AMDGPU
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

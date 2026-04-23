@@ -20,7 +20,7 @@
 #include <random>
 #include <system_error>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 /// A random number generator.
@@ -64,6 +64,6 @@ private:
 
 // Get random vector of specified size
 LLVM_ABI std::error_code getRandomBytes(void *Buffer, size_t Size);
-}
+LLVM_NAMESPACE_END
 
 #endif

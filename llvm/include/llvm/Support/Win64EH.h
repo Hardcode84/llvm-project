@@ -17,8 +17,9 @@
 
 #include "llvm/Support/DataTypes.h"
 #include "llvm/Support/Endian.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace Win64EH {
 
 /// UnwindOpcodes - Enumeration whose values specify a single operation in
@@ -223,6 +224,6 @@ struct UnwindInfo {
 
 
 } // End of namespace Win64EH
-} // End of namespace llvm
+LLVM_NAMESPACE_END // End of namespace llvm
 
 #endif

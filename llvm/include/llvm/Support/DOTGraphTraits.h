@@ -17,8 +17,9 @@
 #define LLVM_SUPPORT_DOTGRAPHTRAITS_H
 
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// DefaultDOTGraphTraits - This class provides the default implementations of
 /// all of the DOTGraphTraits methods.  If a specialization does not need to
@@ -166,6 +167,6 @@ template <typename Ty> struct DOTGraphTraits : DefaultDOTGraphTraits {
   using DefaultDOTGraphTraits::DefaultDOTGraphTraits;
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

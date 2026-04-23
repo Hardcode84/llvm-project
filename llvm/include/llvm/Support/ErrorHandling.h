@@ -16,7 +16,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 class Twine;
 
@@ -141,7 +141,7 @@ LLVM_ABI void install_out_of_memory_new_handler();
 [[noreturn]] LLVM_ABI void llvm_unreachable_internal(const char *msg = nullptr,
                                                      const char *file = nullptr,
                                                      unsigned line = 0);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 /// Marks that the current location is not supposed to be reachable.
 /// In !NDEBUG builds, prints the message and location info to stderr.

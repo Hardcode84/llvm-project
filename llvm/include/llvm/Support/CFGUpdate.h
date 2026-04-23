@@ -21,7 +21,7 @@
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/raw_ostream.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace cfg {
 enum class UpdateKind : unsigned char { Insert, Delete };
 
@@ -112,6 +112,6 @@ void LegalizeUpdates(ArrayRef<Update<NodePtr>> AllUpdates,
 }
 
 } // end namespace cfg
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_CFGUPDATE_H

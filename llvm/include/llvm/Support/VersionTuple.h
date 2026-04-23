@@ -21,7 +21,7 @@
 #include <string>
 #include <tuple>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename HasherT, llvm::endianness Endianness> class HashBuilder;
 class raw_ostream;
 class StringRef;
@@ -237,5 +237,5 @@ template <> struct DenseMapInfo<VersionTuple> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif // LLVM_SUPPORT_VERSIONTUPLE_H

@@ -20,7 +20,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> class ArrayRef;
 class StringRef;
@@ -55,6 +55,6 @@ LLVM_ABI uint64_t getStableSipHash(StringRef Str);
 /// in the ABI that use a constant zero.
 LLVM_ABI uint16_t getPointerAuthStableSipHash(StringRef S);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -63,9 +63,10 @@
 
 #if defined(__HAIKU__)
 #include <OS.h> // For B_OS_NAME_LENGTH
+#include "llvm/Support/Compiler.h"
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 pthread_t
 llvm_execute_on_thread_impl(void *(*ThreadFunc)(void *), void *Arg,
                             std::optional<unsigned> StackSizeInBytes) {
@@ -126,7 +127,7 @@ llvm::thread::id llvm_thread_get_current_id_impl() {
   return llvm_thread_get_id_impl(::pthread_self());
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 uint64_t llvm::get_threadid() {
 #if defined(__APPLE__)

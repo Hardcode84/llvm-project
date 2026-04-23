@@ -23,7 +23,7 @@
 #include <limits>
 #include <tuple>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -278,6 +278,6 @@ inline raw_ostream &operator<<(raw_ostream &OS, const InstructionCost &V) {
   return OS;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

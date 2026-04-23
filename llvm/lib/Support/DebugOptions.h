@@ -14,7 +14,9 @@
 #ifndef LLVM_SUPPORT_DEBUGOPTIONS_H
 #define LLVM_SUPPORT_DEBUGOPTIONS_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 // These are invoked internally before parsing command line options.
 // This enables lazy-initialization of all the globals in libSupport, instead
@@ -28,6 +30,6 @@ void initWithColorOptions();
 void initDebugOptions();
 void initRandomSeedOptions();
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_DEBUGOPTIONS_H

@@ -26,9 +26,10 @@
 #include <optional>
 #ifndef NDEBUG
 #include <string>
+#include "llvm/Support/Compiler.h"
 #endif // NDEBUG
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 #define ALIGN_CHECK_ISPOSITIVE(decl)                                           \
   assert(decl > 0 && (#decl " should be defined"))
@@ -311,6 +312,6 @@ inline std::string DebugStr(const MaybeAlign &MA) {
 
 #undef ALIGN_CHECK_ISPOSITIVE
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_ALIGNMENT_H_

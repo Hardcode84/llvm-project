@@ -24,6 +24,7 @@
 
 #include <cstddef>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
 // Creates enumeration entries used for packing bits into integers. Enumeration
 // entries include bit shift amount, bit width, and bit mask.
@@ -49,7 +50,7 @@
   } while (0)
 #endif // AMDHSA_BITS_SET
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace amdhsa {
 
 // Floating point rounding modes. Must match hardware definition.
@@ -332,6 +333,6 @@ static_assert(offsetof(kernel_descriptor_t, reserved3) == RESERVED3_OFFSET,
               "invalid offset for reserved3");
 
 } // end namespace amdhsa
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_AMDHSAKERNELDESCRIPTOR_H

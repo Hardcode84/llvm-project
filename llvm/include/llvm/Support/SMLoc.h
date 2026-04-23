@@ -15,8 +15,9 @@
 #define LLVM_SUPPORT_SMLOC_H
 
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Represents a location in source code.
 class SMLoc {
@@ -57,6 +58,6 @@ public:
   bool isValid() const { return Start.isValid(); }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_SMLOC_H

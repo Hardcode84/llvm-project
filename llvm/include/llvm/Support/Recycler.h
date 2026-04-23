@@ -21,7 +21,7 @@
 #include <cassert>
 #include <type_traits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// PrintRecyclingAllocatorStats - Helper for RecyclingAllocator for
 /// printing statistics.
@@ -119,6 +119,6 @@ void Recycler<T, Size, Align>::PrintStats() {
   PrintRecyclerStats(Size, Align, S);
 }
 
-}
+LLVM_NAMESPACE_END
 
 #endif

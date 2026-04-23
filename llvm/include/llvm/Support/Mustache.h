@@ -79,7 +79,8 @@
 #include "llvm/Support/StringSaver.h"
 #include <functional>
 
-namespace llvm::mustache {
+LLVM_NAMESPACE_BEGIN
+namespace mustache {
 
 using Lambda = std::function<llvm::json::Value()>;
 using SectionLambda = std::function<llvm::json::Value(std::string)>;
@@ -135,6 +136,7 @@ private:
   MustacheContext &Ctx;
   AstPtr Tree;
 };
-} // namespace llvm::mustache
+}
+LLVM_NAMESPACE_END // namespace llvm::mustache
 
 #endif // LLVM_SUPPORT_MUSTACHE

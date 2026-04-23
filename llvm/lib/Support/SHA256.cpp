@@ -25,8 +25,9 @@
 #include "llvm/Support/Endian.h"
 #include "llvm/Support/SwapByteOrder.h"
 #include <string.h>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 #define SHR(x, c) ((x) >> (c))
 #define ROTR(x, n) (((x) >> n) | ((x) << (32 - (n))))
@@ -283,4 +284,4 @@ std::array<uint8_t, 32> SHA256::hash(ArrayRef<uint8_t> Data) {
   return Hash.final();
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

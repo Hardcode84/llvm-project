@@ -28,6 +28,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <cstring>
 #include <limits.h>
+#include "llvm/Support/Compiler.h"
 
 #define APFLOAT_DISPATCH_ON_SEMANTICS(METHOD_CALL)                             \
   do {                                                                         \
@@ -52,7 +53,7 @@ using namespace llvm;
    hexadecimal strings.  */
 static_assert(APFloatBase::integerPartWidth % 4 == 0, "Part width must be divisible by 4!");
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 constexpr fltSemantics APFloatBase::semIEEEhalf = {15, -14, 11, 16};
 constexpr fltSemantics APFloatBase::semBFloat = {127, -126, 8, 16};
@@ -6071,6 +6072,6 @@ APFloat::Storage &APFloat::Storage::operator=(APFloat::Storage &&RHS) {
   return *this;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #undef APFLOAT_DISPATCH_ON_SEMANTICS

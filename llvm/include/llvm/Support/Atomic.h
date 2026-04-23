@@ -25,7 +25,7 @@
 #undef MemoryFence
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace sys {
   LLVM_ABI void MemoryFence();
 
@@ -37,6 +37,6 @@ namespace llvm {
   LLVM_ABI cas_flag CompareAndSwap(volatile cas_flag *ptr, cas_flag new_value,
                                    cas_flag old_value);
   }
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -67,8 +67,9 @@
 #define LLVM_SUPPORT_JOBSERVER_H
 
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A JobSlot represents a single job slot that can be acquired from or released
 /// to a jobserver pool. This class is move-only.
@@ -155,6 +156,6 @@ public:
   LLVM_ABI_FOR_TEST static void resetForTesting();
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_JOBSERVER_H

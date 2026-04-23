@@ -21,6 +21,7 @@
 #include "llvm/Support/type_traits.h"
 #include <cassert>
 #include <cstddef>
+#include "llvm/Support/Compiler.h"
 
 // Two booleans are used to define orders in graphs:
 // InverseGraph defines when we need to reverse the whole graph and is as such
@@ -29,7 +30,7 @@
 // a non-inversed graph, the children are naturally the successors when
 // InverseEdge is false and the predecessors when InverseEdge is true.
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace detail {
 template <typename Range>
@@ -170,6 +171,6 @@ public:
   LLVM_DUMP_METHOD void dump() const { print(dbgs()); }
 #endif
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_CFGDIFF_H

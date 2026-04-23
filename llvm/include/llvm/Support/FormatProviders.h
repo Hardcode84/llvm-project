@@ -23,8 +23,9 @@
 #include <array>
 #include <optional>
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace support {
 namespace detail {
 template <typename T>
@@ -421,6 +422,6 @@ public:
     }
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

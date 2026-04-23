@@ -21,6 +21,7 @@
 #include "llvm/ADT/Twine.h"
 #include "llvm/Support/Error.h"
 #include <system_error>
+#include "llvm/Support/Compiler.h"
 #endif /* __cplusplus */
 
 #define CCSID_IBM_1047 1047
@@ -40,7 +41,7 @@ int restorezOSStdHandleAutoConversion(int FD);
 #endif /* __cplusplus */
 
 #ifdef __cplusplus
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 #ifdef __MVS__
 
@@ -105,7 +106,7 @@ inline ErrorOr<bool> needConversion(const Twine &FileName, const int FD = -1) {
   return false;
 }
 
-} /* namespace llvm */
+LLVM_NAMESPACE_END /* namespace llvm */
 #endif /* __cplusplus */
 
 #endif /* LLVM_SUPPORT_AUTOCONVERT_H */

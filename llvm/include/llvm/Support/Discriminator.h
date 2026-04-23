@@ -15,6 +15,7 @@
 
 #include "llvm/Support/Error.h"
 #include <assert.h>
+#include "llvm/Support/Compiler.h"
 
 // Utility functions for encoding / decoding discriminators.
 /// With a given unsigned int \p U, use up to 13 bits to represent it.
@@ -52,7 +53,7 @@ static inline unsigned encodingBits(unsigned C) {
 
 // Some constants used in FS Discriminators.
 //
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sampleprof {
 enum FSDiscriminatorPass {
   Base = 0,
@@ -129,6 +130,6 @@ static inline unsigned getN1Bits(int N) {
   return (1U << (N + 1)) - 1;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif /* LLVM_SUPPORT_DISCRIMINATOR_H */

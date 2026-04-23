@@ -18,7 +18,7 @@
 #include <system_error>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Forward declare raw_ostream: it is used for debug dumping below.
 class raw_ostream;
@@ -178,6 +178,6 @@ namespace sys {
   raw_ostream &operator<<(raw_ostream &OS, const MemoryBlock &MB);
 #endif // ifndef NDEBUG
   }    // end namespace sys
-  }    // end namespace llvm
+  LLVM_NAMESPACE_END    // end namespace llvm
 
 #endif

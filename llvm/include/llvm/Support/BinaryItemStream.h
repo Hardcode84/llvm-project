@@ -15,8 +15,9 @@
 #include "llvm/Support/Error.h"
 #include <cstddef>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> struct BinaryItemTraits {
   static size_t length(const T &Item) = delete;
@@ -100,6 +101,6 @@ private:
   std::vector<uint64_t> ItemEndOffsets;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_BINARYITEMSTREAM_H

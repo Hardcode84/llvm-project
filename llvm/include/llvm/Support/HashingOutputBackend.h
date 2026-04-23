@@ -24,8 +24,10 @@
 #include "llvm/Support/VirtualOutputConfig.h"
 #include "llvm/Support/raw_ostream.h"
 #include <mutex>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::vfs {
+LLVM_NAMESPACE_BEGIN
+namespace vfs {
 
 /// raw_pwrite_stream that writes to a hasher.
 template <typename HasherT>
@@ -121,6 +123,7 @@ private:
   HashingOutputBackend<HasherT> &Backend;
 };
 
-} // namespace llvm::vfs
+}
+LLVM_NAMESPACE_END // namespace llvm::vfs
 
 #endif // LLVM_SUPPORT_HASHINGOUTPUTBACKEND_H

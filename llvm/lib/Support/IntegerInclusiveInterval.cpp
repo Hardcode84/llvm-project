@@ -18,10 +18,12 @@
 #include "llvm/Support/Regex.h"
 #include "llvm/Support/raw_ostream.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm::IntegerInclusiveIntervalUtils {
+LLVM_NAMESPACE_BEGIN
+namespace IntegerInclusiveIntervalUtils {
 
 Expected<IntervalList> parseIntervals(StringRef Str, char Separator) {
   IntervalList Intervals;
@@ -122,4 +124,5 @@ mergeAdjacentIntervals(ArrayRef<IntegerInclusiveInterval> Intervals) {
   return Result;
 }
 
-} // end namespace llvm::IntegerInclusiveIntervalUtils
+}
+LLVM_NAMESPACE_END // end namespace llvm::IntegerInclusiveIntervalUtils

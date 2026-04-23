@@ -658,7 +658,7 @@ directory_iterator OverlayFileSystem::dir_begin(const Twine &Dir,
 
 void ProxyFileSystem::anchor() {}
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace vfs {
 
 namespace detail {
@@ -1246,7 +1246,7 @@ void InMemoryFileSystem::printImpl(raw_ostream &OS, PrintType PrintContents,
 }
 
 } // namespace vfs
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 //===-----------------------------------------------------------------------===/
 // RedirectingFileSystem implementation

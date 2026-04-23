@@ -11,8 +11,9 @@
 
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Comparison function for Option strings (option names & prefixes).
 // The ordering is *almost* case-insensitive lexicographic, with an exception.
@@ -27,6 +28,6 @@ int StrCmpOptionName(StringRef A, StringRef B,
 int StrCmpOptionPrefixes(ArrayRef<StringRef> APrefixes,
                          ArrayRef<StringRef> BPrefixes);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_OPTIONSTRCMP_H

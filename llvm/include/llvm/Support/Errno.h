@@ -17,7 +17,7 @@
 #include <cerrno>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 
 /// Returns a string representation of the errno value, using whatever
@@ -41,6 +41,6 @@ inline decltype(auto) RetryAfterSignal(const FailT &Fail, const Fun &F,
 }
 
 }  // namespace sys
-}  // namespace llvm
+LLVM_NAMESPACE_END  // namespace llvm
 
 #endif // LLVM_SUPPORT_ERRNO_H

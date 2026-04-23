@@ -21,7 +21,9 @@
 #ifndef LLVM_SUPPORT_ARMEHABI_H
 #define LLVM_SUPPORT_ARMEHABI_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 namespace ARM {
 namespace EHABI {
   /// ARM exception handling table entry kinds
@@ -132,6 +134,6 @@ namespace EHABI {
   };
 }
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

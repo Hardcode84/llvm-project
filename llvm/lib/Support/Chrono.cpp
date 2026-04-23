@@ -12,7 +12,7 @@
 #include "llvm/Support/Format.h"
 #include "llvm/Support/raw_ostream.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using namespace sys;
 
@@ -125,4 +125,4 @@ void format_provider<TimePoint<>>::format(const TimePoint<> &T, raw_ostream &OS,
   llvm::format(Fractional, LT, OS, Style);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

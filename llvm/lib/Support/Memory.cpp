@@ -24,11 +24,12 @@
 #endif
 #ifdef _WIN32
 #include "Windows/Memory.inc"
+#include "llvm/Support/Compiler.h"
 #endif
 
 #ifndef NDEBUG
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 
 raw_ostream &operator<<(raw_ostream &OS, const Memory::ProtectionFlags &PF) {
@@ -47,6 +48,6 @@ raw_ostream &operator<<(raw_ostream &OS, const MemoryBlock &MB) {
 }
 
 } // end namespace sys
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // ifndef NDEBUG

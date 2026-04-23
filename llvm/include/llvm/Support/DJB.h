@@ -16,7 +16,7 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// The Bernstein hash function used by the DWARF accelerator tables.
 inline uint32_t djbHash(StringRef Buffer, uint32_t H = 5381) {
@@ -28,6 +28,6 @@ inline uint32_t djbHash(StringRef Buffer, uint32_t H = 5381) {
 /// Computes the Bernstein hash after folding the input according to the Dwarf 5
 /// standard case folding rules.
 LLVM_ABI uint32_t caseFoldingDjbHash(StringRef Buffer, uint32_t H = 5381);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_DJB_H

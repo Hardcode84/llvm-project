@@ -15,7 +15,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace sys {
 
     /// This class provides an abstraction for a timeout around an operation
@@ -32,6 +32,6 @@ namespace llvm {
       Watchdog &operator=(const Watchdog &other) = delete;
     };
   }
-}
+LLVM_NAMESPACE_END
 
 #endif

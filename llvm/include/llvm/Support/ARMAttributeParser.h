@@ -15,7 +15,7 @@
 #include "llvm/Support/ELFAttrParserCompact.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ScopedPrinter;
 
@@ -80,6 +80,6 @@ public:
   ARMAttributeParser()
       : ELFCompactAttrParser(ARMBuildAttrs::getARMAttributeTags(), "aeabi") {}
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -16,7 +16,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -89,6 +89,6 @@ private:
 LLVM_ABI_FOR_TEST raw_ostream &operator<<(raw_ostream &OS,
                                           vfs::OutputConfig Config);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_VIRTUALOUTPUTCONFIG_H

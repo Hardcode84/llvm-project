@@ -19,7 +19,7 @@
 #include "llvm/Support/Compiler.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SignpostEmitterImpl;
 class StringRef;
 
@@ -40,6 +40,6 @@ public:
   LLVM_ABI void endInterval(const void *O, StringRef Name);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_SIGNPOSTS_H

@@ -18,7 +18,7 @@
 #include "llvm/Support/DataTypes.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// FileOutputBuffer - This interface provides simple way to create an in-memory
 /// buffer which will be written to a file. During the lifetime of these
 /// objects, the content or existence of the specified file is undefined. That
@@ -81,6 +81,6 @@ protected:
 
   std::string FinalPath;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -19,8 +19,9 @@
 
 #include "llvm/ADT/StringRef.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dxil {
 
 enum class ResourceClass : uint8_t {
@@ -111,6 +112,6 @@ const unsigned MaxWaveSize = 128;
 
 LLVM_ABI StringRef getResourceClassName(ResourceClass RC);
 } // namespace dxil
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_DXILABI_H

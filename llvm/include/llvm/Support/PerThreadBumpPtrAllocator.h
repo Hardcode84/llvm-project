@@ -11,8 +11,9 @@
 
 #include "llvm/Support/Allocator.h"
 #include "llvm/Support/Parallel.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace parallel {
 
 /// PerThreadAllocator is used in conjunction with ThreadPoolExecutor to allow
@@ -115,6 +116,6 @@ protected:
 using PerThreadBumpPtrAllocator = PerThreadAllocator<BumpPtrAllocator>;
 
 } // end namespace parallel
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_SUPPORT_PERTHREADBUMPPTRALLOCATOR_H
