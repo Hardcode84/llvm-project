@@ -26,8 +26,9 @@
 
 #include <cstdint>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Error;
 namespace orc {
 class JITTargetMachineBuilder;
@@ -35,7 +36,7 @@ class LLJIT;
 class LLJITBuilder;
 class ThreadSafeContext;
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 

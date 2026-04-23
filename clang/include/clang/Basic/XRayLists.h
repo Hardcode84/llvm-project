@@ -17,10 +17,11 @@
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/StringRef.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SpecialCaseList;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 

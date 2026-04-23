@@ -19,6 +19,7 @@
 #include "clang/StaticAnalyzer/Core/CheckerManager.h"
 #include "clang/StaticAnalyzer/Core/PathSensitive/CheckerContext.h"
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace clang;
 using namespace ento;
@@ -32,13 +33,13 @@ enum class AllocKind {
 };
 } // end namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct FoldingSetTrait<AllocKind> {
   static inline void Profile(AllocKind X, FoldingSetNodeID &ID) {
     ID.AddInteger(static_cast<int>(X));
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace {
 class PointerArithChecker

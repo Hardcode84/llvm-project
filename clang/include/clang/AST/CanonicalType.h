@@ -25,6 +25,7 @@
 #include <cassert>
 #include <iterator>
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 
@@ -362,7 +363,7 @@ public:
 
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Implement simplify_type for CanQual<T>, so that we can dyn_cast from
 /// CanQual<T> to a specific Type class. We're prefer isa/dyn_cast/cast/etc.
@@ -391,7 +392,7 @@ struct PointerLikeTypeTraits<clang::CanQual<T>> {
   static constexpr int NumLowBitsAvailable = 0;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 

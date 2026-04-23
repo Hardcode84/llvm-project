@@ -131,7 +131,7 @@ inline constexpr bool isRegularKeywordAttribute(TokenKind K) {
 } // end namespace tok
 } // end namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct DenseMapInfo<clang::tok::PPKeywordKind> {
   static inline clang::tok::PPKeywordKind getEmptyKey() {
     return clang::tok::PPKeywordKind::pp_not_keyword;
@@ -147,6 +147,6 @@ template <> struct DenseMapInfo<clang::tok::PPKeywordKind> {
     return LHS == RHS;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

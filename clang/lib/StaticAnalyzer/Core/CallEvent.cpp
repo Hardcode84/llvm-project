@@ -1245,7 +1245,7 @@ struct PrivateMethodKey {
   bool IsClassMethod;
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct DenseMapInfo<PrivateMethodKey> {
   using InterfaceInfo = DenseMapInfo<const ObjCInterfaceDecl *>;
   using SelectorInfo = DenseMapInfo<Selector>;
@@ -1273,7 +1273,7 @@ template <> struct DenseMapInfo<PrivateMethodKey> {
            LHS.IsClassMethod == RHS.IsClassMethod;
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 // NOTE: This cache is a "global" variable, and it is cleared by
 // CallEventManager's constructor so we do not keep old entries when

@@ -17,6 +17,7 @@
 #include "llvm/Support/Alignment.h"
 #include "llvm/Support/DataTypes.h"
 #include "llvm/Support/MathExtras.h"
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 
@@ -227,7 +228,7 @@ inline clang::CharUnits operator* (clang::CharUnits::QuantityType Scale,
   return CU * Scale;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template<> struct DenseMapInfo<clang::CharUnits> {
   static clang::CharUnits getEmptyKey() {
@@ -255,6 +256,6 @@ template<> struct DenseMapInfo<clang::CharUnits> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CLANG_AST_CHARUNITS_H

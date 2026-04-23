@@ -3990,7 +3990,7 @@ void ExprEngine::VisitMSAsmStmt(const MSAsmStmt *A, ExplodedNode *Pred,
 // Visualization.
 //===----------------------------------------------------------------------===//
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template<>
 struct DOTGraphTraits<ExplodedGraph*> : public DefaultDOTGraphTraits {
@@ -4083,7 +4083,7 @@ struct DOTGraphTraits<ExplodedGraph*> : public DefaultDOTGraphTraits {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 void ExprEngine::ViewGraph(bool trim) {
   std::string Filename = DumpGraph(trim);

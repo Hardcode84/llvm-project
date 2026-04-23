@@ -32,8 +32,9 @@
 #include <set>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Triple;
 namespace vfs {
 class FileSystem;
@@ -41,7 +42,7 @@ class FileSystem;
 namespace cl {
 class ExpansionContext;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 

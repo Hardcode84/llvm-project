@@ -44,8 +44,9 @@
 #include "llvm/Support/Debug.h"
 #include "llvm/Transforms/Utils/SanitizerStats.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BasicBlock;
 class ConvergenceControlInst;
 class LLVMContext;
@@ -54,7 +55,7 @@ class SwitchInst;
 class Twine;
 class Value;
 class CanonicalLoopInfo;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 class ASTContext;

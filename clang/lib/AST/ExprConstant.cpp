@@ -69,6 +69,7 @@
 #include <functional>
 #include <limits>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "exprconstant"
 
@@ -730,7 +731,7 @@ namespace {
   };
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template<> struct DenseMapInfo<ObjectUnderConstruction> {
   using Base = DenseMapInfo<APValue::LValueBase>;
   static ObjectUnderConstruction getEmptyKey() {
@@ -746,7 +747,7 @@ template<> struct DenseMapInfo<ObjectUnderConstruction> {
     return LHS == RHS;
   }
 };
-}
+LLVM_NAMESPACE_END
 
 namespace {
   /// A dynamically-allocated heap object.

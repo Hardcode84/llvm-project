@@ -24,10 +24,11 @@
 #include "clang/Basic/LLVM.h"
 #include "llvm/ADT/DenseMapInfo.h"
 #include "llvm/Support/AlignOf.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 
@@ -601,7 +602,7 @@ template <typename T, typename EnablerT> struct DynTypedNode::BaseConverter {
 
 } // end namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <>
 struct DenseMapInfo<clang::ASTNodeKind> : clang::ASTNodeKind::DenseMapInfo {};
@@ -609,6 +610,6 @@ struct DenseMapInfo<clang::ASTNodeKind> : clang::ASTNodeKind::DenseMapInfo {};
 template <>
 struct DenseMapInfo<clang::DynTypedNode> : clang::DynTypedNode::DenseMapInfo {};
 
-}  // end namespace llvm
+LLVM_NAMESPACE_END  // end namespace llvm
 
 #endif

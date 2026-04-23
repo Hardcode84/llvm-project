@@ -14,10 +14,11 @@
 #define LLVM_CLANG_INTERPRETER_CODE_COMPLETION_H
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 class CodeCompletionResult;

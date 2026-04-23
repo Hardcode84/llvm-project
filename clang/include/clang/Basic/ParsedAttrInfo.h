@@ -22,6 +22,7 @@
 #include "llvm/Support/Registry.h"
 #include <climits>
 #include <list>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 
@@ -176,8 +177,8 @@ const std::list<std::unique_ptr<ParsedAttrInfo>> &getAttributePluginInstances();
 
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern template class CLANG_TEMPLATE_ABI Registry<clang::ParsedAttrInfo>;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_BASIC_PARSEDATTRINFO_H

@@ -26,6 +26,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/TargetParser/Host.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using namespace clang;
 
@@ -50,7 +51,7 @@ struct ClangInvocationInfo {
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(UnsavedFileHash)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <> struct MappingTraits<UnsavedFileHash> {
@@ -72,7 +73,7 @@ template <> struct MappingTraits<ClangInvocationInfo> {
 };
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 static std::string generateReproducerMetaInfo(const ClangInvocationInfo &Info) {
   std::string Result;

@@ -12,6 +12,7 @@
 #include "llvm/Support/YAMLTraits.h"
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 namespace tooling {
@@ -173,7 +174,7 @@ struct IncludeStyle {
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(clang::tooling::IncludeStyle::IncludeCategory)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <>
@@ -198,6 +199,6 @@ struct ScalarEnumerationTraits<
 };
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_TOOLING_INCLUSIONS_INCLUDESTYLE_H

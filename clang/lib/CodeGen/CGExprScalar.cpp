@@ -51,6 +51,7 @@
 #include "llvm/Support/TypeSize.h"
 #include <cstdarg>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using namespace clang;
 using namespace CodeGen;
@@ -60,9 +61,9 @@ using llvm::Value;
 //                         Scalar Expression Emitter
 //===----------------------------------------------------------------------===//
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> EnableSingleByteCoverage;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 

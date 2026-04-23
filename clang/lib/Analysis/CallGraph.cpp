@@ -260,7 +260,7 @@ LLVM_DUMP_METHOD void CallGraphNode::dump() const {
   print(llvm::errs());
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <>
 struct DOTGraphTraits<const CallGraph*> : public DefaultDOTGraphTraits {
@@ -278,4 +278,4 @@ struct DOTGraphTraits<const CallGraph*> : public DefaultDOTGraphTraits {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

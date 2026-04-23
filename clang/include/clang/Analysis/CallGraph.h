@@ -28,6 +28,7 @@
 #include "llvm/ADT/iterator_range.h"
 #include "llvm/Support/TimeProfiler.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 
@@ -210,7 +211,7 @@ inline bool operator==(const CallGraphNode::CallRecord &LHS,
 
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Specialize DenseMapInfo for clang::CallGraphNode::CallRecord.
 template <> struct DenseMapInfo<clang::CallGraphNode::CallRecord> {
@@ -311,6 +312,6 @@ template <> struct GraphTraits<const clang::CallGraph*> :
   static unsigned size(const clang::CallGraph *CG) { return CG->size(); }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_ANALYSIS_CALLGRAPH_H

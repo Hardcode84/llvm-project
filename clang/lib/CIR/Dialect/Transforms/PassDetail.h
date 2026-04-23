@@ -11,12 +11,13 @@
 
 #include "mlir/IR/Dialect.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 namespace cir {
 class CIRDialect;
 } // namespace cir
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 // Forward declaration from Dialect.h
 template <typename ConcreteDialect>
 void registerDialect(DialectRegistry &registry);
@@ -24,6 +25,6 @@ void registerDialect(DialectRegistry &registry);
 #define GEN_PASS_DECL
 #include "clang/CIR/Dialect/Passes.h.inc"
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // CIR_DIALECT_TRANSFORMS_PASSDETAIL_H

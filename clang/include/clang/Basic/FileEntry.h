@@ -27,8 +27,9 @@
 
 #include <optional>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MemoryBuffer;
 
@@ -37,7 +38,7 @@ namespace vfs {
 class File;
 
 } // namespace vfs
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 
@@ -235,7 +236,7 @@ static_assert(std::is_trivially_copyable<OptionalFileEntryRef>::value,
 } // end namespace optional_detail
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Specialisation of DenseMapInfo for FileEntryRef.
 template <> struct DenseMapInfo<clang::FileEntryRef> {
@@ -277,7 +278,7 @@ template <> struct DenseMapInfo<clang::FileEntryRef> {
   /// @}
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace clang {
 

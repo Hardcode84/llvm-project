@@ -12,10 +12,11 @@
 #include "clang/Basic/LLVM.h"
 #include "clang/Frontend/SerializedDiagnostics.h"
 #include "llvm/Bitstream/BitstreamWriter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 class DiagnosticConsumer;

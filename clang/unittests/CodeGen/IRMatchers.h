@@ -39,8 +39,9 @@
 #include "llvm/IR/Instruction.h"
 #include "llvm/IR/Metadata.h"
 #include "llvm/IR/Value.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Keeps information about pending match queries.
 ///
@@ -447,5 +448,5 @@ inline const Instruction *matchNext(const Instruction *I, std::shared_ptr<Matche
   return nullptr;
 }
 
-}
+LLVM_NAMESPACE_END
 #endif

@@ -31,7 +31,7 @@
 #include <cstdint>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class FoldingSetNodeID;
 
@@ -46,7 +46,7 @@ template <> struct PointerLikeTypeTraits<clang::Expr *> {
   static constexpr int NumLowBitsAvailable = 2;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 

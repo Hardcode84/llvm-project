@@ -12,10 +12,11 @@
 #include "clang/Driver/Phases.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Option/ArgList.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
-}
+LLVM_NAMESPACE_END
 namespace clang {
 namespace driver {
 class Driver;

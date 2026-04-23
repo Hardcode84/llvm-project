@@ -11,6 +11,7 @@
 
 #include "clang/Basic/LLVM.h"
 #include "llvm/ADT/IntrusiveRefCntPtr.h"
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 namespace ento {
@@ -21,7 +22,7 @@ namespace ento {
 }
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   template <> struct IntrusiveRefCntPtrInfo<const clang::ento::ProgramState> {
     static void retain(const clang::ento::ProgramState *state) {
       clang::ento::ProgramStateRetain(state);
@@ -30,7 +31,7 @@ namespace llvm {
       clang::ento::ProgramStateRelease(state);
     }
   };
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 namespace ento {

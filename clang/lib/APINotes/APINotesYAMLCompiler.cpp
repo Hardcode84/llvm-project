@@ -25,11 +25,12 @@
 #include <optional>
 #include <type_traits>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace clang;
 using namespace api_notes;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct ScalarEnumerationTraits<SwiftSafetyKind> {
   static void enumeration(IO &IO, SwiftSafetyKind &SK) {
@@ -39,7 +40,7 @@ template <> struct ScalarEnumerationTraits<SwiftSafetyKind> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 enum class APIAvailability {
@@ -57,7 +58,7 @@ struct BoundsSafetyNotes {
 };
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct ScalarEnumerationTraits<BoundsSafetyInfo::BoundsSafetyKind> {
   static void enumeration(IO &IO, BoundsSafetyInfo::BoundsSafetyKind &AA) {
@@ -72,9 +73,9 @@ template <> struct ScalarEnumerationTraits<BoundsSafetyInfo::BoundsSafetyKind> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct ScalarEnumerationTraits<APIAvailability> {
   static void enumeration(IO &IO, APIAvailability &AA) {
@@ -84,7 +85,7 @@ template <> struct ScalarEnumerationTraits<APIAvailability> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 enum class MethodKind {
@@ -93,7 +94,7 @@ enum class MethodKind {
 };
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct ScalarEnumerationTraits<MethodKind> {
   static void enumeration(IO &IO, MethodKind &MK) {
@@ -102,7 +103,7 @@ template <> struct ScalarEnumerationTraits<MethodKind> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 struct Param {
@@ -121,7 +122,7 @@ typedef std::vector<Param> ParamsSeq;
 LLVM_YAML_IS_SEQUENCE_VECTOR(Param)
 LLVM_YAML_IS_FLOW_SEQUENCE_VECTOR(NullabilityKind)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct ScalarEnumerationTraits<NullabilityKind> {
   static void enumeration(IO &IO, NullabilityKind &NK) {
@@ -175,7 +176,7 @@ template <> struct MappingTraits<BoundsSafetyNotes> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 typedef std::vector<NullabilityKind> NullabilitySeq;
@@ -218,7 +219,7 @@ typedef std::vector<Method> MethodsSeq;
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(Method)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct ScalarEnumerationTraits<FactoryAsInitKind> {
   static void enumeration(IO &IO, FactoryAsInitKind &FIK) {
@@ -251,7 +252,7 @@ template <> struct MappingTraits<Method> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 struct Property {
@@ -271,7 +272,7 @@ typedef std::vector<Property> PropertiesSeq;
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(Property)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct MappingTraits<Property> {
   static void mapping(IO &IO, Property &P) {
@@ -289,7 +290,7 @@ template <> struct MappingTraits<Property> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 struct Class {
@@ -313,7 +314,7 @@ typedef std::vector<Class> ClassesSeq;
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(Class)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct MappingTraits<Class> {
   static void mapping(IO &IO, Class &C) {
@@ -335,7 +336,7 @@ template <> struct MappingTraits<Class> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 struct Function {
@@ -359,7 +360,7 @@ typedef std::vector<Function> FunctionsSeq;
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(Function)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct MappingTraits<Function> {
   static void mapping(IO &IO, Function &F) {
@@ -381,7 +382,7 @@ template <> struct MappingTraits<Function> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 struct GlobalVariable {
@@ -399,7 +400,7 @@ typedef std::vector<GlobalVariable> GlobalVariablesSeq;
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(GlobalVariable)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct MappingTraits<GlobalVariable> {
   static void mapping(IO &IO, GlobalVariable &GV) {
@@ -415,7 +416,7 @@ template <> struct MappingTraits<GlobalVariable> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 struct EnumConstant {
@@ -431,7 +432,7 @@ typedef std::vector<EnumConstant> EnumConstantsSeq;
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(EnumConstant)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct MappingTraits<EnumConstant> {
   static void mapping(IO &IO, EnumConstant &EC) {
@@ -445,7 +446,7 @@ template <> struct MappingTraits<EnumConstant> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 /// Syntactic sugar for EnumExtensibility and FlagEnum
@@ -461,7 +462,7 @@ enum class EnumConvenienceAliasKind {
 };
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct ScalarEnumerationTraits<EnumConvenienceAliasKind> {
   static void enumeration(IO &IO, EnumConvenienceAliasKind &ECAK) {
@@ -475,7 +476,7 @@ template <> struct ScalarEnumerationTraits<EnumConvenienceAliasKind> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 struct Field {
@@ -493,7 +494,7 @@ typedef std::vector<Field> FieldsSeq;
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(Field)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct MappingTraits<Field> {
   static void mapping(IO &IO, Field &F) {
@@ -509,7 +510,7 @@ template <> struct MappingTraits<Field> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 struct Tag;
@@ -545,7 +546,7 @@ struct Tag {
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(Tag)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct ScalarEnumerationTraits<EnumExtensibilityKind> {
   static void enumeration(IO &IO, EnumExtensibilityKind &EEK) {
@@ -583,7 +584,7 @@ template <> struct MappingTraits<Tag> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 struct Typedef {
@@ -603,7 +604,7 @@ typedef std::vector<Typedef> TypedefsSeq;
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(Typedef)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct ScalarEnumerationTraits<SwiftNewTypeKind> {
   static void enumeration(IO &IO, SwiftNewTypeKind &SWK) {
@@ -628,7 +629,7 @@ template <> struct MappingTraits<Typedef> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 struct Namespace;
@@ -646,7 +647,7 @@ struct TopLevelItems {
 };
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 static void mapTopLevelItems(IO &IO, TopLevelItems &TLI) {
   IO.mapOptional("Classes", TLI.Classes);
@@ -659,7 +660,7 @@ static void mapTopLevelItems(IO &IO, TopLevelItems &TLI) {
   IO.mapOptional("Namespaces", TLI.Namespaces);
 }
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 struct Namespace {
@@ -674,7 +675,7 @@ struct Namespace {
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(Namespace)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct MappingTraits<Namespace> {
   static void mapping(IO &IO, Namespace &T) {
@@ -688,7 +689,7 @@ template <> struct MappingTraits<Namespace> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 struct Versioned {
@@ -701,7 +702,7 @@ typedef std::vector<Versioned> VersionedSeq;
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(Versioned)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct MappingTraits<Versioned> {
   static void mapping(IO &IO, Versioned &V) {
@@ -710,7 +711,7 @@ template <> struct MappingTraits<Versioned> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 struct Module {
@@ -727,7 +728,7 @@ struct Module {
 };
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct MappingTraits<Module> {
   static void mapping(IO &IO, Module &M) {
@@ -741,7 +742,7 @@ template <> struct MappingTraits<Module> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #if !defined(NDEBUG) || defined(LLVM_ENABLE_DUMP)
 LLVM_DUMP_METHOD void Module::dump() {

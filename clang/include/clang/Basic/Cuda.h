@@ -10,12 +10,13 @@
 #define LLVM_CLANG_BASIC_CUDA_H
 
 #include "clang/Basic/OffloadArch.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 class Twine;
 class VersionTuple;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 

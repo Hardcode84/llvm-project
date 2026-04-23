@@ -22,16 +22,17 @@
 #include "llvm/Support/GenericDomTree.h"
 #include "llvm/Support/GenericDomTreeConstruction.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 // FIXME: There is no good reason for the domtree to require a print method
 // which accepts an LLVM Module, so remove this (and the method's argument that
 // needs it) when that is fixed.
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Module;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 
@@ -187,7 +188,7 @@ template<> void CFGDominatorTreeImpl<false>::anchor();
 
 } // end of namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace IDFCalculatorDetail {
 
 /// Specialize ChildrenGetterTy to skip nullpointer successors.
@@ -208,7 +209,7 @@ struct ChildrenGetterTy<clang::CFGBlock, IsPostDom> {
 };
 
 } // end of namespace IDFCalculatorDetail
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm
 
 namespace clang {
 
@@ -271,7 +272,7 @@ public:
 
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===-------------------------------------
 /// DominatorTree GraphTraits specialization so the DominatorTree can be
@@ -312,6 +313,6 @@ template <> struct GraphTraits<clang::CFGDomTree *>
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_ANALYSIS_ANALYSES_DOMINATORS_H

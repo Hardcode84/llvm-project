@@ -10,10 +10,11 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/TextAPI/Platform.h"
+#include "llvm/Support/Compiler.h"
 
 using clang::DiagnosticBuilder;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace MachO {
 const DiagnosticBuilder &operator<<(const DiagnosticBuilder &DB,
                                     const Architecture &Arch) {
@@ -106,4 +107,4 @@ operator<<(const clang::DiagnosticBuilder &DB,
 }
 
 } // namespace MachO
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

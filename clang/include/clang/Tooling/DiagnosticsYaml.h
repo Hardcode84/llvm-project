@@ -19,12 +19,13 @@
 #include "clang/Tooling/ReplacementsYaml.h"
 #include "llvm/Support/YAMLTraits.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(clang::tooling::Diagnostic)
 LLVM_YAML_IS_SEQUENCE_VECTOR(clang::tooling::DiagnosticMessage)
 LLVM_YAML_IS_SEQUENCE_VECTOR(clang::tooling::FileByteRange)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <> struct MappingTraits<clang::tooling::FileByteRange> {
@@ -110,6 +111,6 @@ template <> struct ScalarEnumerationTraits<clang::tooling::Diagnostic::Level> {
 };
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CLANG_TOOLING_DIAGNOSTICSYAML_H

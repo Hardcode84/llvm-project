@@ -19,6 +19,7 @@
 
 #include "llvm/ADT/PointerUnion.h"
 #include "llvm/IR/Constant.h"
+#include "llvm/Support/Compiler.h"
 
 // Forward-declare ConstantInitBuilderBase and give it a
 // PointerLikeTypeTraits specialization so that we can safely use it
@@ -28,7 +29,7 @@ namespace CodeGen {
 class ConstantInitBuilderBase;
 }
 }
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <>
 struct PointerLikeTypeTraits< ::clang::CodeGen::ConstantInitBuilderBase*> {
   using T = ::clang::CodeGen::ConstantInitBuilderBase*;
@@ -37,7 +38,7 @@ struct PointerLikeTypeTraits< ::clang::CodeGen::ConstantInitBuilderBase*> {
   static inline T getFromVoidPointer(void *p) {return static_cast<T>(p);}
   static constexpr int NumLowBitsAvailable = 2;
 };
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 namespace CodeGen {
@@ -86,7 +87,7 @@ public:
 }  // end namespace CodeGen
 }  // end namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <>
 struct PointerLikeTypeTraits< ::clang::CodeGen::ConstantInitFuture> {
@@ -101,6 +102,6 @@ struct PointerLikeTypeTraits< ::clang::CodeGen::ConstantInitFuture> {
   static constexpr int NumLowBitsAvailable = T::NumLowBitsAvailable;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

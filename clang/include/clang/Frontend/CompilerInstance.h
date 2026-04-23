@@ -34,13 +34,14 @@
 #include <optional>
 #include <string>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_fd_ostream;
 class PassPlugin;
 class Timer;
 class TimerGroup;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 class ASTContext;

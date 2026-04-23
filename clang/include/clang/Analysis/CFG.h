@@ -33,6 +33,7 @@
 #include <memory>
 #include <optional>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 
@@ -1505,7 +1506,7 @@ Expr *extractElementInitializerFromNestedAILE(const ArrayInitLoopExpr *AILE);
 // GraphTraits specializations for CFG basic block graphs (source-level CFGs)
 //===----------------------------------------------------------------------===//
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Implement simplify_type for CFGTerminator, so that we can dyn_cast from
 /// CFGTerminator to a specific Stmt class.
@@ -1616,6 +1617,6 @@ template <> struct GraphTraits<Inverse<const ::clang::CFG *>>
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_ANALYSIS_CFG_H

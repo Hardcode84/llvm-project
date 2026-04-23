@@ -18,14 +18,15 @@
 #include "clang/CodeGen/CGFunctionInfo.h"
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/IR/Module.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class FunctionType;
 class DataLayout;
 class Type;
 class LLVMContext;
 class StructType;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 class ASTContext;

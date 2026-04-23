@@ -16,14 +16,15 @@
 #include "clang/CIR/Dialect/Passes.h"
 #include "clang/CIR/MissingFeatures.h"
 #include "llvm/Support/TimeProfiler.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace cir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_HOISTALLOCAS
 #include "clang/CIR/Dialect/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace {
 

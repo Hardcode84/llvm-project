@@ -21,6 +21,7 @@
 #include "clang/StaticAnalyzer/Core/PathSensitive/CheckerHelpers.h"
 #include "llvm/Support/FormatVariadic.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace clang;
 using namespace ento;
@@ -395,7 +396,7 @@ void DereferenceChecker::checkBind(SVal L, SVal V, const Stmt *S,
   C.addTransition(State, this);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct format_provider<ValueDescStr> {
   static void format(const ValueDescStr &V, raw_ostream &Stream,
                      StringRef Style) {
@@ -411,7 +412,7 @@ template <> struct format_provider<ValueDescStr> {
                                        false);
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 void DereferenceChecker::checkPreStmt(const BinaryOperator *Op,
                                       CheckerContext &C) const {

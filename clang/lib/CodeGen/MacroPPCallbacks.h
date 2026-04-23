@@ -14,10 +14,11 @@
 #define LLVM_CLANG_LIB_CODEGEN_MACROPPCALLBACKS_H
 
 #include "clang/Lex/PPCallbacks.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DIMacroFile;
-}
+LLVM_NAMESPACE_END
 namespace clang {
 class Preprocessor;
 class MacroInfo;

@@ -27,6 +27,7 @@
 #include "clang/AST/ExprObjC.h"
 #include "clang/Frontend/ASTUnit.h"
 #include "llvm/Support/ErrorHandling.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace clang;
 using namespace cxcursor;
@@ -1619,7 +1620,7 @@ static inline CXCursorSet packCXCursorSet(CXCursorSet_Impl *setImpl) {
 static inline CXCursorSet_Impl *unpackCXCursorSet(CXCursorSet set) {
   return (CXCursorSet_Impl *)set;
 }
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct DenseMapInfo<CXCursor> {
 public:
   static inline CXCursor getEmptyKey() {
@@ -1636,7 +1637,7 @@ public:
     return x.kind == y.kind && x.data[0] == y.data[0] && x.data[1] == y.data[1];
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 CXCursorSet clang_createCXCursorSet() {
   return packCXCursorSet(new CXCursorSet_Impl());

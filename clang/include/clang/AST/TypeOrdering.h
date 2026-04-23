@@ -21,6 +21,7 @@
 #include "clang/AST/CanonicalType.h"
 #include "clang/AST/Type.h"
 #include <functional>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 
@@ -33,7 +34,7 @@ struct QualTypeOrdering {
 
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   template<> struct DenseMapInfo<clang::QualType> {
     static inline clang::QualType getEmptyKey() { return clang::QualType(); }
@@ -72,6 +73,6 @@ namespace llvm {
       return LHS == RHS;
     }
   };
-}
+LLVM_NAMESPACE_END
 
 #endif

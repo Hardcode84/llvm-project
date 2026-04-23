@@ -23,12 +23,13 @@
 #include "llvm/Support/SourceMgr.h"
 #include <optional>
 #include <system_error>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace vfs {
 class FileSystem;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 namespace format {

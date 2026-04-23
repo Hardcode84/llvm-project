@@ -6590,7 +6590,7 @@ void CFG::viewCFG(const LangOptions &LO) const {
   GraphHelper = nullptr;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template<>
 struct DOTGraphTraits<const CFG*> : public DefaultDOTGraphTraits {
@@ -6614,4 +6614,4 @@ struct DOTGraphTraits<const CFG*> : public DefaultDOTGraphTraits {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

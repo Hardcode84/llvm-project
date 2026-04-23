@@ -19,10 +19,11 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace clang {
 namespace RISCV {

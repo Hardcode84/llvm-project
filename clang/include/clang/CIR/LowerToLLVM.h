@@ -14,15 +14,17 @@
 
 #include "llvm/ADT/StringRef.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LLVMContext;
 class Module;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ModuleOp;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace cir {
 

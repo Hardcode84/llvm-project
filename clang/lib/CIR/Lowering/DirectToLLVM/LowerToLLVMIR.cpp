@@ -19,6 +19,7 @@
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/IR/Constant.h"
 #include "llvm/IR/GlobalVariable.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace llvm;
 
@@ -120,10 +121,10 @@ void registerCIRDialectTranslation(mlir::DialectRegistry &registry) {
 } // namespace direct
 } // namespace cir
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerCIRDialectTranslation(mlir::MLIRContext &context) {
   mlir::DialectRegistry registry;
   cir::direct::registerCIRDialectTranslation(registry);
   context.appendDialectRegistry(registry);
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

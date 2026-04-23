@@ -69,6 +69,7 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/Registry.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 namespace clang::ssaf {
 
@@ -89,9 +90,9 @@ using SerializationFormatRegistry = llvm::Registry<SerializationFormat>;
 
 } // namespace clang::ssaf
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern template class CLANG_TEMPLATE_ABI
     Registry<clang::ssaf::SerializationFormat>;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_SCALABLESTATICANALYSISFRAMEWORK_CORE_SERIALIZATION_SERIALIZATIONFORMATREGISTRY_H

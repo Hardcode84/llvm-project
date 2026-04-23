@@ -17,8 +17,9 @@
 #include "clang/AST/Stmt.h"
 #include "llvm/ADT/DepthFirstIterator.h"
 #include "llvm/ADT/GraphTraits.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <> struct GraphTraits<clang::Stmt *> {
   using NodeRef = clang::Stmt *;
@@ -72,6 +73,6 @@ template <> struct GraphTraits<const clang::Stmt *> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_AST_STMTGRAPHTRAITS_H

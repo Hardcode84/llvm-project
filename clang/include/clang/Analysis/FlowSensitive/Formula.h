@@ -17,6 +17,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <cassert>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 namespace clang::dataflow {
 
@@ -132,7 +133,7 @@ inline llvm::raw_ostream &operator<<(llvm::raw_ostream &OS, const Formula &F) {
 }
 
 } // namespace clang::dataflow
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct DenseMapInfo<clang::dataflow::Atom> {
   using Atom = clang::dataflow::Atom;
   using Underlying = std::underlying_type_t<Atom>;
@@ -144,5 +145,5 @@ template <> struct DenseMapInfo<clang::dataflow::Atom> {
   }
   static bool isEqual(const Atom &LHS, const Atom &RHS) { return LHS == RHS; }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

@@ -23,13 +23,14 @@
 #include "clang/Basic/TargetInfo.h"
 #include "llvm/ADT/SmallString.h"
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Constant;
 class GlobalValue;
 class Type;
 class Value;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 class CXXRecordDecl;

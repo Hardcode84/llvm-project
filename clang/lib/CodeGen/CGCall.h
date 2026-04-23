@@ -23,11 +23,12 @@
 #include "clang/AST/Type.h"
 #include "llvm/ADT/STLForwardCompat.h"
 #include "llvm/IR/Value.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Type;
 class Value;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 class Decl;

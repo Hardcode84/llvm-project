@@ -22,6 +22,7 @@
 #include <optional>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 class Decl;
@@ -117,7 +118,7 @@ private:
 } // namespace tooling
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <> struct DenseMapInfo<clang::tooling::stdlib::Header> {
   static inline clang::tooling::stdlib::Header getEmptyKey() {
@@ -154,6 +155,6 @@ template <> struct DenseMapInfo<clang::tooling::stdlib::Symbol> {
     return LHS == RHS;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_TOOLING_INCLUSIONS_STANDARDLIBRARY_H

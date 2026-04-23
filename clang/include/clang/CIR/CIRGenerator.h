@@ -21,6 +21,7 @@
 #include "llvm/Support/VirtualFileSystem.h"
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
 namespace clang {
 class DeclGroupRef;
@@ -30,9 +31,9 @@ class CIRGenModule;
 } // namespace CIRGen
 } // namespace clang
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class MLIRContext;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 namespace cir {
 class CIRGenerator : public clang::ASTConsumer {
   virtual void anchor();

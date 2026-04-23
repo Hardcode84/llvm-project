@@ -17,12 +17,13 @@
 #include "clang/Basic/TypeTraits.h"
 #include <cstdint>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class APFloat;
 class APSInt;
 class APInt;
-}
+LLVM_NAMESPACE_END
 namespace clang {
 class QualType;
 class LangOptions;

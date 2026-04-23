@@ -14,6 +14,7 @@
 #include "clang/AST/StmtGraphTraits.h"
 #include "clang/AST/Decl.h"
 #include "llvm/Support/GraphWriter.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace clang;
 
@@ -26,7 +27,7 @@ void Stmt::viewAST() const {
 #endif
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template<>
 struct DOTGraphTraits<const Stmt*> : public DefaultDOTGraphTraits {
   DOTGraphTraits (bool isSimple=false) : DefaultDOTGraphTraits(isSimple) {}
@@ -57,4 +58,4 @@ struct DOTGraphTraits<const Stmt*> : public DefaultDOTGraphTraits {
 #endif
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

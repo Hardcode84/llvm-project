@@ -26,6 +26,7 @@
 #include <string>
 #include <unordered_map>
 #include <variant>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 namespace dependencies {
@@ -412,7 +413,7 @@ bool areOptionsInStableDir(const ArrayRef<StringRef> Directories,
 } // end namespace dependencies
 } // end namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 inline hash_code hash_value(const clang::dependencies::ModuleID &ID) {
   return hash_combine(ID.ModuleName, ID.ContextHash);
 }
@@ -428,6 +429,6 @@ template <> struct DenseMapInfo<clang::dependencies::ModuleID> {
     return LHS == RHS;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_DEPENDENCYSCANNING_MODULEDEPCOLLECTOR_H

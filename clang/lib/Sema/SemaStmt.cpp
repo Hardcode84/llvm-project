@@ -41,6 +41,7 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/ADT/StringExtras.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace clang;
 using namespace sema;
@@ -4349,7 +4350,7 @@ public:
 };
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct DenseMapInfo<CatchHandlerType> {
   static CatchHandlerType getEmptyKey() {
     return CatchHandlerType(DenseMapInfo<QualType>::getEmptyKey(),
@@ -4370,7 +4371,7 @@ template <> struct DenseMapInfo<CatchHandlerType> {
     return LHS == RHS;
   }
 };
-}
+LLVM_NAMESPACE_END
 
 namespace {
 class CatchTypePublicBases {

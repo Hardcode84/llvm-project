@@ -16,6 +16,7 @@
 #include "llvm/Support/TrailingObjects.h"
 #include <cassert>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 
@@ -128,7 +129,7 @@ public:
 
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   // DeclGroupRef is "like a pointer", implement PointerLikeTypeTraits.
   template <typename T>
@@ -146,6 +147,6 @@ namespace llvm {
     static constexpr int NumLowBitsAvailable = 0;
   };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_AST_DECLGROUP_H

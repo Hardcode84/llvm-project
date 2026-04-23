@@ -25,6 +25,7 @@
 #include <cassert>
 #include <cstdint>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 using namespace clang;
 using namespace ento;
@@ -52,7 +53,7 @@ void PointerToMemberData::Profile(
 using SValData = std::pair<SVal, uintptr_t>;
 using SValPair = std::pair<SVal, SVal>;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template<> struct FoldingSetTrait<SValData> {
   static inline void Profile(const SValData& X, llvm::FoldingSetNodeID& ID) {
@@ -68,7 +69,7 @@ template<> struct FoldingSetTrait<SValPair> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using PersistentSValsTy =
     llvm::FoldingSet<llvm::FoldingSetNodeWrapper<SValData>>;

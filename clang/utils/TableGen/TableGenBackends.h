@@ -16,11 +16,12 @@
 #define LLVM_CLANG_UTILS_TABLEGEN_TABLEGENBACKENDS_H
 
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 class RecordKeeper;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 

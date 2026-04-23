@@ -24,10 +24,11 @@
 #include "clang/AST/ExprObjC.h"
 #include "clang/AST/Type.h"
 #include "clang/Basic/TargetInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Value;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 namespace CodeGen {

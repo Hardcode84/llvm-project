@@ -16,15 +16,16 @@
 #include "mlir/Pass/Pass.h"
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
 namespace clang {
 class ASTContext;
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class MLIRContext;
 class ModuleOp;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace cir {
 

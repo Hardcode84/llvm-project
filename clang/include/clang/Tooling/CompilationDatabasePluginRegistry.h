@@ -12,6 +12,7 @@
 #include "clang/Support/Compiler.h"
 #include "clang/Tooling/CompilationDatabase.h"
 #include "llvm/Support/Registry.h"
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 namespace tooling {
@@ -43,9 +44,9 @@ using CompilationDatabasePluginRegistry =
 } // namespace tooling
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern template class CLANG_TEMPLATE_ABI
     Registry<clang::tooling::CompilationDatabasePlugin>;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_TOOLING_COMPILATIONDATABASEPLUGINREGISTRY_H

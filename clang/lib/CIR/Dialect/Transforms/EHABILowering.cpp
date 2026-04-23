@@ -33,14 +33,15 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/TargetParser/Triple.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace cir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_CIREHABILOWERING
 #include "clang/CIR/Dialect/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace {
 

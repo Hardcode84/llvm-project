@@ -14,10 +14,11 @@
 #include "llvm/ADT/StringMap.h"
 #include "llvm/Support/MemoryBufferRef.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_pwrite_stream;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 

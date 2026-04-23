@@ -28,15 +28,16 @@
 #include "clang/Basic/ABI.h"
 #include "clang/CodeGen/CGFunctionInfo.h"
 #include "llvm/IR/BasicBlock.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AttrBuilder;
 class Constant;
 class ConstantInt;
 class Function;
 class FunctionType;
 class Type;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 class CXXConstructorDecl;

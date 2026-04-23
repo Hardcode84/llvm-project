@@ -23,11 +23,12 @@
 #include "llvm/Support/Error.h"
 #include <memory>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BitstreamCursor;
 class MemoryBuffer;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 

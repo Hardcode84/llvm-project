@@ -20,11 +20,11 @@
 #include "llvm/IR/Value.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BasicBlock;
 class Instruction;
 class MDNode;
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace clang {
 class Attr;

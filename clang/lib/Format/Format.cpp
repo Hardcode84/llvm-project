@@ -26,6 +26,7 @@
 #include "llvm/ADT/Sequence.h"
 #include "llvm/ADT/StringSet.h"
 #include <limits>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "format-formatter"
 
@@ -42,7 +43,7 @@ enum BracketAlignmentStyle : int8_t {
   BAS_BlockIndent
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <>
 struct ScalarEnumerationTraits<FormatStyle::BreakBeforeNoexceptSpecifierStyle> {
@@ -1596,7 +1597,7 @@ template <> struct ScalarEnumerationTraits<FormatStyle::IndentGotoLabelStyle> {
 };
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 namespace format {

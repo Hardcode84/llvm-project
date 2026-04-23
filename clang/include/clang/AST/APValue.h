@@ -21,6 +21,7 @@
 #include "llvm/ADT/PointerIntPair.h"
 #include "llvm/ADT/PointerUnion.h"
 #include "llvm/Support/AlignOf.h"
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 namespace serialization {
@@ -90,7 +91,7 @@ public:
 };
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template<> struct PointerLikeTypeTraits<clang::TypeInfoLValue> {
   static const void *getAsVoidPointer(clang::TypeInfoLValue V) {
     return V.getOpaqueValue();
@@ -113,7 +114,7 @@ template<> struct PointerLikeTypeTraits<clang::DynamicAllocLValue> {
   static constexpr int NumLowBitsAvailable =
       clang::DynamicAllocLValue::NumLowBitsAvailable;
 };
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 /// APValue - This class implements a discriminated union of [uninitialized]
@@ -836,7 +837,7 @@ private:
 
 } // end namespace clang.
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template<> struct DenseMapInfo<clang::APValue::LValueBase> {
   static clang::APValue::LValueBase getEmptyKey();
   static clang::APValue::LValueBase getTombstoneKey();
@@ -844,6 +845,6 @@ template<> struct DenseMapInfo<clang::APValue::LValueBase> {
   static bool isEqual(const clang::APValue::LValueBase &LHS,
                       const clang::APValue::LValueBase &RHS);
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

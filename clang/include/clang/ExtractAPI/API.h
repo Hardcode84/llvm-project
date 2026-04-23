@@ -1582,7 +1582,7 @@ template <typename ToTy> struct FromRecordContextCastInfoWrapper<ToTy, true> {
 
 // Implement APIRecord (and derived classes) to and from RecordContext
 // conversions
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename FromTy>
 struct CastInfo<::clang::extractapi::RecordContext, FromTy *>
@@ -1630,6 +1630,6 @@ struct CastInfo<ToTy, const ::clang::extractapi::RecordContext *>
           ToTy, const ::clang::extractapi::RecordContext *,
           CastInfo<ToTy, ::clang::extractapi::RecordContext *>> {};
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_EXTRACTAPI_API_H

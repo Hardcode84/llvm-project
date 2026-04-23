@@ -25,6 +25,7 @@
 #include "llvm/ADT/StringExtras.h"
 #include "llvm/Support/FormatVariadic.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace clang;
 using namespace ento;
@@ -259,7 +260,7 @@ public:
 };
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct format_provider<FindUninitializedField::FieldChainTy> {
   static void format(const FindUninitializedField::FieldChainTy &V,
                      raw_ostream &Stream, StringRef Style) {
@@ -275,7 +276,7 @@ template <> struct format_provider<FindUninitializedField::FieldChainTy> {
     }
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 bool CallAndMessageChecker::uninitRefOrPointer(CheckerContext &C, SVal V,
                                                const CallEvent &Call,

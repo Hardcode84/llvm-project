@@ -22,8 +22,9 @@
 // Add this header as a workaround to prevent `too few template arguments for
 // class template 'SmallVector'` building error with build compilers like XL.
 #include "llvm/ADT/SmallVector.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   // ADT's.
   class StringRef;
   class Twine;
@@ -46,7 +47,7 @@ namespace llvm {
   class raw_ostream;
   class raw_pwrite_stream;
   // TODO: DenseMap, ...
-}
+LLVM_NAMESPACE_END
 
 
 namespace clang {

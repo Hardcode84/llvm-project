@@ -19,12 +19,13 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Frontend/Offloading/Utility.h"
 #include "llvm/IR/GlobalValue.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class CallBase;
 class Function;
 class GlobalVariable;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 

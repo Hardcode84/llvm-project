@@ -12,8 +12,9 @@
 #include "clang/Basic/LLVM.h"
 #include "llvm/IR/ModuleSummaryIndex.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BitcodeModule;
 template <typename T> class Expected;
 template <typename T> class IntrusiveRefCntPtr;
@@ -22,7 +23,7 @@ class MemoryBufferRef;
 namespace vfs {
 class FileSystem;
 } // namespace vfs
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 class CompilerInstance;

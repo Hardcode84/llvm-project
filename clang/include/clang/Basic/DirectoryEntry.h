@@ -25,6 +25,7 @@
 
 #include <optional>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 namespace FileMgr {
@@ -185,7 +186,7 @@ static_assert(std::is_trivially_copyable<OptionalDirectoryEntryRef>::value,
 } // end namespace optional_detail
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <> struct PointerLikeTypeTraits<clang::DirectoryEntryRef> {
   static inline void *getAsVoidPointer(clang::DirectoryEntryRef Dir) {
@@ -232,6 +233,6 @@ template <> struct DenseMapInfo<clang::DirectoryEntryRef> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CLANG_BASIC_DIRECTORYENTRY_H

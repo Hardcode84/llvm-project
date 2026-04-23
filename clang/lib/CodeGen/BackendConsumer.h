@@ -14,10 +14,11 @@
 
 #include "llvm/IR/DiagnosticInfo.h"
 #include "llvm/Support/Timer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class DiagnosticInfoDontCall;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 class ASTContext;

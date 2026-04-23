@@ -575,7 +575,7 @@ inline const StreamingDiagnostic &operator<<(const StreamingDiagnostic &DB,
 
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <> struct PointerLikeTypeTraits<clang::NestedNameSpecifier> {
   static void *getAsVoidPointer(clang::NestedNameSpecifier P) {
@@ -588,6 +588,6 @@ template <> struct PointerLikeTypeTraits<clang::NestedNameSpecifier> {
       clang::NestedNameSpecifier::NumLowBitsAvailable;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_AST_NESTEDNAMESPECIFIERBASE_H

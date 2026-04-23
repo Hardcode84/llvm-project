@@ -83,7 +83,7 @@ namespace serialization {
 
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   template <typename T>
   struct PointerLikeTypeTraits;
@@ -109,7 +109,7 @@ namespace llvm {
     static constexpr int NumLowBitsAvailable = clang::TypeAlignmentInBits;
   };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 
@@ -1660,7 +1660,7 @@ raw_ostream &operator<<(raw_ostream &OS, QualType QT);
 
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Implement simplify_type for QualType, so that we can dyn_cast from QualType
 /// to a specific Type class.
@@ -1687,7 +1687,7 @@ struct PointerLikeTypeTraits<clang::QualType> {
   static constexpr int NumLowBitsAvailable = 0;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 

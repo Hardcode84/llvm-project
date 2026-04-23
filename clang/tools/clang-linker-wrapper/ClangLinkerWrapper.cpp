@@ -54,6 +54,7 @@
 #include "llvm/Target/TargetMachine.h"
 #include "llvm/TargetParser/Host.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::opt;
@@ -139,7 +140,7 @@ static bool CanonicalPrefixes = true;
 
 using OffloadingImage = OffloadBinary::OffloadingImage;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Provide DenseMapInfo so that OffloadKind can be used in a DenseMap.
 template <> struct DenseMapInfo<OffloadKind> {
   static inline OffloadKind getEmptyKey() { return OFK_LAST; }
@@ -152,7 +153,7 @@ template <> struct DenseMapInfo<OffloadKind> {
     return LHS == RHS;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 using std::error_code;

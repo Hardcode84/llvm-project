@@ -12,6 +12,7 @@
 #include "clang/APINotes/Types.h"
 #include "llvm/ADT/PointerEmbeddedInt.h"
 #include "llvm/Bitcode/BitcodeConvenience.h"
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 namespace api_notes {
@@ -357,7 +358,7 @@ inline bool operator==(const SingleDeclTableKey &lhs,
 } // namespace api_notes
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct DenseMapInfo<clang::api_notes::StoredObjCSelector> {
   typedef DenseMapInfo<unsigned> UnsignedInfo;
 
@@ -432,6 +433,6 @@ template <> struct DenseMapInfo<clang::api_notes::SingleDeclTableKey> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

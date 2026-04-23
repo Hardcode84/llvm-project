@@ -24,6 +24,7 @@
 #include "llvm/Support/PointerLikeTypeTraits.h"
 #include <cassert>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 
@@ -638,7 +639,7 @@ class DependentTemplateName : public DependentTemplateStorage,
 
 } // namespace clang.
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// The clang::TemplateName class is effectively a pointer.
 template<>
@@ -655,6 +656,6 @@ struct PointerLikeTypeTraits<clang::TemplateName> {
   static constexpr int NumLowBitsAvailable = 0;
 };
 
-} // namespace llvm.
+LLVM_NAMESPACE_END // namespace llvm.
 
 #endif // LLVM_CLANG_AST_TEMPLATENAME_H

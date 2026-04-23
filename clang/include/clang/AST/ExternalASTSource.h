@@ -33,6 +33,7 @@
 #include <new>
 #include <optional>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 
@@ -516,7 +517,7 @@ public:
 
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Specialize PointerLikeTypeTraits to allow LazyGenerationalUpdatePtr to be
 /// placed into a PointerUnion.
@@ -533,7 +534,7 @@ struct PointerLikeTypeTraits<
       PointerLikeTypeTraits<typename Ptr::ValueType>::NumLowBitsAvailable;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 

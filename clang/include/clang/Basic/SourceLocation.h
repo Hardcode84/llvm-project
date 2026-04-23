@@ -21,13 +21,14 @@
 #include <cstdint>
 #include <string>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class FoldingSetNodeID;
 template <typename T, typename Enable> struct FoldingSetTrait;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 
@@ -488,7 +489,7 @@ public:
 
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   /// Define DenseMapInfo so that FileID's can be used as keys in DenseMap and
   /// DenseSets.
@@ -558,6 +559,6 @@ namespace llvm {
     }
   };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_BASIC_SOURCELOCATION_H

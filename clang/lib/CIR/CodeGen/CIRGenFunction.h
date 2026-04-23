@@ -37,16 +37,17 @@
 #include "clang/CIR/TypeEvaluationKind.h"
 #include "llvm/ADT/ScopedHashTable.h"
 #include "llvm/IR/Instructions.h"
+#include "mlir/Support/ABINamespace.h"
 
 namespace {
 class ScalarExprEmitter;
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace acc {
 class LoopOp;
 } // namespace acc
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace clang::CIRGen {
 

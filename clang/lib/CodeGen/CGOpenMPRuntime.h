@@ -29,8 +29,9 @@
 #include "llvm/IR/Function.h"
 #include "llvm/IR/ValueHandle.h"
 #include "llvm/Support/AtomicOrdering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class ArrayType;
 class Constant;
 class FunctionType;
@@ -38,7 +39,7 @@ class GlobalVariable;
 class Type;
 class Value;
 class OpenMPIRBuilder;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 class Expr;

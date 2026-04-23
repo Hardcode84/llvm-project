@@ -14,10 +14,11 @@
 #include "clang/Basic/LLVM.h"
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/IR/DerivedTypes.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class StructType;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 namespace CodeGen {

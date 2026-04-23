@@ -15,10 +15,11 @@
 #define LLVM_CLANG_INTERPRETER_PARTIALTRANSLATIONUNIT_H
 
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 

@@ -17,13 +17,14 @@
 #include "CodeGenFunction.h"
 #include "clang/Basic/LLVM.h"
 #include "clang/CodeGen/CodeGenABITypes.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Constant;
 class Type;
 class Value;
 class CallInst;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 class CastExpr;

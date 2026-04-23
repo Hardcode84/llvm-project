@@ -22,8 +22,9 @@
 #include "llvm/IR/Module.h"
 #include "llvm/Support/VirtualFileSystem.h"
 #include "llvm/TargetParser/Host.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct TestCompiler {
   LLVMContext Context;
@@ -103,5 +104,5 @@ struct TestCompiler {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // CLANG_UNITTESTS_CODEGEN_TESTCOMPILER_H

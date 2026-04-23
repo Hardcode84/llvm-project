@@ -14,14 +14,15 @@
 #define LLVM_CLANG_ANALYSIS_ANALYSES_REACHABLECODE_H
 
 #include "clang/Basic/SourceLocation.h"
+#include "llvm/Support/Compiler.h"
 
 //===----------------------------------------------------------------------===//
 // Forward declarations.
 //===----------------------------------------------------------------------===//
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class BitVector;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
   class AnalysisDeclContext;

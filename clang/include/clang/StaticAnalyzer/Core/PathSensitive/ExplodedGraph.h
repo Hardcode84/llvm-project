@@ -491,7 +491,7 @@ public:
 
 // GraphTraits
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   template <> struct GraphTraits<clang::ento::ExplodedGraph *> {
     using GraphTy = clang::ento::ExplodedGraph *;
     using NodeRef = clang::ento::ExplodedNode *;
@@ -524,6 +524,6 @@ namespace llvm {
       return df_end(G);
     }
   };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_STATICANALYZER_CORE_PATHSENSITIVE_EXPLODEDGRAPH_H

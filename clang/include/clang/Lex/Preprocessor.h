@@ -58,12 +58,13 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template<unsigned InternalLen> class SmallString;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 
@@ -3206,8 +3207,8 @@ using PragmaHandlerRegistry = llvm::Registry<PragmaHandler>;
 
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern template class CLANG_TEMPLATE_ABI Registry<clang::PragmaHandler>;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_LEX_PREPROCESSOR_H

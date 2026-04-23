@@ -924,7 +924,7 @@ raw_ostream &operator<<(raw_ostream &OS, DeclarationNameInfo DNInfo);
 
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Define DenseMapInfo so that DeclarationNames can be used as keys
 /// in DenseMap and DenseSets.
@@ -958,7 +958,7 @@ template <> struct PointerLikeTypeTraits<clang::DeclarationName> {
   static constexpr int NumLowBitsAvailable = 0;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // The definition of AssumedTemplateStorage is factored out of TemplateName to
 // resolve a cyclic dependency between it and DeclarationName (via Type).

@@ -15,6 +15,7 @@
 #include "llvm/ADT/STLFunctionalExtras.h"
 #include "llvm/Support/Registry.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 namespace clang::ssaf {
 
@@ -69,9 +70,9 @@ public:
 
 } // namespace clang::ssaf
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern template class CLANG_TEMPLATE_ABI
     Registry<clang::ssaf::MockSerializationFormat::FormatInfo>;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_UNITTESTS_SCALABLESTATICANALYSISFRAMEWORK_REGISTRIES_MOCKSERIALIZATIONFORMAT_H

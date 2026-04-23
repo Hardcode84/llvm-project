@@ -27,6 +27,7 @@
 #include "llvm/Support/Casting.h"
 #include "llvm/Support/type_traits.h"
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 
@@ -212,7 +213,7 @@ public:
 
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   template<> struct DenseMapInfo<clang::GlobalDecl> {
     static inline clang::GlobalDecl getEmptyKey() {
@@ -234,6 +235,6 @@ namespace llvm {
     }
   };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_AST_GLOBALDECL_H

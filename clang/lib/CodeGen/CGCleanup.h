@@ -21,12 +21,13 @@
 #include "llvm/ADT/SmallPtrSet.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/IR/Instruction.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BasicBlock;
 class Value;
 class ConstantInt;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 class FunctionDecl;

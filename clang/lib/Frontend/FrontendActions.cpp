@@ -36,6 +36,7 @@
 #include <memory>
 #include <optional>
 #include <system_error>
+#include "llvm/Support/Compiler.h"
 
 using namespace clang;
 
@@ -380,7 +381,7 @@ struct TemplightEntry {
 };
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct MappingTraits<TemplightEntry> {
   static void mapping(IO &io, TemplightEntry &fields) {
@@ -392,7 +393,7 @@ template <> struct MappingTraits<TemplightEntry> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 class DefaultTemplateInstCallback : public TemplateInstantiationCallback {

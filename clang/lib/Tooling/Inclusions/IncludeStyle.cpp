@@ -7,10 +7,11 @@
 //===----------------------------------------------------------------------===//
 
 #include "clang/Tooling/Inclusions/IncludeStyle.h"
+#include "llvm/Support/Compiler.h"
 
 using clang::tooling::IncludeStyle;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 void MappingTraits<IncludeStyle::IncludeCategory>::mapping(
@@ -36,4 +37,4 @@ void ScalarEnumerationTraits<IncludeStyle::MainIncludeCharDiscriminator>::
 }
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

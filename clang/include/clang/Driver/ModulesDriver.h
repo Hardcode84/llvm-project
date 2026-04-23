@@ -18,10 +18,13 @@
 #include "clang/Basic/LLVM.h"
 #include "clang/Driver/Types.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::vfs {
+LLVM_NAMESPACE_BEGIN
+namespace vfs {
 class FileSystem;
-} // namespace llvm::vfs
+}
+LLVM_NAMESPACE_END // namespace llvm::vfs
 
 namespace clang {
 class DiagnosticsEngine;

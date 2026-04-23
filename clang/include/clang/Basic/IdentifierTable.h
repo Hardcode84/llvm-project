@@ -154,6 +154,7 @@ enum class InterestingIdentifier {
   NotBuiltin,
 #define GET_BUILTIN_ENUMERATORS
 #include "clang/Basic/Builtins.inc"
+#include "llvm/Support/Compiler.h"
 #undef GET_BUILTIN_ENUMERATORS
   FirstTSBuiltin,
 
@@ -1267,7 +1268,7 @@ public:
 };
 }  // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Define DenseMapInfo so that Selectors can be used as keys in DenseMap and
 /// DenseSets.
@@ -1301,6 +1302,6 @@ struct PointerLikeTypeTraits<clang::Selector> {
   static constexpr int NumLowBitsAvailable = 0;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_BASIC_IDENTIFIERTABLE_H

@@ -22,6 +22,7 @@
 #include <cassert>
 #include <cstddef>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
 //===----------------------------------------------------------------------===//
 // OpaquePtr
@@ -113,7 +114,7 @@ class TemplateParameterList;
 
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   template <class T>
   struct PointerLikeTypeTraits<clang::OpaquePtr<T>> {
@@ -129,7 +130,7 @@ namespace llvm {
     }
   };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 

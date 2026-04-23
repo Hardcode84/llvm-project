@@ -10,6 +10,7 @@
 #include "clang/Tooling/ReplacementsYaml.h"
 #include "llvm/Support/YAMLTraits.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(clang::tooling::AtomicChange)
 
@@ -46,7 +47,7 @@ struct NormalizedAtomicChange {
 };
 } // anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 /// Specialized MappingTraits to describe how an AtomicChange is
@@ -78,7 +79,7 @@ template <> struct MappingTraits<clang::tooling::AtomicChange> {
 };
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace clang {
 namespace tooling {

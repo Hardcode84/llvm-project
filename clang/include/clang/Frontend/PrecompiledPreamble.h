@@ -22,14 +22,15 @@
 #include <memory>
 #include <system_error>
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MemoryBuffer;
 class MemoryBufferRef;
 namespace vfs {
 class FileSystem;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 class CompilerInstance;

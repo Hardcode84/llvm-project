@@ -9,9 +9,11 @@
 #ifndef LLVM_CLANG_STATICANALYZER_FRONTEND_ANALYZERHELPFLAGS_H
 #define LLVM_CLANG_STATICANALYZER_FRONTEND_ANALYZERHELPFLAGS_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 

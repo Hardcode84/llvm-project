@@ -16,6 +16,7 @@
 #include "clang/Frontend/FrontendAction.h"
 #include "clang/Support/Compiler.h"
 #include "llvm/Support/Registry.h"
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 
@@ -24,8 +25,8 @@ using FrontendPluginRegistry = llvm::Registry<PluginASTAction>;
 
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern template class CLANG_TEMPLATE_ABI Registry<clang::PluginASTAction>;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_FRONTEND_FRONTENDPLUGINREGISTRY_H

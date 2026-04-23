@@ -19,10 +19,11 @@
 #include "clang/Sema/SemaBase.h"
 #include "llvm/ADT/StringRef.h"
 #include <tuple>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T, unsigned N> class SmallVector;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 class ParsedAttr;

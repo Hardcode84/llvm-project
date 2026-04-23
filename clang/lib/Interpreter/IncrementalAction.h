@@ -11,10 +11,11 @@
 
 #include "clang/Frontend/FrontendActions.h"
 #include "clang/Frontend/MultiplexConsumer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 

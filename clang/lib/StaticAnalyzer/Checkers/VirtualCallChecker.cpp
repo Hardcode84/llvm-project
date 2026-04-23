@@ -21,6 +21,7 @@
 #include "clang/StaticAnalyzer/Core/PathSensitive/CheckerContext.h"
 #include "clang/StaticAnalyzer/Core/PathSensitive/ProgramStateTrait.h"
 #include "clang/StaticAnalyzer/Core/PathSensitive/SValBuilder.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace clang;
 using namespace ento;
@@ -30,13 +31,13 @@ enum class ObjectState : bool { CtorCalled, DtorCalled };
 } // end namespace
   // FIXME: Ascending over StackFrameContext maybe another method.
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct FoldingSetTrait<ObjectState> {
   static inline void Profile(ObjectState X, FoldingSetNodeID &ID) {
     ID.AddInteger(static_cast<int>(X));
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace {
 class VirtualCallChecker

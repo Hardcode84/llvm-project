@@ -34,6 +34,7 @@
 #include <optional>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "taint-checker"
 
@@ -420,7 +421,7 @@ LLVM_YAML_IS_SEQUENCE_VECTOR(TaintConfiguration::Sink)
 LLVM_YAML_IS_SEQUENCE_VECTOR(TaintConfiguration::Filter)
 LLVM_YAML_IS_SEQUENCE_VECTOR(TaintConfiguration::Propagation)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct MappingTraits<TaintConfiguration> {
   static void mapping(IO &IO, TaintConfiguration &Config) {
@@ -465,7 +466,7 @@ template <> struct ScalarEnumerationTraits<TaintConfiguration::VariadicType> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 /// A set which is used to pass information from call pre-visit instruction
 /// to the call post-visit. The values are signed integers, which are either

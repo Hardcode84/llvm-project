@@ -19,9 +19,9 @@
 #include "llvm/Support/raw_ostream.h"
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class format_object_base;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 namespace cxindex {

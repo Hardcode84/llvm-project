@@ -20,12 +20,13 @@
 #include "llvm/TargetParser/Triple.h"
 #include <optional>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace json {
 class Object;
 } // end namespace json
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace clang {
 

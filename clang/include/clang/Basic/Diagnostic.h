@@ -41,14 +41,14 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Error;
 class raw_ostream;
 class MemoryBuffer;
 namespace vfs {
 class FileSystem;
 } // namespace vfs
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 

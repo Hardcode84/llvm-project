@@ -1327,7 +1327,7 @@ public:
 
 // Required to determine the layout of the PointerUnion<NamedDecl*> before
 // seeing the NamedDecl definition being first used in DeclListNode::operator*.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   template <> struct PointerLikeTypeTraits<::clang::NamedDecl *> {
     static inline void *getAsVoidPointer(::clang::NamedDecl *P) { return P; }
     static inline ::clang::NamedDecl *getFromVoidPointer(void *P) {
@@ -1335,7 +1335,7 @@ namespace llvm {
     }
     static constexpr int NumLowBitsAvailable = 3;
   };
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 /// A list storing NamedDecls in the lookup tables.
@@ -2835,7 +2835,7 @@ struct cast_convert_decl_context<ToTy, true> {
 
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// isa<T>(DeclContext*)
 template <typename To>
@@ -2905,6 +2905,6 @@ struct cast_convert_val< const ::clang::DeclContext, FromTy*, FromTy*> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_AST_DECLBASE_H

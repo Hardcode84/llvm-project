@@ -15,6 +15,7 @@
 #include "mlir/Pass/PassManager.h"
 #include "clang/CIR/Dialect/Passes.h"
 #include "llvm/Support/TimeProfiler.h"
+#include "mlir/Support/ABINamespace.h"
 
 namespace cir {
 mlir::LogicalResult
@@ -44,7 +45,7 @@ runCIRToCIRPasses(mlir::ModuleOp theModule, mlir::MLIRContext &mlirContext,
 
 } // namespace cir
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 void populateCIRPreLoweringPasses(OpPassManager &pm) {
   pm.addPass(createHoistAllocasPass());
@@ -53,4 +54,4 @@ void populateCIRPreLoweringPasses(OpPassManager &pm) {
   pm.addPass(createGotoSolverPass());
 }
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

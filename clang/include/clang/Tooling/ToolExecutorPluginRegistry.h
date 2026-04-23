@@ -12,6 +12,7 @@
 #include "clang/Support/Compiler.h"
 #include "clang/Tooling/Execution.h"
 #include "llvm/Support/Registry.h"
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 namespace tooling {
@@ -21,9 +22,9 @@ using ToolExecutorPluginRegistry = llvm::Registry<ToolExecutorPlugin>;
 } // namespace tooling
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern template class CLANG_TEMPLATE_ABI
     Registry<clang::tooling::ToolExecutorPlugin>;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_TOOLING_TOOLEXECUTORPLUGINREGISTRY_H

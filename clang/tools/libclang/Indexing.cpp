@@ -34,6 +34,7 @@
 #include <cstdio>
 #include <mutex>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 using namespace clang;
 using namespace clang::index;
@@ -92,7 +93,7 @@ public:
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   template <>
   struct DenseMapInfo<PPRegion> {
@@ -117,7 +118,7 @@ namespace llvm {
       return LHS == RHS;
     }
   };
-}
+LLVM_NAMESPACE_END
 
 namespace {
 

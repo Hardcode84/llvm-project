@@ -101,7 +101,7 @@ using namespace llvm;
   llvm::PassPluginLibraryInfo get##Ext##PluginInfo();
 #include "llvm/Support/Extension.def"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Experiment to move sanitizers earlier.
 static cl::opt<bool> ClSanitizeOnOptimizerEarlyEP(
     "sanitizer-early-opt-ep", cl::Optional,
@@ -124,7 +124,7 @@ static cl::opt<PGOOptions::ColdFuncOpt> ClPGOColdFuncAttr(
 
 LLVM_ABI extern cl::opt<InstrProfCorrelator::ProfCorrelatorKind>
     ProfileCorrelate;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 namespace clang {
 extern llvm::cl::opt<bool> ClSanitizeGuardChecks;
 }

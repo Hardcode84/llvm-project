@@ -31,6 +31,7 @@
 
 #include <optional>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 // A function generator macro for picking the right intrinsic
 // for the target backend
@@ -50,12 +51,12 @@
 
 using ResourceClass = llvm::dxil::ResourceClass;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class GlobalVariable;
 class Function;
 class StructType;
 class Metadata;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 class NamedDecl;

@@ -191,6 +191,7 @@ namespace loc {
 #define LOC_SVAL(Id, Parent)                                                   \
   inline constexpr auto Id##Kind = SVal::SValKind::Loc##Id##Kind;
 #include "clang/StaticAnalyzer/Core/PathSensitive/SVals.def"
+#include "llvm/Support/Compiler.h"
 } // namespace loc
 
 class UndefinedVal : public SVal {
@@ -528,7 +529,7 @@ public:
 } // namespace ento
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename To, typename From>
 struct CastInfo<
     To, From,
@@ -550,6 +551,6 @@ struct CastInfo<
     return doCast(f);
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_STATICANALYZER_CORE_PATHSENSITIVE_SVALS_H

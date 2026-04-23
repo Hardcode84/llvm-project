@@ -9,9 +9,11 @@
 #ifndef CLANG_CIR_DIALECT_OPENMP_REGISTEROPENMPEXTENSIONS_H
 #define CLANG_CIR_DIALECT_OPENMP_REGISTEROPENMPEXTENSIONS_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace cir::omp {
 

@@ -82,6 +82,7 @@ enum PredefinedDeclIDs {
 
 #define BuiltinTemplate(BTName) PREDEF_DECL##BTName##_ID,
 #include "clang/Basic/BuiltinTemplates.inc"
+#include "llvm/Support/Compiler.h"
 
   /// The number of declaration IDs that are predefined.
   NUM_PREDEF_DECL_IDS
@@ -243,7 +244,7 @@ public:
 
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct DenseMapInfo<clang::GlobalDeclID> {
   using GlobalDeclID = clang::GlobalDeclID;
   using DeclID = GlobalDeclID::DeclID;
@@ -286,6 +287,6 @@ template <> struct DenseMapInfo<clang::LocalDeclID> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

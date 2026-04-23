@@ -19,6 +19,7 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/IR/MDBuilder.h"
 #include "llvm/IR/Metadata.h"
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
   class ASTContext;
@@ -225,7 +226,7 @@ public:
 }  // end namespace CodeGen
 }  // end namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template<> struct DenseMapInfo<clang::CodeGen::TBAAAccessInfo> {
   static clang::CodeGen::TBAAAccessInfo getEmptyKey() {
@@ -263,6 +264,6 @@ template<> struct DenseMapInfo<clang::CodeGen::TBAAAccessInfo> {
   }
 };
 
-}  // end namespace llvm
+LLVM_NAMESPACE_END  // end namespace llvm
 
 #endif

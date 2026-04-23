@@ -14,12 +14,13 @@
 #define CLANG_CIR_DIALECT_PASSES_H
 
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 namespace clang {
 class ASTContext;
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 std::unique_ptr<Pass> createCIRCanonicalizePass();
 std::unique_ptr<Pass> createCIRFlattenCFGPass();
@@ -46,6 +47,6 @@ void registerCIRDialectTranslation(mlir::MLIRContext &context);
 #define GEN_PASS_REGISTRATION
 #include "clang/CIR/Dialect/Passes.h.inc"
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // CLANG_CIR_DIALECT_PASSES_H

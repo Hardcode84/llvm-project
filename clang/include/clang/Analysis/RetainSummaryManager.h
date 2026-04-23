@@ -26,6 +26,7 @@
 #include "clang/Analysis/SelectorExtras.h"
 #include "llvm/ADT/STLExtras.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using namespace clang;
 
@@ -227,7 +228,7 @@ public:
 
 using namespace ento;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // Adapters for FoldingSet.
@@ -269,7 +270,7 @@ template <> struct DenseMapInfo<ObjCSummaryKey> {
 
 };
 
-} // end llvm namespace
+LLVM_NAMESPACE_END // end llvm namespace
 
 
 namespace clang {

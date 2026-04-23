@@ -21,6 +21,7 @@
 #include "llvm/Support/Registry.h"
 
 #include <set>
+#include "llvm/Support/Compiler.h"
 
 namespace clang::ssaf {
 
@@ -228,11 +229,11 @@ private:
 
 } // namespace clang::ssaf
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern template class CLANG_TEMPLATE_ABI
     Registry<clang::ssaf::JSONFormat::FormatInfo>;
 extern template class CLANG_TEMPLATE_ABI
     Registry<clang::ssaf::JSONFormat::AnalysisResultRegistry::Codec>;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_SCALABLESTATICANALYSISFRAMEWORK_CORE_SERIALIZATION_JSONFORMAT_H

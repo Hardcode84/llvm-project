@@ -9,10 +9,12 @@
 #ifndef LLVM_CLANG_LIB_CODEGEN_PATTERNINIT_H
 #define LLVM_CLANG_LIB_CODEGEN_PATTERNINIT_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class Constant;
 class Type;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 namespace CodeGen {

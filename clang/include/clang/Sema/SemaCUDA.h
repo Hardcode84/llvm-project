@@ -29,6 +29,7 @@
 #include "llvm/ADT/SmallVector.h"
 #include <string>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 namespace sema {
@@ -293,7 +294,7 @@ private:
 
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Hash a FunctionDeclAndLoc by looking at both its FunctionDecl and its
 // SourceLocation.
 template <> struct DenseMapInfo<clang::SemaCUDA::FunctionDeclAndLoc> {
@@ -319,6 +320,6 @@ template <> struct DenseMapInfo<clang::SemaCUDA::FunctionDeclAndLoc> {
     return LHS.FD == RHS.FD && LHS.Loc == RHS.Loc;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_SEMA_SEMACUDA_H

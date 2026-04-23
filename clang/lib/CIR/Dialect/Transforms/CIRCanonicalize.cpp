@@ -22,14 +22,15 @@
 #include "clang/CIR/Dialect/IR/CIRDialect.h"
 #include "clang/CIR/Dialect/Passes.h"
 #include "clang/CIR/MissingFeatures.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace cir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_CIRCANONICALIZE
 #include "clang/CIR/Dialect/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace {
 

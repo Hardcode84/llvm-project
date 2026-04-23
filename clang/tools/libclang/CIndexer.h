@@ -18,10 +18,11 @@
 #include "clang/Frontend/PCHContainerOperations.h"
 #include "llvm/ADT/STLExtras.h"
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class CrashRecoveryContext;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 class ASTUnit;

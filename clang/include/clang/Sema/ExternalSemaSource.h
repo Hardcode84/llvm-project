@@ -18,10 +18,11 @@
 #include "clang/Sema/Weak.h"
 #include "llvm/ADT/MapVector.h"
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <class T, unsigned n> class SmallSetVector;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 

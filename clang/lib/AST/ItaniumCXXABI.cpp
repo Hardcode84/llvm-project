@@ -26,6 +26,7 @@
 #include "clang/Basic/TargetInfo.h"
 #include "llvm/ADT/iterator.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using namespace clang;
 
@@ -73,7 +74,7 @@ struct DecompositionDeclName {
 };
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T> static bool isDenseMapKeyEmpty(T V) {
   return llvm::DenseMapInfo<T>::isEqual(
       V, llvm::DenseMapInfo<T>::getEmptyKey());
@@ -120,7 +121,7 @@ struct DenseMapInfo<DecompositionDeclName> {
            std::equal(LHS.begin(), LHS.end(), RHS.begin());
   }
 };
-}
+LLVM_NAMESPACE_END
 
 namespace {
 

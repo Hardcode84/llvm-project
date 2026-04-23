@@ -10,12 +10,13 @@
 #define LLVM_CLANG_DRIVER_TOOL_H
 
 #include "clang/Basic/LLVM.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace opt {
   class ArgList;
 }
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 namespace driver {

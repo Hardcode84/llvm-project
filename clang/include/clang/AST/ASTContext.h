@@ -46,8 +46,9 @@
 #include "llvm/ADT/TinyPtrVector.h"
 #include "llvm/Support/TypeSize.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class APFixedPoint;
 class FixedPointSemantics;
@@ -84,7 +85,7 @@ template <> struct DenseMapInfo<ScalableVecTyKey> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 

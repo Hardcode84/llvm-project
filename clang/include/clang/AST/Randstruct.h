@@ -14,9 +14,11 @@
 #ifndef LLVM_CLANG_AST_RANDSTRUCT_H
 #define LLVM_CLANG_AST_RANDSTRUCT_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 template <typename T> class SmallVectorImpl;
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace clang {
 

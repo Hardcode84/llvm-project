@@ -21,10 +21,13 @@
 #include "llvm/IR/GlobalValue.h"
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::coverage {
+LLVM_NAMESPACE_BEGIN
+namespace coverage {
 extern cl::opt<bool> SystemHeadersCoverage;
 }
+LLVM_NAMESPACE_END
 
 namespace clang {
 

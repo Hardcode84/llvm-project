@@ -11,14 +11,15 @@
 #include "llvm/ADT/SmallSet.h"
 #include "llvm/Support/TimeProfiler.h"
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace cir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_GOTOSOLVER
 #include "clang/CIR/Dialect/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace {
 

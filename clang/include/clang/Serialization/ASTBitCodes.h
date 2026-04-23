@@ -1184,6 +1184,7 @@ enum TypeCode {
 #define TYPE_BIT_CODE(CLASS_ID, CODE_ID, CODE_VALUE)                           \
   TYPE_##CODE_ID = CODE_VALUE,
 #include "clang/Serialization/TypeBitCodes.def"
+#include "llvm/Support/Compiler.h"
 
   /// An ExtQualType record.
   TYPE_EXT_QUAL = 1
@@ -2203,7 +2204,7 @@ public:
 } // namespace serialization
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <> struct DenseMapInfo<clang::serialization::DeclarationNameKey> {
   static clang::serialization::DeclarationNameKey getEmptyKey() {
@@ -2225,6 +2226,6 @@ template <> struct DenseMapInfo<clang::serialization::DeclarationNameKey> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_SERIALIZATION_ASTBITCODES_H

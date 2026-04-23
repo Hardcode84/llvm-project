@@ -24,6 +24,7 @@
 
 #include "llvm/ADT/DenseSet.h"
 #include "llvm/ADT/SmallPtrSet.h"
+#include "mlir/Support/ABINamespace.h"
 
 namespace clang {
 class ASTContext;
@@ -34,9 +35,9 @@ class TargetInfo;
 class Type;
 } // namespace clang
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Type;
-}
+MLIR_NAMESPACE_END
 
 namespace clang::CIRGen {
 

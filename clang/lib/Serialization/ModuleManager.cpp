@@ -37,6 +37,7 @@
 #include <memory>
 #include <string>
 #include <system_error>
+#include "llvm/Support/Compiler.h"
 
 using namespace clang;
 using namespace serialization;
@@ -481,7 +482,7 @@ void ModuleManager::visit(llvm::function_ref<bool(ModuleFile &M)> Visitor,
 }
 
 #ifndef NDEBUG
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   template<>
   struct GraphTraits<ModuleManager> {
@@ -518,7 +519,7 @@ namespace llvm {
     }
   };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 void ModuleManager::viewGraph() {
   llvm::ViewGraph(*this, "Modules");

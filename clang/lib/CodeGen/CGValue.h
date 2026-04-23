@@ -22,11 +22,12 @@
 #include "clang/AST/Type.h"
 #include "llvm/IR/Type.h"
 #include "llvm/IR/Value.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class Constant;
   class MDNode;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 namespace CodeGen {

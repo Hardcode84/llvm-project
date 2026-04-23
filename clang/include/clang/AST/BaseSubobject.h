@@ -19,6 +19,7 @@
 #include "llvm/Support/type_traits.h"
 #include <cstdint>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 
@@ -52,7 +53,7 @@ public:
 
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template<> struct DenseMapInfo<clang::BaseSubobject> {
   static clang::BaseSubobject getEmptyKey() {
@@ -80,6 +81,6 @@ template<> struct DenseMapInfo<clang::BaseSubobject> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_AST_BASESUBOBJECT_H

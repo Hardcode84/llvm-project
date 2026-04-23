@@ -16,12 +16,13 @@
 #include "clang/AST/CharUnits.h"
 #include "clang/Basic/AddressSpaces.h"
 #include "llvm/IR/CallingConv.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class Type;
   class IntegerType;
   class PointerType;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 namespace CodeGen {

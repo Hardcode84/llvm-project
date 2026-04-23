@@ -25,8 +25,9 @@
 #include "llvm/ADT/ArrayRef.h"
 #include <memory>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Triple;
 
@@ -42,7 +43,7 @@ class FileSystem;
 
 } // namespace vfs
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 

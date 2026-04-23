@@ -32,6 +32,7 @@
 #include <limits>
 #include <optional>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 using namespace clang;
 using namespace ento;
@@ -132,7 +133,7 @@ BindingKey BindingKey::Make(const MemRegion *R, Kind k) {
   return BindingKey(RO.getRegion(), RO.getOffset(), k);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 static inline raw_ostream &operator<<(raw_ostream &Out, BindingKey K) {
   Out << "\"kind\": \"" << (K.isDirect() ? "Direct" : "Default")
       << "\", \"offset\": ";
@@ -145,7 +146,7 @@ static inline raw_ostream &operator<<(raw_ostream &Out, BindingKey K) {
   return Out;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #if !defined(NDEBUG) || defined(LLVM_ENABLE_DUMP)
 void BindingKey::dump() const { llvm::errs() << *this; }

@@ -23,10 +23,11 @@
 #include "llvm/Support/Endian.h"
 #include "llvm/Support/MD5.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> EnableSingleByteCoverage;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static llvm::cl::opt<bool>
     EnableValueProfiling("enable-value-profiling",

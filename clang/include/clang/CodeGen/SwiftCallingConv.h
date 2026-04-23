@@ -19,13 +19,14 @@
 #include "clang/AST/Type.h"
 #include "llvm/Support/TrailingObjects.h"
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class IntegerType;
   class Type;
   class StructType;
   class VectorType;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 class FieldDecl;

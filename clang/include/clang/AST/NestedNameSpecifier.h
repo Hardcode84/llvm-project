@@ -18,6 +18,7 @@
 #include "clang/AST/Type.h"
 #include "clang/AST/TypeLoc.h"
 #include "llvm/ADT/DenseMapInfo.h"
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 
@@ -250,7 +251,7 @@ SourceRange NestedNameSpecifierLocBuilder::getSourceRange() const {
 
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <> struct DenseMapInfo<clang::NestedNameSpecifier> {
   static clang::NestedNameSpecifier getEmptyKey() { return std::nullopt; }
@@ -289,6 +290,6 @@ template <> struct DenseMapInfo<clang::NestedNameSpecifierLoc> {
     return LHS == RHS;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_AST_NESTEDNAMESPECIFIER_H

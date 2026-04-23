@@ -22,6 +22,7 @@
 #include "clang/Basic/OpenMPKinds.h"
 #include "clang/Basic/SourceLocation.h"
 #include "llvm/Support/Casting.h"
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 
@@ -6811,7 +6812,7 @@ public:
 
 } // end namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Allow a Stmt* be casted correctly to an OMPLoopTransformationDirective*.
 // The default routines would just use a C-style cast which won't work well
 // for the multiple inheritance here. We have to use a static cast from the
@@ -6842,6 +6843,6 @@ struct CastInfo<clang::OMPLoopTransformationDirective, const clang::Stmt *>
           clang::OMPLoopTransformationDirective, const clang::Stmt *,
           CastInfo<clang::OMPLoopTransformationDirective, clang::Stmt *>> {};
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

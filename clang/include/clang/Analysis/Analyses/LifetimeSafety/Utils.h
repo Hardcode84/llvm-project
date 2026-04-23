@@ -13,6 +13,7 @@
 
 #include "llvm/ADT/ImmutableMap.h"
 #include "llvm/ADT/ImmutableSet.h"
+#include "llvm/Support/Compiler.h"
 
 namespace clang::lifetimes::internal::utils {
 
@@ -94,7 +95,7 @@ join(const llvm::ImmutableMap<K, V> &A, const llvm::ImmutableMap<K, V> &B,
 }
 } // namespace clang::lifetimes::internal::utils
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename Tag>
 struct DenseMapInfo<clang::lifetimes::internal::utils::ID<Tag>> {
   using ID = clang::lifetimes::internal::utils::ID<Tag>;
@@ -113,6 +114,6 @@ struct DenseMapInfo<clang::lifetimes::internal::utils::ID<Tag>> {
 
   static bool isEqual(const ID &LHS, const ID &RHS) { return LHS == RHS; }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_ANALYSIS_ANALYSES_LIFETIMESAFETY_UTILS_H

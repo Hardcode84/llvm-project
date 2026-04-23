@@ -19,8 +19,9 @@
 #include "llvm/TextAPI/ArchitectureSet.h"
 #include "llvm/TextAPI/InterfaceFile.h"
 #include "llvm/TextAPI/Platform.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace MachO {
 
 const clang::DiagnosticBuilder &operator<<(const clang::DiagnosticBuilder &DB,
@@ -46,5 +47,5 @@ operator<<(const clang::DiagnosticBuilder &DB,
            const clang::installapi::LibAttrs::Entry &LibAttr);
 
 } // namespace MachO
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_CLANG_INSTALLAPI_DIAGNOSTICBUILDER_WRAPPER_H

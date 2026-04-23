@@ -43,10 +43,10 @@
 // HEADERS, like <string>, <memory> and etc. (That pulls a large number of
 // tokens and will impact the runtime performance of the REPL)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 

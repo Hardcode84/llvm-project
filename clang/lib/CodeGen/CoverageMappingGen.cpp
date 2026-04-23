@@ -26,18 +26,19 @@
 #include "llvm/Support/FileSystem.h"
 #include "llvm/Support/Path.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 // This selects the coverage mapping format defined when `InstrProfData.inc`
 // is textually included.
 #define COVMAP_V3
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 cl::opt<bool>
     EnableSingleByteCoverage("enable-single-byte-coverage",
                              llvm::cl::ZeroOrMore,
                              llvm::cl::desc("Enable single byte coverage"),
                              llvm::cl::Hidden, llvm::cl::init(false));
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static llvm::cl::opt<bool> EmptyLineCommentCoverage(
     "emptyline-comment-coverage",
@@ -45,12 +46,14 @@ static llvm::cl::opt<bool> EmptyLineCommentCoverage(
                    "disable it on test)"),
     llvm::cl::init(true), llvm::cl::Hidden);
 
-namespace llvm::coverage {
+LLVM_NAMESPACE_BEGIN
+namespace coverage {
 cl::opt<bool> SystemHeadersCoverage(
     "system-headers-coverage",
     cl::desc("Enable collecting coverage from system headers"), cl::init(false),
     cl::Hidden);
 }
+LLVM_NAMESPACE_END
 
 using namespace clang;
 using namespace CodeGen;

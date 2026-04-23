@@ -18,10 +18,11 @@
 #include "clang/Tooling/Refactoring.h"
 #include "llvm/Support/YAMLTraits.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(clang::tooling::Replacement)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 /// Specialized MappingTraits to describe how a Replacement is
@@ -67,6 +68,6 @@ template <> struct MappingTraits<clang::tooling::TranslationUnitReplacements> {
   }
 };
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

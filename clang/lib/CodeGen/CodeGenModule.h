@@ -40,8 +40,9 @@
 #include "llvm/IR/ValueHandle.h"
 #include "llvm/Transforms/Utils/SanitizerStats.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 class Constant;
 class ConstantInt;
@@ -55,7 +56,7 @@ class IndexedInstrProfReader;
 namespace vfs {
 class FileSystem;
 }
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 class ASTContext;

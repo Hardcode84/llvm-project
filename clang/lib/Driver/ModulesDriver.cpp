@@ -39,6 +39,7 @@
 #include "llvm/Support/ThreadPool.h"
 #include "llvm/Support/VirtualFileSystem.h"
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 namespace deps = clang::dependencies;
 
@@ -968,7 +969,7 @@ static StringRef getFirstInputFilename(const Command &Job) {
   return Job.getInputInfos().front().getFilename();
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Non-const versions of the GraphTraits specializations for CompilationGraph.
 template <> struct GraphTraits<CGNode *> {
   using NodeRef = CGNode *;
@@ -1190,7 +1191,7 @@ private:
 
   DenseMap<NodeRef, std::string> EscapedIDByNodeRef;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 /// Validates that each module-defining source is of type \c TY_CXXModule.
 ///

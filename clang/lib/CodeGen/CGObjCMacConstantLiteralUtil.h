@@ -22,6 +22,7 @@
 #include "llvm/ADT/APSInt.h"
 #include "llvm/ADT/DenseMapInfo.h"
 #include <numeric>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 namespace CodeGen {
@@ -162,7 +163,7 @@ public:
 } // namespace CodeGen
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using namespace clang::CodeGen::CGObjCMacConstantLiteralUtil;
 
@@ -185,6 +186,6 @@ template <> struct DenseMapInfo<NSConstantNumberMapInfo> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

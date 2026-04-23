@@ -18,6 +18,7 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/raw_ostream.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 
@@ -113,7 +114,7 @@ struct ParsedSourceRange {
 };
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace cl {
     /// Command-line option parser that parses source locations.
     ///
@@ -142,6 +143,6 @@ namespace llvm {
       return false;
     }
   }
-}
+LLVM_NAMESPACE_END
 
 #endif

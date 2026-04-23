@@ -21,6 +21,7 @@
 #include <cassert>
 #include <cstddef>
 #include <iterator>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 
@@ -376,7 +377,7 @@ private:
 
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename decl_type>
 struct DenseMapInfo<clang::CanonicalDeclPtr<decl_type>> {
@@ -421,6 +422,6 @@ struct PointerLikeTypeTraits<clang::CanonicalDeclPtr<decl_type>> {
       PointerLikeTypeTraits<decl_type *>::NumLowBitsAvailable;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_AST_REDECLARABLE_H

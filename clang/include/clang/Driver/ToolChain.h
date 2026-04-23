@@ -32,8 +32,9 @@
 #include <optional>
 #include <string>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace opt {
 
 class Arg;
@@ -46,7 +47,7 @@ namespace vfs {
 class FileSystem;
 
 } // namespace vfs
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 

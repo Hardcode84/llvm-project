@@ -13,11 +13,12 @@
 
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/IR/OwningOpRef.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class MLIRContext;
 class ModuleOp;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace cir {
 class CIRGenConsumer;

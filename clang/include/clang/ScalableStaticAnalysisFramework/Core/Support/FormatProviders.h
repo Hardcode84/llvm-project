@@ -22,8 +22,9 @@
 #include "clang/ScalableStaticAnalysisFramework/Core/WholeProgramAnalysis/AnalysisName.h"
 #include "llvm/Support/FormatProviders.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <> struct format_provider<clang::ssaf::EntityId> {
   static void format(const clang::ssaf::EntityId &Val, raw_ostream &OS,
@@ -88,6 +89,6 @@ template <> struct format_provider<clang::ssaf::AnalysisName> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_SCALABLESTATICANALYSISFRAMEWORK_CORE_SUPPORT_FORMATPROVIDERS_H

@@ -21,11 +21,12 @@
 #include <cassert>
 #include <optional>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class StringRef;
   class APSInt;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 

@@ -47,6 +47,7 @@
 #include <limits>
 #include <optional>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 
@@ -1522,7 +1523,7 @@ inline void CallEvent::Release() const {
 
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Support isa<>, cast<>, and dyn_cast<> for CallEventRef.
 template <class T> struct simplify_type<clang::ento::CallEventRef<T>> {
@@ -1533,6 +1534,6 @@ template <class T> struct simplify_type<clang::ento::CallEventRef<T>> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_STATICANALYZER_CORE_PATHSENSITIVE_CALLEVENT_H

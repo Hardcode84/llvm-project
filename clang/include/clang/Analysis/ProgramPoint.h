@@ -26,6 +26,7 @@
 #include <optional>
 #include <string>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 
@@ -757,7 +758,7 @@ private:
 } // end namespace clang
 
 
-namespace llvm { // Traits specialization for DenseMap
+LLVM_NAMESPACE_BEGIN // Traits specialization for DenseMap
 
 template <> struct DenseMapInfo<clang::ProgramPoint> {
 
@@ -786,6 +787,6 @@ static bool isEqual(const clang::ProgramPoint &L,
 
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

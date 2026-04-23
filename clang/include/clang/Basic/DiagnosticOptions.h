@@ -13,12 +13,13 @@
 #include <string>
 #include <type_traits>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace opt {
 class ArgList;
 } // namespace opt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 class DiagnosticsEngine;

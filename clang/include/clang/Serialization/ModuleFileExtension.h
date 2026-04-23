@@ -14,12 +14,13 @@
 #include "llvm/Support/MD5.h"
 #include <memory>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BitstreamCursor;
 class BitstreamWriter;
 class raw_ostream;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 

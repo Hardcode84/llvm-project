@@ -21,8 +21,9 @@
 #include "clang/AST/DeclObjC.h"
 #include "clang/Basic/IdentifierTable.h" // Selector
 #include "llvm/ADT/UniqueVector.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Constant;
 class Function;
 class Module;
@@ -30,7 +31,7 @@ class StructLayout;
 class StructType;
 class Type;
 class Value;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 namespace CodeGen {

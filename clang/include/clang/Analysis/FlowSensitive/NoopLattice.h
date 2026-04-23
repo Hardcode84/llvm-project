@@ -17,6 +17,7 @@
 #include "clang/Support/Compiler.h"
 #include "llvm/ADT/Any.h"
 #include <ostream>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 namespace dataflow {
@@ -40,13 +41,13 @@ inline std::ostream &operator<<(std::ostream &OS, const NoopLattice &) {
 } // namespace dataflow
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // This needs to be exported for ClangAnalysisFlowSensitiveTests so any_cast
 // uses the correct address of Any::TypeId from the clang shared library instead
 // of creating one in the test executable. when building with
 // CLANG_LINK_CLANG_DYLIB
 extern template struct CLANG_TEMPLATE_ABI
     Any::TypeId<clang::dataflow::NoopLattice>;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_ANALYSIS_FLOWSENSITIVE_NOOP_LATTICE_H

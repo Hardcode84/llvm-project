@@ -27,14 +27,15 @@
 
 #include "llvm/ADT/ScopeExit.h"
 #include "llvm/ADT/TypeSwitch.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace cir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 #define GEN_PASS_DEF_CXXABILOWERING
 #include "clang/CIR/Dialect/Passes.h.inc"
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace {
 // Check an attribute for legality. An attribute is only currently potentially
