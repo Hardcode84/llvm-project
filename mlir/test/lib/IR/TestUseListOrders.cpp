@@ -15,6 +15,7 @@
 
 #include <numeric>
 #include <random>
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -220,8 +221,8 @@ private:
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerTestPreserveUseListOrders() {
   PassRegistration<TestPreserveUseListOrders>();
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

@@ -10,6 +10,7 @@
 #include "mlir/Analysis/DataFlow/DeadCodeAnalysis.h"
 #include "mlir/IR/Matchers.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::dataflow;
@@ -124,10 +125,10 @@ struct TestDeadCodeAnalysisPass
 };
 } // end anonymous namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestDeadCodeAnalysisPass() {
   PassRegistration<TestDeadCodeAnalysisPass>();
 }
 } // end namespace test
-} // end namespace mlir
+MLIR_NAMESPACE_END // end namespace mlir

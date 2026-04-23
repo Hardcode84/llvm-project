@@ -15,6 +15,7 @@
 #include "mlir/Dialect/SPIRV/IR/SPIRVDialect.h"
 #include "mlir/Dialect/SPIRV/IR/TargetAndABI.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -79,8 +80,8 @@ void TestSpirvEntryPointABIPass::runOnOperation() {
   }
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerTestSpirvEntryPointABIPass() {
   PassRegistration<TestSpirvEntryPointABIPass>();
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

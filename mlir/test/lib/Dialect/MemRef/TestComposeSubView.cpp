@@ -14,6 +14,7 @@
 #include "mlir/Dialect/MemRef/Transforms/ComposeSubView.h"
 #include "mlir/Pass/Pass.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -42,10 +43,10 @@ void TestComposeSubViewPass::runOnOperation() {
 }
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestComposeSubView() {
   PassRegistration<TestComposeSubViewPass>();
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

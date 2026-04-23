@@ -23,6 +23,7 @@
 #include "mlir/Pass/PassManager.h"
 #include "mlir/Support/LLVM.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::nvgpu;
@@ -66,11 +67,11 @@ struct TestMmaSyncF32ToTF32Patterns
 
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestNVGPULowerings() {
   PassRegistration<TestMmaSyncF32ToTF32Patterns>();
 }
 
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

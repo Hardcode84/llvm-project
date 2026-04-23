@@ -20,6 +20,7 @@
 #include "mlir/IR/Value.h"
 #include "mlir/Pass/Pass.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::shard;
@@ -114,10 +115,10 @@ struct TestReshardingPass
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestReshardingPartitionPass() {
   PassRegistration<TestReshardingPass>();
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

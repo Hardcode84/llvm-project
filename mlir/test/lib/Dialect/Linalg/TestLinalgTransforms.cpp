@@ -25,6 +25,7 @@
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
 
 #include "llvm/ADT/SmallVector.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::linalg;
@@ -285,10 +286,10 @@ void TestLinalgTransforms::runOnOperation() {
     applySimplifyPackUnpackPatterns(rootOp);
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestLinalgTransforms() {
   PassRegistration<TestLinalgTransforms>();
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

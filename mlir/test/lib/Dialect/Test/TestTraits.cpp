@@ -9,6 +9,7 @@
 #include "TestOps.h"
 #include "mlir/Pass/Pass.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace test;
@@ -44,6 +45,6 @@ struct TestTraitFolder
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerTestTraitsPass() { PassRegistration<TestTraitFolder>(); }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

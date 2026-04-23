@@ -15,10 +15,11 @@
 #define MLIR_TEST_LIB_DIALECT_TRANSFORM_TESTTRANSFORMSTATEEXTENSION_H
 
 #include "mlir/Dialect/Transform/Interfaces/TransformInterfaces.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 class TestTransformStateExtension
     : public transform::TransformState::Extension {
@@ -63,6 +64,6 @@ private:
 };
 
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TEST_LIB_DIALECT_TRANSFORM_TESTTRANSFORMSTATEEXTENSION_H

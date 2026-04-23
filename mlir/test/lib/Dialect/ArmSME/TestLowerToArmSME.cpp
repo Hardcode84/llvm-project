@@ -25,6 +25,7 @@
 #include "mlir/Pass/PassManager.h"
 #include "mlir/Pass/PassOptions.h"
 #include "mlir/Transforms/Passes.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -89,7 +90,7 @@ void buildTestLowerToArmSME(OpPassManager &pm,
 }
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestLowerToArmSME() {
   PassPipelineRegistration<TestLowerToArmSMEOptions>(
@@ -99,4 +100,4 @@ void registerTestLowerToArmSME() {
       buildTestLowerToArmSME);
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

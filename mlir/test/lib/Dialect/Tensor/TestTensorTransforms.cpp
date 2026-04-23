@@ -20,6 +20,7 @@
 #include "mlir/Dialect/Transform/Interfaces/TransformInterfaces.h"
 #include "mlir/Pass/Pass.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -399,10 +400,10 @@ void TestTensorTransforms::runOnOperation() {
       return signalPassFailure();
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestTensorTransforms() {
   PassRegistration<TestTensorTransforms>();
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

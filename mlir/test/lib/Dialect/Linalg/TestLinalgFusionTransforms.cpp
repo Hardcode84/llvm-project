@@ -18,6 +18,7 @@
 #include "mlir/Pass/PassManager.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
 #include "mlir/Transforms/Passes.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::linalg;
@@ -92,11 +93,11 @@ struct TestLinalgGreedyFusion
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestLinalgGreedyFusion() {
   PassRegistration<TestLinalgGreedyFusion>();
 }
 
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

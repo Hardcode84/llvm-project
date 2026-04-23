@@ -8,6 +8,7 @@
 
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -91,8 +92,8 @@ struct TestPrintNestingPass
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerTestPrintNestingPass() {
   PassRegistration<TestPrintNestingPass>();
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

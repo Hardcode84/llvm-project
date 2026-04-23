@@ -19,6 +19,7 @@
 #include "mlir/Pass/Pass.h"
 #include "llvm/ADT/TypeSwitch.h"
 #include "llvm/Support/Debug.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "memref-bound-check"
 
@@ -51,8 +52,8 @@ void TestMemRefBoundCheck::runOnOperation() {
   });
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerMemRefBoundCheck() { PassRegistration<TestMemRefBoundCheck>(); }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

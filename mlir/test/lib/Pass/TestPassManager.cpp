@@ -12,6 +12,7 @@
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/Pass/Pass.h"
 #include "mlir/Pass/PassManager.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -310,7 +311,7 @@ static void testNestedPipelineTextual(OpPassManager &pm) {
   (void)parsePassPipeline("test-pm-nested-pipeline", pm);
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerPassManagerTestPass() {
   PassRegistration<TestOptionsPass>();
   PassRegistration<TestOptionsSuperPass>();
@@ -366,4 +367,4 @@ void registerPassManagerTestPass() {
             pm.addPass(std::make_unique<TestOptionsPassB>(options));
           });
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

@@ -14,8 +14,9 @@
 #include "mlir/Bytecode/BytecodeOpInterface.h"
 #include "mlir/Dialect/Transform/IR/TransformDialect.h"
 #include "mlir/Dialect/Transform/Interfaces/TransformInterfaces.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class CallOpInterface;
 namespace func {
 class CallOp;
@@ -23,7 +24,7 @@ class CallOp;
 namespace transform {
 class OperationType;
 } // namespace transform
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define GET_TYPEDEF_CLASSES
 #include "MyExtensionTypes.h.inc"

@@ -20,6 +20,7 @@
 #include "mlir/Interfaces/FunctionInterfaces.h"
 #include "mlir/Interfaces/ValueBoundsOpInterface.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define PASS_NAME "test-affine-reify-value-bounds"
 
@@ -229,8 +230,8 @@ void TestReifyValueBounds::runOnOperation() {
     signalPassFailure();
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerTestAffineReifyValueBoundsPass() {
   PassRegistration<TestReifyValueBounds>();
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

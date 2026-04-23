@@ -34,6 +34,7 @@
 #include "llvm/TableGen/Main.h"
 #include "llvm/TableGen/Record.h"
 #include "llvm/TableGen/TableGenBackend.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace mlir;
 using namespace mlir::tblgen;
@@ -44,7 +45,7 @@ using llvm::RecordKeeper;
 
 #define DEBUG_TYPE "mlir-tblgen-rewritergen"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <>
 struct format_provider<mlir::tblgen::Pattern::IdentifierLine> {
   static void format(const mlir::tblgen::Pattern::IdentifierLine &v,
@@ -52,7 +53,7 @@ struct format_provider<mlir::tblgen::Pattern::IdentifierLine> {
     os << v.first << ":" << v.second;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 //===----------------------------------------------------------------------===//
 // PatternEmitter

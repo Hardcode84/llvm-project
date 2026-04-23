@@ -23,14 +23,17 @@
 #include "mlir/Dialect/SPIRV/Transforms/Passes.h"
 #include "mlir/Pass/PassManager.h"
 #include "mlir/Pass/PassOptions.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
 // Defined in the test directory, no public header.
-namespace mlir::test {
+MLIR_NAMESPACE_BEGIN
+namespace test {
 std::unique_ptr<Pass> createTestConvertToSPIRVPass(bool convertGPUModules,
                                                    bool nestInGPUModule);
-} // namespace mlir::test
+}
+MLIR_NAMESPACE_END // namespace mlir::test
 
 namespace {
 
@@ -79,7 +82,8 @@ void buildTestVulkanRunnerPipeline(OpPassManager &passManager,
 
 } // namespace
 
-namespace mlir::test {
+MLIR_NAMESPACE_BEGIN
+namespace test {
 void registerTestVulkanRunnerPipeline() {
   PassPipelineRegistration<VulkanRunnerPipelineOptions>(
       "test-vulkan-runner-pipeline",
@@ -88,4 +92,5 @@ void registerTestVulkanRunnerPipeline() {
       "for the device.",
       buildTestVulkanRunnerPipeline);
 }
-} // namespace mlir::test
+}
+MLIR_NAMESPACE_END // namespace mlir::test

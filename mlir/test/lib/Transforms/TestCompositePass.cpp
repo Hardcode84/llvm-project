@@ -14,8 +14,9 @@
 #include "mlir/Pass/PassManager.h"
 #include "mlir/Pass/PassRegistry.h"
 #include "mlir/Transforms/Passes.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestCompositePass() {
   registerPassPipeline(
@@ -35,4 +36,4 @@ void registerTestCompositePass() {
       [](function_ref<void(const detail::PassOptions &)>) {});
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

@@ -11,6 +11,7 @@
 #include "mlir/Dialect/SPIRV/IR/SPIRVOps.h"
 #include "mlir/Dialect/SPIRV/Transforms/SPIRVConversion.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -100,11 +101,11 @@ void PrintOpAvailability::runOnOperation() {
   });
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerPrintSpirvAvailabilityPass() {
   PassRegistration<PrintOpAvailability>();
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Converting target environment pass
@@ -254,8 +255,8 @@ void ConvertToTargetEnv::runOnOperation() {
     return signalPassFailure();
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerConvertToTargetEnvPass() {
   PassRegistration<ConvertToTargetEnv>();
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

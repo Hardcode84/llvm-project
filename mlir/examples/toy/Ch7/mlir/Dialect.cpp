@@ -43,6 +43,7 @@ using namespace mlir;
 using namespace mlir::toy;
 
 #include "toy/Dialect.cpp.inc"
+#include "mlir/Support/ABINamespace.h"
 
 //===----------------------------------------------------------------------===//
 // ToyInlinerInterface
@@ -502,7 +503,7 @@ llvm::LogicalResult TransposeOp::verify() {
 // Toy Types
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace toy {
 namespace detail {
 /// This class represents the internal storage of the Toy `StructType`.
@@ -558,7 +559,7 @@ struct StructTypeStorage : public mlir::TypeStorage {
 };
 } // namespace detail
 } // namespace toy
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// Create an instance of a `StructType` with the given element types. There
 /// *must* be at least one element type.

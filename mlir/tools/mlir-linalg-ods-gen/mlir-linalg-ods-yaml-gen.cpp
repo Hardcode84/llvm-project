@@ -27,6 +27,7 @@
 #include "llvm/Support/ToolOutputFile.h"
 #include "llvm/Support/YAMLTraits.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using namespace mlir;
 
@@ -141,7 +142,7 @@ LLVM_YAML_IS_SEQUENCE_VECTOR(ScalarAssign)
 LLVM_YAML_IS_SEQUENCE_VECTOR(ScalarExpression)
 LLVM_YAML_IS_DOCUMENT_LIST_VECTOR(LinalgOpConfig)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 /// Top-level type containing op metadata and one of a concrete op type.
@@ -328,7 +329,7 @@ struct ScalarTraits<SerializedAffineMap> {
 };
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 

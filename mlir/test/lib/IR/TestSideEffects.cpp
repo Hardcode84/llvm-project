@@ -8,6 +8,7 @@
 
 #include "TestOps.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -82,6 +83,6 @@ struct SideEffectsPass
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerSideEffectTestPasses() { PassRegistration<SideEffectsPass>(); }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

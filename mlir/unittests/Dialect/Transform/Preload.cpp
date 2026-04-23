@@ -22,14 +22,15 @@
 #include "llvm/Support/MemoryBuffer.h"
 #include "llvm/Support/raw_ostream.h"
 #include "gtest/gtest.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 std::unique_ptr<Pass> createTestTransformDialectInterpreterPass();
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 const static llvm::StringLiteral library = R"MLIR(
 module attributes {transform.with_named_sequence} {

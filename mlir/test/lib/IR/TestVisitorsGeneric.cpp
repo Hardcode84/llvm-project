@@ -8,6 +8,7 @@
 
 #include "TestOps.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -177,7 +178,7 @@ struct TestGenericIRRegionVisitorInterruptPass
 
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestGenericIRVisitorsPass() {
   PassRegistration<TestGenericIRVisitorPass>();
@@ -187,4 +188,4 @@ void registerTestGenericIRVisitorsPass() {
 }
 
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

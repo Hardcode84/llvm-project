@@ -26,6 +26,7 @@
 #include "mlir/IR/Operation.h"
 #include "mlir/IR/Types.h"
 #include "mlir/Interfaces/DataLayoutInterfaces.h"
+#include "mlir/Support/ABINamespace.h"
 
 namespace test {
 class TestAttrWithFormatAttr;
@@ -57,7 +58,7 @@ inline llvm::hash_code hash_value(const test::CustomParam &param) {
 
 } // namespace test
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 template <>
 struct FieldParser<test::CustomParam> {
   static FailureOr<test::CustomParam> parse(AsmParser &parser) {
@@ -89,7 +90,7 @@ struct FieldParser<std::optional<int>> {
     return value;
   }
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "TestTypeInterfaces.h.inc"
 

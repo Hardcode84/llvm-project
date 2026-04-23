@@ -13,6 +13,7 @@
 //===----------------------------------------------------------------------===//
 
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -45,6 +46,6 @@ void TestReducer::runOnOperation() {
   });
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerTestReducer() { PassRegistration<TestReducer>(); }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

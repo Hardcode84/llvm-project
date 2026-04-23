@@ -10,8 +10,9 @@
 #define MLIR_TOOLS_MLIRTBLGEN_OPCLASS_H_
 
 #include "mlir/TableGen/Class.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tblgen {
 
 /// Class for holding an op for C++ code emission. The class is specialized to
@@ -47,6 +48,6 @@ private:
 };
 
 } // namespace tblgen
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_MLIRTBLGEN_OPCLASS_H_

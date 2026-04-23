@@ -12,6 +12,7 @@
 #include "mlir/IR/SymbolTable.h"
 #include "mlir/Pass/Pass.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -68,11 +69,11 @@ struct TestMultiIndexOpLoweringPass
 
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestOpLoweringPasses() {
   PassRegistration<TestAllSliceOpLoweringPass>();
   PassRegistration<TestMultiIndexOpLoweringPass>();
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

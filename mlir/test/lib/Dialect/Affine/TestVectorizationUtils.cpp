@@ -29,6 +29,7 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Debug.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "affine-super-vectorizer-test"
 
@@ -290,6 +291,6 @@ void VectorizerTestPass::runOnOperation() {
   }
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerVectorizerTestPass() { PassRegistration<VectorizerTestPass>(); }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

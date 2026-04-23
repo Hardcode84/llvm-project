@@ -18,6 +18,7 @@
 #include "llvm/Support/MemoryBufferRef.h"
 #include "llvm/Support/raw_ostream.h"
 #include <list>
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace llvm;
@@ -473,8 +474,8 @@ private:
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerTestBytecodeRoundtripPasses() {
   PassRegistration<TestBytecodeRoundtripPass>();
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

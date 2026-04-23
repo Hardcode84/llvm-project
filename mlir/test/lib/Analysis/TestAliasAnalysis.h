@@ -15,8 +15,9 @@
 #define MLIR_TEST_LIB_ANALYSIS_ALIASANALYSIS_H
 
 #include "mlir/Analysis/AliasAnalysis.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 
 /// Print the result of an alias query.
@@ -32,6 +33,6 @@ struct TestAliasAnalysisModRefBase {
 };
 
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TEST_LIB_ANALYSIS_ALIASANALYSIS_H

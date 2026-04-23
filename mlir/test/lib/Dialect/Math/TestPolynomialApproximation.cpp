@@ -18,6 +18,7 @@
 #include "mlir/Dialect/X86/X86Dialect.h"
 #include "mlir/Pass/Pass.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -62,10 +63,10 @@ void TestMathPolynomialApproximationPass::runOnOperation() {
   (void)applyPatternsGreedily(getOperation(), std::move(patterns));
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestMathPolynomialApproximationPass() {
   PassRegistration<TestMathPolynomialApproximationPass>();
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

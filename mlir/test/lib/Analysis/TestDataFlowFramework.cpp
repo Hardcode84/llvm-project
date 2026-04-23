@@ -10,6 +10,7 @@
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Pass/Pass.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -179,8 +180,8 @@ void TestFooAnalysisPass::runOnOperation() {
   });
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestFooAnalysisPass() { PassRegistration<TestFooAnalysisPass>(); }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

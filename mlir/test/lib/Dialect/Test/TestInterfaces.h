@@ -15,8 +15,9 @@
 #define MLIR_TEST_LIB_DIALECT_TEST_TESTINTERFACES_H
 
 #include "mlir/Interfaces/SideEffectInterfaces.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace TestEffects {
 struct Effect : public SideEffects::Effect {
   using SideEffects::Effect::Effect;
@@ -32,7 +33,7 @@ using EffectInstance = SideEffects::EffectInstance<Effect>;
 struct Concrete : public Effect::Base<Concrete> {};
 
 } // namespace TestEffects
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #include "TestOpInterfaces.h.inc"
 

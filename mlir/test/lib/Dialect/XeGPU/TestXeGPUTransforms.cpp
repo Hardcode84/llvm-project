@@ -24,6 +24,7 @@
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
 #include "llvm/Support/raw_ostream.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::xegpu;
@@ -484,7 +485,7 @@ struct TestXeGPULayoutInterface
 
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestXeGPULowerings() {
   PassRegistration<TestXeGPUUnrollingPatterns>();
@@ -497,4 +498,4 @@ void registerTestXeGPULowerings() {
   PassRegistration<TestXeGPUResolveLayoutConflicts>();
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

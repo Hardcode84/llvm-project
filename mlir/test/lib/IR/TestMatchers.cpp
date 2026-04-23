@@ -12,6 +12,7 @@
 #include "mlir/IR/Matchers.h"
 #include "mlir/Interfaces/FunctionInterfaces.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -183,6 +184,6 @@ void TestMatchers::runOnOperation() {
     test4(f);
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerTestMatchers() { PassRegistration<TestMatchers>(); }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

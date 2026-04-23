@@ -9,6 +9,7 @@
 #include "mlir/Dialect/MemRef/IR/MemRef.h"
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -57,10 +58,10 @@ void TestMemRefStrideCalculation::runOnOperation() {
   llvm::outs().flush();
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestMemRefStrideCalculation() {
   PassRegistration<TestMemRefStrideCalculation>();
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

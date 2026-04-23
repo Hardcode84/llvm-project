@@ -16,8 +16,9 @@
 #include "mlir/Support/LLVM.h"
 #include "llvm/TableGen/Record.h"
 #include <vector>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tblgen {
 
 /// Returns all the op definitions filtered by the user. The filtering is via
@@ -35,6 +36,6 @@ void shardOpDefinitions(
     SmallVectorImpl<ArrayRef<const llvm::Record *>> &shardedDefs);
 
 } // namespace tblgen
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif //  MLIR_TOOLS_MLIRTBLGEN_OPGENHELPERS_H_

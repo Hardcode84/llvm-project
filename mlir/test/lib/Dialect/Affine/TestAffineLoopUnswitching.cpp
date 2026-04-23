@@ -15,6 +15,7 @@
 #include "mlir/Dialect/Affine/Utils.h"
 #include "mlir/Pass/Pass.h"
 #include "mlir/Transforms/Passes.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define PASS_NAME "test-affine-loop-unswitch"
 
@@ -59,8 +60,8 @@ void TestAffineLoopUnswitching::runOnOperation() {
   } while (++i < kMaxIterations);
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerTestAffineLoopUnswitchingPass() {
   PassRegistration<TestAffineLoopUnswitching>();
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

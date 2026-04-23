@@ -19,6 +19,7 @@
 #include "mlir/Dialect/SPIRV/IR/SPIRVDialect.h"
 #include "mlir/IR/Attributes.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -51,8 +52,8 @@ struct TestGpuMemoryPromotionPass
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerTestGpuMemoryPromotionPass() {
   PassRegistration<TestGpuMemoryPromotionPass>();
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

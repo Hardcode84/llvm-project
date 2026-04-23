@@ -46,10 +46,11 @@
 #include "llvm/ADT/SetVector.h"
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class RewritePatternSet;
-} // end namespace mlir
+MLIR_NAMESPACE_END // end namespace mlir
 
 //===----------------------------------------------------------------------===//
 // TestDialect

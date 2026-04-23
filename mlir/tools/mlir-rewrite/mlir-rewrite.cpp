@@ -28,10 +28,11 @@
 #include "llvm/Support/Regex.h"
 #include "llvm/Support/SourceMgr.h"
 #include "llvm/Support/ToolOutputFile.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 using OperationDefinition = AsmParserState::OperationDefinition;
 
 /// Return the source code associated with the OperationDefinition.
@@ -278,7 +279,7 @@ void RewriterNameParser::printOptionInfo(const llvm::cl::Option &o,
   parser<const RewriterInfo *>::printOptionInfo(o, globalWidth);
 }
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 // TODO: Make these injectable too in non-global way.
 static llvm::cl::OptionCategory clSimpleRenameCategory{"simple-rename options"};

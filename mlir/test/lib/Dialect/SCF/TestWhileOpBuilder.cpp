@@ -23,6 +23,7 @@
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/IR/ImplicitLocOpBuilder.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::arith;
@@ -73,10 +74,10 @@ struct TestSCFWhileOpBuilderPass
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestSCFWhileOpBuilderPass() {
   PassRegistration<TestSCFWhileOpBuilderPass>();
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

@@ -22,8 +22,9 @@
 #include "mlir/IR/AffineExpr.h"
 #include "mlir/IR/AffineMap.h"
 #include "mlir/IR/IntegerSet.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace presburger {
 
 /// Parses an IntegerPolyhedron from a StringRef. It is expected that the string
@@ -102,6 +103,6 @@ parsePresburgerRelationFromPresburgerSet(ArrayRef<StringRef> strs,
 }
 
 } // namespace presburger
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_UNITTESTS_ANALYSIS_PRESBURGER_PARSER_H

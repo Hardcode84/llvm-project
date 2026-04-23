@@ -18,6 +18,7 @@
 #include "mlir/Pass/PassManager.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
 #include "llvm/ADT/TypeSwitch.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -279,10 +280,10 @@ struct TestLinalgElementwiseFusion
 
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestLinalgElementwiseFusion() {
   PassRegistration<TestLinalgElementwiseFusion>();
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

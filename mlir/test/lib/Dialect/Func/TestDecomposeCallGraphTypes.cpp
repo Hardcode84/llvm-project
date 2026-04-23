@@ -13,6 +13,7 @@
 #include "mlir/IR/Builders.h"
 #include "mlir/Pass/Pass.h"
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -154,10 +155,10 @@ struct TestDecomposeCallGraphTypes
 
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestDecomposeCallGraphTypes() {
   PassRegistration<TestDecomposeCallGraphTypes>();
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

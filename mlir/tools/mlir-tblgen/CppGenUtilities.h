@@ -16,8 +16,9 @@
 
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/raw_ostream.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tblgen {
 
 // Emit the summary and description as a C++ comment. If `terminateComment` is
@@ -26,6 +27,6 @@ void emitSummaryAndDescComments(llvm::raw_ostream &os, llvm::StringRef summary,
                                 llvm::StringRef description,
                                 bool terminateComment = true);
 } // namespace tblgen
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_MLIRTBLGEN_CPPGENUTILITIES_H_

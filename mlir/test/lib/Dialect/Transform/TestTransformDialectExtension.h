@@ -20,10 +20,11 @@
 #include "mlir/Dialect/Transform/Interfaces/MatchInterfaces.h"
 #include "mlir/Dialect/Transform/Interfaces/TransformInterfaces.h"
 #include "mlir/IR/OpImplementation.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define GET_TYPEDEF_CLASSES
 #include "TestTransformDialectExtensionTypes.h.inc"

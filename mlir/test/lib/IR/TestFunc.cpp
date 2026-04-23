@@ -9,6 +9,7 @@
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/Interfaces/FunctionInterfaces.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -166,7 +167,7 @@ struct TestFuncSetType
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerTestFunc() {
   PassRegistration<TestFuncInsertArg>();
 
@@ -178,4 +179,4 @@ void registerTestFunc() {
 
   PassRegistration<TestFuncSetType>();
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

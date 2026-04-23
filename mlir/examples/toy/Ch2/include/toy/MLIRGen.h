@@ -15,13 +15,14 @@
 #define TOY_MLIRGEN_H
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class MLIRContext;
 template <typename OpTy>
 class OwningOpRef;
 class ModuleOp;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace toy {
 class ModuleAST;

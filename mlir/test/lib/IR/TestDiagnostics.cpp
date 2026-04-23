@@ -14,6 +14,7 @@
 #include "mlir/IR/SymbolTable.h"
 #include "mlir/Pass/Pass.h"
 #include "llvm/Support/SourceMgr.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -63,10 +64,10 @@ struct TestDiagnosticFilterPass
 
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestDiagnosticsPass() {
   PassRegistration<TestDiagnosticFilterPass>{};
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

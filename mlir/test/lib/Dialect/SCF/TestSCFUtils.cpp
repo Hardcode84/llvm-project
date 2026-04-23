@@ -20,6 +20,7 @@
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/Pass/Pass.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -249,7 +250,7 @@ struct TestSCFPipeliningPass
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestSCFUtilsPass() {
   PassRegistration<TestSCFForUtilsPass>();
@@ -257,4 +258,4 @@ void registerTestSCFUtilsPass() {
   PassRegistration<TestSCFPipeliningPass>();
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

@@ -11,6 +11,7 @@
 #include "mlir/Dialect/DLTI/DLTI.h"
 #include "mlir/IR/BuiltinAttributes.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -111,8 +112,8 @@ struct TestDataLayoutQuery
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestDataLayoutQuery() { PassRegistration<TestDataLayoutQuery>(); }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

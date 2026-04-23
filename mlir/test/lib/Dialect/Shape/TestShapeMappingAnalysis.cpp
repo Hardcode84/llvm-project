@@ -10,6 +10,7 @@
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/Pass/Pass.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -35,10 +36,10 @@ struct TestShapeMappingPass
 
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestShapeMappingPass() {
   PassRegistration<TestShapeMappingPass>();
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

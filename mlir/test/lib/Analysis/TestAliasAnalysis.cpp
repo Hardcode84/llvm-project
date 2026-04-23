@@ -16,6 +16,7 @@
 #include "mlir/Analysis/AliasAnalysis/LocalAliasAnalysis.h"
 #include "mlir/Interfaces/FunctionInterfaces.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -41,7 +42,7 @@ static void printAliasOperand(Value value) {
   llvm::errs() << "#" << result.getResultNumber();
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void printAliasResult(AliasResult result, Value lhs, Value rhs) {
   printAliasOperand(lhs);
@@ -105,7 +106,7 @@ void TestAliasAnalysisModRefBase::runAliasAnalysisOnOperation(
 }
 
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 //===----------------------------------------------------------------------===//
 // Testing AliasResult
@@ -214,7 +215,7 @@ struct TestAliasAnalysisExtendingPass
 // Pass Registration
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestAliasAnalysisPass() {
   PassRegistration<TestAliasAnalysisExtendingPass>();
@@ -222,4 +223,4 @@ void registerTestAliasAnalysisPass() {
   PassRegistration<TestAliasAnalysisPass>();
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

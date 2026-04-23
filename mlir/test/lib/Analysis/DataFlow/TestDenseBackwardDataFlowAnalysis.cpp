@@ -24,6 +24,7 @@
 #include "mlir/Support/TypeID.h"
 #include "llvm/Support/DebugLog.h"
 #include "llvm/Support/raw_ostream.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::dataflow;
@@ -388,6 +389,8 @@ struct TestNextAccessPass
 };
 } // namespace
 
-namespace mlir::test {
+MLIR_NAMESPACE_BEGIN
+namespace test {
 void registerTestNextAccessPass() { PassRegistration<TestNextAccessPass>(); }
-} // namespace mlir::test
+}
+MLIR_NAMESPACE_END // namespace mlir::test

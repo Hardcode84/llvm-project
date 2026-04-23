@@ -19,6 +19,7 @@
 #include "mlir/Pass/Pass.h"
 #include "mlir/Transforms/DialectConversion.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -198,9 +199,11 @@ struct TestMemRefFlattenAndVectorNarrowTypeEmulationPass
 };
 } // namespace
 
-namespace mlir::test {
+MLIR_NAMESPACE_BEGIN
+namespace test {
 void registerTestEmulateNarrowTypePass() {
   PassRegistration<TestEmulateNarrowTypePass>();
   PassRegistration<TestMemRefFlattenAndVectorNarrowTypeEmulationPass>();
 }
-} // namespace mlir::test
+}
+MLIR_NAMESPACE_END // namespace mlir::test

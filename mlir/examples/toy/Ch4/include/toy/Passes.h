@@ -14,13 +14,14 @@
 #define TOY_PASSES_H
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Pass;
 
 namespace toy {
 std::unique_ptr<Pass> createShapeInferencePass();
 } // namespace toy
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // TOY_PASSES_H

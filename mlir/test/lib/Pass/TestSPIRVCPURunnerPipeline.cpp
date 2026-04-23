@@ -16,6 +16,7 @@
 #include "mlir/Dialect/SPIRV/IR/SPIRVOps.h"
 #include "mlir/Dialect/SPIRV/Transforms/Passes.h"
 #include "mlir/Pass/PassManager.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -34,7 +35,7 @@ void buildTestSPIRVCPURunnerPipeline(OpPassManager &passManager) {
 
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestSPIRVCPURunnerPipeline() {
   PassPipelineRegistration<>(
@@ -44,4 +45,4 @@ void registerTestSPIRVCPURunnerPipeline() {
       buildTestSPIRVCPURunnerPipeline);
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

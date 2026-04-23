@@ -15,12 +15,14 @@
 #define MLIR_TOOLS_MLIRTBLGEN_DOCGENUTILITIES_H_
 
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tblgen {
 
 // Emit the summary. To avoid confusion, the summary is styled differently from
@@ -40,6 +42,6 @@ void emitDescriptionComment(llvm::StringRef description, llvm::raw_ostream &os,
                             llvm::StringRef prefix = "");
 
 } // namespace tblgen
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_MLIRTBLGEN_DOCGENUTILITIES_H_

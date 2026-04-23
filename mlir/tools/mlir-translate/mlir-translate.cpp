@@ -14,10 +14,11 @@
 #include "mlir/InitAllTranslations.h"
 #include "mlir/Support/LLVM.h"
 #include "mlir/Tools/mlir-translate/MlirTranslateMain.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 // Defined in the test directory, no public header.
 void registerTestRoundtripSPIRV();
 void registerTestRoundtripDebugSPIRV();
@@ -25,7 +26,7 @@ void registerTestRoundtripDebugSPIRV();
 void registerTestToLLVMIR();
 void registerTestFromLLVMIR();
 #endif
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 static void registerTestTranslations() {
   registerTestRoundtripSPIRV();

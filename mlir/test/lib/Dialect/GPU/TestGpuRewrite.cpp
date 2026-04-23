@@ -22,6 +22,7 @@
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/Pass/Pass.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -109,9 +110,9 @@ struct TestGpuSubgroupReduceLoweringPass
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerTestGpuLoweringPasses() {
   PassRegistration<TestGpuRewritePass>();
   PassRegistration<TestGpuSubgroupReduceLoweringPass>();
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

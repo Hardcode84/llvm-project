@@ -17,6 +17,7 @@
 #include "mlir/Dialect/Affine/LoopUtils.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "test-loop-fusion"
 
@@ -205,8 +206,8 @@ void TestLoopFusion::runOnOperation() {
     iterateLoops(depthToLoops, testSliceComputation);
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestLoopFusion() { PassRegistration<TestLoopFusion>(); }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

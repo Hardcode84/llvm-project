@@ -8,6 +8,7 @@
 
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -54,8 +55,8 @@ struct TestOperationEqualPass
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerTestOperationEqualPass() {
   PassRegistration<TestOperationEqualPass>();
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

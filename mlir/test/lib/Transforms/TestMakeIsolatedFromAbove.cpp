@@ -13,6 +13,7 @@
 #include "mlir/Pass/Pass.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
 #include "mlir/Transforms/RegionUtils.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -148,10 +149,10 @@ void TestMakeIsolatedFromAbovePass::runOnOperation() {
   }
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestMakeIsolatedFromAbovePass() {
   PassRegistration<TestMakeIsolatedFromAbovePass>();
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

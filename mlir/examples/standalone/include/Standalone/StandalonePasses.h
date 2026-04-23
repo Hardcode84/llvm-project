@@ -12,8 +12,9 @@
 #include "Standalone/StandaloneOps.h"
 #include "mlir/Pass/Pass.h"
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace standalone {
 #define GEN_PASS_DECL
 #include "Standalone/StandalonePasses.h.inc"
@@ -21,6 +22,6 @@ namespace standalone {
 #define GEN_PASS_REGISTRATION
 #include "Standalone/StandalonePasses.h.inc"
 } // namespace standalone
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif

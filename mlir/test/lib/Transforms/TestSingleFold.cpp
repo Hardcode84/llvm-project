@@ -8,6 +8,7 @@
 
 #include "mlir/Pass/Pass.h"
 #include "mlir/Transforms/FoldUtils.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -86,8 +87,8 @@ void TestSingleFold::runOnOperation() {
   }
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestSingleFold() { PassRegistration<TestSingleFold>(); }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

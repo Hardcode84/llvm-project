@@ -16,6 +16,7 @@
 #include "mlir/Pass/Pass.h"
 #include "mlir/Pass/PassManager.h"
 #include "mlir/Support/WalkResult.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -86,8 +87,8 @@ public:
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestRemarkPass() { PassRegistration<TestRemarkPass>(); }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

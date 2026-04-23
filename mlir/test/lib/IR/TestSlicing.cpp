@@ -18,6 +18,7 @@
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/Pass/Pass.h"
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -92,8 +93,8 @@ void SliceAnalysisTestPass::runOnOperation() {
   }
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerSliceAnalysisTestPass() {
   PassRegistration<SliceAnalysisTestPass>();
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

@@ -28,6 +28,7 @@
 #include "mlir/Pass/PassManager.h"
 #include "mlir/Support/LLVM.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::linalg;
@@ -1046,7 +1047,7 @@ struct TestVectorShuffleLowering
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestVectorLowerings() {
   PassRegistration<TestVectorToVectorLowering>();
@@ -1096,4 +1097,4 @@ void registerTestVectorLowerings() {
   PassRegistration<TestEliminateVectorMasks>();
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

@@ -18,6 +18,7 @@
 #include "mlir/IR/Builders.h"
 #include "mlir/Pass/Pass.h"
 #include "llvm/Support/CommandLine.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::acc;
@@ -475,10 +476,10 @@ void TestPointerLikeTypeInterfacePass::testGenCast(Operation *op, Value value,
 // Pass Registration
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestPointerLikeTypeInterfacePass() {
   PassRegistration<TestPointerLikeTypeInterfacePass>();
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

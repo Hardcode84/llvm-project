@@ -18,8 +18,9 @@
 #include "mlir/IR/Dialect.h"
 #include "gmock/gmock.h"
 #include <vector>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // Test Fixture
@@ -308,4 +309,4 @@ TEST_F(OpBuildGenTest, BuildMethodsInherentDiscardableAttrs) {
   verifyOp(op7b, {}, {}, attrs);
 }
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

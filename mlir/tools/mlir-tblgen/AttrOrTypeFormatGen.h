@@ -10,8 +10,9 @@
 #define MLIR_TOOLS_MLIRTBLGEN_ATTRORTYPEFORMATGEN_H_
 
 #include "mlir/TableGen/Class.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tblgen {
 class AttrOrTypeDef;
 
@@ -21,6 +22,6 @@ void generateAttrOrTypeFormat(const AttrOrTypeDef &def, MethodBody &parser,
                               MethodBody &printer);
 
 } // namespace tblgen
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_MLIRTBLGEN_ATTRORTYPEFORMATGEN_H_

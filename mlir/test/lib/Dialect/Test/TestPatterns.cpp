@@ -83,6 +83,7 @@ static bool assertBinOpEqualArgsAndReturnTrue(Value v) {
 
 namespace {
 #include "TestPatterns.inc"
+#include "mlir/Support/ABINamespace.h"
 } // namespace
 
 //===----------------------------------------------------------------------===//
@@ -2495,7 +2496,7 @@ struct TestFoldTypeConvertingOp
 // PassRegistration
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerPatternsTestPass() {
   PassRegistration<TestReturnTypeDriver>();
@@ -2523,4 +2524,4 @@ void registerPatternsTestPass() {
   PassRegistration<TestFoldTypeConvertingOp>();
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

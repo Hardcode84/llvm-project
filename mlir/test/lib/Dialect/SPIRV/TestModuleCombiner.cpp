@@ -12,6 +12,7 @@
 #include "mlir/IR/Builders.h"
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -53,8 +54,8 @@ void TestModuleCombinerPass::runOnOperation() {
   combinedModule.release();
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerTestSpirvModuleCombinerPass() {
   PassRegistration<TestModuleCombinerPass>();
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

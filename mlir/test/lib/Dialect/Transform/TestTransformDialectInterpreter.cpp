@@ -14,6 +14,7 @@
 #include "mlir/Dialect/Transform/Interfaces/TransformInterfaces.h"
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -52,11 +53,11 @@ struct TestTransformDialectEraseSchedulePass
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 /// Registers the test pass for erasing transform dialect ops.
 void registerTestTransformDialectEraseSchedulePass() {
   PassRegistration<TestTransformDialectEraseSchedulePass> reg;
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

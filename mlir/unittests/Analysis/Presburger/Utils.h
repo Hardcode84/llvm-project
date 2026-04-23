@@ -20,8 +20,9 @@
 
 #include <gtest/gtest.h>
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace presburger {
 using llvm::dynamicAPIntFromInt64;
 
@@ -160,6 +161,6 @@ inline void expectComputedVolumeIsValidOverapprox(
 }
 
 } // namespace presburger
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_UNITTESTS_ANALYSIS_PRESBURGER_UTILS_H

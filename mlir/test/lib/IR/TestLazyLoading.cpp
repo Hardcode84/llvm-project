@@ -15,6 +15,7 @@
 #include "llvm/Support/MemoryBufferRef.h"
 #include "llvm/Support/raw_ostream.h"
 #include <list>
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -88,6 +89,6 @@ struct LazyLoadingPass : public PassWrapper<LazyLoadingPass, OperationPass<>> {
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerLazyLoadingTestPasses() { PassRegistration<LazyLoadingPass>(); }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

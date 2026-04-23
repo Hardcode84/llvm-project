@@ -14,7 +14,9 @@
 #ifndef MLIR_TOOLS_MLIRTBLGEN_OPFORMATGEN_H_
 #define MLIR_TOOLS_MLIRTBLGEN_OPFORMATGEN_H_
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 namespace tblgen {
 class OpClass;
 class Operator;
@@ -24,6 +26,6 @@ void generateOpFormat(const Operator &constOp, OpClass &opClass,
                       bool hasProperties);
 
 } // namespace tblgen
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_MLIRTBLGEN_OPFORMATGEN_H_

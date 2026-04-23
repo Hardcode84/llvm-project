@@ -19,6 +19,7 @@
 #include "mlir/Dialect/LLVMIR/LLVMDialect.h"
 #include "mlir/Pass/Pass.h"
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -50,6 +51,8 @@ struct TestAssertPass
 };
 } // namespace
 
-namespace mlir::test {
+MLIR_NAMESPACE_BEGIN
+namespace test {
 void registerTestCfAssertPass() { PassRegistration<TestAssertPass>(); }
-} // namespace mlir::test
+}
+MLIR_NAMESPACE_END // namespace mlir::test

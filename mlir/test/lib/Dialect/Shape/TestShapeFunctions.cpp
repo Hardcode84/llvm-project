@@ -13,6 +13,7 @@
 #include "mlir/IR/BuiltinDialect.h"
 #include "mlir/Interfaces/InferTypeOpInterface.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -88,8 +89,8 @@ void ReportShapeFnPass::runOnOperation() {
   });
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerShapeFunctionTestPasses() {
   PassRegistration<ReportShapeFnPass>();
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

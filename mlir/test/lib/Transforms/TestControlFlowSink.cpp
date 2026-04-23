@@ -15,6 +15,7 @@
 #include "mlir/IR/Dominance.h"
 #include "mlir/Pass/Pass.h"
 #include "mlir/Transforms/ControlFlowSinkUtils.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -58,10 +59,10 @@ struct TestControlFlowSinkPass
 };
 } // end anonymous namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestControlFlowSink() {
   PassRegistration<TestControlFlowSinkPass>();
 }
 } // end namespace test
-} // end namespace mlir
+MLIR_NAMESPACE_END // end namespace mlir

@@ -19,6 +19,7 @@
 #include <mlir/Pass/PassRegistry.h>
 #include <mlir/Support/LLVM.h>
 #include <mlir/Support/TypeID.h>
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::dataflow;
@@ -75,10 +76,10 @@ struct TestLivenessAnalysisPass
 };
 } // end anonymous namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestLivenessAnalysisPass() {
   PassRegistration<TestLivenessAnalysisPass>();
 }
 } // end namespace test
-} // end namespace mlir
+MLIR_NAMESPACE_END // end namespace mlir

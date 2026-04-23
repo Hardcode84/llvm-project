@@ -14,6 +14,7 @@
 #include "mlir/Analysis/Liveness.h"
 #include "mlir/IR/SymbolTable.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -35,8 +36,8 @@ struct TestLivenessPass
 
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestLivenessPass() { PassRegistration<TestLivenessPass>(); }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

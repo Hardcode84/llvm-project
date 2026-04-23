@@ -19,6 +19,7 @@
 #include "mlir/IR/Matchers.h"
 #include "mlir/Pass/Pass.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define PASS_NAME "tosa-test-quant-utils"
 
@@ -221,8 +222,8 @@ void TosaTestQuantUtilAPI::runOnOperation() {
 
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerTosaTestQuantUtilAPIPass() {
   PassRegistration<TosaTestQuantUtilAPI>();
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

@@ -32,6 +32,7 @@
 
 #define GEN_DIALECT_DEF
 #include "test_irdl_to_cpp.irdl.mlir.cpp.inc"
+#include "mlir/Support/ABINamespace.h"
 
 namespace test {
 using namespace mlir;
@@ -104,8 +105,10 @@ void registerIrdlTestDialect(mlir::DialectRegistry &registry) {
 
 } // namespace test
 
-namespace mlir::test {
+MLIR_NAMESPACE_BEGIN
+namespace test {
 void registerTestIrdlTestDialectConversionPass() {
   PassRegistration<::test::ConvertTestDialectToSomethingPass>();
 }
-} // namespace mlir::test
+}
+MLIR_NAMESPACE_END // namespace mlir::test

@@ -20,6 +20,7 @@
 #include "mlir/Support/LLVM.h"
 #include "llvm/ADT/TypeSwitch.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::dataflow;
@@ -299,10 +300,10 @@ struct TestLastModifiedPass
 };
 } // end anonymous namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestLastModifiedPass() {
   PassRegistration<TestLastModifiedPass>();
 }
 } // end namespace test
-} // end namespace mlir
+MLIR_NAMESPACE_END // end namespace mlir

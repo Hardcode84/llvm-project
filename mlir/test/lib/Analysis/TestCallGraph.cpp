@@ -14,6 +14,7 @@
 #include "mlir/Analysis/CallGraph.h"
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -34,8 +35,8 @@ struct TestCallGraphPass
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestCallGraphPass() { PassRegistration<TestCallGraphPass>(); }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

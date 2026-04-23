@@ -16,6 +16,7 @@
 #include "mlir/Dialect/MemRef/Transforms/Transforms.h"
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -55,8 +56,10 @@ struct TestMemRefToLLVMWithTransforms
 
 } // namespace
 
-namespace mlir::test {
+MLIR_NAMESPACE_BEGIN
+namespace test {
 void registerTestMemRefToLLVMWithTransforms() {
   PassRegistration<TestMemRefToLLVMWithTransforms>();
 }
-} // namespace mlir::test
+}
+MLIR_NAMESPACE_END // namespace mlir::test

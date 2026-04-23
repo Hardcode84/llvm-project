@@ -13,6 +13,7 @@
 #include "mlir/Analysis/CFGLoopInfo.h"
 #include "mlir/Interfaces/FunctionInterfaces.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -68,8 +69,8 @@ void TestCFGLoopInfo::runOnOperation() {
     loopInfo.print(llvm::errs());
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestCFGLoopInfoPass() { PassRegistration<TestCFGLoopInfo>(); }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

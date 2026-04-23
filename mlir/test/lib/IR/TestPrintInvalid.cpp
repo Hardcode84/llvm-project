@@ -15,6 +15,7 @@
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/Pass/Pass.h"
 #include "llvm/Support/raw_ostream.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -49,8 +50,8 @@ struct TestPrintInvalidPass
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerTestPrintInvalidPass() {
   PassRegistration<TestPrintInvalidPass>{};
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

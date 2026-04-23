@@ -16,6 +16,7 @@
 #include "mlir/Dialect/Transform/Interfaces/TransformInterfaces.h"
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace llvm;
 using namespace mlir;
@@ -91,11 +92,11 @@ struct TestPassStateExtensionCommunication
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 /// Registers the test pass here.
 void registerTestPassStateExtensionCommunication() {
   PassRegistration<TestPassStateExtensionCommunication> reg;
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

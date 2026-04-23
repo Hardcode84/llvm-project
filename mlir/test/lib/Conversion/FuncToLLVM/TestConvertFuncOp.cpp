@@ -15,6 +15,7 @@
 #include "mlir/Dialect/LLVMIR/LLVMDialect.h"
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -100,6 +101,8 @@ struct TestConvertFuncOp
 
 } // namespace
 
-namespace mlir::test {
+MLIR_NAMESPACE_BEGIN
+namespace test {
 void registerConvertFuncOpPass() { PassRegistration<TestConvertFuncOp>(); }
-} // namespace mlir::test
+}
+MLIR_NAMESPACE_END // namespace mlir::test

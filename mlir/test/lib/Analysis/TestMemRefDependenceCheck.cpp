@@ -17,6 +17,7 @@
 #include "mlir/IR/Builders.h"
 #include "mlir/Pass/Pass.h"
 #include "llvm/Support/Debug.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "test-memref-dependence-check"
 
@@ -116,10 +117,10 @@ void TestMemRefDependenceCheck::runOnOperation() {
   checkDependences(loadsAndStores);
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestMemRefDependenceCheck() {
   PassRegistration<TestMemRefDependenceCheck>();
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

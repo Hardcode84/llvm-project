@@ -23,14 +23,15 @@
 #include "mlir/Interfaces/FunctionInterfaces.h"
 #include "mlir/Interfaces/SideEffectInterfaces.h"
 #include "toy/ShapeInferenceInterface.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace toy {
 namespace detail {
 struct StructTypeStorage;
 } // namespace detail
 } // namespace toy
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 /// Include the auto-generated header file containing the declaration of the toy
 /// dialect.
@@ -45,7 +46,7 @@ struct StructTypeStorage;
 #define GET_OP_CLASSES
 #include "toy/Ops.h.inc"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace toy {
 
 //===----------------------------------------------------------------------===//
@@ -77,6 +78,6 @@ public:
   static constexpr StringLiteral name = "toy.struct";
 };
 } // namespace toy
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TUTORIAL_TOY_DIALECT_H_

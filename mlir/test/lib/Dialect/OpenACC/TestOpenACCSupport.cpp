@@ -15,6 +15,7 @@
 #include "mlir/Dialect/OpenACC/Analysis/OpenACCSupport.h"
 #include "mlir/Dialect/OpenACC/OpenACC.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::acc;
@@ -84,7 +85,7 @@ void TestOpenACCSupportPass::runOnOperation() {
 
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 
 void registerTestOpenACCSupportPass() {
@@ -92,4 +93,4 @@ void registerTestOpenACCSupportPass() {
 }
 
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

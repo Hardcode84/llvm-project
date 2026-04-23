@@ -14,8 +14,9 @@
 #define TOY_PASSES_H
 
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Pass;
 
 namespace toy {
@@ -30,6 +31,6 @@ std::unique_ptr<mlir::Pass> createLowerToAffinePass();
 std::unique_ptr<mlir::Pass> createLowerToLLVMPass();
 
 } // namespace toy
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // TOY_PASSES_H

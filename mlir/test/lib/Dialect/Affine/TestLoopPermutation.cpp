@@ -14,6 +14,7 @@
 #include "mlir/Dialect/Affine/IR/AffineOps.h"
 #include "mlir/Dialect/Affine/LoopUtils.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define PASS_NAME "test-loop-permutation"
 
@@ -74,8 +75,8 @@ void TestLoopPermutation::runOnOperation() {
   }
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerTestLoopPermutationPass() {
   PassRegistration<TestLoopPermutation>();
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

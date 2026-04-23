@@ -10,6 +10,7 @@
 #include "mlir/Dialect/Bufferization/Transforms/OneShotAnalysis.h"
 #include "mlir/Dialect/Bufferization/Transforms/Transforms.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -72,8 +73,10 @@ struct TestTensorCopyInsertionPass
 };
 } // namespace
 
-namespace mlir::test {
+MLIR_NAMESPACE_BEGIN
+namespace test {
 void registerTestTensorCopyInsertionPass() {
   PassRegistration<TestTensorCopyInsertionPass>();
 }
-} // namespace mlir::test
+}
+MLIR_NAMESPACE_END // namespace mlir::test

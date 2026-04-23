@@ -9,6 +9,7 @@
 #include "TestOps.h"
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -128,10 +129,10 @@ struct SymbolReplacementPass
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerSymbolTestPasses() {
   PassRegistration<SymbolUsesPass>();
 
   PassRegistration<SymbolReplacementPass>();
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

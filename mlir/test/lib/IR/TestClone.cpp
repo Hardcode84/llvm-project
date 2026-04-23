@@ -9,6 +9,7 @@
 #include "TestOps.h"
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -70,6 +71,6 @@ struct ClonePass
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerCloneTestPasses() { PassRegistration<ClonePass>(); }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

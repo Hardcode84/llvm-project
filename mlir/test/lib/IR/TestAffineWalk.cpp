@@ -10,6 +10,7 @@
 #include "mlir/Pass/Pass.h"
 
 #include "mlir/IR/BuiltinOps.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -52,6 +53,6 @@ void TestAffineWalk::runOnOperation() {
   });
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerTestAffineWalk() { PassRegistration<TestAffineWalk>(); }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

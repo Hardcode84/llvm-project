@@ -13,6 +13,7 @@
 #include "mlir/Pass/Pass.h"
 #include "llvm/ADT/TypeSwitch.h"
 #include "llvm/Support/FormatVariadic.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace test;
@@ -71,10 +72,10 @@ struct TestElementsAttrInterface
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestBuiltinAttributeInterfaces() {
   PassRegistration<TestElementsAttrInterface>();
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

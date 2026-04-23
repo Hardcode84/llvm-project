@@ -29,6 +29,7 @@
 #include "mlir/Pass/PassManager.h"
 #include "mlir/Pass/PassOptions.h"
 #include "mlir/Transforms/Passes.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -86,7 +87,7 @@ void buildTestLowerToLLVM(OpPassManager &pm,
 }
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestLowerToLLVM() {
   PassPipelineRegistration<TestLowerToLLVMOptions>(
@@ -96,4 +97,4 @@ void registerTestLowerToLLVM() {
       buildTestLowerToLLVM);
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

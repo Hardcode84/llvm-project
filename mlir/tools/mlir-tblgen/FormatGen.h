@@ -21,12 +21,14 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/SMLoc.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SourceMgr;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tblgen {
 
 //===----------------------------------------------------------------------===//
@@ -626,6 +628,6 @@ bool isValidLiteral(StringRef value,
 extern llvm::cl::opt<bool> formatErrorIsFatal;
 
 } // namespace tblgen
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_MLIRTBLGEN_FORMATGEN_H_

@@ -10,6 +10,7 @@
 #include "TestDialect.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace test;
@@ -76,7 +77,7 @@ LogicalResult TestRecursiveTypesPass::createIRWithTypes() {
   return success();
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 
 void registerTestRecursiveTypesPass() {
@@ -84,4 +85,4 @@ void registerTestRecursiveTypesPass() {
 }
 
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

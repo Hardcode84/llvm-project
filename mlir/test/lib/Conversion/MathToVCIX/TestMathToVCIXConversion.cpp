@@ -15,8 +15,9 @@
 #include "mlir/Pass/Pass.h"
 #include "mlir/Pass/PassManager.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace {
 
 /// Return number of extracts required to make input VectorType \vt legal and
@@ -257,4 +258,4 @@ struct TestMathToVCIX
 namespace test {
 void registerTestMathToVCIXPass() { PassRegistration<TestMathToVCIX>(); }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

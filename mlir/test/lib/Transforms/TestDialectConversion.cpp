@@ -23,6 +23,7 @@ using namespace test;
 //===----------------------------------------------------------------------===//
 
 #include "TestDialectConversionPDLLPatterns.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
 namespace {
 struct PDLLTypeConverter : public TypeConverter {
@@ -86,10 +87,10 @@ struct TestDialectConversionPDLLPass
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestDialectConversionPasses() {
   PassRegistration<TestDialectConversionPDLLPass>();
 }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

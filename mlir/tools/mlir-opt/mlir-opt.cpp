@@ -26,12 +26,13 @@
 #include "llvm/Support/InitLLVM.h"
 #include "llvm/Support/SourceMgr.h"
 #include "llvm/Support/ToolOutputFile.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace llvm;
 using namespace mlir;
 
 // Defined in the test directory, no public header.
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerCloneTestPasses();
 void registerConvertToTargetEnvPass();
 void registerLazyLoadingTestPasses();
@@ -168,7 +169,7 @@ void registerTestPDLByteCodePass();
 void registerTestPDLLPasses();
 #endif
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace test {
 void registerTestDialect(DialectRegistry &);

@@ -18,6 +18,7 @@
 #include "mlir/IR/Builders.h"
 #include "mlir/Pass/Pass.h"
 #include "llvm/Support/CommandLine.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::acc;
@@ -122,7 +123,7 @@ void TestRecipePopulatePass::runOnOperation() {
 
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 
 void registerTestRecipePopulatePass() {
@@ -130,4 +131,4 @@ void registerTestRecipePopulatePass() {
 }
 
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

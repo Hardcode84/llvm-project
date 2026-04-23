@@ -9,6 +9,7 @@
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Dialect/Tosa/IR/TosaOps.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -73,8 +74,8 @@ void PrintOpAvailability::runOnOperation() {
   }
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerPrintTosaAvailabilityPass() {
   PassRegistration<PrintOpAvailability>();
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

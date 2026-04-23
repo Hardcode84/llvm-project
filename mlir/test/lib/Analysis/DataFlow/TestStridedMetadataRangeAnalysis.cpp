@@ -17,6 +17,7 @@
 #include "mlir/Pass/PassRegistry.h"
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/Support/raw_ostream.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace mlir::dataflow;
@@ -77,10 +78,10 @@ struct TestStridedMetadataRangeAnalysisPass
 };
 } // end anonymous namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestStridedMetadataRangeAnalysisPass() {
   PassRegistration<TestStridedMetadataRangeAnalysisPass>();
 }
 } // end namespace test
-} // end namespace mlir
+MLIR_NAMESPACE_END // end namespace mlir

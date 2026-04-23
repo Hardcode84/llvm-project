@@ -27,6 +27,7 @@
 #include "mlir/Rewrite/FrozenRewritePatternSet.h"
 #include "mlir/Transforms/DialectConversion.h"
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
 #define DEBUG_TYPE "test-convert-to-spirv"
 
@@ -163,7 +164,8 @@ struct TestConvertToSPIRVPass final
 
 } // namespace
 
-namespace mlir::test {
+MLIR_NAMESPACE_BEGIN
+namespace test {
 void registerTestConvertToSPIRVPass() {
   PassRegistration<TestConvertToSPIRVPass>();
 }
@@ -172,4 +174,5 @@ std::unique_ptr<Pass> createTestConvertToSPIRVPass(bool convertGPUModules,
   return std::make_unique<TestConvertToSPIRVPass>(convertGPUModules,
                                                   nestInGPUModule);
 }
-} // namespace mlir::test
+}
+MLIR_NAMESPACE_END // namespace mlir::test

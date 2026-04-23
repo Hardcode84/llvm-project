@@ -8,8 +8,10 @@
 
 #include "mlir/Dialect/AMDGPU/Utils/Chipset.h"
 #include "gtest/gtest.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::amdgpu {
+MLIR_NAMESPACE_BEGIN
+namespace amdgpu {
 namespace {
 
 TEST(ChipsetTest, Parsing) {
@@ -59,4 +61,5 @@ TEST(ChipsetTest, Comparison) {
 }
 
 } // namespace
-} // namespace mlir::amdgpu
+}
+MLIR_NAMESPACE_END // namespace mlir::amdgpu

@@ -15,6 +15,7 @@
 #include "mlir/Pass/Pass.h"
 
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -92,8 +93,10 @@ struct TestTensorLikeAndBufferLikePass
 };
 } // namespace
 
-namespace mlir::test {
+MLIR_NAMESPACE_BEGIN
+namespace test {
 void registerTestTensorLikeAndBufferLikePass() {
   PassRegistration<TestTensorLikeAndBufferLikePass>();
 }
-} // namespace mlir::test
+}
+MLIR_NAMESPACE_END // namespace mlir::test

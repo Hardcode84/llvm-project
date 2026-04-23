@@ -21,6 +21,7 @@
 #include "mlir/Transforms/Inliner.h"
 #include "mlir/Transforms/InliningUtils.h"
 #include "llvm/ADT/StringSet.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace test;
@@ -143,8 +144,8 @@ struct InlinerCallback
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerInlinerCallback() { PassRegistration<InlinerCallback>(); }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

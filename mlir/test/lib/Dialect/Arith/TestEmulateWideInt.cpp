@@ -20,6 +20,7 @@
 #include "mlir/Dialect/Vector/IR/VectorOps.h"
 #include "mlir/Pass/Pass.h"
 #include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -90,8 +91,10 @@ struct TestEmulateWideIntPass
 };
 } // namespace
 
-namespace mlir::test {
+MLIR_NAMESPACE_BEGIN
+namespace test {
 void registerTestArithEmulateWideIntPass() {
   PassRegistration<TestEmulateWideIntPass>();
 }
-} // namespace mlir::test
+}
+MLIR_NAMESPACE_END // namespace mlir::test

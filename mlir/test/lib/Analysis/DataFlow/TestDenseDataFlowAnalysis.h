@@ -12,8 +12,9 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/Support/raw_ostream.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace dataflow {
 namespace test {
 
@@ -230,4 +231,4 @@ public:
 
 } // namespace test
 } // namespace dataflow
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

@@ -10,6 +10,7 @@
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/Pass/Pass.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -40,6 +41,6 @@ struct TakeBodyPass
 
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerRegionTestPasses() { PassRegistration<TakeBodyPass>(); }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

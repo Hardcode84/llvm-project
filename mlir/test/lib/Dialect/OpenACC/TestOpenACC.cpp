@@ -10,7 +10,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-namespace mlir {
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 namespace test {
 
 // Forward declarations of individual test pass registration functions
@@ -26,4 +27,4 @@ void registerTestOpenACC() {
 }
 
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

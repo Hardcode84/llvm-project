@@ -10,8 +10,9 @@
 #define MLIR_TOOLS_MLIRTBLGEN_DIALECTGENUTILITIES_H_
 
 #include "mlir/Support/LLVM.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace tblgen {
 class Dialect;
 
@@ -19,6 +20,6 @@ class Dialect;
 /// if no dialect was found, or if more than one potential dialect was found.
 std::optional<Dialect> findDialectToGenerate(ArrayRef<Dialect> dialects);
 } // namespace tblgen
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TOOLS_MLIRTBLGEN_DIALECTGENUTILITIES_H_

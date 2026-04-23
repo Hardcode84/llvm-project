@@ -19,6 +19,7 @@
 #include "mlir/Pass/Pass.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
 #include "mlir/Transforms/Passes.h"
+#include "mlir/Support/ABINamespace.h"
 
 #define PASS_NAME "test-affine-data-copy"
 
@@ -148,8 +149,8 @@ void TestAffineDataCopy::runOnOperation() {
   (void)applyOpPatternsGreedily(copyOps, std::move(patterns), config);
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerTestAffineDataCopyPass() {
   PassRegistration<TestAffineDataCopy>();
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

@@ -18,6 +18,7 @@
 using namespace mlir;
 
 #include "TestPDLLPatterns.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
 namespace {
 struct TestPDLLPass : public PassWrapper<TestPDLLPass, OperationPass<>> {
@@ -46,8 +47,8 @@ struct TestPDLLPass : public PassWrapper<TestPDLLPass, OperationPass<>> {
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace test {
 void registerTestPDLLPasses() { PassRegistration<TestPDLLPass>(); }
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

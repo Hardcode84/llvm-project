@@ -15,8 +15,9 @@
 
 #include "mlir/IR/Attributes.h"
 #include "mlir/IR/Types.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace TypeTrait {
 
 /// A trait defined on types for testing purposes.
@@ -34,6 +35,6 @@ class TestAttrTrait
     : public AttributeTrait::TraitBase<ConcreteType, TestAttrTrait> {};
 
 } // namespace AttributeTrait
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #endif // MLIR_TESTTRAITS_H

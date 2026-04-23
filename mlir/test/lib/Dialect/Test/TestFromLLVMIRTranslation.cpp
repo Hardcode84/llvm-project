@@ -27,6 +27,7 @@
 #include "llvm/IR/Verifier.h"
 #include "llvm/IRReader/IRReader.h"
 #include "llvm/Support/SourceMgr.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 using namespace test;
@@ -76,7 +77,7 @@ public:
 };
 } // namespace
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerTestFromLLVMIR() {
   TranslateToMLIRRegistration registration(
       "test-import-llvmir", "test dialect from LLVM IR",
@@ -109,4 +110,4 @@ void registerTestFromLLVMIR() {
             });
       });
 }
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir

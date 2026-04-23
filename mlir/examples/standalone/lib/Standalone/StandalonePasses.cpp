@@ -11,8 +11,10 @@
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
 
 #include "Standalone/StandalonePasses.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir::standalone {
+MLIR_NAMESPACE_BEGIN
+namespace standalone {
 #define GEN_PASS_DEF_STANDALONESWITCHBARFOO
 #include "Standalone/StandalonePasses.h.inc"
 
@@ -44,4 +46,5 @@ public:
   }
 };
 } // namespace
-} // namespace mlir::standalone
+}
+MLIR_NAMESPACE_END // namespace mlir::standalone

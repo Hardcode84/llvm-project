@@ -23,6 +23,7 @@
 #include "llvm/ADT/StringSwitch.h"
 #include "llvm/ADT/TypeSwitch.h"
 #include "llvm/IR/DebugProgramInstruction.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 
@@ -112,7 +113,7 @@ LogicalResult TestDialectLLVMIRTranslationInterface::convertOperation(
       });
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 
 void registerTestToLLVMIR() {
   TranslateFromMLIRRegistration registration(
@@ -138,4 +139,4 @@ void registerTestToLLVMIR() {
       });
 }
 
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
