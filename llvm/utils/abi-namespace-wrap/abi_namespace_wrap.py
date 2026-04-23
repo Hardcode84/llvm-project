@@ -203,6 +203,20 @@ def _find_namespace_openings(text: str) -> List[Edit]:
     in_define = False
     at_line_start = True
 
+    # Preprocessor conditional stack. Each entry is the depth at the
+    # matching ``#if`` / ``#ifdef`` / ``#ifndef``. Mutually-exclusive
+    # ``#else`` / ``#elif`` branches may unbalance braces (e.g. file A
+    # opens one ``switch (...) {`` per branch with a single closing
+    # ``}`` outside the ``#endif``). We correct for this by snapshotting
+    # depth at ``#if`` and restoring it at ``#else`` / ``#elif`` /
+    # ``#endif`` (using the first-branch close as the canonical final).
+    # This is an approximation: code that straddles the conditional in
+    # genuinely unbalanced ways will still confuse us, but we treat the
+    # tag-wrapped `namespace llvm { ... }` as always covering a
+    # preprocessor-balanced region, which is the invariant upstream
+    # code is expected to satisfy.
+    pp_cond_stack: List[int] = []  # saved depth at each open #if
+
     # Map open-depth for a pending edit to its index in `edits`.
     pending: List[int] = []  # stack of edit indices awaiting close
 
@@ -211,8 +225,8 @@ def _find_namespace_openings(text: str) -> List[Edit]:
 
         # Preprocessor directive detection. A '#' at the start of a
         # logical line (optionally preceded by whitespace) begins a
-        # preprocessor directive. We only care about `#define` for
-        # namespace-skip purposes; other directives are transparent.
+        # preprocessor directive. We track `#define`, `#if*`, `#else`,
+        # `#elif*`, and `#endif`.
         if at_line_start and c in " \t":
             s.i += 1
             continue
@@ -220,10 +234,33 @@ def _find_namespace_openings(text: str) -> List[Edit]:
             j = s.i + 1
             while j < s.n and s.text[j] in " \t":
                 j += 1
-            if s.text.startswith("define", j):
-                end_kw = j + len("define")
-                if end_kw < s.n and not _is_ident_cont(s.text[end_kw]):
-                    in_define = True
+            # Identify directive keyword. `#if`, `#ifdef`, `#ifndef`
+            # open a conditional; `#else`, `#elif`, `#elifdef`,
+            # `#elifndef` start a new branch; `#endif` closes the
+            # conditional.
+            def _at_pp_kw(kw: str, p: int = j) -> bool:
+                if not s.text.startswith(kw, p):
+                    return False
+                after = p + len(kw)
+                return after == s.n or not _is_ident_cont(s.text[after])
+            if _at_pp_kw("define"):
+                in_define = True
+            elif (_at_pp_kw("if") or _at_pp_kw("ifdef")
+                  or _at_pp_kw("ifndef")):
+                pp_cond_stack.append(depth)
+            elif (_at_pp_kw("else") or _at_pp_kw("elif")
+                  or _at_pp_kw("elifdef") or _at_pp_kw("elifndef")):
+                if pp_cond_stack:
+                    depth = pp_cond_stack[-1]
+            elif _at_pp_kw("endif"):
+                if pp_cond_stack:
+                    # Use the depth snapshotted at the matching #if;
+                    # both branches should agree at the #endif (the
+                    # first branch's `}` already popped us to the
+                    # correct level, and each subsequent branch was
+                    # reset to baseline at `#else`/`#elif`, so we are
+                    # at baseline now). Drop the stack entry.
+                    pp_cond_stack.pop()
             # Advance until end of the directive (honoring backslash
             # continuations).
             while s.i < s.n:
@@ -567,6 +604,19 @@ def _file_excluded(path: Path, excludes: List[str]) -> bool:
             return True
     # Also apply the universal `(llvm|clang|mlir)-c/` pattern per plan §2.
     if re.search(r"(?:^|/)(?:llvm|clang|mlir)-c(?:$|/)", abs_path):
+        return True
+    # Skip test-input directories for projects whose `*/test/` tree is
+    # entirely lit-based (synthetic fixtures compiled in isolation by
+    # %clang_cc1, %lld, etc., without access to `llvm/Support/Compiler.h`):
+    #   clang/test/, clang-tools-extra/test/, lld/test/, lldb/test/,
+    #   llvm/test/, flang/test/, bolt/test/, polly/test/.
+    # `mlir/test/` is deliberately NOT excluded: `mlir/test/lib/` and
+    # `mlir/test/CAPI/` are real C++ libraries built by CMake that link
+    # against MLIR and need their `namespace llvm/mlir` sections wrapped.
+    if re.search(
+        r"(?:^|/)(?:clang|clang-tools-extra|lld|lldb|llvm|flang|bolt|polly)/test(?:$|/)",
+        abs_path,
+    ):
         return True
     # Any file that itself defines a `extern "C"` region covering the
     # whole file (via a top-level extern "C" { ... }) is handled by the
