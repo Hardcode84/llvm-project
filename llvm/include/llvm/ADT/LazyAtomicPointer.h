@@ -14,7 +14,7 @@
 #include <assert.h>
 #include <atomic>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Atomic pointer that's lock-free, but that can coordinate concurrent writes
 /// from a lazy generator. Should be reserved for cases where concurrent uses of
@@ -161,6 +161,6 @@ private:
   std::atomic<uintptr_t> Storage;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_LAZYATOMICPOINTER_H

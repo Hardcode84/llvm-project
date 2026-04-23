@@ -15,8 +15,9 @@
 #include <algorithm>
 #include <cassert>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A compile time pair of an integer tag and the pointer-like type which it
 /// indexes within a sum type. Also allows the user to specify a particular
@@ -274,6 +275,6 @@ struct DenseMapInfo<PointerSumType<TagT, MemberTs...>> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_POINTERSUMTYPE_H

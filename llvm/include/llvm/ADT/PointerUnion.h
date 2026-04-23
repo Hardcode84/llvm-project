@@ -26,8 +26,9 @@
 #include <cstddef>
 #include <cstdint>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace pointer_union_detail {
 
@@ -442,6 +443,6 @@ template <typename... PTs> struct DenseMapInfo<PointerUnion<PTs...>> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_POINTERUNION_H

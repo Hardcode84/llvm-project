@@ -35,7 +35,7 @@
 #include <type_traits>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace detail {
 
@@ -1278,6 +1278,6 @@ capacity_in_bytes(const DenseMap<KeyT, ValueT, KeyInfoT> &X) {
   return X.getMemorySize();
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_DENSEMAP_H

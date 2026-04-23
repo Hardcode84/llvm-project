@@ -18,8 +18,9 @@
 
 #include "llvm/ADT/StringRef.h"
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// The "value type" of StringSet represented as an empty struct.
 struct EmptyStringSetTag {};
@@ -168,7 +169,7 @@ decltype(auto) get(const StringMapEntry<ValueTy> &E) {
     return E.getValue();
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 template <typename ValueTy>
 struct std::tuple_size<llvm::StringMapEntry<ValueTy>>

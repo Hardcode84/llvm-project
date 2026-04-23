@@ -25,8 +25,9 @@
 #include <optional>
 #include <queue>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // bf_iterator_storage - A private class which is used to figure out where to
 // store the visited set. We only provide a non-external variant for now.
@@ -158,6 +159,6 @@ template <class T> iterator_range<bf_iterator<T>> breadth_first(const T &G) {
   return make_range(bf_begin(G), bf_end(G));
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_BREADTHFIRSTITERATOR_H

@@ -29,7 +29,7 @@
 #include <type_traits>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This folding set used for two purposes:
 ///   1. Given information about a node we want to create, look up the unique
@@ -851,6 +851,6 @@ struct FoldingSetTrait<T, std::enable_if_t<std::is_enum<T>::value>> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_FOLDINGSET_H

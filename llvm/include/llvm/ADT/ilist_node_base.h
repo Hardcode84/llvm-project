@@ -10,8 +10,9 @@
 #define LLVM_ADT_ILIST_NODE_BASE_H
 
 #include "llvm/ADT/PointerIntPair.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace ilist_detail {
 
@@ -70,6 +71,6 @@ class ilist_node_base : public ilist_detail::node_base_prevnext<
 // Specialization implemented in the core LLVM library.
 template class LLVM_ABI ilist_node_base<true, void>;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_ILIST_NODE_BASE_H

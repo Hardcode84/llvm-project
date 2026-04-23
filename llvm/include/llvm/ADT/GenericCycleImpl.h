@@ -27,10 +27,11 @@
 #include "llvm/ADT/DepthFirstIterator.h"
 #include "llvm/ADT/GenericCycleInfo.h"
 #include "llvm/ADT/StringExtras.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "generic-cycle-impl"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename ContextT>
 bool GenericCycle<ContextT>::contains(const GenericCycle *C) const {
@@ -657,7 +658,7 @@ void GenericCycleInfo<ContextT>::print(raw_ostream &Out) const {
   }
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #undef DEBUG_TYPE
 

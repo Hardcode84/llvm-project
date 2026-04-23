@@ -64,8 +64,9 @@
 #include <cassert>
 #include <cstddef>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A CRTP mixin class that adds reference counting to a type.
 ///
@@ -314,6 +315,6 @@ IntrusiveRefCntPtr<T> makeIntrusiveRefCnt(Args &&...A) {
   return IntrusiveRefCntPtr<T>(new T(std::forward<Args>(A)...));
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_INTRUSIVEREFCNTPTR_H

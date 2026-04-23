@@ -12,8 +12,9 @@
 #include <type_traits>
 #include <iterator>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Only used by compiler if both template types are the same.  Useful when
 // using SFINAE to test for the existence of member functions.
@@ -130,6 +131,6 @@ using ValueOfRange =
     std::remove_reference_t<decltype(*adl_begin(std::declval<RangeT &>()))>;
 
 } // namespace detail
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_ADL_H

@@ -24,7 +24,7 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class IntEqClasses {
   /// EC - When uncompressed, map each integer to a smaller member of its
@@ -84,6 +84,6 @@ public:
   LLVM_ABI void uncompress();
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

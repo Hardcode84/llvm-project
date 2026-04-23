@@ -18,7 +18,7 @@
 #include "llvm/ADT/APInt.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// An arbitrary precision integer that knows its signedness.
 class [[nodiscard]] APSInt : public APInt {
@@ -385,6 +385,6 @@ template <> struct DenseMapInfo<APSInt, void> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

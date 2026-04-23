@@ -23,7 +23,7 @@
 #include <iterator>
 #include <type_traits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename ValueTy, bool IsConst> class StringMapIterBase;
 template <typename ValueTy> class StringMapKeyIterator;
@@ -517,6 +517,6 @@ public:
   StringRef operator*() const { return this->wrapped()->getKey(); }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_STRINGMAP_H

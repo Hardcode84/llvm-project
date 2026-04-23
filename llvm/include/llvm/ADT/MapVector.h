@@ -24,8 +24,9 @@
 #include <iterator>
 #include <type_traits>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This class implements a map that also provides access to all stored values
 /// in a deterministic order. The values are kept in a SmallVector<*, 0> and the
@@ -276,6 +277,6 @@ struct SmallMapVector
                 SmallVector<std::pair<KeyT, ValueT>, N>> {
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_MAPVECTOR_H

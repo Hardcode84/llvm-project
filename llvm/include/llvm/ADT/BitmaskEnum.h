@@ -15,6 +15,7 @@
 #include "llvm/ADT/STLForwardCompat.h"
 #include "llvm/ADT/bit.h"
 #include "llvm/Support/MathExtras.h"
+#include "llvm/Support/Compiler.h"
 
 /// LLVM_MARK_AS_BITMASK_ENUM lets you opt in an individual enum type so you can
 /// perform bitwise operations on it without putting static_cast everywhere.
@@ -96,7 +97,7 @@
   /* Force a semicolon at the end of this macro. */                            \
   using ::llvm::BitmaskEnumDetail::any
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Traits class to determine whether an enum has a
 /// LLVM_BITMASK_LARGEST_ENUMERATOR enumerator.
@@ -219,6 +220,6 @@ template <typename E, typename = std::enable_if_t<is_bitmask_enum<E>::value>>
 constexpr unsigned BitWidth = llvm::bit_width_constexpr(
     uint64_t{llvm::to_underlying(E::LLVM_BITMASK_LARGEST_ENUMERATOR)});
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

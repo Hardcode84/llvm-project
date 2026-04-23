@@ -23,8 +23,9 @@
 #include <optional>
 #include <type_traits>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace po_detail {
 
 template <typename NodeRef> class NumberSet {
@@ -310,6 +311,6 @@ public:
   const_rpo_iterator end() const { return Blocks.rend(); }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_POSTORDERITERATOR_H

@@ -11,8 +11,9 @@
 
 #include "llvm/ADT/ilist_node_base.h"
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Implementations of list algorithms using ilist_node_base.
 template <bool EnableSentinelTracking, class ParentTy> class ilist_base {
@@ -87,6 +88,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_ILIST_BASE_H

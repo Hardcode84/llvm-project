@@ -41,7 +41,7 @@
 #include <cstring>
 #include <type_traits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// unique_function is a type-erasing functor similar to std::function.
 ///
@@ -391,6 +391,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_FUNCTIONEXTRAS_H

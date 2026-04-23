@@ -18,8 +18,9 @@
 #include "llvm/ADT/STLExtras.h"
 #include <array>
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename ValueType, typename Enumeration,
           Enumeration LargestEnum = Enumeration::Last, typename IndexType = int,
@@ -71,6 +72,6 @@ public:
   const_reverse_iterator rend() const { return Underlying.rend(); }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_ENUMERATEDARRAY_H

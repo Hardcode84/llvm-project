@@ -17,8 +17,9 @@
 #include "llvm/ADT/BitVector.h"
 #include <cassert>
 #include <limits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Store a vector of values using a specific number of bits for each
 /// value. Both signed and unsigned types can be used, e.g
@@ -135,6 +136,6 @@ public:
   BitVectorTy &raw_bits() { return Bits; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_PACKEDVECTOR_H

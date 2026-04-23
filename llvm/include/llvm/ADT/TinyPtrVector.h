@@ -15,8 +15,9 @@
 #include <cassert>
 #include <cstddef>
 #include <iterator>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// TinyPtrVector - This class is specialized for cases where there are
 /// normally 0 or 1 element in a vector, but is general enough to go beyond that
@@ -322,6 +323,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_TINYPTRVECTOR_H

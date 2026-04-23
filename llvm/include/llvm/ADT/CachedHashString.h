@@ -22,8 +22,9 @@
 
 #include "llvm/ADT/DenseMapInfo.h"
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A container which contains a StringRef plus a precomputed hash.
 class CachedHashStringRef {
@@ -179,6 +180,6 @@ template <> struct DenseMapInfo<CachedHashString> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

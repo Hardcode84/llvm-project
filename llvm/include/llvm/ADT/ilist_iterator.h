@@ -14,8 +14,9 @@
 #include <cstddef>
 #include <iterator>
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace ilist_detail {
 
@@ -401,6 +402,6 @@ template <class OptionsT, bool IsConst>
 struct simplify_type<const ilist_iterator_w_bits<OptionsT, false, IsConst>>
     : simplify_type<ilist_iterator_w_bits<OptionsT, false, IsConst>> {};
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_ILIST_ITERATOR_H

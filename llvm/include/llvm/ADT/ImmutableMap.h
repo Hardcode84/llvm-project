@@ -18,8 +18,9 @@
 #include "llvm/ADT/ImmutableSet.h"
 #include "llvm/Support/Allocator.h"
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// ImutKeyValueInfo -Traits class used by ImmutableMap.  While both the first
 /// and second elements in a pair are used to generate profile information,
@@ -329,6 +330,6 @@ public:
   inline void Profile(FoldingSetNodeID &ID) const { return Profile(ID, *this); }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_IMMUTABLEMAP_H

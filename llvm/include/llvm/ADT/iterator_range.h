@@ -21,8 +21,9 @@
 #include "llvm/ADT/ADL.h"
 #include <type_traits>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A range adaptor for a pair of iterators.
 ///
@@ -75,6 +76,6 @@ template <typename T> iterator_range<T> make_range(std::pair<T, T> p) {
   return iterator_range<T>(std::move(p.first), std::move(p.second));
 }
 
-}
+LLVM_NAMESPACE_END
 
 #endif

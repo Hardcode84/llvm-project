@@ -26,8 +26,9 @@
 #include <cstring>
 #include <iterator>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// ForwardIterator for the bits that are set.
 /// Iterators get invalidated when resize / reserve is called.
@@ -865,7 +866,7 @@ template <> struct DenseMapInfo<BitVector> {
     return LHS == RHS;
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace std {
   /// Implement std::swap in terms of BitVector swap.

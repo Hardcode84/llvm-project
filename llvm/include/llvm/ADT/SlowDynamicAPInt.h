@@ -21,12 +21,13 @@
 #include "llvm/ADT/APInt.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DynamicAPInt;
 class raw_ostream;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm::detail {
+LLVM_NAMESPACE_BEGIN
+namespace detail {
 /// A simple class providing dynamic arbitrary-precision arithmetic. Internally,
 /// it stores an APInt, whose width is doubled whenever an overflow occurs at a
 /// certain width. The default constructor sets the initial width to 64.
@@ -145,6 +146,7 @@ LLVM_ABI SlowDynamicAPInt operator-(int64_t A, const SlowDynamicAPInt &B);
 LLVM_ABI SlowDynamicAPInt operator*(int64_t A, const SlowDynamicAPInt &B);
 LLVM_ABI SlowDynamicAPInt operator/(int64_t A, const SlowDynamicAPInt &B);
 LLVM_ABI SlowDynamicAPInt operator%(int64_t A, const SlowDynamicAPInt &B);
-} // namespace llvm::detail
+}
+LLVM_NAMESPACE_END // namespace llvm::detail
 
 #endif // LLVM_ADT_SLOWDYNAMICAPINT_H

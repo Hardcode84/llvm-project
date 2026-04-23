@@ -11,8 +11,9 @@
 
 #include "llvm/ADT/GenericCycleInfo.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class TargetTransformInfo;
 
@@ -89,6 +90,6 @@ private:
   GenericUniformityInfo &operator=(const GenericUniformityInfo &) = delete;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_GENERICUNIFORMITYINFO_H

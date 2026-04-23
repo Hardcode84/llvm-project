@@ -15,7 +15,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// DeltaTree - a multiway search tree (BTree) structure with some fancy
 /// features.  B-Trees are generally more memory and cache efficient than
@@ -47,6 +47,6 @@ public:
   LLVM_ABI void AddDelta(unsigned FileIndex, int Delta);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_DELTATREE_H

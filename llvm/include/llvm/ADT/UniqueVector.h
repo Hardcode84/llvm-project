@@ -13,8 +13,9 @@
 #include <cstddef>
 #include <map>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 /// UniqueVector - This class produces a sequential ID number (base 1) for each
@@ -96,6 +97,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_UNIQUEVECTOR_H

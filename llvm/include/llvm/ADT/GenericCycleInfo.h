@@ -35,8 +35,9 @@
 #include "llvm/ADT/StringExtras.h"
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename ContextT> class GenericCycleInfo;
 template <typename ContextT> class GenericCycleInfoCompute;
@@ -395,6 +396,6 @@ struct GraphTraits<GenericCycle<BlockT> *>
     : CycleGraphTraits<GenericCycle<BlockT> *,
                        typename GenericCycle<BlockT>::const_child_iterator> {};
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_GENERICCYCLEINFO_H

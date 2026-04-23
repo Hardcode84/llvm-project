@@ -14,7 +14,7 @@
 #include <atomic>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -379,6 +379,6 @@ public:
   operator=(const ThreadSafeTrieRawHashMap &) = delete;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_TRIERAWHASHMAP_H

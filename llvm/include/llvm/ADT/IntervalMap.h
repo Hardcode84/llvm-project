@@ -115,7 +115,7 @@
 #include <new>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 //---                              Key traits                              ---//
@@ -2216,6 +2216,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_INTERVALMAP_H

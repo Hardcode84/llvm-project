@@ -19,8 +19,9 @@
 #include <cassert>
 #include <cstdint>
 #include <new>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> class ImmutableListFactory;
 
@@ -241,6 +242,6 @@ template <typename T> struct DenseMapInfo<ImmutableList<T>, void> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_IMMUTABLELIST_H

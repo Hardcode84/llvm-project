@@ -24,8 +24,9 @@
 #include <cstdint>
 #include <limits>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This is a 'bitvector' (really, a variable-sized bit array), optimized for
 /// the case when the array is small. It contains one pointer-sized field, which
@@ -752,7 +753,7 @@ template <> struct DenseMapInfo<SmallBitVector> {
     return LHS == RHS;
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace std {
 

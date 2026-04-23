@@ -14,8 +14,9 @@
 #include "llvm/Support/Error.h"
 
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A wrapper class for fallible iterators.
 ///
@@ -235,6 +236,6 @@ make_fallible_range(Underlying I, Underlying E, Error &Err) {
                     make_fallible_end(std::move(E)));
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_FALLIBLE_ITERATOR_H

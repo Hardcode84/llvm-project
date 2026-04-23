@@ -17,8 +17,9 @@
 #include "llvm/ADT/ADL.h"
 #include "llvm/ADT/STLForwardCompat.h"
 #include "llvm/ADT/StringMap.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// StringSet - A wrapper for StringMap that provides set-like functionality.
 template <class AllocatorTy = MallocAllocator>
@@ -62,6 +63,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_STRINGSET_H

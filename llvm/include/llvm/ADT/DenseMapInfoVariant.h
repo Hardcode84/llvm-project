@@ -17,8 +17,9 @@
 #include "llvm/ADT/DenseMapInfo.h"
 #include <utility>
 #include <variant>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Provide DenseMapInfo for variants whose all alternatives have DenseMapInfo.
 template <typename... Ts> struct DenseMapInfo<std::variant<Ts...>> {
@@ -66,6 +67,6 @@ template <typename... Ts> struct DenseMapInfo<std::variant<Ts...>> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_DENSEMAPINFOVARIANT_H

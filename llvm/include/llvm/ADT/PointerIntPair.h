@@ -22,7 +22,7 @@
 #include <cstring>
 #include <limits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace detail {
 template <typename Ptr> struct PunnedPointer {
@@ -273,7 +273,7 @@ get(const PointerIntPair<PointerTy, IntBits, IntType, PtrTraits, Info> &Pair) {
     return Pair.getInt();
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace std {
 template <typename PointerTy, unsigned IntBits, typename IntType,

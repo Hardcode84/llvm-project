@@ -88,8 +88,9 @@
 
 #include "llvm/ADT/STLForwardCompat.h" // llvm::to_underlying
 #include "llvm/Support/MathExtras.h" // AddOverflow / SubOverflow
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Enum traits that marks enums as safe or unsafe to iterate over.
 // By default, enum types are *not* considered safe for iteration.
@@ -381,6 +382,6 @@ auto enum_seq_inclusive(EnumT Begin, EnumT End,
   return iota_range<EnumT>(Begin, End, true);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_SEQUENCE_H

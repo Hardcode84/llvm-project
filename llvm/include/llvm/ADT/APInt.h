@@ -24,7 +24,7 @@
 #include <optional>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class FoldingSetNodeID;
 class StringRef;
 class hash_code;
@@ -2526,6 +2526,6 @@ template <> struct DenseMapInfo<APInt, void> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

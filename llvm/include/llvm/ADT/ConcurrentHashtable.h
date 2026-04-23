@@ -24,8 +24,9 @@
 #include <iomanip>
 #include <mutex>
 #include <sstream>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// ConcurrentHashTable - is a resizeable concurrent hashtable.
 /// The number of resizings limited up to x2^31. This hashtable is
@@ -383,6 +384,6 @@ protected:
   AllocatorTy &MultiThreadAllocator;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_CONCURRENTHASHTABLE_H

@@ -18,8 +18,9 @@
 #define LLVM_ADT_GENERICSSACONTEXT_H
 
 #include "llvm/Support/Printable.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename, bool> class DominatorTreeBase;
 template <typename> class SmallVectorImpl;
@@ -107,6 +108,6 @@ public:
   Printable print(const InstructionT *inst) const;
   Printable print(ConstValueRefT value) const;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_GENERICSSACONTEXT_H

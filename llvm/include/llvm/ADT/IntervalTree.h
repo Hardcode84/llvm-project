@@ -23,6 +23,7 @@
 #include <algorithm>
 #include <cassert>
 #include <iterator>
+#include "llvm/Support/Compiler.h"
 
 // IntervalTree is a light tree data structure to hold intervals. It allows
 // finding all intervals that overlap with any given point. At this time,
@@ -186,7 +187,7 @@
 //   void print(raw_ostream &OS, bool HexFormat = true);
 // Display the associated data in hexadecimal format.
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 //---                          IntervalData                               ----//
@@ -686,6 +687,6 @@ public:
   find_iterator find_end() const { return End; }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_INTERVALTREE_H

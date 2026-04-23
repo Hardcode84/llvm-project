@@ -57,8 +57,9 @@
 #include <string>
 #include <tuple>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T, typename Enable> struct DenseMapInfo;
 
 /// An opaque object representing a hash code.
@@ -664,7 +665,7 @@ template <> struct DenseMapInfo<hash_code, void> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 /// Implement std::hash so that hash_code can be used in STL containers.
 namespace std {

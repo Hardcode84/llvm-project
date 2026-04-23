@@ -18,8 +18,9 @@
 #include "llvm/Support/Allocator.h"
 #include <cassert>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// A vector that allocates memory in pages.
 ///
 /// Order is kept, but memory is allocated only when one element of the page is
@@ -259,5 +260,5 @@ public:
     return {materialized_begin(), materialized_end()};
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_ADT_PAGEDVECTOR_H

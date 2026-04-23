@@ -24,8 +24,9 @@
 #include <cstddef>
 #include <cstdint>
 #include <iterator>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// EquivalenceClasses - This represents a collection of equivalence classes and
 /// supports three efficient operations: insert an element into a class of its
@@ -392,6 +393,6 @@ public:
   };
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_EQUIVALENCECLASSES_H

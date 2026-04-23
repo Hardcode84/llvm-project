@@ -29,7 +29,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cassert>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A vector that has set insertion semantics.
 ///
@@ -341,7 +341,7 @@ public:
   using SetVector<T, SmallVector<T, N>, DenseSet<T>, N>::SetVector;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace std {
 

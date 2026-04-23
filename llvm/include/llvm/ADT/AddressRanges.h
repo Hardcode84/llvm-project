@@ -14,8 +14,9 @@
 #include <cassert>
 #include <optional>
 #include <stdint.h>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A class that represents an address range. The range is specified using
 /// a start and an end address: [Start, End).
@@ -206,6 +207,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_ADDRESSRANGES_H

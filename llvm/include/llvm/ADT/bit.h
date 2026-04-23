@@ -66,7 +66,7 @@ unsigned char _BitScanReverse64(unsigned long *_Index, unsigned __int64 _Mask);
 }
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 enum class endianness {
   big,
@@ -408,6 +408,6 @@ template <typename T, typename = std::enable_if_t<std::is_unsigned_v<T>>>
   return (V >> R) | (V << (N - R));
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

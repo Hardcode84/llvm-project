@@ -28,8 +28,9 @@
 #include <cstdlib>
 #include <limits>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// SparseSetValTraits - Objects in a SparseSet are identified by keys that can
 /// be uniquely converted to a small integer less than the set's universe. This
@@ -312,6 +313,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_SPARSESET_H

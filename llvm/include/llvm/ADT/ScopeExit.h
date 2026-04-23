@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename Callable> class [[nodiscard]] scope_exit {
   Callable ExitFunction;
@@ -59,6 +59,6 @@ LLVM_DEPRECATED("Prefer calling the constructor of llvm::scope_exit directly.",
   return scope_exit(std::forward<Callable>(F));
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -19,8 +19,9 @@
 #include <cstring>
 #include <initializer_list>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A switch()-like statement whose cases are string literals.
 ///
@@ -175,6 +176,6 @@ private:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_STRINGSWITCH_H

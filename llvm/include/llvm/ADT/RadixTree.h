@@ -23,8 +23,9 @@
 #include <optional>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// \brief A Radix Tree implementation.
 ///
@@ -351,6 +352,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_RADIXTREE_H

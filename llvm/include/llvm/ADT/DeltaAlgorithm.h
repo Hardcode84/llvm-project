@@ -12,7 +12,7 @@
 #include <set>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// DeltaAlgorithm - Implements the delta debugging algorithm (A. Zeller '99)
 /// for minimizing arbitrary sets using a predicate function.
@@ -88,6 +88,6 @@ public:
   changeset_ty Run(const changeset_ty &Changes);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_DELTAALGORITHM_H

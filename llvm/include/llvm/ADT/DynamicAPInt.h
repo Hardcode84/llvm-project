@@ -22,7 +22,7 @@
 #include "llvm/Support/MathExtras.h"
 #include <numeric>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -651,6 +651,6 @@ LLVM_ATTRIBUTE_ALWAYS_INLINE bool operator>=(int64_t A, const DynamicAPInt &B) {
     return A >= B.getSmall();
   return A >= B.getLarge();
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_DYNAMICAPINT_H

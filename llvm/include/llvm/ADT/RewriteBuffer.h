@@ -18,7 +18,7 @@ namespace clang {
 class Rewriter;
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -115,6 +115,6 @@ private:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_REWRITEBUFFER_H

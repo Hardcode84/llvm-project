@@ -24,8 +24,9 @@
 #include <initializer_list>
 #include <set>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// SmallSetIterator - This class implements a const_iterator for SmallSet by
 /// delegating to the underlying SmallVector or Set iterators.
@@ -300,6 +301,6 @@ template <typename T, unsigned LN, unsigned RN, typename C>
   return !(LHS == RHS);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_SMALLSET_H

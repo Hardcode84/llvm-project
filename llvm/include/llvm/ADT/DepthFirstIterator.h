@@ -42,8 +42,9 @@
 #include <type_traits>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // df_iterator_storage - A private class which is used to figure out where to
 // store the visited set.
@@ -312,6 +313,6 @@ iterator_range<idf_ext_iterator<T, SetTy>> inverse_depth_first_ext(const T& G,
   return make_range(idf_ext_begin(G, S), idf_ext_end(G, S));
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_DEPTHFIRSTITERATOR_H

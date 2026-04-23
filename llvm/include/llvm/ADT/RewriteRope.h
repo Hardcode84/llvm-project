@@ -21,7 +21,7 @@
 #include <iterator>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===--------------------------------------------------------------------===//
 // RopeRefCountString Class
@@ -219,6 +219,6 @@ private:
   LLVM_ABI RopePiece MakeRopeString(const char *Start, const char *End);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_REWRITEROPE_H

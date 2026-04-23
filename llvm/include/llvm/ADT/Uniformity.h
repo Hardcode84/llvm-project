@@ -9,7 +9,9 @@
 #ifndef LLVM_ADT_UNIFORMITY_H
 #define LLVM_ADT_UNIFORMITY_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 /// Enum describing how values behave with respect to uniformity and
 /// divergence, to answer the question: if the same instruction is executed by
@@ -31,5 +33,5 @@ enum class ValueUniformity {
   Custom
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_ADT_UNIFORMITY_H

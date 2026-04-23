@@ -20,8 +20,9 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Represent an edge in the directed graph.
 /// The edge contains the target node it connects to.
@@ -253,6 +254,6 @@ protected:
   NodeListTy Nodes;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_DIRECTEDGRAPH_H

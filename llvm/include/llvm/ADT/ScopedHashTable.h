@@ -35,8 +35,9 @@
 #include "llvm/Support/AllocatorBase.h"
 #include <cassert>
 #include <new>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename K, typename V, typename KInfo = DenseMapInfo<K>,
           typename AllocatorTy = MallocAllocator>
@@ -257,6 +258,6 @@ ScopedHashTableScope<K, V, KInfo, Allocator>::~ScopedHashTableScope() {
   }
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_SCOPEDHASHTABLE_H

@@ -43,9 +43,10 @@
 
 #ifdef EXPENSIVE_CHECKS
 #include <random> // for std::mt19937
+#include "llvm/Support/Compiler.h"
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 //     Extra additions to <type_traits>
@@ -2703,7 +2704,7 @@ using has_equality_comparison =
 template <typename T, typename U = T>
 constexpr bool has_equality_comparison_v =
     is_detected<detail::has_equality_comparison, T, U>::value;
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace std {
 template <typename... Refs>

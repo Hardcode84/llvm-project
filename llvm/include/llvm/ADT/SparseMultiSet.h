@@ -30,8 +30,9 @@
 #include <iterator>
 #include <limits>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Fast multiset implementation for objects that can be identified by small
 /// unsigned keys.
@@ -506,6 +507,6 @@ private:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_SPARSEMULTISET_H

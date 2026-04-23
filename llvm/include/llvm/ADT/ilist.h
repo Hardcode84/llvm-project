@@ -28,8 +28,9 @@
 #include <cassert>
 #include <cstddef>
 #include <iterator>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Use delete by default for iplist and ilist.
 ///
@@ -343,7 +344,7 @@ public:
 
 template <class T, class... Options> using ilist = iplist<T, Options...>;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace std {
 

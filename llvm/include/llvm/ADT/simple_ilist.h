@@ -21,7 +21,7 @@
 #include <iterator>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A simple intrusive list implementation.
 ///
@@ -308,6 +308,6 @@ void simple_ilist<T, Options...>::sort(Compare comp) {
   merge(RHS, comp);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_SIMPLE_ILIST_H

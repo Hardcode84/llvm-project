@@ -20,8 +20,9 @@
 
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/xxhash.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// An opaque object representing a stable hash code. It can be serialized,
 /// deserialized, and is stable across processes and executions.
@@ -72,6 +73,6 @@ inline stable_hash stable_hash_name(StringRef Name) {
   return xxh3_64bits(get_stable_name(Name));
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

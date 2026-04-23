@@ -32,7 +32,7 @@
     llvm_unreachable("Unexpected semantics");                                  \
   } while (false)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct fltSemantics;
 class APSInt;
@@ -1758,7 +1758,7 @@ inline DoubleAPFloat::~DoubleAPFloat() { delete[] Floats; }
 
 } // namespace detail
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #undef APFLOAT_DISPATCH_ON_SEMANTICS
 #endif // LLVM_ADT_APFLOAT_H

@@ -16,8 +16,9 @@
 
 #include <algorithm>
 #include <queue>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// PriorityQueue - This class behaves like std::priority_queue and
 /// provides a few additional convenience functions.
@@ -78,6 +79,6 @@ public:
   }
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

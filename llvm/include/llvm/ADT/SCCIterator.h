@@ -34,8 +34,9 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Enumerate the SCCs of a directed graph in reverse topological order
 /// of the SCC DAG.
@@ -377,6 +378,6 @@ scc_member_iterator<GraphT, GT>::scc_member_iterator(
   assert(InputNodes.size() == Nodes.size() && "missing nodes in MST");
   std::reverse(Nodes.begin(), Nodes.end());
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_SCCITERATOR_H

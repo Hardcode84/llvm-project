@@ -11,8 +11,9 @@
 
 #include "llvm/ADT/ArrayRef.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// The utility class that helps computing the index of the object inside trie
 /// from its hash. The generator can be configured with the number of bits
@@ -117,6 +118,6 @@ struct TrieHashIndexGenerator {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_TRIEHASHINDEXGENERATOR_H

@@ -31,7 +31,7 @@
 #include <new>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // Immutable AVL-Tree Definition.
@@ -1188,6 +1188,6 @@ public:
   void validateTree() const { if (Root) Root->validateTree(); }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_IMMUTABLESET_H

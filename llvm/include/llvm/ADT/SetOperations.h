@@ -16,8 +16,9 @@
 #define LLVM_ADT_SETOPERATIONS_H
 
 #include "llvm/ADT/STLExtras.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace detail {
 template <typename Set, typename Fn>
@@ -177,6 +178,6 @@ bool set_intersects(const S1Ty &S1, const S2Ty &S2) {
   return detail::set_intersects_impl(S2, S1);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

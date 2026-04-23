@@ -23,7 +23,7 @@
 #include <memory>
 #include <type_traits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LLVM_ABI Any {
 
@@ -163,6 +163,6 @@ template <class T> T *any_cast(Any *Value) {
   return &static_cast<Any::StorageImpl<U> &>(*Value->Storage).Value;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_ANY_H

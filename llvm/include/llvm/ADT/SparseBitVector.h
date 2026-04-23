@@ -23,8 +23,9 @@
 #include <cstring>
 #include <iterator>
 #include <list>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// SparseBitVector is an implementation of a bitvector that is sparse by only
 /// storing the elements that have non-zero bits set.  In order to make this
@@ -885,6 +886,6 @@ void dump(const SparseBitVector<ElementSize> &LHS, raw_ostream &out) {
   out << "]\n";
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_SPARSEBITVECTOR_H

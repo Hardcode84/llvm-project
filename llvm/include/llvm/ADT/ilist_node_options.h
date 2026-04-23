@@ -12,8 +12,9 @@
 #include "llvm/Config/abi-breaking.h"
 
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <bool EnableSentinelTracking, class ParentTy> class ilist_node_base;
 template <bool EnableSentinelTracking, class ParentTy> class ilist_base;
@@ -180,6 +181,6 @@ template <class T, class... Options> struct compute_node_options {
 };
 
 } // end namespace ilist_detail
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_ILIST_NODE_OPTIONS_H

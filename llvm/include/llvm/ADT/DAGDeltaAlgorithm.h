@@ -13,7 +13,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// DAGDeltaAlgorithm - Implements a "delta debugging" algorithm for minimizing
 /// directed acyclic graphs using a predicate function.
@@ -74,6 +74,6 @@ public:
   virtual bool ExecuteOneTest(const changeset_ty &S) = 0;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_DAGDELTAALGORITHM_H

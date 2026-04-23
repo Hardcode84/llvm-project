@@ -14,8 +14,9 @@
 #include <cassert>
 #include <iterator>
 #include <limits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A table of densely packed, null-terminated strings indexed by offset.
 ///
@@ -144,6 +145,6 @@ public:
   constexpr Iterator end() const { return Iterator(*this, size() - 1); }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_STRING_TABLE_H

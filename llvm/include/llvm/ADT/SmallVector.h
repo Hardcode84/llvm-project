@@ -32,7 +32,7 @@
 #include <type_traits>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> class ArrayRef;
 
@@ -1365,7 +1365,7 @@ template <typename T, unsigned N> struct DenseMapInfo<llvm::SmallVector<T, N>> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace std {
 

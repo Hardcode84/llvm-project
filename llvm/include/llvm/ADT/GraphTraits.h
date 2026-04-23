@@ -21,8 +21,9 @@
 
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/iterator_range.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // GraphTraits - This class should be specialized by different graph types...
 // which is why the default version is empty.
@@ -165,6 +166,6 @@ children_edges(const typename GraphTraits<GraphType>::NodeRef &G) {
                     GraphTraits<GraphType>::child_edge_end(G));
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_GRAPHTRAITS_H

@@ -19,8 +19,9 @@
 #include "llvm/Config/abi-breaking.h"
 
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 #if LLVM_ENABLE_ABI_BREAKING_CHECKS
 #define LLVM_DEBUGEPOCHBASE_HANDLEBASE_EMPTYBASE
@@ -100,6 +101,6 @@ public:
 
 #endif // LLVM_ENABLE_ABI_BREAKING_CHECKS
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

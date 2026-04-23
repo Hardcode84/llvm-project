@@ -23,8 +23,9 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/SmallVector.h"
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace detail {
 template <class Ty> struct IdentityIndex {
@@ -79,6 +80,6 @@ public:
   typename StorageT::size_type size() const { return Storage.size(); }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_INDEXEDMAP_H

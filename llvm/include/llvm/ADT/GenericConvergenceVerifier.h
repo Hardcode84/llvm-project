@@ -17,8 +17,9 @@
 #define LLVM_ADT_GENERICCONVERGENCEVERIFIER_H
 
 #include "llvm/ADT/GenericCycleInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename ContextT> class GenericConvergenceVerifier {
 public:
@@ -79,6 +80,6 @@ private:
   void reportFailure(const Twine &Message, ArrayRef<Printable> Values);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_GENERICCONVERGENCEVERIFIER_H

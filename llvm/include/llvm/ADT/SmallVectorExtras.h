@@ -16,8 +16,9 @@
 
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/SmallVector.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Filter a range to a SmallVector with the element types deduced.
 template <unsigned Size, class ContainerTy, class PredicateFn>
@@ -49,6 +50,6 @@ auto map_to_vector(ContainerTy &&C, FuncTy &&F) {
       map_range(std::forward<ContainerTy>(C), std::forward<FuncTy>(F)));
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_SMALLVECTOREXTRAS_H

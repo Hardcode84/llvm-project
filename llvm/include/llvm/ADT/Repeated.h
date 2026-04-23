@@ -20,8 +20,9 @@
 #include <cassert>
 #include <cstddef>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A random-access iterator that always dereferences to the same value.
 template <typename T>
@@ -112,6 +113,6 @@ struct [[nodiscard]] alignas(std::max(size_t{16}, alignof(T))) Repeated {
 
 template <typename U> Repeated(size_t, U &&) -> Repeated<std::decay_t<U>>;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_REPEATED_H

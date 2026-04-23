@@ -14,8 +14,9 @@
 #include <iterator>
 #include <type_traits>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// CRTP base class which implements the entire standard iterator facade
 /// in terms of a minimal subset of the interface.
@@ -378,6 +379,6 @@ template <typename WrappedIteratorT,
 using raw_pointer_iterator =
     pointer_iterator<pointee_iterator<WrappedIteratorT, T1>, T2>;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_ITERATOR_H

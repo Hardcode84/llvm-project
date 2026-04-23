@@ -18,8 +18,9 @@
 #include <iterator>
 #include <type_traits>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A linked-list with a custom, local allocator.
 ///
@@ -227,6 +228,6 @@ public:
 
 template <class T> using BumpPtrList = AllocatorList<T, BumpPtrAllocator>;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_ALLOCATORLIST_H

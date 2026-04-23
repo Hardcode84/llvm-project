@@ -24,7 +24,7 @@
 #include <type_traits>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class APInt;
 class hash_code;
@@ -964,6 +964,6 @@ template <> struct DenseMapInfo<StringRef, void> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_STRINGREF_H

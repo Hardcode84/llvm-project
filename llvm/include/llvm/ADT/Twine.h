@@ -18,7 +18,7 @@
 #include <string>
 #include <string_view>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class formatv_object_base;
 class raw_ostream;
@@ -548,6 +548,6 @@ inline raw_ostream &operator<<(raw_ostream &OS, const Twine &RHS) {
 
 /// @}
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_TWINE_H

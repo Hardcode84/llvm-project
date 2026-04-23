@@ -22,7 +22,7 @@
 #include <type_traits>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   template<typename T> class [[nodiscard]] MutableArrayRef;
 
   /// ArrayRef - Represent a constant reference to an array (0 or more elements
@@ -591,6 +591,6 @@ namespace llvm {
     }
   };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_ARRAYREF_H

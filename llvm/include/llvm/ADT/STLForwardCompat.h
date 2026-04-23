@@ -24,7 +24,7 @@
 #include <type_traits>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 //     Features from C++20
@@ -338,6 +338,6 @@ bind_back(BindArgsT &&...BindArgs) { // NOLINT(readability-identifier-naming)
       detail::FnConstant<ConstFn>, std::index_sequence_for<BindArgsT...>>(
       detail::ConstantFnTag{}, std::forward<BindArgsT>(BindArgs)...);
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_STLFORWARDCOMPAT_H

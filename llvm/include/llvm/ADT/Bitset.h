@@ -20,8 +20,9 @@
 #include <array>
 #include <climits>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This is a constexpr reimplementation of a subset of std::bitset. It would be
 /// nice to use std::bitset directly, but it doesn't support constant
@@ -196,6 +197,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

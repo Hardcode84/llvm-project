@@ -32,8 +32,9 @@
 #include "llvm/ADT/SmallVector.h"
 #include <cassert>
 #include <cstring>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename choice_type, typename choices_storage_type,
           int variable_smallsize>
@@ -142,6 +143,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

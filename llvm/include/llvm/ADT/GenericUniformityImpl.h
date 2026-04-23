@@ -52,10 +52,11 @@
 #include "llvm/ADT/SparseBitVector.h"
 #include "llvm/ADT/StringExtras.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "uniformity"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Forward decl from llvm/CodeGen/MachineInstr.h
 class MachineInstr;
@@ -1440,7 +1441,7 @@ void llvm::ModifiedPostOrder<ContextT>::compute(const CycleInfoT &CI) {
   computeStackPO(Stack, CI, nullptr, Finalized);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #undef DEBUG_TYPE
 

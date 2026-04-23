@@ -41,7 +41,7 @@
 #define LLVM_ENABLE_STATS 0
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 class raw_fd_ostream;
@@ -222,6 +222,6 @@ LLVM_ABI std::vector<std::pair<StringRef, uint64_t>> GetStatistics();
 /// GetStatistics().
 LLVM_ABI void ResetStatistics();
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_STATISTIC_H

@@ -20,8 +20,9 @@
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/LogicalResult.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace detail {
 
 template <typename DerivedT, typename T> class TypeSwitchBase {
@@ -203,6 +204,6 @@ private:
   /// A flag detailing if we have already found a match.
   bool foundMatch = false;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_TYPESWITCH_H

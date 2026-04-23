@@ -23,8 +23,9 @@
 #include "llvm/Support/raw_ostream.h"
 
 #include <initializer_list>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A bitvector that, under the hood, relies on an IntervalMap to coalesce
 /// elements into intervals. Good for representing sets which predominantly
@@ -440,6 +441,6 @@ private:
   MapT Intervals;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_COALESCINGBITVECTOR_H

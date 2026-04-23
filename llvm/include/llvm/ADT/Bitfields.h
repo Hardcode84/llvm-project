@@ -87,8 +87,9 @@
 #include <type_traits>
 
 #include "llvm/Support/MathExtras.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace bitfields_details {
 
@@ -237,6 +238,6 @@ struct Bitfield {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_BITFIELDS_H

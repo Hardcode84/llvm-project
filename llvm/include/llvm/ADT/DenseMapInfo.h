@@ -22,8 +22,9 @@
 #include <tuple>
 #include <type_traits>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace densemap::detail {
 // A bit mixer with very low latency using one multiplications and one
@@ -259,6 +260,6 @@ template <typename T> struct DenseMapInfo<std::optional<T>> {
     return !LHS && !RHS;
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_DENSEMAPINFO_H

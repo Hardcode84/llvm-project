@@ -18,8 +18,9 @@
 
 #include "llvm/ADT/ArrayRef.h"
 #include <algorithm>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Determine the edit distance between two sequences.
 ///
@@ -111,6 +112,6 @@ unsigned ComputeEditDistance(ArrayRef<T> FromArray, ArrayRef<T> ToArray,
       AllowReplacements, MaxEditDistance);
 }
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

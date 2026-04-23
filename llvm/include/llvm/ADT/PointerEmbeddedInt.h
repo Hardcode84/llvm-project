@@ -16,8 +16,9 @@
 #include <climits>
 #include <cstdint>
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Utility to embed an integer into a pointer-like type. This is specifically
 /// intended to allow embedding integers where fewer bits are required than
@@ -111,6 +112,6 @@ struct DenseMapInfo<PointerEmbeddedInt<IntT, Bits>> {
   static bool isEqual(const T &LHS, const T &RHS) { return LHS == RHS; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_POINTEREMBEDDEDINT_H

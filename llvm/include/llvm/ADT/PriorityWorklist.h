@@ -25,7 +25,7 @@
 #include <type_traits>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A FILO worklist that prioritizes on re-insertion without duplication.
 ///
@@ -240,6 +240,6 @@ public:
   SmallPriorityWorklist() = default;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_PRIORITYWORKLIST_H

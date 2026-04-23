@@ -24,8 +24,9 @@
 #include <initializer_list>
 #include <iterator>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace detail {
 
@@ -295,6 +296,6 @@ public:
   using BaseT::BaseT;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_DENSESET_H
