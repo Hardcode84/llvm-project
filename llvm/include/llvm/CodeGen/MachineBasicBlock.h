@@ -32,7 +32,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 class MachineDomTreeUpdater;
@@ -1530,6 +1530,6 @@ inline auto instructionsWithoutDebug(IterT It, IterT End,
   });
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINEBASICBLOCK_H

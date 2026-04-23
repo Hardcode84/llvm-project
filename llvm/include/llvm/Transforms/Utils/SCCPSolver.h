@@ -22,7 +22,7 @@
 #include "llvm/Transforms/Utils/PredicateInfo.h"
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Argument;
 class BasicBlock;
 class CallInst;
@@ -219,6 +219,6 @@ public:
   // transition to ValueLatticeElement.
   LLVM_ABI static bool isOverdefined(const ValueLatticeElement &LV);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_SCCPSOLVER_H

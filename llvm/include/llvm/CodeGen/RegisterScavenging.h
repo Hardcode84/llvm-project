@@ -23,8 +23,9 @@
 #include "llvm/CodeGen/MachineBasicBlock.h"
 #include "llvm/CodeGen/MachineRegisterInfo.h"
 #include "llvm/MC/LaneBitmask.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineInstr;
 class TargetInstrInfo;
@@ -166,6 +167,6 @@ private:
 /// register scavenger to find an appropriate register to use.
 void scavengeFrameVirtualRegs(MachineFunction &MF, RegScavenger &RS);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_REGISTERSCAVENGING_H

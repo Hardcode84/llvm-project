@@ -26,7 +26,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/InstructionCost.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 LLVM_ABI extern cl::opt<unsigned> SCEVCheapExpansionBudget;
 
 /// struct for holding enough information to help calculate the cost of the
@@ -580,6 +580,6 @@ public:
 
   LLVM_ABI void cleanup();
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

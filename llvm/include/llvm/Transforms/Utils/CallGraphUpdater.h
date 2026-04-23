@@ -19,7 +19,7 @@
 #include "llvm/Analysis/LazyCallGraph.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CallGraph;
 class CallGraphSCC;
@@ -88,6 +88,6 @@ public:
   LLVM_ABI void replaceFunctionWith(Function &OldFn, Function &NewFn);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_CALLGRAPHUPDATER_H

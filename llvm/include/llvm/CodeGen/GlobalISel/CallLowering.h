@@ -30,7 +30,7 @@
 #include <cstdint>
 #include <functional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AttributeList;
 class CallBase;
@@ -640,6 +640,6 @@ extern template LLVM_ABI void
 CallLowering::setArgFlags<CallBase>(CallLowering::ArgInfo &Arg, unsigned OpIdx,
                                     const DataLayout &DL,
                                     const CallBase &FuncInfo) const;
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_GLOBALISEL_CALLLOWERING_H

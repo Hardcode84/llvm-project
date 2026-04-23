@@ -19,7 +19,7 @@
 #include "llvm/IR/ValueHandle.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AssumptionCache;
 class DemandedBits;
@@ -458,6 +458,6 @@ private:
   SmallVector<Instruction *, 2> RedundantCasts;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_IVDESCRIPTORS_H

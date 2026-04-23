@@ -14,8 +14,9 @@
 #include "llvm/ADT/MapVector.h"
 #include "llvm/IR/DataLayout.h"
 #include "llvm/IR/Type.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LLVMContext;
 class VPValue;
@@ -99,6 +100,6 @@ SmallVector<VPRegisterUsage, 8> calculateRegisterUsageForPlan(
     VPlan &Plan, ArrayRef<ElementCount> VFs, const TargetTransformInfo &TTI,
     const SmallPtrSetImpl<const Value *> &ValuesToIgnore);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_VPLANANALYSIS_H

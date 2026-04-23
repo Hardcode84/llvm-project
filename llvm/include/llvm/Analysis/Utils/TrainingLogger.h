@@ -65,7 +65,7 @@
 #include <optional>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Logging utility - given an ordered specification of features, and assuming
 /// a scalar reward, allow logging feature values and rewards.
@@ -141,5 +141,5 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_ANALYSIS_UTILS_TRAININGLOGGER_H

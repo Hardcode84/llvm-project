@@ -80,6 +80,7 @@
 
 #ifdef EXPENSIVE_CHECKS
 #include "llvm/IR/Verifier.h"
+#include "llvm/Support/Compiler.h"
 #endif
 
 using namespace llvm;
@@ -90,7 +91,7 @@ STATISTIC(NumTransforms, "Number of transformations done");
 STATISTIC(NumCloned, "Number of blocks cloned");
 STATISTIC(NumPaths, "Number of individual paths threaded");
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 static cl::opt<bool>
     ClViewCfgBefore("dfa-jump-view-cfg-before",
                     cl::desc("View the CFG before DFA Jump Threading"),
@@ -136,7 +137,7 @@ static cl::opt<unsigned>
 
 extern cl::opt<bool> ProfcheckDisableMetadataFixes;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 class SelectInstToUnfold {

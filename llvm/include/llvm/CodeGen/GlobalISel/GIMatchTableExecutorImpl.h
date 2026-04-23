@@ -35,8 +35,9 @@
 #include <cassert>
 #include <cstddef>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <class TgtExecutor, class PredicateBitset, class ComplexMatcherMemFn,
           class CustomRendererFn>
@@ -1581,6 +1582,6 @@ bool GIMatchTableExecutor::executeMatchTable(
   }
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_GLOBALISEL_GIMATCHTABLEEXECUTORIMPL_H

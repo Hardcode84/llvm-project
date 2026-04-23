@@ -20,8 +20,9 @@
 #include "llvm/Analysis/CGSCCPassManager.h"
 #include "llvm/Analysis/LazyCallGraph.h"
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct CoroAnnotationElidePass : PassInfoMixin<CoroAnnotationElidePass> {
   CoroAnnotationElidePass() = default;
@@ -31,6 +32,6 @@ struct CoroAnnotationElidePass : PassInfoMixin<CoroAnnotationElidePass> {
 
   static bool isRequired() { return false; }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_COROUTINES_COROANNOTATIONELIDE_H

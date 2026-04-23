@@ -19,10 +19,11 @@
 #include <iomanip>
 #include <sstream>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 cl::opt<InlinerFunctionImportStatsOpts> InlinerFunctionImportStats(
     "inliner-function-import-stats",
     cl::init(InlinerFunctionImportStatsOpts::No),
@@ -31,7 +32,7 @@ cl::opt<InlinerFunctionImportStatsOpts> InlinerFunctionImportStats(
                clEnumValN(InlinerFunctionImportStatsOpts::Verbose, "verbose",
                           "printing of statistics for each inlined function")),
     cl::Hidden, cl::desc("Enable inliner stats for imported functions"));
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 ImportedFunctionsInliningStatistics::InlineGraphNode &
 ImportedFunctionsInliningStatistics::createInlineGraphNode(const Function &F) {

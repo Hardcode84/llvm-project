@@ -15,7 +15,9 @@
 #ifndef LLVM_CODEGEN_INTRINSICLOWERING_H
 #define LLVM_CODEGEN_INTRINSICLOWERING_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class CallInst;
 class DataLayout;
 
@@ -41,6 +43,6 @@ public:
   /// false if the call is not a simple integer bswap.
   static bool LowerToByteSwap(CallInst *CI);
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

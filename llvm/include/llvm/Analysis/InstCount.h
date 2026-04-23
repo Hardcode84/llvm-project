@@ -14,8 +14,9 @@
 #define LLVM_ANALYSIS_INSTCOUNT_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 
@@ -31,6 +32,6 @@ public:
   static bool isRequired() { return true; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_INSTCOUNT_H

@@ -29,7 +29,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cstddef>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Argument;
 class BasicBlock;
@@ -126,6 +126,6 @@ class SymbolTableList : public iplist_impl<simple_ilist<T, Args...>,
                                            SymbolTableListTraits<T, Args...>> {
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_SYMBOLTABLELISTTRAITS_H

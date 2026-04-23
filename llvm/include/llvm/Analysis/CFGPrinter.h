@@ -34,7 +34,7 @@
 #include <functional>
 #include <sstream>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class ModuleSlotTracker;
 
 template <class GraphType> struct GraphTraits;
@@ -347,6 +347,6 @@ struct DOTGraphTraits<DOTFuncInfo *> : public DefaultDOTGraphTraits {
                              const DOTFuncInfo *CFGInfo);
   LLVM_ABI void computeDeoptOrUnreachablePaths(const Function *F);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

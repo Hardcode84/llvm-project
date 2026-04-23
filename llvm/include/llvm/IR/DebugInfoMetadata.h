@@ -60,7 +60,7 @@
   }                                                                            \
   DEFINE_MDNODE_GET_DISTINCT_TEMPORARY(CLASS, FORMAL, ARGS)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace dwarf {
 enum Tag : uint16_t;
@@ -4784,7 +4784,7 @@ public:
 template <>
 struct DenseMapInfo<DebugVariableAggregate>
     : public DenseMapInfo<DebugVariable> {};
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #undef DEFINE_MDNODE_GET_UNPACK_IMPL
 #undef DEFINE_MDNODE_GET_UNPACK

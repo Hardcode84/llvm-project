@@ -18,7 +18,7 @@
 #include "llvm/CodeGen/MachineFunction.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MachineInstr;
 class MachineRegisterInfo;
 
@@ -156,5 +156,5 @@ private:
   GISelChangeObserver &TemporaryObserver;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

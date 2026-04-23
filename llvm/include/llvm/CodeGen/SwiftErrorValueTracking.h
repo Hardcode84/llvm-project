@@ -21,9 +21,10 @@
 #include "llvm/IR/BasicBlock.h"
 #include "llvm/IR/DebugLoc.h"
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class Function;
   class MachineBasicBlock;
   class MachineFunction;
@@ -103,6 +104,6 @@ public:
                       BasicBlock::const_iterator End);
 };
 
-}
+LLVM_NAMESPACE_END
 
 #endif

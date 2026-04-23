@@ -40,7 +40,7 @@
 #include "llvm/PassRegistry.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineBasicBlock;
 class MachineRegisterInfo;
@@ -340,6 +340,6 @@ public:
   LiveVariables &getLV() { return LV; }
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

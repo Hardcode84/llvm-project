@@ -34,7 +34,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AddrLabelMap;
 class AsmPrinterHandler;
@@ -1020,6 +1020,6 @@ void setupMachineFunctionAsmPrinter(MachineFunctionAnalysisManager &MFAM,
                                     MachineFunction &MF,
                                     AsmPrinter &AsmPrinter);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_ASMPRINTER_H

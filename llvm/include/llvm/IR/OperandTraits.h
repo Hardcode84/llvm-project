@@ -15,8 +15,9 @@
 #define LLVM_IR_OPERANDTRAITS_H
 
 #include "llvm/IR/User.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 //                          FixedNumOperand Trait Class
@@ -155,6 +156,6 @@ template <int Idx_nocapture> const Use &CLASS::Op() const { \
 }
 
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

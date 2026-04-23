@@ -14,8 +14,9 @@
 #define LLVM_TRANSFORMS_SCALAR_LOOPSINK_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 
@@ -34,6 +35,6 @@ class LoopSinkPass : public PassInfoMixin<LoopSinkPass> {
 public:
   PreservedAnalyses run(Function &F, FunctionAnalysisManager &FAM);
 };
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_TRANSFORMS_SCALAR_LOOPSINK_H

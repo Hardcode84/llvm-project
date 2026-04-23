@@ -17,7 +17,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/DataTypes.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AsmPrinter;
 class MachineBasicBlock;
@@ -83,6 +83,6 @@ public:
   virtual void endFunclet() {}
 };
 
-} // End of namespace llvm
+LLVM_NAMESPACE_END // End of namespace llvm
 
 #endif

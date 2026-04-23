@@ -15,8 +15,10 @@
 #include "llvm/IR/IRBuilder.h"
 #include "llvm/Transforms/Coroutines/CoroInstr.h"
 #include "llvm/Transforms/Coroutines/CoroShape.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::coro {
+LLVM_NAMESPACE_BEGIN
+namespace coro {
 
 bool isSuspendBlock(BasicBlock *BB);
 bool declaresAnyIntrinsic(const Module &M);
@@ -57,6 +59,7 @@ void normalizeCoroutine(Function &F, coro::Shape &Shape,
 CallInst *createMustTailCall(DebugLoc Loc, Function *MustTailCallFn,
                              TargetTransformInfo &TTI,
                              ArrayRef<Value *> Arguments, IRBuilder<> &);
-} // End namespace llvm::coro
+}
+LLVM_NAMESPACE_END // End namespace llvm::coro
 
 #endif

@@ -26,7 +26,7 @@
 #include <optional>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AllocaInst;
 class AAResults;
@@ -385,6 +385,6 @@ public:
   LLVM_ABI SizeOffsetValue visitInstruction(Instruction &I);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_MEMORYBUILTINS_H

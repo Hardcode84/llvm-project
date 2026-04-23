@@ -16,8 +16,9 @@
 #include "llvm/MC/MCSymbol.h"
 #include "llvm/MC/MachineLocation.h"
 #include "llvm/Support/Debug.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AsmPrinter;
 
 /// This struct describes target specific location.
@@ -283,6 +284,6 @@ inline bool operator<(const DbgValueLoc &A,
          B.getExpression()->getFragmentInfo()->OffsetInBits;
 }
 
-}
+LLVM_NAMESPACE_END
 
 #endif

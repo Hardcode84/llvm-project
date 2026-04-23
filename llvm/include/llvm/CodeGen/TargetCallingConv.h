@@ -20,8 +20,9 @@
 #include <cassert>
 #include <climits>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace ISD {
 
   struct ArgFlagsTy {
@@ -269,6 +270,6 @@ namespace ISD {
   };
 
 } // end namespace ISD
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_TARGETCALLINGCONV_H

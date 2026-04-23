@@ -9,8 +9,9 @@
 #include "llvm/Analysis/ValueLattice.h"
 #include "llvm/Analysis/ConstantFolding.h"
 #include "llvm/IR/Instructions.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 Constant *
 ValueLatticeElement::getCompare(CmpInst::Predicate Pred, Type *Ty,
                                 const ValueLatticeElement &Other,
@@ -130,4 +131,4 @@ raw_ostream &operator<<(raw_ostream &OS, const ValueLatticeElement &Val) {
               << Val.getConstantRange().getUpper() << ">";
   return OS << "constant<" << *Val.getConstant() << ">";
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

@@ -9,8 +9,9 @@
 #define LLVM_CODEGEN_BRANCHFOLDINGPASS_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BranchFolderPass : public PassInfoMixin<BranchFolderPass> {
   bool EnableTailMerge;
@@ -25,6 +26,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_BRANCHFOLDINGPASS_H

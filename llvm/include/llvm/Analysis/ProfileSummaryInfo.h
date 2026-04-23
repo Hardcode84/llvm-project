@@ -25,7 +25,7 @@
 #include <memory>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BlockFrequencyInfo;
 class MachineFunction;
 
@@ -396,6 +396,6 @@ public:
   static bool isRequired() { return true; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

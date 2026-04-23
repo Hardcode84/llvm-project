@@ -13,8 +13,9 @@
 #define LLVM_IR_DBGVARIABLEFRAGMENTINFO_H
 
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct DbgVariableFragmentInfo {
   DbgVariableFragmentInfo() = default;
   DbgVariableFragmentInfo(uint64_t SizeInBits, uint64_t OffsetInBits)
@@ -40,6 +41,6 @@ struct DbgVariableFragmentInfo {
     return DbgVariableFragmentInfo(EndInBits - StartInBits, StartInBits);
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_DBGVARIABLEFRAGMENTINFO_H

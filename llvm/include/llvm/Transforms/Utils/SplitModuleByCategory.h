@@ -17,7 +17,7 @@
 #include <memory>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Module;
 class Function;
@@ -59,6 +59,6 @@ LLVM_ABI void splitModuleTransitiveFromEntryPoints(
     function_ref<std::optional<int>(const Function &F)> EntryPointCategorizer,
     function_ref<void(std::unique_ptr<Module> Part)> Callback);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORM_UTILS_SPLIT_MODULE_BY_CATEGORY_H

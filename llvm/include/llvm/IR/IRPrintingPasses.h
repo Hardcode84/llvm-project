@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 class StringRef;
 class FunctionPass;
@@ -45,6 +45,6 @@ LLVM_ABI void printLLVMNameWithoutPrefix(raw_ostream &OS, StringRef Name);
 /// Return true if a pass is for IR printing.
 LLVM_ABI bool isIRPrintingPass(Pass *P);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

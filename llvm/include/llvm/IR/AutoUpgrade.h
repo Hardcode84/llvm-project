@@ -17,7 +17,7 @@
 #include "llvm/Support/Compiler.h"
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class AttrBuilder;
   class CallBase;
   class Constant;
@@ -125,6 +125,6 @@ namespace llvm {
   LLVM_ABI void
   UpgradeOperandBundles(std::vector<OperandBundleDef> &OperandBundles);
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

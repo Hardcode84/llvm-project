@@ -17,8 +17,9 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/Support/BlockFrequency.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineBasicBlock;
 class MachineBlockFrequencyInfo;
@@ -41,6 +42,6 @@ private:
   DenseMap<const MachineBasicBlock *, BlockFrequency> MergedBBFreq;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MBFIWRAPPER_H

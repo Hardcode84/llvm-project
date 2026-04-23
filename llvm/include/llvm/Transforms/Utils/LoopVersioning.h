@@ -18,8 +18,9 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Transforms/Utils/LoopUtils.h"
 #include "llvm/Transforms/Utils/ValueMapper.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Loop;
 class SCEVPredicate;
@@ -156,6 +157,6 @@ class LoopVersioningPass : public PassInfoMixin<LoopVersioningPass> {
 public:
   PreservedAnalyses run(Function &F, FunctionAnalysisManager &FAM);
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

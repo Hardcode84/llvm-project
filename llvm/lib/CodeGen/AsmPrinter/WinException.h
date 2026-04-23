@@ -15,8 +15,9 @@
 
 #include "EHStreamer.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class GlobalValue;
 class MachineFunction;
 class MCExpr;
@@ -114,7 +115,7 @@ public:
   void beginFunclet(const MachineBasicBlock &MBB, MCSymbol *Sym) override;
   void endFunclet() override;
 };
-}
+LLVM_NAMESPACE_END
 
 #endif
 

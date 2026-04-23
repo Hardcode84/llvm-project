@@ -19,7 +19,7 @@
 
 #include "llvm/IR/PassManager.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BasicBlock;
 
 struct BlockExtractorPass : PassInfoMixin<BlockExtractorPass> {
@@ -32,6 +32,6 @@ private:
   std::vector<std::vector<BasicBlock *>> GroupsOfBlocks;
   bool EraseFunctions;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_IPO_BLOCKEXTRACTOR_H

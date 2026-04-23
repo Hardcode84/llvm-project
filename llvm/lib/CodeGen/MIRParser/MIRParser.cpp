@@ -39,10 +39,11 @@
 #include "llvm/Support/YAMLTraits.h"
 #include "llvm/Target/TargetMachine.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MDNode;
 class RegisterBank;
 
@@ -200,7 +201,7 @@ private:
                         MachineInstr const *&MI);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 static void handleYAMLDiag(const SMDiagnostic &Diag, void *Context) {
   reinterpret_cast<MIRParserImpl *>(Context)->reportDiagnostic(Diag);

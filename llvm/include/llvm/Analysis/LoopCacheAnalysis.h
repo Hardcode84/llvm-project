@@ -18,8 +18,9 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/InstructionCost.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AAResults;
 class DependenceInfo;
@@ -290,6 +291,6 @@ public:
   static bool isRequired() { return true; }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_LOOPCACHEANALYSIS_H

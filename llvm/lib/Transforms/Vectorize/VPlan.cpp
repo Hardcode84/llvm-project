@@ -48,13 +48,14 @@
 #include "llvm/Transforms/Vectorize/LoopVectorizationLegality.h"
 #include <cassert>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::VPlanPatternMatch;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> ProfcheckDisableMetadataFixes;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 /// @{
 /// Metadata attribute names

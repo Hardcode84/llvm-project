@@ -155,6 +155,7 @@
 #include <string>
 #include <tuple>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace SCEVPatternMatch;
@@ -477,7 +478,7 @@ class GeneratedRTChecks;
 using SCEV2ValueTy = DenseMap<const SCEV *, Value *>;
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 AnalysisKey ShouldRunExtraVectorPasses::Key;
 
@@ -680,7 +681,7 @@ protected:
   void printDebugTracesAtStart() override;
   void printDebugTracesAtEnd() override;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 /// Look for a meaningful debug location on the instruction or its operands.
 static DebugLoc getDebugLocFromInstOrOperands(Instruction *I) {
@@ -736,7 +737,7 @@ createLVAnalysis(const char *PassName, StringRef RemarkName,
   return OptimizationRemarkAnalysis(PassName, RemarkName, DL, CodeRegion);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Return the runtime value for VF.
 Value *getRuntimeVF(IRBuilderBase &B, Type *Ty, ElementCount VF) {
@@ -781,9 +782,9 @@ static void reportVectorization(OptimizationRemarkEmitter *ORE, Loop *TheLoop,
   });
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Loop vectorization cost-model hints how the epilogue/tail loop should be
 // lowered.
@@ -1529,7 +1530,7 @@ public:
   /// Values to ignore in the cost model when VF > 1.
   SmallPtrSet<const Value *, 16> VecValuesToIgnore;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace {
 /// Helper struct to manage generating runtime checks for vectorization.

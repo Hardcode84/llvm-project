@@ -14,8 +14,10 @@
 
 #include "llvm/SandboxIR/Pass.h"
 #include "llvm/SandboxIR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 /// This pass collects the instructions that can become vectorization "seeds",
 /// like stores to consecutive memory addresses. It then goes over the collected
@@ -40,6 +42,7 @@ public:
   }
 };
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_SANDBOXVECTORIZER_PASSES_SEEDCOLLECTION_H

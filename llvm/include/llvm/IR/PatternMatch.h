@@ -44,10 +44,11 @@
 #include "llvm/Support/Casting.h"
 #include "llvm/Support/PatternMatchHelpers.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm::PatternMatchHelpers;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace PatternMatch {
 
 template <typename Val, typename Pattern> bool match(Val *V, const Pattern &P) {
@@ -3381,6 +3382,6 @@ inline auto m_c_LogicalOp(const LHS &L, const RHS &R) {
 }
 
 } // end namespace PatternMatch
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_PATTERNMATCH_H

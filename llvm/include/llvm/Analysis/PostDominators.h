@@ -19,7 +19,7 @@
 #include "llvm/Pass.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class raw_ostream;
@@ -113,6 +113,6 @@ template <> struct GraphTraits<PostDominatorTree*>
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_POSTDOMINATORS_H

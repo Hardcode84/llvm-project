@@ -39,7 +39,7 @@
 #include <optional>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace Intrinsic {
 typedef unsigned ID;
@@ -2198,6 +2198,6 @@ public:
 LLVM_ABI ImmutablePass *
 createTargetTransformInfoWrapperPass(TargetIRAnalysis TIRA);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

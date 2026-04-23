@@ -18,8 +18,9 @@
 #include "Solution.h"
 #include <cassert>
 #include <limits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace PBQP {
 
   /// Reduce a node of degree one.
@@ -217,6 +218,6 @@ namespace PBQP {
   }
 
 } // end namespace PBQP
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_PBQP_REDUCTIONRULES_H

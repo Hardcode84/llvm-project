@@ -21,7 +21,7 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AssumeInst;
 class Function;
 class Instruction;
@@ -74,6 +74,6 @@ LLVM_ABI RetainedKnowledge simplifyRetainedKnowledge(AssumeInst *Assume,
                                                      AssumptionCache *AC,
                                                      DominatorTree *DT);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

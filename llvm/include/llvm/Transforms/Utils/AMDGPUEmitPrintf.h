@@ -17,11 +17,11 @@
 #include "llvm/IR/IRBuilder.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 LLVM_ABI Value *emitAMDGPUPrintfCall(IRBuilder<> &Builder,
                                      ArrayRef<Value *> Args, bool isBuffered);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_AMDGPUEMITPRINTF_H

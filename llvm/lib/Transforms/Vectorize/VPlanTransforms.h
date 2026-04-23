@@ -21,7 +21,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Regex.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class InductionDescriptor;
 class Instruction;
@@ -541,6 +541,6 @@ struct VPlanTransforms {
                                          VPRecipeBuilder &RecipeBuilder);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_VPLANTRANSFORMS_H

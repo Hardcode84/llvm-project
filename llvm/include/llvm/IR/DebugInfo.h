@@ -30,7 +30,7 @@
 #include "llvm/Support/Compiler.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DbgDeclareInst;
 class DbgValueInst;
@@ -336,6 +336,6 @@ public:
 /// Return true if assignment tracking is enabled for module \p M.
 LLVM_ABI bool isAssignmentTrackingEnabled(const Module &M);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_DEBUGINFO_H

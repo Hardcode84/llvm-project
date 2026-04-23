@@ -22,7 +22,7 @@
 #include "llvm/Support/Compiler.h"
 #include <unordered_map>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BasicBlock;
 class Function;
 class Instruction;
@@ -141,5 +141,5 @@ public:
   LLVM_ABI PreservedAnalyses run(Module &M, ModuleAnalysisManager &AM);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif // LLVM_TRANSFORMS_IPO_SAMPLEPROFILEPROBE_H

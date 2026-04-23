@@ -28,7 +28,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/DataTypes.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MDNode;
 class raw_ostream;
@@ -365,6 +365,6 @@ public:
   }
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

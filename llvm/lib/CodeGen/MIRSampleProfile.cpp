@@ -34,6 +34,7 @@
 #include "llvm/Transforms/Utils/SampleProfileLoaderBaseImpl.h"
 #include "llvm/Transforms/Utils/SampleProfileLoaderBaseUtil.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace sampleprof;
@@ -85,7 +86,7 @@ llvm::createMIRProfileLoaderPass(std::string File, std::string RemappingFile,
   return new MIRProfileLoaderPass(File, RemappingFile, P, std::move(FS));
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Internal option used to control BFI display only after MBP pass.
 // Defined in CodeGen/MachineBlockFrequencyInfo.cpp:
@@ -343,7 +344,7 @@ bool MIRProfileLoader::runOnFunction(MachineFunction &MF) {
   return Changed;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 MIRProfileLoaderPass::MIRProfileLoaderPass(
     std::string FileName, std::string RemappingFileName, FSDiscriminatorPass P,

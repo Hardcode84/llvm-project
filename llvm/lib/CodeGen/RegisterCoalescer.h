@@ -16,8 +16,9 @@
 
 #include "llvm/CodeGen/MachinePassManager.h"
 #include "llvm/CodeGen/Register.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineInstr;
 class TargetRegisterClass;
@@ -110,6 +111,6 @@ public:
   const TargetRegisterClass *getNewRC() const { return NewRC; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_CODEGEN_REGISTERCOALESCER_H

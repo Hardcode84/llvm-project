@@ -47,8 +47,9 @@
 #include "llvm/CodeGen/MachineScheduler.h"
 #include "llvm/CodeGen/ScheduleDAGInstrs.h"
 #include "llvm/CodeGen/TargetSubtargetInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 enum WindowSchedulingFlag {
   WS_Off,  /// Turn off window algorithm.
@@ -167,5 +168,5 @@ protected:
   /// Gets the register in phi which is generated from the current MBB.
   Register getAntiRegister(MachineInstr *Phi);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

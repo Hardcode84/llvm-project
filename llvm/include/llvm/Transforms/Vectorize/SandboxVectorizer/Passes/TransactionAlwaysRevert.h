@@ -15,8 +15,10 @@
 
 #include "llvm/SandboxIR/Pass.h"
 #include "llvm/SandboxIR/Region.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 class TransactionAlwaysRevert : public RegionPass {
 public:
@@ -29,6 +31,7 @@ public:
   }
 };
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_SANDBOXVECTORIZER_PASSES_TRANSACTIONALWAYSREVERT_H

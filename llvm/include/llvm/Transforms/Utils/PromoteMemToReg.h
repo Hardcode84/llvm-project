@@ -16,7 +16,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> class ArrayRef;
 class AllocaInst;
@@ -41,6 +41,6 @@ LLVM_ABI bool isAllocaPromotable(const AllocaInst *AI);
 LLVM_ABI void PromoteMemToReg(ArrayRef<AllocaInst *> Allocas, DominatorTree &DT,
                               AssumptionCache *AC = nullptr);
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

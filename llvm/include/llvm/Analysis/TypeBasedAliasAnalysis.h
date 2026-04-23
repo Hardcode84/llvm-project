@@ -21,7 +21,7 @@
 #include "llvm/Support/Compiler.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CallBase;
 class Function;
@@ -107,6 +107,6 @@ public:
 //
 LLVM_ABI ImmutablePass *createTypeBasedAAWrapperPass();
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_TYPEBASEDALIASANALYSIS_H

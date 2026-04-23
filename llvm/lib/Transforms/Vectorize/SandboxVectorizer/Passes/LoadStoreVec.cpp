@@ -12,8 +12,9 @@
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/Legality.h"
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/Scheduler.h"
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/VecUtils.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace sandboxir {
 
@@ -168,4 +169,4 @@ bool LoadStoreVec::runOnRegion(Region &Rgn, const Analyses &A) {
 
 } // namespace sandboxir
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

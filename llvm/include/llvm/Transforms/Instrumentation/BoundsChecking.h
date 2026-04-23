@@ -14,7 +14,7 @@
 #include "llvm/TargetParser/Triple.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Function;
 
 /// A pass to instrument code and perform run-time bounds checking on loads,
@@ -47,6 +47,6 @@ private:
   Options Opts;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_INSTRUMENTATION_BOUNDSCHECKING_H

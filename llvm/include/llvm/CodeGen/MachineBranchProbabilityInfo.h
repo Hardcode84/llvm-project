@@ -17,8 +17,9 @@
 #include "llvm/CodeGen/MachinePassManager.h"
 #include "llvm/Pass.h"
 #include "llvm/Support/BranchProbability.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineBranchProbabilityInfo {
   // Default weight value. Used when we don't have information about the edge.
@@ -92,7 +93,7 @@ public:
   MachineBranchProbabilityInfo &getMBPI() { return MBPI; }
   const MachineBranchProbabilityInfo &getMBPI() const { return MBPI; }
 };
-}
+LLVM_NAMESPACE_END
 
 
 #endif

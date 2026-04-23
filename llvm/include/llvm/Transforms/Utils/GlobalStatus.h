@@ -11,8 +11,9 @@
 
 #include "llvm/IR/Instructions.h"
 #include "llvm/Support/AtomicOrdering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Constant;
 class Function;
@@ -87,6 +88,6 @@ struct GlobalStatus {
   static bool analyzeGlobal(const Value *V, GlobalStatus &GS);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_GLOBALSTATUS_H

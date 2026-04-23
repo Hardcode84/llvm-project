@@ -26,12 +26,13 @@
 #include "llvm/Support/Path.h"
 #include <deque>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "ctx_prof"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 cl::opt<std::string>
     UseCtxProfile("use-ctx-profile", cl::init(""), cl::Hidden,
@@ -362,7 +363,7 @@ public:
   uint64_t getBBCount(const BasicBlock &BB) { return getBBInfo(BB).getCount(); }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 ProfileAnnotator::ProfileAnnotator(const Function &F,
                                    ArrayRef<uint64_t> RawCounters)

@@ -29,6 +29,7 @@
 #include "llvm/IR/Module.h"
 #include "llvm/IR/PassManager.h"
 #include "llvm/Pass.h"
+#include "llvm/Support/Compiler.h"
 
 enum class HashFunctionMode {
   Local,
@@ -36,7 +37,7 @@ enum class HashFunctionMode {
   UsingHashFunction,
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // A vector of locations (the pair of (instruction, operand) indices) reachable
 // from a parameter.
@@ -85,5 +86,5 @@ struct GlobalMergeFuncPass : public PassInfoMixin<GlobalMergeFuncPass> {
   PreservedAnalyses run(Module &M, AnalysisManager<Module> &);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif // LLVM_CODEGEN_GLOBALMERGEFUNCTIONS_H

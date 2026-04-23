@@ -56,8 +56,9 @@
 #include <map>
 #include <set>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Module;
 class raw_ostream;
@@ -460,6 +461,6 @@ public:
 /// Create a machine pass that prints MIR2Vec embeddings
 LLVM_ABI MachineFunctionPass *createMIR2VecPrinterLegacyPass(raw_ostream &OS);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_MIR2VEC_H

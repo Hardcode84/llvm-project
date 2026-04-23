@@ -17,8 +17,9 @@
 #include "llvm/IR/InstrTypes.h"
 #include "llvm/IR/PassManager.h"
 #include "llvm/Pass.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class AssumptionCache;
   class BasicBlock;
   class Constant;
@@ -178,7 +179,7 @@ private:
   LazyValueInfo Info;
 };
 
-}  // end namespace llvm
+LLVM_NAMESPACE_END  // end namespace llvm
 
 #endif
 

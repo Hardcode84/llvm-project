@@ -47,7 +47,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <class GraphType> struct GraphTraits;
 
@@ -2106,6 +2106,6 @@ struct GraphTraits<ModuleSummaryIndex *> : public GraphTraits<ValueInfo> {
     return ValueInfo(I->haveGVs(), &P);
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_MODULESUMMARYINDEX_H

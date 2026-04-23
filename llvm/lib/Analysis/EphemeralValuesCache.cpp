@@ -9,8 +9,9 @@
 #include "llvm/Analysis/EphemeralValuesCache.h"
 #include "llvm/Analysis/AssumptionCache.h"
 #include "llvm/Analysis/CodeMetrics.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 void EphemeralValuesCache::collectEphemeralValues() {
   CodeMetrics::collectEphemeralValues(&F, &AC, EphValues);
@@ -25,4 +26,4 @@ EphemeralValuesAnalysis::run(Function &F, FunctionAnalysisManager &FAM) {
   return EphemeralValuesCache(F, AC);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

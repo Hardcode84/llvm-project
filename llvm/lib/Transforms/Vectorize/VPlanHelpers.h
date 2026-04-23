@@ -25,8 +25,9 @@
 #include "llvm/IR/DebugLoc.h"
 #include "llvm/IR/ModuleSlotTracker.h"
 #include "llvm/Support/InstructionCost.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AssumptionCache;
 class BasicBlock;
@@ -494,6 +495,6 @@ public:
 /// from a narrower type with the given extension kind.
 bool canConstantBeExtended(const APInt *C, Type *NarrowType,
                            TTI::PartialReductionExtendKind ExtKind);
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_VPLAN_H

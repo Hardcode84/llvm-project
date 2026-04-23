@@ -18,8 +18,9 @@
 #include "llvm/ADT/GraphTraits.h"
 #include "llvm/ADT/PostOrderIterator.h"
 #include "llvm/ADT/SmallVector.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // GraphTraits specializations for VPlan Hierarchical Control-Flow Graphs     //
@@ -341,6 +342,6 @@ template <> struct GraphTraits<VPlan *> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_VPLANCFG_H

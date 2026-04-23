@@ -39,7 +39,7 @@
 #include <type_traits>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 enum class CaptureComponents : uint8_t;
 class Module;
@@ -1864,6 +1864,6 @@ public:
 // Create wrappers for C Binding types (see CBindingWrapping.h).
 DEFINE_ISA_CONVERSION_FUNCTIONS(NamedMDNode, LLVMNamedMDNodeRef)
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_METADATA_H

@@ -18,8 +18,9 @@
 #include "llvm/IR/Function.h"
 #include "llvm/IR/InstrTypes.h"
 #include "llvm/IR/LLVMContext.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcarc {
 
 inline const char *getRVMarkerModuleFlagStr() {
@@ -82,6 +83,6 @@ inline ARCInstKind getAttachedARCFunctionKind(const CallBase *CB) {
 }
 
 } // end namespace objcarc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

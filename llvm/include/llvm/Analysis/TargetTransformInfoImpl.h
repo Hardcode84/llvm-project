@@ -25,8 +25,9 @@
 #include "llvm/IR/PatternMatch.h"
 #include <optional>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 
@@ -1765,6 +1766,6 @@ public:
     return static_cast<const T *>(this)->supportsTailCalls();
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

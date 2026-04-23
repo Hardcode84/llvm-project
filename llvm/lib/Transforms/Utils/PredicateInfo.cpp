@@ -26,6 +26,7 @@
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/DebugCounter.h"
 #include "llvm/Support/FormattedStream.h"
+#include "llvm/Support/Compiler.h"
 #define DEBUG_TYPE "predicateinfo"
 using namespace llvm;
 using namespace PatternMatch;
@@ -68,7 +69,7 @@ std::pair<BasicBlock *, BasicBlock *> getBlockEdge(const PredicateBase *PB) {
 }
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 enum LocalNum {
   // Operations that must appear first in the block.
   LN_First,
@@ -876,4 +877,4 @@ PreservedAnalyses PredicateInfoVerifierPass::run(Function &F,
 
   return PreservedAnalyses::all();
 }
-}
+LLVM_NAMESPACE_END

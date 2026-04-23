@@ -10,8 +10,9 @@
 #define LLVM_CODEGEN_FINALIZEISEL_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class FinalizeISelPass : public PassInfoMixin<FinalizeISelPass> {
 public:
@@ -19,6 +20,6 @@ public:
   static bool isRequired() { return true; }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_FINALIZEISEL_H

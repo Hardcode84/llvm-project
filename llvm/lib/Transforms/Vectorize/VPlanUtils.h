@@ -13,14 +13,14 @@
 #include "VPlanPatternMatch.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MemoryLocation;
 class ScalarEvolution;
 class SCEV;
 class PredicatedScalarEvolution;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace vputils {
 /// Returns true if only the first lane of \p Def is used.
@@ -316,6 +316,6 @@ public:
   static bool isLatch(const VPBlockBase *VPB, const VPDominatorTree &VPDT);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

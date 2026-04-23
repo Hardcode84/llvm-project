@@ -16,7 +16,8 @@
 
 #include "llvm/CodeGen/MachineBasicBlock.h"
 #include <cassert>
-namespace llvm {
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 enum FPClassTest : unsigned;
@@ -233,6 +234,6 @@ void salvageDebugInfoForDbgValue(const MachineRegisterInfo &MRI,
                                  MachineInstr &MI,
                                  ArrayRef<MachineOperand *> DbgUsers);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_CODEGENCOMMONISEL_H

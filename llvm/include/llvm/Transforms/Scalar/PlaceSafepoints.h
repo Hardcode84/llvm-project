@@ -51,8 +51,9 @@
 #define LLVM_TRANSFORMS_SCALAR_PLACESAFEPOINTS_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class TargetLibraryInfo;
 
@@ -66,6 +67,6 @@ public:
 
 private:
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_SCALAR_PLACESAFEPOINTS_H

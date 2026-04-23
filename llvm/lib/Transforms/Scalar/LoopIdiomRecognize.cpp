@@ -91,6 +91,7 @@
 #include <cassert>
 #include <cstdint>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace SCEVPatternMatch;
@@ -107,7 +108,7 @@ STATISTIC(
 STATISTIC(NumShiftUntilZero,
           "Number of uncountable loops recognized as 'shift until zero' idiom");
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 bool DisableLIRP::All;
 static cl::opt<bool, true>
     DisableLIRPAll("disable-" DEBUG_TYPE "-all",
@@ -168,7 +169,7 @@ static cl::opt<bool> ForceMemsetPatternIntrinsic(
 
 extern cl::opt<bool> ProfcheckDisableMetadataFixes;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 

@@ -144,9 +144,9 @@ static cl::opt<unsigned>
 MaxArraySize("instcombine-maxarray-size", cl::init(1024),
              cl::desc("Maximum array size considered when doing a combine"));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> ProfcheckDisableMetadataFixes;
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 // FIXME: Remove this flag when it is no longer necessary to convert
 // llvm.dbg.declare to avoid inaccurate debug info. Setting this to false

@@ -21,8 +21,9 @@
 #include "llvm/Support/DataTypes.h"
 #include <optional>
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Represents known origin of an individual byte in combine pattern. The
 /// value of the byte is either constant zero, or comes from memory /
@@ -78,6 +79,6 @@ public:
            Other.SrcOffset == SrcOffset;
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_BYTEPROVIDER_H

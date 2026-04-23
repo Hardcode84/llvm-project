@@ -20,14 +20,15 @@
 #include "llvm/Transforms/Utils/LoopUtils.h"
 #include <limits>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "lower-mem-intrinsics"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> ProfcheckDisableMetadataFixes;
-}
+LLVM_NAMESPACE_END
 
 /// \returns \p Len urem \p OpSize, checking for optimization opportunities.
 /// \p OpSizeVal must be the integer value of the \c ConstantInt \p OpSize.

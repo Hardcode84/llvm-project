@@ -22,12 +22,13 @@
 #include "llvm/IR/MDBuilder.h"
 #include "llvm/IR/Metadata.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> ProfcheckDisableMetadataFixes;
-}
+LLVM_NAMESPACE_END
 
 // MD_prof nodes have the following layout
 //

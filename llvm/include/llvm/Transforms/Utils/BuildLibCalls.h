@@ -17,7 +17,7 @@
 #include "llvm/Analysis/TargetLibraryInfo.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class Value;
   class DataLayout;
   class IRBuilderBase;
@@ -305,6 +305,6 @@ namespace llvm {
   emitHotColdSizeReturningNewAligned(Value *Num, Value *Align, IRBuilderBase &B,
                                      const TargetLibraryInfo *TLI,
                                      LibFunc NewFunc, uint8_t HotCold);
-}
+LLVM_NAMESPACE_END
 
 #endif

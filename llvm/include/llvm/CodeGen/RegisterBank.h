@@ -16,7 +16,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Forward declarations.
 class RegisterBankInfo;
 class raw_ostream;
@@ -86,6 +86,6 @@ inline raw_ostream &operator<<(raw_ostream &OS, const RegisterBank &RegBank) {
   RegBank.print(OS);
   return OS;
 }
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.
 
 #endif

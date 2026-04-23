@@ -16,7 +16,7 @@
 #include "llvm/CodeGen/MachinePostDominators.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template class LLVM_EXPORT_TEMPLATE GenericDomTreeUpdater<
     MachineDomTreeUpdater, MachineDominatorTree, MachinePostDominatorTree>;
@@ -66,4 +66,4 @@ void MachineDomTreeUpdater::validateDeleteBB(MachineBasicBlock *DelBB) {
   assert(DelBB->pred_empty() && "DelBB has one or more predecessors.");
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

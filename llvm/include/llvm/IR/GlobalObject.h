@@ -20,7 +20,7 @@
 #include "llvm/Support/Alignment.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Comdat;
 class Metadata;
@@ -218,6 +218,6 @@ private:
   LLVM_ABI StringRef getSectionImpl() const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_GLOBALOBJECT_H

@@ -16,8 +16,9 @@
 #include "llvm/CodeGen/PBQP/Graph.h"
 #include <cassert>
 #include <map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace PBQP {
 
   /// Represents a solution to a PBQP problem.
@@ -50,6 +51,6 @@ namespace PBQP {
   };
 
 } // end namespace PBQP
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_PBQP_SOLUTION_H

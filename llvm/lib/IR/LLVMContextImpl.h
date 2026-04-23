@@ -49,8 +49,9 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AttributeImpl;
 class AttributeListImpl;
@@ -1874,6 +1875,6 @@ public:
   uint64_t NextAtomGroup = 1;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_IR_LLVMCONTEXTIMPL_H

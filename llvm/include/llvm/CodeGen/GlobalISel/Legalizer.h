@@ -27,7 +27,7 @@
 #include "llvm/CodeGen/MachineFunctionPass.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LegalizerInfo;
 class MachineIRBuilder;
@@ -77,6 +77,6 @@ public:
       LostDebugLocObserver &LocObserver, MachineIRBuilder &MIRBuilder,
       const LibcallLoweringInfo *Libcalls, GISelValueTracking *VT);
 };
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.
 
 #endif

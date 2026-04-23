@@ -24,7 +24,7 @@
 #include <cstdint>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class Instruction;
@@ -108,6 +108,6 @@ LLVM_ABI void setProfMetadata(Instruction *TI, ArrayRef<uint64_t> EdgeCounts,
 LLVM_ABI void setIrrLoopHeaderMetadata(Module *M, Instruction *TI,
                                        uint64_t Count);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_INSTRUMENTATION_PGOINSTRUMENTATION_H

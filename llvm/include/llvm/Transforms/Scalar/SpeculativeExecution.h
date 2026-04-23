@@ -63,8 +63,9 @@
 #define LLVM_TRANSFORMS_SCALAR_SPECULATIVEEXECUTION_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BasicBlock;
 class TargetTransformInfo;
 
@@ -91,6 +92,6 @@ private:
 
   TargetTransformInfo *TTI = nullptr;
 };
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_TRANSFORMS_SCALAR_SPECULATIVEEXECUTION_H

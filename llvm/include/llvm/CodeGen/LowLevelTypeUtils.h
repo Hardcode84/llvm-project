@@ -20,7 +20,7 @@
 #include "llvm/CodeGenTypes/LowLevelType.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DataLayout;
 class Type;
@@ -41,6 +41,6 @@ LLVM_ABI LLT getLLTForMVT(MVT Ty);
 /// Get the appropriate floating point arithmetic semantic based on the bit size
 /// of the given scalar LLT.
 LLVM_ABI const llvm::fltSemantics &getFltSemanticForLLT(LLT Ty);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_LOWLEVELTYPEUTILS_H

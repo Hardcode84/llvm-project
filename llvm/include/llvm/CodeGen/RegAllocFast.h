@@ -11,8 +11,9 @@
 
 #include "llvm/CodeGen/MachinePassManager.h"
 #include "llvm/CodeGen/RegAllocCommon.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class RegAllocFastPass : public PassInfoMixin<RegAllocFastPass> {
 public:
@@ -54,6 +55,6 @@ private:
   Options Opts;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_REGALLOCFAST_H

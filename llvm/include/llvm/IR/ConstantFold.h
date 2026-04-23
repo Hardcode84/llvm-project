@@ -25,7 +25,7 @@
 #include "llvm/Support/Compiler.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T> class ArrayRef;
 class Value;
 class Constant;
@@ -86,6 +86,6 @@ LLVM_ABI Constant *
 ConstantFoldGetElementPtr(Type *Ty, Constant *C,
                           std::optional<ConstantRange> InRange,
                           ArrayRef<Value *> Idxs);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

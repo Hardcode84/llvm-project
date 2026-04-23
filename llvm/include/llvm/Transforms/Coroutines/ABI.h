@@ -21,7 +21,7 @@
 #include "llvm/Transforms/Coroutines/MaterializationUtils.h"
 #include "llvm/Transforms/Coroutines/SuspendCrossingInfo.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 
@@ -105,6 +105,6 @@ public:
 
 } // end namespace coro
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_COROUTINES_ABI_H

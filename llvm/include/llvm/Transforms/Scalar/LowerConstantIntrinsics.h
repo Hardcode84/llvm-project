@@ -16,8 +16,9 @@
 #define LLVM_TRANSFORMS_SCALAR_LOWERCONSTANTINTRINSICS_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DominatorTree;
 class Function;
@@ -42,6 +43,6 @@ public:
   PreservedAnalyses run(Function &F, FunctionAnalysisManager &);
 };
 
-}
+LLVM_NAMESPACE_END
 
 #endif

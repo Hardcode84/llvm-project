@@ -56,7 +56,7 @@
 #include <tuple>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class APInt;
 class Constant;
@@ -3514,6 +3514,6 @@ namespace ISD {
 
 } // end namespace ISD
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_SELECTIONDAGNODES_H

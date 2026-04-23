@@ -3,8 +3,10 @@
 
 #include "llvm/SandboxIR/Pass.h"
 #include "llvm/SandboxIR/Region.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 /// A Region pass that does nothing, for use as a placeholder in tests.
 class PrintRegion final : public RegionPass {
@@ -24,6 +26,7 @@ public:
   }
 };
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_SANDBOXVECTORIZER_PASSES_PRINTREGION_H

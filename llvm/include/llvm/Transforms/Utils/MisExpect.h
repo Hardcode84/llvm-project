@@ -21,8 +21,10 @@
 #include "llvm/IR/Function.h"
 #include "llvm/IR/Instructions.h"
 #include "llvm/IR/LLVMContext.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::misexpect {
+LLVM_NAMESPACE_BEGIN
+namespace misexpect {
 
 /// checkBackendInstrumentation - compares PGO counters to the thresholds used
 /// for llvm.expect and warns if the PGO counters are outside of the expected
@@ -75,6 +77,7 @@ void checkExpectAnnotations(const Instruction &I,
                             ArrayRef<uint32_t> ExistingWeights,
                             bool IsFrontend);
 
-} // namespace llvm::misexpect
+}
+LLVM_NAMESPACE_END // namespace llvm::misexpect
 
 #endif

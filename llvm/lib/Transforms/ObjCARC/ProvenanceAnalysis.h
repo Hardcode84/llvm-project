@@ -29,8 +29,9 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/IR/ValueHandle.h"
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AAResults;
 class PHINode;
@@ -82,6 +83,6 @@ public:
 
 } // end namespace objcarc
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TRANSFORMS_OBJCARC_PROVENANCEANALYSIS_H

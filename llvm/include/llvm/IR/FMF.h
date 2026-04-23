@@ -16,7 +16,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cassert>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 
 /// Convenience struct for specifying and reasoning about fast-math flags.
@@ -145,6 +145,6 @@ inline raw_ostream &operator<<(raw_ostream &O, FastMathFlags FMF) {
   return O;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_FMF_H

@@ -23,8 +23,9 @@
 #include "llvm/Support/UniqueBBID.h"
 #include <map>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineBasicBlock;
 class MachineFunction;
@@ -247,6 +248,6 @@ bool parseMDNode(PerFunctionMIParsingState &PFS, MDNode *&Node, StringRef Src,
 bool parseMachineMetadata(PerFunctionMIParsingState &PFS, StringRef Src,
                           SMRange SourceRange, SMDiagnostic &Error);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MIRPARSER_MIPARSER_H

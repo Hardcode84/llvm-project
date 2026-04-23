@@ -18,8 +18,9 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/AllocToken.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Module;
 
@@ -43,6 +44,6 @@ private:
   const AllocTokenOptions Options;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_INSTRUMENTATION_ALLOCTOKEN_H

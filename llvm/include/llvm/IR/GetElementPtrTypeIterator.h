@@ -24,8 +24,9 @@
 #include <cstddef>
 #include <cstdint>
 #include <iterator>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename ItTy = User::const_op_iterator>
 class generic_gep_type_iterator {
@@ -204,6 +205,6 @@ public:
     return generic_gep_type_iterator<const T *>::end(A.end());
   }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_GETELEMENTPTRTYPEITERATOR_H

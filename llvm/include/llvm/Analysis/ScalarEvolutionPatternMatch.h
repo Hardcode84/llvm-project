@@ -16,10 +16,11 @@
 #include "llvm/Analysis/ScalarEvolution.h"
 #include "llvm/Analysis/ScalarEvolutionExpressions.h"
 #include "llvm/Support/PatternMatchHelpers.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm::PatternMatchHelpers;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace PatternMatchHelpers {
 template <typename SCEVPtrT> struct match_bind<SCEVUseT<SCEVPtrT>> {
   SCEVUseT<SCEVPtrT> &VR;
@@ -407,6 +408,6 @@ inline is_undef_or_poison m_scev_UndefOrPoison() {
 }
 
 } // namespace SCEVPatternMatch
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

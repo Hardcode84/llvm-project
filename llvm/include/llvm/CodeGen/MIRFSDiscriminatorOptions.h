@@ -14,9 +14,10 @@
 #define LLVM_CODEGEN_MIRFSDISCRIMINATOR_OPTIONS_H
 
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> ImprovedFSDiscriminator;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_MIRFSDISCRIMINATOR_OPTIONS_H

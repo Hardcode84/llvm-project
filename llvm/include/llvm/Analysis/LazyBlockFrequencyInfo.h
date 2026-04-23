@@ -19,8 +19,9 @@
 #include "llvm/Analysis/BlockFrequencyInfo.h"
 #include "llvm/Analysis/LazyBranchProbabilityInfo.h"
 #include "llvm/Pass.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Function;
 class LoopInfo;
 
@@ -122,5 +123,5 @@ public:
   void print(raw_ostream &OS, const Module *M) const override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

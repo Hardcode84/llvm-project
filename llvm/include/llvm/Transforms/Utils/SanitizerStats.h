@@ -16,7 +16,7 @@
 #include "llvm/IR/IRBuilder.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Number of bits in data that are used for the sanitizer kind. Needs to match
 // __sanitizer::kKindBits in compiler-rt/lib/stats/stats.h
@@ -51,6 +51,6 @@ private:
   StructType *makeModuleStatsTy();
 };
 
-}
+LLVM_NAMESPACE_END
 
 #endif

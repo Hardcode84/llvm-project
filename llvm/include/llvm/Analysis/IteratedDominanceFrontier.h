@@ -11,8 +11,9 @@
 
 #include "llvm/Support/CFGDiff.h"
 #include "llvm/Support/GenericIteratedDominanceFrontier.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 
@@ -78,6 +79,6 @@ ChildrenGetterTy<BasicBlock, IsPostDom>::get(const NodeRef &N) {
 
 } // end of namespace IDFCalculatorDetail
 
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm
 
 #endif

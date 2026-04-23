@@ -30,7 +30,8 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/Interval.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 class DependencyGraph;
 class MemDGNode;
@@ -478,6 +479,7 @@ public:
   LLVM_DUMP_METHOD void dump() const;
 #endif // NDEBUG
 };
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_SANDBOXVECTORIZER_DEPENDENCYGRAPH_H

@@ -73,8 +73,9 @@
 #include <cassert>
 #include <cstdint>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BlockFrequency;
 class MachineBlockFrequencyInfo;
@@ -666,6 +667,6 @@ public:
   bool runOnMachineFunction(MachineFunction &MF) override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_GLOBALISEL_REGBANKSELECT_H

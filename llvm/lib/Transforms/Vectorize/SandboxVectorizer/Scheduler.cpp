@@ -8,8 +8,10 @@
 
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/Scheduler.h"
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/VecUtils.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 // TODO: Check if we can cache top/bottom to reduce compile-time.
 DGNode *SchedBundle::getTop() const {
@@ -357,4 +359,5 @@ void Scheduler::dump(raw_ostream &OS) const {
 void Scheduler::dump() const { dump(dbgs()); }
 #endif // NDEBUG
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir

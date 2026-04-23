@@ -19,7 +19,7 @@
 #include "llvm/Support/Compiler.h"
 #include <deque>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Loop;
 class LoopInfo;
@@ -133,6 +133,6 @@ struct LCSSAVerificationPass : public FunctionPass {
   }
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

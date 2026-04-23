@@ -21,7 +21,7 @@
 #include <memory>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AssumptionCache;
 class DataLayout;
@@ -187,6 +187,6 @@ public:
 
 LLVM_ABI FunctionPass *createBasicAAWrapperPass();
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_BASICALIASANALYSIS_H

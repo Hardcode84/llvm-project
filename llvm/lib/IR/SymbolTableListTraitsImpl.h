@@ -17,8 +17,9 @@
 
 #include "llvm/IR/SymbolTableListTraits.h"
 #include "llvm/IR/ValueSymbolTable.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Notify basic blocks when an instruction is inserted.
 template <typename ParentClass>
@@ -119,6 +120,6 @@ void SymbolTableListTraits<ValueSubClass, Args...>::transferNodesFromList(
   }
 }
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

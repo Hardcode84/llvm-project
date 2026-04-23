@@ -15,7 +15,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Target/TargetMachine.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// \brief implements a set of functionality in the \c TargetMachine class
 /// for targets that make use of the independent code generator (CodeGen)
@@ -91,6 +91,6 @@ getEffectiveCodeModel(std::optional<CodeModel::Model> CM,
   return Default;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

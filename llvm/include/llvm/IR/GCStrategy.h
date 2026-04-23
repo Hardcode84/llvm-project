@@ -52,7 +52,7 @@
 #include <optional>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Type;
 
@@ -148,6 +148,6 @@ extern template class LLVM_TEMPLATE_ABI Registry<GCStrategy>;
 /// Lookup the GCStrategy object associated with the given gc name.
 LLVM_ABI std::unique_ptr<GCStrategy> getGCStrategy(const StringRef Name);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_GCSTRATEGY_H

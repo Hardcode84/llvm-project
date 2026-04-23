@@ -67,8 +67,9 @@
 #include <deque>
 #include <map>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MachineBasicBlock;
 class MachineLoop;
 class MachineRegisterInfo;
@@ -460,6 +461,6 @@ public:
   void annotate();
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MODULOSCHEDULE_H

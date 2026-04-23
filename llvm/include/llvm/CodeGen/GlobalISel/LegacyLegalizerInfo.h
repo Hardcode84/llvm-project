@@ -22,7 +22,7 @@
 #include <unordered_map>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct LegalityQuery;
 
 namespace LegacyLegalizeActions {
@@ -462,6 +462,6 @@ private:
       NumElements2Actions[LastOp - FirstOp + 1];
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_GLOBALISEL_LEGACYLEGALIZERINFO_H

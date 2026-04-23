@@ -19,7 +19,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 class DependenceInfo;
@@ -69,6 +69,6 @@ LLVM_ABI bool isReachedBefore(const Instruction *I0, const Instruction *I1,
                               const DominatorTree *DT,
                               const PostDominatorTree *PDT);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_CODEMOVERUTILS_H

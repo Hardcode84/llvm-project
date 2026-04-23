@@ -21,6 +21,7 @@
 #include "llvm/Transforms/Utils/SCCPSolver.h"
 #include "llvm/Transforms/Utils/SizeOpts.h"
 #include <cmath>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -28,7 +29,7 @@ using namespace llvm;
 
 STATISTIC(NumSpecsCreated, "Number of specializations created");
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static cl::opt<bool> ForceSpecialization(
     "force-specialization", cl::init(false), cl::Hidden,
@@ -94,7 +95,7 @@ static cl::opt<bool> SpecializeLiteralConstant(
 
 extern cl::opt<bool> ProfcheckDisableMetadataFixes;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 bool InstCostVisitor::canEliminateSuccessor(BasicBlock *BB,
                                             BasicBlock *Succ) const {

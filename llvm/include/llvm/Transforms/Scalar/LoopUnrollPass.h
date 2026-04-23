@@ -13,8 +13,9 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/CommandLine.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 extern cl::opt<bool> ForgetSCEVInLoopUnroll;
 
@@ -144,6 +145,6 @@ public:
                      function_ref<StringRef(StringRef)> MapClassName2PassName);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_SCALAR_LOOPUNROLLPASS_H

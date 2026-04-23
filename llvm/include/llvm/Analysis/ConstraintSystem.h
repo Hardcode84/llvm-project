@@ -17,7 +17,7 @@
 
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Value;
 class ConstraintSystem {
@@ -166,6 +166,6 @@ public:
   /// Print the constraints in the system.
   LLVM_ABI void dump() const;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_CONSTRAINTSYSTEM_H

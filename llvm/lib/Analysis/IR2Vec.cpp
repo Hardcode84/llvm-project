@@ -26,6 +26,7 @@
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/Format.h"
 #include "llvm/Support/MemoryBuffer.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace ir2vec;
@@ -35,7 +36,7 @@ using namespace ir2vec;
 STATISTIC(VocabMissCounter,
           "Number of lookups to entities not present in the vocabulary");
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace ir2vec {
 cl::OptionCategory IR2VecCategory("IR2Vec Options");
 
@@ -63,14 +64,15 @@ cl::opt<IR2VecKind> IR2VecEmbeddingKind(
     cl::cat(IR2VecCategory));
 
 } // namespace ir2vec
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 AnalysisKey IR2VecVocabAnalysis::Key;
 
 // ==----------------------------------------------------------------------===//
 // Local helper functions
 //===----------------------------------------------------------------------===//
-namespace llvm::json {
+LLVM_NAMESPACE_BEGIN
+namespace json {
 inline bool fromJSON(const llvm::json::Value &E, Embedding &Out,
                      llvm::json::Path P) {
   std::vector<double> TempOut;
@@ -79,7 +81,8 @@ inline bool fromJSON(const llvm::json::Value &E, Embedding &Out,
   Out = Embedding(std::move(TempOut));
   return true;
 }
-} // namespace llvm::json
+}
+LLVM_NAMESPACE_END // namespace llvm::json
 
 // ==----------------------------------------------------------------------===//
 // Embedding

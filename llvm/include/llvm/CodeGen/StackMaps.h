@@ -20,7 +20,7 @@
 #include <cstdint>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AsmPrinter;
 class MCSymbol;
@@ -413,6 +413,6 @@ private:
   void debug() { print(dbgs()); }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_STACKMAPS_H

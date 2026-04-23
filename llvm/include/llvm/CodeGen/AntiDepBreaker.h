@@ -22,7 +22,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class RegisterClassInfo;
 
@@ -97,6 +97,6 @@ AntiDepBreaker *createAggressiveAntiDepBreaker(
 AntiDepBreaker *createCriticalAntiDepBreaker(MachineFunction &MFi,
                                              const RegisterClassInfo &RCI);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_ANTIDEPBREAKER_H

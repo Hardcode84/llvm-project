@@ -19,7 +19,7 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class StripDebugMachineModulePass
     : public PassInfoMixin<StripDebugMachineModulePass> {
@@ -27,6 +27,6 @@ public:
   LLVM_ABI PreservedAnalyses run(Module &M, ModuleAnalysisManager &AM);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINESTRIPDEBUG_H

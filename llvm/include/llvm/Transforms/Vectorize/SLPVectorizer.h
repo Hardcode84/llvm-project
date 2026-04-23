@@ -23,8 +23,9 @@
 #include "llvm/ADT/SetVector.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AAResults;
 class AssumptionCache;
@@ -169,6 +170,6 @@ private:
   GEPListMap GEPs;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_SLPVECTORIZER_H

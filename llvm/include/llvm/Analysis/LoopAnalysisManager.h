@@ -32,7 +32,7 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AAResults;
 class AssumptionCache;
@@ -157,6 +157,6 @@ typedef OuterAnalysisManagerProxy<FunctionAnalysisManager, Loop,
 
 /// Returns the minimum set of Analyses that all loop passes must preserve.
 LLVM_ABI PreservedAnalyses getLoopPassPreservedAnalyses();
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_ANALYSIS_LOOPANALYSISMANAGER_H

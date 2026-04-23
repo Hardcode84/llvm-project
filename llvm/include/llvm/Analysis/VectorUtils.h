@@ -22,7 +22,7 @@
 #include "llvm/Support/CheckedArithmetic.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class TargetLibraryInfo;
 class IntrinsicInst;
 
@@ -890,6 +890,6 @@ private:
   }
 };
 
-} // llvm namespace
+LLVM_NAMESPACE_END // llvm namespace
 
 #endif

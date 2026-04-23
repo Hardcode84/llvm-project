@@ -27,6 +27,7 @@
 #include "llvm/IR/PatternMatch.h"
 #include "llvm/IR/Value.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "vectorutils"
 
@@ -1763,10 +1764,10 @@ void InterleaveGroup<InstT>::addMetadata(InstT *NewInst) const {
   llvm_unreachable("addMetadata can only be used for Instruction");
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <>
 void InterleaveGroup<Instruction>::addMetadata(Instruction *NewInst) const {
   SmallVector<Value *, 4> VL(make_second_range(Members));
   propagateMetadata(NewInst, VL);
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

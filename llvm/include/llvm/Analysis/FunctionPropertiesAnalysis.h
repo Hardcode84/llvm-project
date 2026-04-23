@@ -20,7 +20,7 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BasicBlock;
 class CallBase;
 class DominatorTree;
@@ -231,5 +231,5 @@ private:
   // Edges we might potentially need to remove from the dominator tree.
   SmallVector<DominatorTree::UpdateType, 2> DomTreeUpdates;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_ANALYSIS_FUNCTIONPROPERTIESANALYSIS_H

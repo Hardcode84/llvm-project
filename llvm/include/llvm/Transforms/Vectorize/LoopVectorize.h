@@ -62,7 +62,7 @@
 #include "llvm/Transforms/Utils/ExtraPassManager.h"
 #include <functional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AssumptionCache;
 class BlockFrequencyInfo;
@@ -189,6 +189,6 @@ struct ShouldRunExtraVectorPasses
       public AnalysisInfoMixin<ShouldRunExtraVectorPasses> {
   LLVM_ABI static AnalysisKey Key;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_LOOPVECTORIZE_H

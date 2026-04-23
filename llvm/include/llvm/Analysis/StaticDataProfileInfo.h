@@ -8,7 +8,7 @@
 #include "llvm/Pass.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace memprof {
 // Represents the eligibility status of a global variable for section prefix
@@ -112,6 +112,6 @@ private:
   std::unique_ptr<StaticDataProfileInfo> Info;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_STATICDATAPROFILEINFO_H

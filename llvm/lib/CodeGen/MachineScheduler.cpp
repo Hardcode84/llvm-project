@@ -310,7 +310,7 @@ MachineSchedContext::~MachineSchedContext() {
   delete RegClassInfo;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace impl_detail {
 
 /// Base class for the machine scheduler classes.
@@ -372,7 +372,7 @@ protected:
 };
 
 } // namespace impl_detail
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using impl_detail::MachineSchedulerBase;
 using impl_detail::MachineSchedulerImpl;

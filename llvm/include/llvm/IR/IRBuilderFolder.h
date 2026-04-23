@@ -20,7 +20,7 @@
 #include "llvm/IR/Instruction.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// IRBuilderFolder - Interface for constant folding in IRBuilder.
 class LLVM_ABI IRBuilderFolder {
@@ -88,6 +88,6 @@ public:
                                                      Type *DestTy) const = 0;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_IRBUILDERFOLDER_H

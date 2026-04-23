@@ -36,10 +36,11 @@
 #include <cstddef>
 #include <cstdint>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "ir"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// CastConstantExpr - This class is private to Constants.cpp, and is used
 /// behind the scenes to implement cast constant exprs.
@@ -691,6 +692,6 @@ template <> inline void ConstantUniqueMap<InlineAsm>::freeConstants() {
     delete I;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_IR_CONSTANTSCONTEXT_H

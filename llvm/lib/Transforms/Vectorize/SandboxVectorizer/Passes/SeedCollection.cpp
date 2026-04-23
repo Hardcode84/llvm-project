@@ -13,8 +13,9 @@
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/SandboxVectorizerPassBuilder.h"
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/SeedCollector.h"
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/VecUtils.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static cl::opt<unsigned>
     OverrideVecRegBits("sbvec-vec-reg-bits", cl::init(0), cl::Hidden,
@@ -115,4 +116,4 @@ bool SeedCollection::runOnFunction(Function &F, const Analyses &A) {
   return Change;
 }
 } // namespace sandboxir
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

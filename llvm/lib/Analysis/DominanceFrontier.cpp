@@ -19,12 +19,12 @@
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template class DominanceFrontierBase<BasicBlock, false>;
 template class DominanceFrontierBase<BasicBlock, true>;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 char DominanceFrontierWrapperPass::ID = 0;
 

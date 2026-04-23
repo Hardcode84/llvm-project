@@ -39,7 +39,7 @@
 #include "llvm/ADT/SmallPtrSet.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Loop;
 class ScalarEvolution;
@@ -69,6 +69,6 @@ LLVM_ABI const SCEV *normalizeForPostIncUseIf(const SCEV *S,
 LLVM_ABI const SCEV *denormalizeForPostIncUse(const SCEV *S,
                                               const PostIncLoopSet &Loops,
                                               ScalarEvolution &SE);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -49,13 +49,14 @@
 
 #define DEBUG_TYPE "instcombine"
 #include "llvm/Transforms/Utils/InstructionWorklist.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace PatternMatch;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> ProfcheckDisableMetadataFixes;
-}
+LLVM_NAMESPACE_END
 
 /// Replace a select operand based on an equality comparison with the identity
 /// constant of a binop.

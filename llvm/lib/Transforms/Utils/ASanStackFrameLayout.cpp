@@ -15,8 +15,9 @@
 #include "llvm/Support/ScopedPrinter.h"
 #include "llvm/Support/raw_ostream.h"
 #include <algorithm>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // We sort the stack variables by alignment (largest first) to minimize
 // unnecessary large gaps due to alignment.
@@ -148,4 +149,4 @@ SmallVector<uint8_t, 64> GetShadowBytesAfterScope(
   return SB;
 }
 
-} // llvm namespace
+LLVM_NAMESPACE_END // llvm namespace

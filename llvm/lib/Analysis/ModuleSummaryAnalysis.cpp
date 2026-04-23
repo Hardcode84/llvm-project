@@ -64,7 +64,7 @@ using namespace llvm::memprof;
 
 // Option to force edges cold which will block importing when the
 // -import-cold-multiplier is set to 0. Useful for debugging.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 FunctionSummary::ForceSummaryHotnessType ForceSummaryEdgesCold =
     FunctionSummary::FSHT_None;
 
@@ -103,7 +103,7 @@ LLVM_ABI extern cl::opt<bool> ScalePartialSampleProfileWorkingSetSize;
 extern cl::opt<unsigned> MaxNumVTableAnnotations;
 
 extern cl::opt<bool> MemProfReportHintedSizes;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Walk through the operands of a given User via worklist iteration and populate
 // the set of GlobalValue references encountered. Invoked either on an

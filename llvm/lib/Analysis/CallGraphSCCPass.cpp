@@ -38,15 +38,16 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
 #define DEBUG_TYPE "cgscc-passmgr"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 cl::opt<unsigned> MaxDevirtIterations("max-devirt-iterations", cl::ReallyHidden,
                                       cl::init(4));
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 STATISTIC(MaxSCCIterations, "Maximum CGSCCPassMgr iterations on one SCC");
 

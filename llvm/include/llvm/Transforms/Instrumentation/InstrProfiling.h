@@ -17,7 +17,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Transforms/Utils/Instrumentation.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class TargetLibraryInfo;
 /// Instrumentation based profiling lowering pass. This pass lowers
@@ -36,6 +36,6 @@ public:
 
   LLVM_ABI PreservedAnalyses run(Module &M, ModuleAnalysisManager &AM);
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_INSTRUMENTATION_INSTRPROFILING_H

@@ -33,7 +33,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <cstring>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // PassNameParser class - Make use of the pass registration mechanism to
@@ -93,6 +93,6 @@ private:
   }
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

@@ -10,8 +10,9 @@
 #define LLVM_CODEGEN_CALCSPILLWEIGHTS_H
 
 #include "llvm/CodeGen/SlotIndexes.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LiveInterval;
 class LiveIntervals;
@@ -106,6 +107,6 @@ class VirtRegMap;
       return normalizeSpillWeight(UseDefFreq, Size, NumInstr);
     }
   };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_CALCSPILLWEIGHTS_H

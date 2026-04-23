@@ -20,7 +20,7 @@
 #include <functional>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BlockFrequencyInfo;
 class Function;
@@ -104,6 +104,6 @@ createImmutableModuleSummaryIndexWrapperPass(const ModuleSummaryIndex *Index);
 /// consistency between summary analysis and the ThinLTO backend processing.
 LLVM_ABI bool mayHaveMemprofSummary(const CallBase *CB);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_MODULESUMMARYANALYSIS_H

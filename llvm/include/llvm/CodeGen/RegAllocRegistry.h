@@ -16,8 +16,9 @@
 
 #include "llvm/CodeGen/RegAllocCommon.h"
 #include "llvm/CodeGen/MachinePassRegistry.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class FunctionPass;
 
@@ -69,6 +70,6 @@ template <class T>
 MachinePassRegistry<typename RegisterRegAllocBase<T>::FunctionPassCtor>
     RegisterRegAllocBase<T>::Registry;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_REGALLOCREGISTRY_H

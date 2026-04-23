@@ -25,7 +25,7 @@
 #include "llvm/Support/Compiler.h"
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CallGraph;
 class CallGraphNode;
@@ -126,6 +126,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_CALLGRAPHSCCPASS_H

@@ -16,7 +16,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> class ArrayRef;
 class Constant;
@@ -39,6 +39,6 @@ LLVM_ABI bool convertUsersOfConstantsToInstructions(
     ArrayRef<Constant *> Consts, Function *RestrictToFunc = nullptr,
     bool RemoveDeadConstants = true, bool IncludeSelf = false);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_REPLACECONSTANT_H

@@ -22,7 +22,7 @@
 #include <optional>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DiagnosticInfoOptimizationBase;
 class LLVMContext;
@@ -158,6 +158,6 @@ LLVM_ABI Error setupLLVMOptimizationRemarks(
 /// to set up the remarks.
 LLVM_ABI void finalizeLLVMOptimizationRemarks(LLVMContext &Context);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_LLVMREMARKSTREAMER_H

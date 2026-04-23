@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include <map>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class OptimizationRemarkEmitter;
 
@@ -268,6 +268,6 @@ template <>
 LLVM_ABI uint64_t CallStack<MDNode, MDNode::op_iterator>::back() const;
 
 } // end namespace memprof
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

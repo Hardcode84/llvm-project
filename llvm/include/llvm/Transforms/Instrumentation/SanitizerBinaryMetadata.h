@@ -20,7 +20,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Transforms/Utils/Instrumentation.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace vfs {
 class FileSystem;
 } // namespace vfs
@@ -68,6 +68,6 @@ private:
   const ArrayRef<std::string> IgnorelistFiles;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

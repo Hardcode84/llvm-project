@@ -11,12 +11,13 @@
 #include "llvm/IR/Constants.h"
 #include "llvm/IR/GlobalValue.h"
 #include "llvm/IR/IntrinsicInst.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BasicBlock;
-}
+LLVM_NAMESPACE_END
 
 //===----------------------------------------------------------------------===//
 //                                 User Class

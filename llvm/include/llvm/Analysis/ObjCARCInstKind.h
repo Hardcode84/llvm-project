@@ -10,8 +10,9 @@
 #define LLVM_ANALYSIS_OBJCARCINSTKIND_H
 
 #include "llvm/IR/Instructions.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcarc {
 
 /// \enum ARCInstKind
@@ -121,6 +122,6 @@ ARCInstKind GetARCInstKind(const Value *V);
 bool CanDecrementRefCount(ARCInstKind Kind);
 
 } // end namespace objcarc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

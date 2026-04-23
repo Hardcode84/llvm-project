@@ -105,9 +105,9 @@ static cl::opt<unsigned> SplitMatmulRemainderOverThreshold(
              "in the inner loop of matmul"),
     cl::init(0));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> ProfcheckDisableMetadataFixes;
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 /// Helper function to either return Scope, if it is a subprogram or the
 /// attached subprogram for a local scope.

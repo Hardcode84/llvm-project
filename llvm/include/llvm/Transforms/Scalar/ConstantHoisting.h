@@ -46,8 +46,9 @@
 #include "llvm/IR/PassManager.h"
 #include <algorithm>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 class BlockFrequencyInfo;
@@ -215,6 +216,6 @@ private:
   void deleteDeadCastInst() const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_SCALAR_CONSTANTHOISTING_H

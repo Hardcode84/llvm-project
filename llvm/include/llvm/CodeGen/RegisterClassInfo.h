@@ -25,7 +25,7 @@
 #include <cstdint>
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class RegisterClassInfo {
   struct RCInfo {
@@ -158,6 +158,6 @@ protected:
   LLVM_ABI unsigned computePSetLimit(unsigned Idx) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_REGISTERCLASSINFO_H

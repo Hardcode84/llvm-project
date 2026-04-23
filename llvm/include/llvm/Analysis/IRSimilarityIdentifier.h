@@ -57,7 +57,7 @@
 #include "llvm/Support/Compiler.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace IRSimilarity {
 
@@ -1204,6 +1204,6 @@ public:
   static bool isRequired() { return true; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_IRSIMILARITYIDENTIFIER_H

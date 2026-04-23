@@ -13,7 +13,7 @@
 #include "llvm/Support/Compiler.h"
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class CallBase;
 template <typename Fn> class function_ref;
 
@@ -74,5 +74,5 @@ private:
   InlineOrderFactory Factory;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_ANALYSIS_INLINEORDER_H

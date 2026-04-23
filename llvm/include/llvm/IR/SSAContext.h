@@ -17,8 +17,9 @@
 
 #include "llvm/ADT/GenericSSAContext.h"
 #include "llvm/IR/BasicBlock.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BasicBlock;
 class Function;
 class Instruction;
@@ -39,6 +40,6 @@ template <> struct GenericSSATraits<Function> {
 
 using SSAContext = GenericSSAContext<Function>;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_IR_SSACONTEXT_H

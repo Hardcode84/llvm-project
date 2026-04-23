@@ -15,8 +15,9 @@
 #define LLVM_TRANSFORMS_UTILS_LOWERATOMIC_H
 
 #include "llvm/IR/Instructions.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class IRBuilderBase;
 
@@ -38,6 +39,6 @@ bool lowerAtomicRMWInst(AtomicRMWInst *RMWI);
 /// returning the new value.
 Value *buildAtomicRMWValue(AtomicRMWInst::BinOp Op, IRBuilderBase &Builder,
                            Value *Loaded, Value *Val);
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_TRANSFORMS_UTILS_LOWERATOMIC_H

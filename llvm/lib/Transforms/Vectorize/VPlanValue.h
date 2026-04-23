@@ -29,7 +29,7 @@
 #include "llvm/Support/Casting.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Forward declarations.
 class raw_ostream;
@@ -504,6 +504,6 @@ inline void VPValue::assertNotMaterialized() const {
          "accessing materialized symbolic value");
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_VPLAN_VALUE_H

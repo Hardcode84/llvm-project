@@ -36,7 +36,7 @@
 #include <iterator>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -688,6 +688,6 @@ class raw_ostream;
     SlotIndexes &getSI() { return SI; }
   };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_SLOTINDEXES_H

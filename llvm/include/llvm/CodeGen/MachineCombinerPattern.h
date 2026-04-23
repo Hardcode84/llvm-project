@@ -14,7 +14,9 @@
 #ifndef LLVM_CODEGEN_MACHINECOMBINERPATTERN_H
 #define LLVM_CODEGEN_MACHINECOMBINERPATTERN_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 /// The combiner's goal may differ based on which pattern it is attempting
 /// to optimize.
@@ -37,6 +39,6 @@ enum MachineCombinerPattern : unsigned {
   TARGET_PATTERN_START
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

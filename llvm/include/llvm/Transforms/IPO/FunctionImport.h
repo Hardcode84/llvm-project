@@ -22,7 +22,7 @@
 #include <system_error>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Module;
 
@@ -446,6 +446,6 @@ LLVM_ABI void thinLTOFinalizeInModule(Module &TheModule,
 LLVM_ABI void thinLTOInternalizeModule(Module &TheModule,
                                        const GVSummaryMapTy &DefinedGlobals);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_IPO_FUNCTIONIMPORT_H

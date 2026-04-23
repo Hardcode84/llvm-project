@@ -64,7 +64,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AssumptionCache;
 class CCState;
@@ -6036,6 +6036,6 @@ LLVM_ABI void GetReturnInfo(CallingConv::ID CC, Type *ReturnType,
                             SmallVectorImpl<ISD::OutputArg> &Outs,
                             const TargetLowering &TLI, const DataLayout &DL);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_TARGETLOWERING_H

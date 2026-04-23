@@ -40,7 +40,7 @@ using namespace llvm::bfi_detail;
 
 #define DEBUG_TYPE "block-freq"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 cl::opt<bool> CheckBFIUnknownBlockQueries(
     "check-bfi-unknown-block-queries",
     cl::init(false), cl::Hidden,
@@ -60,7 +60,7 @@ cl::opt<double> IterativeBFIPrecision(
     "iterative-bfi-precision", cl::init(1e-12), cl::Hidden,
     cl::desc("Iterative inference: delta convergence precision; smaller values "
              "typically lead to better results at the cost of worsen runtime"));
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 ScaledNumber<uint64_t> BlockMass::toScaled() const {
   if (isFull())
@@ -668,7 +668,7 @@ void IrreducibleGraph::addEdge(IrrNode &Irr, const BlockNode &Succ,
   ++SuccIrr.NumIn;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <> struct GraphTraits<IrreducibleGraph> {
   using GraphT = bfi_detail::IrreducibleGraph;
@@ -680,7 +680,7 @@ template <> struct GraphTraits<IrreducibleGraph> {
   static ChildIteratorType child_end(NodeRef N) { return N->succ_end(); }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 /// Find extra irreducible headers.
 ///

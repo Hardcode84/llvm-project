@@ -19,8 +19,9 @@
 #include "llvm/ADT/SetVector.h"
 #include "llvm/IR/ConstantRange.h"
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DominatorTree;
 class Function;
 class Instruction;
@@ -54,5 +55,5 @@ private:
   MapVector<Instruction *, Value *> ConvertedInsts;
   LLVMContext *Ctx;
 };
-}
+LLVM_NAMESPACE_END
 #endif // LLVM_TRANSFORMS_SCALAR_FLOAT2INT_H

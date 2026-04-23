@@ -10,8 +10,9 @@
 #define LLVM_CODEGEN_INTERLEAVEDLOADCOMBINE_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class TargetMachine;
 
@@ -24,6 +25,6 @@ public:
   PreservedAnalyses run(Function &F, FunctionAnalysisManager &FAM);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // InterleavedLoadCombine

@@ -21,8 +21,9 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Transforms/Utils/ValueMapper.h"
 #include <functional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class GlobalValueSummary;
 class LLVMContext;
 class Module;
@@ -109,6 +110,6 @@ public:
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &AM);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_IPO_MEMPROF_CONTEXT_DISAMBIGUATION_H

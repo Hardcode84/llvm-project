@@ -30,7 +30,7 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace {
 template <typename T> using GetterTy = std::function<T *(const Function &F)>;
@@ -562,6 +562,6 @@ public:
   static bool isRequired() { return true; }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

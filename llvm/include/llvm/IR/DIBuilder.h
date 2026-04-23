@@ -29,7 +29,7 @@
 #include <cstdint>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   class BasicBlock;
   class Constant;
@@ -1223,6 +1223,6 @@ namespace llvm {
   // Create wrappers for C Binding types (see CBindingWrapping.h).
   DEFINE_ISA_CONVERSION_FUNCTIONS(DIBuilder, LLVMDIBuilderRef)
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_DIBUILDER_H

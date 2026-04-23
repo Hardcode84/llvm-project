@@ -24,7 +24,7 @@
 #include "llvm/CodeGen/MachineFunctionPass.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Forward declarations.
 class AnalysisUsage;
 class GStore;
@@ -179,6 +179,6 @@ public:
   bool runOnMachineFunction(MachineFunction &MF) override;
 };
 
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.
 
 #endif

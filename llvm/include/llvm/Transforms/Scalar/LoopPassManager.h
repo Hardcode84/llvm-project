@@ -48,7 +48,7 @@
 #include "llvm/Transforms/Utils/LoopUtils.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Forward declarations of an update tracking API used in the pass manager.
 class LPMUpdater;
@@ -497,6 +497,6 @@ public:
   LLVM_ABI PreservedAnalyses run(Loop &L, LoopAnalysisManager &,
                                  LoopStandardAnalysisResults &, LPMUpdater &);
 };
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_TRANSFORMS_SCALAR_LOOPPASSMANAGER_H

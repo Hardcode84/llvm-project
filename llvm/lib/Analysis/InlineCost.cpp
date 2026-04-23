@@ -49,6 +49,7 @@
 #include <climits>
 #include <limits>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -184,7 +185,7 @@ static cl::opt<bool> InlineAllViableCalls(
     "inline-all-viable-calls", cl::Hidden, cl::init(false),
     cl::desc("Inline all viable calls, even if they exceed the inlining "
              "threshold"));
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 std::optional<int> getStringFnAttrAsInt(const Attribute &Attr) {
   if (Attr.isValid()) {
     int AttrValue = 0;
@@ -207,7 +208,7 @@ int getInstrCost() { return InstrCost; }
 
 } // namespace InlineConstants
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 class InlineCostCallAnalyzer;

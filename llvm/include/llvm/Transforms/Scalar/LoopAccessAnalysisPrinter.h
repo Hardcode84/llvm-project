@@ -10,8 +10,9 @@
 #define LLVM_TRANSFORMS_SCALAR_LOOPACCESSANALYSISPRINTER_H
 #include "llvm/Analysis/LoopAnalysisManager.h"
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class raw_ostream;
@@ -29,6 +30,6 @@ public:
   static bool isRequired() { return true; }
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

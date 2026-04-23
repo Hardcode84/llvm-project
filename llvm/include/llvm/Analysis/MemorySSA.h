@@ -106,7 +106,7 @@
 #include <memory>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <class GraphType> struct GraphTraits;
 class Function;
@@ -1398,6 +1398,6 @@ inline iterator_range<def_chain_iterator<T, true>> optimized_def_chain(T MA) {
                     def_chain_iterator<T, true>(nullptr));
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_MEMORYSSA_H

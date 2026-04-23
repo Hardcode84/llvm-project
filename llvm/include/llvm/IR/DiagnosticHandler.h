@@ -15,7 +15,7 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DiagnosticInfo;
 
 /// This is the base class for diagnostic handling in LLVM.
@@ -71,6 +71,6 @@ struct LLVM_ABI DiagnosticHandler {
   /// Return true if any type of remarks are enabled for any pass.
   virtual bool isAnyRemarkEnabled() const;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_IR_DIAGNOSTICHANDLER_H

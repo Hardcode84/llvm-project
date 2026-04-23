@@ -26,7 +26,7 @@
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 LLVM_ABI cl::opt<bool> ShouldPreserveAllAttributes(
     "assume-preserve-all", cl::init(false), cl::Hidden,
     cl::desc("enable preservation of all attributes. even those that are "
@@ -36,7 +36,7 @@ cl::opt<bool> EnableKnowledgeRetention(
     "enable-knowledge-retention", cl::init(false), cl::Hidden,
     cl::desc(
         "enable preservation of attributes throughout code transformation"));
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #define DEBUG_TYPE "assume-builder"
 

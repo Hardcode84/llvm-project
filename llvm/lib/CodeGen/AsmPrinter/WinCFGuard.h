@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LLVM_LIBRARY_VISIBILITY WinCFGuard : public AsmPrinterHandler {
   /// Target of directive emission.
@@ -44,6 +44,6 @@ public:
   void endFunction(const MachineFunction *MF) override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

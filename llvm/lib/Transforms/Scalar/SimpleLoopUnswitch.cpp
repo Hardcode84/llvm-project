@@ -65,6 +65,7 @@
 #include <numeric>
 #include <optional>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "simple-loop-unswitch"
 
@@ -82,7 +83,7 @@ STATISTIC(
 STATISTIC(NumInvariantConditionsInjected,
           "Number of invariant conditions injected and unswitched");
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 static cl::opt<bool> EnableNonTrivialUnswitch(
     "enable-nontrivial-unswitch", cl::init(false), cl::Hidden,
     cl::desc("Forcibly enables non-trivial loop unswitching rather than "
@@ -142,7 +143,7 @@ static cl::opt<unsigned> InjectInvariantConditionHotnesThreshold(
 static cl::opt<bool> EstimateProfile("simple-loop-unswitch-estimate-profile",
                                      cl::Hidden, cl::init(true));
 extern cl::opt<bool> ProfcheckDisableMetadataFixes;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 AnalysisKey ShouldRunExtraSimpleLoopUnswitch::Key;
 namespace {

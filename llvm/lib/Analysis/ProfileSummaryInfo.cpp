@@ -24,7 +24,7 @@
 #include <optional>
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static cl::opt<bool> PartialProfile(
     "partial-profile", cl::Hidden, cl::init(false),
@@ -46,7 +46,7 @@ static cl::opt<double> PartialSampleProfileWorkingSetSizeScaleFactor(
              "and the factor to scale the working set size to use the same "
              "shared thresholds as PGO."));
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 // The profile summary metadata may be attached either by the frontend or by
 // any backend passes (IR level instrumentation, for example). This method

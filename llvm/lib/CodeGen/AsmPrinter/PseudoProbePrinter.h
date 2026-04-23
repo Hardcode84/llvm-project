@@ -17,9 +17,10 @@
 
 #ifndef NDEBUG
 #include "llvm/ADT/DenseSet.h"
+#include "llvm/Support/Compiler.h"
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AsmPrinter;
 class DILocation;
@@ -44,5 +45,5 @@ public:
                        uint64_t Attr, const DILocation *DebugLoc);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_LIB_CODEGEN_ASMPRINTER_PSEUDOPROBEPRINTER_H

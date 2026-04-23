@@ -25,8 +25,9 @@
 #include <cassert>
 #include <initializer_list>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineInstr;
 class MachineIRBuilder;
@@ -791,6 +792,6 @@ operator<<(raw_ostream &OS, const RegisterBankInfo::OperandsMapper &OpdMapper) {
 /// It is required for the hashing of ValueMapping.
 hash_code hash_value(const RegisterBankInfo::PartialMapping &PartMapping);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_REGISTERBANKINFO_H

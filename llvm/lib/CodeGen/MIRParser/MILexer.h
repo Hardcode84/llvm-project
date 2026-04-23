@@ -17,8 +17,9 @@
 #include "llvm/ADT/APSInt.h"
 #include "llvm/ADT/StringRef.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Twine;
 
@@ -262,6 +263,6 @@ StringRef lexMIToken(
     StringRef Source, MIToken &Token,
     function_ref<void(StringRef::iterator, const Twine &)> ErrorCallback);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_CODEGEN_MIRPARSER_MILEXER_H

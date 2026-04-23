@@ -13,8 +13,9 @@
 #include "llvm/CodeGen/MachineSSAContext.h"
 #include "llvm/IR/Constants.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using namespace MIPatternMatch;
 
@@ -45,4 +46,4 @@ std::optional<APFloat> MachineFloatingPointPredicateUtils::matchConstantFloat(
   return std::nullopt;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

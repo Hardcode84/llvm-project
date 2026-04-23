@@ -15,8 +15,9 @@
 #include "llvm/SandboxIR/Utils.h"
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/Debug.h"
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/VecUtils.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 #ifndef NDEBUG
 static cl::opt<bool>
@@ -551,4 +552,4 @@ bool BottomUpVec::runOnRegion(Region &Rgn, const Analyses &A) {
 }
 
 } // namespace sandboxir
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

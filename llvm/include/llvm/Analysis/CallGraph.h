@@ -56,7 +56,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <class GraphType> struct GraphTraits;
 class CallGraphNode;
@@ -513,6 +513,6 @@ struct GraphTraits<const CallGraph *> : public GraphTraits<
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_CALLGRAPH_H

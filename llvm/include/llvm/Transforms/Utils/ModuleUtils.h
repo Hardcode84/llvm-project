@@ -21,7 +21,7 @@
 #include "llvm/Support/MemoryBufferRef.h"
 #include <utility> // for std::pair
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T> class SmallVectorImpl;
 
 template <typename T> class ArrayRef;
@@ -159,6 +159,6 @@ LLVM_ABI bool
 lowerGlobalIFuncUsersAsGlobalCtor(Module &M,
                                   ArrayRef<GlobalIFunc *> IFuncsToLower = {});
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif // LLVM_TRANSFORMS_UTILS_MODULEUTILS_H

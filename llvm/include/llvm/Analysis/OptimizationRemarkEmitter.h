@@ -22,7 +22,7 @@
 #include "llvm/Support/Compiler.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// The optimization diagnostic interface.
 ///
@@ -176,5 +176,5 @@ public:
   /// Run the analysis pass over a function and produce BFI.
   LLVM_ABI Result run(Function &F, FunctionAnalysisManager &AM);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_ANALYSIS_OPTIMIZATIONREMARKEMITTER_H

@@ -25,7 +25,7 @@
 #include "llvm/IR/Operator.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// ConstantFolder - Create constants with minimum, target independent, folding.
 class LLVM_ABI ConstantFolder final : public IRBuilderFolder {
@@ -201,6 +201,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_CONSTANTFOLDER_H

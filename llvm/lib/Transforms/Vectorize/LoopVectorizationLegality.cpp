@@ -30,6 +30,7 @@
 #include "llvm/IR/PatternMatch.h"
 #include "llvm/Transforms/Utils/SizeOpts.h"
 #include "llvm/Transforms/Vectorize/LoopVectorize.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace PatternMatch;
@@ -91,7 +92,7 @@ static cl::opt<bool> EnableHistogramVectorization(
 /// Maximum vectorization interleave count.
 static const unsigned MaxInterleaveFactor = 16;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 bool LoopVectorizeHints::Hint::validate(unsigned Val) {
   switch (Kind) {
@@ -2107,4 +2108,4 @@ void LoopVectorizationLegality::prepareToFoldTailByMasking() {
   }
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

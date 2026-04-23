@@ -18,8 +18,9 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/IR/CFG.h"
 #include "llvm/Support/Allocator.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// PredIteratorCache - This class is an extremely trivial cache for
 /// predecessor iterator queries.  This is useful for code that repeatedly
@@ -52,6 +53,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -52,6 +52,7 @@
 #include <system_error>
 #include <tuple>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -72,7 +73,7 @@ STATISTIC(NumImportedModules, "Number of modules imported from");
 STATISTIC(NumDeadSymbols, "Number of dead stripped symbols in index");
 STATISTIC(NumLiveSymbols, "Number of live symbols in index");
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 cl::opt<bool>
     ForceImportAll("force-import-all", cl::init(false), cl::Hidden,
                    cl::desc("Import functions with noinline attribute"));
@@ -187,7 +188,7 @@ static cl::opt<bool> CtxprofMoveRootsToOwnModule(
 extern cl::list<GlobalValue::GUID> MoveSymbolGUID;
 
 extern cl::opt<bool> EnableMemProfContextDisambiguation;
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 // Load lazily a module from \p FileName in \p Context.
 static std::unique_ptr<Module> loadFile(const std::string &FileName,

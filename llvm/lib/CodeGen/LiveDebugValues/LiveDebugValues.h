@@ -9,7 +9,9 @@
 #ifndef LLVM_LIB_CODEGEN_LIVEDEBUGVALUES_LIVEDEBUGVALUES_H
 #define LLVM_LIB_CODEGEN_LIVEDEBUGVALUES_LIVEDEBUGVALUES_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class MachineDominatorTree;
 class MachineFunction;
 class TargetPassConfig;
@@ -39,6 +41,6 @@ extern LDVImpl *makeInstrRefBasedLiveDebugValues();
 
 extern bool debuginfoShouldUseDebugInstrRef(const Triple &T);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_CODEGEN_LIVEDEBUGVALUES_LIVEDEBUGVALUES_H

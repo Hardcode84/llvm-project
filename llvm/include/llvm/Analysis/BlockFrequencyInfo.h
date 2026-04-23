@@ -22,7 +22,7 @@
 #include <memory>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 class BranchProbabilityInfo;
@@ -163,6 +163,6 @@ public:
   void print(raw_ostream &OS, const Module *M) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_BLOCKFREQUENCYINFO_H

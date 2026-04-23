@@ -32,8 +32,9 @@
 #include "llvm/CodeGen/MachineFunctionAnalysis.h"
 #include "llvm/CodeGen/MachineFunctionPass.h"
 #include "llvm/Support/BlockFrequency.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BitVector;
 class EdgeBundles;
@@ -201,6 +202,6 @@ public:
   SpillPlacement run(MachineFunction &, MachineFunctionAnalysisManager &);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_CODEGEN_SPILLPLACEMENT_H

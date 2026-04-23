@@ -18,8 +18,9 @@
 #define LLVM_TRANSFORMS_SCALAR_ALIGNMENTFROMASSUMPTIONS_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AssumptionCache;
 class CallInst;
@@ -43,6 +44,6 @@ struct AlignmentFromAssumptionsPass
                             const SCEV *&AlignSCEV, const SCEV *&OffSCEV);
   bool processAssumption(CallInst *I, unsigned Idx);
 };
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_TRANSFORMS_SCALAR_ALIGNMENTFROMASSUMPTIONS_H

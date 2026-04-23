@@ -21,8 +21,9 @@
 #include "llvm/CodeGen/MachineModuleInfo.h"
 #include "llvm/IR/IRBuilder.h"
 #include "llvm/IR/Module.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This class assists in inserting MI thunk functions into the module and
 /// rewriting the existing machine functions to call these thunks.
@@ -217,6 +218,6 @@ private:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

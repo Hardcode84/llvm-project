@@ -25,8 +25,9 @@
 #include "llvm/PassRegistry.h"
 #include <cstdint>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class TargetMachine;
@@ -105,6 +106,6 @@ public:
   static bool isRequired() { return true; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_REGISTERUSAGEINFO_H

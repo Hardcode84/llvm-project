@@ -18,8 +18,9 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/IR/SSAContext.h"
 #include "llvm/Pass.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 extern template class GenericUniformityInfo<SSAContext>;
 using UniformityInfo = GenericUniformityInfo<SSAContext>;
@@ -74,6 +75,6 @@ public:
   // TODO: verify analysis
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_UNIFORMITYANALYSIS_H

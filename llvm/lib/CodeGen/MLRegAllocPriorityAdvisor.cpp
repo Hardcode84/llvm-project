@@ -56,6 +56,7 @@ using CompiledModelType = NoopSavedModelImpl;
 #ifdef LLVM_HAVE_TFLITE
 #include "RegAllocScore.h"
 #include "llvm/Analysis/Utils/TFUtils.h"
+#include "llvm/Support/Compiler.h"
 
 static cl::opt<std::string> TrainingLog(
     "regalloc-priority-training-log", cl::Hidden,
@@ -67,7 +68,7 @@ static cl::opt<std::string> ModelUnderTraining(
 
 #endif // #ifdef LLVM_HAVE_TFLITE
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static const std::vector<int64_t> PerLiveRangeShape{1};
 
@@ -305,7 +306,7 @@ private:
 };
 #endif //#ifdef LLVM_HAVE_TFLITE
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 RegAllocPriorityAdvisorAnalysisLegacy *
 llvm::createReleaseModePriorityAdvisorAnalysis() {

@@ -48,7 +48,7 @@
 #include <memory>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Constant;
 class Function;
@@ -285,6 +285,6 @@ public:
   LLVM_ABI GCFunctionInfo &getFunctionInfo(const Function &F);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_GCMETADATA_H

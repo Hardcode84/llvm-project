@@ -18,8 +18,9 @@
 #include <cassert>
 #include <functional>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace PBQP {
 
 using PBQPNum = float;
@@ -276,6 +277,6 @@ inline hash_code hash_value(const MDMatrix<Metadata> &M) {
 }
 
 } // end namespace PBQP
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_PBQP_MATH_H

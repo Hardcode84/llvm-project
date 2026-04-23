@@ -20,7 +20,7 @@
 #include "llvm/Support/Compiler.h"
 #include <list>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class CallGraph;
 class Function;
 
@@ -165,6 +165,6 @@ public:
 // global values that do not have their addresses taken.
 //
 LLVM_ABI ModulePass *createGlobalsAAWrapperPass();
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -19,8 +19,9 @@
 #define LLVM_IR_SAFEPOINTIRVERIFIER_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class FunctionPass;
@@ -43,6 +44,6 @@ public:
 
   static bool isRequired() { return true; }
 };
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_IR_SAFEPOINTIRVERIFIER_H

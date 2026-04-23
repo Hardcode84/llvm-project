@@ -74,6 +74,7 @@ static cl::opt<unsigned> MaxEvictionCount(
 #ifdef LLVM_HAVE_TFLITE
 #include "RegAllocScore.h"
 #include "llvm/Analysis/Utils/TFUtils.h"
+#include "llvm/Support/Compiler.h"
 
 static cl::opt<std::string> TrainingLog(
     "regalloc-training-log", cl::Hidden,
@@ -88,9 +89,9 @@ static cl::opt<std::string> ModelUnderTraining(
 /// The score injection pass.
 /// This pass calculates the score for a function and inserts it in the log, but
 /// this happens only in development mode. It's a no-op otherwise.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<unsigned> EvictInterferenceCutoff;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 class RegAllocScoring : public MachineFunctionPass {

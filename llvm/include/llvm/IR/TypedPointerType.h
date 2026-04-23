@@ -17,7 +17,7 @@
 #include "llvm/IR/Type.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A few GPU targets, such as DXIL and SPIR-V, have typed pointers. This
 /// pointer type abstraction is used for tracking the types of these pointers.
@@ -51,6 +51,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_IR_TYPEDPOINTERTYPE_H

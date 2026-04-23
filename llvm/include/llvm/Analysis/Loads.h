@@ -19,7 +19,7 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BatchAAResults;
 class AssumptionCache;
@@ -223,6 +223,6 @@ struct LinearExpression {
 /// multiple GEPs.
 LLVM_ABI LinearExpression decomposeLinearExpression(const DataLayout &DL,
                                                     Value *Ptr);
-}
+LLVM_NAMESPACE_END
 
 #endif

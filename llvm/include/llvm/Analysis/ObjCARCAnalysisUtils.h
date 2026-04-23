@@ -28,8 +28,9 @@
 #include "llvm/IR/Module.h"
 #include "llvm/IR/ValueHandle.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AAResults;
 
@@ -276,6 +277,6 @@ public:
 };
 
 } // end namespace objcarc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

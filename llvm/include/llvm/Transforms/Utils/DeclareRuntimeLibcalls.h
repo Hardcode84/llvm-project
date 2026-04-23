@@ -10,14 +10,15 @@
 #define LLVM_TRANSFORMS_UTILS_DECLARERUNTIMELIBCALLS_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DeclareRuntimeLibcallsPass
     : public PassInfoMixin<DeclareRuntimeLibcallsPass> {
 public:
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &MAM);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_DECLARERUNTIMELIBCALLS_H

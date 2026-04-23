@@ -22,7 +22,7 @@
 #include "llvm/Support/DXILABI.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class CallInst;
 class DataLayout;
 class LLVMContext;
@@ -724,6 +724,6 @@ public:
 
 LLVM_ABI ModulePass *createDXILResourceBindingWrapperPassPass();
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_DXILRESOURCE_H

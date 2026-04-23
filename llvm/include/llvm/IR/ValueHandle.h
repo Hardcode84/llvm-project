@@ -20,7 +20,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cassert>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This is the common base class of value handles.
 ///
@@ -600,6 +600,6 @@ template <typename T> struct DenseMapInfo<PoisoningVH<T>> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_VALUEHANDLE_H

@@ -10,8 +10,9 @@
 #define LLVM_CODEGEN_REGUSAGEINFOPROPAGATE_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class RegUsageInfoPropagationPass
     : public PassInfoMixin<RegUsageInfoPropagationPass> {
@@ -20,6 +21,6 @@ public:
                         MachineFunctionAnalysisManager &MFAM);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_REGUSAGEINFOPROPAGATE_H

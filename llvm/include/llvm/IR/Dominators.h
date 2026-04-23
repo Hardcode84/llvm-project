@@ -34,7 +34,7 @@
 #include "llvm/Support/GenericDomTree.h"
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class Instruction;
@@ -336,6 +336,6 @@ public:
 
   void print(raw_ostream &OS, const Module *M = nullptr) const override;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_DOMINATORS_H

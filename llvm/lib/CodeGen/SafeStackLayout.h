@@ -13,8 +13,9 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Analysis/StackLifetime.h"
 #include "llvm/Support/Alignment.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 class Value;
@@ -80,6 +81,6 @@ public:
 
 } // end namespace safestack
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_CODEGEN_SAFESTACKLAYOUT_H

@@ -16,8 +16,9 @@
 #include "EHStreamer.h"
 #include "llvm/CodeGen/AsmPrinter.h"
 #include "llvm/MC/MCDwarf.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MachineFunction;
 class ARMTargetStreamer;
 
@@ -105,6 +106,6 @@ public:
   void beginFunction(const MachineFunction *MF) override {}
   void endFunction(const MachineFunction *MF) override;
 };
-} // End of namespace llvm
+LLVM_NAMESPACE_END // End of namespace llvm
 
 #endif

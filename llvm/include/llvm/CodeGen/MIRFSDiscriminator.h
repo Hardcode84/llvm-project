@@ -24,8 +24,9 @@
 
 #include <cassert>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MachineFunction;
 
 using namespace sampleprof;
@@ -63,6 +64,6 @@ private:
   bool runOnMachineFunction(MachineFunction &) override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_MIRFSDISCRIMINATOR_H

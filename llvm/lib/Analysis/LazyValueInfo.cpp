@@ -42,6 +42,7 @@
 #include "llvm/Support/KnownBits.h"
 #include "llvm/Support/raw_ostream.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 using namespace llvm;
 using namespace PatternMatch;
 
@@ -65,11 +66,11 @@ static cl::opt<bool> PerPredRanges(
     cl::desc("Enable tracking of ranges for a value in a block for"
              "each block predecessor (default = false)"));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 FunctionPass *createLazyValueInfoPass() {
   return new LazyValueInfoWrapperPass();
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 AnalysisKey LazyValueAnalysis::Key;
 
@@ -351,7 +352,7 @@ void LazyValueInfoCache::threadEdgeImpl(BasicBlock *OldSucc,
   }
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace {
 /// An assembly annotator class to print LazyValueCache information in
 /// comments.
@@ -522,7 +523,7 @@ public:
                     Function *GuardDecl)
       : TheCache(F), AC(AC), DL(DL), GuardDecl(GuardDecl) {}
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 void LazyValueInfoImpl::solve() {
   SmallVector<std::pair<BasicBlock *, Value *>, 8> StartingStack =

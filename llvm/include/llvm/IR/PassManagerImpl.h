@@ -22,7 +22,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/PrettyStackTrace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename IRUnitT, typename AnalysisManagerT, typename... ExtraArgTs>
 PreservedAnalyses PassManager<IRUnitT, AnalysisManagerT, ExtraArgTs...>::run(
@@ -217,6 +217,6 @@ inline void AnalysisManager<IRUnitT, ExtraArgTs...>::invalidate(
   if (ResultsList.empty())
     AnalysisResultLists.erase(&IR);
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_PASSMANAGERIMPL_H

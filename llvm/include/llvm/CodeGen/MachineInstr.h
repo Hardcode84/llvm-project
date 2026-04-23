@@ -39,7 +39,7 @@
 #include <cstdint>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DILabel;
 class Instruction;
@@ -2156,6 +2156,6 @@ inline raw_ostream& operator<<(raw_ostream &OS, const MachineInstr &MI) {
   return OS;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINEINSTR_H

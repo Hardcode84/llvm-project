@@ -16,14 +16,15 @@
 #define LLVM_TRANSFORMS_AGGRESSIVEINSTCOMBINE_AGGRESSIVEINSTCOMBINE_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AggressiveInstCombinePass
     : public PassInfoMixin<AggressiveInstCombinePass> {
 public:
   PreservedAnalyses run(Function &F, FunctionAnalysisManager &AM);
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

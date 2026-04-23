@@ -31,8 +31,9 @@
 #include "llvm/IR/IntrinsicInst.h"
 #include <cassert>
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DataLayout;
 
 namespace detail {
@@ -311,6 +312,6 @@ protected:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_PTRUSEVISITOR_H

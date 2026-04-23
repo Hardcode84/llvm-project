@@ -31,6 +31,7 @@
 #include "llvm/Transforms/Utils.h"
 #include "llvm/Transforms/Utils/BasicBlockUtils.h"
 #include "llvm/Transforms/Utils/ControlFlowUtils.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "unify-loop-exits"
 
@@ -281,7 +282,7 @@ bool UnifyLoopExitsLegacyPass::runOnFunction(Function &F) {
   return runImpl(LI, DT);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 PreservedAnalyses UnifyLoopExitsPass::run(Function &F,
                                           FunctionAnalysisManager &AM) {
@@ -297,4 +298,4 @@ PreservedAnalyses UnifyLoopExitsPass::run(Function &F,
   PA.preserve<DominatorTreeAnalysis>();
   return PA;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -16,8 +16,9 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/PointerUnion.h"
 #include "llvm/ADT/SmallPtrSet.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 class Function;
@@ -87,6 +88,6 @@ struct WasmEHFuncInfo {
 // Analyze the IR in the given function to build WasmEHFuncInfo.
 void calculateWasmEHInfo(const Function *F, WasmEHFuncInfo &EHInfo);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_WASMEHFUNCINFO_H

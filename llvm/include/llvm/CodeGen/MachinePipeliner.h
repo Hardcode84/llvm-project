@@ -53,8 +53,9 @@
 #include "llvm/CodeGen/WindowScheduler.h"
 
 #include <deque>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AAResults;
 class NodeSet;
@@ -848,6 +849,6 @@ public:
   void dump() const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINEPIPELINER_H

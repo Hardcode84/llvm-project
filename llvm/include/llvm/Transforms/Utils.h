@@ -16,7 +16,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ModulePass;
 class FunctionPass;
@@ -136,6 +136,6 @@ LLVM_ABI ModulePass *createLowerGlobalDtorsLegacyPass();
 // convergencectrl operand bundles.
 //
 LLVM_ABI FunctionPass *createStripConvergenceIntrinsicsPass();
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

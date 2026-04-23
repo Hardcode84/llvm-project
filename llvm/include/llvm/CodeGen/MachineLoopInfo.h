@@ -37,7 +37,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/GenericLoopInfo.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineDominatorTree;
 // Implementation in LoopInfoImpl.h
@@ -194,6 +194,6 @@ template <> struct GraphTraits<MachineLoop*> {
   static ChildIteratorType child_end(NodeRef N) { return N->end(); }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINELOOPINFO_H

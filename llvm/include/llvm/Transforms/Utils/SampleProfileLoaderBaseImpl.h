@@ -43,8 +43,9 @@
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/Transforms/Utils/SampleProfileInference.h"
 #include "llvm/Transforms/Utils/SampleProfileLoaderBaseUtil.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 using namespace sampleprof;
 using namespace sampleprofutil;
 using ProfileCount = Function::ProfileCount;
@@ -1172,5 +1173,5 @@ unsigned SampleProfileLoaderBaseImpl<BT>::getFunctionLoc(FunctionT &F) {
 
 #undef DEBUG_TYPE
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_TRANSFORMS_UTILS_SAMPLEPROFILELOADERBASEIMPL_H

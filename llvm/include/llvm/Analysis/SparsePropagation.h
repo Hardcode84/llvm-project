@@ -19,10 +19,11 @@
 #include "llvm/IR/Instructions.h"
 #include "llvm/Support/Debug.h"
 #include <set>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "sparseprop"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A template for translating between LLVM Values and LatticeKeys. Clients must
 /// provide a specialization of LatticeKeyInfo for their LatticeKey type.
@@ -518,7 +519,7 @@ void SparseSolver<LatticeKey, LatticeVal, KeyInfo>::Print(
     OS << "\n";
   }
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #undef DEBUG_TYPE
 

@@ -18,7 +18,7 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Inject MD_prof metadata where it's missing. Used for testing that passes
 /// don't accidentally drop this metadata.
 class ProfileInjectorPass : public PassInfoMixin<ProfileInjectorPass> {
@@ -41,5 +41,5 @@ public:
   LLVM_ABI PreservedAnalyses run(Module &M, ModuleAnalysisManager &MAM);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

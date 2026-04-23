@@ -24,7 +24,7 @@
 #define DEBUG_TYPE "instcombine"
 #include "llvm/Transforms/Utils/InstructionWorklist.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static constexpr unsigned InstCombineDefaultMaxIterations = 1;
 
@@ -90,7 +90,7 @@ public:
 //    %Z = add int 2, %X
 //
 LLVM_ABI FunctionPass *createInstructionCombiningPass();
-}
+LLVM_NAMESPACE_END
 
 #undef DEBUG_TYPE
 

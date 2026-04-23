@@ -16,8 +16,9 @@
 
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/SandboxIR/Pass.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DataLayout;
 
@@ -45,6 +46,6 @@ public:
 
 } // namespace sandboxir
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_SANDBOXVECTORIZER_PASSES_STRUCTINITVEC_H

@@ -21,8 +21,9 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/IR/Value.h"
 #include <variant>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LPMUpdater;
 
@@ -102,6 +103,6 @@ public:
   PreservedAnalyses run(Loop &L, LoopAnalysisManager &AM,
                         LoopStandardAnalysisResults &AR, LPMUpdater &);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

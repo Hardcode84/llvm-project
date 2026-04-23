@@ -26,7 +26,8 @@
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/DependencyGraph.h"
 #include <queue>
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 class PriorityCmp {
 public:
@@ -263,6 +264,7 @@ public:
   }
 };
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_SANDBOXVECTORIZER_SCHEDULER_H

@@ -52,8 +52,9 @@
 #include <string>
 #include <type_traits>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DominanceFrontier;
 class Loop;
@@ -1024,6 +1025,6 @@ extern template class RegionBase<RegionTraits<Function>>;
 extern template class RegionNodeBase<RegionTraits<Function>>;
 extern template class RegionInfoBase<RegionTraits<Function>>;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_REGIONINFO_H

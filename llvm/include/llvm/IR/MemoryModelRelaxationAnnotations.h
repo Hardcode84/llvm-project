@@ -24,7 +24,7 @@
 
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> class ArrayRef;
 
@@ -129,6 +129,6 @@ private:
 /// \returns true if \p I can have !mmra metadata.
 LLVM_ABI bool canInstructionHaveMMRAs(const Instruction &I);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

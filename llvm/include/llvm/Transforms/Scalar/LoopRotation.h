@@ -15,8 +15,9 @@
 
 #include "llvm/Analysis/LoopAnalysisManager.h"
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LPMUpdater;
 class Loop;
 
@@ -36,6 +37,6 @@ private:
   const bool PrepareForLTO;
   const bool CheckExitCount;
 };
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_TRANSFORMS_SCALAR_LOOPROTATION_H

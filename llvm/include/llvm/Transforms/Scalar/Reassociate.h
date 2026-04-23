@@ -31,7 +31,7 @@
 #include "llvm/Support/Compiler.h"
 #include <deque>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class APInt;
 class BasicBlock;
@@ -132,6 +132,6 @@ private:
   void BuildPairMap(ReversePostOrderTraversal<Function *> &RPOT);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_SCALAR_REASSOCIATE_H

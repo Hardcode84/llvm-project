@@ -23,8 +23,9 @@
 #include "llvm/IR/Function.h"
 #include "llvm/IR/SymbolTableListTraits.h"
 #include <iterator>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // This class implements inst_begin() & inst_end() for
 // inst_iterator and const_inst_iterator's.
@@ -155,6 +156,6 @@ inline const_inst_range instructions(const Function &F) {
   return const_inst_range(inst_begin(F), inst_end(F));
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_INSTITERATOR_H

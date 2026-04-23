@@ -15,8 +15,9 @@
 #define LLVM_TRANSFORMS_UTILS_NAMEANONGLOBALS_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Simple pass that provides a name to every anonymous globals.
 class NameAnonGlobalPass : public PassInfoMixin<NameAnonGlobalPass> {
@@ -28,6 +29,6 @@ public:
   static bool isRequired() { return true; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_NAMEANONGLOBALS_H

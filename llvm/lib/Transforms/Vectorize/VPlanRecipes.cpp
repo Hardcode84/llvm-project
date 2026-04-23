@@ -38,6 +38,7 @@
 #include "llvm/Transforms/Utils/BasicBlockUtils.h"
 #include "llvm/Transforms/Utils/LoopUtils.h"
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::VPlanPatternMatch;
@@ -417,11 +418,11 @@ unsigned VPUnrollPartAccessor<PartOpIdx>::getUnrollPart(const VPUser &U) const {
   return 0;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template class VPUnrollPartAccessor<1>;
 template class VPUnrollPartAccessor<2>;
 template class VPUnrollPartAccessor<3>;
-}
+LLVM_NAMESPACE_END
 
 VPInstruction::VPInstruction(unsigned Opcode, ArrayRef<VPValue *> Operands,
                              const VPIRFlags &Flags, const VPIRMetadata &MD,

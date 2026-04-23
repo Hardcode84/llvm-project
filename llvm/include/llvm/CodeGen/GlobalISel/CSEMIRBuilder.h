@@ -15,7 +15,7 @@
 #include "llvm/CodeGen/GlobalISel/MachineIRBuilder.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GISelInstProfileBuilder;
 /// Defines a builder that does CSE of MachineInstructions using GISelCSEInfo.
@@ -112,5 +112,5 @@ public:
   MachineInstrBuilder buildFConstant(const DstOp &Res,
                                      const ConstantFP &Val) override;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

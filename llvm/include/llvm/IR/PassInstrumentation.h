@@ -57,7 +57,7 @@
 #include "llvm/Support/Compiler.h"
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class PreservedAnalyses;
 class StringRef;
@@ -370,6 +370,6 @@ public:
 };
 
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -13,8 +13,9 @@
 #include "llvm/IR/ModuleSummaryIndex.h"
 #include "llvm/Support/YAMLTraits.h"
 #include <algorithm>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <> struct ScalarEnumerationTraits<TypeTestResolution::Kind> {
@@ -155,9 +156,9 @@ struct GlobalValueSummaryYaml {
 };
 
 } // End yaml namespace
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <> struct MappingTraits<FunctionSummary::VFuncId> {
@@ -175,12 +176,12 @@ template <> struct MappingTraits<FunctionSummary::ConstVCall> {
 };
 
 } // End yaml namespace
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(FunctionSummary::VFuncId)
 LLVM_YAML_IS_SEQUENCE_VECTOR(FunctionSummary::ConstVCall)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <> struct MappingTraits<GlobalValueSummaryYaml> {
@@ -206,11 +207,11 @@ template <> struct MappingTraits<GlobalValueSummaryYaml> {
 };
 
 } // End yaml namespace
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(GlobalValueSummaryYaml)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 // FIXME: Add YAML mappings for the rest of the module summary.
@@ -371,6 +372,6 @@ template <> struct MappingTraits<ModuleSummaryIndex> {
 };
 
 } // End yaml namespace
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

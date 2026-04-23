@@ -14,8 +14,9 @@
 #define LLVM_TRANSFORMS_IPO_FORCEFUNCTIONATTRS_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 
 /// Pass which forces specific function attributes into the IR, primarily as
@@ -24,6 +25,6 @@ struct ForceFunctionAttrsPass : PassInfoMixin<ForceFunctionAttrsPass> {
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &);
 };
 
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_TRANSFORMS_IPO_FORCEFUNCTIONATTRS_H

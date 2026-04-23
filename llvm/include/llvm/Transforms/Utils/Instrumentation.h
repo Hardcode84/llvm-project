@@ -25,7 +25,7 @@
 #include <limits>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Triple;
 class OptimizationRemarkEmitter;
@@ -194,6 +194,6 @@ struct InstrumentationIRBuilder : IRBuilder<> {
     ensureDebugInfo(*this, *BB->getParent());
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_INSTRUMENTATION_H

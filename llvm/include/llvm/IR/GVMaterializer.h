@@ -18,8 +18,9 @@
 #define LLVM_IR_GVMATERIALIZER_H
 
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Error;
 class GlobalValue;
@@ -46,6 +47,6 @@ public:
   virtual std::vector<StructType *> getIdentifiedStructTypes() const = 0;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_GVMATERIALIZER_H

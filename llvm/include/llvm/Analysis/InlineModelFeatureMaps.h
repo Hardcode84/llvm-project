@@ -16,7 +16,7 @@
 #include <array>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // List of cost features. A "cost" feature is a summand of the heuristic-based
 // inline cost, and we define them separately to preserve the original heuristic
@@ -168,5 +168,5 @@ LLVM_ABI extern const char *const RewardName;
 
 using InlineFeatures = std::vector<int64_t>;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_ANALYSIS_INLINEMODELFEATUREMAPS_H

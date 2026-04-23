@@ -16,7 +16,7 @@
 #include "llvm/CodeGen/GlobalISel/GISelChangeObserver.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LLVM_ABI LostDebugLocObserver : public GISelChangeObserver {
   StringRef DebugType;
   SmallSet<DebugLoc, 4> LostDebugLocs;
@@ -47,5 +47,5 @@ private:
   void analyzeDebugLocations();
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_CODEGEN_GLOBALISEL_LOSTDEBUGLOCOBSERVER_H

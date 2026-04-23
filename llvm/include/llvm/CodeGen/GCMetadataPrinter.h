@@ -20,8 +20,9 @@
 #define LLVM_CODEGEN_GCMETADATAPRINTER_H
 
 #include "llvm/Support/Registry.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AsmPrinter;
 class GCMetadataPrinter;
@@ -69,6 +70,6 @@ public:
   virtual bool emitStackMaps(StackMaps &SM, AsmPrinter &AP) { return false; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_GCMETADATAPRINTER_H

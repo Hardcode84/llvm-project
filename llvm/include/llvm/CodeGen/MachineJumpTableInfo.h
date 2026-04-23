@@ -24,7 +24,7 @@
 #include <cassert>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineBasicBlock;
 class DataLayout;
@@ -157,6 +157,6 @@ public:
 /// Usage: OS << printJumpTableEntryReference(Idx) << '\n';
 LLVM_ABI Printable printJumpTableEntryReference(unsigned Idx);
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

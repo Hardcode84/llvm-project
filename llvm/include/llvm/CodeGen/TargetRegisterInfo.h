@@ -31,7 +31,7 @@
 #include <cassert>
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BitVector;
 class DIExpression;
@@ -1484,6 +1484,6 @@ LLVM_ABI Printable printRegClassOrBank(Register Reg,
                                        const MachineRegisterInfo &RegInfo,
                                        const TargetRegisterInfo *TRI);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_TARGETREGISTERINFO_H

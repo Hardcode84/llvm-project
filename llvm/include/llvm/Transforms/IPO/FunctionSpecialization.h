@@ -92,7 +92,7 @@
 #include "llvm/Transforms/Utils/SCCPSolver.h"
 #include "llvm/Transforms/Utils/SizeOpts.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Map of potential specializations for each function. The FunctionSpecializer
 // keeps the discovered specialisation opportunities for the module in a single
 // vector, where the specialisations of each function form a contiguous range.
@@ -324,6 +324,6 @@ private:
   /// @param End End of a range (exclusive) of possibly matching specialisations
   void updateCallSites(Function *F, const Spec *Begin, const Spec *End);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_IPO_FUNCTIONSPECIALIZATION_H

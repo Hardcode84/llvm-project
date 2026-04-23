@@ -18,7 +18,7 @@
 #include <cstdint>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LLVMContext;
 class Metadata;
@@ -103,6 +103,6 @@ public:
   LLVM_ABI void printDetailedSummary(raw_ostream &OS) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_PROFILESUMMARY_H

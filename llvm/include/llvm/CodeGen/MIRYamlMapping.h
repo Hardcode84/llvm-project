@@ -26,8 +26,9 @@
 #include <optional>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 /// A wrapper around std::string which contains a source range that's being
@@ -189,13 +190,13 @@ template <> struct ScalarTraits<Align> {
 };
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::yaml::StringValue)
 LLVM_YAML_IS_FLOW_SEQUENCE_VECTOR(llvm::yaml::FlowStringValue)
 LLVM_YAML_IS_FLOW_SEQUENCE_VECTOR(llvm::yaml::UnsignedValue)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 struct VirtualRegisterDefinition {
@@ -513,11 +514,11 @@ template <> struct MappingTraits<CallSiteInfo::ArgRegPair> {
   static const bool flow = true;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::yaml::CallSiteInfo::ArgRegPair)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <> struct MappingTraits<CallSiteInfo> {
@@ -558,11 +559,11 @@ template <> struct MappingTraits<DebugValueSubstitution> {
   static const bool flow = true;
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::yaml::DebugValueSubstitution)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 struct MachineConstantPoolValue {
   UnsignedValue ID;
@@ -632,7 +633,7 @@ template <> struct MappingTraits<CalledGlobal> {
 };
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::yaml::MachineFunctionLiveIn)
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::yaml::VirtualRegisterDefinition)
@@ -644,7 +645,7 @@ LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::yaml::MachineConstantPoolValue)
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::yaml::MachineJumpTable::Entry)
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::yaml::CalledGlobal)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 // Struct representing one save/restore point in the 'savePoint' /
@@ -689,11 +690,11 @@ template <> struct MappingTraits<MachineJumpTable> {
 };
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::yaml::SaveRestorePointEntry)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 /// Serializable representation of MachineFrameInfo.
@@ -916,6 +917,6 @@ template <> struct MappingTraits<MachineFunction> {
 };
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MIRYAMLMAPPING_H

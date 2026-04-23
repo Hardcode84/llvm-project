@@ -23,7 +23,7 @@
 #include <cstddef>
 #include <type_traits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct MDProfLabels {
   LLVM_ABI static const char *BranchWeights;
   LLVM_ABI static const char *ValueProfile;
@@ -273,5 +273,5 @@ getDisjunctionWeights(const SmallVector<T1, 2> &B1,
   }
   return {TrueWeight, FalseWeight};
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

@@ -17,7 +17,7 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 LLVM_ABI extern cl::opt<bool> EnablePGSO;
 LLVM_ABI extern cl::opt<bool> PGSOLargeWorkingSetSizeOnly;
 LLVM_ABI extern cl::opt<bool> PGSOColdCodeOnly;
@@ -103,6 +103,6 @@ shouldOptimizeForSize(const BasicBlock *BB, ProfileSummaryInfo *PSI,
                       BlockFrequencyInfo *BFI,
                       PGSOQueryType QueryType = PGSOQueryType::Other);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_SIZEOPTS_H

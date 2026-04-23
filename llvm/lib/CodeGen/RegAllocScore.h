@@ -18,7 +18,7 @@
 #include "llvm/ADT/STLFunctionalExtras.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineBasicBlock;
 class MachineBlockFrequencyInfo;
@@ -69,6 +69,6 @@ LLVM_ABI_FOR_TEST RegAllocScore calculateRegAllocScore(
     const MachineFunction &MF,
     llvm::function_ref<double(const MachineBasicBlock &)> GetBBFreq,
     llvm::function_ref<bool(const MachineInstr &)> IsTriviallyRematerializable);
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_REGALLOCSCORE_H_

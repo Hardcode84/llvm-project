@@ -73,6 +73,7 @@
 #include <memory>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -107,7 +108,7 @@ static cl::opt<int>
                    cl::desc("Maximum length of dependent chains to hoist "
                             "(default = 10, unlimited = -1)"));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using BBSideEffectsSet = DenseMap<const BasicBlock *, bool>;
 using SmallVecInsn = SmallVector<Instruction *, 4>;
@@ -1196,7 +1197,7 @@ std::pair<unsigned, unsigned> GVNHoist::hoistExpressions(Function &F) {
   return hoist(HPL);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 PreservedAnalyses GVNHoistPass::run(Function &F, FunctionAnalysisManager &AM) {
   DominatorTree &DT = AM.getResult<DominatorTreeAnalysis>(F);

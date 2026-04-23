@@ -13,7 +13,9 @@
 #ifndef LLVM_IR_CALLINGCONV_H
 #define LLVM_IR_CALLINGCONV_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 /// CallingConv Namespace - This namespace contains an enum with a value for
 /// the well-known calling conventions.
@@ -330,6 +332,6 @@ constexpr bool isCallableCC(CallingConv::ID CC) {
   }
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_CALLINGCONV_H

@@ -63,6 +63,7 @@
 #include <memory>
 #include <optional>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -531,7 +532,7 @@ public:
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LiveDebugVariables::LDVImpl {
   LocMap::Allocator allocator;
@@ -680,7 +681,7 @@ LiveDebugVariables::LiveDebugVariables() = default;
 LiveDebugVariables::~LiveDebugVariables() = default;
 LiveDebugVariables::LiveDebugVariables(LiveDebugVariables &&) = default;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static void printDebugLoc(const DebugLoc &DL, raw_ostream &CommentOS,
                           const LLVMContext &Ctx) {

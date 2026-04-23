@@ -23,7 +23,7 @@
 #include <cstddef>
 #include <cstdlib>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LiveIntervals;
 class MachineFunction;
@@ -238,6 +238,6 @@ public:
   };
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_CODEGEN_INTERFERENCECACHE_H

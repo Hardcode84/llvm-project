@@ -20,7 +20,7 @@
 #include "llvm/Analysis/LoopAnalysisManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Function;
 class Loop;
 class LoopInfo;
@@ -566,6 +566,6 @@ struct GraphTraits<const DataDependenceGraph *>
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_DDG_H

@@ -17,7 +17,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/ModRef.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   class Value;
   class Use;
@@ -195,6 +195,6 @@ namespace llvm {
   /// implicit captures such as for external globals.
   LLVM_ABI void PointerMayBeCaptured(const Value *V, CaptureTracker *Tracker,
                                      unsigned MaxUsesToExplore = 0);
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

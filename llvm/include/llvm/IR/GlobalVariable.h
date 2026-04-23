@@ -29,7 +29,7 @@
 #include <cassert>
 #include <cstddef>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Constant;
 class DataLayout;
@@ -339,6 +339,6 @@ struct OperandTraits<GlobalVariable> :
 
 DEFINE_TRANSPARENT_OPERAND_ACCESSORS(GlobalVariable, Value)
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_GLOBALVARIABLE_H

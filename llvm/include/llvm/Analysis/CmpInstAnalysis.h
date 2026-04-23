@@ -16,8 +16,9 @@
 
 #include "llvm/ADT/APInt.h"
 #include "llvm/IR/InstrTypes.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class Type;
   class Value;
 
@@ -118,6 +119,6 @@ namespace llvm {
   decomposeBitTest(Value *Cond, bool LookThroughTrunc = true,
                    bool AllowNonZeroC = false, bool DecomposeAnd = false);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

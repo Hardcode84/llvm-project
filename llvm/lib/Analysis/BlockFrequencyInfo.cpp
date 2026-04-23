@@ -27,6 +27,7 @@
 #include <cassert>
 #include <optional>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -46,7 +47,7 @@ static cl::opt<GVDAGType> ViewBlockFreqPropagationDAG(
                clEnumValN(GVDT_Count, "count", "display a graph using the real "
                                                "profile count if available.")));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 cl::opt<std::string>
     ViewBlockFreqFuncName("view-bfi-func-name", cl::Hidden,
                           cl::desc("The option to specify "
@@ -85,9 +86,9 @@ cl::opt<std::string>
     PrintBFIFuncName("print-bfi-func-name", cl::Hidden,
                      cl::desc("The option to specify the name of the function "
                               "whose block frequency info is printed."));
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static GVDAGType getGVDT() {
   if (PGOViewCounts == PGOVCT_Graph)
@@ -147,7 +148,7 @@ struct DOTGraphTraits<BlockFrequencyInfo *> : public BFIDOTGTraitsBase {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 BlockFrequencyInfo::BlockFrequencyInfo() = default;
 

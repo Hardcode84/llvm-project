@@ -18,8 +18,9 @@
 #include "llvm/BinaryFormat/XCOFF.h"
 #include "llvm/MC/MCExpr.h"
 #include "llvm/Target/TargetLoweringObjectFile.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GlobalValue;
 class MachineModuleInfo;
@@ -337,6 +338,6 @@ public:
   MCSection *getStaticXtorSection(unsigned Priority) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_TARGETLOWERINGOBJECTFILEIMPL_H

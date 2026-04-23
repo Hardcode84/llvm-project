@@ -20,6 +20,7 @@
 #include "llvm/Transforms/Utils/LongestCommonSequence.h"
 
 #include <unordered_set>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace sampleprof;
@@ -29,7 +30,7 @@ using namespace sampleprof;
 STATISTIC(NumDirectProfileMatch,
           "Number of functions matched by demangled basename");
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static cl::opt<unsigned> FuncProfileSimilarityThreshold(
     "func-profile-similarity-threshold", cl::Hidden, cl::init(80),
@@ -68,7 +69,7 @@ static cl::opt<unsigned> SalvageStaleProfileMaxCallsites(
     cl::desc("The maximum number of callsites in a function, above which stale "
              "profile matching will be skipped."));
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 void SampleProfileMatcher::findIRAnchors(const Function &F,
                                          AnchorMap &IRAnchors) const {

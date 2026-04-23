@@ -13,8 +13,10 @@
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/Passes/TransactionAlwaysAccept.h"
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/Passes/TransactionAlwaysRevert.h"
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/Passes/TransactionSave.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 std::unique_ptr<sandboxir::RegionPass>
 SandboxVectorizerPassBuilder::createRegionPass(StringRef Name, StringRef Args,
@@ -40,4 +42,5 @@ SandboxVectorizerPassBuilder::createFunctionPass(StringRef Name, StringRef Args,
   return nullptr;
 }
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir

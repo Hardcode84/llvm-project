@@ -12,7 +12,8 @@
 #include "llvm/Support/Debug.h"
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/DependencyGraph.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 template <typename T> bool Interval<T>::disjoint(const Interval &Other) const {
   if (Other.empty())
@@ -46,4 +47,5 @@ template <typename T> void Interval<T>::dump() const { print(dbgs()); }
 template class LLVM_EXPORT_TEMPLATE Interval<Instruction>;
 template class LLVM_EXPORT_TEMPLATE Interval<MemDGNode>;
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir

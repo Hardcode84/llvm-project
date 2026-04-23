@@ -18,8 +18,9 @@
 #include <map>
 #include <memory>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DiagnosticInfoOptimizationBase;
 class Module;
 class MLInlineAdvice;
@@ -131,6 +132,6 @@ private:
   std::optional<FunctionPropertiesUpdater> FPU;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_MLINLINEADVISOR_H

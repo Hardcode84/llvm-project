@@ -31,7 +31,7 @@
 #include <string>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AttrBuilder;
 class AttributeMask;
@@ -1440,6 +1440,6 @@ LLVM_ABI void updateMinLegalVectorWidthAttr(Function &Fn, uint64_t Width);
 
 } // end namespace AttributeFuncs
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_ATTRIBUTES_H

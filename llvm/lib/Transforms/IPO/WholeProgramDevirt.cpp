@@ -117,6 +117,7 @@
 #include <map>
 #include <set>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace wholeprogramdevirt;
@@ -134,7 +135,7 @@ STATISTIC(NumVirtConstProp, "Number of virtual constant propagations");
 DEBUG_COUNTER(CallsToDevirt, "calls-to-devirt",
               "Controls how many calls should be devirtualized.");
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static cl::opt<PassSummaryAction> ClSummaryAction(
     "wholeprogramdevirt-summary-action",
@@ -198,7 +199,7 @@ static cl::list<std::string>
 
 extern cl::opt<bool> ProfcheckDisableMetadataFixes;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 /// With Clang, a pure virtual class's deleting destructor is emitted as a
 /// `llvm.trap` intrinsic followed by an unreachable IR instruction. In the

@@ -13,7 +13,9 @@
 #ifndef LLVM_CODEGEN_TARGETOPCODES_H
 #define LLVM_CODEGEN_TARGETOPCODES_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 /// Invariant opcodes: All instruction sets have these as their low opcodes.
 ///
@@ -44,6 +46,6 @@ inline bool isPreISelGenericOptimizationHint(unsigned Opcode) {
          Opcode <= TargetOpcode::PRE_ISEL_GENERIC_OPTIMIZATION_HINT_END;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -23,6 +23,7 @@
 #include "llvm/CodeGen/GlobalISel/Utils.h"
 #include "llvm/CodeGen/MachineOptimizationRemarkEmitter.h"
 #include "llvm/Support/Debug.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "gi-combiner"
 
@@ -33,7 +34,7 @@ STATISTIC(NumTwoIterations, "Number of functions with two iterations");
 STATISTIC(NumThreeOrMoreIterations,
           "Number of functions with three or more iterations");
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 cl::OptionCategory GICombinerOptionCategory(
     "GlobalISel Combiner",
     "Control the rules which are enabled. These options all take a comma "
@@ -43,7 +44,7 @@ cl::OptionCategory GICombinerOptionCategory(
     " They may also be specified by name."
 #endif
 );
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 /// This class acts as the glue that joins the CombinerHelper to the overall
 /// Combine algorithm. The CombinerHelper is intended to report the

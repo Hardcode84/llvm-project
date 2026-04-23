@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CtxProfAnalysis;
 
@@ -209,5 +209,5 @@ public:
   LLVM_ABI static uint64_t getGUID(const Function &F);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_ANALYSIS_CTXPROFANALYSIS_H

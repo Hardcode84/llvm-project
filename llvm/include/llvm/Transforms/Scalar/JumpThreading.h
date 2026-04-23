@@ -26,7 +26,7 @@
 #include "llvm/Transforms/Utils/ValueMapper.h"
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AAResults;
 class BasicBlock;
@@ -221,6 +221,6 @@ private:
                                       SmallPtrSet<Value *, 8> &Visited);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_SCALAR_JUMPTHREADING_H

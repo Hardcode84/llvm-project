@@ -10,8 +10,9 @@
 #define LLVM_CODEGEN_SHRINKWRAP_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ShrinkWrapPass : public PassInfoMixin<ShrinkWrapPass> {
 public:
@@ -23,6 +24,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_SHRINKWRAP_H

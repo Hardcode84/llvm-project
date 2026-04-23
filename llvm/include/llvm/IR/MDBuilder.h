@@ -22,7 +22,7 @@
 #include "llvm/Support/DataTypes.h"
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class APInt;
 template <typename T> class ArrayRef;
@@ -268,6 +268,6 @@ public:
   LLVM_ABI MDNode *createIrrLoopHeaderWeight(uint64_t Weight);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

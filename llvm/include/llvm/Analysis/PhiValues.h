@@ -27,7 +27,7 @@
 #include "llvm/Pass.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Value;
 class PHINode;
@@ -152,6 +152,6 @@ public:
   void getAnalysisUsage(AnalysisUsage &AU) const override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

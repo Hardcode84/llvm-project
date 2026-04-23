@@ -17,7 +17,7 @@
 #include "llvm/ADT/StableHashing.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MachineBasicBlock;
 class MachineFunction;
 class MachineInstr;
@@ -31,6 +31,6 @@ LLVM_ABI stable_hash stableHashValue(const MachineInstr &MI,
 LLVM_ABI stable_hash stableHashValue(const MachineBasicBlock &MBB);
 LLVM_ABI stable_hash stableHashValue(const MachineFunction &MF);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

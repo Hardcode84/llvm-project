@@ -19,7 +19,7 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Module;
 
@@ -28,6 +28,6 @@ struct StripDeadPrototypesPass : PassInfoMixin<StripDeadPrototypesPass> {
   LLVM_ABI PreservedAnalyses run(Module &M, ModuleAnalysisManager &);
 };
 
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_TRANSFORMS_IPO_STRIPDEADPROTOTYPES_H

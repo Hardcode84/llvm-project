@@ -23,7 +23,7 @@
 #include "llvm/Support/Compiler.h"
 #include <variant>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CCState;
 class MachineFunction;
@@ -551,6 +551,6 @@ private:
   LLVM_ABI void MarkUnallocated(MCPhysReg Reg);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_CALLINGCONVLOWER_H

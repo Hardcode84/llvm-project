@@ -10,8 +10,9 @@
 #define LLVM_TRANSFORMS_UTILS_LOWERIFUNC_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Pass to replace calls to ifuncs with indirect calls. This could be used to
 /// support ifunc on systems where the program loader does not natively support
@@ -23,6 +24,6 @@ public:
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &AM);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_LOWERIFUNC_H

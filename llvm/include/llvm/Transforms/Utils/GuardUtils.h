@@ -12,7 +12,9 @@
 #ifndef LLVM_TRANSFORMS_UTILS_GUARDUTILS_H
 #define LLVM_TRANSFORMS_UTILS_GUARDUTILS_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class CondBrInst;
 class CallInst;
@@ -39,6 +41,6 @@ void widenWidenableBranch(CondBrInst *WidenableBR, Value *NewCond);
 /// path and that the branch remains widenable after transform.
 void setWidenableBranchCond(CondBrInst *WidenableBR, Value *Cond);
 
-} // llvm
+LLVM_NAMESPACE_END // llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_GUARDUTILS_H

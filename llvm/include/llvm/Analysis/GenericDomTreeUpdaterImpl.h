@@ -20,8 +20,9 @@
 #include "llvm/Analysis/GenericDomTreeUpdater.h"
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename DerivedT, typename DomTreeT, typename PostDomTreeT>
 template <typename FuncT>
@@ -460,6 +461,6 @@ void GenericDomTreeUpdater<DerivedT, DomTreeT, PostDomTreeT>::
   PDT->applyUpdates(Updates);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_GENERICDOMTREEUPDATERIMPL_H

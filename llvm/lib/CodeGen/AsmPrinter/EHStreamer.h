@@ -17,7 +17,7 @@
 #include "llvm/CodeGen/AsmPrinterHandler.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AsmPrinter;
 struct LandingPadInfo;
@@ -155,6 +155,6 @@ public:
   static bool callToNoUnwindFunction(const MachineInstr *MI);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_CODEGEN_ASMPRINTER_EHSTREAMER_H

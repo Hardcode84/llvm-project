@@ -34,7 +34,7 @@
 #include "llvm/Support/Compiler.h"
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <class NodeT> class DomTreeNodeBase;
 class MachineDominatorTree;
@@ -264,6 +264,6 @@ public:
                      const SlotIndexes &Indexes);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_LIVERANGECALC_H

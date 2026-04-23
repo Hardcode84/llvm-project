@@ -11,8 +11,9 @@
 
 #include "llvm/CodeGen/Register.h"
 #include <functional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class TargetRegisterClass;
 class TargetRegisterInfo;
@@ -23,6 +24,6 @@ class MachineRegisterInfo;
 typedef std::function<bool(const TargetRegisterInfo &TRI,
                            const MachineRegisterInfo &MRI, const Register Reg)>
     RegAllocFilterFunc;
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_CODEGEN_REGALLOCCOMMON_H

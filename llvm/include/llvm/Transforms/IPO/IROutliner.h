@@ -45,10 +45,11 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/InstructionCost.h"
 #include "llvm/Transforms/Utils/CodeExtractor.h"
+#include "llvm/Support/Compiler.h"
 
 struct OutlinableGroup;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 using namespace CallingConv;
 using namespace IRSimilarity;
 
@@ -470,6 +471,6 @@ public:
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &AM);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_IPO_IROUTLINER_H

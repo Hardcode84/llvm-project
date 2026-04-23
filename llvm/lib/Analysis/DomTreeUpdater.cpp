@@ -20,7 +20,7 @@
 #include "llvm/Support/GenericDomTree.h"
 #include <functional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template class LLVM_EXPORT_TEMPLATE
     GenericDomTreeUpdater<DomTreeUpdater, DominatorTree, PostDominatorTree>;
@@ -121,4 +121,4 @@ void DomTreeUpdater::dump() const {
 #endif
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

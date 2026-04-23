@@ -21,8 +21,9 @@
 #include "llvm/ADT/DenseMapInfo.h"
 #include "llvm/IR/ValueHandle.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 class DomTreeUpdater;
@@ -72,6 +73,6 @@ bool bypassSlowDivision(BasicBlock *BB,
                         const DenseMap<unsigned int, unsigned int> &BypassWidth,
                         DomTreeUpdater *DTU = nullptr, LoopInfo *LI = nullptr);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_BYPASSSLOWDIVISION_H

@@ -18,7 +18,7 @@
 #include "llvm/Transforms/Utils/SimplifyCFGOptions.h"
 #include <functional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class FunctionPass;
@@ -213,6 +213,6 @@ LLVM_ABI FunctionPass *createInstSimplifyLegacyPass();
 // and scatter intrinsics with scalar code when target doesn't support them.
 //
 LLVM_ABI FunctionPass *createScalarizeMaskedMemIntrinLegacyPass();
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

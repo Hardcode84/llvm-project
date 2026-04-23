@@ -10,8 +10,9 @@
 #define LLVM_CODEGEN_MACHINECOPYPROPAGATION_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineCopyPropagationPass
     : public PassInfoMixin<MachineCopyPropagationPass> {
@@ -29,6 +30,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINECOPYPROPAGATION_H

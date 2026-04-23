@@ -14,8 +14,10 @@
 #include "llvm/Support/Debug.h"
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/InstrMaps.h"
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/VecUtils.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 #ifndef NDEBUG
 void ShuffleMask::dump() const {
@@ -257,4 +259,5 @@ void LegalityAnalysis::clear() {
   Sched.clear();
   IMaps.clear();
 }
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir

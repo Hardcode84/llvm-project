@@ -25,7 +25,7 @@
 #include <cassert>
 #include <cstddef>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class APInt;
 class Constant;
@@ -1059,6 +1059,6 @@ SCEVUseT<SCEVPtrT>::getNoWrapFlags(SCEVNoWrapFlags Mask) const {
   return (Flags | getUseNoWrapFlags()) & Mask;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_SCALAREVOLUTIONEXPRESSIONS_H

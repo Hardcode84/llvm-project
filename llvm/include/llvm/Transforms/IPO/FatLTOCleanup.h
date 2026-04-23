@@ -18,8 +18,9 @@
 #define LLVM_TRANSFORMS_IPO_FATLTOCLEANUP_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Module;
 class ModuleSummaryIndex;
@@ -31,6 +32,6 @@ public:
   static bool isRequired() { return true; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_IPO_FATLTOCLEANUP_H

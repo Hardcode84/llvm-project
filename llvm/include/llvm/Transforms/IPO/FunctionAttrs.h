@@ -21,7 +21,7 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GlobalValueSummary;
 class ModuleSummaryIndex;
@@ -92,6 +92,6 @@ class NoRecurseLTOInferencePass
 public:
   LLVM_ABI PreservedAnalyses run(Module &M, ModuleAnalysisManager &MAM);
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_IPO_FUNCTIONATTRS_H

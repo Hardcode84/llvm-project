@@ -39,7 +39,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class PSetIterator;
 
@@ -1282,6 +1282,6 @@ MachineRegisterInfo::getPressureSets(VirtRegOrUnit VRegOrUnit) const {
   return PSetIterator(VRegOrUnit, this);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINEREGISTERINFO_H

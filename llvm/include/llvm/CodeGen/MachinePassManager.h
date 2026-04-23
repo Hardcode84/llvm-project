@@ -30,7 +30,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 class Function;
 
@@ -234,6 +234,6 @@ using MachineFunctionPassManager = PassManager<MachineFunction>;
 /// preserve.
 LLVM_ABI PreservedAnalyses getMachineFunctionPassPreservedAnalyses();
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINEPASSMANAGER_H

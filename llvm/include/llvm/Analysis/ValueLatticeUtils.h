@@ -14,7 +14,9 @@
 #ifndef LLVM_ANALYSIS_VALUELATTICEUTILS_H
 #define LLVM_ANALYSIS_VALUELATTICEUTILS_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class GlobalVariable;
@@ -35,6 +37,6 @@ bool canTrackReturnsInterprocedurally(Function *F);
 /// has local linkage and is only used by non-volatile loads and stores.
 bool canTrackGlobalVariableInterprocedurally(GlobalVariable *GV);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_VALUELATTICEUTILS_H

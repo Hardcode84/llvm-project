@@ -15,8 +15,9 @@
 
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 class CallBrInst;
@@ -123,6 +124,6 @@ struct ControlFlowHub {
   SmallVector<BranchDescriptor> Branches;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_CONTROLFLOWUTILS_H

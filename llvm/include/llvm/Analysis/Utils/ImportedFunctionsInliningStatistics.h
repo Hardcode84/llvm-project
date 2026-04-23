@@ -19,7 +19,7 @@
 #include <memory>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 class Function;
 /// Calculate and dump ThinLTO specific inliner stats.
@@ -108,6 +108,6 @@ enum class InlinerFunctionImportStatsOpts {
   Verbose = 2,
 };
 
-} // llvm
+LLVM_NAMESPACE_END // llvm
 
 #endif // LLVM_ANALYSIS_UTILS_IMPORTEDFUNCTIONSINLININGSTATISTICS_H

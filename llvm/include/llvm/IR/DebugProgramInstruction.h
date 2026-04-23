@@ -57,7 +57,7 @@
 #include "llvm/Support/Casting.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Instruction;
 class BasicBlock;
@@ -705,6 +705,6 @@ getDbgRecordRange(DbgMarker *DebugMarker) {
 
 DEFINE_ISA_CONVERSION_FUNCTIONS(DbgRecord, LLVMDbgRecordRef)
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_IR_DEBUGPROGRAMINSTRUCTION_H

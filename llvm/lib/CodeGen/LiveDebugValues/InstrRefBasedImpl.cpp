@@ -4023,7 +4023,7 @@ raw_ostream &operator<<(raw_ostream &out, const LDVSSAPhi &PHI) {
 
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Template specialization to give SSAUpdater access to CFG and value
 /// information. SSAUpdater calls methods in these traits, passing in the
@@ -4129,7 +4129,7 @@ public:
   static BlockValueNum GetPHIValue(LDVSSAPhi *PHI) { return PHI->PHIValNum; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 std::optional<ValueIDNum> InstrRefBasedLDV::resolveDbgPHIs(
     MachineFunction &MF, const FuncValueTable &MLiveOuts,

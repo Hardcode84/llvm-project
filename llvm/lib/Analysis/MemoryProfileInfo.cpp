@@ -22,7 +22,7 @@ using namespace llvm::memprof;
 
 #define DEBUG_TYPE "memory-profile-info"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 cl::opt<bool> MemProfReportHintedSizes(
     "memprof-report-hinted-sizes", cl::init(false), cl::Hidden,
@@ -64,7 +64,7 @@ LLVM_ABI cl::opt<bool> MemProfUseAmbiguousAttributes(
     "memprof-ambiguous-attributes", cl::init(true), cl::Hidden,
     cl::desc("Apply ambiguous memprof attribute to ambiguous allocations"));
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 bool llvm::memprof::metadataIncludesAllContextSizeInfo() {
   return MemProfReportHintedSizes || MemProfKeepContextSizeInfo ||

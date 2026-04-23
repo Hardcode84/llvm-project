@@ -47,7 +47,7 @@
 #include <utility>
 #include <variant>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 class DominatorTree;
@@ -4926,6 +4926,6 @@ inline raw_ostream &operator<<(raw_ostream &OS, const VPlan &Plan) {
 }
 #endif
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_VPLAN_H

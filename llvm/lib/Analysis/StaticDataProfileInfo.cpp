@@ -6,12 +6,13 @@
 #include "llvm/IR/Module.h"
 #include "llvm/InitializePasses.h"
 #include "llvm/ProfileData/InstrProf.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "static-data-profile-info"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // FIXME: This option is added for incremental rollout purposes.
 // After the option, string literal partitioning should be implied by
 // AnnotateStaticDataSectionPrefix in MemProfUse.cpp and this option should be
@@ -56,7 +57,7 @@ bool IsAnnotationOK(const GlobalVariable &GV) {
   return getAnnotationKind(GV) == AnnotationKind::AnnotationOK;
 }
 } // namespace memprof
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 void StaticDataProfileInfo::addConstantProfileCount(
     const Constant *C, std::optional<uint64_t> Count) {

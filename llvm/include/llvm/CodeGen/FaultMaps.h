@@ -12,8 +12,9 @@
 #include "llvm/MC/MCSymbol.h"
 #include <map>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AsmPrinter;
 class MCExpr;
@@ -71,6 +72,6 @@ private:
   void emitFunctionInfo(const MCSymbol *FnLabel, const FunctionFaultInfos &FFI);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_FAULTMAPS_H

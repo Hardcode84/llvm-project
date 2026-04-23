@@ -26,7 +26,7 @@
 
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AnalysisUsage;
 class LostDebugLocObserver;
@@ -718,5 +718,5 @@ public:
   getConstant(Register Const, const MachineRegisterInfo &MRI);
 };
 
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.
 #endif

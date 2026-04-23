@@ -19,7 +19,7 @@
 #include "llvm/Support/CBindingWrapping.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class Pass;
@@ -102,6 +102,6 @@ private:
 // Create wrappers for C Binding types (see CBindingWrapping.h).
 DEFINE_STDCXX_CONVERSION_FUNCTIONS(legacy::PassManagerBase, LLVMPassManagerRef)
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

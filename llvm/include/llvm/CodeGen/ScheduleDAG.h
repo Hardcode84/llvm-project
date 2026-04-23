@@ -30,7 +30,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <class GraphType> struct GraphTraits;
 template<class Graph> class GraphWriter;
@@ -822,6 +822,6 @@ class TargetRegisterInfo;
     const_reverse_iterator rend() const { return Index2Node.rend(); }
   };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_SCHEDULEDAG_H

@@ -13,8 +13,9 @@
 #define LLVM_TRANSFORMS_INSTRUMENTATION_CGPROFILE_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 class CGProfilePass : public PassInfoMixin<CGProfilePass> {
 public:
@@ -24,6 +25,6 @@ public:
 private:
   bool InLTO = false;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_INSTRUMENTATION_CGPROFILE_H

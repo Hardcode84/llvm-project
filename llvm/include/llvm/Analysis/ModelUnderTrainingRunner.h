@@ -20,8 +20,9 @@
 #include "llvm/Analysis/Utils/TFUtils.h"
 #include "llvm/IR/LLVMContext.h"
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// ModelUnderTrainingRunner - training mode implementation. It uses TFLite
 /// to dynamically load and evaluate a TF SavedModel
@@ -73,6 +74,6 @@ private:
   void *evaluateUntyped() override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // define(LLVM_HAVE_TFLITE)
 #endif // LLVM_ANALYSIS_MODELUNDERTRAININGRUNNER_H

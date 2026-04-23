@@ -45,6 +45,7 @@
 #include <cassert>
 #include <cstdint>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::PatternMatch;
@@ -55,7 +56,7 @@ using namespace llvm::SCEVPatternMatch;
 STATISTIC(NumPeeled, "Number of loops peeled");
 STATISTIC(NumPeeledEnd, "Number of loops peeled from end");
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 static cl::opt<unsigned> UnrollPeelCount(
     "unroll-peel-count", cl::Hidden,
     cl::desc("Set the unroll peeling count, for testing purposes"));
@@ -90,7 +91,7 @@ static cl::opt<bool> EnablePeelingForIV(
 static const char *PeeledCountMetaData = "llvm.loop.peeled.count";
 
 extern cl::opt<bool> ProfcheckDisableMetadataFixes;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Check whether we are capable of peeling this loop.
 bool llvm::canPeel(const Loop *L) {

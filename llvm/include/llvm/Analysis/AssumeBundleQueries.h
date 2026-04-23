@@ -18,7 +18,7 @@
 #include "llvm/IR/IntrinsicInst.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AssumptionCache;
 class DominatorTree;
 class Instruction;
@@ -177,6 +177,6 @@ LLVM_ABI RetainedKnowledge getKnowledgeValidInContext(
 LLVM_ABI RetainedKnowledge
 getKnowledgeFromBundle(AssumeInst &Assume, const CallBase::BundleOpInfo &BOI);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

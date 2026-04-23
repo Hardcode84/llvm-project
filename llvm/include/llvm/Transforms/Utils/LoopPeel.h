@@ -16,8 +16,9 @@
 
 #include "llvm/Analysis/TargetTransformInfo.h"
 #include "llvm/Transforms/Utils/ValueMapper.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 bool canPeel(const Loop *L);
 
@@ -48,6 +49,6 @@ void computePeelCount(Loop *L, unsigned LoopSize,
                       AssumptionCache *AC = nullptr,
                       unsigned Threshold = UINT_MAX);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_LOOPPEEL_H

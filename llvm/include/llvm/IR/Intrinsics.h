@@ -21,7 +21,7 @@
 #include <optional>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Type;
 class FunctionType;
@@ -317,6 +317,6 @@ namespace Intrinsic {
 
   } // namespace Intrinsic
 
-  } // namespace llvm
+  LLVM_NAMESPACE_END // namespace llvm
 
 #endif

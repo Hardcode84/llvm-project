@@ -18,8 +18,9 @@
 #include "llvm/ADT/GenericSSAContext.h"
 #include "llvm/CodeGen/MachineBasicBlock.h"
 #include "llvm/Support/Printable.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MachineInstr;
 class MachineFunction;
 class Register;
@@ -36,6 +37,6 @@ template <> struct GenericSSATraits<MachineFunction> {
 };
 
 using MachineSSAContext = GenericSSAContext<MachineFunction>;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINESSACONTEXT_H

@@ -13,7 +13,7 @@
 #include "llvm/ADT/TinyPtrVector.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BasicBlock;
 class Function;
 class Triple;
@@ -115,6 +115,6 @@ typedef TinyPtrVector<BasicBlock *> ColorVector;
 /// expensive.
 LLVM_ABI DenseMap<BasicBlock *, ColorVector> colorEHFunclets(Function &F);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_EHPERSONALITIES_H

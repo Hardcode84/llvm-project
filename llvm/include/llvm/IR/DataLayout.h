@@ -42,7 +42,7 @@
 // decl.
 using LLVMTargetDataRef = struct LLVMOpaqueTargetData *;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GlobalVariable;
 class LLVMContext;
@@ -834,6 +834,6 @@ inline TypeSize DataLayout::getTypeSizeInBits(Type *Ty) const {
   }
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_DATALAYOUT_H

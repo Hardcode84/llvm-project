@@ -13,7 +13,8 @@
 #define LLVM_TRANSFORMS_INSTRUMENTATION_PGOCTXPROFLOWERING_H
 
 #include "llvm/IR/PassManager.h"
-namespace llvm {
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class Type;
 
 class PGOCtxProfLoweringPass : public PassInfoMixin<PGOCtxProfLoweringPass> {
@@ -39,5 +40,5 @@ public:
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &MAM);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

@@ -21,8 +21,9 @@
 #include "llvm/Support/MD5.h"
 
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// ReleaseModeModelRunner - production mode implementation of the
 /// MLModelRunner. It uses an AOT-compiled SavedModel for efficient execution.
@@ -159,6 +160,6 @@ template <class T> bool isEmbeddedModelEvaluatorValid() { return true; }
 template <> inline bool isEmbeddedModelEvaluatorValid<NoopSavedModelImpl>() {
   return false;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_RELEASEMODEMODELRUNNER_H

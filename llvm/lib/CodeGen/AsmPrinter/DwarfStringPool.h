@@ -15,7 +15,7 @@
 #include "llvm/Support/Allocator.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AsmPrinter;
 class MCSection;
@@ -64,6 +64,6 @@ public:
   LLVM_ABI_FOR_TEST EntryRef getIndexedEntry(AsmPrinter &Asm, StringRef Str);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_CODEGEN_ASMPRINTER_DWARFSTRINGPOOL_H

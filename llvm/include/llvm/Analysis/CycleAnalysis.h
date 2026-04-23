@@ -18,8 +18,9 @@
 #include "llvm/IR/CycleInfo.h"
 #include "llvm/IR/PassManager.h"
 #include "llvm/Pass.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Legacy analysis pass which computes a \ref CycleInfo.
 class CycleInfoWrapperPass : public FunctionPass {
@@ -76,6 +77,6 @@ struct CycleInfoVerifierPass : public PassInfoMixin<CycleInfoVerifierPass> {
   static bool isRequired() { return true; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_CYCLEANALYSIS_H

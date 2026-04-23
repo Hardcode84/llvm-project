@@ -211,7 +211,7 @@ public:
 
 } // End namespace LiveDebugValues
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 using namespace LiveDebugValues;
 
 template <> struct DenseMapInfo<LocIdx> {
@@ -238,7 +238,7 @@ template <> struct DenseMapInfo<ValueIDNum> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace LiveDebugValues {
 using namespace llvm;

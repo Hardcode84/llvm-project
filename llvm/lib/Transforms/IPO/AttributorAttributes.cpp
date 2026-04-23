@@ -76,6 +76,7 @@
 #include <numeric>
 #include <optional>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -153,7 +154,7 @@ STATISTIC(NumIndirectCallsPromoted, "Number of indirect calls promoted");
 
 // Specialization of the operator<< for abstract attributes subclasses. This
 // disambiguates situations where multiple operators are applicable.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 #define PIPE_OPERATOR(CLASS)                                                   \
   raw_ostream &operator<<(raw_ostream &OS, const CLASS &AA) {                  \
     return OS << static_cast<const AbstractAttribute &>(AA);                   \
@@ -210,7 +211,7 @@ ChangeStatus clampStateAndIndicateChange<DerefState>(DerefState &S,
   return CS0 | CS1;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static bool mayBeInCycle(const CycleInfo *CI, const Instruction *I,
                          bool HeaderOnly, Cycle **CPtr = nullptr) {
@@ -732,7 +733,7 @@ static void followUsesInMBEC(AAType &AA, Attributor &A, StateType &S,
 
 /// ------------------------ PointerInfo ---------------------------------------
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace AA {
 namespace PointerInfo {
 
@@ -785,7 +786,7 @@ struct AccessAsInstructionInfo : DenseMapInfo<Instruction *> {
   static bool isEqual(const Access &LHS, const Access &RHS);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 /// A type to track pointer/struct usage and accesses for AAPointerInfo.
 struct AA::PointerInfo::State : public AbstractState {
@@ -3458,7 +3459,7 @@ template <typename ToTy> struct ReachabilityQueryInfo {
       : From(RQI.From), To(RQI.To), ExclusionSet(RQI.ExclusionSet) {}
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename ToTy> struct DenseMapInfo<ReachabilityQueryInfo<ToTy> *> {
   using InstSetDMI = DenseMapInfo<const AA::InstExclusionSetTy *>;
   using PairDMI = DenseMapInfo<std::pair<const Instruction *, const ToTy *>>;
@@ -3498,7 +3499,7 @@ template <typename ToTy> struct DenseMapInfo<ReachabilityQueryInfo<ToTy> *> {
 DefineKeys(Instruction) DefineKeys(Function)
 #undef DefineKeys
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 

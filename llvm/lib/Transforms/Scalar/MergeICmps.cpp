@@ -59,14 +59,15 @@
 #include <numeric>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
 #define DEBUG_TYPE "mergeicmps"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> ProfcheckDisableMetadataFixes;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 namespace {
 
 // A BCE atom "Binary Compare Expression Atom" represents an integer load

@@ -13,8 +13,9 @@
 #include "VPlan.h"
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/Analysis/ScalarEvolutionExpressions.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LoopVectorizationLegality;
 class LoopVectorizationCostModel;
@@ -127,6 +128,6 @@ public:
     return Plan.getOrAddLiveIn(V);
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_VPRECIPEBUILDER_H

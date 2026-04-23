@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/raw_ostream.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineBasicBlock;
 class MachineFunction;
@@ -67,6 +67,6 @@ LLVM_ABI void guessSuccessors(const MachineBasicBlock &MBB,
                               SmallVectorImpl<MachineBasicBlock *> &Result,
                               bool &IsFallthrough);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

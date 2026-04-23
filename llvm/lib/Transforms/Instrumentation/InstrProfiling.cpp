@@ -65,7 +65,7 @@ using namespace llvm;
 
 #define DEBUG_TYPE "instrprof"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Command line option to enable vtable value profiling. Defined in
 // ProfileData/InstrProf.cpp: -enable-vtable-value-profiling=
 extern cl::opt<bool> EnableVTableValueProfiling;
@@ -79,7 +79,7 @@ LLVM_ABI cl::opt<InstrProfCorrelator::ProfCorrelatorKind> ProfileCorrelate(
                           "Use debug info to correlate"),
                clEnumValN(InstrProfCorrelator::BINARY, "binary",
                           "Use binary to correlate")));
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 
@@ -2154,7 +2154,7 @@ void InstrLowerer::emitInitialization() {
   appendToGlobalCtors(M, F, 0);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Create the variable for profile sampling.
 void createProfileSamplingVar(Module &M) {
   const StringRef VarName(INSTR_PROF_QUOTE(INSTR_PROF_PROFILE_SAMPLING_VAR));
@@ -2178,4 +2178,4 @@ void createProfileSamplingVar(Module &M) {
   }
   appendToCompilerUsed(M, SamplingVar);
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

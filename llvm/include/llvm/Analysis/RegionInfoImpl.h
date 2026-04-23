@@ -30,10 +30,11 @@
 #include <string>
 #include <type_traits>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "region"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 
 //===----------------------------------------------------------------------===//
@@ -887,7 +888,7 @@ void RegionInfoBase<Tr>::calculate(FuncT &F) {
   buildRegionsTree(DT->getNode(BB), TopLevelRegion);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #undef DEBUG_TYPE
 

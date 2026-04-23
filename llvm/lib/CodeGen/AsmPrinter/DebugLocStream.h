@@ -12,8 +12,9 @@
 #include "ByteStreamer.h"
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/SmallVector.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AsmPrinter;
 class DbgVariable;
@@ -193,6 +194,6 @@ public:
   BufferByteStreamer getStreamer() { return Locs.getStreamer(); }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

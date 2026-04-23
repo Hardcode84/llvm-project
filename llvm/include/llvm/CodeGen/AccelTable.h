@@ -101,7 +101,7 @@
 /// An Apple Accelerator Table can be serialized by calling emitAppleAccelTable
 /// function.
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AsmPrinter;
 class DwarfDebug;
@@ -558,6 +558,6 @@ protected:
   bool ObjCClassIsImplementation;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_ACCELTABLE_H

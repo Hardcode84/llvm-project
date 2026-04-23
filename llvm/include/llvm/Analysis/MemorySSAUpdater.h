@@ -40,7 +40,7 @@
 #include "llvm/Support/CFGDiff.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 class DominatorTree;
@@ -296,6 +296,6 @@ private:
   void applyInsertUpdates(ArrayRef<CFGUpdate>, DominatorTree &DT,
                           const GraphDiff<BasicBlock *> *GD);
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_MEMORYSSAUPDATER_H

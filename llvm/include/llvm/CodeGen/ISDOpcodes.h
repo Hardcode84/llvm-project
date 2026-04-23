@@ -16,7 +16,7 @@
 #include "llvm/CodeGen/ValueTypes.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// ISD namespace - This namespace contains an enum which represents all of the
 /// SelectionDAG node types and value types.
@@ -1871,6 +1871,6 @@ LLVM_ABI CondCode getSetCCAndOperation(CondCode Op1, CondCode Op2, EVT Type);
 
 } // namespace ISD
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -29,7 +29,7 @@
 #include <tuple>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 LLVM_ABI extern cl::opt<bool> DisableGISelLegalityCheck;
 
@@ -1464,6 +1464,6 @@ private:
 const MachineInstr *machineFunctionIsIllegal(const MachineFunction &MF);
 #endif
 
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.
 
 #endif // LLVM_CODEGEN_GLOBALISEL_LEGALIZERINFO_H

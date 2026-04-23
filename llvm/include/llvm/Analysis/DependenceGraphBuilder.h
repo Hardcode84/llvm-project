@@ -19,7 +19,7 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 class DependenceInfo;
@@ -198,6 +198,6 @@ protected:
   NodeToOrdinalMap NodeOrdinalMap;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_DEPENDENCEGRAPHBUILDER_H

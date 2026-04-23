@@ -23,8 +23,9 @@
 #include <cassert>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AAResults;
 class InstrItineraryData;
@@ -189,6 +190,6 @@ class InstrItineraryData;
                          MachineBasicBlock::iterator InsertPos);
   };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_CODEGEN_SELECTIONDAG_SCHEDULEDAGSDNODES_H

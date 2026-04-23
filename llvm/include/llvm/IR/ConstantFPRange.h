@@ -28,7 +28,7 @@
 #include "llvm/Support/Compiler.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 struct KnownFPClass;
@@ -250,6 +250,6 @@ inline raw_ostream &operator<<(raw_ostream &OS, const ConstantFPRange &CR) {
   return OS;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_CONSTANTFPRANGE_H

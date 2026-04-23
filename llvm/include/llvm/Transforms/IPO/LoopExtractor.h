@@ -17,8 +17,9 @@
 #define LLVM_TRANSFORMS_IPO_LOOPEXTRACTOR_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct LoopExtractorPass : public PassInfoMixin<LoopExtractorPass> {
   LoopExtractorPass(unsigned NumLoops = ~0) : NumLoops(NumLoops) {}
@@ -29,6 +30,6 @@ struct LoopExtractorPass : public PassInfoMixin<LoopExtractorPass> {
 private:
   unsigned NumLoops;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_IPO_LOOPEXTRACTOR_H

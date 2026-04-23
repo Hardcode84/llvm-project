@@ -23,7 +23,7 @@
 #include "llvm/IR/Module.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Forward declarations.
 class APInt;
@@ -2497,5 +2497,5 @@ public:
              std::optional<unsigned> Flags = std::nullopt);
 };
 
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.
 #endif // LLVM_CODEGEN_GLOBALISEL_MACHINEIRBUILDER_H

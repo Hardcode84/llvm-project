@@ -20,11 +20,12 @@
 #include "llvm/IR/User.h"
 #include "llvm/InitializePasses.h"
 #include "llvm/Support/SuffixTree.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace IRSimilarity;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 cl::opt<bool>
     DisableBranches("no-ir-sim-branch-matching", cl::init(false),
                     cl::ReallyHidden,
@@ -44,7 +45,7 @@ static cl::opt<bool>
 cl::opt<bool>
     DisableIntrinsics("no-ir-sim-intrinsics", cl::init(false), cl::ReallyHidden,
                       cl::desc("Don't match or outline intrinsics"));
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 IRInstructionData::IRInstructionData(Instruction &I, bool Legality,
                                      IRInstructionDataList &IDList)

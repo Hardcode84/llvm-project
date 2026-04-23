@@ -23,7 +23,7 @@ using namespace llvm;
 
 AnalysisKey FunctionAnalysisManagerMachineFunctionProxy::Key;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template class LLVM_EXPORT_TEMPLATE AnalysisManager<MachineFunction>;
 template class PassManager<MachineFunction>;
 template class LLVM_EXPORT_TEMPLATE
@@ -32,7 +32,7 @@ template class LLVM_EXPORT_TEMPLATE
     InnerAnalysisManagerProxy<MachineFunctionAnalysisManager, Function>;
 template class LLVM_EXPORT_TEMPLATE
     OuterAnalysisManagerProxy<ModuleAnalysisManager, MachineFunction>;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 bool FunctionAnalysisManagerMachineFunctionProxy::Result::invalidate(
     MachineFunction &IR, const PreservedAnalyses &PA,

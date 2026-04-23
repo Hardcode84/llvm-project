@@ -15,7 +15,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GlobalValue;
 class MachineFrameInfo;
@@ -151,6 +151,6 @@ public:
   const char *getSymbol() const { return ES; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

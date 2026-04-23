@@ -38,7 +38,7 @@
 #include <memory>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MemoryBuffer;
 class Module;
@@ -134,6 +134,6 @@ private:
   SymbolRewriter::RewriteDescriptorList Descriptors;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_SYMBOLREWRITER_H

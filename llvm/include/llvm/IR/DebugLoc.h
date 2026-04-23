@@ -19,7 +19,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/DataTypes.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LLVMContext;
 class raw_ostream;
@@ -302,6 +302,6 @@ public:
   LLVM_ABI void print(raw_ostream &OS) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_DEBUGLOC_H

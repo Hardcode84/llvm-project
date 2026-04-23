@@ -35,7 +35,7 @@
 #include "llvm/IR/FPEnv.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T, typename... TArgs> class AnalysisManager;
 template <class T> class ArrayRef;
@@ -300,6 +300,6 @@ const SimplifyQuery getBestSimplifyQuery(AnalysisManager<T, TArgs...> &,
                                          Function &);
 LLVM_ABI const SimplifyQuery getBestSimplifyQuery(LoopStandardAnalysisResults &,
                                                   const DataLayout &);
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

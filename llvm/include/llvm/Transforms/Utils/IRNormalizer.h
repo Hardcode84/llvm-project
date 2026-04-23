@@ -2,8 +2,9 @@
 #define LLVM_TRANSFORMS_UTILS_IRNORMALIZER_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct IRNormalizerOptions {
   /// Preserves original instruction order.
@@ -31,6 +32,6 @@ public:
   PreservedAnalyses run(Function &F, FunctionAnalysisManager &AM) const;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_IRNORMALIZER_H

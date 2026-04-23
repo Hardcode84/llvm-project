@@ -19,8 +19,9 @@
 #include "llvm/Transforms/Utils/SampleProfileLoaderBaseImpl.h"
 
 #include <unordered_set>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using AnchorList = std::vector<std::pair<LineLocation, FunctionId>>;
 using AnchorMap = std::map<LineLocation, FunctionId>;
@@ -244,5 +245,5 @@ private:
   void matchFunctionsWithoutProfileByBasename();
   void reportOrPersistProfileStats();
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif // LLVM_TRANSFORMS_IPO_SAMPLEPROFILEMATCHER_H

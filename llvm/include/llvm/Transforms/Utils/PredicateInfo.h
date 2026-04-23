@@ -58,7 +58,7 @@
 #include "llvm/Support/Allocator.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AssumptionCache;
 class DominatorTree;
@@ -250,6 +250,6 @@ struct PredicateInfoVerifierPass : PassInfoMixin<PredicateInfoVerifierPass> {
   static bool isRequired() { return true; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_PREDICATEINFO_H

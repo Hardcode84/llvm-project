@@ -28,8 +28,9 @@
 #include "llvm/Support/MemoryBuffer.h"
 #include "llvm/Support/UniqueBBID.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // This struct represents the cluster information for a machine basic block,
 // which is specifed by a unique basic block ID.
@@ -258,5 +259,5 @@ public:
   BasicBlockSectionsProfileReader &getBBSPR();
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_CODEGEN_BASICBLOCKSECTIONSPROFILEREADER_H

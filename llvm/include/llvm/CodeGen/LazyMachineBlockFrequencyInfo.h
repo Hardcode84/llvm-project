@@ -20,8 +20,9 @@
 #include "llvm/CodeGen/MachineDominators.h"
 #include "llvm/CodeGen/MachineFunctionPass.h"
 #include "llvm/CodeGen/MachineLoopInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// This is an alternative analysis pass to MachineBlockFrequencyInfo.
 /// The difference is that with this pass, the block frequencies are not
 /// computed when the analysis pass is executed but rather when the BFI result
@@ -70,5 +71,5 @@ public:
   bool runOnMachineFunction(MachineFunction &F) override;
   void releaseMemory() override;
 };
-}
+LLVM_NAMESPACE_END
 #endif

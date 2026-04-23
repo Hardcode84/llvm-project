@@ -20,7 +20,7 @@
 #include "llvm/Support/Compiler.h"
 #include <limits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename PtrType> class SmallPtrSetImpl;
 class AllocaInst;
@@ -315,6 +315,6 @@ private:
                      const DenseMap<BasicBlock *, BlockFrequency> &ExitWeights);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_CODEEXTRACTOR_H

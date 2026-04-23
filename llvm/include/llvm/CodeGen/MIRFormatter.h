@@ -20,7 +20,7 @@
 #include <cstdint>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineFunction;
 class MachineInstr;
@@ -86,6 +86,6 @@ public:
                                     ErrorCallbackType ErrorCallback);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

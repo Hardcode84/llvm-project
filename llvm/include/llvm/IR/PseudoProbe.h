@@ -19,7 +19,7 @@
 #include <limits>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Instruction;
 
@@ -137,6 +137,6 @@ static inline bool hasDiscriminator(uint32_t Flags) {
 LLVM_ABI std::optional<PseudoProbe> extractProbe(const Instruction &Inst);
 
 LLVM_ABI void setProbeDistributionFactor(Instruction &Inst, float Factor);
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_PSEUDOPROBE_H

@@ -18,11 +18,12 @@
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/GraphWriter.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 using namespace llvm;
 
 #define DEBUG_TYPE "dag-printer"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   template<>
   struct DOTGraphTraits<SelectionDAG*> : public DefaultDOTGraphTraits {
 
@@ -132,7 +133,7 @@ namespace llvm {
                     "color=blue,style=dashed");
     }
   };
-}
+LLVM_NAMESPACE_END
 
 std::string DOTGraphTraits<SelectionDAG*>::getNodeLabel(const SDNode *Node,
                                                         const SelectionDAG *G) {

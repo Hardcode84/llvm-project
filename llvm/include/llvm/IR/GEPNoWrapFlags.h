@@ -14,8 +14,9 @@
 #define LLVM_IR_GEPNOWRAPFLAGS_H
 
 #include <assert.h>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Represents flags for the getelementptr instruction/expression.
 /// The following flags are supported:
@@ -113,6 +114,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_GEPNOWRAPFLAGS_H

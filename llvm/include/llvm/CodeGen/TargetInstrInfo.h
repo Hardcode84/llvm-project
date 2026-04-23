@@ -39,7 +39,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DFAPacketizer;
 class InstrItineraryData;
@@ -2435,6 +2435,6 @@ template <> struct DenseMapInfo<TargetInstrInfo::RegSubRegPair> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_TARGETINSTRINFO_H

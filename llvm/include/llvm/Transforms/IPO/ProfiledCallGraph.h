@@ -15,8 +15,9 @@
 #include "llvm/Transforms/IPO/SampleContextTracker.h"
 #include <queue>
 #include <set>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sampleprof {
 
 struct ProfiledCallGraphNode;
@@ -240,6 +241,6 @@ struct GraphTraits<ProfiledCallGraph *>
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

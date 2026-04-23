@@ -23,7 +23,7 @@
 #include <queue>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class CallBase;
 class DILocation;
 class Function;
@@ -225,5 +225,5 @@ private:
   ContextTrieNode RootContext;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif // LLVM_TRANSFORMS_IPO_SAMPLECONTEXTTRACKER_H

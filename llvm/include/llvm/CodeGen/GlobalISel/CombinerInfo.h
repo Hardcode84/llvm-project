@@ -15,7 +15,8 @@
 #define LLVM_CODEGEN_GLOBALISEL_COMBINERINFO_H
 
 #include <cassert>
-namespace llvm {
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class LegalizerInfo;
 
@@ -79,6 +80,6 @@ struct CombinerInfo {
   /// performed before the first Combiner iteration.
   bool EnableFullDCE = true;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

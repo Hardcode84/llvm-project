@@ -19,7 +19,7 @@
 #include "llvm/Pass.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // This pass is responsible for removing optional traps, like llvm.ubsantrap
 // from the hot code.
@@ -45,6 +45,6 @@ private:
   LowerAllowCheckPass::Options Opts;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -37,8 +37,9 @@
 #include <optional>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AAResults;
 class AllocaInst;
@@ -836,6 +837,6 @@ struct RegsForValue {
   SmallVector<std::pair<Register, TypeSize>, 4> getRegsAndSizes() const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_CODEGEN_SELECTIONDAG_SELECTIONDAGBUILDER_H

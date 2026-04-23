@@ -23,14 +23,15 @@
 #define LLVM_LIB_TRANSFORMS_OBJCARC_DEPENDENCYANALYSIS_H
 
 #include "llvm/Analysis/ObjCARCInstKind.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class BasicBlock;
   class Instruction;
   class Value;
-}
+LLVM_NAMESPACE_END
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcarc {
 
 class ProvenanceAnalysis;
@@ -81,6 +82,6 @@ static inline bool CanDecrementRefCount(const Instruction *Inst,
 }
 
 } // namespace objcarc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

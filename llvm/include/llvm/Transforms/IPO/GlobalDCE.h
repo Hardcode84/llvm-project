@@ -24,7 +24,7 @@
 #include "llvm/Support/Compiler.h"
 #include <unordered_map>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Comdat;
 class Constant;
 class Function;
@@ -82,6 +82,6 @@ private:
 };
 
 LLVM_ABI ModulePass *createGlobalDCEPass();
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_TRANSFORMS_IPO_GLOBALDCE_H

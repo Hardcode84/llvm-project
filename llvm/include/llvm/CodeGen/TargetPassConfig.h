@@ -20,7 +20,7 @@
 #include <cassert>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class TargetMachine;
 class PassConfigImpl;
@@ -478,6 +478,6 @@ protected:
 LLVM_ABI void registerCodeGenCallback(PassInstrumentationCallbacks &PIC,
                                       TargetMachine &);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_TARGETPASSCONFIG_H

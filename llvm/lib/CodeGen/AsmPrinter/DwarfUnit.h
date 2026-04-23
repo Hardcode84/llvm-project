@@ -21,8 +21,9 @@
 #include "llvm/Target/TargetMachine.h"
 #include <optional>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ConstantFP;
 class ConstantInt;
@@ -448,5 +449,5 @@ public:
                          const DIScope *Context) override;
   DwarfCompileUnit &getCU() override { return CU; }
 };
-} // end llvm namespace
+LLVM_NAMESPACE_END // end llvm namespace
 #endif

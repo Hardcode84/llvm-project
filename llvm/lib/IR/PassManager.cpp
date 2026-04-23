@@ -14,7 +14,7 @@
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Explicit template instantiations and specialization defininitions for core
 // template typedefs.
 template class LLVM_EXPORT_TEMPLATE AllAnalysesOn<Module>;
@@ -92,7 +92,7 @@ bool FunctionAnalysisManagerModuleProxy::Result::invalidate(
   // Return false to indicate that this result is still a valid proxy.
   return false;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 void ModuleToFunctionPassAdaptor::printPipeline(
     raw_ostream &OS, function_ref<StringRef(StringRef)> MapClassName2PassName) {

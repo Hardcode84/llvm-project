@@ -15,8 +15,9 @@
 
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/CodeGen/MachineFunctionPass.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// An object wrapping several components of a basic block hash. The combined
 /// (blended) hash is represented and stored as one uint64_t, while individual
@@ -145,6 +146,6 @@ public:
   uint64_t getMBBHash(const MachineBasicBlock &MBB) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINEBLOCKHASHINFO_H

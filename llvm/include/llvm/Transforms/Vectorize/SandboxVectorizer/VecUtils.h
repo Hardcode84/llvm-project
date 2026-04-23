@@ -19,7 +19,7 @@
 #include "llvm/Support/Compiler.h"
 #include <iterator>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Traits for DenseMap.
 template <> struct DenseMapInfo<SmallVector<sandboxir::Value *>> {
   static inline SmallVector<sandboxir::Value *> getEmptyKey() {
@@ -393,6 +393,6 @@ public:
 
 } // namespace sandboxir
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_SANDBOXVECTORIZER_VECUTILS_H

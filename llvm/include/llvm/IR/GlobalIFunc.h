@@ -24,7 +24,7 @@
 #include "llvm/IR/Value.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Twine;
 class Module;
@@ -107,6 +107,6 @@ struct OperandTraits<GlobalIFunc>
 
 DEFINE_TRANSPARENT_OPERAND_ACCESSORS(GlobalIFunc, Constant)
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_GLOBALIFUNC_H

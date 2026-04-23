@@ -42,8 +42,9 @@
 #include <utility>
 #include <variant>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AsmPrinter;
 class ByteStreamer;
@@ -1007,6 +1008,6 @@ public:
   DWARF5AccelTable &getCurrentDWARF5AccelTable() { return *CurrentDebugNames; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_CODEGEN_ASMPRINTER_DWARFDEBUG_H

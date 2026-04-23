@@ -15,7 +15,7 @@
 #include <cstdint>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A string table that doesn't need relocations.
 ///
@@ -74,6 +74,6 @@ struct OffsetsTag {};
 using UniquingStringPool = StrongType<NonRelocatableStringpool, UniqueTag>;
 using OffsetsStringPool = StrongType<NonRelocatableStringpool, OffsetsTag>;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_NONRELOCATABLESTRINGPOOL_H

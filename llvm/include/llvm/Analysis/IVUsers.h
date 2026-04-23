@@ -19,8 +19,9 @@
 #include "llvm/Analysis/ScalarEvolutionNormalization.h"
 #include "llvm/IR/Instruction.h"
 #include "llvm/IR/ValueHandle.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AssumptionCache;
 class DominatorTree;
@@ -194,6 +195,6 @@ public:
               LoopStandardAnalysisResults &AR);
 };
 
-}
+LLVM_NAMESPACE_END
 
 #endif

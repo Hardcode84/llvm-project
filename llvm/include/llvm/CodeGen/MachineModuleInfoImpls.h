@@ -18,8 +18,9 @@
 #include "llvm/ADT/SetVector.h"
 #include "llvm/CodeGen/MachineModuleInfo.h"
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCSymbol;
 
@@ -146,6 +147,6 @@ public:
   SetVector<StringRef> MachineSymbolsUsed;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINEMODULEINFOIMPLS_H

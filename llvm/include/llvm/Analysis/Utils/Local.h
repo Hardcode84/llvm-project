@@ -16,7 +16,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DataLayout;
 class IRBuilderBase;
@@ -31,6 +31,6 @@ class Value;
 LLVM_ABI Value *emitGEPOffset(IRBuilderBase *Builder, const DataLayout &DL,
                               User *GEP, bool NoAssumptions = false);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_UTILS_LOCAL_H

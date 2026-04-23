@@ -17,14 +17,15 @@
 
 #include "llvm/ADT/GenericCycleInfo.h"
 #include "llvm/IR/SSAContext.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Use class instead of using to allow forward declarations.
 class CycleInfo : public GenericCycleInfo<SSAContext> {};
 
 using Cycle = CycleInfo::CycleT;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_IR_CYCLEINFO_H

@@ -25,7 +25,7 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct StripSymbolsPass : PassInfoMixin<StripSymbolsPass> {
   LLVM_ABI PreservedAnalyses run(Module &M, ModuleAnalysisManager &AM);
@@ -47,6 +47,6 @@ struct StripDeadCGProfilePass : PassInfoMixin<StripDeadCGProfilePass> {
   LLVM_ABI PreservedAnalyses run(Module &M, ModuleAnalysisManager &AM);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_IPO_STRIPSYMBOLS_H

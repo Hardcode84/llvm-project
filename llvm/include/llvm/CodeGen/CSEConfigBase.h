@@ -9,7 +9,9 @@
 #ifndef LLVM_CODEGEN_CSECONFIGBASE_H
 #define LLVM_CODEGEN_CSECONFIGBASE_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 // Class representing some configuration that can be done during GlobalISel's
 // CSEInfo analysis. We define it here because TargetPassConfig can't depend on
 // the GlobalISel library, and so we use this in the interface between them
@@ -23,6 +25,6 @@ public:
   virtual bool shouldCSEOpc(unsigned Opc) { return false; }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_CSECONFIGBASE_H

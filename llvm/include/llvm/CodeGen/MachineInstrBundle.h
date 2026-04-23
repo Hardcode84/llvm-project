@@ -18,7 +18,7 @@
 #include "llvm/CodeGen/MachinePassManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// finalizeBundle - Finalize a machine instruction bundle which includes
 /// a sequence of instructions starting from FirstMI to LastMI (exclusive).
@@ -315,6 +315,6 @@ private:
   std::function<bool(const MachineFunction &)> PredicateFtor;
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

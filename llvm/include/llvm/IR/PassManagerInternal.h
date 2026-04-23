@@ -24,8 +24,9 @@
 #include <memory>
 #include <type_traits>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename IRUnitT> class AllAnalysesOn;
 template <typename IRUnitT, typename... ExtraArgTs> class AnalysisManager;
@@ -326,6 +327,6 @@ struct AnalysisPassModel
 
 } // end namespace detail
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_PASSMANAGERINTERNAL_H

@@ -15,7 +15,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AssumptionCache;
 class DominatorTree;
@@ -40,6 +40,6 @@ LLVM_ABI bool LoopRotation(Loop *L, LoopInfo *LI,
                            bool IsUtilMode, bool PrepareForLTO = false,
                            bool CheckExitCount = false);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

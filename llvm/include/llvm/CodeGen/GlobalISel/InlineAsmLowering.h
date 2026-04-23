@@ -16,8 +16,9 @@
 
 #include "llvm/ADT/ArrayRef.h"
 #include <functional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class CallBase;
 class MachineIRBuilder;
 class MachineOperand;
@@ -62,6 +63,6 @@ public:
   virtual ~InlineAsmLowering() = default;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_GLOBALISEL_INLINEASMLOWERING_H

@@ -17,8 +17,9 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/raw_ostream.h"
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AllocaInst;
 class BasicBlock;
@@ -193,6 +194,6 @@ public:
                      function_ref<StringRef(StringRef)> MapClassName2PassName);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_STACKLIFETIME_H

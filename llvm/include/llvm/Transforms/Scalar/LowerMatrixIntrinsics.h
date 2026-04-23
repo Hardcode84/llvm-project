@@ -14,8 +14,9 @@
 #define LLVM_TRANSFORMS_SCALAR_LOWERMATRIXINTRINSICS_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LowerMatrixIntrinsicsPass
     : public PassInfoMixin<LowerMatrixIntrinsicsPass> {
   bool Minimal;
@@ -27,6 +28,6 @@ public:
                      function_ref<StringRef(StringRef)> MapClassName2PassName);
   static bool isRequired() { return true; }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -16,8 +16,9 @@
 
 #include "llvm/ADT/STLFunctionalExtras.h"
 #include "llvm/Analysis/TargetLibraryInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AssumptionCache;
 class StringRef;
 class Value;
@@ -264,6 +265,6 @@ private:
   Value *optimizeStringLength(CallInst *CI, IRBuilderBase &B, unsigned CharSize,
                               Value *Bound = nullptr);
 };
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

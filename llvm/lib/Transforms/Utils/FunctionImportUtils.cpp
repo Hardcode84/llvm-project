@@ -14,10 +14,11 @@
 #include "llvm/Transforms/Utils/FunctionImportUtils.h"
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/TimeProfiler.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Uses the "source_filename" instead of a Module hash ID for the suffix of
 /// promoted locals during LTO. NOTE: This requires that the source filename
@@ -45,7 +46,7 @@ cl::list<GlobalValue::GUID> MoveSymbolGUID(
         "used with the name of contextual profiling roots."),
     cl::Hidden);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 FunctionImportGlobalProcessing::FunctionImportGlobalProcessing(
     Module &M, const ModuleSummaryIndex &Index,

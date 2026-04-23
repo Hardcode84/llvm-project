@@ -97,7 +97,7 @@
 #include <cassert>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 template <typename T, unsigned int N> class SmallPriorityWorklist;
@@ -591,6 +591,6 @@ DevirtSCCRepeatedPass createDevirtSCCRepeatedPass(CGSCCPassT &&Pass,
 // Clear out the debug logging macro.
 #undef DEBUG_TYPE
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_CGSCCPASSMANAGER_H

@@ -59,6 +59,7 @@
 #include <cassert>
 #include <optional>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -4131,7 +4132,7 @@ PreservedAnalyses AttributorLightCGSCCPass::run(LazyCallGraph::SCC &C,
   }
   return PreservedAnalyses::all();
 }
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <> struct GraphTraits<AADepGraphNode *> {
   using NodeRef = AADepGraphNode *;
@@ -4174,4 +4175,4 @@ template <> struct DOTGraphTraits<AADepGraph *> : public DefaultDOTGraphTraits {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

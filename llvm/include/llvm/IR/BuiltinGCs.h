@@ -16,7 +16,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// FIXME: Collector instances are not useful on their own. These no longer
 ///        serve any purpose except to link in the plugins.
@@ -30,6 +30,6 @@ LLVM_ABI void linkOcamlGCPrinter();
 /// Creates an erlang-compatible metadata printer.
 LLVM_ABI void linkErlangGCPrinter();
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_IR_BUILTINGCS_H

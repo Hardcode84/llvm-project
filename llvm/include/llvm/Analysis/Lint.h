@@ -19,8 +19,9 @@
 #define LLVM_ANALYSIS_LINT_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Module;
 class Function;
@@ -45,6 +46,6 @@ public:
                      function_ref<StringRef(StringRef)> MapClassName2PassName);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_LINT_H

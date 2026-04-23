@@ -30,8 +30,9 @@
 #include "llvm/Analysis/LoopAccessAnalysis.h"
 #include "llvm/Support/TypeSize.h"
 #include "llvm/Transforms/Utils/LoopUtils.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AssumptionCache;
 class BasicBlock;
 class BlockFrequencyInfo;
@@ -766,6 +767,6 @@ private:
   UncountableExitTrait UncountableExitType = UncountableExitTrait::None;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_LOOPVECTORIZATIONLEGALITY_H

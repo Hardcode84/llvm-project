@@ -27,7 +27,7 @@
 #include "llvm/IR/Instruction.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Constant;
 
 /// InstSimplifyFolder - Use InstructionSimplify to fold operations to existing
@@ -143,6 +143,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_INSTSIMPLIFYFOLDER_H

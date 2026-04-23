@@ -20,8 +20,9 @@
 #include "llvm/CodeGen/MachineRegisterInfo.h"
 #include "llvm/CodeGen/MachineStableHash.h"
 #include <initializer_list>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace outliner {
 
 /// Represents how an instruction should be mapped by the outliner.
@@ -310,6 +311,6 @@ struct GlobalOutlinedFunction : public OutlinedFunction {
 };
 
 } // namespace outliner
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -36,8 +36,9 @@
 #include "llvm/MC/MCRegisterInfo.h"
 #include <cassert>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> class ArrayRef;
 
@@ -234,6 +235,6 @@ inline void fullyRecomputeLiveIns(ArrayRef<MachineBasicBlock *> MBBs) {
   } while (Change);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_LIVEPHYSREGS_H

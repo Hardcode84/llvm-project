@@ -17,13 +17,14 @@
 #include "llvm/Analysis/IndirectCallVisitor.h"
 #include "llvm/Analysis/TargetLibraryInfo.h"
 #include "llvm/IR/InstVisitor.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using CandidateInfo = ValueProfileCollector::CandidateInfo;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> MemOPOptMemcmpBcmp;
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 ///--------------------------- MemIntrinsicPlugin ------------------------------
 class MemIntrinsicPlugin : public InstVisitor<MemIntrinsicPlugin> {

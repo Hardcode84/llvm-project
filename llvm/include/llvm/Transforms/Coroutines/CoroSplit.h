@@ -21,7 +21,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Transforms/Coroutines/ABI.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace coro {
 class BaseABI;
@@ -58,6 +58,6 @@ struct CoroSplitPass : PassInfoMixin<CoroSplitPass> {
   // Would be true if the Optimization level isn't O0.
   bool OptimizeFrame;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_COROUTINES_COROSPLIT_H

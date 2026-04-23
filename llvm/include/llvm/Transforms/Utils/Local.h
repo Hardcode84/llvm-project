@@ -22,7 +22,7 @@
 #include "llvm/Transforms/Utils/ValueMapper.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DataLayout;
 class Value;
@@ -607,6 +607,6 @@ struct OverflowTracking {
   LLVM_ABI void applyFlags(Instruction &I);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_LOCAL_H

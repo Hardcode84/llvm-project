@@ -17,8 +17,9 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/DepthFirstIterator.h"
 #include "llvm/ADT/SmallVector.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct FlowJump;
 
@@ -324,5 +325,5 @@ inline bool SampleProfileInference<BT>::isExit(const BasicBlockT *BB) {
   return BB->succ_empty();
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif // LLVM_TRANSFORMS_UTILS_SAMPLEPROFILEINFERENCE_H

@@ -24,6 +24,7 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -46,7 +47,7 @@ static cl::opt<bool> EnableLocalReassignment(
              "may be compile time intensive"),
     cl::init(false));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 cl::opt<unsigned> EvictInterferenceCutoff(
     "regalloc-eviction-max-interference-cutoff", cl::Hidden,
     cl::desc("Number of interferences after which we declare "
@@ -54,7 +55,7 @@ cl::opt<unsigned> EvictInterferenceCutoff(
              "is a compilation cost-saving consideration. To "
              "disable, pass a very large number."),
     cl::init(10));
-}
+LLVM_NAMESPACE_END
 
 #define DEBUG_TYPE "regalloc"
 #ifdef LLVM_HAVE_TF_AOT_REGALLOCEVICTMODEL

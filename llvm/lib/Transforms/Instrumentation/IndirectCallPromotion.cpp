@@ -47,6 +47,7 @@
 #include <unordered_map>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -55,11 +56,11 @@ using namespace llvm;
 STATISTIC(NumOfPGOICallPromotion, "Number of indirect call promotions.");
 STATISTIC(NumOfPGOICallsites, "Number of indirect call candidate sites.");
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<unsigned> MaxNumVTableAnnotations;
 
 extern cl::opt<bool> EnableVTableProfileUse;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Command line option to disable indirect-call promotion with the default as
 // false. This is for debug purpose.

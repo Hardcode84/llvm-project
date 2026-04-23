@@ -22,7 +22,7 @@
 #include <optional>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DominatorTree;
 class InductionDescriptor;
@@ -698,6 +698,6 @@ LLVM_ABI llvm::MDNode *
 makePostTransformationMetadata(llvm::LLVMContext &Context, MDNode *OrigLoopID,
                                llvm::ArrayRef<llvm::StringRef> RemovePrefixes,
                                llvm::ArrayRef<llvm::MDNode *> AddAttrs);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

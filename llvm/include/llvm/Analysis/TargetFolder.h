@@ -26,7 +26,7 @@
 #include "llvm/IR/Operator.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Constant;
 class DataLayout;
@@ -216,6 +216,6 @@ public:
     return Fold(ConstantExpr::getPointerBitCastOrAddrSpaceCast(C, DestTy));
   }
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -21,7 +21,7 @@
 #include <optional>
 #include <variant>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AAResults;
 class DataLayout;
@@ -1014,6 +1014,6 @@ inline Instruction *MemoryDepChecker::Dependence::getDestination(
   return DepChecker.getMemoryInstructions()[Destination];
 }
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

@@ -16,8 +16,9 @@
 
 #include "llvm/CodeGen/MachineFunctionPass.h"
 #include "llvm/InitializePasses.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class CFIFixup : public MachineFunctionPass {
 public:
   static char ID;
@@ -31,6 +32,6 @@ public:
 
   bool runOnMachineFunction(MachineFunction &MF) override;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_CFIFIXUP_H

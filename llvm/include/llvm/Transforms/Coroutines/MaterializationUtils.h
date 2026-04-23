@@ -12,7 +12,8 @@
 #ifndef LLVM_TRANSFORMS_COROUTINES_MATERIALIZATIONUTILS_H
 #define LLVM_TRANSFORMS_COROUTINES_MATERIALIZATIONUTILS_H
 
-namespace llvm::coro {
+LLVM_NAMESPACE_BEGIN
+namespace coro {
 
 // True if I is trivially rematerialzable, e.g. InsertElementInst
 LLVM_ABI bool isTriviallyMaterializable(Instruction &I);
@@ -22,6 +23,7 @@ LLVM_ABI void
 doRematerializations(Function &F, SuspendCrossingInfo &Checker,
                      std::function<bool(Instruction &)> IsMaterializable);
 
-} // namespace llvm::coro
+}
+LLVM_NAMESPACE_END // namespace llvm::coro
 
 #endif // LLVM_TRANSFORMS_COROUTINES_MATERIALIZATIONUTILS_H

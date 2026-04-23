@@ -17,10 +17,11 @@
 #include "llvm/Support/FileSystem.h"
 #include "llvm/Support/GraphWriter.h"
 #include <unordered_set>
+#include "llvm/Support/Compiler.h"
 
 static std::unordered_set<std::string> nameObj;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Default traits class for extracting a graph from an analysis pass.
 ///
@@ -337,6 +338,6 @@ void WriteDOTGraphToFile(Function &F, GraphT &&Graph,
   errs() << "\n";
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

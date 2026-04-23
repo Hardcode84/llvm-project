@@ -10,13 +10,14 @@
 #define LLVM_TRANSFORMS_UTILS_UNIFYLOOPEXITS_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class UnifyLoopExitsPass : public PassInfoMixin<UnifyLoopExitsPass> {
 public:
   PreservedAnalyses run(Function &F, FunctionAnalysisManager &AM);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_UNIFYLOOPEXITS_H

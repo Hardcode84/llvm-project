@@ -41,7 +41,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class TargetMachine;
@@ -221,6 +221,6 @@ public:
   LLVM_ABI Result run(Module &M, ModuleAnalysisManager &);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINEMODULEINFO_H

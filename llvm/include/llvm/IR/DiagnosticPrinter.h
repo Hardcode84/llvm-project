@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Forward declarations.
 class Module;
@@ -91,6 +91,6 @@ public:
   DiagnosticPrinter &operator<<(const SMDiagnostic &Diag) override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_DIAGNOSTICPRINTER_H

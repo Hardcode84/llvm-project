@@ -21,6 +21,7 @@
 #include "llvm/Support/Errc.h"
 #include "llvm/Support/MemoryBuffer.h"
 #include "llvm/Support/Regex.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace mir2vec;
@@ -30,7 +31,7 @@ using namespace mir2vec;
 STATISTIC(MIRVocabMissCounter,
           "Number of lookups to MIR entities not present in the vocabulary");
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mir2vec {
 cl::OptionCategory MIR2VecCategory("MIR2Vec Options");
 
@@ -62,7 +63,7 @@ static cl::opt<bool> PrintAllVocabEntries(
     cl::cat(MIR2VecCategory));
 
 } // namespace mir2vec
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 //===----------------------------------------------------------------------===//
 // Vocabulary

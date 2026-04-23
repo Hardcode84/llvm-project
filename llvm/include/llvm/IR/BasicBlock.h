@@ -29,7 +29,7 @@
 #include <cstddef>
 #include <iterator>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AssemblyAnnotationWriter;
 class CallInst;
@@ -789,6 +789,6 @@ template <> struct DenseMapInfo<BasicBlock::iterator> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_BASICBLOCK_H

@@ -16,13 +16,13 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineFunction;
 
 extern template class LLVM_TEMPLATE_ABI AnalysisManager<MachineFunction>;
 using MachineFunctionAnalysisManager = AnalysisManager<MachineFunction>;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -9,7 +9,9 @@
 #ifndef LLVM_IR_SYSTEMLIBRARIES_H
 #define LLVM_IR_SYSTEMLIBRARIES_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 /// List of known vector-functions libraries.
 ///
 /// The vector-functions library defines, which functions are vectorizable
@@ -29,6 +31,6 @@ enum class VectorLibrary {
   AMDLIBM           // AMD Math Vector library.
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_IR_SYSTEMLIBRARIES_H

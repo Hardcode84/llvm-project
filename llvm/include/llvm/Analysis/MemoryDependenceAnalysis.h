@@ -25,8 +25,9 @@
 #include "llvm/IR/ValueHandle.h"
 #include "llvm/Pass.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AssumptionCache;
 class DominatorTree;
@@ -558,6 +559,6 @@ public:
   MemoryDependenceResults &getMemDep() { return *MemDep; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_MEMORYDEPENDENCEANALYSIS_H

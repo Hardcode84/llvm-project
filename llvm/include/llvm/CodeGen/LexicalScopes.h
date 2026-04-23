@@ -26,7 +26,7 @@
 #include <unordered_map>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineBasicBlock;
 class MachineFunction;
@@ -265,6 +265,6 @@ private:
   DenseMap<const DILocation *, std::unique_ptr<BlockSetT>> DominatedBlocks;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_LEXICALSCOPES_H

@@ -54,8 +54,9 @@
 #include "llvm/CodeGen/MachineFunctionPass.h"
 #include "llvm/CodeGen/MachinePassManager.h"
 #include "llvm/CodeGen/TargetSchedule.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AnalysisUsage;
 class MachineFunction;
@@ -482,6 +483,6 @@ public:
   MachineTraceMetrics &getMTM() { return MTM; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINETRACEMETRICS_H

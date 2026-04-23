@@ -19,7 +19,7 @@
 #include "llvm/IR/Dominators.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <>
 struct DOTGraphTraits<DomTreeNode *> : public DefaultDOTGraphTraits {
@@ -116,9 +116,9 @@ struct PostDomOnlyPrinter final
   PostDomOnlyPrinter()
       : DOTGraphTraitsPrinter<PostDominatorTreeAnalysis, true>("postdomonly") {}
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class FunctionPass;
   LLVM_ABI FunctionPass *createDomPrinterWrapperPassPass();
   LLVM_ABI FunctionPass *createDomOnlyPrinterWrapperPassPass();
@@ -128,6 +128,6 @@ namespace llvm {
   LLVM_ABI FunctionPass *createPostDomOnlyPrinterWrapperPassPass();
   LLVM_ABI FunctionPass *createPostDomViewerWrapperPassPass();
   LLVM_ABI FunctionPass *createPostDomOnlyViewerWrapperPassPass();
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

@@ -10,8 +10,9 @@
 #define LLVM_CODEGEN_STACKCOLORINGPASS_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class StackColoringPass : public PassInfoMixin<StackColoringPass> {
 public:
@@ -19,6 +20,6 @@ public:
                         MachineFunctionAnalysisManager &MFAM);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_STACKCOLORINGPASS_H

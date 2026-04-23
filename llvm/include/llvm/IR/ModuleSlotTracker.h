@@ -15,7 +15,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Module;
 class Function;
@@ -105,6 +105,6 @@ public:
   void collectMDNodes(MachineMDNodeListType &L, unsigned LB, unsigned UB) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

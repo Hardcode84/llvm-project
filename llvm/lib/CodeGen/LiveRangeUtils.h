@@ -14,8 +14,9 @@
 #define LLVM_LIB_CODEGEN_LIVERANGEUTILS_H
 
 #include "llvm/CodeGen/LiveInterval.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Helper function that distributes live range value numbers and the
 /// corresponding segments of a primary live range \p LR to a list of newly
@@ -56,6 +57,6 @@ static void DistributeRange(LiveRangeT &LR, LiveRangeT *SplitLRs[],
   LR.valnos.resize(j);
 }
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

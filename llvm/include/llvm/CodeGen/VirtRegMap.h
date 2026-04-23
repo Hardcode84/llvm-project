@@ -25,7 +25,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cassert>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineFunction;
 class MachineRegisterInfo;
@@ -259,6 +259,6 @@ public:
   }
 };
 
-} // end llvm namespace
+LLVM_NAMESPACE_END // end llvm namespace
 
 #endif // LLVM_CODEGEN_VIRTREGMAP_H

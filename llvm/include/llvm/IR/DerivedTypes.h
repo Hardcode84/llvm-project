@@ -27,7 +27,7 @@
 #include <cassert>
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Value;
 class APInt;
@@ -915,6 +915,6 @@ StringRef Type::getTargetExtName() const {
   return cast<TargetExtType>(this)->getName();
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_DERIVEDTYPES_H

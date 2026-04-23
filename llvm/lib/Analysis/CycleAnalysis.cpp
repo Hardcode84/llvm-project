@@ -9,12 +9,13 @@
 #include "llvm/Analysis/CycleAnalysis.h"
 #include "llvm/IR/CFG.h" // for successors found by ADL in GenericCycleImpl.h
 #include "llvm/InitializePasses.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 CycleInfo CycleAnalysis::run(Function &F, FunctionAnalysisManager &) {
   CycleInfo CI;

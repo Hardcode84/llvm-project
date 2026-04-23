@@ -11,8 +11,9 @@
 
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/PGOOptions.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct PGOForceFunctionAttrsPass
     : public PassInfoMixin<PGOForceFunctionAttrsPass> {
@@ -24,6 +25,6 @@ private:
   PGOOptions::ColdFuncOpt ColdType;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_INSTRUMENTATION_PGOFORCEFUNCTIONATTRS_H

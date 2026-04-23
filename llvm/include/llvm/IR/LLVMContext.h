@@ -23,7 +23,7 @@
 #include <optional>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DiagnosticInfo;
 enum DiagnosticSeverity : char;
@@ -380,6 +380,6 @@ inline LLVMContextRef *wrap(const LLVMContext **Tys) {
 /// Get the deprecated global context for use by the C API.
 LLVM_ABI LLVMContextRef getGlobalContextForCAPI();
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_LLVMCONTEXT_H

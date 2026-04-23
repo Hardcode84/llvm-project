@@ -20,7 +20,7 @@
 #include <memory>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace PBQP {
 namespace RegAlloc {
@@ -71,6 +71,6 @@ private:
   void anchor() override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_PBQPRACONSTRAINT_H

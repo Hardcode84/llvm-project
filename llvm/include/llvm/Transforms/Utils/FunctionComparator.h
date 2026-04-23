@@ -25,7 +25,7 @@
 #include <cstdint>
 #include <tuple>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class APFloat;
 class AttributeList;
@@ -389,6 +389,6 @@ private:
   GlobalNumberState* GlobalNumbers;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_FUNCTIONCOMPARATOR_H

@@ -15,8 +15,10 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/SandboxIR/Pass.h"
 #include "llvm/SandboxIR/Region.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 /// This pass aims at de-duplicating packs, i.e., try to reuse already existing
 /// pack patterns instead of keeping both.
@@ -31,6 +33,7 @@ public:
   bool runOnRegion(Region &Rgn, const Analyses &A) final;
 };
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_SANDBOXVECTORIZER_PASSES_PACKREUSE_H

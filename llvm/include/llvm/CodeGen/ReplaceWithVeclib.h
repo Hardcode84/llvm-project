@@ -19,7 +19,7 @@
 #include "llvm/PassRegistry.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Function;
 struct ReplaceWithVeclib : public PassInfoMixin<ReplaceWithVeclib> {
   LLVM_ABI PreservedAnalyses run(Function &F, FunctionAnalysisManager &AM);
@@ -33,5 +33,5 @@ struct LLVM_ABI ReplaceWithVeclibLegacy : public FunctionPass {
   bool runOnFunction(Function &F) override;
 };
 
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 #endif // LLVM_CODEGEN_REPLACEWITHVECLIB_H

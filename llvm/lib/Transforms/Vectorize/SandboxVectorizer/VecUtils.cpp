@@ -7,8 +7,10 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/VecUtils.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 unsigned VecUtils::getFloorPowerOf2(unsigned Num) {
   if (Num == 0)
@@ -29,4 +31,5 @@ void VecUtils::dump(ArrayRef<Value *> Bndl) { dumpImpl(Bndl); }
 void VecUtils::dump(ArrayRef<Instruction *> Bndl) { dumpImpl(Bndl); }
 #endif // NDEBUG
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir

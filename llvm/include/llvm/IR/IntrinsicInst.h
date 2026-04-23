@@ -39,7 +39,7 @@
 #include <cstdint>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Metadata;
 
@@ -1867,6 +1867,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_INTRINSICINST_H

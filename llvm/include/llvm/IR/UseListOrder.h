@@ -16,8 +16,9 @@
 
 #include <cstddef>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class Value;
@@ -38,6 +39,6 @@ struct UseListOrder {
 
 using UseListOrderStack = std::vector<UseListOrder>;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_USELISTORDER_H

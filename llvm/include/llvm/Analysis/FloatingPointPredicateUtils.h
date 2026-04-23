@@ -13,7 +13,7 @@
 #include "llvm/IR/SSAContext.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using FloatingPointPredicateUtils =
     GenericFloatingPointPredicateUtils<SSAContext>;
@@ -82,6 +82,6 @@ fcmpImpliesClass(CmpInst::Predicate Pred, const Function &F, Value *LHS,
                                                        LookThroughSrc);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_FLOATINGPOINTPREDICATEUTILS_H

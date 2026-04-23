@@ -19,7 +19,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Argument;
 class BasicBlock;
@@ -144,6 +144,6 @@ private:
 /// @}
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_VALUESYMBOLTABLE_H

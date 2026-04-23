@@ -16,14 +16,15 @@
 #define LLVM_TRANSFORMS_SCALAR_PARTIALLYINLINELIBCALLS_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Function;
 class PartiallyInlineLibCallsPass
     : public PassInfoMixin<PartiallyInlineLibCallsPass> {
 public:
   PreservedAnalyses run(Function &F, FunctionAnalysisManager &AM);
 };
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_TRANSFORMS_SCALAR_PARTIALLYINLINELIBCALLS_H

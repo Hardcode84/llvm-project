@@ -16,8 +16,9 @@
 #define LLVM_TRANSFORMS_UTILS_SIMPLIFYINDVAR_H
 
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Type;
 class WeakTrackingVH;
@@ -86,6 +87,6 @@ PHINode *createWideIV(const WideIVInfo &WI,
     unsigned &NumElimExt, unsigned &NumWidened,
     bool HasGuards, bool UsePostIncrementRanges);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_SIMPLIFYINDVAR_H

@@ -40,7 +40,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class StringRef;
 class Type;
@@ -2422,6 +2422,6 @@ struct OperandTraits<FuncletPadInst>
 
 DEFINE_TRANSPARENT_OPERAND_ACCESSORS(FuncletPadInst, Value)
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_INSTRTYPES_H

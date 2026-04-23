@@ -24,7 +24,7 @@
 #include <set>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineBasicBlock;
 class MachineFunction;
@@ -183,6 +183,6 @@ class LLVM_LIBRARY_VISIBILITY AggressiveAntiDepState {
                                    std::map<MCRegister, MCRegister> &RenameMap);
   };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_CODEGEN_AGGRESSIVEANTIDEPBREAKER_H

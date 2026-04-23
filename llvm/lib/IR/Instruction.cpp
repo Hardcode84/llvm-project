@@ -30,7 +30,7 @@
 #include "llvm/Support/Compiler.h"
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // FIXME: Flag used for an ablation performance test, Issue #147390. Placing it
 // here because referencing IR should be feasible from anywhere. Will be
@@ -40,7 +40,7 @@ cl::opt<bool> ProfcheckDisableMetadataFixes(
     cl::desc(
         "Disable metadata propagation fixes discovered through Issue #147390"));
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 InsertPosition::InsertPosition(Instruction *InsertBefore)
     : InsertAt(InsertBefore ? InsertBefore->getIterator()

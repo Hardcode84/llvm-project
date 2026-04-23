@@ -28,7 +28,7 @@
 #include <limits>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LiveIntervals;
 class MachineFunction;
@@ -578,6 +578,6 @@ protected:
 LLVM_ABI void dumpRegSetPressure(ArrayRef<unsigned> SetPressure,
                                  const TargetRegisterInfo *TRI);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_REGISTERPRESSURE_H

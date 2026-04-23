@@ -16,8 +16,9 @@
 #include "llvm/CodeGen/BasicBlockSectionsProfileReader.h"
 #include "llvm/CodeGen/MachineFunctionPass.h"
 #include "llvm/Transforms/Utils/SampleProfileInference.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlockMatchingAndInference : public MachineFunctionPass {
 private:
@@ -57,6 +58,6 @@ private:
                                      WeightInfo &MatchWeight);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_BASIC_BLOCK_AND_INFERENCE_H

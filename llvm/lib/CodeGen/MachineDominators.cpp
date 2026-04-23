@@ -21,20 +21,20 @@
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Always verify dominfo if expensive checking is enabled.
 #ifdef EXPENSIVE_CHECKS
 bool VerifyMachineDomInfo = true;
 #else
 bool VerifyMachineDomInfo = false;
 #endif
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static cl::opt<bool, true> VerifyMachineDomInfoX(
     "verify-machine-dom-info", cl::location(VerifyMachineDomInfo), cl::Hidden,
     cl::desc("Verify machine dominator info (time consuming)"));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template class LLVM_EXPORT_TEMPLATE DomTreeNodeBase<MachineBasicBlock>;
 template class LLVM_EXPORT_TEMPLATE
     DominatorTreeBase<MachineBasicBlock, false>; // DomTreeBase
@@ -59,7 +59,7 @@ ApplyUpdates<MBBDomTree>(MBBDomTree &DT, MBBDomTreeGraphDiff &,
 template LLVM_EXPORT_TEMPLATE bool
 Verify<MBBDomTree>(const MBBDomTree &DT, MBBDomTree::VerificationLevel VL);
 } // namespace DomTreeBuilder
-}
+LLVM_NAMESPACE_END
 
 bool MachineDominatorTree::invalidate(
     MachineFunction &, const PreservedAnalyses &PA,

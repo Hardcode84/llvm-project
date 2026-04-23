@@ -18,8 +18,9 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/CodeGen/MachineBasicBlock.h"
 #include "llvm/CodeGen/SelectionDAGNodes.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineInstrBuilder;
 class MCInstrDesc;
@@ -164,6 +165,6 @@ private:
   void EmitSpecialNode(SDNode *Node, bool IsClone, bool IsCloned,
                        VRBaseMapType &VRBaseMap);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

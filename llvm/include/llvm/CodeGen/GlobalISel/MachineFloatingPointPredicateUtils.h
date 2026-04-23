@@ -11,8 +11,9 @@
 
 #include "llvm/CodeGen/MachineSSAContext.h"
 #include "llvm/IR/GenericFloatingPointPredicateUtils.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using MachineFloatingPointPredicateUtils =
     GenericFloatingPointPredicateUtils<MachineSSAContext>;
@@ -54,6 +55,6 @@ fcmpImpliesClass(CmpInst::Predicate Pred, const MachineFunction &MF,
       Pred, MF, LHS, RHS, LookThroughSrc);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINEFLOATINGPOINTPREDICATEUTILS_H

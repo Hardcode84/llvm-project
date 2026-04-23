@@ -19,8 +19,9 @@
 #include "llvm/MC/MCStreamer.h"
 #include "llvm/Support/LEB128.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class ByteStreamer {
  protected:
   ~ByteStreamer() = default;
@@ -140,6 +141,6 @@ public:
   }
 };
 
-}
+LLVM_NAMESPACE_END
 
 #endif

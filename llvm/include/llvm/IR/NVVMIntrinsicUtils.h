@@ -23,8 +23,9 @@
 #include "llvm/IR/Intrinsics.h"
 #include "llvm/IR/IntrinsicsNVPTX.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace nvvm {
 
 // Reduction Ops supported with TMA Copy from Shared
@@ -718,5 +719,5 @@ inline APFloat::roundingMode GetFMARoundingMode(Intrinsic::ID IntrinsicID) {
 }
 
 } // namespace nvvm
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_IR_NVVMINTRINSICUTILS_H

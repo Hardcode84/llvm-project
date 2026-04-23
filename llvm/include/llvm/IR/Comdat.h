@@ -20,7 +20,7 @@
 #include "llvm/Support/CBindingWrapping.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GlobalObject;
 class raw_ostream;
@@ -74,6 +74,6 @@ inline raw_ostream &operator<<(raw_ostream &OS, const Comdat &C) {
   return OS;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_COMDAT_H

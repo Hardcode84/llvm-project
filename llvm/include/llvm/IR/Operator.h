@@ -26,7 +26,7 @@
 #include <cstddef>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This is a utility class that provides an abstraction for the common
 /// functionality between Instructions and ConstantExprs.
@@ -678,6 +678,6 @@ struct OperandTraits<AddrSpaceCastOperator>
 
 DEFINE_TRANSPARENT_OPERAND_ACCESSORS(AddrSpaceCastOperator, Value)
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_OPERATOR_H

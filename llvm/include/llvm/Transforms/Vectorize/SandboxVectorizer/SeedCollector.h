@@ -22,7 +22,8 @@
 #include <iterator>
 #include <memory>
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 /// A set of candidate Instructions for vectorizing together.
 class SeedBundle {
@@ -322,6 +323,7 @@ public:
 #endif
 };
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_SANDBOXVECTORIZER_SEEDCOLLECTOR_H

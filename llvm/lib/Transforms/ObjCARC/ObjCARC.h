@@ -27,8 +27,9 @@
 #include "llvm/Analysis/ObjCARCUtil.h"
 #include "llvm/IR/EHPersonalities.h"
 #include "llvm/Transforms/Utils/Local.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcarc {
 
 /// Erase the given instruction.
@@ -164,6 +165,6 @@ private:
 };
 
 } // end namespace objcarc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

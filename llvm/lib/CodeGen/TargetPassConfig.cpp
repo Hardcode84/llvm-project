@@ -406,7 +406,7 @@ struct InsertedPass {
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class PassConfigImpl {
 public:
@@ -424,7 +424,7 @@ public:
   SmallVector<InsertedPass, 4> InsertedPasses;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 // Out of line virtual method.
 TargetPassConfig::~TargetPassConfig() {

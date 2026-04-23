@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/InstructionCost.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AssumptionCache;
 class BasicBlock;
 class Loop;
@@ -96,6 +96,6 @@ struct CodeMetrics {
                          SmallPtrSetImpl<const Value *> &EphValues);
 };
 
-}
+LLVM_NAMESPACE_END
 
 #endif

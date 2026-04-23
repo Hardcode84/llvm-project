@@ -21,8 +21,9 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineBasicBlock;
 class MachineDominanceFrontier;
@@ -37,7 +38,7 @@ using NodeRef = std::pair<NodeId, LaneBitmask>;
 
 } // namespace detail
 } // namespace rdf
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace std {
 
@@ -50,7 +51,8 @@ template <> struct hash<llvm::rdf::detail::NodeRef> {
 
 } // namespace std
 
-namespace llvm::rdf {
+LLVM_NAMESPACE_BEGIN
+namespace rdf {
 
 struct Liveness {
 public:
@@ -155,6 +157,7 @@ private:
 
 raw_ostream &operator<<(raw_ostream &OS, const Print<Liveness::RefMap> &P);
 
-} // end namespace llvm::rdf
+}
+LLVM_NAMESPACE_END // end namespace llvm::rdf
 
 #endif // LLVM_CODEGEN_RDFLIVENESS_H

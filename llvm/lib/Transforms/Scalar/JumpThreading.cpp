@@ -74,6 +74,7 @@
 #include <iterator>
 #include <memory>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace jumpthreading;
@@ -106,9 +107,9 @@ static cl::opt<bool> ThreadAcrossLoopHeaders(
     cl::desc("Allow JumpThreading to thread across loop headers, for testing"),
     cl::init(false), cl::Hidden);
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> ProfcheckDisableMetadataFixes;
-}
+LLVM_NAMESPACE_END
 
 JumpThreadingPass::JumpThreadingPass(int T) {
   DefaultBBDupThreshold = (T == -1) ? BBDuplicateThreshold : unsigned(T);

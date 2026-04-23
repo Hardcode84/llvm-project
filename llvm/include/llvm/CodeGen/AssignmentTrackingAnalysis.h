@@ -14,14 +14,15 @@
 #include "llvm/IR/IntrinsicInst.h"
 #include "llvm/IR/PassManager.h"
 #include "llvm/Pass.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Instruction;
 class raw_ostream;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 class FunctionVarLocsBuilder;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Type wrapper for integer ID for Variables. 0 is reserved.
 enum class VariableID : unsigned { Reserved = 0 };
 /// Variable location definition used by FunctionVarLocs.
@@ -140,5 +141,5 @@ public:
   const FunctionVarLocs *getResults() { return Results.get(); }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif // LLVM_CODEGEN_ASSIGNMENTTRACKINGANALYSIS_H

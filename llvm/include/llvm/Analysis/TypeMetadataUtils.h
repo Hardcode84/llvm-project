@@ -16,8 +16,9 @@
 
 #include <cstdint>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> class SmallVectorImpl;
 class CallBase;
@@ -90,6 +91,6 @@ getFunctionAtVTableOffset(GlobalVariable *GV, uint64_t Offset, Module &M);
 /// target is `C`, and replaces the entire pattern with a constant zero.
 void replaceRelativePointerUsersWithZero(Constant *C);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

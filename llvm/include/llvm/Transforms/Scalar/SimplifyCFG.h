@@ -19,7 +19,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Transforms/Utils/SimplifyCFGOptions.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A pass to simplify and canonicalize the CFG of a function.
 ///
@@ -48,6 +48,6 @@ public:
                 function_ref<StringRef(StringRef)> MapClassName2PassName);
 };
 
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -30,8 +30,9 @@
 #include "llvm/Support/CodeGen.h"
 #include <memory>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AllocaInst;
 class AssumptionCache;
@@ -807,6 +808,6 @@ public:
   bool runOnMachineFunction(MachineFunction &MF) override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_GLOBALISEL_IRTRANSLATOR_H

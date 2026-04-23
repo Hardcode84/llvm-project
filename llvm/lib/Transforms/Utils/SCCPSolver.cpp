@@ -34,6 +34,7 @@
 #include <cassert>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace PatternMatch;
@@ -50,7 +51,7 @@ static ValueLatticeElement::MergeOptions getMaxWidenStepsOpts() {
       MaxNumRangeExtensions);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 bool SCCPSolver::isConstant(const ValueLatticeElement &LV) {
   return LV.isConstant() ||
@@ -1030,7 +1031,7 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 bool SCCPInstVisitor::markBlockExecutable(BasicBlock *BB) {
   if (!BBExecutable.insert(BB).second)

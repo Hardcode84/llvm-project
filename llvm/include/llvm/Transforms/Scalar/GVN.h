@@ -31,7 +31,7 @@
 #include <variant>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AAResults;
 class AssumeInst;
@@ -440,6 +440,6 @@ struct GVNSinkPass : PassInfoMixin<GVNSinkPass> {
   LLVM_ABI PreservedAnalyses run(Function &F, FunctionAnalysisManager &AM);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_SCALAR_GVN_H

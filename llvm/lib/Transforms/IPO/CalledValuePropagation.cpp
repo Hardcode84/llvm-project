@@ -24,6 +24,7 @@
 #include "llvm/IR/Module.h"
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Transforms/IPO.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -358,7 +359,7 @@ private:
 };
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// A specialization of LatticeKeyInfo for CVPLatticeKeys. The generic solver
 /// must translate between LatticeKeys and LLVM Values when adding Values to
 /// its work list and inspecting the state of control-flow related values.
@@ -370,7 +371,7 @@ template <> struct LatticeKeyInfo<CVPLatticeKey> {
     return CVPLatticeKey(V, IPOGrouping::Register);
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static bool runCVP(Module &M) {
   // Our custom lattice function and generic sparse propagation solver.

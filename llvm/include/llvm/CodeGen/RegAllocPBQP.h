@@ -32,8 +32,9 @@
 #include <memory>
 #include <set>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class FunctionPass;
 class LiveIntervals;
@@ -531,6 +532,6 @@ inline Solution solve(PBQPRAGraph& G) {
 FunctionPass *
 createPBQPRegisterAllocator(char *customPassID = nullptr);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_REGALLOCPBQP_H

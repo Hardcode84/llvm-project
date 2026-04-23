@@ -20,7 +20,7 @@
 #include "llvm/Support/KnownBits.h"
 #include <type_traits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct SimplifyQuery;
 LLVM_ABI KnownBits computeKnownBits(const Value *V, const SimplifyQuery &Q,
                                     unsigned Depth);
@@ -68,6 +68,6 @@ public:
   PointerType operator->() const { return Pointer.getPointer(); }
   ReferenceType operator*() const { return *Pointer.getPointer(); }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

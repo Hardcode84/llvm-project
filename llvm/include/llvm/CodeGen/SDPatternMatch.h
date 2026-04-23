@@ -24,8 +24,9 @@
 #include "llvm/Support/KnownBits.h"
 
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace SDPatternMatch {
 
 /// MatchContext can repurpose existing patterns to behave differently under
@@ -1678,5 +1679,5 @@ m_ReassociatableNUWAdd(const PatternTs &...Patterns) {
 }
 
 } // namespace SDPatternMatch
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

@@ -15,13 +15,14 @@
 #define LLVM_TRANSFORMS_SCALAR_LOWERGUARDINTRINSIC_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct LowerGuardIntrinsicPass : PassInfoMixin<LowerGuardIntrinsicPass> {
   PreservedAnalyses run(Function &F, FunctionAnalysisManager &AM);
 };
 
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_TRANSFORMS_SCALAR_LOWERGUARDINTRINSIC_H

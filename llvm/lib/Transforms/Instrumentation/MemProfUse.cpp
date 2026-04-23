@@ -38,18 +38,19 @@
 #include "llvm/Transforms/Utils/LongestCommonSequence.h"
 #include <map>
 #include <set>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::memprof;
 
 #define DEBUG_TYPE "memprof"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> PGOWarnMissing;
 extern cl::opt<bool> NoPGOWarnMismatch;
 extern cl::opt<bool> NoPGOWarnMismatchComdatWeak;
 extern cl::opt<bool> AnnotateStringLiteralSectionPrefix;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // By default disable matching of allocation profiles onto operator new that
 // already explicitly pass a hot/cold hint, since we don't currently

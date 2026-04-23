@@ -23,7 +23,7 @@
 #include <memory>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Pass;
 class PassInstrumentationCallbacks;
@@ -118,6 +118,6 @@ private:
   void stopPassTimer(StringRef PassID);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

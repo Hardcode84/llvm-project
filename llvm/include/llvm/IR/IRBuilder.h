@@ -48,7 +48,7 @@
 #include <optional>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class APInt;
 class Use;
@@ -2920,6 +2920,6 @@ IRBuilder(BasicBlock *, BasicBlock::iterator, MDNode *,
 // Create wrappers for C Binding types (see CBindingWrapping.h).
 DEFINE_SIMPLE_CONVERSION_FUNCTIONS(IRBuilder<>, LLVMBuilderRef)
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_IRBUILDER_H

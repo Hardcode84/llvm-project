@@ -48,10 +48,11 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "block-freq"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern llvm::cl::opt<bool> CheckBFIUnknownBlockQueries;
 
 extern llvm::cl::opt<bool> UseIterativeBFIInference;
@@ -1827,7 +1828,7 @@ struct BFIDOTGraphTraitsBase : public DefaultDOTGraphTraits {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #undef DEBUG_TYPE
 

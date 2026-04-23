@@ -22,8 +22,10 @@
 #include <cstdint>
 #include <set>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::rdf {
+LLVM_NAMESPACE_BEGIN
+namespace rdf {
 
 PhysicalRegisterInfo::PhysicalRegisterInfo(const TargetRegisterInfo &tri,
                                            const MachineFunction &mf)
@@ -415,4 +417,5 @@ raw_ostream &operator<<(raw_ostream &OS, const PrintLaneMaskShort &P) {
   return OS << ':' << PrintLaneMask(P.Mask);
 }
 
-} // namespace llvm::rdf
+}
+LLVM_NAMESPACE_END // namespace llvm::rdf

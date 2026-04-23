@@ -22,7 +22,7 @@
 #include <functional>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class FunctionPass;
 class MachineFunction;
@@ -38,10 +38,10 @@ namespace vfs {
 class FileSystem;
 } // namespace vfs
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // List of target independent CodeGen pass IDs.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// AtomicExpandPass - At IR level this pass replace atomic instructions with
 /// __atomic_* library calls, or target specific instruction which implement the
@@ -629,6 +629,6 @@ LLVM_ABI ModulePass *createWindowsSecureHotPatchingPass();
 
 /// Lowers KCFI operand bundles for indirect calls.
 LLVM_ABI FunctionPass *createKCFIPass();
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -10,8 +10,9 @@
 #define LLVM_TRANSFORMS_SCALAR_SEPARATECONSTOFFSETFROMGEP_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SeparateConstOffsetFromGEPPass
     : public PassInfoMixin<SeparateConstOffsetFromGEPPass> {
@@ -24,6 +25,6 @@ public:
   PreservedAnalyses run(Function &F, FunctionAnalysisManager &);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_SCALAR_SEPARATECONSTOFFSETFROMGEP_H

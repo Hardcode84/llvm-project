@@ -29,6 +29,7 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 #define DEBUG_TYPE "inline"
@@ -72,9 +73,9 @@ static cl::opt<std::string> IR2VecVocabFile(
     cl::desc("Vocab file for IR2Vec; Setting this enables "
              "configuring the model to use IR2Vec embeddings."));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<InlinerFunctionImportStatsOpts> InlinerFunctionImportStats;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 using namespace llvm::ore;
@@ -367,7 +368,7 @@ shouldBeDeferred(Function *Caller, TargetTransformInfo &CalleeTTI,
   return TotalCost < Allowance;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 static raw_ostream &operator<<(raw_ostream &R, const ore::NV &Arg) {
   return R << Arg.Val;
 }
@@ -387,7 +388,7 @@ decltype(auto) operator<<(RemarkT &&R, const InlineCost &IC) {
     R << ": " << ore::NV("Reason", Reason);
   return std::forward<RemarkT>(R);
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 std::string llvm::inlineCostStr(const InlineCost &IC) {
   std::string Buffer;

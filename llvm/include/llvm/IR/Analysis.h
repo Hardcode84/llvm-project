@@ -15,7 +15,7 @@
 #include "llvm/ADT/SmallPtrSet.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class Module;
@@ -325,6 +325,6 @@ private:
   /// Also, a given ID should never occur both here and in `PreservedIDs`.
   SmallPtrSet<AnalysisKey *, 2> NotPreservedAnalysisIDs;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

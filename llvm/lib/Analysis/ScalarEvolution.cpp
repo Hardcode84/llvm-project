@@ -14217,7 +14217,7 @@ static void PrintLoopInfo(raw_ostream &OS, ScalarEvolution *SE,
   }
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Note: these overloaded operators need to be in the llvm namespace for them
 // to be resolved correctly. If we put them outside the llvm namespace, the
 //
@@ -14256,7 +14256,7 @@ static raw_ostream &operator<<(raw_ostream &OS,
   }
   return OS;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 void ScalarEvolution::print(raw_ostream &OS) const {
   // ScalarEvolution's implementation of the print method is to print

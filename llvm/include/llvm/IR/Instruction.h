@@ -27,7 +27,7 @@
 #include <cstdint>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 class DataLayout;
@@ -1119,6 +1119,6 @@ inline void ilist_alloc_traits<Instruction>::deleteNode(Instruction *V) {
   V->deleteValue();
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_INSTRUCTION_H

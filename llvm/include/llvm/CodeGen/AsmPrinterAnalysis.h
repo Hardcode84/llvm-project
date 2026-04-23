@@ -17,8 +17,9 @@
 #include "llvm/CodeGen/AsmPrinter.h"
 #include "llvm/IR/Analysis.h"
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AsmPrinterAnalysis : public AnalysisInfoMixin<AsmPrinterAnalysis> {
 public:
@@ -48,6 +49,6 @@ public:
       : HeldPrinter(std::move(Printer)) {}
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif //  LLVM_CODEGEN_ASMPRINTERANALYSIS_H

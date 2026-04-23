@@ -11,8 +11,9 @@
 
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/CodeGen/Register.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LiveRangeEdit;
 class MachineFunction;
@@ -63,6 +64,6 @@ Spiller *createInlineSpiller(const Spiller::RequiredAnalyses &Analyses,
                              VirtRegAuxInfo &VRAI,
                              LiveRegMatrix *Matrix = nullptr);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_SPILLER_H

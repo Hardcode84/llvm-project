@@ -35,6 +35,7 @@
 #include "llvm/Support/GraphWriter.h"
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/Transforms/Utils/BasicBlockUtils.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -246,7 +247,7 @@ void BlockCoverageInference::getReachableAvoiding(const BasicBlock &Start,
   }
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DotFuncBCIInfo {
 private:
   const BlockCoverageInference *BCI;
@@ -327,7 +328,7 @@ struct DOTGraphTraits<DotFuncBCIInfo *> : public DefaultDOTGraphTraits {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 void BlockCoverageInference::viewBlockCoverageGraph(
     const DenseMap<const BasicBlock *, bool> *Coverage) const {

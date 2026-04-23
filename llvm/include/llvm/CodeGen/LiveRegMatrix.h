@@ -27,8 +27,9 @@
 #include "llvm/CodeGen/LiveIntervalUnion.h"
 #include "llvm/CodeGen/MachineFunctionPass.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AnalysisUsage;
 class LiveInterval;
@@ -211,6 +212,6 @@ public:
   LiveRegMatrix run(MachineFunction &MF, MachineFunctionAnalysisManager &MFAM);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_LIVEREGMATRIX_H

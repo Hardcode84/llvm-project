@@ -30,7 +30,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/raw_ostream.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This class represents the llvm.coro.subfn.addr instruction.
 class CoroSubFnInst : public IntrinsicInst {
@@ -823,6 +823,6 @@ public:
   }
 };
 
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.
 
 #endif // LLVM_TRANSFORMS_COROUTINES_COROINSTR_H

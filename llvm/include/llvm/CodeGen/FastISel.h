@@ -28,8 +28,9 @@
 #include "llvm/IR/InstrTypes.h"
 #include <cstdint>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AllocaInst;
 class Instruction;
@@ -577,6 +578,6 @@ private:
                          CallLoweringInfo &CLI);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_FASTISEL_H

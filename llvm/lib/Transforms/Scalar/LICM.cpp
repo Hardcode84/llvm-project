@@ -85,11 +85,12 @@
 #include "llvm/Transforms/Utils/SSAUpdater.h"
 #include <algorithm>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LPMUpdater;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #define DEBUG_TYPE "licm"
 
@@ -169,9 +170,9 @@ cl::opt<unsigned> llvm::SetLicmMssaNoAccForPromotionCap(
              "number of accesses allowed to be present in a loop in order to "
              "enable memory promotion."));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> ProfcheckDisableMetadataFixes;
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 static bool inSubLoop(BasicBlock *BB, Loop *CurLoop, LoopInfo *LI);
 static bool isNotUsedOrFoldableInLoop(const Instruction &I, const Loop *CurLoop,

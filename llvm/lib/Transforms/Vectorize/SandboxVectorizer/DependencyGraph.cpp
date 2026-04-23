@@ -11,8 +11,10 @@
 #include "llvm/SandboxIR/Instruction.h"
 #include "llvm/SandboxIR/Utils.h"
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/Scheduler.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 User::op_iterator PredIterator::skipBadIt(User::op_iterator OpIt,
                                           User::op_iterator OpItE,
@@ -683,4 +685,5 @@ void DependencyGraph::dump() const {
 }
 #endif // NDEBUG
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir

@@ -20,8 +20,9 @@
 #include "llvm/CodeGen/SelectionDAGNodes.h"
 #include "llvm/IR/IntrinsicInst.h"
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SelectionDAGBuilder;
 
@@ -121,6 +122,6 @@ private:
   SmallVector<const GCRelocateInst *, 10> PendingGCRelocateCalls;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_CODEGEN_SELECTIONDAG_STATEPOINTLOWERING_H

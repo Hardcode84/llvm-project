@@ -39,7 +39,7 @@
 #include <memory>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace Intrinsic {
 typedef unsigned ID;
@@ -1085,6 +1085,6 @@ template <> struct OperandTraits<Function> : public HungoffOperandTraits {};
 
 DEFINE_TRANSPARENT_OPERAND_ACCESSORS(Function, Value)
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_FUNCTION_H

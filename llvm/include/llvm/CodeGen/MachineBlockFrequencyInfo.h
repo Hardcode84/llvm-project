@@ -21,7 +21,7 @@
 #include <memory>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <class BlockT> class BlockFrequencyInfoImpl;
 class MachineBasicBlock;
@@ -156,6 +156,6 @@ public:
 
   const MachineBlockFrequencyInfo &getMBFI() const { return MBFI; }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINEBLOCKFREQUENCYINFO_H

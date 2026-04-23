@@ -17,7 +17,7 @@
 #include "llvm/Support/VirtualFileSystem.h"
 #include "llvm/Transforms/Utils/Instrumentation.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// The gcov-style instrumentation pass
 class GCOVProfilerPass : public PassInfoMixin<GCOVProfilerPass> {
 public:
@@ -32,5 +32,5 @@ private:
   IntrusiveRefCntPtr<vfs::FileSystem> VFS;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

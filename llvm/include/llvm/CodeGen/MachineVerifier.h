@@ -13,7 +13,7 @@
 #include "llvm/Support/Compiler.h"
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MachineVerifierPass : public PassInfoMixin<MachineVerifierPass> {
   std::string Banner;
 
@@ -25,6 +25,6 @@ public:
   static bool isRequired() { return true; }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINEVERIFIER_H

@@ -17,7 +17,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Transforms/Instrumentation/AddressSanitizerOptions.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 class raw_ostream;
 
@@ -69,6 +69,6 @@ struct ASanAccessInfo {
                           uint8_t AccessSizeIndex);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

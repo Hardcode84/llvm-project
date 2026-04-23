@@ -16,8 +16,9 @@
 
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/CodeGen/ScheduleHazardRecognizer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineInstr;
 class SUnit;
@@ -42,6 +43,6 @@ public:
   void EmitNoop() override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MULTIHAZARDRECOGNIZER_H

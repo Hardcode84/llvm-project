@@ -51,7 +51,7 @@
 #include <optional>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AtomicCmpXchgInst;
 class BasicBlock;
@@ -1100,6 +1100,6 @@ struct ExternalAAWrapperPass : ImmutablePass {
 LLVM_ABI ImmutablePass *createExternalAAWrapperPass(
     std::function<void(Pass &, Function &, AAResults &)> Callback);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_ALIASANALYSIS_H

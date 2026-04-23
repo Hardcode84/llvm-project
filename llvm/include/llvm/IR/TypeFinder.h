@@ -17,8 +17,9 @@
 #include "llvm/IR/Attributes.h"
 #include <cstddef>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MDNode;
 class Module;
@@ -81,6 +82,6 @@ private:
   void incorporateAttributes(AttributeList AL);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_TYPEFINDER_H

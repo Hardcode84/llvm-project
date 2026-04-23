@@ -14,7 +14,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SelectionDAG;
 
@@ -97,6 +97,6 @@ public:
   LLVM_ABI void dump() const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_SELECTIONDAGADDRESSANALYSIS_H

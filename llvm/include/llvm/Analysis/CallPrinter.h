@@ -17,7 +17,7 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ModulePass;
 
@@ -38,6 +38,6 @@ public:
 LLVM_ABI ModulePass *createCallGraphViewerPass();
 LLVM_ABI ModulePass *createCallGraphDOTPrinterPass();
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

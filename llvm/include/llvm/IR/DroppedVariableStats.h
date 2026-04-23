@@ -19,7 +19,7 @@
 #include "llvm/Support/Compiler.h"
 #include <tuple>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DIScope;
 class DILocalVariable;
@@ -132,6 +132,6 @@ private:
   bool PassDroppedVariables = false;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -26,13 +26,13 @@ using namespace llvm;
 
 #define DEBUG_TYPE "region"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template class RegionBase<RegionTraits<Function>>;
 template class RegionNodeBase<RegionTraits<Function>>;
 template class RegionInfoBase<RegionTraits<Function>>;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 STATISTIC(numRegions,       "The # of regions");
 STATISTIC(numSimpleRegions, "The # of simple regions");
@@ -170,13 +170,13 @@ INITIALIZE_PASS_END(RegionInfoPass, "regions",
 // "include/llvm/LinkAllPasses.h". Otherwise the pass would be deleted by
 // the link time optimization.
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   FunctionPass *createRegionInfoPass() {
     return new RegionInfoPass();
   }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 //===----------------------------------------------------------------------===//
 // RegionInfoAnalysis implementation

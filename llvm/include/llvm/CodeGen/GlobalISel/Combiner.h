@@ -19,8 +19,9 @@
 #include "llvm/CodeGen/GlobalISel/GIMatchTableExecutor.h"
 #include "llvm/CodeGen/GlobalISel/GISelChangeObserver.h"
 #include "llvm/CodeGen/GlobalISel/MachineIRBuilder.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MachineRegisterInfo;
 class GISelCSEInfo;
 class MachineFunction;
@@ -75,6 +76,6 @@ protected:
   GISelCSEInfo *CSEInfo;
 };
 
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.
 
 #endif // LLVM_CODEGEN_GLOBALISEL_COMBINER_H

@@ -10,8 +10,9 @@
 #define LLVM_LIB_CODEGEN_PHIELIMINATIONUTILS_H
 
 #include "llvm/CodeGen/MachineBasicBlock.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
     /// findPHICopyInsertPoint - Find a safe place in MBB to insert a copy from
     /// SrcReg when following the CFG edge to SuccMBB. This needs to be after
     /// any def of SrcReg, but before any subsequent point where control flow
@@ -19,6 +20,6 @@ namespace llvm {
     MachineBasicBlock::iterator
     findPHICopyInsertPoint(MachineBasicBlock* MBB, MachineBasicBlock* SuccMBB,
                            Register SrcReg);
-}
+LLVM_NAMESPACE_END
 
 #endif

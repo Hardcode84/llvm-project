@@ -19,7 +19,7 @@
 #include "llvm/Support/AtomicOrdering.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace RTLIB {
 
 /// \return The SHL_* value for the given types, or UNKNOWN_LIBCALL if there is
@@ -186,6 +186,6 @@ LLVM_ABI Libcall getMEMMOVE_ELEMENT_UNORDERED_ATOMIC(uint64_t ElementSize);
 LLVM_ABI Libcall getMEMSET_ELEMENT_UNORDERED_ATOMIC(uint64_t ElementSize);
 
 } // namespace RTLIB
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -32,8 +32,9 @@
 #include "llvm/CodeGen/MachinePassManager.h"
 #include "llvm/MC/LaneBitmask.h"
 #include <deque>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineInstr;
 class MachineOperand;
@@ -123,6 +124,6 @@ public:
   static bool isRequired() { return true; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_DETECTDEADLANES_H

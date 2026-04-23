@@ -18,7 +18,7 @@
 #include "llvm/Support/CodeGen.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 ///
@@ -103,6 +103,6 @@ LLVM_ABI ScheduleDAGSDNodes *createDefaultScheduler(SelectionDAGISel *IS,
 LLVM_ABI ScheduleDAGSDNodes *createDAGLinearizer(SelectionDAGISel *IS,
                                                  CodeGenOptLevel OptLevel);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_SCHEDULERREGISTRY_H

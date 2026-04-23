@@ -16,11 +16,12 @@
 #define LLVM_TRANSFORMS_UTILS_METARENAMER_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct MetaRenamerPass : PassInfoMixin<MetaRenamerPass> {
   PreservedAnalyses run(Module &, ModuleAnalysisManager &);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_METARENAMER_H

@@ -27,6 +27,7 @@
 #include "llvm/Transforms/Utils/ValueMapper.h"
 #include <optional>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "iroutliner"
 
@@ -35,7 +36,7 @@ using namespace IRSimilarity;
 
 // A command flag to be used for debugging to exclude branches from similarity
 // matching and outlining.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> DisableBranches;
 
 // A command flag to be used for debugging to indirect calls from similarity
@@ -46,7 +47,7 @@ extern cl::opt<bool> DisableIndirectCalls;
 // matching and outlining.
 extern cl::opt<bool> DisableIntrinsics;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Set to true if the user wants the ir outliner to run on linkonceodr linkage
 // functions. This is false by default because the linker can dedupe linkonceodr

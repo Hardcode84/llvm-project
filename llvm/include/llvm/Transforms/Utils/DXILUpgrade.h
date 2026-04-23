@@ -10,8 +10,9 @@
 #define LLVM_TRANSFORMS_UTILS_DXILUPGRADE_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Upgrade DXIL-style metadata into their LLVM representations
 class DXILUpgradePass : public PassInfoMixin<DXILUpgradePass> {
@@ -19,6 +20,6 @@ public:
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &AM);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_DXILUPGRADE_H

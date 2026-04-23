@@ -33,6 +33,7 @@
 #include "llvm/Support/KnownBits.h"
 #include "llvm/Transforms/InstCombine/InstCombiner.h"
 #include <bitset>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace PatternMatch;
@@ -42,9 +43,9 @@ using namespace PatternMatch;
 // How many times is a select replaced by one of its operands?
 STATISTIC(NumSel, "Number of select opts");
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> ProfcheckDisableMetadataFixes;
-}
+LLVM_NAMESPACE_END
 
 /// Compute Result = In1+In2, returning true if the result overflowed for this
 /// type.

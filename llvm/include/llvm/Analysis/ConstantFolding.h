@@ -22,7 +22,7 @@
 #include "llvm/Support/Compiler.h"
 #include <stdint.h>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace Intrinsic {
 using ID = unsigned;
@@ -207,6 +207,6 @@ getLosslessUnsignedTrunc(Constant *C, Type *DestTy, const DataLayout &DL,
 LLVM_ABI Constant *getLosslessSignedTrunc(Constant *C, Type *DestTy,
                                           const DataLayout &DL,
                                           PreservedCastFlags *Flags = nullptr);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

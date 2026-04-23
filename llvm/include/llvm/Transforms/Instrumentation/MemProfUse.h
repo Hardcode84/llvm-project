@@ -20,7 +20,7 @@
 
 #include <unordered_map>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class IndexedInstrProfReader;
 class Module;
 class TargetLibraryInfo;
@@ -72,6 +72,6 @@ computeUndriftMap(Module &M, IndexedInstrProfReader *MemProfReader,
                   const TargetLibraryInfo &TLI);
 
 } // namespace memprof
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

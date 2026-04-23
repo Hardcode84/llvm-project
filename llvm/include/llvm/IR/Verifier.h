@@ -25,7 +25,7 @@
 #include "llvm/Support/Compiler.h"
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class APInt;
 class Function;
@@ -142,6 +142,6 @@ public:
   static bool isRequired() { return true; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_VERIFIER_H

@@ -24,13 +24,13 @@ using namespace llvm;
 STATISTIC(numMachineRegions,       "The # of machine regions");
 STATISTIC(numMachineSimpleRegions, "The # of simple machine regions");
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template class RegionBase<RegionTraits<MachineFunction>>;
 template class RegionNodeBase<RegionTraits<MachineFunction>>;
 template class RegionInfoBase<RegionTraits<MachineFunction>>;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 //===----------------------------------------------------------------------===//
 // MachineRegion implementation
@@ -140,10 +140,10 @@ INITIALIZE_PASS_END(MachineRegionInfoPass, DEBUG_TYPE,
 // "include/llvm/LinkAllPasses.h". Otherwise the pass would be deleted by
 // the link time optimization.
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 FunctionPass *createMachineRegionInfoPass() {
   return new MachineRegionInfoPass();
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

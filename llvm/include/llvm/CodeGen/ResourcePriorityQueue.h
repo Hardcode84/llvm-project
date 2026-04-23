@@ -17,8 +17,9 @@
 #define LLVM_CODEGEN_RESOURCEPRIORITYQUEUE_H
 
 #include "llvm/CodeGen/ScheduleDAG.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class DFAPacketizer;
   class InstrItineraryData;
   class ResourcePriorityQueue;
@@ -130,6 +131,6 @@ private:
     unsigned numberRCValPredInSU (SUnit *SU, unsigned RCId);
     unsigned numberRCValSuccInSU (SUnit *SU, unsigned RCId);
   };
-}
+LLVM_NAMESPACE_END
 
 #endif

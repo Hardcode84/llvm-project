@@ -32,7 +32,7 @@
 #include <memory>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AAResults;
 class AllocaInst;
@@ -443,6 +443,6 @@ LLVM_ABI void cloneAndAdaptNoAliasScopes(ArrayRef<MDNode *> NoAliasDeclScopes,
 LLVM_ABI void cloneAndAdaptNoAliasScopes(ArrayRef<MDNode *> NoAliasDeclScopes,
                                          Instruction *IStart, Instruction *IEnd,
                                          LLVMContext &Context, StringRef Ext);
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_CLONING_H

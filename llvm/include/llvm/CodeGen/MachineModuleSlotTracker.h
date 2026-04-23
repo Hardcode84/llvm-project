@@ -13,7 +13,7 @@
 #include "llvm/IR/ModuleSlotTracker.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AbstractSlotTrackerStorage;
 class Function;
@@ -44,6 +44,6 @@ public:
   void collectMachineMDNodes(MachineMDNodeListType &L) const;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINEMODULESLOTTRACKER_H

@@ -16,7 +16,7 @@
 #include "llvm/Support/Compiler.h"
 #include <system_error>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A MLModelRunner that asks for advice from an external agent, or host. It
 /// uses 2 files - ideally named pipes - one to send data to that agent, and
@@ -65,5 +65,5 @@ private:
   std::vector<char> OutputBuffer;
   std::unique_ptr<Logger> Log;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_ANALYSIS_INTERACTIVEMODELRUNNER_H

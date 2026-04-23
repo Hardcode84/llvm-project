@@ -16,8 +16,9 @@
 
 #include "llvm/IR/Function.h"
 #include "llvm/IR/IRBuilder.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DomTreeUpdater;
 
@@ -46,6 +47,6 @@ public:
   IRBuilder<> *Next();
 };
 
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_TRANSFORMS_UTILS_ESCAPEENUMERATOR_H

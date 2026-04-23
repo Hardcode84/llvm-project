@@ -17,11 +17,11 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class KCFIPass : public PassInfoMixin<KCFIPass> {
 public:
   static bool isRequired() { return true; }
   LLVM_ABI PreservedAnalyses run(Function &F, FunctionAnalysisManager &AM);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_TRANSFORMS_INSTRUMENTATION_KCFI_H

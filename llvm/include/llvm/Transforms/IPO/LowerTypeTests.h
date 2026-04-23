@@ -23,7 +23,7 @@
 #include <set>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Module;
 class ModuleSummaryIndex;
@@ -235,6 +235,6 @@ public:
   LLVM_ABI PreservedAnalyses run(Module &M, ModuleAnalysisManager &AM);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_IPO_LOWERTYPETESTS_H

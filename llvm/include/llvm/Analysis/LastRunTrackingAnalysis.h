@@ -35,7 +35,7 @@
 #include "llvm/Support/Compiler.h"
 #include <functional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This class is used to track the last run of a set of module/function passes.
 /// Invalidation are conservatively handled by the pass manager if a pass
@@ -104,6 +104,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_LASTRUNTRACKINGANALYSIS_H

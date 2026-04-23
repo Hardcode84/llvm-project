@@ -18,8 +18,9 @@
 #include <limits>
 #include <memory>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DFAPacketizer;
 class RegisterClassInfo;
@@ -265,6 +266,6 @@ protected:
 #endif
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_VLIWMACHINESCHEDULER_H

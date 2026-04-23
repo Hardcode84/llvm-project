@@ -21,8 +21,9 @@
 #include "llvm/IR/IRBuilder.h"
 #include "llvm/IR/Intrinsics.h"
 #include "llvm/Support/Alignment.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DominatorTree;
 class IntrinsicInst;
 class PostDominatorTree;
@@ -102,6 +103,6 @@ Value *incrementThreadLong(IRBuilder<> &IRB, Value *ThreadLong,
                            unsigned int Inc, bool IsMemtagDarwin = false);
 
 } // namespace memtag
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -15,8 +15,9 @@
 #include "llvm/IR/Constants.h"
 #include "llvm/IR/Module.h"
 #include "llvm/Transforms/Utils/ModuleUtils.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 cl::opt<unsigned> SampleProfileMaxPropagateIterations(
     "sample-profile-max-propagate-iterations", cl::init(100),
@@ -182,4 +183,4 @@ void createFSDiscriminatorVariable(Module *M) {
 }
 
 } // end of namespace sampleprofutil
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm

@@ -10,8 +10,10 @@
 
 #include "llvm/SandboxIR/Region.h"
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/SandboxVectorizerPassBuilder.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 RegionsFromMetadata::RegionsFromMetadata(StringRef Pipeline, StringRef AuxArg)
     : FunctionPass("regions-from-metadata"),
@@ -27,4 +29,5 @@ bool RegionsFromMetadata::runOnFunction(Function &F, const Analyses &A) {
   return Change;
 }
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir

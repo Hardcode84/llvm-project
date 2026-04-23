@@ -28,10 +28,11 @@
 #include "llvm/Transforms/Utils/BasicBlockUtils.h"
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "cfgmst"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// An union-find based Minimum Spanning Tree for CFG
 ///
@@ -364,7 +365,7 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #undef DEBUG_TYPE // "cfgmst"
 

@@ -21,7 +21,7 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class FunctionPass;
@@ -67,6 +67,6 @@ public:
 /// Create a legacy pass manager instance of the Scalarizer pass
 LLVM_ABI FunctionPass *createScalarizerPass(
     const ScalarizerPassOptions &Options = ScalarizerPassOptions());
-}
+LLVM_NAMESPACE_END
 
 #endif /* LLVM_TRANSFORMS_SCALAR_SCALARIZER_H */

@@ -21,7 +21,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/InstructionCost.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AssumptionCache;
 class AAResults;
@@ -186,6 +186,6 @@ computeUnrollCount(Loop *L, const TargetTransformInfo &TTI, DominatorTree &DT,
 LLVM_ABI std::optional<RecurrenceDescriptor>
 canParallelizeReductionWhenUnrolling(PHINode &Phi, Loop *L,
                                      ScalarEvolution *SE);
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_UNROLLLOOP_H

@@ -14,7 +14,7 @@
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T>
 DbgRecordParamRef<T>::DbgRecordParamRef(const T *Param)
     : Ref(const_cast<T *>(Param)) {}
@@ -29,7 +29,7 @@ template <typename T> T *DbgRecordParamRef<T>::get() const {
 template class LLVM_EXPORT_TEMPLATE DbgRecordParamRef<DIExpression>;
 template class LLVM_EXPORT_TEMPLATE DbgRecordParamRef<DILabel>;
 template class LLVM_EXPORT_TEMPLATE DbgRecordParamRef<DILocalVariable>;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 DbgVariableRecord::DbgVariableRecord(const DbgVariableIntrinsic *DVI)
     : DbgRecord(ValueKind, DVI->getDebugLoc()),

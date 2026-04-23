@@ -13,8 +13,9 @@
 #include "llvm/CodeGen/MachineFunction.h"
 #include "llvm/CodeGen/MachineInstr.h"
 #include "llvm/Support/DOTGraphTraits.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <class GraphType> struct GraphTraits;
 class DOTMachineFuncInfo {
@@ -89,4 +90,4 @@ struct DOTGraphTraits<DOTMachineFuncInfo *> : public DefaultDOTGraphTraits {
            "' function";
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

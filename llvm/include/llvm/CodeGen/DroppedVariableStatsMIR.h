@@ -18,7 +18,7 @@
 #include "llvm/IR/DroppedVariableStats.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A class to collect and print dropped debug information due to MIR
 /// optimization passes. After every MIR pass is run, it will print how many
@@ -54,6 +54,6 @@ private:
       StringRef FuncName, bool Before) override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

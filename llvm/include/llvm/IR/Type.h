@@ -24,7 +24,7 @@
 #include <cstdint>
 #include <iterator>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ByteType;
 class IntegerType;
@@ -558,6 +558,6 @@ inline LLVMTypeRef *wrap(Type **Tys) {
   return reinterpret_cast<LLVMTypeRef *>(Tys);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_TYPE_H

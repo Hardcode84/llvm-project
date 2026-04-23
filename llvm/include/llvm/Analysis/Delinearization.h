@@ -16,8 +16,9 @@
 
 #include "llvm/IR/PassManager.h"
 #include "llvm/IR/Value.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 template <typename T> class SmallVectorImpl;
 class GetElementPtrInst;
@@ -169,6 +170,6 @@ struct DelinearizationPrinterPass
 private:
   raw_ostream &OS;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_DELINEARIZATION_H

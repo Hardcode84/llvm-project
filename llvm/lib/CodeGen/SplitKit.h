@@ -30,7 +30,7 @@
 #include "llvm/Support/Compiler.h"
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LiveInterval;
 class LiveRange;
@@ -567,6 +567,6 @@ public:
                         unsigned IntvOut, SlotIndex EnterAfter);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_CODEGEN_SPLITKIT_H

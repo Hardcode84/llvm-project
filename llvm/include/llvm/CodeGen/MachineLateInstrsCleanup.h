@@ -9,8 +9,9 @@
 #define LLVM_CODEGEN_MACHINELATEINSTRSCLEANUP_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineLateInstrsCleanupPass
     : public PassInfoMixin<MachineLateInstrsCleanupPass> {
@@ -23,6 +24,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINELATEINSTRSCLEANUP_H

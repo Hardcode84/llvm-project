@@ -15,8 +15,9 @@
 #define LLVM_TRANSFORMS_SCALAR_DIVREMPAIRS_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Hoist/decompose integer division and remainder instructions to enable CFG
 /// improvements and better codegen.
@@ -25,6 +26,6 @@ public:
   PreservedAnalyses run(Function &F, FunctionAnalysisManager &);
 };
 
-}
+LLVM_NAMESPACE_END
 #endif // LLVM_TRANSFORMS_SCALAR_DIVREMPAIRS_H
 

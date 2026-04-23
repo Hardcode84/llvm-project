@@ -18,7 +18,7 @@
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/raw_ostream.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// InstructionWorklist - This is the worklist management logic for
 /// InstCombine and other simplification passes.
@@ -129,6 +129,6 @@ public:
   }
 };
 
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.
 
 #endif

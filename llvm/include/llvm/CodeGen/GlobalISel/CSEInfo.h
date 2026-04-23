@@ -23,7 +23,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Target/TargetMachine.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MachineBasicBlock;
 
 /// A class that wraps MachineInstrs and derives from FoldingSetNode in order to
@@ -259,6 +259,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

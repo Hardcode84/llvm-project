@@ -17,8 +17,9 @@
 #include "llvm/IR/DataLayout.h"
 #include "llvm/IR/Instruction.h"
 #include "llvm/Support/TypeSize.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class InterestingMemoryOperand {
 public:
   Use *PtrUse;
@@ -55,6 +56,6 @@ public:
   Value *getPtr() { return PtrUse->get(); }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_INTERESTINGMEMORYOPERAND_H

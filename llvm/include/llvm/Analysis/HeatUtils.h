@@ -17,7 +17,7 @@
 #include <cstdint>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BlockFrequencyInfo;
 class Function;
@@ -35,6 +35,6 @@ LLVM_ABI std::string getHeatColor(uint64_t Freq, uint64_t MaxFreq);
 // Calculates heat color based on percent of "hotness".
 LLVM_ABI std::string getHeatColor(double Percent);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -14,8 +14,9 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Transforms/Scalar/LoopPassManager.h"
 #include "llvm/Transforms/Utils/ExtraPassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LPMUpdater;
 class Loop;
@@ -88,6 +89,6 @@ struct ShouldRunExtraSimpleLoopUnswitch
   static AnalysisKey Key;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_SCALAR_SIMPLELOOPUNSWITCH_H

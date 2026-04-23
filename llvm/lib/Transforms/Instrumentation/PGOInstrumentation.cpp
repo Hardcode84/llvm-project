@@ -198,7 +198,7 @@ static cl::opt<bool> DoComdatRenaming(
     cl::desc("Append function hash to the name of COMDAT function to avoid "
              "function hash mismatch due to the preinliner"));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Command line option to enable/disable the warning about missing profile
 // information.
 cl::opt<bool> PGOWarnMissing("pgo-warn-missing-function", cl::init(false),
@@ -360,7 +360,7 @@ extern cl::opt<bool> EnableVTableValueProfiling;
 extern cl::opt<bool> EnableVTableProfileUse;
 LLVM_ABI extern cl::opt<InstrProfCorrelator::ProfCorrelatorKind>
     ProfileCorrelate;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 class FunctionInstrumenter final {
@@ -2441,7 +2441,7 @@ void llvm::setProfMetadata(Instruction *TI, ArrayRef<uint64_t> EdgeCounts,
   }
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 void setIrrLoopHeaderMetadata(Module *M, Instruction *TI, uint64_t Count) {
   MDBuilder MDB(M->getContext());
@@ -2512,4 +2512,4 @@ template <> struct DOTGraphTraits<PGOUseFunc *> : DefaultDOTGraphTraits {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

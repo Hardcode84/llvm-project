@@ -26,7 +26,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class VPlan;
 
 /// Verify invariants for general VPlans. Currently it checks the following:
@@ -37,6 +37,6 @@ class VPlan;
 /// VPBlendRecipes.
 LLVM_ABI_FOR_TEST bool verifyVPlanIsValid(const VPlan &Plan);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif //LLVM_TRANSFORMS_VECTORIZE_VPLANVERIFIER_H

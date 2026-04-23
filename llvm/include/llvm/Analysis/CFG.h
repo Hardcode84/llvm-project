@@ -19,7 +19,7 @@
 #include "llvm/Support/Compiler.h"
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 class CycleInfo;
@@ -203,6 +203,6 @@ LLVM_ABI bool isPresplitCoroSuspendExitEdge(const BasicBlock &Src,
 /// Return true if there is at least a path through which F can return, false if
 /// there is no such path.
 LLVM_ABI bool canReturn(const Function &F);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

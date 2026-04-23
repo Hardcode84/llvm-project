@@ -14,8 +14,9 @@
 #define LLVM_TRANSFORMS_UTILS_MATRIXUTILS_H
 
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DomTreeUpdater;
 class BasicBlock;
 class ConstantInt;
@@ -85,6 +86,6 @@ private:
                                 StringRef Name, IRBuilderBase &B,
                                 DomTreeUpdater &DTU, Loop *L, LoopInfo &LI);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

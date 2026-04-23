@@ -32,7 +32,7 @@
 #include <string>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Forward declarations.
 class DiagnosticPrinter;
@@ -1235,6 +1235,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_DIAGNOSTICINFO_H

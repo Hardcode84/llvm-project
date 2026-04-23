@@ -24,7 +24,7 @@
 #include <memory>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class LLVMContext;
@@ -102,6 +102,6 @@ LLVM_ABI std::unique_ptr<MIRParser>
 createMIRParser(std::unique_ptr<MemoryBuffer> Contents, LLVMContext &Context,
                 std::function<void(Function &)> ProcessIRFunction = nullptr);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MIRPARSER_MIRPARSER_H

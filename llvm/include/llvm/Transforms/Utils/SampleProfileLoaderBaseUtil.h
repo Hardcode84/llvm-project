@@ -18,8 +18,9 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ProfileData/SampleProf.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 using namespace sampleprof;
 
 class ProfileSummaryInfo;
@@ -93,6 +94,6 @@ bool callsiteIsHot(const FunctionSamples *CallsiteFS, ProfileSummaryInfo *PSI,
 void createFSDiscriminatorVariable(Module *M);
 
 } // end of namespace sampleprofutil
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_SAMPLEPROFILELOADERBASEUTIL_H

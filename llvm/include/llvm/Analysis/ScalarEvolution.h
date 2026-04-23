@@ -43,7 +43,7 @@
 #include <optional>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class OverflowingBinaryOperator;
 class AssumptionCache;
@@ -2745,6 +2745,6 @@ LLVM_DUMP_METHOD void SCEVUseT<SCEVPtrT>::dump() const {
 }
 #endif
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_SCALAREVOLUTION_H

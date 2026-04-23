@@ -54,7 +54,7 @@
 #include <string>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Constant;
 template <class GraphType> struct GraphTraits;
@@ -1311,6 +1311,6 @@ public:
 
 extern template struct LLVM_TEMPLATE_ABI
     Any::TypeId<const LazyCallGraph::SCC *>;
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_LAZYCALLGRAPH_H

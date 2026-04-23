@@ -11,8 +11,9 @@
 
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 extern cl::opt<std::string> BBSectionsColdTextPrefix;
 
@@ -36,6 +37,6 @@ void avoidZeroOffsetLandingPad(MachineFunction &MF);
 /// practice.
 bool hasInstrProfHashMismatch(MachineFunction &MF);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_BASICBLOCKSECTIONUTILS_H

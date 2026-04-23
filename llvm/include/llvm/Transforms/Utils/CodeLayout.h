@@ -20,7 +20,8 @@
 #include <utility>
 #include <vector>
 
-namespace llvm::codelayout {
+LLVM_NAMESPACE_BEGIN
+namespace codelayout {
 
 using EdgeT = std::pair<uint64_t, uint64_t>;
 
@@ -91,6 +92,7 @@ LLVM_ABI std::vector<uint64_t> computeCacheDirectedLayout(
     ArrayRef<uint64_t> FuncCounts, ArrayRef<EdgeCount> CallCounts,
     ArrayRef<uint64_t> CallOffsets);
 
-} // namespace llvm::codelayout
+}
+LLVM_NAMESPACE_END // namespace llvm::codelayout
 
 #endif // LLVM_TRANSFORMS_UTILS_CODELAYOUT_H

@@ -16,11 +16,12 @@
 #include "llvm/IR/Module.h"
 #include "llvm/Transforms/Utils/Cloning.h"
 #include "llvm/Transforms/Utils/ValueMapper.h"
+#include "llvm/Support/Compiler.h"
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Constant;
-}
+LLVM_NAMESPACE_END
 
 static void copyComdat(GlobalObject *Dst, const GlobalObject *Src) {
   const Comdat *SC = Src->getComdat();

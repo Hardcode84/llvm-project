@@ -25,7 +25,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 
 template <typename T> class ArrayRef;
@@ -282,6 +282,6 @@ LLVM_ABI void updateIndexWPDForExports(
     std::map<ValueInfo, std::vector<VTableSlotSummary>> &LocalWPDTargetsMap,
     DenseSet<StringRef> *ExternallyVisibleSymbolNamesPtr = nullptr);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_IPO_WHOLEPROGRAMDEVIRT_H

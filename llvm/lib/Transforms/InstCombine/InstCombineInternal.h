@@ -34,6 +34,7 @@
 
 #define DEBUG_TYPE "instcombine"
 #include "llvm/Transforms/Utils/InstructionWorklist.h"
+#include "llvm/Support/Compiler.h"
 
 // As a default, let's assume that we want to be aggressive,
 // and attempt to traverse with no limits in attempt to sink negation.
@@ -43,7 +44,7 @@ static constexpr unsigned NegatorDefaultMaxDepth = ~0U;
 // fairly small number of new instructions.
 static constexpr unsigned NegatorMaxNodesSSO = 16;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AAResults;
 class APInt;
@@ -911,7 +912,7 @@ struct CommonPointerBase {
   bool isExpensive() const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #undef DEBUG_TYPE
 

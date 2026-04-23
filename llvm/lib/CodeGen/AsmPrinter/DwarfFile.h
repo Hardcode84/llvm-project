@@ -19,8 +19,9 @@
 #include <map>
 #include <memory>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AsmPrinter;
 class DbgEntity;
@@ -192,6 +193,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_CODEGEN_ASMPRINTER_DWARFFILE_H

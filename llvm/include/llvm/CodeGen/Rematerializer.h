@@ -23,8 +23,9 @@
 #include "llvm/CodeGen/TargetOpcodes.h"
 #include "llvm/CodeGen/TargetRegisterInfo.h"
 #include <iterator>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// MIR-level target-independent rematerializer. Provides an API to identify and
 /// rematerialize registers within a machine function.
@@ -551,6 +552,6 @@ private:
   bool RollingBack = false;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_REMATERIALIZER_H

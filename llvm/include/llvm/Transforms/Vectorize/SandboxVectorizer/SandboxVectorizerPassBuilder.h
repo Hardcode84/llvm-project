@@ -16,8 +16,10 @@
 #include "llvm/SandboxIR/Pass.h"
 
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 class SandboxVectorizerPassBuilder {
 public:
@@ -27,6 +29,7 @@ public:
   createRegionPass(StringRef Name, StringRef Args, StringRef AuxArg);
 };
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_SANDBOXVECTORIZER_SANDBOXVECTORIZERPASSBUILDER_H

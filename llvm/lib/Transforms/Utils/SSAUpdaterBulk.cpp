@@ -18,6 +18,7 @@
 #include "llvm/IR/IRBuilder.h"
 #include "llvm/IR/Use.h"
 #include "llvm/IR/Value.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -267,7 +268,7 @@ static bool replaceIfIdentical(PHINode &PHI, PHINode &ReplPHI) {
   return true;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 bool EliminateNewDuplicatePHINodes(BasicBlock *BB,
                                    BasicBlock::phi_iterator FirstExistingPN) {
@@ -295,7 +296,7 @@ bool EliminateNewDuplicatePHINodes(BasicBlock *BB,
   return Changed;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 static void deduplicatePass(ArrayRef<PHINode *> Worklist) {
   SmallDenseMap<BasicBlock *, unsigned> BBs;

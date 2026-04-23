@@ -22,7 +22,7 @@
 #include <cassert>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 class MachineFunction;
 class MachineBasicBlock;
@@ -901,6 +901,6 @@ public:
   LLVM_ABI void dump(const MachineFunction &MF) const;
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

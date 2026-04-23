@@ -150,7 +150,7 @@ LLVMContextImpl::~LLVMContextImpl() {
     delete Pair.second;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Make MDOperand transparent for hashing.
 ///
@@ -167,7 +167,7 @@ namespace llvm {
 /// doesn't get hashed before it's combined, whereas \a MDOperand would.
 static const Metadata *get_hashable_data(const MDOperand &X) { return X.get(); }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 unsigned MDNodeOpsKey::calculateHash(MDNode *N, unsigned Offset) {
   unsigned Hash = hash_combine_range(N->op_begin() + Offset, N->op_end());

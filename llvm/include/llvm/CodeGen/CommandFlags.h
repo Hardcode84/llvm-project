@@ -23,7 +23,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Module;
 class AttrBuilder;
@@ -233,6 +233,6 @@ LLVM_ABI void MaybeEnableStatistics();
 LLVM_ABI int MaybeSaveStatistics(StringRef OutputFilename, StringRef ToolName);
 
 } // namespace codegen
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_COMMANDFLAGS_H

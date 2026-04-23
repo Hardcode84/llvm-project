@@ -20,10 +20,11 @@
 #include "llvm/Support/Allocator.h"
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "ssaupdater"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template<typename T> class SSAUpdaterTraits;
 
@@ -496,7 +497,7 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #undef DEBUG_TYPE // "ssaupdater"
 

@@ -25,7 +25,7 @@
 #include "llvm/Support/Compiler.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AssumeInst;
 struct OperandBundleUse;
@@ -275,6 +275,6 @@ template<> struct simplify_type<const AssumptionCache::ResultElem> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_ASSUMPTIONCACHE_H

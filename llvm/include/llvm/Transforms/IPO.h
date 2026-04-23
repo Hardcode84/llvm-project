@@ -16,7 +16,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ModulePass;
 class Pass;
@@ -57,6 +57,6 @@ enum class PassSummaryAction {
   Export, ///< Export information to summary.
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

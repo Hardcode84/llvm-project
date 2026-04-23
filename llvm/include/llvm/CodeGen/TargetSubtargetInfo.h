@@ -26,7 +26,7 @@
 #include <memory>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class APInt;
 class MachineFunction;
@@ -365,6 +365,6 @@ public:
 
   virtual bool isRegisterReservedByUser(Register R) const { return false; }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_TARGETSUBTARGETINFO_H

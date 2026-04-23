@@ -14,10 +14,11 @@
 #include "llvm/CodeGen/MachinePostDominators.h"
 #include "llvm/InitializePasses.h"
 #include "llvm/Support/GenericDomTreeConstruction.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template class LLVM_EXPORT_TEMPLATE
     DominatorTreeBase<MachineBasicBlock, true>; // PostDomTreeBase
 
@@ -40,7 +41,7 @@ Verify<MBBPostDomTree>(const MBBPostDomTree &DT,
 
 } // namespace DomTreeBuilder
 extern bool VerifyMachineDomInfo;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 AnalysisKey MachinePostDominatorTreeAnalysis::Key;
 

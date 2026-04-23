@@ -10,7 +10,9 @@
 #ifndef LLVM_TRANSFORMS_INSTRUMENTATION_ADDRESSSANITIZEROPTIONS_H
 #define LLVM_TRANSFORMS_INSTRUMENTATION_ADDRESSSANITIZEROPTIONS_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 /// Types of ASan module destructors supported
 enum class AsanDtorKind {
@@ -34,6 +36,6 @@ enum class AsanDetectStackUseAfterReturnMode {
   Invalid, ///< Not a valid detect mode.
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

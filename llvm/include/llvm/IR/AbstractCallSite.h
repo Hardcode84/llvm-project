@@ -21,7 +21,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cassert>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Argument;
 class Use;
@@ -244,6 +244,6 @@ void forEachCallbackFunction(const CallBase &CB, UnaryFunction Func) {
   });
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_ABSTRACTCALLSITE_H

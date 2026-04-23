@@ -22,7 +22,7 @@
 
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CallBase;
 class Instruction;
@@ -359,6 +359,6 @@ template <> struct DenseMapInfo<MemoryLocation> {
     return LHS == RHS;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

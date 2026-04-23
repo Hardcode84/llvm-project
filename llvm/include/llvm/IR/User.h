@@ -30,7 +30,7 @@
 #include <cstdint>
 #include <iterator>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> class ArrayRef;
 template <typename T> class MutableArrayRef;
@@ -359,6 +359,6 @@ template<> struct simplify_type<User::const_op_iterator> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_USER_H

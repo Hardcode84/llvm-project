@@ -324,11 +324,11 @@ namespace {
 
 const unsigned BBState::OverflowOccurredValue = 0xffffffff;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 [[maybe_unused]] raw_ostream &operator<<(raw_ostream &OS, BBState &BBState);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 void BBState::InitFromPred(const BBState &Other) {
   PerPtrTopDown = Other.PerPtrTopDown;

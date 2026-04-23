@@ -21,8 +21,9 @@
 #include "llvm/CodeGen/Spiller.h"
 #include <queue>
 #include <tuple>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct CompSpillWeight {
   bool operator()(const LiveInterval *A, const LiveInterval *B) const {
@@ -104,5 +105,5 @@ public:
 
   static char ID;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

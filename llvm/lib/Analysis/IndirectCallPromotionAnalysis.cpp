@@ -17,12 +17,13 @@
 #include "llvm/ProfileData/InstrProf.h"
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Debug.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
 #define DEBUG_TYPE "pgo-icall-prom-analysis"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // The percent threshold for the direct-call target (this call site vs the
 // remaining call count) for it to be considered as the promotion target.
@@ -56,7 +57,7 @@ cl::opt<unsigned> MaxNumVTableAnnotations(
     "icp-max-num-vtables", cl::init(6), cl::Hidden,
     cl::desc("Max number of vtables annotated for a vtable load instruction."));
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 bool ICallPromotionAnalysis::isPromotionProfitable(uint64_t Count,
                                                    uint64_t TotalCount,

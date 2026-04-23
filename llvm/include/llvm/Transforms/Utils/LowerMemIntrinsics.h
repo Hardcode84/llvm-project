@@ -18,7 +18,7 @@
 #include <cstdint>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AnyMemCpyInst;
 class ConstantInt;
@@ -87,6 +87,6 @@ LLVM_ABI void expandAtomicMemCpyAsLoop(AnyMemCpyInst *AtomicMemCpy,
                                        const TargetTransformInfo &TTI,
                                        ScalarEvolution *SE);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

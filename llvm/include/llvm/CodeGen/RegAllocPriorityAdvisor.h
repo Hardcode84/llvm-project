@@ -14,8 +14,9 @@
 #include "llvm/CodeGen/SlotIndexes.h"
 #include "llvm/IR/PassManager.h"
 #include "llvm/Pass.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineFunction;
 class VirtRegMap;
@@ -167,6 +168,6 @@ createReleaseModePriorityAdvisorProvider();
 LLVM_ATTRIBUTE_RETURNS_NONNULL RegAllocPriorityAdvisorProvider *
 createDevelopmentModePriorityAdvisorProvider(LLVMContext &Ctx);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_REGALLOCPRIORITYADVISOR_H

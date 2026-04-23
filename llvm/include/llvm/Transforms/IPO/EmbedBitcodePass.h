@@ -21,7 +21,7 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 class Pass;
 
@@ -50,6 +50,6 @@ public:
   static bool isRequired() { return true; }
 };
 
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.
 
 #endif

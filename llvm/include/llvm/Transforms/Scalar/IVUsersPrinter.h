@@ -11,8 +11,9 @@
 
 #include "llvm/Analysis/LoopAnalysisManager.h"
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LPMUpdater;
 class Loop;
 class raw_ostream;
@@ -27,6 +28,6 @@ public:
                         LoopStandardAnalysisResults &AR, LPMUpdater &U);
   static bool isRequired() { return true; }
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

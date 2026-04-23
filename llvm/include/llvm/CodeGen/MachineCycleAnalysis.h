@@ -20,7 +20,7 @@
 #include "llvm/CodeGen/MachineSSAContext.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineCycleInfo : public GenericCycleInfo<MachineSSAContext> {};
 using MachineCycle = MachineCycleInfo::CycleT;
@@ -73,6 +73,6 @@ public:
   static bool isRequired() { return true; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINECYCLEANALYSIS_H

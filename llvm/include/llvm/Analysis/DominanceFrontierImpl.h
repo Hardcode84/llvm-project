@@ -25,8 +25,9 @@
 #include "llvm/Support/raw_ostream.h"
 #include <cassert>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <class BlockT>
 class DFCalculateWorkObject {
@@ -158,6 +159,6 @@ void DominanceFrontierBase<BlockT, IsPostDom>::analyze(const DomTreeT &DT) {
   } while (!workList.empty());
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_DOMINANCEFRONTIERIMPL_H

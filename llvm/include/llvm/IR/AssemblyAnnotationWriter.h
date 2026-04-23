@@ -18,7 +18,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class BasicBlock;
@@ -58,6 +58,6 @@ public:
   virtual void printInfoComment(const Value &, formatted_raw_ostream &) {}
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

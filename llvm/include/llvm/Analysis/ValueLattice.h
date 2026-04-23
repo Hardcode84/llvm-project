@@ -17,7 +17,7 @@
 //                               ValueLatticeElement
 //===----------------------------------------------------------------------===//
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This class represents lattice values for constants.
 ///
@@ -499,5 +499,5 @@ static_assert(sizeof(ValueLatticeElement) <= 40,
 
 LLVM_ABI raw_ostream &operator<<(raw_ostream &OS,
                                  const ValueLatticeElement &Val);
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif

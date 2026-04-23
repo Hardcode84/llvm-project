@@ -16,7 +16,7 @@
 
 #include "llvm/Analysis/CtxProfAnalysis.h"
 #include "llvm/Support/Compiler.h"
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T> class ArrayRef;
 class Constant;
 class CallBase;
@@ -110,6 +110,6 @@ LLVM_ABI bool tryPromoteCall(CallBase &CB);
 LLVM_ABI CallBase &versionCallSite(CallBase &CB, Value *Callee,
                                    MDNode *BranchWeights);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_CALLPROMOTIONUTILS_H

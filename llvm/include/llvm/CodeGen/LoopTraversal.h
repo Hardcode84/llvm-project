@@ -19,8 +19,9 @@
 #define LLVM_CODEGEN_LOOPTRAVERSAL_H
 
 #include "llvm/ADT/SmallVector.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineBasicBlock;
 class MachineFunction;
@@ -110,6 +111,6 @@ private:
   bool isBlockDone(MachineBasicBlock *MBB);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_LOOPTRAVERSAL_H

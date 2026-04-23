@@ -19,8 +19,9 @@
 #include <cstdint>
 #include <limits>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AllocaInst;
 class BasicBlock;
@@ -132,6 +133,6 @@ void calculateCXXStateForAsynchEH(const BasicBlock *BB, int State,
 void calculateSEHStateForAsynchEH(const BasicBlock *BB, int State,
                                   WinEHFuncInfo &FuncInfo);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_WINEHFUNCINFO_H

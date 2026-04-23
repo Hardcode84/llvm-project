@@ -20,7 +20,7 @@
 #include "llvm/ADT/StringSet.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class CallBase;
@@ -72,6 +72,6 @@ LLVM_ABI bool addAssumptions(Function &F,
 LLVM_ABI bool addAssumptions(CallBase &CB,
                              const DenseSet<StringRef> &Assumptions);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

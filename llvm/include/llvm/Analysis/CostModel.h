@@ -10,8 +10,9 @@
 #define LLVM_ANALYSIS_COSTMODEL_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Printer pass for cost modeling results.
 class CostModelPrinterPass : public PassInfoMixin<CostModelPrinterPass> {
   raw_ostream &OS;
@@ -23,6 +24,6 @@ public:
 
   static bool isRequired() { return true; }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_COSTMODEL_H

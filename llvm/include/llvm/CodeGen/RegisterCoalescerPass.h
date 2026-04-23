@@ -10,8 +10,9 @@
 #define LLVM_CODEGEN_REGISTER_COALESCERPASS_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class RegisterCoalescerPass : public PassInfoMixin<RegisterCoalescerPass> {
 public:
   PreservedAnalyses run(MachineFunction &MF,
@@ -22,6 +23,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_REGISTER_COALESCERPASS_H

@@ -21,7 +21,7 @@
 #include <functional>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DomTreeUpdater;
 class PostDominatorTree;
@@ -128,6 +128,6 @@ GenericDomTreeUpdater<DomTreeUpdater, DominatorTree, PostDominatorTree>::
 extern template LLVM_TEMPLATE_ABI void
 GenericDomTreeUpdater<DomTreeUpdater, DominatorTree, PostDominatorTree>::
     applyUpdatesImpl</*IsForward=*/false>();
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_DOMTREEUPDATER_H

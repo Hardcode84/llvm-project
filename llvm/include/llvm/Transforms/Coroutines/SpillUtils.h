@@ -9,11 +9,13 @@
 #include "llvm/IR/Dominators.h"
 #include "llvm/Transforms/Coroutines/CoroShape.h"
 #include "llvm/Transforms/Coroutines/SuspendCrossingInfo.h"
+#include "llvm/Support/Compiler.h"
 
 #ifndef LLVM_TRANSFORMS_COROUTINES_SPILLINGINFO_H
 #define LLVM_TRANSFORMS_COROUTINES_SPILLINGINFO_H
 
-namespace llvm::coro {
+LLVM_NAMESPACE_BEGIN
+namespace coro {
 
 using SpillInfo = SmallMapVector<Value *, SmallVector<Instruction *, 2>, 8>;
 
@@ -51,6 +53,7 @@ void sinkSpillUsesAfterCoroBegin(const DominatorTree &DT,
 BasicBlock::iterator getSpillInsertionPt(const coro::Shape &, Value *Def,
                                          const DominatorTree &DT);
 
-} // namespace llvm::coro
+}
+LLVM_NAMESPACE_END // namespace llvm::coro
 
 #endif // LLVM_TRANSFORMS_COROUTINES_SPILLINGINFO_H

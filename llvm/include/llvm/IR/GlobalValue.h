@@ -29,7 +29,7 @@
 #include <cstdint>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Comdat;
 class ConstantRange;
@@ -684,6 +684,6 @@ public:
   LLVM_ABI bool canBeOmittedFromSymbolTable() const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_GLOBALVALUE_H

@@ -39,7 +39,7 @@ STATISTIC(LargestCGSCC, "Number of functions in the largest SCC");
 
 // Explicit template instantiations and specialization definitions for core
 // template typedefs.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 static cl::opt<bool> AbortOnMaxDevirtIterationsReached(
     "abort-on-max-devirt-iterations-reached",
     cl::desc("Abort when the max iterations for devirtualization CGSCC repeat "
@@ -758,7 +758,7 @@ bool FunctionAnalysisManagerCGSCCProxy::Result::invalidate(
   return false;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 /// When a new SCC is created for the graph we first update the
 /// FunctionAnalysisManager in the Proxy's result.

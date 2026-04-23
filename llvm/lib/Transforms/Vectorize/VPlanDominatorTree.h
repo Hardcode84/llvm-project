@@ -21,8 +21,9 @@
 #include "llvm/IR/Dominators.h"
 #include "llvm/Support/GenericDomTree.h"
 #include "llvm/Support/GenericDomTreeConstruction.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <> struct DomTreeNodeTraits<VPBlockBase> {
   using NodeType = VPBlockBase;
@@ -67,5 +68,5 @@ template <>
 struct GraphTraits<const VPDomTreeNode *>
     : public DomTreeGraphTraitsBase<const VPDomTreeNode,
                                     VPDomTreeNode::const_iterator> {};
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_TRANSFORMS_VECTORIZE_VPLANDOMINATORTREE_H

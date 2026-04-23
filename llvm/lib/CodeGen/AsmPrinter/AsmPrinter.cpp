@@ -5296,7 +5296,7 @@ void AsmPrinter::emitCOFFFeatureSymbol(Module &M) {
       S, MCConstantExpr::create(Feat00Value, MMI->getContext()));
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace {
 MachineFunctionAnalysisManager &getMFAM(Module &M, ModuleAnalysisManager &MAM,
                                         MachineFunction &MF) {
@@ -5361,4 +5361,4 @@ void setupMachineFunctionAsmPrinter(MachineFunctionAnalysisManager &MFAM,
 
 AnalysisKey AsmPrinterAnalysis::Key;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -17,7 +17,7 @@
 #include "llvm/SandboxIR/Context.h"
 #include "llvm/SandboxIR/PassManager.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class TargetTransformInfo;
 
@@ -57,6 +57,6 @@ public:
   LLVM_ABI PreservedAnalyses run(Function &F, FunctionAnalysisManager &AM);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_SANDBOXVECTORIZER_SANDBOXVECTORIZER_H

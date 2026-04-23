@@ -14,7 +14,9 @@
 #ifndef LLVM_CODEGEN_SCHEDULEHAZARDRECOGNIZER_H
 #define LLVM_CODEGEN_SCHEDULEHAZARDRECOGNIZER_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class MachineInstr;
 class SUnit;
@@ -122,6 +124,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_SCHEDULEHAZARDRECOGNIZER_H

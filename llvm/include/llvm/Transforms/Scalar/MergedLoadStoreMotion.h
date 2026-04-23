@@ -25,8 +25,9 @@
 
 #include "llvm/ADT/STLFunctionalExtras.h"
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Function;
 struct MergedLoadStoreMotionOptions {
   bool SplitFooterBB;
@@ -52,6 +53,6 @@ public:
   void printPipeline(raw_ostream &OS,
                      function_ref<StringRef(StringRef)> MapClassName2PassName);
 };
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_TRANSFORMS_SCALAR_MERGEDLOADSTOREMOTION_H

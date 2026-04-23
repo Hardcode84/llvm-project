@@ -12,8 +12,9 @@
 #include "llvm/Support/Casting.h"
 #include "llvm/Transforms/Utils/ValueMapper.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 class CondBrInst;
@@ -221,6 +222,6 @@ public:
   // Entry point for the algorithm.  Returns true on success.
   bool run();
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_LOOP_CONSTRAINER_H

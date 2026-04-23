@@ -21,7 +21,7 @@
 #include "llvm/IR/ValueMap.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Constant;
 class DIBuilder;
@@ -353,6 +353,6 @@ inline Constant *MapValue(const Constant *V, ValueToValueMapTy &VM,
       .mapConstant(*V);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_VALUEMAPPER_H

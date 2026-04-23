@@ -11,8 +11,9 @@
 
 #include "llvm/ADT/StringSet.h"
 #include "llvm/Analysis/InlineAdvisor.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class CallBase;
 class LLVMContext;
 class Module;
@@ -85,5 +86,5 @@ private:
   StringMap<bool> InlineSitesFromRemarks;
   StringSet<> CallersToReplay;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_ANALYSIS_REPLAYINLINEADVISOR_H

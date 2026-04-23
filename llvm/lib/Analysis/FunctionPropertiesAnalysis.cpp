@@ -39,7 +39,7 @@ using namespace llvm;
   STATISTIC(Num##Name, Description);
 #include "llvm/IR/FunctionProperties.def"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 LLVM_ABI cl::opt<bool> EnableDetailedFunctionProperties(
     "enable-detailed-function-properties", cl::Hidden, cl::init(false),
     cl::desc("Whether or not to compute detailed function properties."));
@@ -53,7 +53,7 @@ static cl::opt<unsigned> MediumBasicBlockInstructionThreshold(
     "medium-basic-block-instruction-threshold", cl::Hidden, cl::init(15),
     cl::desc("The minimum number of instructions a basic block should contain "
              "before being considered medium-sized."));
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static cl::opt<unsigned> CallWithManyArgumentsThreshold(
     "call-with-many-arguments-threshold", cl::Hidden, cl::init(4),

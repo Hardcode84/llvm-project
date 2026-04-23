@@ -17,7 +17,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/DOTGraphTraits.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class FunctionPass;
 class Function;
 class RegionInfo;
@@ -76,6 +76,6 @@ void viewRegionOnly(llvm::RegionInfo *RI);
 void viewRegionOnly(const llvm::Function *F);
 #endif // NDEBUG
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_REGIONPRINTER_H

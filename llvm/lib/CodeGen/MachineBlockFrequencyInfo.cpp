@@ -24,6 +24,7 @@
 #include "llvm/Support/GraphWriter.h"
 #include <optional>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -43,7 +44,7 @@ static cl::opt<GVDAGType> ViewMachineBlockFreqPropagationDAG(
                clEnumValN(GVDT_Count, "count", "display a graph using the real "
                                                "profile count if available.")));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Similar option above, but used to control BFI display only after MBP pass
 cl::opt<GVDAGType> ViewBlockLayoutWithBFI(
     "view-block-layout-with-bfi", cl::Hidden,
@@ -72,7 +73,7 @@ extern cl::opt<unsigned> ViewHotFreqPercent;
 // Command line option to specify the name of the function for block frequency
 // dump. Defined in Analysis/BlockFrequencyInfo.cpp.
 extern cl::opt<std::string> PrintBFIFuncName;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static cl::opt<bool>
     PrintMachineBlockFreq("print-machine-bfi", cl::init(false), cl::Hidden,

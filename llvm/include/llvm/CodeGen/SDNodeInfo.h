@@ -13,8 +13,9 @@
 #include "llvm/ADT/StringTable.h"
 #include "llvm/CodeGen/ISDOpcodes.h"
 #include "llvm/CodeGenTypes/MachineValueType.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SDNode;
 class SelectionDAG;
@@ -124,6 +125,6 @@ public:
   void verifyNode(const SelectionDAG &DAG, const SDNode *N) const;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_SDNODEINFO_H

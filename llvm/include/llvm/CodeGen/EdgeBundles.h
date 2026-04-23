@@ -19,8 +19,9 @@
 #include "llvm/ADT/IntEqClasses.h"
 #include "llvm/CodeGen/MachineFunctionPass.h"
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class EdgeBundlesWrapperLegacy;
 class EdgeBundlesAnalysis;
 
@@ -86,6 +87,6 @@ public:
   EdgeBundles run(MachineFunction &MF, MachineFunctionAnalysisManager &MFAM);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

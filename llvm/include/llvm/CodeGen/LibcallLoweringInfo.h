@@ -13,8 +13,9 @@
 #include "llvm/Analysis/RuntimeLibcallInfo.h"
 #include "llvm/IR/RuntimeLibcalls.h"
 #include "llvm/Pass.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class RuntimeLibraryInfoWrapper;
 class TargetSubtargetInfo;
 class TargetMachine;
@@ -147,6 +148,6 @@ public:
   void releaseMemory() override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_LIBCALLLOWERINGINFO_H

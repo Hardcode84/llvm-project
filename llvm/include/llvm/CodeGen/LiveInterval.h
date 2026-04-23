@@ -40,7 +40,7 @@
 #include <tuple>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   class CoalescerPair;
   class LiveIntervals;
@@ -1039,6 +1039,6 @@ namespace llvm {
                              MachineRegisterInfo &MRI);
   };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_LIVEINTERVAL_H

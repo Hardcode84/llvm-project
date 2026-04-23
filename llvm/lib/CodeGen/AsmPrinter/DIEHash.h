@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/MD5.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AsmPrinter;
 
@@ -108,6 +108,6 @@ private:
   DwarfCompileUnit *CU;
   DenseMap<const DIE *, unsigned> Numbering;
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

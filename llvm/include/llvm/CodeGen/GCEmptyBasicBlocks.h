@@ -10,8 +10,9 @@
 #define LLVM_CODEGEN_GCEMPTYBASICBLOCKS_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GCEmptyBasicBlocksPass : public PassInfoMixin<GCEmptyBasicBlocksPass> {
 public:
@@ -19,6 +20,6 @@ public:
                         MachineFunctionAnalysisManager &MFAM);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_GCEMPTYBASICBLOCKS_H

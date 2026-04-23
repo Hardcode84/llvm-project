@@ -20,7 +20,7 @@
 #include "llvm/Support/TypeSize.h"
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class BitVector;
   class CalleeSavedInfo;
   class MachineFunction;
@@ -504,6 +504,6 @@ protected:
   virtual bool hasFPImpl(const MachineFunction &MF) const = 0;
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

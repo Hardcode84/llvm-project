@@ -32,7 +32,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 ////////////////////////////////////////
 // SSAUpdater specialization classes
@@ -361,6 +361,6 @@ public:
   void printValues(DebugVariableAggregate DVA, raw_ostream &OS);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_DEBUGSSAUPDATER_H

@@ -16,8 +16,9 @@
 #include "llvm/IR/Metadata.h"
 #include <algorithm>
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Tracking metadata reference.
 ///
@@ -169,6 +170,6 @@ template <class T> struct simplify_type<const TypedTrackingMDRef<T>> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_TRACKINGMDREF_H

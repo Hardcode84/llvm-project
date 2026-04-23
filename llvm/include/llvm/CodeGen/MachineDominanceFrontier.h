@@ -16,8 +16,9 @@
 #include "llvm/CodeGen/MachineFunctionPass.h"
 #include "llvm/CodeGen/MachinePassManager.h"
 #include "llvm/Support/GenericDomTree.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineDominanceFrontier
     : public DominanceFrontierBase<MachineBasicBlock, false> {
@@ -68,6 +69,6 @@ public:
   Result run(MachineFunction &MF, MachineFunctionAnalysisManager &MFAM);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINEDOMINANCEFRONTIER_H

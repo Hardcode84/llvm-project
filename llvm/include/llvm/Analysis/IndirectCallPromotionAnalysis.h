@@ -14,8 +14,9 @@
 #define LLVM_ANALYSIS_INDIRECTCALLPROMOTIONANALYSIS_H
 
 #include "llvm/ProfileData/InstrProf.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Instruction;
 
@@ -62,6 +63,6 @@ public:
       unsigned MaxNumValueData = 0);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

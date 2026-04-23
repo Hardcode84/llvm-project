@@ -42,7 +42,7 @@
 #include <variant>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 class BlockAddress;
@@ -1618,6 +1618,6 @@ template <> struct GraphTraits<Inverse<const MachineFunction*>> :
 LLVM_ABI void verifyMachineFunction(const std::string &Banner,
                                     const MachineFunction &MF);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINEFUNCTION_H

@@ -17,8 +17,9 @@
 #include "llvm/ADT/STLFunctionalExtras.h"
 #include "llvm/Support/ScaledNumber.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Class with methods to propagate synthetic entry counts.
 ///
@@ -46,6 +47,6 @@ private:
   static void propagateFromSCC(const SccTy &SCC, GetProfCountTy GetProfCount,
                                AddCountTy AddCount);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

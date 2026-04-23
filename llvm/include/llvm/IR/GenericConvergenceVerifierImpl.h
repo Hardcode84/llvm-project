@@ -30,6 +30,7 @@
 #include "llvm/ADT/PostOrderIterator.h"
 #include "llvm/ADT/Twine.h"
 #include "llvm/IR/IntrinsicInst.h"
+#include "llvm/Support/Compiler.h"
 
 #define Check(C, ...)                                                          \
   do {                                                                         \
@@ -47,7 +48,7 @@
     }                                                                          \
   } while (false)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <class ContextT> void GenericConvergenceVerifier<ContextT>::clear() {
   Tokens.clear();
   CI.clear();
@@ -228,6 +229,6 @@ void GenericConvergenceVerifier<ContextT>::verify(const DominatorTreeT &DT) {
   }
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_GENERICCONVERGENCEVERIFIERIMPL_H

@@ -13,7 +13,7 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class GlobalValue;
 
 class ExtractGVPass : public PassInfoMixin<ExtractGVPass> {
@@ -27,6 +27,6 @@ public:
                          bool keepConstInit = false);
   LLVM_ABI PreservedAnalyses run(Module &M, ModuleAnalysisManager &);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_IPO_EXTRACTGV_H

@@ -10,7 +10,9 @@
 #ifndef LLVM_CODEGEN_DAGCOMBINE_H
 #define LLVM_CODEGEN_DAGCOMBINE_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 enum CombineLevel {
   BeforeLegalizeTypes,
@@ -19,6 +21,6 @@ enum CombineLevel {
   AfterLegalizeDAG
 };
 
-} // end llvm namespace
+LLVM_NAMESPACE_END // end llvm namespace
 
 #endif

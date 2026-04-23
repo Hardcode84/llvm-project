@@ -20,8 +20,9 @@
 #include "llvm/Support/Discriminator.h"
 #include <memory>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AnalysisUsage;
 class MachineBlockFrequencyInfo;
 class MachineFunction;
@@ -65,6 +66,6 @@ private:
   MachineBlockFrequencyInfo *MBFI;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_MIRSAMPLEPROFILE_H

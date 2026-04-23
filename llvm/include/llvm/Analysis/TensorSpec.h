@@ -18,7 +18,7 @@
 #include <optional>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace json {
 class OStream;
 class Value;
@@ -130,6 +130,6 @@ getTensorSpecFromJSON(LLVMContext &Ctx, const json::Value &Value);
 SUPPORTED_TENSOR_TYPES(TFUTILS_GETDATATYPE_DEF)
 
 #undef TFUTILS_GETDATATYPE_DEF
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_TENSORSPEC_H

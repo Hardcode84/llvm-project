@@ -835,7 +835,7 @@ ArgumentUsesSummary collectArgumentUsesPerBlock(Argument &A, Function &F) {
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <> struct GraphTraits<ArgumentGraphNode *> {
   using NodeRef = ArgumentGraphNode *;
@@ -857,7 +857,7 @@ struct GraphTraits<ArgumentGraph *> : public GraphTraits<ArgumentGraphNode *> {
   static ChildIteratorType nodes_end(ArgumentGraph *AG) { return AG->end(); }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 /// Returns Attribute::None, Attribute::ReadOnly or Attribute::ReadNone.
 static Attribute::AttrKind

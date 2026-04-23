@@ -248,7 +248,7 @@ static bool maintainPGOProfile(const TargetMachine &TM,
   return false;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   //===--------------------------------------------------------------------===//
   /// This class is used by SelectionDAGISel to temporarily override
@@ -327,7 +327,7 @@ namespace llvm {
     return createILPListDAGScheduler(IS, OptLevel);
   }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 MachineBasicBlock *
 TargetLowering::EmitInstrWithCustomInserter(MachineInstr &MI,

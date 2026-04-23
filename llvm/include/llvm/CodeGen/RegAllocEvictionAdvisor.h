@@ -22,7 +22,7 @@
 #include "llvm/Pass.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AllocationOrder;
 class LiveInterval;
 class LiveIntervals;
@@ -296,6 +296,6 @@ private:
   bool shouldEvict(const LiveInterval &A, bool, const LiveInterval &B,
                    bool) const;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_REGALLOCEVICTIONADVISOR_H

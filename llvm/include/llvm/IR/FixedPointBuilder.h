@@ -26,8 +26,9 @@
 #include "llvm/IR/Value.h"
 
 #include <cmath>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <class IRBuilderTy> class FixedPointBuilder {
   IRBuilderTy &B;
@@ -462,6 +463,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_FIXEDPOINTBUILDER_H

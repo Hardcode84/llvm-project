@@ -24,8 +24,9 @@
 
 #include "llvm/CodeGen/MachinePassManager.h"
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class UnreachableBlockElimPass
     : public PassInfoMixin<UnreachableBlockElimPass> {
@@ -39,6 +40,6 @@ public:
   PreservedAnalyses run(MachineFunction &F, MachineFunctionAnalysisManager &AM);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_UNREACHABLEBLOCKELIM_H

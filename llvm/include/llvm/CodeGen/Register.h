@@ -12,8 +12,9 @@
 #include "llvm/MC/MCRegister.h"
 #include "llvm/Support/MathExtras.h"
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Wrapper class representing virtual and physical registers. Should be passed
 /// by value.
@@ -217,6 +218,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_REGISTER_H

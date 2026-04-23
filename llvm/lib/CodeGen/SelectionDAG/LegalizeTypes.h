@@ -21,7 +21,7 @@
 #include "llvm/CodeGen/TargetLowering.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 /// This takes an arbitrary SelectionDAG as input and hacks on it until only
@@ -1236,6 +1236,6 @@ private:
   SDValue ExpandOp_NormalStore      (SDNode *N, unsigned OpNo);
 };
 
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.
 
 #endif

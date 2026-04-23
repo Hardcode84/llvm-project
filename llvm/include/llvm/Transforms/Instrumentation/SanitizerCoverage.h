@@ -21,7 +21,7 @@
 #include "llvm/Support/SpecialCaseList.h"
 #include "llvm/Transforms/Utils/Instrumentation.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 namespace vfs {
 class FileSystem;
@@ -48,6 +48,6 @@ private:
   std::unique_ptr<SpecialCaseList> Blocklist;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

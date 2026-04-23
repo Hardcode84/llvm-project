@@ -10,8 +10,9 @@
 #define LLVM_LIB_CODEGEN_ASMPRINTER_ADDRESSPOOL_H
 
 #include "llvm/ADT/DenseMap.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AsmPrinter;
 class MCSection;
@@ -60,6 +61,6 @@ private:
   MCSymbol *AddressTableBaseSym = nullptr;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_CODEGEN_ASMPRINTER_ADDRESSPOOL_H

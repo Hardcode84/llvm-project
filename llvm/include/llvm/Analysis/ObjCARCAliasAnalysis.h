@@ -23,8 +23,9 @@
 #define LLVM_ANALYSIS_OBJCARCALIASANALYSIS_H
 
 #include "llvm/Analysis/AliasAnalysis.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcarc {
 
 /// This is a simple alias analysis implementation that uses knowledge
@@ -74,6 +75,6 @@ public:
 };
 
 } // namespace objcarc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

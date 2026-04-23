@@ -14,12 +14,13 @@
 
 #include "llvm/Transforms/Coroutines/SuspendCrossingInfo.h"
 #include "llvm/IR/ModuleSlotTracker.h"
+#include "llvm/Support/Compiler.h"
 
 // The "coro-suspend-crossing" flag is very noisy. There is another debug type,
 // "coro-frame", which results in leaner debug spew.
 #define DEBUG_TYPE "coro-suspend-crossing"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 #if !defined(NDEBUG) || defined(LLVM_ENABLE_DUMP)
 static void dumpBasicBlockLabel(const BasicBlock *BB, ModuleSlotTracker &MST) {
   if (BB->hasName()) {
@@ -211,4 +212,4 @@ SuspendCrossingInfo::SuspendCrossingInfo(
   LLVM_DEBUG(dump());
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -20,8 +20,9 @@
 #include "llvm/CodeGen/MachineRegisterInfo.h"
 #include "llvm/CodeGen/TargetOpcodes.h"
 #include "llvm/IR/InstrTypes.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace MIPatternMatch {
 
 template <typename Reg, typename Pattern>
@@ -945,6 +946,6 @@ m_Not(const SrcTy &&Src) {
 }
 
 } // namespace MIPatternMatch
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

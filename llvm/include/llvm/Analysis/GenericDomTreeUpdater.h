@@ -18,7 +18,7 @@
 #include "llvm/ADT/SmallSet.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename DerivedT, typename DomTreeT, typename PostDomTreeT>
 class GenericDomTreeUpdater {
@@ -274,6 +274,6 @@ private:
   template <bool IsForward> void applyUpdatesImpl();
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_GENERICDOMTREEUPDATER_H

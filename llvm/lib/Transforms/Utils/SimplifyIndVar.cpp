@@ -27,6 +27,7 @@
 #include "llvm/Transforms/Utils/Local.h"
 #include "llvm/Transforms/Utils/LoopUtils.h"
 #include "llvm/Transforms/Utils/ScalarEvolutionExpander.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::PatternMatch;
@@ -1010,7 +1011,7 @@ void SimplifyIndvar::simplifyUsers(PHINode *CurrIV, IVVisitor *V) {
   }
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 void IVVisitor::anchor() { }
 
@@ -1048,7 +1049,7 @@ bool simplifyLoopIVs(Loop *L, ScalarEvolution *SE, DominatorTree *DT,
   return Changed;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 //===----------------------------------------------------------------------===//

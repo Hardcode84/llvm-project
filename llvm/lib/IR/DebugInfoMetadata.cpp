@@ -29,7 +29,7 @@
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Use FS-AFDO discriminator.
 cl::opt<bool> EnableFSDiscriminator(
     "enable-fs-discriminator", cl::Hidden,
@@ -40,7 +40,7 @@ cl::opt<bool> EnableFSDiscriminator(
 LLVM_ABI cl::opt<bool> PickMergedSourceLocations(
     "pick-merged-source-locations", cl::init(false), cl::Hidden,
     cl::desc("Preserve line and column number when merging locations."));
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 uint32_t DIType::getAlignInBits() const {
   return (getTag() == dwarf::DW_TAG_LLVM_ptrauth_type ? 0 : SubclassData32);

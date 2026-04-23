@@ -12,8 +12,9 @@
 
 #include "llvm/Analysis/TensorSpec.h"
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LLVMContext;
 
 /// MLModelRunner interface: abstraction of a mechanism for evaluating a
@@ -76,6 +77,6 @@ private:
   std::vector<void *> InputBuffers;
   std::vector<std::vector<char *>> OwnedBuffers;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_MLMODELRUNNER_H

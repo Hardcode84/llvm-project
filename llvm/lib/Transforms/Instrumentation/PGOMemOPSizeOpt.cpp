@@ -46,6 +46,7 @@
 #include <cassert>
 #include <cstdint>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -54,7 +55,7 @@ using namespace llvm;
 STATISTIC(NumOfPGOMemOPOpt, "Number of memop intrinsics optimized.");
 STATISTIC(NumOfPGOMemOPAnnotate, "Number of memop intrinsics annotated.");
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // The minimum call count to optimize memory intrinsic calls.
 static cl::opt<unsigned>
@@ -95,7 +96,7 @@ static cl::opt<unsigned>
     MemOpMaxOptSize("memop-value-prof-max-opt-size", cl::Hidden, cl::init(128),
                     cl::desc("Optimize the memop size <= this value"));
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace {
 

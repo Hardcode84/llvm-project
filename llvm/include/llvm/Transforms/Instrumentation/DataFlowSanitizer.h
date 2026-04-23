@@ -14,7 +14,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 
 class DataFlowSanitizerPass : public PassInfoMixin<DataFlowSanitizerPass> {
@@ -31,6 +31,6 @@ public:
   static bool isRequired() { return true; }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

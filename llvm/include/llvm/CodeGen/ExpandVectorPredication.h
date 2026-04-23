@@ -10,8 +10,9 @@
 #define LLVM_CODEGEN_EXPANDVECTORPREDICATION_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class TargetTransformInfo;
 class VPIntrinsic;
@@ -32,6 +33,6 @@ VPExpansionDetails
 expandVectorPredicationIntrinsic(VPIntrinsic &VPI,
                                  const TargetTransformInfo &TTI);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_EXPANDVECTORPREDICATION_H

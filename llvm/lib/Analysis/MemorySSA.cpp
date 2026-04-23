@@ -214,7 +214,7 @@ private:
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <> struct DenseMapInfo<MemoryLocOrCall> {
   static inline MemoryLocOrCall getEmptyKey() {
@@ -245,7 +245,7 @@ template <> struct DenseMapInfo<MemoryLocOrCall> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 /// This does one-way checks to see if Use could theoretically be hoisted above
 /// MayClobber. This will not check the other way around.
@@ -993,7 +993,7 @@ struct RenamePassData {
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MemorySSA::ClobberWalkerBase {
   ClobberWalker Walker;
@@ -1100,7 +1100,7 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 void MemorySSA::renameSuccessorPhis(BasicBlock *BB, MemoryAccess *IncomingVal,
                                     bool RenameAllUses) {
@@ -1302,7 +1302,7 @@ MemorySSA::DefsList *MemorySSA::getOrCreateDefsList(const BasicBlock *BB) {
   return Res.first->second.get();
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This class is a batch walker of all MemoryUse's in the program, and points
 /// their defining access at the thing that actually clobbers them.  Because it
@@ -1347,7 +1347,7 @@ private:
   DominatorTree *DT;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 /// Optimize the uses in a given block This is basically the SSA renaming
 /// algorithm, with one caveat: We are able to use a single stack for all
@@ -2300,7 +2300,7 @@ public:
   MemorySSAAnnotatedWriter &getWriter() { return MSSAWriter; }
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <>
 struct GraphTraits<DOTFuncMSSAInfo *> : public GraphTraits<const BasicBlock *> {
@@ -2369,7 +2369,7 @@ struct DOTGraphTraits<DOTFuncMSSAInfo *> : public DefaultDOTGraphTraits {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 AnalysisKey MemorySSAAnalysis::Key;
 

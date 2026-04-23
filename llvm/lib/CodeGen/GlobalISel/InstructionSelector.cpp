@@ -7,10 +7,11 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/CodeGen/GlobalISel/InstructionSelector.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // vtable anchor
 InstructionSelector::~InstructionSelector() = default;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

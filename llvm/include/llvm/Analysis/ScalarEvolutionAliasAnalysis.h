@@ -17,7 +17,7 @@
 #include "llvm/Pass.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class ScalarEvolution;
@@ -72,6 +72,6 @@ public:
 
 /// Creates an instance of \c SCEVAAWrapperPass.
 LLVM_ABI FunctionPass *createSCEVAAWrapperPass();
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -90,13 +90,14 @@
 #include <tuple>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace PatternMatch;
 
 #define DEBUG_TYPE "simplifycfg"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 cl::opt<bool> RequireAndPreserveDomTree(
     "simplifycfg-require-and-preserve-domtree", cl::Hidden,
@@ -203,7 +204,7 @@ static cl::opt<unsigned> MaxSwitchCasesPerResult(
 
 extern cl::opt<bool> ProfcheckDisableMetadataFixes;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 STATISTIC(NumBitMaps, "Number of switch instructions turned into bitmaps");
 STATISTIC(NumLinearMaps,

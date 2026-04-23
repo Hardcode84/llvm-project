@@ -17,8 +17,9 @@
 
 #include "llvm/CodeGen/ScheduleDAG.h"
 #include "llvm/Config/llvm-config.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class LatencyPriorityQueue;
 
   /// Sorting functions for the Available queue.
@@ -97,6 +98,6 @@ private:
     void AdjustPriorityOfUnscheduledPreds(SUnit *SU);
     SUnit *getSingleUnscheduledPred(SUnit *SU);
   };
-}
+LLVM_NAMESPACE_END
 
 #endif

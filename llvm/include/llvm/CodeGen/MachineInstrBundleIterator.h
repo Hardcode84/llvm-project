@@ -18,8 +18,9 @@
 #include <cassert>
 #include <iterator>
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <class T, bool IsReverse> struct MachineInstrBundleIteratorTraits;
 template <class T> struct MachineInstrBundleIteratorTraits<T, false> {
@@ -283,6 +284,6 @@ public:
   reverse_iterator getReverse() const { return MII.getReverse(); }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINEINSTRBUNDLEITERATOR_H

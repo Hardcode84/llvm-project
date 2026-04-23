@@ -30,7 +30,7 @@
 #include "llvm/IR/Instructions.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// NoFolder - Create "constants" (actually, instructions) with no folding.
 class LLVM_ABI NoFolder final : public IRBuilderFolder {
@@ -132,6 +132,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_NOFOLDER_H

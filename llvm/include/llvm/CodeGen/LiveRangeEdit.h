@@ -28,8 +28,9 @@
 #include "llvm/CodeGen/SlotIndexes.h"
 #include "llvm/CodeGen/TargetSubtargetInfo.h"
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LiveIntervals;
 class MachineInstr;
@@ -221,6 +222,6 @@ public:
   void calculateRegClassAndHint(MachineFunction &, VirtRegAuxInfo &);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_LIVERANGEEDIT_H

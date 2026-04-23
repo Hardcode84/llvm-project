@@ -18,8 +18,9 @@
 #include "llvm/Support/Allocator.h"
 #include "llvm/Support/DataTypes.h"
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DIVariable;
 class DIExpression;
@@ -259,6 +260,6 @@ public:
   unsigned getOrder() const { return Order; }
 };
 
-} // end llvm namespace
+LLVM_NAMESPACE_END // end llvm namespace
 
 #endif

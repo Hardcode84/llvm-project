@@ -8,8 +8,10 @@
 
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/Passes/PackReuse.h"
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/VecUtils.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 bool PackReuse::runOnRegion(Region &Rgn, const Analyses &A) {
   if (Rgn.empty())
@@ -50,4 +52,5 @@ bool PackReuse::runOnRegion(Region &Rgn, const Analyses &A) {
   return Change;
 }
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir

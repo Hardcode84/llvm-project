@@ -29,7 +29,7 @@
 #include <cassert>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AliasResult;
 class AliasSetTracker;
@@ -279,6 +279,6 @@ public:
   static bool isRequired() { return true; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_ALIASSETTRACKER_H

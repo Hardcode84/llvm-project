@@ -12,12 +12,13 @@
 #include "llvm/InitializePasses.h"
 #include "llvm/Pass.h"
 #include "llvm/PassRegistry.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template class DominanceFrontierBase<MachineBasicBlock, false>;
-}
+LLVM_NAMESPACE_END
 
 char MachineDominanceFrontierWrapperPass::ID = 0;
 

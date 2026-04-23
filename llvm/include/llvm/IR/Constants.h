@@ -41,7 +41,7 @@
 #include <cstdint>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <class ConstantClass> struct ConstantAggrKeyType;
 
@@ -1685,6 +1685,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_CONSTANTS_H

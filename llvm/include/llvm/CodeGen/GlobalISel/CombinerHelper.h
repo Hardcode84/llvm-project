@@ -25,8 +25,9 @@
 #include "llvm/CodeGenTypes/LowLevelType.h"
 #include "llvm/IR/InstrTypes.h"
 #include <functional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GISelChangeObserver;
 class APInt;
@@ -1179,6 +1180,6 @@ private:
   bool constantFoldFCmp(const GFCmp &FCmp, const GFConstant &LHSCst,
                         const GFConstant &RHSCst, BuildFnTy &MatchInfo) const;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

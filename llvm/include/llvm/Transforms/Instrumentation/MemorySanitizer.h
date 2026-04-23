@@ -17,7 +17,7 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 class StringRef;
 class raw_ostream;
@@ -52,6 +52,6 @@ struct MemorySanitizerPass : public PassInfoMixin<MemorySanitizerPass> {
 private:
   MemorySanitizerOptions Options;
 };
-}
+LLVM_NAMESPACE_END
 
 #endif /* LLVM_TRANSFORMS_INSTRUMENTATION_MEMORYSANITIZER_H */

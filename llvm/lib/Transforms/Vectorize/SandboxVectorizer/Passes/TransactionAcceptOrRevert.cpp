@@ -10,8 +10,9 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/InstructionCost.h"
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/Debug.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static cl::opt<int> CostThreshold("sbvec-cost-threshold", cl::init(0),
                                   cl::Hidden,
@@ -42,4 +43,4 @@ bool TransactionAcceptOrRevert::runOnRegion(Region &Rgn, const Analyses &A) {
 }
 
 } // namespace sandboxir
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

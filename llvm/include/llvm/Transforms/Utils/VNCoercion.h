@@ -24,7 +24,9 @@
 #ifndef LLVM_TRANSFORMS_UTILS_VNCOERCION_H
 #define LLVM_TRANSFORMS_UTILS_VNCOERCION_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class Constant;
 class Function;
 class StoreInst;
@@ -98,6 +100,6 @@ Value *getMemInstValueForLoad(MemIntrinsic *SrcInst, unsigned Offset,
 Constant *getConstantMemInstValueForLoad(MemIntrinsic *SrcInst, unsigned Offset,
                                          Type *LoadTy, const DataLayout &DL);
 } // namespace VNCoercion
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_VNCOERCION_H

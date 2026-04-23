@@ -18,7 +18,7 @@
 #include "llvm/CodeGen/MachineDominators.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachinePostDominatorTree;
 class MachineDomTreeUpdater;
@@ -78,5 +78,5 @@ private:
   /// Returns true if at least one MachineBasicBlock is deleted.
   bool forceFlushDeletedBB();
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_CODEGEN_MACHINEDOMTREEUPDATER_H

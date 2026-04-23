@@ -14,7 +14,7 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CallBase;
 class FunctionPass;
@@ -34,6 +34,6 @@ LLVM_ABI FunctionPass *createCFGuardPass();
 LLVM_ABI bool isCFGuardCall(const CallBase *CB);
 LLVM_ABI bool isCFGuardFunction(const GlobalValue *GV);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -19,7 +19,7 @@
 #include "llvm/IR/ValueMap.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GlobalValue;
 class TargetMachine;
@@ -65,6 +65,6 @@ public:
   LLVM_ABI const PseudoSourceValue *getExternalSymbolCallEntry(const char *ES);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

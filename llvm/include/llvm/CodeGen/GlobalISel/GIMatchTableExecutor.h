@@ -35,7 +35,7 @@
 #include <optional>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BlockFrequencyInfo;
 class CodeGenCoverage;
@@ -789,6 +789,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_GLOBALISEL_GIMATCHTABLEEXECUTOR_H

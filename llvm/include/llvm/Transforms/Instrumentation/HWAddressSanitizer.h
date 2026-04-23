@@ -17,7 +17,7 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 class StringRef;
 class raw_ostream;
@@ -69,6 +69,6 @@ enum { RuntimeMask = 0xffff };
 
 } // namespace HWASanAccessInfo
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -39,8 +39,9 @@
 #include <optional>
 #include <type_traits>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename KeyT, typename ValueT, typename Config>
 class ValueMapCallbackVH;
@@ -382,6 +383,6 @@ using ValueMapIterator = ValueMapIteratorImpl<DenseMapT, KeyT, false>;
 template <typename DenseMapT, typename KeyT>
 using ValueMapConstIterator = ValueMapIteratorImpl<DenseMapT, KeyT, true>;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_VALUEMAP_H

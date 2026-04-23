@@ -36,7 +36,7 @@
 #define GET_RUNTIME_LIBCALL_ENUM
 #include "llvm/IR/RuntimeLibcalls.inc"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <> struct enum_iteration_traits<RTLIB::Libcall> {
   static constexpr bool is_iterable = true;
@@ -255,6 +255,6 @@ private:
 
 } // namespace RTLIB
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_IR_RUNTIME_LIBCALLS_H

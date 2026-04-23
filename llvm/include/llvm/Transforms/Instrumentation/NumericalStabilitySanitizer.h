@@ -18,7 +18,7 @@
 #include "llvm/Pass.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A function pass for nsan instrumentation.
 ///
@@ -32,6 +32,6 @@ struct NumericalStabilitySanitizerPass
   static bool isRequired() { return true; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_INSTRUMENTATION_NUMERICALSTABIITYSANITIZER_H

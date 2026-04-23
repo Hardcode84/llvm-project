@@ -25,8 +25,9 @@
 #include "llvm/TargetParser/Triple.h"
 #include "llvm/Transforms/Utils/PromoteMemToReg.h"
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace memtag {
 
 void forAllReachableExits(const DominatorTree &DT, const PostDominatorTree &PDT,
@@ -353,4 +354,4 @@ Value *incrementThreadLong(IRBuilder<> &IRB, Value *ThreadLong,
 }
 
 } // namespace memtag
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

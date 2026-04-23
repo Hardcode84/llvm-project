@@ -15,8 +15,9 @@
 #define LLVM_CODEGEN_COMPLEXDEINTERLEAVING_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class TargetMachine;
@@ -54,6 +55,6 @@ enum class ComplexDeinterleavingRotation {
   Rotation_270 = 3,
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_COMPLEXDEINTERLEAVING_H

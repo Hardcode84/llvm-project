@@ -15,8 +15,9 @@
 #define LLVM_LIB_CODEGEN_ASMPRINTER_WASMEXCEPTION_H
 
 #include "EHStreamer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AsmPrinter;
 class MachineFunction;
 struct LandingPadInfo;
@@ -39,6 +40,6 @@ protected:
       const SmallVectorImpl<unsigned> &FirstActions) override;
 };
 
-} // End of namespace llvm
+LLVM_NAMESPACE_END // End of namespace llvm
 
 #endif

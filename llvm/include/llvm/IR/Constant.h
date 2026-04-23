@@ -18,7 +18,7 @@
 #include "llvm/Support/Casting.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ConstantRange;
 class APInt;
@@ -261,6 +261,6 @@ private:
   bool hasNLiveUses(unsigned N) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_CONSTANT_H

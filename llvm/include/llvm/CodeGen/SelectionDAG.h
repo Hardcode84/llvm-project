@@ -52,7 +52,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DIExpression;
 class DILabel;
@@ -2830,6 +2830,6 @@ template <> struct GraphTraits<SelectionDAG*> : public GraphTraits<SDNode*> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_SELECTIONDAG_H

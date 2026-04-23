@@ -32,7 +32,7 @@
 #include <iterator>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 class Type;
@@ -665,6 +665,6 @@ public:
 
 } // end namespace GVNExpression
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_SCALAR_GVNEXPRESSION_H

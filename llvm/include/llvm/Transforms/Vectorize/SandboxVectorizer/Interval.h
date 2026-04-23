@@ -27,7 +27,8 @@
 #include <iterator>
 #include <type_traits>
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 /// A simple iterator for iterating the interval.
 template <typename T, typename IntervalType> class IntervalIterator {
@@ -239,6 +240,7 @@ public:
 // Defined in Transforms/Vectorize/SandboxVectorizer/Interval.cpp
 extern template class LLVM_TEMPLATE_ABI Interval<Instruction>;
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_SANDBOXVECTORIZER_INSTRINTERVAL_H

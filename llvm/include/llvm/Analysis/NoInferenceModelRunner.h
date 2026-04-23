@@ -12,7 +12,7 @@
 
 #include "llvm/Analysis/MLModelRunner.h"
 #include "llvm/Support/Compiler.h"
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class TensorSpec;
 
 /// A pseudo model runner. We use it to store feature values when collecting
@@ -32,5 +32,5 @@ private:
     llvm_unreachable("We shouldn't call run on this model runner.");
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_ANALYSIS_NOINFERENCEMODELRUNNER_H

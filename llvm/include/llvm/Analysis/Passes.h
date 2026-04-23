@@ -16,7 +16,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class FunctionPass;
   class ImmutablePass;
   class ModulePass;
@@ -40,6 +40,6 @@ namespace llvm {
   // in a function and builds the region hierarchy.
   //
   LLVM_ABI FunctionPass *createRegionInfoPass();
-}
+LLVM_NAMESPACE_END
 
 #endif

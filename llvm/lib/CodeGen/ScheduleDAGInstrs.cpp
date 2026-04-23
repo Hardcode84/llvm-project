@@ -1253,7 +1253,7 @@ bool ScheduleDAGInstrs::addEdge(SUnit *SuccSU, const SDep &PredDep) {
 // SchedDFSResult Implementation
 //===----------------------------------------------------------------------===//
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Internal state used to compute SchedDFSResult.
 class SchedDFSImpl {
@@ -1440,7 +1440,7 @@ protected:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace {
 

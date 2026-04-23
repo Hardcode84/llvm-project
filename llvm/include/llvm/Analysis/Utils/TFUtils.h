@@ -19,8 +19,9 @@
 
 #include <memory>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Load a SavedModel, find the given inputs and outputs, and setup storage
 /// for input tensors. The user is responsible for correctly dimensioning the
@@ -104,7 +105,7 @@ private:
   std::unique_ptr<TFModelEvaluatorImpl> Impl;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_HAVE_TFLITE
 #endif // LLVM_ANALYSIS_UTILS_TFUTILS_H

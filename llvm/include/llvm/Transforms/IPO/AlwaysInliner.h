@@ -17,7 +17,7 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Module;
 class Pass;
@@ -44,6 +44,6 @@ public:
 /// Create a legacy pass manager instance of a pass to inline and remove
 /// functions marked as "always_inline".
 LLVM_ABI Pass *createAlwaysInlinerLegacyPass(bool InsertLifetime = true);
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_TRANSFORMS_IPO_ALWAYSINLINER_H

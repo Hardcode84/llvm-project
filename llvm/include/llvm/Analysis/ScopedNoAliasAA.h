@@ -20,7 +20,7 @@
 #include "llvm/Support/Compiler.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class MDNode;
@@ -92,6 +92,6 @@ public:
 //
 LLVM_ABI ImmutablePass *createScopedNoAliasAAWrapperPass();
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_SCOPEDNOALIASAA_H

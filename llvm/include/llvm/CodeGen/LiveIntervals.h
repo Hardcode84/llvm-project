@@ -37,7 +37,7 @@
 #include <cstdint>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 LLVM_ABI extern cl::opt<bool> UseSegmentSetForPhysRegs;
 
@@ -560,6 +560,6 @@ public:
   LiveIntervals &getLIS() { return LIS; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

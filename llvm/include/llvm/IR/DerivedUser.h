@@ -10,8 +10,9 @@
 #define LLVM_IR_DERIVEDUSER_H
 
 #include "llvm/IR/User.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Type;
 class Use;
@@ -39,6 +40,6 @@ public:
       : User(Ty, VK, AllocInfo), DeleteValue(DeleteValue) {}
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_DERIVEDUSER_H

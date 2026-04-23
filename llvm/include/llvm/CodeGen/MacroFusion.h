@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineInstr;
 class ScheduleDAGMutation;
@@ -57,6 +57,6 @@ LLVM_ABI std::unique_ptr<ScheduleDAGMutation>
 createMacroFusionDAGMutation(ArrayRef<MacroFusionPredTy> Predicates,
                              bool BranchOnly = false);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MACROFUSION_H

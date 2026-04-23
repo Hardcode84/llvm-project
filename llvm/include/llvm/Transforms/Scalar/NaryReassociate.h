@@ -83,8 +83,9 @@
 #include "llvm/Analysis/ScalarEvolution.h"
 #include "llvm/IR/PassManager.h"
 #include "llvm/IR/ValueHandle.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AssumptionCache;
 class BinaryOperator;
@@ -193,6 +194,6 @@ private:
   DenseMap<const SCEV *, SmallVector<WeakTrackingVH, 2>> SeenExprs;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_SCALAR_NARYREASSOCIATE_H

@@ -22,7 +22,7 @@
 #include <climits>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AssumptionCache;
 class OptimizationRemarkEmitter;
 class BlockFrequencyInfo;
@@ -359,6 +359,6 @@ public:
   LLVM_ABI PreservedAnalyses run(Function &F, FunctionAnalysisManager &FAM);
   static bool isRequired() { return true; }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -15,8 +15,9 @@
 
 #include "llvm/ADT/DenseSet.h"
 #include "llvm/IR/Metadata.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <class T, class InfoT>
 static T *getUniqued(DenseSet<T *, InfoT> &Store,
@@ -53,6 +54,6 @@ T *MDNode::storeImpl(T *N, StorageType Storage, StoreT &Store) {
   return N;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

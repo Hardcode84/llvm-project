@@ -17,8 +17,9 @@
 #define LLVM_TRANSFORMS_COROUTINES_COROELIDE_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 
@@ -26,6 +27,6 @@ struct CoroElidePass : PassInfoMixin<CoroElidePass> {
   PreservedAnalyses run(Function &F, FunctionAnalysisManager &AM);
   static bool isRequired() { return true; }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_COROUTINES_COROELIDE_H

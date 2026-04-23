@@ -15,14 +15,15 @@
 #define LLVM_TRANSFORMS_UTILS_LOWERGLOBALDTORS_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LowerGlobalDtorsPass : public PassInfoMixin<LowerGlobalDtorsPass> {
 public:
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &AM);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_LOWERGLOBALDTORS_H

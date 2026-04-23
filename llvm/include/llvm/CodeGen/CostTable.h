@@ -17,8 +17,9 @@
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/CodeGenTypes/MachineValueType.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Cost Table Entry
 template <typename CostType>
@@ -84,6 +85,6 @@ ConvertCostTableLookup(const TypeConversionCostTblEntryT<CostType> (&Table)[N],
   return ConvertCostTableLookup<CostType>(Table, ISD, Dst, Src);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif /* LLVM_CODEGEN_COSTTABLE_H_ */

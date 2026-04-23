@@ -20,8 +20,9 @@
 #include "llvm/CodeGen/SelectionDAG.h"
 #include "llvm/IR/BasicBlock.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AAResults;
 class AssumptionCache;
 class TargetInstrInfo;
@@ -593,6 +594,6 @@ public:
                         MachineFunctionAnalysisManager &MFAM);
   static bool isRequired() { return true; }
 };
-}
+LLVM_NAMESPACE_END
 
 #endif /* LLVM_CODEGEN_SELECTIONDAGISEL_H */

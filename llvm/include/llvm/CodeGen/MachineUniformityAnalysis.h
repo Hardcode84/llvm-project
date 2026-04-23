@@ -19,8 +19,9 @@
 #include "llvm/CodeGen/MachineDominators.h"
 #include "llvm/CodeGen/MachinePassManager.h"
 #include "llvm/CodeGen/MachineSSAContext.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 extern template class GenericUniformityInfo<MachineSSAContext>;
 using MachineUniformityInfo = GenericUniformityInfo<MachineSSAContext>;
@@ -74,6 +75,6 @@ public:
   static bool isRequired() { return true; }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINEUNIFORMITYANALYSIS_H

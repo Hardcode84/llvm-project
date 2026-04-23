@@ -19,7 +19,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/IntegerInclusiveInterval.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Extensions to this class implement mechanisms to disable passes and
 /// individual optimizations at compile time.
@@ -98,6 +98,6 @@ private:
 /// need to coordinate their uses of OptBisect and OptDisable.
 LLVM_ABI OptPassGate &getGlobalPassGate();
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_OPTBISECT_H

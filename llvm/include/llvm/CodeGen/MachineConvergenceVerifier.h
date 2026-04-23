@@ -17,12 +17,13 @@
 
 #include "llvm/ADT/GenericConvergenceVerifier.h"
 #include "llvm/CodeGen/MachineSSAContext.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using MachineConvergenceVerifier =
     GenericConvergenceVerifier<MachineSSAContext>;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINECONVERGENCEVERIFIER_H

@@ -19,7 +19,7 @@
 #include "llvm/Support/CodeGen.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class InstructionSelector;
 class GISelValueTracking;
@@ -70,6 +70,6 @@ protected:
 
   bool selectInstr(MachineInstr &MI);
 };
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.
 
 #endif

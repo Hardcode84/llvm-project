@@ -15,12 +15,13 @@
 #include "llvm/InitializePasses.h"
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
 INITIALIZE_PASS(MachineBranchProbabilityInfoWrapperPass, "machine-branch-prob",
                 "Machine Branch Probability Analysis", false, true)
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 cl::opt<unsigned>
     StaticLikelyProb("static-likely-prob",
                      cl::desc("branch probability threshold in percentage"
@@ -32,7 +33,7 @@ cl::opt<unsigned> ProfileLikelyProb(
     cl::desc("branch probability threshold in percentage to be considered"
              " very likely when profile is available"),
     cl::init(51), cl::Hidden);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 MachineBranchProbabilityAnalysis::Result
 MachineBranchProbabilityAnalysis::run(MachineFunction &,

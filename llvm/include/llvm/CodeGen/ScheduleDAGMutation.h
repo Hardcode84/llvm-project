@@ -16,7 +16,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ScheduleDAGInstrs;
 
@@ -30,6 +30,6 @@ public:
   virtual void apply(ScheduleDAGInstrs *DAG) = 0;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_SCHEDULEDAGMUTATION_H

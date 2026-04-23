@@ -19,8 +19,10 @@
 #include "llvm/Transforms/Coroutines/ABI.h"
 #include "llvm/Transforms/Coroutines/CoroInstr.h"
 #include "llvm/Transforms/Utils/ValueMapper.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::coro {
+LLVM_NAMESPACE_BEGIN
+namespace coro {
 
 enum class CloneKind {
   /// The shared resume function for a switch lowering.
@@ -148,6 +150,7 @@ public:
   }
 };
 
-} // end namespace llvm::coro
+}
+LLVM_NAMESPACE_END // end namespace llvm::coro
 
 #endif // LLVM_LIB_TRANSFORMS_COROUTINES_COROCLONER_H

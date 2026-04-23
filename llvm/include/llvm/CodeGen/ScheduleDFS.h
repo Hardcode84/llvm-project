@@ -18,8 +18,9 @@
 #include <cassert>
 #include <cstdint>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> class ArrayRef;
 class raw_ostream;
@@ -188,6 +189,6 @@ public:
 
 raw_ostream &operator<<(raw_ostream &OS, const ILPValue &Val);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_SCHEDULEDFS_H

@@ -31,11 +31,11 @@
 
 #include <cassert>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Argument;
 class Constant;
 class Value;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 using namespace llvm;
 
 bool llvm::VerifyDomInfo = false;

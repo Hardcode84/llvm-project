@@ -23,7 +23,7 @@
 #include <cstdint>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   class LLVMContext;
   class Type;
@@ -584,6 +584,6 @@ namespace llvm {
     V.print(OS);
     return OS;
   }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_VALUETYPES_H

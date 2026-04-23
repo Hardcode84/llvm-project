@@ -9,7 +9,9 @@
 #ifndef LLVM_CODEGEN_MACHINELOOPUTILS_H
 #define LLVM_CODEGEN_MACHINELOOPUTILS_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class MachineBasicBlock;
 class MachineRegisterInfo;
 class TargetInstrInfo;
@@ -36,6 +38,6 @@ MachineBasicBlock *PeelSingleBlockLoop(LoopPeelDirection Direction,
                                        MachineRegisterInfo &MRI,
                                        const TargetInstrInfo *TII);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINELOOPUTILS_H

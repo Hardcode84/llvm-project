@@ -44,7 +44,7 @@
 #include <iterator>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class APFloat;
 class APInt;
@@ -5405,6 +5405,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_INSTRUCTIONS_H

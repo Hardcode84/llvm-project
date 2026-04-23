@@ -18,8 +18,9 @@
 
 #include <cstdint>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // This function implements the Myers diff algorithm used for stale profile
 // matching. The algorithm provides a simple and efficient way to find the
@@ -111,6 +112,6 @@ void longestCommonSequence(
   // Length of an SES is greater than MaxDepth.
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_LONGESTCOMMONSEQEUNCE_H

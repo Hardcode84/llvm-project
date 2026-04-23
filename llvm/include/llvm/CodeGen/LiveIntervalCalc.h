@@ -20,7 +20,7 @@
 #include "llvm/CodeGen/LiveRangeCalc.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <class NodeT> class DomTreeNodeBase;
 
@@ -67,6 +67,6 @@ public:
   LLVM_ABI void constructMainRangeFromSubranges(LiveInterval &LI);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_LIVEINTERVALCALC_H

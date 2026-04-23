@@ -31,8 +31,9 @@
 
 #define DEBUG_TYPE "instcombine"
 #include "llvm/Transforms/Utils/InstructionWorklist.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AAResults;
 class AssumptionCache;
@@ -546,7 +547,7 @@ public:
   bool isValidAddrSpaceCast(unsigned FromAS, unsigned ToAS) const;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #undef DEBUG_TYPE
 

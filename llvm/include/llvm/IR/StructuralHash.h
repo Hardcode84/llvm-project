@@ -20,7 +20,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class Module;
@@ -85,6 +85,6 @@ struct FunctionHashInfo {
 LLVM_ABI FunctionHashInfo
 StructuralHashWithDifferences(const Function &F, IgnoreOperandFunc IgnoreOp);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

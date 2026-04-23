@@ -9,8 +9,10 @@
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/Passes/TransactionSave.h"
 #include "llvm/Support/InstructionCost.h"
 #include "llvm/Transforms/Vectorize/SandboxVectorizer/Debug.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 bool TransactionSave::runOnRegion(Region &Rgn, const Analyses &A) {
   LLVM_DEBUG(dbgs() << DEBUG_PREFIX << "*** Save Transaction ***\n");
@@ -18,4 +20,5 @@ bool TransactionSave::runOnRegion(Region &Rgn, const Analyses &A) {
   return false;
 }
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir

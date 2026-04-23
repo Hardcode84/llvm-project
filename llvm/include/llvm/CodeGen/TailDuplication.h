@@ -12,8 +12,9 @@
 #include "llvm/CodeGen/MBFIWrapper.h"
 #include "llvm/CodeGen/MachineFunction.h"
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename DerivedT, bool PreRegAlloc>
 class TailDuplicatePassBase : public PassInfoMixin<DerivedT> {
@@ -36,7 +37,7 @@ public:
 class TailDuplicatePass
     : public TailDuplicatePassBase<TailDuplicatePass, false> {};
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 extern template class llvm::TailDuplicatePassBase<llvm::EarlyTailDuplicatePass,
                                                   true>;

@@ -18,7 +18,7 @@
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Explicit template instantiations and specialization definitions for core
 // template typedefs.
 template class LLVM_EXPORT_TEMPLATE AllAnalysesOn<Loop>;
@@ -136,7 +136,7 @@ LoopAnalysisManagerFunctionProxy::run(Function &F,
                                       FunctionAnalysisManager &AM) {
   return Result(*InnerAM, AM.getResult<LoopAnalysis>(F));
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 PreservedAnalyses llvm::getLoopPassPreservedAnalyses() {
   PreservedAnalyses PA;

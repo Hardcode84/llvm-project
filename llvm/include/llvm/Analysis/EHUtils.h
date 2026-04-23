@@ -10,8 +10,9 @@
 
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/DenseSet.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Compute a list of blocks that are only reachable via EH paths.
 template <typename FunctionT, typename BlockT>
@@ -82,6 +83,6 @@ static void computeEHOnlyBlocks(FunctionT &F, DenseSet<BlockT *> &EHBlocks) {
       EHBlocks.insert(Entry.first);
   }
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

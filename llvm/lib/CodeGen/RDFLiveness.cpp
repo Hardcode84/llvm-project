@@ -49,6 +49,7 @@
 #include <unordered_map>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -56,7 +57,8 @@ static cl::opt<unsigned> MaxRecNest("rdf-liveness-max-rec", cl::init(25),
                                     cl::Hidden,
                                     cl::desc("Maximum recursion level"));
 
-namespace llvm::rdf {
+LLVM_NAMESPACE_BEGIN
+namespace rdf {
 
 raw_ostream &operator<<(raw_ostream &OS, const Print<Liveness::RefMap> &P) {
   OS << '{';
@@ -1174,4 +1176,5 @@ void Liveness::emptify(RefMap &M) {
     I = I->second.empty() ? M.erase(I) : std::next(I);
 }
 
-} // namespace llvm::rdf
+}
+LLVM_NAMESPACE_END // namespace llvm::rdf

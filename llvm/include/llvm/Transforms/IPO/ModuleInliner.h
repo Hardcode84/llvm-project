@@ -14,7 +14,7 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// The module inliner pass for the new pass manager.
 ///
@@ -43,6 +43,6 @@ private:
   const InliningAdvisorMode Mode;
   const ThinOrFullLTOPhase LTOPhase;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_IPO_MODULEINLINER_H

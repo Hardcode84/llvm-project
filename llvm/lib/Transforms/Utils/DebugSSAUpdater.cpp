@@ -15,6 +15,7 @@
 #include "llvm/IR/DebugInfo.h"
 #include "llvm/IR/DebugInfoMetadata.h"
 #include "llvm/Transforms/Utils/SSAUpdaterImpl.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -121,7 +122,7 @@ DbgSSABlock *DbgSSABlockPredIterator::operator*() {
   return Updater.getDbgSSABlock(*PredIt);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <> class SSAUpdaterTraits<DebugSSAUpdater> {
 public:
@@ -205,7 +206,7 @@ public:
   static DbgValueDef GetPHIValue(DbgSSAPhi *PHI) { return PHI; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 /// Check to see if AvailableVals has an entry for the specified BB and if so,
 /// return it. If not, construct SSA form by first calculating the required

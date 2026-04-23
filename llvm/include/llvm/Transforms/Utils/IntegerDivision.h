@@ -18,11 +18,11 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class BinaryOperator;
-}
+LLVM_NAMESPACE_END
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   /// Generate code to calculate the remainder of two integers, replacing Rem
   /// with the generated code. This currently generates code using the udiv
@@ -69,6 +69,6 @@ LLVM_ABI bool expandDivisionUpTo32Bits(BinaryOperator *Div);
 /// Replace Rem with generated code.
 LLVM_ABI bool expandDivisionUpTo64Bits(BinaryOperator *Div);
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

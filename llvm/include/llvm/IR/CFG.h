@@ -28,8 +28,9 @@
 #include <cassert>
 #include <cstddef>
 #include <iterator>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Instruction;
 class Use;
@@ -343,6 +344,6 @@ template <> struct GraphTraits<Inverse<const Function*>> :
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_CFG_H

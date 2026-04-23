@@ -31,10 +31,11 @@
 
 #include <cassert>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class EvaluationResultImpl {
 public:
   EvaluationResultImpl(const std::vector<const TfLiteTensor *> &Outputs)
@@ -94,7 +95,7 @@ private:
                                 const TensorSpec &Spec);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 TFModelEvaluatorImpl::TFModelEvaluatorImpl(
     StringRef SavedModelPath, const std::vector<TensorSpec> &InputSpecs,

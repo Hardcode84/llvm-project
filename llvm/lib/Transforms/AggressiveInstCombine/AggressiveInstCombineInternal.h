@@ -19,6 +19,7 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Analysis/ValueTracking.h"
 #include "llvm/Support/KnownBits.h"
+#include "llvm/Support/Compiler.h"
 
 //===----------------------------------------------------------------------===//
 // TruncInstCombine - looks for expression graphs dominated by trunc
@@ -38,7 +39,7 @@
 // may decrease the number of cast instructions, but will not increase it.
 //===----------------------------------------------------------------------===//
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AssumptionCache;
 class DataLayout;
 class DominatorTree;
@@ -132,6 +133,6 @@ private:
   /// \param SclTy scalar version of new type to reduce expression graph into.
   void ReduceExpressionGraph(Type *SclTy);
 };
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.
 
 #endif // LLVM_LIB_TRANSFORMS_AGGRESSIVEINSTCOMBINE_COMBINEINTERNAL_H

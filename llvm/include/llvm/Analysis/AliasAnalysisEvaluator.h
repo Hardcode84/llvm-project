@@ -27,7 +27,7 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AAResults;
 class Function;
 
@@ -56,6 +56,6 @@ public:
 private:
   void runInternal(Function &F, AAResults &AA);
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

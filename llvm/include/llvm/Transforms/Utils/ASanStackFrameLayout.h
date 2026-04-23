@@ -15,7 +15,7 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AllocaInst;
 
@@ -76,6 +76,6 @@ LLVM_ABI SmallVector<uint8_t, 64> GetShadowBytesAfterScope(
     const SmallVectorImpl<ASanStackVariableDescription> &Vars,
     const ASanStackFrameLayout &Layout);
 
-} // llvm namespace
+LLVM_NAMESPACE_END // llvm namespace
 
 #endif  // LLVM_TRANSFORMS_UTILS_ASANSTACKFRAMELAYOUT_H

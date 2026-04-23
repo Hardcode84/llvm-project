@@ -15,8 +15,9 @@
 #include "llvm/IR/InstrTypes.h"
 #include "llvm/Support/BranchProbability.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BlockFrequencyInfo;
 class ConstantInt;
@@ -324,6 +325,6 @@ private:
 };
 
 } // namespace SwitchCG
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_SWITCHLOWERINGUTILS_H

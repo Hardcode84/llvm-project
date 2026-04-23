@@ -17,8 +17,9 @@
 
 #include "llvm/Analysis/LoopAnalysisManager.h"
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Loop;
 class LPMUpdater;
@@ -52,6 +53,6 @@ public:
                         LoopStandardAnalysisResults &AR, LPMUpdater &U);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_SCALAR_LOOPIDIOMRECOGNIZE_H

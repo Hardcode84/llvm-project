@@ -20,8 +20,9 @@
 #include "llvm/CodeGen/TargetInstrInfo.h"
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T, unsigned int N> class SmallSetVector;
 template <typename Fn> class function_ref;
@@ -130,6 +131,6 @@ private:
       function_ref<void(MachineBasicBlock *)> *RemovalCallback = nullptr);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_TAILDUPLICATOR_H

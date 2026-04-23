@@ -89,6 +89,7 @@
 #include <system_error>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace sampleprof;
@@ -115,7 +116,7 @@ STATISTIC(
     NumCSInlinedHitGrowthLimit,
     "Number of functions with FDO inline stopped due to growth size limit");
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Command line option to specify the file to read samples from. This is
 // mainly used for debugging.
@@ -226,7 +227,7 @@ cl::opt<int> SampleHotCallSiteThreshold(
 cl::opt<int> SampleColdCallSiteThreshold(
     "sample-profile-cold-inline-threshold", cl::Hidden, cl::init(45),
     cl::desc("Threshold for inlining cold callsites"));
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static cl::opt<unsigned> ProfileICPRelativeHotness(
     "sample-profile-icp-relative-hotness", cl::Hidden, cl::init(25),
@@ -336,9 +337,9 @@ static cl::opt<bool> AnnotateSampleProfileInlinePhase(
     cl::desc("Annotate LTO phase (prelink / postlink), or main (no LTO) for "
              "sample-profile inline pass name."));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> EnableExtTspBlockPlacement;
-}
+LLVM_NAMESPACE_END
 
 namespace {
 
@@ -607,7 +608,7 @@ private:
 };
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <>
 inline bool SampleProfileInference<Function>::isExit(const BasicBlock *BB) {
   return succ_empty(BB);
@@ -650,7 +651,7 @@ void SampleProfileLoaderBaseImpl<Function>::computeDominanceAndLoopInfo(
   LI.reset(new LoopInfo);
   LI->analyze(*DT);
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 ErrorOr<uint64_t> SampleProfileLoader::getInstWeight(const Instruction &Inst) {
   if (FunctionSamples::ProfileIsProbeBased)

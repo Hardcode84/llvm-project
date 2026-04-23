@@ -19,8 +19,9 @@
 #include "llvm/CodeGen/MachineFunctionPass.h"
 #include "llvm/CodeGen/MachineLoopInfo.h"
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachinePostDominatorTree;
 class MachineRegion;
@@ -176,6 +177,6 @@ extern template class RegionBase<RegionTraits<MachineFunction>>;
 extern template class RegionNodeBase<RegionTraits<MachineFunction>>;
 extern template class RegionInfoBase<RegionTraits<MachineFunction>>;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINEREGIONINFO_H

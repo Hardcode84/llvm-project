@@ -14,8 +14,9 @@
 
 #include "llvm/IR/InstVisitor.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Visitor class that finds indirect calls or instructions that gives vtable
 // value, depending on Type.
 struct PGOIndirectCallVisitor : public InstVisitor<PGOIndirectCallVisitor> {
@@ -92,6 +93,6 @@ inline std::vector<Instruction *> findVTableAddrs(Function &F) {
   return ICV.ProfiledAddresses;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

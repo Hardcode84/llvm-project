@@ -22,7 +22,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineInstr;
 class MachineBasicBlock;
@@ -173,6 +173,6 @@ phys_regs_and_masks(const MachineInstr &MI) {
                            static_cast<bool (*)(const MachineOperand &)>(Pred));
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_LIVEREGUNITS_H

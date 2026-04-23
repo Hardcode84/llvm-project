@@ -20,8 +20,9 @@
 #include "llvm/Support/Alignment.h"
 #include <climits>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Constant;
 class DataLayout;
@@ -154,6 +155,6 @@ public:
   void dump() const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINECONSTANTPOOL_H

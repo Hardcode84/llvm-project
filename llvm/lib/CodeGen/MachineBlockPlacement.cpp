@@ -230,7 +230,7 @@ static cl::opt<bool>
     ApplyExtTspForSize("apply-ext-tsp-for-size", cl::init(false), cl::Hidden,
                        cl::desc("Use ext-tsp for size-aware block placement."));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> EnableExtTspBlockPlacement;
 extern cl::opt<bool> ApplyExtTspWithoutProfile;
 extern cl::opt<unsigned> StaticLikelyProb;
@@ -244,7 +244,7 @@ extern cl::opt<GVDAGType> ViewBlockLayoutWithBFI;
 // Command line option to specify the name of the function for CFG dump
 // Defined in Analysis/BlockFrequencyInfo.cpp:  -view-bfi-func-name=
 extern cl::opt<std::string> ViewBlockFreqFuncName;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 

@@ -29,8 +29,9 @@
 #include <optional>
 #include <string>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LLVMContext;
 class Type;
@@ -411,6 +412,6 @@ public:
 static_assert(std::is_trivially_destructible<AttributeListImpl>::value,
               "AttributeListImpl should be trivially destructible");
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_IR_ATTRIBUTEIMPL_H

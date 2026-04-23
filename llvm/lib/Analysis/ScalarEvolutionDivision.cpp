@@ -20,12 +20,13 @@
 #include "llvm/Support/Casting.h"
 #include <cassert>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "scev-division"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Type;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using namespace llvm;
 

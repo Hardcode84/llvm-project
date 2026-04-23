@@ -16,7 +16,7 @@
 #include "llvm/Support/Compiler.h"
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 class MachineBranchProbabilityInfo;
@@ -199,6 +199,6 @@ class TargetRegisterInfo;
     bool HoistCommonCodeInSuccs(MachineBasicBlock *MBB);
   };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_CODEGEN_BRANCHFOLDING_H

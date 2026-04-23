@@ -239,13 +239,14 @@
 #include <unordered_map>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 // RDF uses uint32_t to refer to registers. This is to ensure that the type
 // size remains specific. In other places, registers are often stored using
 // unsigned.
 static_assert(sizeof(uint32_t) == sizeof(unsigned), "Those should be equal");
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineBasicBlock;
 class MachineDominanceFrontier;
@@ -991,6 +992,6 @@ raw_ostream &operator<<(raw_ostream &OS,
                         const Print<DataFlowGraph::DefStack> &P);
 
 } // end namespace rdf
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_RDFGRAPH_H

@@ -37,7 +37,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MDNode;
 class raw_ostream;
@@ -635,6 +635,6 @@ inline raw_ostream &operator<<(raw_ostream &OS, const ConstantRange &CR) {
 /// E.g. if RangeMD is !{i32 0, i32 10, i32 15, i32 20} then return [0, 20).
 LLVM_ABI ConstantRange getConstantRangeFromMetadata(const MDNode &RangeMD);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_IR_CONSTANTRANGE_H

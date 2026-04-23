@@ -17,7 +17,7 @@
 #include "llvm/IR/DroppedVariableStats.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Any;
 class StringRef;
@@ -84,6 +84,6 @@ private:
   template <typename IRUnitT> static const IRUnitT *unwrapIR(Any IR);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

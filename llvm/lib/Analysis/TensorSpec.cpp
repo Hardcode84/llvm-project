@@ -24,10 +24,11 @@
 #include <array>
 #include <cassert>
 #include <numeric>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 #define TFUTILS_GETDATATYPE_IMPL(T, E)                                         \
   template <> TensorType TensorSpec::getDataType<T>() { return TensorType::E; }
@@ -123,4 +124,4 @@ std::string tensorValueToString(const char *Buffer, const TensorSpec &Spec) {
   return "";
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

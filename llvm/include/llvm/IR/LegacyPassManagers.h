@@ -86,7 +86,7 @@
 
 #include "llvm/Support/PrettyStackTrace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T> class ArrayRef;
 class Module;
 class StringRef;
@@ -508,6 +508,6 @@ public:
     return PMT_FunctionPassManager;
   }
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

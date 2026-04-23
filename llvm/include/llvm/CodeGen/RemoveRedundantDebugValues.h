@@ -10,8 +10,9 @@
 #define LLVM_CODEGEN_REMOVEREDUNDANTDEBUGVALUES_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class RemoveRedundantDebugValuesPass
     : public PassInfoMixin<RemoveRedundantDebugValuesPass> {
@@ -20,6 +21,6 @@ public:
                         MachineFunctionAnalysisManager &MFAM);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_REMOVEREDUNDANTDEBUGVALUES_H

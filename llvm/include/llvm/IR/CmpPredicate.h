@@ -16,7 +16,7 @@
 #include "llvm/IR/InstrTypes.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// An abstraction over a floating-point predicate, and a pack of an integer
 /// predicate with samesign information. Some functions in ICmpInst construct
 /// and return this type in place of a Predicate.
@@ -83,6 +83,6 @@ public:
   /// Get the swapped predicate of a CmpInst.
   LLVM_ABI static CmpPredicate getSwapped(const CmpInst *Cmp);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

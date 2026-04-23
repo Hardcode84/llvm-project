@@ -23,7 +23,7 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 class Instruction;
@@ -141,6 +141,6 @@ public:
   bool isSpecialInstruction(const Instruction *Insn) const override;
 };
 
-} // llvm
+LLVM_NAMESPACE_END // llvm
 
 #endif // LLVM_ANALYSIS_INSTRUCTIONPRECEDENCETRACKING_H

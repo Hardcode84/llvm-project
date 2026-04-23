@@ -36,10 +36,12 @@
 #include <set>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 // Printing functions. Have them here first, so that the rest of the code
 // can use them.
-namespace llvm::rdf {
+LLVM_NAMESPACE_BEGIN
+namespace rdf {
 
 raw_ostream &operator<<(raw_ostream &OS, const Print<RegisterRef> &P) {
   P.G.getPRI().print(OS, P.Obj);
@@ -1841,4 +1843,5 @@ bool DataFlowGraph::hasUntrackedRef(Stmt S, bool IgnoreReserved) const {
   return false;
 }
 
-} // end namespace llvm::rdf
+}
+LLVM_NAMESPACE_END // end namespace llvm::rdf

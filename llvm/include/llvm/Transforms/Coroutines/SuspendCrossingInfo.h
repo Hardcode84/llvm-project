@@ -24,7 +24,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Transforms/Coroutines/CoroInstr.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ModuleSlotTracker;
 
@@ -185,6 +185,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_COROUTINES_SUSPENDCROSSINGINFO_H

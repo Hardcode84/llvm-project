@@ -9,8 +9,9 @@
 #include "llvm/Analysis/FloatingPointPredicateUtils.h"
 #include "llvm/IR/PatternMatch.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using namespace PatternMatch;
 
@@ -38,4 +39,4 @@ FloatingPointPredicateUtils::matchConstantFloat(const Function &F, Value *Val) {
   return *ConstVal;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

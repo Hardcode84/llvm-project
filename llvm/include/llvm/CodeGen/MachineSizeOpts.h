@@ -16,7 +16,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Transforms/Utils/SizeOpts.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ProfileSummaryInfo;
 class MachineBasicBlock;
@@ -43,6 +43,6 @@ shouldOptimizeForSize(const MachineBasicBlock *MBB, ProfileSummaryInfo *PSI,
                       MBFIWrapper *MBFIWrapper,
                       PGSOQueryType QueryType = PGSOQueryType::Other);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINESIZEOPTS_H

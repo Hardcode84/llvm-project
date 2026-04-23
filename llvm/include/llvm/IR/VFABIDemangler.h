@@ -20,7 +20,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/TypeSize.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Describes the type of Parameters
 enum class VFParamKind {
@@ -227,6 +227,6 @@ LLVM_ABI void setVectorVariantNames(CallInst *CI,
 
 } // end namespace VFABI
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_IR_VFABIDEMANGLER_H

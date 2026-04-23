@@ -18,7 +18,7 @@
 #include "llvm/IR/ModuleSummaryIndex.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 
 /// Class to handle necessary GlobalValue changes required by ThinLTO
@@ -118,6 +118,6 @@ renameModuleForThinLTO(Module &M, const ModuleSummaryIndex &Index,
                        bool ClearDSOLocalOnDeclarations,
                        SetVector<GlobalValue *> *GlobalsToImport = nullptr);
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

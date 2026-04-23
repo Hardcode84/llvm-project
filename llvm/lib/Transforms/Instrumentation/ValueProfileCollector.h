@@ -19,8 +19,9 @@
 #include "llvm/ProfileData/InstrProf.h"
 #include <memory>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class Instruction;
@@ -78,6 +79,6 @@ private:
   std::unique_ptr<ValueProfileCollectorImpl> PImpl;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

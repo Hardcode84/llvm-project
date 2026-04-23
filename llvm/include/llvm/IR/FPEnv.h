@@ -20,7 +20,7 @@
 #include "llvm/Support/Compiler.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 namespace Intrinsic {
@@ -86,5 +86,5 @@ inline bool canRoundingModeBe(RoundingMode RM, RoundingMode QRM) {
 inline bool canIgnoreSNaN(fp::ExceptionBehavior EB, FastMathFlags FMF) {
   return (EB == fp::ebIgnore || FMF.noNaNs());
 }
-}
+LLVM_NAMESPACE_END
 #endif

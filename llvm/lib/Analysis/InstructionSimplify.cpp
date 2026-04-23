@@ -7687,6 +7687,7 @@ static Value *simplifyInstructionWithOperands(Instruction *I,
     return llvm::simplifyFreezeInst(NewOps[0], Q);
 #define HANDLE_CAST_INST(num, opc, clas) case Instruction::opc:
 #include "llvm/IR/Instruction.def"
+#include "llvm/Support/Compiler.h"
 #undef HANDLE_CAST_INST
     return simplifyCastInst(I->getOpcode(), NewOps[0], I->getType(), Q,
                             MaxRecurse);
@@ -7792,7 +7793,7 @@ bool llvm::replaceAndRecursivelySimplify(
                                            UnsimplifiedUsers);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 const SimplifyQuery getBestSimplifyQuery(Pass &P, Function &F) {
   auto *DTWP = P.getAnalysisIfAvailable<DominatorTreeWrapperPass>();
   auto *DT = DTWP ? &DTWP->getDomTree() : nullptr;
@@ -7826,6 +7827,6 @@ bool SimplifyQuery::isUndefValue(Value *V) const {
   return match(V, m_Undef());
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 void InstSimplifyFolder::anchor() {}

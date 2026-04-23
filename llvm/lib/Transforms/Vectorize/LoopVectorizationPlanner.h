@@ -28,12 +28,13 @@
 #include "llvm/ADT/SmallSet.h"
 #include "llvm/Analysis/TargetTransformInfo.h"
 #include "llvm/Support/InstructionCost.h"
+#include "llvm/Support/Compiler.h"
 
 namespace {
 class GeneratedRTChecks;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LoopInfo;
 class DominatorTree;
@@ -913,6 +914,6 @@ private:
   bool isCandidateForEpilogueVectorization(VPlan &MainPlan) const;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_VECTORIZE_LOOPVECTORIZATIONPLANNER_H

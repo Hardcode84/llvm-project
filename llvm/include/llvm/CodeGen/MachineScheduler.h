@@ -99,7 +99,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace impl_detail {
 // FIXME: Remove these declarations once RegisterClassInfo is queryable as an
 // analysis.
@@ -1490,6 +1490,6 @@ public:
   LLVM_ABI PreservedAnalyses run(MachineFunction &MF,
                                  MachineFunctionAnalysisManager &MFAM);
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINESCHEDULER_H

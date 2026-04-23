@@ -17,8 +17,9 @@
 
 #include "llvm/Analysis/DDG.h"
 #include "llvm/Support/DOTGraphTraits.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LPMUpdater;
 class Loop;
 
@@ -92,6 +93,6 @@ private:
 
 using DDGDotGraphTraits = DOTGraphTraits<const DataDependenceGraph *>;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_DDGPRINTER_H

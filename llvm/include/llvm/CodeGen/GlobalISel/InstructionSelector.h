@@ -16,7 +16,7 @@
 #include "llvm/CodeGen/GlobalISel/GIMatchTableExecutor.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class GISelObserverWrapper;
 
 class LLVM_ABI InstructionSelector : public GIMatchTableExecutor {
@@ -42,6 +42,6 @@ public:
   /// observers.
   GISelObserverWrapper *AllObservers = nullptr;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

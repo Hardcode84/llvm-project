@@ -10,8 +10,9 @@
 #define LLVM_CODEGEN_MACHINESINK_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineSinkingPass : public PassInfoMixin<MachineSinkingPass> {
   bool EnableSinkAndFold;
@@ -26,5 +27,5 @@ public:
                      function_ref<StringRef(StringRef)> MapClassName2PassName);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_CODEGEN_MACHINESINK_H

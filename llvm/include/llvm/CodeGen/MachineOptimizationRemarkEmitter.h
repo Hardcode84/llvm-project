@@ -22,7 +22,7 @@
 #include "llvm/Support/Compiler.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MachineBasicBlock;
 class MachineBlockFrequencyInfo;
 class MachineInstr;
@@ -256,6 +256,6 @@ public:
 
   static char ID;
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

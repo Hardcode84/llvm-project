@@ -231,7 +231,7 @@ void PassManagerPrettyStackEntry::print(raw_ostream &OS) const {
   OS << "'\n";
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace legacy {
 bool debugPassSpecified() { return PassDebugging != Disabled; }
 
@@ -366,7 +366,7 @@ bool FunctionPassManagerImpl::run(Function &F) {
   return Changed;
 }
 } // namespace legacy
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 //===----------------------------------------------------------------------===//
@@ -454,7 +454,7 @@ public:
 char MPPassManager::ID = 0;
 } // End anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace legacy {
 //===----------------------------------------------------------------------===//
 // PassManagerImpl
@@ -538,7 +538,7 @@ bool PassManagerImpl::run(Module &M) {
   return Changed;
 }
 } // namespace legacy
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 //===----------------------------------------------------------------------===//
 // PMTopLevelManager implementation
@@ -1275,7 +1275,7 @@ AnalysisResolver::findImplPass(Pass *P, AnalysisID AnalysisPI, Function &F) {
   return PM.getOnTheFlyPass(P, AnalysisPI, F);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace legacy {
 
 //===----------------------------------------------------------------------===//
@@ -1323,7 +1323,7 @@ bool FunctionPassManager::doFinalization() {
   return FPM->doFinalization(*M);
 }
 } // namespace legacy
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 /// cleanup - After running all passes, clean up pass manager cache.
 void FPPassManager::cleanup() {
@@ -1613,7 +1613,7 @@ std::tuple<Pass *, bool> MPPassManager::getOnTheFlyPass(Pass *MP, AnalysisID PI,
                          Changed);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace legacy {
 
 //===----------------------------------------------------------------------===//
@@ -1640,7 +1640,7 @@ bool PassManager::run(Module &M) {
   return PM->run(M);
 }
 } // namespace legacy
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 //===----------------------------------------------------------------------===//
 // PMStack implementation

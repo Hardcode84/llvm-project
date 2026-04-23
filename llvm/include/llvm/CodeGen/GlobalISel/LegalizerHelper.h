@@ -27,7 +27,7 @@
 #include "llvm/CodeGen/TargetOpcodes.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Forward declarations.
 class APInt;
 class GAnyLoad;
@@ -576,6 +576,6 @@ public:
   LLVM_ABI LegalizeResult lowerVAArg(MachineInstr &MI);
 };
 
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.
 
 #endif

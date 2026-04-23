@@ -34,7 +34,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AsmPrinter;
 class DIE;
@@ -1083,6 +1083,6 @@ public:
   LLVM_ABI void print(raw_ostream &O) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_DIE_H

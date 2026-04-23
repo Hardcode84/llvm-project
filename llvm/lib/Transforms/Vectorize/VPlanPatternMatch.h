@@ -17,10 +17,12 @@
 
 #include "VPlan.h"
 #include "llvm/Support/PatternMatchHelpers.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm::PatternMatchHelpers;
 
-namespace llvm::VPlanPatternMatch {
+LLVM_NAMESPACE_BEGIN
+namespace VPlanPatternMatch {
 
 template <typename Val, typename Pattern> bool match(Val *V, const Pattern &P) {
   return P.match(V);
@@ -1063,6 +1065,7 @@ inline auto m_VPPhi(const Op0_t &Op0, const Op1_t &Op1) {
                       /*Commutative*/ false, VPInstruction>({Op0, Op1});
 }
 
-} // namespace llvm::VPlanPatternMatch
+}
+LLVM_NAMESPACE_END // namespace llvm::VPlanPatternMatch
 
 #endif

@@ -51,6 +51,7 @@
 #include <sstream>
 #include <unordered_map>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 using namespace llvm;
 using namespace llvm::memprof;
 
@@ -210,7 +211,7 @@ static cl::opt<unsigned> MemProfICPNoInlineThreshold(
     "memprof-icp-noinline-threshold", cl::init(2), cl::Hidden,
     cl::desc("Minimum absolute count for promoted target to be inlinable"));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 cl::opt<bool> EnableMemProfContextDisambiguation(
     "enable-memprof-context-disambiguation", cl::Hidden,
     cl::desc("Enable MemProf context disambiguation"));
@@ -239,7 +240,7 @@ cl::opt<bool> MemProfFixupImportant(
 
 extern cl::opt<unsigned> MaxSummaryIndirectEdges;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 
@@ -1027,7 +1028,7 @@ struct IndexCall : public PointerUnion<CallsiteInfo *, AllocInfo *> {
 };
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct simplify_type<IndexCall> {
   using SimpleType = PointerUnion<CallsiteInfo *, AllocInfo *>;
   static SimpleType getSimplifiedValue(IndexCall &Val) { return Val; }
@@ -1036,7 +1037,7 @@ template <> struct simplify_type<const IndexCall> {
   using SimpleType = const PointerUnion<CallsiteInfo *, AllocInfo *>;
   static SimpleType getSimplifiedValue(const IndexCall &Val) { return Val; }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 /// CRTP derived class for graphs built from summary index (ThinLTO).

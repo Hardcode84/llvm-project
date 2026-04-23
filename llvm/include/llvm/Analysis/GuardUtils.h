@@ -12,7 +12,9 @@
 #ifndef LLVM_ANALYSIS_GUARDUTILS_H
 #define LLVM_ANALYSIS_GUARDUTILS_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 class Use;
@@ -64,6 +66,6 @@ void parseWidenableGuard(const User *U, llvm::SmallVectorImpl<Value *> &Checks);
 // Returns widenable_condition if it exists in the expression tree rooting from
 // \p U and has only one use.
 Value *extractWidenableCondition(const User *U);
-} // llvm
+LLVM_NAMESPACE_END // llvm
 
 #endif // LLVM_ANALYSIS_GUARDUTILS_H

@@ -12,7 +12,7 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Pass;
 class Function;
 
@@ -23,6 +23,6 @@ public:
 
 /// Create a legacy pass manager instance of the LoadStoreVectorizer pass
 LLVM_ABI Pass *createLoadStoreVectorizerPass();
-}
+LLVM_NAMESPACE_END
 
 #endif /* LLVM_TRANSFORMS_VECTORIZE_LOADSTOREVECTORIZER_H */

@@ -14,7 +14,9 @@
 #ifndef LLVM_ANALYSIS_OVERFLOWINSTANALYSIS_H
 #define LLVM_ANALYSIS_OVERFLOWINSTANALYSIS_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class Use;
 class Value;
 
@@ -38,6 +40,6 @@ class Value;
 bool isCheckForZeroAndMulWithOverflow(Value *Op0, Value *Op1, bool IsAnd,
                                       Use *&Y);
 bool isCheckForZeroAndMulWithOverflow(Value *Op0, Value *Op1, bool IsAnd);
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

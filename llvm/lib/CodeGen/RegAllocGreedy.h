@@ -37,8 +37,9 @@
 #include <memory>
 #include <queue>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AllocationOrder;
 class AnalysisUsage;
 class EdgeBundles;
@@ -442,5 +443,5 @@ private:
   /// Report the statistic for each loop.
   void reportStats();
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // #ifndef LLVM_CODEGEN_REGALLOCGREEDY_H_

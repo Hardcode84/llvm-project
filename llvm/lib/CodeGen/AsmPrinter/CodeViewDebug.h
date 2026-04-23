@@ -39,7 +39,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct ClassInfo;
 class StringRef;
@@ -573,6 +573,6 @@ template <> struct DenseMapInfo<CodeViewDebug::LocalVarDef> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_CODEGEN_ASMPRINTER_CODEVIEWDEBUG_H

@@ -17,7 +17,7 @@
 #include "llvm/CodeGen/MachineDominators.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 extern template class LLVM_TEMPLATE_ABI
     DominatorTreeBase<MachineBasicBlock, true>; // PostDomTree
@@ -109,6 +109,6 @@ public:
   void verifyAnalysis() const override;
   void print(llvm::raw_ostream &OS, const Module *M = nullptr) const override;
 };
-} //end of namespace llvm
+LLVM_NAMESPACE_END //end of namespace llvm
 
 #endif

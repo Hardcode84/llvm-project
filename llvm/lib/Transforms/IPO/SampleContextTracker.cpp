@@ -19,13 +19,14 @@
 #include <map>
 #include <queue>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace sampleprof;
 
 #define DEBUG_TYPE "sample-context-tracker"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 ContextTrieNode *ContextTrieNode::getChildContext(const LineLocation &CallSite,
                                                   FunctionId CalleeName) {
@@ -628,4 +629,4 @@ void SampleContextTracker::createContextLessProfileMap(
       ContextLessProfiles.create(Node->getFuncName()).merge(*FProfile);
   }
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

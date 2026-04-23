@@ -21,8 +21,9 @@
 #include <map>
 #include <set>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineFunction;
 class raw_ostream;
@@ -353,7 +354,7 @@ struct PrintLaneMaskShort {
 raw_ostream &operator<<(raw_ostream &OS, const PrintLaneMaskShort &P);
 
 } // end namespace rdf
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace std {
 
@@ -371,8 +372,10 @@ template <> struct hash<llvm::rdf::RegisterAggr> {
 
 } // namespace std
 
-namespace llvm::rdf {
+LLVM_NAMESPACE_BEGIN
+namespace rdf {
 using RegisterSet = std::set<RegisterRef, RegisterRefLess>;
-} // namespace llvm::rdf
+}
+LLVM_NAMESPACE_END // namespace llvm::rdf
 
 #endif // LLVM_CODEGEN_RDFREGISTERS_H

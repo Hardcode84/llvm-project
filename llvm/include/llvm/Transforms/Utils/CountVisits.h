@@ -11,8 +11,9 @@
 
 #include "llvm/ADT/StringMap.h"
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 
@@ -23,6 +24,6 @@ private:
   StringMap<uint32_t> Counts;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_COUNT_VISITS_H

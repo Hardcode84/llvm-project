@@ -16,7 +16,9 @@
 #ifndef LLVM_TRANSFORMS_UTILS_SIMPLIFYCFGOPTIONS_H
 #define LLVM_TRANSFORMS_UTILS_SIMPLIFYCFGOPTIONS_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class AssumptionCache;
 
@@ -92,6 +94,6 @@ struct SimplifyCFGOptions {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_SIMPLIFYCFGOPTIONS_H

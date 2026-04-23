@@ -14,8 +14,9 @@
 #define LLVM_TRANSFORMS_UTILS_LOWERVECTORINTRINSICS_H
 
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CallInst;
 class Module;
@@ -28,6 +29,6 @@ bool lowerUnaryVectorIntrinsicAsLoop(Module &M, CallInst *CI);
 /// and is deleted and replaced with a loop.
 bool lowerBinaryVectorIntrinsicAsLoop(Module &M, CallInst *CI);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

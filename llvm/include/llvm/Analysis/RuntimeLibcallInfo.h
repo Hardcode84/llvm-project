@@ -11,8 +11,9 @@
 
 #include "llvm/IR/RuntimeLibcalls.h"
 #include "llvm/Pass.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LLVM_ABI RuntimeLibraryAnalysis
     : public AnalysisInfoMixin<RuntimeLibraryAnalysis> {
@@ -68,6 +69,6 @@ public:
 
 LLVM_ABI ModulePass *createRuntimeLibraryInfoWrapperPass();
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

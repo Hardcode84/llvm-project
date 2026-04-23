@@ -26,7 +26,7 @@
 #include <cassert>
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Operator;
 class AddOperator;
@@ -1065,6 +1065,6 @@ collectPossibleValues(const Value *V,
                       SmallPtrSetImpl<const Constant *> &Constants,
                       unsigned MaxCount, bool AllowUndefOrPoison = true);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_VALUETRACKING_H

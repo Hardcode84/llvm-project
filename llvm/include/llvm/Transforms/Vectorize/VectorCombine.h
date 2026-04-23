@@ -16,8 +16,9 @@
 #define LLVM_TRANSFORMS_VECTORIZE_VECTORCOMBINE_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Optimize scalar/vector interactions in IR using target cost models.
 class VectorCombinePass : public PassInfoMixin<VectorCombinePass> {
@@ -31,5 +32,5 @@ public:
 
   PreservedAnalyses run(Function &F, FunctionAnalysisManager &);
 };
-}
+LLVM_NAMESPACE_END
 #endif // LLVM_TRANSFORMS_VECTORIZE_VECTORCOMBINE_H

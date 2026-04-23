@@ -18,8 +18,9 @@
 
 #include "llvm/Analysis/BranchProbabilityInfo.h"
 #include "llvm/Pass.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Function;
 class LoopInfo;
 class TargetLibraryInfo;
@@ -118,5 +119,5 @@ template <> struct BPIPassTrait<LazyBranchProbabilityInfoPass> {
     return P->getBPI();
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

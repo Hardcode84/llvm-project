@@ -13,7 +13,8 @@
 #define LLVM_TRANSFORMS_INSTRUMENTATION_PGOCTXPROFFLATTENING_H
 
 #include "llvm/IR/PassManager.h"
-namespace llvm {
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class PGOCtxProfFlatteningPass
     : public PassInfoMixin<PGOCtxProfFlatteningPass> {
@@ -24,5 +25,5 @@ public:
       : IsPreThinlink(IsPreThinlink) {}
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &MAM);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

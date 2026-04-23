@@ -22,8 +22,9 @@
 #include "llvm/CodeGen/SlotIndexes.h"
 #include <cassert>
 #include <limits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 class TargetRegisterInfo;
@@ -208,6 +209,6 @@ public:
   };
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_LIVEINTERVALUNION_H

@@ -26,7 +26,7 @@
 #include <cassert>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AnalysisUsage;
 class MachineFunction;
 class Module;
@@ -186,6 +186,6 @@ template <> struct GraphTraits<MachineDominatorTree*>
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINEDOMINATORS_H

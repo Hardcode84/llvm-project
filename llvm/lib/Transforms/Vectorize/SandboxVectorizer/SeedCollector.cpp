@@ -16,7 +16,8 @@
 #include "llvm/Support/Debug.h"
 
 using namespace llvm;
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 static cl::opt<unsigned> SeedBundleSizeLimit(
     "sbvec-seed-bundle-size-limit", cl::init(32), cl::Hidden,
@@ -209,4 +210,5 @@ void SeedCollector::print(raw_ostream &OS) const {
 void SeedCollector::dump() const { print(dbgs()); }
 #endif
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir

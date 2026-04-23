@@ -17,7 +17,7 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DataLayout;
 class GlobalValue;
@@ -83,6 +83,6 @@ bool inline isArm64ECMangledFunctionName(StringRef Name) {
   return Name[0] == '#' || (Name[0] == '?' && Name.contains("@$$h"));
 }
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

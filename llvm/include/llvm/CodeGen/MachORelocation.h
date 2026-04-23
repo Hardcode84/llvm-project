@@ -15,8 +15,9 @@
 #define LLVM_CODEGEN_MACHORELOCATION_H
 
 #include "llvm/Support/DataTypes.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   /// MachORelocation - This struct contains information about each relocation
   /// that needs to be emitted to the file.
@@ -50,6 +51,6 @@ namespace llvm {
       r_extern(ext), r_type(type), r_scattered(scattered), r_value(value) {}
   };
 
-} // end llvm namespace
+LLVM_NAMESPACE_END // end llvm namespace
 
 #endif // LLVM_CODEGEN_MACHORELOCATION_H

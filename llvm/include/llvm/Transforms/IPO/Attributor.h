@@ -144,7 +144,7 @@
 #include <map>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DataLayout;
 class LLVMContext;
@@ -6668,6 +6668,6 @@ bool hasAssumedIRAttr(Attributor &A, const AbstractAttribute *QueryingAA,
 }
 } // namespace AA
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_IPO_ATTRIBUTOR_H

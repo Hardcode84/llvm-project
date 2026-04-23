@@ -22,7 +22,7 @@
 #include "llvm/Pass.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// MachineFunctionPass - This class adapts the FunctionPass interface to
 /// allow convenient creation of passes that operate on the MachineFunction
@@ -76,6 +76,6 @@ private:
   bool runOnFunction(Function &F) override;
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

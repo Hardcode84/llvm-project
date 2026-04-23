@@ -17,11 +17,12 @@
 
 #include "llvm/ADT/GenericConvergenceVerifier.h"
 #include "llvm/IR/SSAContext.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using ConvergenceVerifier = GenericConvergenceVerifier<SSAContext>;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_IR_CONVERGENCEVERIFIER_H

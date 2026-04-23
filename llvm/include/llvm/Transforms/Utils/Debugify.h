@@ -46,7 +46,7 @@ struct DebugInfoPerPass {
   DebugVarMap DIVariables;
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DIBuilder;
 
 /// Add synthesized debug information to a module.
@@ -92,7 +92,7 @@ LLVM_ABI bool checkDebugInfoMetadata(Module &M,
                                      StringRef Banner,
                                      StringRef NameOfWrappedPass,
                                      StringRef OrigDIVerifyBugsReportFilePath);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 /// Used to check whether we track synthetic or original debug info.
 enum class DebugifyMode { NoDebugify, SyntheticDebugInfo, OriginalDebugInfo };
@@ -189,7 +189,7 @@ public:
                                        llvm::ModuleAnalysisManager &AM);
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 LLVM_ABI void exportDebugifyStats(StringRef Path, const DebugifyStatsMap &Map);
 
 class DebugifyEachInstrumentation {
@@ -304,6 +304,6 @@ public:
   const DebugifyStatsMap &getDebugifyStatsMap() const { return *DIStatsMap; }
   DebugInfoPerPass &getDebugInfoPerPass() { return *DebugInfoBeforePass; }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_DEBUGIFY_H

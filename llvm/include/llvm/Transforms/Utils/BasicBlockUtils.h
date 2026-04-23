@@ -24,7 +24,7 @@
 #include "llvm/Support/Printable.h"
 #include <cassert>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class CondBrInst;
 class CycleInfo;
 class LandingPadInst;
@@ -645,6 +645,6 @@ LLVM_ABI bool hasOnlySimpleTerminator(const Function &F);
 /// nullptr.
 LLVM_ABI Printable printBasicBlock(const BasicBlock *BB);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_UTILS_BASICBLOCKUTILS_H

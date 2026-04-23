@@ -24,12 +24,13 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/DOTGraphTraits.h"
 #include "llvm/Support/GraphWriter.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <class GraphType> struct GraphTraits;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // This option shows static (relative) call counts.
 // FIXME:
@@ -50,7 +51,7 @@ static cl::opt<std::string> CallGraphDotFilenamePrefix(
     "callgraph-dot-filename-prefix", cl::Hidden,
     cl::desc("The prefix used for the CallGraph dot file names."));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CallGraphDOTInfo {
 private:
@@ -215,7 +216,7 @@ struct DOTGraphTraits<CallGraphDOTInfo *> : public DefaultDOTGraphTraits {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 void doCallGraphDOTPrinting(
@@ -251,7 +252,7 @@ void viewCallGraph(Module &M,
 }
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 PreservedAnalyses CallGraphDOTPrinterPass::run(Module &M,
                                                ModuleAnalysisManager &AM) {
   FunctionAnalysisManager &FAM =
@@ -280,7 +281,7 @@ PreservedAnalyses CallGraphViewerPass::run(Module &M,
 
   return PreservedAnalyses::all();
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 // Viewer

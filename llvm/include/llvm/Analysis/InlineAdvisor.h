@@ -16,7 +16,7 @@
 #include "llvm/Support/Compiler.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BasicBlock;
 class CallBase;
 class Function;
@@ -395,5 +395,5 @@ LLVM_ABI void setInlineRemark(CallBase &CB, StringRef Message);
 
 /// Utility for extracting the inline cost message to a string.
 LLVM_ABI std::string inlineCostStr(const InlineCost &IC);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_ANALYSIS_INLINEADVISOR_H

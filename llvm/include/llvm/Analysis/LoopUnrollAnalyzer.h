@@ -37,7 +37,7 @@
 //   v = b[0]* 0 + b[1]* 1 + b[2]* 0
 // And finally:
 //   v = b[1]
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Instruction;
 
 class UnrolledInstAnalyzer : private InstVisitor<UnrolledInstAnalyzer, bool> {
@@ -91,5 +91,5 @@ private:
   LLVM_ABI bool visitCmpInst(CmpInst &I);
   LLVM_ABI bool visitPHINode(PHINode &PN);
 };
-}
+LLVM_NAMESPACE_END
 #endif

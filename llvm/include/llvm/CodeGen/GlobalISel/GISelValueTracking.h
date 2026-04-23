@@ -26,7 +26,7 @@
 #include "llvm/Support/KnownBits.h"
 #include "llvm/Support/KnownFPClass.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class TargetLowering;
 class DataLayout;
@@ -202,6 +202,6 @@ public:
   LLVM_ABI PreservedAnalyses run(MachineFunction &MF,
                                  MachineFunctionAnalysisManager &MFAM);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_GLOBALISEL_GISELVALUETRACKING_H

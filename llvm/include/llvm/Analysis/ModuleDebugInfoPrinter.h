@@ -11,8 +11,9 @@
 
 #include "llvm/IR/DebugInfo.h"
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 
 class ModuleDebugInfoPrinterPass
@@ -25,6 +26,6 @@ public:
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &AM);
   static bool isRequired() { return true; }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ANALYSIS_MODULEDEBUGINFOPRINTER_H

@@ -27,7 +27,7 @@
 #include "llvm/Support/Compiler.h"
 #include <functional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Comdat;
 class GlobalValue;
 class Module;
@@ -80,6 +80,6 @@ internalizeModule(Module &TheModule,
   return InternalizePass(std::move(MustPreserveGV))
       .internalizeModule(TheModule);
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TRANSFORMS_IPO_INTERNALIZE_H

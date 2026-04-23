@@ -19,7 +19,7 @@
 #include "llvm/Analysis/LoopInfo.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using LoopVectorTy = SmallVector<Loop *, 8>;
 
@@ -224,6 +224,6 @@ public:
   static bool isRequired() { return true; }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ANALYSIS_LOOPNESTANALYSIS_H

@@ -14,8 +14,9 @@
 #define LLVM_TRANSFORMS_UTILS_CTORUTILS_H
 
 #include "llvm/ADT/STLFunctionalExtras.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class Module;
@@ -25,6 +26,6 @@ class Module;
 bool optimizeGlobalCtorsList(
     Module &M, function_ref<bool(uint32_t, Function *)> ShouldRemove);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

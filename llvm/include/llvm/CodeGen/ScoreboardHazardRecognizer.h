@@ -20,8 +20,9 @@
 #include <cassert>
 #include <cstddef>
 #include <cstring>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ScheduleDAG;
 class SUnit;
@@ -123,6 +124,6 @@ public:
   void RecedeCycle() override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_SCOREBOARDHAZARDRECOGNIZER_H

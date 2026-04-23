@@ -12,7 +12,7 @@
 #include "llvm/IR/DerivedTypes.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A helper function for converting Scalar types to vector types. If
 /// the incoming type is void, we return void. If the EC represents a
@@ -106,6 +106,6 @@ inline bool isUnpackedStructLiteral(StructType *StructTy) {
   return StructTy->isLiteral() && !StructTy->isPacked();
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

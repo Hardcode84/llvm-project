@@ -23,8 +23,9 @@
 #include <cassert>
 #include <map>
 #include <unordered_map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AnalysisUsage;
 class MachineFunction;
@@ -132,6 +133,6 @@ public:
   PreservedAnalyses run(MachineFunction &MF,
                         MachineFunctionAnalysisManager &AM);
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

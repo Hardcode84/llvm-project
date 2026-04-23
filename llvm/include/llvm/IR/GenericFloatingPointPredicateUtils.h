@@ -21,7 +21,7 @@
 #include "llvm/Support/Compiler.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename ContextT> class GenericFloatingPointPredicateUtils {
   using ValueRefT = typename ContextT::ValueRefT;
@@ -480,6 +480,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ADT_GENERICFLOATINGPOINTPREDICATEUTILS_H

@@ -20,7 +20,7 @@
 #include "llvm/Analysis/ObjCARCInstKind.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 class Instruction;
@@ -207,6 +207,6 @@ struct TopDownPtrState : PtrState {
 
 } // end namespace objcarc
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TRANSFORMS_OBJCARC_PTRSTATE_H

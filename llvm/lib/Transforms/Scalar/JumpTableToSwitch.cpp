@@ -24,6 +24,7 @@
 #include "llvm/Support/Error.h"
 #include "llvm/Transforms/Utils/BasicBlockUtils.h"
 #include <limits>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -42,9 +43,9 @@ static cl::opt<unsigned> FunctionSizeThreshold(
              "or equal than this threshold."),
     cl::init(50));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> ProfcheckDisableMetadataFixes;
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #define DEBUG_TYPE "jump-table-to-switch"
 
