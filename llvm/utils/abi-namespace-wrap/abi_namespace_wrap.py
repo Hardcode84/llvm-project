@@ -176,25 +176,86 @@ class Edit:
 
 def _find_namespace_openings(text: str) -> List[Edit]:
     """Walk the file, find every top-level (depth 0, not under
-    ``extern "C"``) opening of ``namespace llvm {`` or ``namespace mlir {``,
-    plus their matching closing braces."""
+    ``extern "C"`` and not inside a preprocessor ``#define`` directive)
+    opening of ``namespace llvm {`` or ``namespace mlir {``, plus their
+    matching closing braces."""
     edits: List[Edit] = []
     s = _ScannerState(text=text)
 
     depth = 0
-    # Stack of (depth, "extern_c" | "namespace_match" | "other"). We only
-    # care about extern_c for suppression and namespace_match for finding
-    # the close.
-    stack: List[Tuple[int, str, Optional[int]]] = []
-    # extern "C" { depth = depth at which we entered the block
-    # If inside any extern "C" block, skip nested namespace rewrites.
     extern_c_depths: set = set()
+    # in_define: are we currently inside a `#define` directive body? A
+    # `#define` extends until a newline that is NOT immediately preceded
+    # by a backslash. We must NOT rewrite anything inside a #define body
+    # because a replacement of `namespace llvm {` ... `}` would cross the
+    # backslash-newline continuation boundary.
+    in_define = False
+    at_line_start = True
 
     # Map open-depth for a pending edit to its index in `edits`.
     pending: List[int] = []  # stack of edit indices awaiting close
 
     while s.i < s.n:
         c = s.text[s.i]
+
+        # Preprocessor directive detection. A '#' at the start of a
+        # logical line (optionally preceded by whitespace) begins a
+        # preprocessor directive. We only care about `#define` for
+        # namespace-skip purposes; other directives are transparent.
+        if at_line_start and c in " \t":
+            s.i += 1
+            continue
+        if at_line_start and c == "#":
+            j = s.i + 1
+            while j < s.n and s.text[j] in " \t":
+                j += 1
+            if s.text.startswith("define", j):
+                end_kw = j + len("define")
+                if end_kw < s.n and not _is_ident_cont(s.text[end_kw]):
+                    in_define = True
+            # Advance until end of the directive (honoring backslash
+            # continuations).
+            while s.i < s.n:
+                ch = s.text[s.i]
+                if ch == "\n":
+                    # Check if the previous non-space char is a
+                    # backslash -> continuation; otherwise end the
+                    # directive.
+                    k = s.i - 1
+                    while k >= 0 and s.text[k] in " \t":
+                        k -= 1
+                    if k >= 0 and s.text[k] == "\\":
+                        s.i += 1
+                        continue
+                    s.i += 1
+                    in_define = False
+                    at_line_start = True
+                    break
+                # Skip comments INSIDE directives (rare, but e.g.
+                # `#define FOO 1 /* bar */`)
+                if ch == "/" and s.i + 1 < s.n and s.text[s.i + 1] == "*":
+                    _skip_block_comment(s)
+                    continue
+                if ch == "/" and s.i + 1 < s.n and s.text[s.i + 1] == "/":
+                    _skip_line_comment(s)
+                    # The _skip_line_comment leaves us at '\n'; let the
+                    # outer loop handle it next iteration.
+                    continue
+                if ch == '"':
+                    _skip_string(s)
+                    continue
+                s.i += 1
+            continue
+
+        if c == "\n":
+            at_line_start = True
+            s.i += 1
+            continue
+        # Non-whitespace, non-# beginning of line: we're no longer at
+        # line start.
+        if at_line_start and c not in " \t":
+            at_line_start = False
+
         # Raw string?
         if _at_raw_string(s):
             # Advance past encoding prefix + R"
