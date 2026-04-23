@@ -110,9 +110,10 @@ def _skip_char(s: _ScannerState) -> None:
 
 
 def _skip_raw_string(s: _ScannerState) -> None:
-    # s.i is at 'R' of R"delim(...)delim"
-    # Consume R"
-    s.i += 2
+    """Advance past a raw string literal. ``s.i`` must point at the
+    opening ``"`` (callers use :func:`_at_raw_string` to compute the
+    offset past the encoding prefix + ``R``)."""
+    s.i += 1  # skip opening "
     delim_start = s.i
     while s.i < s.n and s.text[s.i] != "(":
         s.i += 1
@@ -134,21 +135,31 @@ def _is_ident_cont(c: str) -> bool:
     return c.isalnum() or c == "_"
 
 
-def _at_raw_string(s: _ScannerState) -> bool:
-    # R"  or  uR"  or  UR"  or  u8R"  or  LR"
+def _at_raw_string(s: _ScannerState) -> int:
+    """If the cursor points at the beginning of a raw string literal
+    (with optional ``u8``/``u``/``U``/``L`` encoding prefix and a
+    mandatory ``R`` marker), return the length of the prefix — i.e. the
+    offset of the opening ``"`` relative to ``s.i``. Otherwise return
+    ``0``.
+
+    The cursor must additionally be at a token boundary: a preceding
+    identifier character would mean we're in the middle of a name like
+    ``FooR``, not a raw string. Callers enforce this by only invoking
+    this check after the scanner has normalised past whitespace,
+    comments and prior tokens."""
     i = s.i
     if i >= s.n:
-        return False
-    c = s.text[i]
-    # Skip optional encoding prefix
-    j = i
-    for prefix in ("u8R", "uR", "UR", "LR", "R"):
-        if s.text.startswith(prefix, j):
-            j += len(prefix)
-            break
-    else:
-        return False
-    return j < s.n and s.text[j] == '"' and j == i + (len(prefix) - 1)
+        return 0
+    # Check LONGEST prefixes first so ``u8R"`` beats ``R"``.
+    for prefix in ("u8R\"", "uR\"", "UR\"", "LR\"", "R\""):
+        if s.text.startswith(prefix, i):
+            # Ensure the prefix is not a continuation of a preceding
+            # identifier (e.g. ``FooR"..."`` is ill-formed C++, but
+            # defensively we still guard).
+            if i > 0 and _is_ident_cont(s.text[i - 1]):
+                return 0
+            return len(prefix) - 1  # offset of the opening '"'
+    return 0
 
 
 # Recognizers for `namespace X {` starting at a specific index.
@@ -256,17 +267,11 @@ def _find_namespace_openings(text: str) -> List[Edit]:
         if at_line_start and c not in " \t":
             at_line_start = False
 
-        # Raw string?
-        if _at_raw_string(s):
-            # Advance past encoding prefix + R"
-            # _skip_raw_string expects s.i at R
-            # Find where R is
-            j = s.i
-            for prefix in ("u8R", "uR", "UR", "LR", "R"):
-                if s.text.startswith(prefix, j):
-                    j += len(prefix) - 1  # leave `s.i` at 'R'
-                    break
-            s.i = j
+        # Raw string? _at_raw_string returns the offset from s.i to the
+        # opening '"' (0 == not a raw string).
+        quote_off = _at_raw_string(s)
+        if quote_off:
+            s.i += quote_off
             _skip_raw_string(s)
             continue
 
