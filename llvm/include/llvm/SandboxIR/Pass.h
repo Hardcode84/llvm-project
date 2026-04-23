@@ -11,8 +11,9 @@
 
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AAResults;
 class ScalarEvolution;
@@ -90,6 +91,6 @@ public:
 };
 
 } // namespace sandboxir
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SANDBOXIR_PASS_H

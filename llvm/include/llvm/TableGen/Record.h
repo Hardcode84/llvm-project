@@ -39,8 +39,9 @@
 #include <utility>
 #include <variant>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace detail {
 struct RecordKeeperImpl;
 } // namespace detail
@@ -2318,6 +2319,6 @@ public:
 void EmitDetailedRecords(const RecordKeeper &RK, raw_ostream &OS);
 void EmitJSON(const RecordKeeper &RK, raw_ostream &OS);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TABLEGEN_RECORD_H

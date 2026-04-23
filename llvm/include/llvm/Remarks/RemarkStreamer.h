@@ -35,8 +35,9 @@
 #include "llvm/Support/Regex.h"
 #include <memory>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -81,6 +82,6 @@ public:
   bool wantsSection() const;
 };
 } // end namespace remarks
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_REMARKS_REMARKSTREAMER_H

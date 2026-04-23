@@ -35,6 +35,7 @@
 #include <sys/mman.h>  // mmap()
 #include <time.h>      // clock_gettime(), time(), localtime_r() */
 #include <unistd.h>    // for read(), close()
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::object;
@@ -492,7 +493,7 @@ void PerfJITEventListener::NotifyDebug(uint64_t CodeAddr,
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 JITEventListener *JITEventListener::createPerfJITEventListener() {
   // There should be only a single event listener per process, otherwise perf
   // gets confused.
@@ -500,7 +501,7 @@ JITEventListener *JITEventListener::createPerfJITEventListener() {
   return &PerfListener;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 LLVMJITEventListenerRef LLVMCreatePerfJITEventListener(void)
 {

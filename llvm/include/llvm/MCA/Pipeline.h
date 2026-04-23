@@ -19,7 +19,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 class HWEventListener;
@@ -82,6 +82,6 @@ public:
   bool isPaused() const { return CurrentState == State::Paused; }
 };
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_MCA_PIPELINE_H

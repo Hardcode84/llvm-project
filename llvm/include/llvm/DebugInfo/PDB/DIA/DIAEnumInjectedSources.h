@@ -12,8 +12,9 @@
 #include "DIASupport.h"
 #include "llvm/DebugInfo/PDB/IPDBEnumChildren.h"
 #include "llvm/DebugInfo/PDB/IPDBInjectedSource.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 class DIAEnumInjectedSources : public IPDBEnumChildren<IPDBInjectedSource> {
@@ -30,6 +31,6 @@ private:
   CComPtr<IDiaEnumInjectedSources> Enumerator;
 };
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_PDB_DIA_DIAENUMINJECTEDSOURCES_H

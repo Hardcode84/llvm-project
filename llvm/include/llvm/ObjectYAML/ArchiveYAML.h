@@ -18,8 +18,9 @@
 #include "llvm/ObjectYAML/YAML.h"
 #include "llvm/ADT/MapVector.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace ArchYAML {
 
 struct Archive {
@@ -55,11 +56,11 @@ struct Archive {
 };
 
 } // end namespace ArchYAML
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::ArchYAML::Archive::Child)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <> struct MappingTraits<ArchYAML::Archive> {
@@ -73,6 +74,6 @@ template <> struct MappingTraits<ArchYAML::Archive::Child> {
 };
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECTYAML_ARCHIVEYAML_H

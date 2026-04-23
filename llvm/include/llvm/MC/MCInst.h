@@ -26,7 +26,7 @@
 #include <cstddef>
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCContext;
 class MCExpr;
@@ -258,6 +258,6 @@ inline raw_ostream& operator<<(raw_ostream &OS, const MCInst &MI) {
   return OS;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCINST_H

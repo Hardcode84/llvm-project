@@ -79,6 +79,7 @@ WebAssemblyInstructionSelector::WebAssemblyInstructionSelector(
 #undef GET_GLOBALISEL_PREDICATES_INIT
 #define GET_GLOBALISEL_TEMPORARIES_INIT
 #include "WebAssemblyGenGlobalISel.inc"
+#include "llvm/Support/Compiler.h"
 #undef GET_GLOBALISEL_TEMPORARIES_INIT
 {
 }
@@ -116,11 +117,11 @@ bool WebAssemblyInstructionSelector::select(MachineInstr &I) {
   return false;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 InstructionSelector *
 createWebAssemblyInstructionSelector(const WebAssemblyTargetMachine &TM,
                                      const WebAssemblySubtarget &Subtarget,
                                      const WebAssemblyRegisterBankInfo &RBI) {
   return new WebAssemblyInstructionSelector(TM, Subtarget, RBI);
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

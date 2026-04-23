@@ -17,8 +17,9 @@
 #include "llvm/IR/DataLayout.h"
 #include "llvm/IR/DerivedTypes.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 class GlobalVariable;
 class NamedMDNode;
@@ -57,6 +58,6 @@ public:
 };
 
 } // namespace hlsl
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_FRONTEND_HLSL_CBUFFER_H

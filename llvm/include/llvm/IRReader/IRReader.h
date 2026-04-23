@@ -20,7 +20,7 @@
 #include "llvm/Support/Compiler.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MemoryBuffer;
 class MemoryBufferRef;
@@ -64,6 +64,6 @@ LLVM_ABI std::unique_ptr<Module>
 parseIRFile(StringRef Filename, SMDiagnostic &Err, LLVMContext &Context,
             ParserCallbacks Callbacks = {},
             AsmParserContext *ParserContext = nullptr);
-}
+LLVM_NAMESPACE_END
 
 #endif

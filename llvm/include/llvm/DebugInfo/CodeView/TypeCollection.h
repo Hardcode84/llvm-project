@@ -12,8 +12,9 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/DebugInfo/CodeView/CVRecord.h"
 #include "llvm/DebugInfo/CodeView/TypeIndex.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 class TypeCollection {
 public:
@@ -42,6 +43,6 @@ public:
   }
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

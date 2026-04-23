@@ -20,8 +20,9 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/SmallSet.h"
 #include "llvm/ADT/SmallVector.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SPIRVSubtarget;
 class MachineFunction;
 class MachineModuleInfo;
@@ -258,5 +259,5 @@ private:
   const SPIRVInstrInfo *TII;
   MachineModuleInfo *MMI;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVMODULEANALYSIS_H

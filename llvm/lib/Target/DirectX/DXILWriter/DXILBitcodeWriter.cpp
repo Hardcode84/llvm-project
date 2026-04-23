@@ -51,8 +51,9 @@
 #include "llvm/Support/ModRef.h"
 #include "llvm/Support/SHA1.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dxil {
 
 // Generates an enum to use as an index in the Abbrev array of Metadata record.
@@ -369,7 +370,7 @@ private:
 };
 
 } // namespace dxil
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using namespace llvm;
 using namespace llvm::dxil;

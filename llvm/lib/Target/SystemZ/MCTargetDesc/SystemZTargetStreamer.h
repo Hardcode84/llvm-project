@@ -20,8 +20,9 @@
 #include "llvm/Support/FormattedStream.h"
 #include <map>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCGOFFStreamer;
 class SystemZHLASMAsmStreamer;
 
@@ -126,6 +127,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_SYSTEMZ_SYSTEMZTARGETSTREAMER_H

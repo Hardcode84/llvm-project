@@ -20,13 +20,14 @@
 #include "llvm/Support/Error.h"
 #include "llvm/Support/ErrorHandling.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace object;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LLVMContext;
-}
+LLVM_NAMESPACE_END
 
 SymbolicFile::SymbolicFile(unsigned int Type, MemoryBufferRef Source)
     : Binary(Type, Source) {}

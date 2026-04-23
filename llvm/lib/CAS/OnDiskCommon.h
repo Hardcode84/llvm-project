@@ -13,8 +13,10 @@
 #include "llvm/Support/FileSystem.h"
 #include <chrono>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::cas::ondisk {
+LLVM_NAMESPACE_BEGIN
+namespace cas::ondisk {
 
 /// The version for all the ondisk database files. It needs to be bumped when
 /// compatibility breaking changes are introduced.
@@ -93,6 +95,7 @@ private:
   SmallString<256> UniqueTmpPath;
 };
 
-} // namespace llvm::cas::ondisk
+}
+LLVM_NAMESPACE_END // namespace llvm::cas::ondisk
 
 #endif // LLVM_LIB_CAS_ONDISKCOMMON_H

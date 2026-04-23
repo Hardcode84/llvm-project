@@ -20,6 +20,7 @@
 #include "llvm/Support/EndianStream.h"
 #include "llvm/Support/MemoryBuffer.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::object;
@@ -888,7 +889,7 @@ bool XCOFFWriter::writeXCOFF() {
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 bool yaml2xcoff(XCOFFYAML::Object &Doc, raw_ostream &Out, ErrorHandler EH) {
@@ -897,4 +898,4 @@ bool yaml2xcoff(XCOFFYAML::Object &Doc, raw_ostream &Out, ErrorHandler EH) {
 }
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

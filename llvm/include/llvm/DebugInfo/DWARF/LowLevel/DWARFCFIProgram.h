@@ -19,7 +19,7 @@
 #include "llvm/TargetParser/Triple.h"
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace dwarf {
 
@@ -286,6 +286,6 @@ private:
 
 } // end namespace dwarf
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_LOWLEVEL_DWARFCFIPROGRAM_H

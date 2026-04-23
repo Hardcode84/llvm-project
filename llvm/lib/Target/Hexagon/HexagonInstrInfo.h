@@ -27,8 +27,9 @@
 
 #define GET_INSTRINFO_HEADER
 #include "HexagonGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class HexagonSubtarget;
 class MachineBranchProbabilityInfo;
@@ -560,6 +561,6 @@ getRegSubRegPair(const MachineOperand &O) {
   return TargetInstrInfo::RegSubRegPair(O.getReg(), O.getSubReg());
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_HEXAGON_HEXAGONINSTRINFO_H

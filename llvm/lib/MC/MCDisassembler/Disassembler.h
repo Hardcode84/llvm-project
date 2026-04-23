@@ -28,8 +28,9 @@
 #include "llvm/Support/raw_ostream.h"
 #include <string>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Target;
 
 //
@@ -119,6 +120,6 @@ public:
   void setCPU(const char *CPU) { this->CPU = CPU; }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

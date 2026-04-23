@@ -15,8 +15,9 @@
 #define LLVM_LIB_TARGET_X86_UTILS_X86INSTRFMA3INFO_H
 
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This class is used to group {132, 213, 231} forms of FMA opcodes together.
 /// Each of the groups has either 3 opcodes, Also, each group has an attributes
@@ -92,6 +93,6 @@ struct X86InstrFMA3Group {
 /// and not included into any FMA3 group, then nullptr is returned.
 const X86InstrFMA3Group *getFMA3Group(unsigned Opcode, uint64_t TSFlags);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_X86_UTILS_X86INSTRFMA3INFO_H

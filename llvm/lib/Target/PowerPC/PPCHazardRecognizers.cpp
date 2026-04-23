@@ -17,6 +17,7 @@
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 using namespace llvm;
 
 #define DEBUG_TYPE "pre-RA-sched"
@@ -78,11 +79,11 @@ bool PPCDispatchGroupSBHazardRecognizer::isBCTRAfterSet(SUnit *SU) {
 }
 
 // FIXME: Remove this when we don't need this:
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace PPC {
 extern int32_t getNonRecordFormOpcode(uint32_t);
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // FIXME: A lot of code in PPCDispatchGroupSBHazardRecognizer is P7 specific.
 

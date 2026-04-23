@@ -11,8 +11,9 @@
 
 #include "llvm/ADT/SmallVector.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace LoongArchMatInt {
 struct Inst {
   unsigned Opc;
@@ -26,6 +27,6 @@ using InstSeq = SmallVector<Inst, 4>;
 // immediate value into a register.
 InstSeq generateInstSeq(int64_t Val);
 } // end namespace LoongArchMatInt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

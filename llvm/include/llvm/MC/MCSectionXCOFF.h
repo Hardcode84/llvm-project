@@ -16,8 +16,9 @@
 #include "llvm/BinaryFormat/XCOFF.h"
 #include "llvm/MC/MCSection.h"
 #include "llvm/MC/MCSymbolXCOFF.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // This class represents an XCOFF `Control Section`, more commonly referred to
 // as a csect. A csect represents the smallest possible unit of data/code which
@@ -126,6 +127,6 @@ public:
   SectionKind getKind() const { return Kind; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

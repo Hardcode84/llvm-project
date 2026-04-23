@@ -19,7 +19,8 @@
 
 #include <utility>
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 class LLVM_ABI SectCreateMaterializationUnit : public MaterializationUnit {
 public:
@@ -56,6 +57,7 @@ private:
   ExtraSymbolsMap ExtraSymbols;
 };
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc
 
 #endif // LLVM_EXECUTIONENGINE_ORC_SECTCREATE_H

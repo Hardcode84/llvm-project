@@ -20,6 +20,7 @@
 #include "llvm/TextAPI/InterfaceFile.h"
 #include "llvm/TextAPI/Platform.h"
 #include "llvm/TextAPI/Target.h"
+#include "llvm/Support/Compiler.h"
 
 using UUID = std::pair<llvm::MachO::Target, std::string>;
 
@@ -40,7 +41,7 @@ LLVM_YAML_STRONG_TYPEDEF(uint8_t, SwiftVersion)
 LLVM_YAML_IS_FLOW_SEQUENCE_VECTOR(UUID)
 LLVM_YAML_IS_FLOW_SEQUENCE_VECTOR(FlowStringRef)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace MachO {
 class ArchitectureSet;
@@ -102,6 +103,6 @@ template <> struct ScalarTraits<UUID> {
 };
 
 } // end namespace yaml.
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.
 
 #endif // LLVM_TEXTAPI_TEXT_STUB_COMMON_H

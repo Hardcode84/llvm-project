@@ -14,8 +14,9 @@
 #include "llvm/Support/Allocator.h"
 #include "llvm/Support/PerThreadBumpPtrAllocator.h"
 #include <string_view>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dwarf_linker {
 
 /// StringEntry keeps data of the string: the length, external offset
@@ -73,6 +74,6 @@ private:
 };
 
 } // namespace dwarf_linker
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DWARFLINKER_STRINGPOOL_H

@@ -125,8 +125,9 @@
 #include "llvm/Transforms/Utils/LowerInvoke.h"
 #include <cassert>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // FIXME: Dummy target independent passes definitions that have not yet been
 // ported to new pass manager. Once they do, remove these.
@@ -1320,6 +1321,6 @@ void CodeGenPassBuilder<Derived, TargetMachineT>::addBlockPlacement(
     addMachineFunctionPass(MachineBlockPlacementStatsPass(), PMW);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_PASSES_CODEGENPASSBUILDER_H

@@ -24,7 +24,7 @@
 #include <memory>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 class InlineSiteSym;
 struct FileChecksumEntry;
@@ -206,6 +206,6 @@ public:
 };
 
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

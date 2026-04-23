@@ -13,8 +13,9 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/DebugInfo/CodeView/SymbolVisitorDelegate.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 
 class SymbolDumpDelegate : public SymbolVisitorDelegate {
@@ -29,6 +30,6 @@ public:
 };
 
 } // end namespace codeview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_CODEVIEW_SYMBOLDUMPDELEGATE_H

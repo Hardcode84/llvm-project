@@ -21,8 +21,9 @@
 #include "llvm/Support/Casting.h"
 #include "llvm/Support/TrailingObjects.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace abi {
 
 /// Helper class to encapsulate information about how a specific type should be
@@ -271,6 +272,6 @@ public:
 };
 
 } // namespace abi
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_ABI_FUNCTIONINFO_H

@@ -14,8 +14,9 @@
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/TargetParser/TargetParser.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace AMDGPU {
 
@@ -167,6 +168,6 @@ unsigned encodeStorecntDscnt(const IsaVersion &Version, const Waitcnt &Decoded);
 
 } // namespace AMDGPU
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_AMDGPUWAITCNTUTILS_H

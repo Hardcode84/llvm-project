@@ -11,8 +11,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/ObjectYAML/ArchiveYAML.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace yaml {
 
@@ -55,4 +56,4 @@ MappingTraits<ArchYAML::Archive::Child>::validate(IO &,
 
 } // end namespace yaml
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

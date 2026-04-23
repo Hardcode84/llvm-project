@@ -20,8 +20,9 @@
 #include "llvm/Support/DataExtractor.h"
 #include "llvm/Support/Error.h"
 #include "llvm/Support/UniqueBBID.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 
 // Struct representing the BBAddrMap for one function.
@@ -287,6 +288,6 @@ decodeBBAddrMapPayload(AddressExtractor &Extractor,
                        std::vector<PGOAnalysisMap> *PGOAnalyses = nullptr);
 
 } // end namespace object.
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.
 
 #endif // LLVM_OBJECT_BBADDRMAP_H

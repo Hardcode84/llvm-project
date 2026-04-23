@@ -15,7 +15,7 @@
 #include "llvm/Support/Compiler.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 template <typename T> class SmallVectorImpl;
 class StringRef;
@@ -97,6 +97,6 @@ yaml2ObjectFile(SmallVectorImpl<char> &Storage, StringRef Yaml,
                 ErrorHandler ErrHandler);
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

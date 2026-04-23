@@ -12,8 +12,9 @@
 #include "llvm/CodeGen/TargetLoweringObjectFileImpl.h"
 #include "llvm/MC/MCExpr.h"
 #include "llvm/MC/MCRegister.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ARMElfTargetObjectFile : public TargetLoweringObjectFileELF {
 public:
@@ -46,6 +47,6 @@ public:
                                     const TargetMachine &TM) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARM_ARMTARGETOBJECTFILE_H

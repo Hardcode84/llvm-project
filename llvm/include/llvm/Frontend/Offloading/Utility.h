@@ -20,7 +20,7 @@
 #include "llvm/Support/Error.h"
 #include "llvm/Support/MemoryBufferRef.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace offloading {
 
 /// This is the record of an object that just be registered with the offloading
@@ -187,6 +187,6 @@ LLVM_ABI Error containerizeOpenMPSPIRVImage(
     StringRef CompileOpts = "", StringRef LinkOpts = "");
 } // namespace intel
 } // namespace offloading
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_FRONTEND_OFFLOADING_UTILITY_H

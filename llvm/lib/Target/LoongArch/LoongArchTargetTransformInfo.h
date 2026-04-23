@@ -20,8 +20,9 @@
 #include "LoongArchTargetMachine.h"
 #include "llvm/Analysis/TargetTransformInfo.h"
 #include "llvm/CodeGen/BasicTTIImpl.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LoongArchTTIImpl : public BasicTTIImplBase<LoongArchTTIImpl> {
   typedef BasicTTIImplBase<LoongArchTTIImpl> BaseT;
@@ -68,6 +69,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_LOONGARCH_LOONGARCHTARGETTRANSFORMINFO_H

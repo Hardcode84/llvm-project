@@ -11,8 +11,9 @@
 
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/MC/MCExpr.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 
@@ -136,6 +137,6 @@ LLVM_READONLY bool isLitExpr(const MCExpr *Expr);
 LLVM_READONLY int64_t getLitValue(const MCExpr *Expr);
 
 } // end namespace AMDGPU
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_MCTARGETDESC_AMDGPUMCEXPR_H

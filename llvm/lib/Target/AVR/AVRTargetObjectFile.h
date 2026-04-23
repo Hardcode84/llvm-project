@@ -10,8 +10,9 @@
 #define LLVM_AVR_TARGET_OBJECT_FILE_H
 
 #include "llvm/CodeGen/TargetLoweringObjectFileImpl.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Lowering for an AVR ELF32 object file.
 class AVRTargetObjectFile : public TargetLoweringObjectFileELF {
@@ -32,6 +33,6 @@ private:
   MCSection *Progmem5DataSection;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_AVR_TARGET_OBJECT_FILE_H

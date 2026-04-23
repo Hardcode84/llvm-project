@@ -15,7 +15,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/SMLoc.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCLFIRewriter;
 class Twine;
@@ -130,6 +130,6 @@ LLVM_ABI MCAsmParserExtension *createXCOFFAsmParser();
 LLVM_ABI MCAsmParserExtension *createWasmAsmParser();
 LLVM_ABI MCAsmParserExtension *createLFIAsmParser(MCLFIRewriter *Exp);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCPARSER_MCASMPARSEREXTENSION_H

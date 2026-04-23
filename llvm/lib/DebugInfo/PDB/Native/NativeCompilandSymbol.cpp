@@ -8,8 +8,9 @@
 
 #include "llvm/DebugInfo/PDB/Native/NativeCompilandSymbol.h"
 #include "llvm/DebugInfo/PDB/Native/NativeSession.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 NativeCompilandSymbol::NativeCompilandSymbol(NativeSession &Session,
@@ -55,4 +56,4 @@ std::string NativeCompilandSymbol::getName() const {
 }
 
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

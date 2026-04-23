@@ -25,10 +25,11 @@
 #include "llvm/MC/MCRegisterInfo.h"
 #include "llvm/MC/MCSubtargetInfo.h"
 #include "llvm/Support/EndianStream.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "mccodeemitter"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MSP430MCCodeEmitter : public MCCodeEmitter {
   MCContext &Ctx;
@@ -217,4 +218,4 @@ MCCodeEmitter *createMSP430MCCodeEmitter(const MCInstrInfo &MCII,
 
 #include "MSP430GenMCCodeEmitter.inc"
 
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm

@@ -13,8 +13,9 @@
 
 #include "Mips16HardFloatInfo.h"
 #include <string.h>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace Mips16HardFloatInfo {
 
@@ -46,4 +47,4 @@ extern FuncSignature const *findFuncSignature(const char *name) {
   return nullptr;
 }
 }
-}
+LLVM_NAMESPACE_END

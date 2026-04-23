@@ -23,7 +23,7 @@
 
 #include <future>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 class LLVM_ABI SimpleRemoteEPC : public ExecutorProcessControl,
@@ -130,6 +130,6 @@ private:
 };
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_SIMPLEREMOTEEPC_H

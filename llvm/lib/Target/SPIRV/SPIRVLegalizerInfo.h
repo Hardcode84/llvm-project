@@ -15,8 +15,9 @@
 
 #include "SPIRVGlobalRegistry.h"
 #include "llvm/CodeGen/GlobalISel/LegalizerInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LLVMContext;
 class SPIRVSubtarget;
@@ -39,5 +40,5 @@ private:
                          LostDebugLocObserver &LocObserver) const;
   bool legalizeBitcast(LegalizerHelper &Helper, MachineInstr &MI) const;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVLEGALIZERINFO_H

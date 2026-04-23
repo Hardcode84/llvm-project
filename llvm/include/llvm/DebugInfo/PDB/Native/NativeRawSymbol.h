@@ -14,7 +14,7 @@
 #include <cstdint>
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 class NativeSession;
@@ -236,6 +236,6 @@ protected:
 };
 
 } // end namespace pdb
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_PDB_NATIVE_NATIVERAWSYMBOL_H

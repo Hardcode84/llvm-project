@@ -66,11 +66,12 @@
 
 #ifndef NDEBUG
 #include "llvm/Support/LockFileManager.h"
+#include "llvm/Support/Compiler.h"
 #endif
 
 #define DEBUG_TYPE "amdgpu-split-module"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace {
 
 static cl::opt<unsigned> MaxDepth(
@@ -1606,4 +1607,4 @@ PreservedAnalyses AMDGPUSplitModulePass::run(Module &M,
   // preserved just to be safe. This pass runs last anyway.
   return PreservedAnalyses::none();
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

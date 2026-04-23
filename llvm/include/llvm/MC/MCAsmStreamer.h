@@ -15,8 +15,9 @@
 #define LLVM_MC_MCASMSTREAMER_H
 
 #include "llvm/MC/MCStreamer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCContext;
 
@@ -25,6 +26,6 @@ protected:
   MCAsmBaseStreamer(MCContext &Context) : MCStreamer(Context) {}
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCASMSTREAMER_H

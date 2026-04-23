@@ -15,7 +15,9 @@
 #ifndef LLVM_FRONTEND_OPENMP_OMPDEVICECONSTANTS_H
 #define LLVM_FRONTEND_OPENMP_OMPDEVICECONSTANTS_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 namespace omp {
 
 enum OMPTgtExecModeFlags : unsigned char {
@@ -28,6 +30,6 @@ enum OMPTgtExecModeFlags : unsigned char {
 };
 
 } // end namespace omp
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_FRONTEND_OPENMP_OMPDEVICECONSTANTS_H

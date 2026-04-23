@@ -9,8 +9,9 @@
 #include "llvm/ExecutionEngine/Orc/TaskDispatch.h"
 #include "llvm/Config/llvm-config.h" // for LLVM_ENABLE_THREADS
 #include "llvm/ExecutionEngine/Orc/Core.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 char Task::ID = 0;
@@ -124,4 +125,4 @@ bool DynamicThreadPoolTaskDispatcher::canRunIdleTaskNow() {
 #endif
 
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

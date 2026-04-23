@@ -14,8 +14,9 @@
 #include "RISCVVSETVLIInfoAnalysis.h"
 #include "RISCVSubtarget.h"
 #include "llvm/CodeGen/LiveIntervals.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace RISCV {
 
 /// Given a virtual register \p Reg, return the corresponding VNInfo for it.
@@ -494,4 +495,4 @@ RISCVVSETVLIInfoAnalysis::computeInfoForInstr(const MachineInstr &MI) const {
   return InstrInfo;
 }
 } // namespace RISCV
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

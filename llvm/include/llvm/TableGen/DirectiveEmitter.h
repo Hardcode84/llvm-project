@@ -22,8 +22,9 @@
 #include "llvm/TableGen/Record.h"
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Wrapper class that contains DirectiveLanguage's information defined in
 // DirectiveBase.td and provides helper methods for accessing it.
@@ -372,6 +373,6 @@ public:
   bool isUserVisible() const { return Def->getValueAsBit("isUserValue"); }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TABLEGEN_DIRECTIVEEMITTER_H

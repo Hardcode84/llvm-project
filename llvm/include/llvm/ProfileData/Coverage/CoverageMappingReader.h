@@ -27,7 +27,7 @@
 #include <memory>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace coverage {
 
 class CoverageMappingReader;
@@ -250,6 +250,6 @@ public:
 };
 
 } // end namespace coverage
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_PROFILEDATA_COVERAGE_COVERAGEMAPPINGREADER_H

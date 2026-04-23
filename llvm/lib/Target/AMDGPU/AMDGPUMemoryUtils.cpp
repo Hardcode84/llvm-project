@@ -18,12 +18,14 @@
 #include "llvm/IR/IntrinsicInst.h"
 #include "llvm/IR/IntrinsicsAMDGPU.h"
 #include "llvm/IR/ReplaceConstant.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "amdgpu-memory-utils"
 
 using namespace llvm;
 
-namespace llvm::AMDGPU {
+LLVM_NAMESPACE_BEGIN
+namespace AMDGPU {
 
 Align getAlign(const DataLayout &DL, const GlobalVariable *GV) {
   return DL.getValueOrABITypeAlignment(GV->getPointerAlignment(DL),
@@ -442,4 +444,5 @@ bool isClobberedInFunction(const LoadInst *Load, MemorySSA *MSSA,
   return false;
 }
 
-} // end namespace llvm::AMDGPU
+}
+LLVM_NAMESPACE_END // end namespace llvm::AMDGPU

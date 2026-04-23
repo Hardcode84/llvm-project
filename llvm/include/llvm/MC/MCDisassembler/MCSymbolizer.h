@@ -22,7 +22,7 @@
 #include <memory>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCContext;
 class MCInst;
@@ -91,6 +91,6 @@ public:
   virtual ArrayRef<uint64_t> getReferencedAddresses() const { return {}; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCDISASSEMBLER_MCSYMBOLIZER_H

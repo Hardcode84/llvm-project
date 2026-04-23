@@ -19,7 +19,7 @@ using namespace llvm;
 using namespace llvm::orc;
 using namespace llvm::orc::shared;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 #if defined(HAVE_REGISTER_FRAME) && defined(HAVE_DEREGISTER_FRAME) &&          \
@@ -151,7 +151,7 @@ Error deregisterEHFrameSection(const void *EHFrameSectionAddr,
 }
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 static Error registerEHFrameWrapper(ExecutorAddrRange EHFrame) {
   return llvm::orc::registerEHFrameSection(EHFrame.Start.toPtr<const void *>(),

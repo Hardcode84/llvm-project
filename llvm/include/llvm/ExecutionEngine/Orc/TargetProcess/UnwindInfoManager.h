@@ -20,7 +20,8 @@
 #include <map>
 #include <mutex>
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 class UnwindInfoManager {
 public:
@@ -72,6 +73,7 @@ private:
   std::map<uintptr_t, UnwindSections> UWSecs;
 };
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc
 
 #endif // LLVM_EXECUTIONENGINE_ORC_TARGETPROCESS_UNWINDINFOMANAGER_H

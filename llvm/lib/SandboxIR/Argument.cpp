@@ -7,8 +7,10 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/SandboxIR/Argument.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 #ifndef NDEBUG
 void Argument::printAsOperand(raw_ostream &OS) const {
@@ -20,4 +22,5 @@ void Argument::dumpOS(raw_ostream &OS) const {
 }
 #endif // NDEBUG
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir

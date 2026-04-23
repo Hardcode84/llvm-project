@@ -16,13 +16,14 @@
 #include "llvm/Support/Compiler.h"
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Triple;
 class TargetLibraryInfoImpl;
 enum class VectorLibrary;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm::driver {
+LLVM_NAMESPACE_BEGIN
+namespace driver {
 // The current supported vector libraries in enum \VectorLibrary are 9(including
 // the NoLibrary). Changing the bitcount from 3 to 4 so that more than 8 values
 // can be supported. Now the maximum number of vector libraries supported
@@ -68,6 +69,7 @@ enum ProfileInstrKind {
 
 // Default filename used for profile generation.
 LLVM_ABI std::string getDefaultProfileGenName();
-} // end namespace llvm::driver
+}
+LLVM_NAMESPACE_END // end namespace llvm::driver
 
 #endif

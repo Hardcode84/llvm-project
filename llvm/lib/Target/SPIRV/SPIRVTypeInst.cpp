@@ -13,8 +13,9 @@
 #include "SPIRVTypeInst.h"
 #include "MCTargetDesc/SPIRVMCTargetDesc.h"
 #include "SPIRVInstrInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 [[maybe_unused]] static bool definesATypeRegister(const MachineInstr &MI) {
   const MachineRegisterInfo &MRI = MI.getMF()->getRegInfo();
   return MRI.getRegClass(MI.getOperand(0).getReg()) == &SPIRV::TYPERegClass;
@@ -32,4 +33,4 @@ bool SPIRVTypeInst::isTypeIntN(unsigned N) const {
     return MI->getOperand(1).getImm() == N;
   return true;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

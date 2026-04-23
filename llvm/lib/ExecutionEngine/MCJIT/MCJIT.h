@@ -14,8 +14,9 @@
 #include "llvm/ExecutionEngine/ExecutionEngine.h"
 #include "llvm/ExecutionEngine/RTDyldMemoryManager.h"
 #include "llvm/ExecutionEngine/RuntimeDyld.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCJIT;
 class Module;
 class ObjectCache;
@@ -329,6 +330,6 @@ protected:
   Module *findModuleForSymbol(const std::string &Name, bool CheckFunctionsOnly);
 };
 
-} // end llvm namespace
+LLVM_NAMESPACE_END // end llvm namespace
 
 #endif // LLVM_LIB_EXECUTIONENGINE_MCJIT_MCJIT_H

@@ -16,8 +16,10 @@
 #include "llvm/ExecutionEngine/Orc/CallViaEPC.h"
 #include "llvm/ExecutionEngine/Orc/CallableTraitsHelper.h"
 #include "llvm/ExecutionEngine/Orc/Shared/SimplePackedSerialization.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 namespace detail {
 template <typename SPSRetT, typename... SPSArgTs>
@@ -90,6 +92,7 @@ public:
                                            std::move(Fn)) {}
 };
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc
 
 #endif // LLVM_EXECUTIONENGINE_ORC_CALLSPSVIAEPC_H

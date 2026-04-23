@@ -14,9 +14,11 @@
 
 #ifdef __APPLE__
 #include <dlfcn.h>
+#include "llvm/Support/Compiler.h"
 #endif // __APPLE__
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 void addDefaultBootstrapValuesForHostProcess(
     StringMap<std::vector<char>> &BootstrapMap,
@@ -37,4 +39,5 @@ void addDefaultBootstrapValuesForHostProcess(
 #endif // __APPLE__
 }
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc

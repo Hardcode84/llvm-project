@@ -19,7 +19,8 @@
 #include <cstdint>
 #include <vector>
 
-namespace llvm::xray {
+LLVM_NAMESPACE_BEGIN
+namespace xray {
 
 // The BlockIndexer will gather all related records associated with a
 // process+thread and group them by 'Block'.
@@ -62,6 +63,7 @@ public:
   Error flush();
 };
 
-} // namespace llvm::xray
+}
+LLVM_NAMESPACE_END // namespace llvm::xray
 
 #endif // LLVM_XRAY_BLOCKINDEXER_H

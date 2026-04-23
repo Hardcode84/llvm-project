@@ -19,12 +19,13 @@
 #include "llvm/Support/Error.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_fd_ostream;
 class Twine;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm::cas::ondisk {
+LLVM_NAMESPACE_BEGIN
+namespace cas::ondisk {
 
 /// Interface for logging low-level on-disk cas operations.
 ///
@@ -87,6 +88,7 @@ private:
   bool LogAllocations;
 };
 
-} // namespace llvm::cas::ondisk
+}
+LLVM_NAMESPACE_END // namespace llvm::cas::ondisk
 
 #endif // LLVM_CAS_ONDISKLOGGER_H

@@ -34,6 +34,7 @@
 #include "llvm/CodeGen/Passes.h"
 #include "llvm/CodeGen/TargetInstrInfo.h"
 #include "llvm/CodeGen/TargetRegisterInfo.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -68,9 +69,9 @@ private:
 
 char HexagonTfrCleanup::ID = 0;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 char &HexagonTfrCleanupID = HexagonTfrCleanup::ID;
-}
+LLVM_NAMESPACE_END
 
 bool HexagonTfrCleanup::isIntReg(unsigned Reg, bool &Is32) {
   Is32 = Hexagon::IntRegsRegClass.contains(Reg);

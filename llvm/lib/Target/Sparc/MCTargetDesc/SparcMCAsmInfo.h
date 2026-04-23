@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_SPARC_MCTARGETDESC_SPARCMCASMINFO_H
 
 #include "llvm/MC/MCAsmInfoELF.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Triple;
 
@@ -41,6 +42,6 @@ uint16_t parseSpecifier(StringRef name);
 StringRef getSpecifierName(uint16_t S);
 } // namespace Sparc
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_SPARC_MCTARGETDESC_SPARCMCASMINFO_H

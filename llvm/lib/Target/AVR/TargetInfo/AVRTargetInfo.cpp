@@ -9,12 +9,12 @@
 #include "TargetInfo/AVRTargetInfo.h"
 #include "llvm/MC/TargetRegistry.h"
 #include "llvm/Support/Compiler.h"
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 Target &getTheAVRTarget() {
   static Target TheAVRTarget;
   return TheAVRTarget;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 extern "C" LLVM_ABI LLVM_EXTERNAL_VISIBILITY void
 LLVMInitializeAVRTargetInfo() {

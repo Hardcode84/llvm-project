@@ -12,7 +12,7 @@
 #include "llvm/Support/Compiler.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MemoryBuffer;
 class MemoryBufferRef;
@@ -38,6 +38,6 @@ public:
   virtual std::unique_ptr<MemoryBuffer> getObject(const Module* M) = 0;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_OBJECTCACHE_H

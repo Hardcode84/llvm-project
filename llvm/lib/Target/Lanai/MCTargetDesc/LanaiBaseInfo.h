@@ -18,8 +18,9 @@
 #include "llvm/MC/MCExpr.h"
 #include "llvm/Support/DataTypes.h"
 #include "llvm/Support/ErrorHandling.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // LanaiII - This namespace holds all of the target specific flags that
 // instruction info tracks.
@@ -114,5 +115,5 @@ static inline unsigned getLanaiRegisterNumbering(MCRegister Reg) {
     llvm_unreachable("Unknown register number!");
   }
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_LIB_TARGET_LANAI_MCTARGETDESC_LANAIBASEINFO_H

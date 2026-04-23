@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_AARCH64_AARCH64MACHINESCHEDULER_H
 
 #include "llvm/CodeGen/MachineScheduler.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A MachineSchedStrategy implementation for AArch64 post RA scheduling.
 class AArch64PostRASchedStrategy : public PostGenericScheduler {
@@ -27,7 +28,7 @@ protected:
   bool tryCandidate(SchedCandidate &Cand, SchedCandidate &TryCand) override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif
 

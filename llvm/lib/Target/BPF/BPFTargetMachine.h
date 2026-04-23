@@ -16,8 +16,9 @@
 #include "BPFSubtarget.h"
 #include "llvm/CodeGen/CodeGenTargetMachineImpl.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BPFTargetMachine : public CodeGenTargetMachineImpl {
   std::unique_ptr<TargetLoweringObjectFile> TLOF;
   BPFSubtarget Subtarget;
@@ -44,6 +45,6 @@ public:
 
   void registerPassBuilderCallbacks(PassBuilder &PB) override;
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

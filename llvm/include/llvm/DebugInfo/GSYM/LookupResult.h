@@ -15,7 +15,7 @@
 #include <inttypes.h>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 namespace gsym {
 
@@ -95,6 +95,6 @@ inline bool operator==(const LookupResult &LHS, const LookupResult &RHS) {
 LLVM_ABI raw_ostream &operator<<(raw_ostream &OS, const LookupResult &R);
 
 } // namespace gsym
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_GSYM_LOOKUPRESULT_H

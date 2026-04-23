@@ -29,8 +29,9 @@
 #include "AVRSubtarget.h"
 #include "AVRTargetMachine.h"
 #include "MCTargetDesc/AVRMCTargetDesc.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 AVRTargetLowering::AVRTargetLowering(const AVRTargetMachine &TM,
                                      const AVRSubtarget &STI)
@@ -2794,4 +2795,4 @@ Register AVRTargetLowering::getRegisterByName(const char *RegName, LLT VT,
       Twine("Invalid register name \"" + StringRef(RegName) + "\"."));
 }
 
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm

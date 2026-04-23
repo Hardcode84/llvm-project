@@ -16,10 +16,11 @@
 #include "llvm/MCA/HardwareUnits/RegisterFile.h"
 #include "llvm/MCA/Instruction.h"
 #include "llvm/Support/Debug.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "llvm-mca"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 const unsigned WriteRef::INVALID_IID = std::numeric_limits<unsigned>::max();
@@ -747,4 +748,4 @@ void RegisterFile::dump() const {
 #endif
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

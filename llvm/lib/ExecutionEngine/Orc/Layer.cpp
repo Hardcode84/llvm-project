@@ -13,10 +13,11 @@
 #include "llvm/ExecutionEngine/Orc/ObjectFileInterface.h"
 #include "llvm/IR/Constants.h"
 #include "llvm/Support/Debug.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 IRLayer::~IRLayer() = default;
@@ -227,4 +228,4 @@ void BasicObjectLayerMaterializationUnit::discard(const JITDylib &JD,
 }
 
 } // End namespace orc.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.

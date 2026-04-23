@@ -9,12 +9,13 @@
 #include "llvm/DebugInfo/PDB/PDBSymbolTypeBuiltin.h"
 
 #include "llvm/DebugInfo/PDB/PDBSymDumper.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 PDBSymbolTypeBuiltin::~PDBSymbolTypeBuiltin() = default;
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using namespace llvm;
 using namespace llvm::pdb;

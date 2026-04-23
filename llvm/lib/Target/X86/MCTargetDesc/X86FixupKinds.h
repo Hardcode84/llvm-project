@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_X86_MCTARGETDESC_X86FIXUPKINDS_H
 
 #include "llvm/MC/MCFixup.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace X86 {
 enum Fixups {
   reloc_riprel_4byte = FirstTargetFixupKind, // 32-bit rip-relative
@@ -41,6 +42,6 @@ enum Fixups {
   NumTargetFixupKinds = LastTargetFixupKind - FirstTargetFixupKind
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -17,8 +17,9 @@
 #include "llvm/MC/MCAsmInfoXCOFF.h"
 #include "llvm/MC/MCExpr.h"
 #include "llvm/MC/MCValue.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Triple;
 
 class PPCELFMCAsmInfo : public MCAsmInfoELF {
@@ -134,6 +135,6 @@ using Specifier = uint16_t;
 static inline uint16_t getSpecifier(const MCSymbolRefExpr *SRE) {
   return SRE->getKind();
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

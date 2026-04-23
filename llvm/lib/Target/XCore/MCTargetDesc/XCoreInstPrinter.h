@@ -16,8 +16,9 @@
 #define LLVM_LIB_TARGET_XCORE_MCTARGETDESC_XCOREINSTPRINTER_H
 
 #include "llvm/MC/MCInstPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 class XCoreInstPrinter : public MCInstPrinter {
@@ -42,6 +43,6 @@ private:
   void printOperand(const MCInst *MI, unsigned OpNo, raw_ostream &O);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_XCORE_MCTARGETDESC_XCOREINSTPRINTER_H

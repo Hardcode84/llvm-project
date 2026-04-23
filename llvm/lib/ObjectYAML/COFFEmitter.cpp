@@ -23,6 +23,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <optional>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -612,7 +613,7 @@ void COFFYAML::SectionDataEntry::writeAsBinary(raw_ostream &OS) const {
     writeLoadConfig(*LoadConfig64, OS);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 bool yaml2coff(llvm::COFFYAML::Object &Doc, raw_ostream &Out,
@@ -640,4 +641,4 @@ bool yaml2coff(llvm::COFFYAML::Object &Doc, raw_ostream &Out,
 }
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

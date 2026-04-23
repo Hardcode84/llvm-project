@@ -13,8 +13,9 @@
 #include "llvm/Object/Minidump.h"
 #include "llvm/ObjectYAML/YAML.h"
 #include "llvm/Support/YAMLTraits.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace MinidumpYAML {
 
 /// The base class for all minidump streams. The "Type" of the stream
@@ -271,7 +272,7 @@ struct MappingContextTraits<minidump::MemoryDescriptor_64, BinaryRef> {
 
 } // namespace yaml
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 LLVM_YAML_DECLARE_BITSET_TRAITS(llvm::minidump::MemoryProtection)
 LLVM_YAML_DECLARE_BITSET_TRAITS(llvm::minidump::MemoryState)

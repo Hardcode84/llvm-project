@@ -28,7 +28,7 @@
 #include "llvm/TargetParser/Triple.h"
 #include <mutex>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 enum CGDataSectKind {
 #define CG_DATA_SECT_ENTRY(Kind, SectNameCommon, SectNameCoff, Prefix) Kind,
@@ -309,6 +309,6 @@ struct Header {
 
 } // end namespace IndexedCGData
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_PREPARE_H

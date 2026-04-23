@@ -18,6 +18,7 @@
 #include "CompactUnwindSupport.h"
 #include "DefineExternalSectionStartAndEndSymbols.h"
 #include "MachOLinkGraphBuilder.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
@@ -469,7 +470,7 @@ Error buildGOTAndStubs_MachO_x86_64(LinkGraph &G) {
 
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 class MachOJITLinker_x86_64 : public JITLinker<MachOJITLinker_x86_64> {
@@ -605,4 +606,4 @@ LinkGraphPassFunction createEHFrameEdgeFixerPass_MachO_x86_64() {
 }
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

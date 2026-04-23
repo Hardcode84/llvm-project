@@ -13,8 +13,9 @@
 #include "DWARFLinkerCompileUnit.h"
 #include "DWARFLinkerGlobalData.h"
 #include "DWARFLinkerTypeUnit.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dwarf_linker {
 namespace parallel {
 
@@ -67,6 +68,6 @@ protected:
 
 } // end of namespace parallel
 } // end of namespace dwarf_linker
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm
 
 #endif // LLVM_LIB_DWARFLINKER_PARALLEL_ACCELERATORRECORDSSAVER_H

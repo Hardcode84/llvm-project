@@ -25,7 +25,7 @@
 #include "llvm/Support/ErrorHandling.h"
 #include <cassert>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// BitCodeAbbrevOp - This describes one or more operands in an abbreviation.
 /// This is actually a union of two different things:
 ///   1. It could be a literal integer value ("the operand is always 17").
@@ -126,6 +126,6 @@ public:
     OperandList.push_back(OpInfo);
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

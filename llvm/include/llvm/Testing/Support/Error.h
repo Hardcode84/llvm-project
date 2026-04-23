@@ -14,8 +14,9 @@
 
 #include "gmock/gmock.h"
 #include <ostream>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace detail {
 ErrorHolder TakeError(Error Err);
 
@@ -222,6 +223,6 @@ detail::ValueMatchesPoly<M> HasValue(M Matcher) {
   return detail::ValueMatchesPoly<M>(Matcher);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

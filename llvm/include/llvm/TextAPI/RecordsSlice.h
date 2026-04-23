@@ -21,7 +21,7 @@
 #include "llvm/TextAPI/Record.h"
 #include "llvm/TextAPI/RecordVisitor.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace MachO {
 
 // Define collection of records for a library that are tied to a darwin target
@@ -205,5 +205,5 @@ LLVM_ABI std::unique_ptr<InterfaceFile>
 convertToInterfaceFile(const Records &Slices);
 
 } // namespace MachO
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_TEXTAPI_RECORDSLICE_H

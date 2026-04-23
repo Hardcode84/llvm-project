@@ -61,11 +61,11 @@ using namespace llvm;
 
 #define DEBUG_TYPE "mips-asm-parser"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCInstrInfo;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 extern cl::opt<bool> EmitJalrReloc;
 extern cl::opt<bool> NoZeroDivCheck;

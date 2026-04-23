@@ -17,8 +17,9 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/IR/TypedPointerType.h"
 #include "llvm/IR/Value.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace dxil {
 
@@ -39,6 +40,6 @@ PointerTypeMap run(const Module &M);
 
 } // namespace dxil
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TARGET_DIRECTX_POINTERTYPEANALYSIS_H

@@ -21,7 +21,7 @@
 #include "llvm/ExecutionEngine/Orc/Shared/VTuneSharedStructs.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace orc {
 
@@ -62,6 +62,6 @@ private:
 
 } // end namespace orc
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

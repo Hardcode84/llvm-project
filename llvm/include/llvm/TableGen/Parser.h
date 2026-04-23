@@ -13,7 +13,9 @@
 #ifndef LLVM_TABLEGEN_PARSER_H
 #define LLVM_TABLEGEN_PARSER_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class RecordKeeper;
 class SourceMgr;
 
@@ -25,6 +27,6 @@ class SourceMgr;
 ///       invocation, so this function is not thread-safe.
 bool TableGenParseFile(SourceMgr &InputSrcMgr, RecordKeeper &Records);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TABLEGEN_PARSER_H

@@ -10,6 +10,7 @@
 
 #include "llvm/ExecutionEngine/Orc/RTDyldObjectLinkingLayer.h"
 #include "llvm/Object/COFF.h"
+#include "llvm/Support/Compiler.h"
 
 namespace {
 
@@ -75,7 +76,7 @@ private:
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 char RTDyldObjectLinkingLayer::ID;
@@ -448,4 +449,4 @@ void RTDyldObjectLinkingLayer::handleTransferResources(JITDylib &JD,
 }
 
 } // End namespace orc.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.

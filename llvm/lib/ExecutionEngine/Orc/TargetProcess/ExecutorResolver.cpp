@@ -3,8 +3,10 @@
 
 #include "llvm/Support/DynamicLibrary.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 void DylibSymbolResolver::resolveAsync(
     const RemoteSymbolLookupSet &L,
@@ -44,4 +46,5 @@ void DylibSymbolResolver::resolveAsync(
   OnResolve(std::move(Result));
 }
 
-} // end namespace llvm::orc
+}
+LLVM_NAMESPACE_END // end namespace llvm::orc

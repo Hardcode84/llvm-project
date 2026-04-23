@@ -13,8 +13,9 @@
 #include "llvm/BinaryFormat/MachO.h"
 #include "llvm/MC/MCContext.h"
 #include "llvm/MC/MCObjectWriter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class ARMAsmBackendDarwin : public ARMAsmBackend {
   const MCRegisterInfo &MRI;
   Triple TT;
@@ -36,6 +37,6 @@ public:
   uint64_t generateCompactUnwindEncoding(const MCDwarfFrameInfo *FI,
                                          const MCContext *Ctxt) const override;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

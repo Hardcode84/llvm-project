@@ -20,8 +20,9 @@
 #define GET_INSTRINFO_HEADER
 #define GET_INSTRINFO_OPERAND_ENUM
 #include "R600GenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace R600InstrFlags {
 enum : uint64_t {
@@ -330,6 +331,6 @@ int32_t getLDSNoRetOp(uint32_t Opcode);
 
 } //End namespace AMDGPU
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

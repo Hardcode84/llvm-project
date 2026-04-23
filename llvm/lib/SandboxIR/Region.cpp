@@ -8,8 +8,10 @@
 
 #include "llvm/SandboxIR/Region.h"
 #include "llvm/SandboxIR/Function.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 InstructionCost ScoreBoard::getCost(Instruction *I) const {
   auto *LLVMI = cast<llvm::Instruction>(I->Val);
@@ -189,4 +191,5 @@ Region::createRegionsFromMD(Function &F, TargetTransformInfo &TTI) {
   return Regions;
 }
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir

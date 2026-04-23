@@ -13,7 +13,7 @@
 #include "llvm/Support/Error.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace gsym {
 class FileWriter;
@@ -80,6 +80,6 @@ struct GlobalData {
 LLVM_ABI StringRef getNameForGlobalInfoType(GlobalInfoType Type);
 
 } // namespace gsym
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_GSYM_GLOBALDATA_H

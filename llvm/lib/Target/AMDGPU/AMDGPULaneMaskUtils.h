@@ -11,8 +11,9 @@
 
 #include "GCNSubtarget.h"
 #include "llvm/CodeGen/Register.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GCNSubtarget;
 
@@ -86,6 +87,6 @@ inline const LaneMaskConstants &LaneMaskConstants::get(const GCNSubtarget &ST) {
 
 } // end namespace AMDGPU
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_UTILS_AMDGPULANEMASKUTILS_H

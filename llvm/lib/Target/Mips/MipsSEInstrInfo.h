@@ -15,8 +15,9 @@
 
 #include "MipsInstrInfo.h"
 #include "MipsSERegisterInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MipsSEInstrInfo : public MipsInstrInfo {
   const MipsSERegisterInfo RI;
@@ -122,6 +123,6 @@ private:
                       MachineBasicBlock::iterator I) const;
 };
 
-}
+LLVM_NAMESPACE_END
 
 #endif

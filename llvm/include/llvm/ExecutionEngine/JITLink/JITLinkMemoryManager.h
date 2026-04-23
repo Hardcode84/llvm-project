@@ -33,7 +33,7 @@
 #include <future>
 #include <mutex>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 class Block;
@@ -409,6 +409,6 @@ private:
 };
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_JITLINK_JITLINKMEMORYMANAGER_H

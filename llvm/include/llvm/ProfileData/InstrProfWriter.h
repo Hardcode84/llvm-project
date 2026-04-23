@@ -29,7 +29,7 @@
 #include <memory>
 #include <random>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Writer for instrumentation based profile data.
 class InstrProfRecordWriterTrait;
@@ -257,6 +257,6 @@ private:
   Error writeVTableNames(ProfOStream &OS);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_PROFILEDATA_INSTRPROFWRITER_H

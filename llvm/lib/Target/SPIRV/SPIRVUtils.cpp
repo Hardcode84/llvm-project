@@ -26,8 +26,9 @@
 #include "llvm/IR/IntrinsicsSPIRV.h"
 #include <queue>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace SPIRV {
 // This code restores function args/retvalue types for composite cases
 // because the final types should still be aggregate whereas they're i32
@@ -1261,4 +1262,4 @@ Function *getOrCreateBackendServiceFunction(Module &M) {
   return SF;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

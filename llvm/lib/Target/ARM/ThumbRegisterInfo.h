@@ -17,8 +17,9 @@
 
 #include "ARMBaseRegisterInfo.h"
 #include "llvm/CodeGen/TargetRegisterInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class ARMSubtarget;
   class ARMBaseInstrInfo;
 
@@ -58,6 +59,6 @@ public:
                            RegScavenger *RS = nullptr) const override;
   bool useFPForScavengingIndex(const MachineFunction &MF) const override;
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

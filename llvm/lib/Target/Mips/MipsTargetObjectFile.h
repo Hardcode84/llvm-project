@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_MIPS_MIPSTARGETOBJECTFILE_H
 
 #include "llvm/CodeGen/TargetLoweringObjectFileImpl.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MipsTargetMachine;
   class MipsTargetObjectFile : public TargetLoweringObjectFileELF {
     MCSection *SmallDataSection;
@@ -44,6 +45,6 @@ class MipsTargetMachine;
     /// Describe a TLS variable address within debug info.
     const MCExpr *getDebugThreadLocalSymbol(const MCSymbol *Sym) const override;
   };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -12,11 +12,12 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/MCA/HWEventListener.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 // Anchor the vtable here.
 void HWEventListener::anchor() {}
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

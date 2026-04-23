@@ -19,8 +19,9 @@
 #include "llvm/Support/CodeGen.h"
 #include <memory>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 class XCoreTargetMachine : public CodeGenTargetMachineImpl {
@@ -54,6 +55,6 @@ public:
                             const TargetSubtargetInfo *STI) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_XCORE_XCORETARGETMACHINE_H

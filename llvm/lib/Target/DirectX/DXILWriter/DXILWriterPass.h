@@ -17,8 +17,9 @@
 #include "DirectX.h"
 #include "llvm/Bitcode/BitcodeWriter.h"
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 class raw_ostream;
 
@@ -32,6 +33,6 @@ ModulePass *createDXILWriterPass(raw_ostream &Str);
 /// for use with the legacy pass manager because it is run in CodeGen only.
 ModulePass *createDXILEmbedderPass();
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

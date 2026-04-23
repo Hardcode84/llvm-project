@@ -7,10 +7,12 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/ExecutionEngine/Orc/InProcessMemoryAccess.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 MemoryAccess::~MemoryAccess() = default;
 
@@ -131,4 +133,5 @@ void InProcessMemoryAccess::readStringsAsync(
   OnComplete(std::move(Result));
 }
 
-} // end namespace llvm::orc
+}
+LLVM_NAMESPACE_END // end namespace llvm::orc

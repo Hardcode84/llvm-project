@@ -28,7 +28,7 @@
 #include "llvm/Support/MemoryBuffer.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace object {
 
@@ -222,5 +222,5 @@ LLVM_ABI Error extractOffloadBundleByURI(StringRef URIstr);
 
 } // namespace object
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

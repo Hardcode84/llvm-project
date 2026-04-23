@@ -14,8 +14,9 @@
 #define LLVM_EXECUTIONENGINE_ORC_SHARED_PERFSHAREDSTRUCTS_H
 
 #include "llvm/ExecutionEngine/Orc/Shared/SimplePackedSerialization.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace orc {
 
@@ -228,6 +229,6 @@ public:
 
 } // namespace orc
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

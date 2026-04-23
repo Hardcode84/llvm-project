@@ -96,6 +96,7 @@ PPCInstructionSelector::PPCInstructionSelector(const PPCTargetMachine &TM,
 #undef GET_GLOBALISEL_PREDICATES_INIT
 #define GET_GLOBALISEL_TEMPORARIES_INIT
 #include "PPCGenGlobalISel.inc"
+#include "llvm/Support/Compiler.h"
 #undef GET_GLOBALISEL_TEMPORARIES_INIT
 {
 }
@@ -781,11 +782,11 @@ bool PPCInstructionSelector::select(MachineInstr &I) {
   return false;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 InstructionSelector *
 createPPCInstructionSelector(const PPCTargetMachine &TM,
                              const PPCSubtarget &Subtarget,
                              const PPCRegisterBankInfo &RBI) {
   return new PPCInstructionSelector(TM, Subtarget, RBI);
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

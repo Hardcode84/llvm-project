@@ -19,8 +19,9 @@
 
 #define GET_REGINFO_HEADER
 #include "NVPTXGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class NVPTXRegisterInfo : public NVPTXGenRegisterInfo {
 private:
   // Hold Strings that can be free'd all together with NVPTXRegisterInfo
@@ -78,6 +79,6 @@ public:
 StringRef getNVPTXRegClassName(const TargetRegisterClass *RC);
 StringRef getNVPTXRegClassStr(const TargetRegisterClass *RC);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

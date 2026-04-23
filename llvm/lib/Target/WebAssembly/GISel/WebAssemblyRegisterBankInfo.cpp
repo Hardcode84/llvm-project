@@ -21,8 +21,9 @@
 #define GET_TARGET_REGBANK_IMPL
 
 #include "WebAssemblyGenRegisterBank.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace WebAssembly {
 enum PartialMappingIdx {
   PMI_None = -1,
@@ -55,7 +56,7 @@ const RegisterBankInfo::ValueMapping ValueMappings[] = {
     {&PartMappings[PMI_I64 - PMI_Min], 1},
 };
 } // namespace WebAssembly
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using namespace llvm;
 

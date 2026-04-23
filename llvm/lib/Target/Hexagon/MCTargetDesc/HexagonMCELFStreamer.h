@@ -14,8 +14,9 @@
 #include "llvm/MC/MCInstrInfo.h"
 #include <cstdint>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class HexagonMCELFStreamer : public MCELFStreamer {
   std::unique_ptr<MCInstrInfo> MCII;
@@ -43,6 +44,6 @@ MCStreamer *createHexagonELFStreamer(Triple const &TT, MCContext &Context,
                                      std::unique_ptr<MCObjectWriter> OW,
                                      std::unique_ptr<MCCodeEmitter> CE);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_HEXAGON_MCTARGETDESC_HEXAGONMCELFSTREAMER_H

@@ -11,8 +11,9 @@
 
 #include "llvm/IR/PassManager.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AMDGPURemoveIncompatibleFunctionsPass
     : public PassInfoMixin<AMDGPURemoveIncompatibleFunctionsPass> {
   const TargetMachine *TM;
@@ -21,6 +22,6 @@ public:
   AMDGPURemoveIncompatibleFunctionsPass(const TargetMachine &TM) : TM(&TM) {}
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &MAM);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_REMOVEINCOMPATIBLEFUNCTIONS_H

@@ -13,12 +13,13 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Format.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<cl::boolOrDefault> UseLEB128Directives;
-}
+LLVM_NAMESPACE_END
 
 MCAsmInfoXCOFF::MCAsmInfoXCOFF() {
   IsAIX = true;

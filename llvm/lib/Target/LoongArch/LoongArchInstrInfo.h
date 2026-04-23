@@ -18,8 +18,9 @@
 
 #define GET_INSTRINFO_HEADER
 #include "LoongArchGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LoongArchSubtarget;
 
@@ -127,5 +128,5 @@ static constexpr unsigned FClassMaskPositiveSubnormal = 0x100;
 static constexpr unsigned FClassMaskPositiveZero = 0x200;
 } // namespace LoongArch
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif // LLVM_LIB_TARGET_LOONGARCH_LOONGARCHINSTRINFO_H

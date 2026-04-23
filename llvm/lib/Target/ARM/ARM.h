@@ -18,8 +18,9 @@
 #include "llvm/IR/LegacyPassManager.h"
 #include "llvm/Support/CodeGen.h"
 #include <functional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ARMAsmPrinter;
 class ARMBaseTargetMachine;
@@ -95,6 +96,6 @@ public:
                         MachineFunctionAnalysisManager &MFAM);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARM_ARM_H

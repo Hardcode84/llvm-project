@@ -16,6 +16,7 @@
 #include "llvm/MC/MCRegisterInfo.h"
 #include "llvm/Support/CommandLine.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
 #define Hexagon_POINTER_SIZE 4
 
@@ -44,7 +45,7 @@
 // Name of the global offset table as defined by the Hexagon ABI
 #define HEXAGON_GOT_SYM_NAME "_GLOBAL_OFFSET_TABLE_"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct InstrStage;
 class FeatureBitset;
@@ -101,7 +102,7 @@ createHexagonELFObjectWriter(uint8_t OSABI, StringRef CPU);
 unsigned HexagonGetLastSlot();
 unsigned HexagonConvertUnits(unsigned ItinUnits, unsigned *Lanes);
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 // Define symbolic names for Hexagon registers.  This defines a mapping from
 // register name to register number.

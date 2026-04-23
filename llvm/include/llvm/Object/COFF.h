@@ -30,7 +30,7 @@
 #include <cstdint>
 #include <system_error>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> class ArrayRef;
 
@@ -1480,6 +1480,6 @@ public:
 
 } // end namespace object
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECT_COFF_H

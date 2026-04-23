@@ -12,6 +12,7 @@
 
 #ifdef __APPLE__
 #include <dlfcn.h>
+#include "llvm/Support/Compiler.h"
 #endif // __APPLE__
 
 #define DEBUG_TYPE "orc"
@@ -50,7 +51,8 @@ llvm_orc_rt_alt_UnwindInfoManager_deregister(const char *ArgData,
       .release();
 }
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 [[maybe_unused]] static const char *AddFnName =
     "__unw_add_find_dynamic_unwind_sections";
@@ -167,4 +169,5 @@ Error UnwindInfoManager::deregisterSectionsImpl(
   return Error::success();
 }
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc

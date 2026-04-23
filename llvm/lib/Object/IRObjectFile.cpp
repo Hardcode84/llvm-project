@@ -16,13 +16,14 @@
 #include "llvm/Bitcode/BitcodeReader.h"
 #include "llvm/IR/Module.h"
 #include "llvm/Object/ObjectFile.h"
+#include "llvm/Support/Compiler.h"
 using namespace llvm;
 using namespace object;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LLVMContext;
 class raw_ostream;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 IRObjectFile::IRObjectFile(MemoryBufferRef Object,
                            std::vector<std::unique_ptr<Module>> Mods)

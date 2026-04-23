@@ -282,6 +282,7 @@ void MachOWriter::writeLoadCommands(raw_ostream &OS) {
           writeLoadCommandData<MachO::load_command>(LC, OS, Obj.IsLittleEndian);
       break;
 #include "llvm/BinaryFormat/MachO.def"
+#include "llvm/Support/Compiler.h"
     }
 
     if (LC.PayloadBytes.size() > 0) {
@@ -769,7 +770,7 @@ void UniversalWriter::ZeroToOffset(raw_ostream &OS, size_t Offset) {
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 bool yaml2macho(YamlObjectFile &Doc, raw_ostream &Out, ErrorHandler EH) {
@@ -783,4 +784,4 @@ bool yaml2macho(YamlObjectFile &Doc, raw_ostream &Out, ErrorHandler EH) {
 }
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

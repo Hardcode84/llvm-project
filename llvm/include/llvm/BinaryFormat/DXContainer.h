@@ -23,7 +23,7 @@
 
 #include <stdint.h>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T> struct EnumEntry;
 
 // The DXContainer file format is arranged as a header and "parts". Semantically
@@ -804,6 +804,6 @@ enum class RootSignatureVersion {
 };
 
 } // namespace dxbc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_BINARYFORMAT_DXCONTAINER_H

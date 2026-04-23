@@ -32,6 +32,7 @@
 #include "llvm/IR/GlobalVariable.h"
 #include "llvm/IR/Operator.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
 //===----------------------------------------------------------------------===//
 //
@@ -2462,7 +2463,7 @@ Register PPCFastISel::fastEmitInst_rr(unsigned MachineInstOpcode,
   return FastISel::fastEmitInst_rr(MachineInstOpcode, UseRC, Op0, Op1);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   // Create the fast instruction selector for PowerPC64 ELF.
 FastISel *PPC::createFastISel(FunctionLoweringInfo &FuncInfo,
                               const TargetLibraryInfo *LibInfo,
@@ -2473,4 +2474,4 @@ FastISel *PPC::createFastISel(FunctionLoweringInfo &FuncInfo,
     return new PPCFastISel(FuncInfo, LibInfo, LibcallLowering);
   return nullptr;
 }
-}
+LLVM_NAMESPACE_END

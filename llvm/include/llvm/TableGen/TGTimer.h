@@ -17,8 +17,9 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/Timer.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Timer related functionality f or TableGen backends.
 class TGTimer {
@@ -54,6 +55,6 @@ public:
   void stopPhaseTiming() { TimingGroup.reset(); }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TABLEGEN_TGTIMER_H

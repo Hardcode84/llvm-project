@@ -34,7 +34,7 @@
 #include <string>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Module;
 class Function;
@@ -634,6 +634,6 @@ extern template class FuncDataT<EmptyData>;
 extern template class IRDataT<EmptyData>;
 extern template class IRComparer<EmptyData>;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

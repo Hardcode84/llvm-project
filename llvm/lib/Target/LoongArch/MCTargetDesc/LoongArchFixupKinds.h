@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_LOONGARCH_MCTARGETDESC_LOONGARCHFIXUPKINDS_H
 
 #include "llvm/MC/MCFixup.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace LoongArch {
 //
 // This table *must* be in the same order of
@@ -41,6 +42,6 @@ enum Fixups {
   NumTargetFixupKinds = fixup_loongarch_invalid - FirstTargetFixupKind,
 };
 } // end namespace LoongArch
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -16,10 +16,11 @@
 #include "llvm/MC/MCSymbol.h"
 #include "llvm/MC/MCValue.h"
 #include "llvm/Support/Win64EH.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCSection;
-}
+LLVM_NAMESPACE_END
 
 using namespace llvm;
 

@@ -16,8 +16,10 @@
 #define LLVM_CAS_FILEOFFSET_H
 
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::cas {
+LLVM_NAMESPACE_BEGIN
+namespace cas {
 
 /// FileOffset is a wrapper around `uint64_t` to represent the offset of data
 /// from the beginning of the file.
@@ -34,6 +36,7 @@ private:
   uint64_t Offset = 0;
 };
 
-} // namespace llvm::cas
+}
+LLVM_NAMESPACE_END // namespace llvm::cas
 
 #endif // LLVM_CAS_FILEOFFSET_H

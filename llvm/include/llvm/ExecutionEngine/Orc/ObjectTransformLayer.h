@@ -19,7 +19,7 @@
 #include <algorithm>
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 class LLVM_ABI ObjectTransformLayer
@@ -47,6 +47,6 @@ private:
 };
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_OBJECTTRANSFORMLAYER_H

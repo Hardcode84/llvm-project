@@ -17,8 +17,9 @@
 #include "MCTargetDesc/XtensaMCTargetDesc.h"
 #include "llvm/PassRegistry.h"
 #include "llvm/Support/CodeGen.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class FunctionPass;
 class PassRegistry;
 class XtensaTargetMachine;
@@ -26,5 +27,5 @@ class XtensaTargetMachine;
 FunctionPass *createXtensaISelDag(XtensaTargetMachine &TM,
                                   CodeGenOptLevel OptLevel);
 void initializeXtensaAsmPrinterPass(PassRegistry &);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_LIB_TARGET_XTENSA_XTENSA_H

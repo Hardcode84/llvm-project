@@ -7,8 +7,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/ExecutionEngine/Orc/Shared/OrcRTBridge.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 namespace rt {
 
@@ -91,4 +92,4 @@ const char *UnwindInfoManagerDeregisterActionName =
     "orc_rt_alt_UnwindInfoManager_deregister";
 } // end namespace rt_alt
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

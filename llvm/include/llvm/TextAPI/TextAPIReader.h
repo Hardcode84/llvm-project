@@ -12,7 +12,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MemoryBufferRef;
 
@@ -43,6 +43,6 @@ public:
 };
 
 } // end namespace MachO.
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.
 
 #endif // LLVM_TEXTAPI_TEXTAPIREADER_H

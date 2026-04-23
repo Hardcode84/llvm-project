@@ -6,7 +6,7 @@
 #include "llvm/Support/ErrorHandling.h"
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DWPError : public ErrorInfo<DWPError> {
 public:
   DWPError(std::string Info) : Info(std::move(Info)) {}
@@ -19,6 +19,6 @@ public:
 private:
   std::string Info;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DWP_DWPERROR_H

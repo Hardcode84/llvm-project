@@ -14,7 +14,7 @@
 #include "llvm/Support/SMLoc.h"
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCSection;
 class MCStreamer;
 class MCSymbol;
@@ -114,6 +114,6 @@ public:
                               bool HandlerData) const = 0;
 };
 } // namespace WinEH
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

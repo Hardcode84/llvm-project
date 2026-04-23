@@ -18,8 +18,9 @@
 
 #define GET_REGINFO_HEADER
 #include "XtensaGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class TargetRegisterClass;
 class XtensaInstrInfo;
 class XtensaSubtarget;
@@ -55,6 +56,6 @@ public:
   Register getFrameRegister(const MachineFunction &MF) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_XTENSA_REGISTERINFO_H

@@ -15,8 +15,9 @@
 
 #include "RuntimeDyldImpl.h"
 #include "llvm/Support/MathExtras.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Common base class for COFF dynamic linker support.
 // Concrete subclasses for each target can be found in ./Targets.
@@ -57,6 +58,6 @@ private:
   uint32_t PointerReloc;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_RUNTIME_DYLD_COFF_H

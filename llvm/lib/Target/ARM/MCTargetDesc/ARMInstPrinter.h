@@ -15,8 +15,9 @@
 
 #include "MCTargetDesc/ARMMCTargetDesc.h"
 #include "llvm/MC/MCInstPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ARMInstPrinter : public MCInstPrinter {
 public:
@@ -279,6 +280,6 @@ private:
   unsigned DefaultAltIdx = ARM::NoRegAltName;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARM_MCTARGETDESC_ARMINSTPRINTER_H

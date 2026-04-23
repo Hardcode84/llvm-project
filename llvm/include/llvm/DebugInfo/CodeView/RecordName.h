@@ -14,13 +14,13 @@
 #include "llvm/Support/Compiler.h"
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 class TypeCollection;
 class TypeIndex;
 LLVM_ABI std::string computeTypeName(TypeCollection &Types, TypeIndex Index);
 LLVM_ABI StringRef getSymbolName(CVSymbol Sym);
 } // namespace codeview
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -22,7 +22,7 @@
 #include "llvm/Support/ExtensibleRTTI.h"
 #include "llvm/Support/MemoryBuffer.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 /// IRMaterializationUnit is a convenient base class for MaterializationUnits
@@ -196,6 +196,6 @@ private:
 };
 
 } // End namespace orc
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_LAYER_H

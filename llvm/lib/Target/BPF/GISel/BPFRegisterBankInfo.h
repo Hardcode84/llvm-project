@@ -20,8 +20,9 @@
 
 #define GET_REGBANK_DECLARATIONS
 #include "BPFGenRegisterBank.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class TargetRegisterInfo;
 
 class BPFGenRegisterBankInfo : public RegisterBankInfo {
@@ -34,6 +35,6 @@ class BPFRegisterBankInfo final : public BPFGenRegisterBankInfo {
 public:
   BPFRegisterBankInfo(const TargetRegisterInfo &TRI);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

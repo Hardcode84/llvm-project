@@ -14,8 +14,9 @@
 #include "llvm/DebugInfo/CodeView/TypeVisitorCallbacks.h"
 #include "llvm/Support/Error.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 
 class TypeVisitorCallbackPipeline : public TypeVisitorCallbacks {
@@ -116,6 +117,6 @@ private:
 };
 
 } // end namespace codeview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_CODEVIEW_TYPEVISITORCALLBACKPIPELINE_H

@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_ARM_MCTARGETDESC_ARMFIXUPKINDS_H
 
 #include "llvm/MC/MCFixup.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace ARM {
 enum Fixups {
   // 12-bit PC relative relocation for symbol addresses
@@ -125,6 +126,6 @@ enum Fixups {
   NumTargetFixupKinds = LastTargetFixupKind - FirstTargetFixupKind
 };
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

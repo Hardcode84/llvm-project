@@ -12,8 +12,9 @@
 #include "XCOFFWriter.h"
 #include "llvm/ObjCopy/CommonConfig.h"
 #include "llvm/ObjCopy/XCOFF/XCOFFConfig.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 namespace xcoff {
 
@@ -41,4 +42,4 @@ Error executeObjcopyOnBinary(const CommonConfig &Config, const XCOFFConfig &,
 
 } // end namespace xcoff
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

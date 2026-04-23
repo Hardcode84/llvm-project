@@ -23,7 +23,7 @@
 #include "llvm/Support/MemoryBuffer.h"
 #include "llvm/TargetParser/Triple.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 enum class LinkableFileKind { Archive, RelocatableObject };
@@ -60,6 +60,6 @@ loadLinkableFile(StringRef Path, const Triple &TT, LoadArchives LA,
                  std::optional<StringRef> IdentifierOverride = std::nullopt);
 
 } // End namespace orc
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_LOADLINKABLEFILE_H

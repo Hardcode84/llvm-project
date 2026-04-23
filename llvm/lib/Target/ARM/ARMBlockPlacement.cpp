@@ -20,13 +20,14 @@
 #include "llvm/CodeGen/MachineFunctionPass.h"
 #include "llvm/CodeGen/MachineInstrBuilder.h"
 #include "llvm/CodeGen/MachineLoopInfo.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
 #define DEBUG_TYPE "arm-block-placement"
 #define DEBUG_PREFIX "ARM Block Placement: "
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class ARMBlockPlacement : public MachineFunctionPass {
 private:
   const ARMBaseInstrInfo *TII;
@@ -52,7 +53,7 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 FunctionPass *llvm::createARMBlockPlacementPass() {
   return new ARMBlockPlacement();

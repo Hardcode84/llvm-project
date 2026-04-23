@@ -16,8 +16,9 @@
 #include "SystemZInstPrinterCommon.h"
 #include "llvm/MC/MCInstPrinter.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCOperand;
 
@@ -42,6 +43,6 @@ private:
                              raw_ostream &O) override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_SYSTEMZ_MCTARGETDESC_SYSTEMZGNUINSTPRINTER_H

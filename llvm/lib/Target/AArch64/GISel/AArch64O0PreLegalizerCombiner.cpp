@@ -86,6 +86,7 @@ AArch64O0PreLegalizerCombinerImpl::AArch64O0PreLegalizerCombinerImpl(
       STI(STI), Libcalls(Libcalls),
 #define GET_GICOMBINER_CONSTRUCTOR_INITS
 #include "AArch64GenO0PreLegalizeGICombiner.inc"
+#include "llvm/Support/Compiler.h"
 #undef GET_GICOMBINER_CONSTRUCTOR_INITS
 {
 }
@@ -245,8 +246,8 @@ AArch64O0PreLegalizerCombinerPass::run(MachineFunction &MF,
   return PA;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 FunctionPass *createAArch64O0PreLegalizerCombiner() {
   return new AArch64O0PreLegalizerCombinerLegacy();
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

@@ -18,8 +18,9 @@
 #include "llvm/CodeGen/CallingConvLower.h"
 #include "llvm/CodeGen/GlobalISel/CallLowering.h"
 #include "llvm/CodeGen/ValueTypes.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class M68kTargetLowering;
 class MachineInstrBuilder;
@@ -64,6 +65,6 @@ private:
                            MachinePointerInfo &MPO,
                            ISD::ArgFlagsTy Flags) override;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_M68K_GLSEL_M68KCALLLOWERING_H

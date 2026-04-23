@@ -13,7 +13,9 @@
 #ifndef LLVM_MC_MCLABEL_H
 #define LLVM_MC_MCLABEL_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -51,6 +53,6 @@ inline raw_ostream &operator<<(raw_ostream &OS, const MCLabel &Label) {
   return OS;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCLABEL_H

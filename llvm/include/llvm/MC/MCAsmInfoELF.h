@@ -10,8 +10,9 @@
 #define LLVM_MC_MCASMINFOELF_H
 
 #include "llvm/MC/MCAsmInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCAsmInfoELF : public MCAsmInfo {
   virtual void anchor();
@@ -24,6 +25,6 @@ protected:
   MCAsmInfoELF();
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCASMINFOELF_H

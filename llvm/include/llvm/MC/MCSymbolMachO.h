@@ -11,8 +11,9 @@
 #include "llvm/ADT/Twine.h"
 #include "llvm/MC/MCSymbol.h"
 #include "llvm/MC/MCSymbolTableEntry.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCSymbolMachO : public MCSymbol {
   /// We store the value for the 'desc' symbol field in the
   /// lowest 16 bits of the implementation defined flags.
@@ -152,6 +153,6 @@ public:
     return Flags;
   }
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

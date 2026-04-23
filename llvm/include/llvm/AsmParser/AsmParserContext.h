@@ -14,8 +14,9 @@
 #include "llvm/AsmParser/FileLoc.h"
 #include "llvm/IR/Value.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BasicBlock;
 
 /// Registry of file location information for LLVM IR constructs.
@@ -102,6 +103,6 @@ public:
   LLVM_ABI bool addInstructionOrArgumentLocation(Value *, const FileLocRange &);
   LLVM_ABI bool addValueReferenceAtLocation(Value *, const FileLocRange &);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

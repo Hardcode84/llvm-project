@@ -31,7 +31,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DWARFAbbreviationDeclarationSet;
 class DWARFContext;
@@ -603,6 +603,6 @@ inline bool isCompileUnit(const std::unique_ptr<DWARFUnit> &U) {
   return !U->isTypeUnit();
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFUNIT_H

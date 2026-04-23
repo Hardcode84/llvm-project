@@ -22,7 +22,7 @@
 #include <cstdint>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BinaryStreamReader;
 class BinaryStreamWriter;
@@ -101,6 +101,6 @@ private:
 
 } // end namespace codeview
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_CODEVIEW_DEBUGCHECKSUMSSUBSECTION_H

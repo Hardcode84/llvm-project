@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include <deque>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 /// An implementation of \a SourceMgr that allows users to add new instructions
@@ -92,6 +92,6 @@ public:
 };
 
 } // end namespace mca
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MCA_INCREMENTALSOURCEMGR_H

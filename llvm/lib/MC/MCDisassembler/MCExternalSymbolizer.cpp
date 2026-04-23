@@ -13,12 +13,13 @@
 #include "llvm/MC/TargetRegistry.h"
 #include "llvm/Support/raw_ostream.h"
 #include <cstring>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Triple;
-}
+LLVM_NAMESPACE_END
 
 // This function tries to add a symbolic operand in place of the immediate
 // Value in the MCInst. The immediate Value has had any PC adjustment made by

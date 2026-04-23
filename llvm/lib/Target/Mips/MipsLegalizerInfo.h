@@ -15,8 +15,9 @@
 
 #include "llvm/CodeGen/GlobalISel/GISelChangeObserver.h"
 #include "llvm/CodeGen/GlobalISel/LegalizerInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MipsSubtarget;
 
@@ -31,5 +32,5 @@ public:
   bool legalizeIntrinsic(LegalizerHelper &Helper,
                          MachineInstr &MI) const override;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif

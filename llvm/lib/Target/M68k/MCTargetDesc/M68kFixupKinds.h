@@ -15,8 +15,9 @@
 #define LLVM_LIB_TARGET_M68k_MCTARGETDESC_M68kFIXUPKINDS_H
 
 #include "llvm/MC/MCFixup.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 static inline unsigned getFixupKindLog2Size(unsigned Kind) {
   switch (Kind) {
   case FK_Data_1:
@@ -28,6 +29,6 @@ static inline unsigned getFixupKindLog2Size(unsigned Kind) {
   }
   llvm_unreachable("invalid fixup kind!");
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_M68k_MCTARGETDESC_M68kFIXUPKINDS_H

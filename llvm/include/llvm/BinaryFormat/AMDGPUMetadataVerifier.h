@@ -24,7 +24,7 @@
 #include <cstddef>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace msgpack {
   class DocNode;
@@ -76,6 +76,6 @@ public:
 } // end namespace V3
 } // end namespace HSAMD
 } // end namespace AMDGPU
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_BINARYFORMAT_AMDGPUMETADATAVERIFIER_H

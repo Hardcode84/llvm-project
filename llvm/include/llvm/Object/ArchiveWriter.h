@@ -16,7 +16,7 @@
 #include "llvm/Object/Archive.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct NewArchiveMember {
   std::unique_ptr<MemoryBuffer> Buf;
@@ -74,6 +74,6 @@ writeArchiveToBuffer(ArrayRef<NewArchiveMember> NewMembers,
                      SymtabWritingMode WriteSymtab, object::Archive::Kind Kind,
                      bool Deterministic, bool Thin,
                      function_ref<void(Error)> Warn = warnToStderr);
-}
+LLVM_NAMESPACE_END
 
 #endif

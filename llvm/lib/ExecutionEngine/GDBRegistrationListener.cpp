@@ -237,13 +237,13 @@ void GDBJITRegistrationListener::deregisterObjectInternal(
 
 } // end namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 JITEventListener* JITEventListener::createGDBRegistrationListener() {
   return &GDBJITRegistrationListener::instance();
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 LLVMJITEventListenerRef LLVMCreateGDBRegistrationListener(void)
 {

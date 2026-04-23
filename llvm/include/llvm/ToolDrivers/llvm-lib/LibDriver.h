@@ -16,10 +16,10 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T> class ArrayRef;
 
 LLVM_ABI int libDriverMain(ArrayRef<const char *> ARgs);
-}
+LLVM_NAMESPACE_END
 
 #endif

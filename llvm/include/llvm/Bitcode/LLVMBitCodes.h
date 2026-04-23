@@ -21,8 +21,9 @@
 // This allows external tools to dump the AST of this file and analyze it for
 // changes without needing to fully or partially build LLVM itself.
 #include "llvm/Bitstream/BitCodeEnums.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bitc {
 // The only top-level block types are MODULE, IDENTIFICATION, STRTAB and SYMTAB.
 enum BlockIDs {
@@ -835,6 +836,6 @@ enum SymtabCodes {
 };
 
 } // End bitc namespace
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

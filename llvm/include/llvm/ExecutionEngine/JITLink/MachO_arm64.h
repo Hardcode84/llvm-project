@@ -16,7 +16,7 @@
 #include "llvm/ExecutionEngine/JITLink/JITLink.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 /// Create a LinkGraph from a MachO/arm64 relocatable object.
@@ -49,6 +49,6 @@ LLVM_ABI LinkGraphPassFunction createEHFrameSplitterPass_MachO_arm64();
 LLVM_ABI LinkGraphPassFunction createEHFrameEdgeFixerPass_MachO_arm64();
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_JITLINK_MACHO_ARM64_H

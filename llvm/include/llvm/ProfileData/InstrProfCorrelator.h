@@ -25,7 +25,7 @@
 #include <optional>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DWARFDie;
 namespace object {
 class ObjectFile;
@@ -255,6 +255,6 @@ private:
   Error correlateProfileNameImpl() override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_PROFILEDATA_INSTRPROFCORRELATOR_H

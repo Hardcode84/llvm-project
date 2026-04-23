@@ -13,12 +13,13 @@
 #include "AVRTargetStreamer.h"
 
 #include "llvm/MC/MCContext.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 AVRTargetStreamer::AVRTargetStreamer(MCStreamer &S) : MCTargetStreamer(S) {}
 
 AVRTargetAsmStreamer::AVRTargetAsmStreamer(MCStreamer &S)
     : AVRTargetStreamer(S) {}
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

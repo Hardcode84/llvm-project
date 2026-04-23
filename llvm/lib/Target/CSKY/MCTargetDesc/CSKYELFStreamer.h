@@ -13,8 +13,9 @@
 #include "llvm/MC/MCCodeEmitter.h"
 #include "llvm/MC/MCELFStreamer.h"
 #include "llvm/MC/MCObjectWriter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CSKYTargetELFStreamer : public CSKYTargetStreamer {
 private:
@@ -141,5 +142,5 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

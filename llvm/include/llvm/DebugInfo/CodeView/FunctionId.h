@@ -10,8 +10,9 @@
 #define LLVM_DEBUGINFO_CODEVIEW_FUNCTIONID_H
 
 #include <cinttypes>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 
 class FunctionId {
@@ -50,6 +51,6 @@ inline bool operator>=(const FunctionId &A, const FunctionId &B) {
   return A.getIndex() >= B.getIndex();
 }
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

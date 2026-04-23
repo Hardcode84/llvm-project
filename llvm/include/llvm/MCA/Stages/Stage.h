@@ -20,7 +20,7 @@
 #include "llvm/Support/Error.h"
 #include <set>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 class InstRef;
@@ -97,5 +97,5 @@ struct InstStreamPause : public ErrorInfo<InstStreamPause> {
   void log(raw_ostream &OS) const override { OS << "Stream is paused"; }
 };
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_MCA_STAGES_STAGE_H

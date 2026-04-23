@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_NVPTX_MCTARGETDESC_NVPTXMCASMINFO_H
 
 #include "llvm/MC/MCAsmInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Triple;
 
 class NVPTXMCAsmInfo : public MCAsmInfo {
@@ -34,6 +35,6 @@ public:
     return true;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -7,8 +7,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "WasmObject.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 namespace wasm {
 
@@ -42,4 +43,4 @@ void Object::removeSections(function_ref<bool(const Section &)> ToRemove) {
 
 } // end namespace wasm
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

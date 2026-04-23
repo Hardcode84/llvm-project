@@ -19,7 +19,7 @@
 #include "llvm/MC/MCRegister.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCRegisterInfo;
 
 class MCInst;
@@ -624,6 +624,6 @@ public:
                                 const MCRegisterInfo &RI) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

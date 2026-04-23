@@ -21,7 +21,7 @@
 #include <limits>
 #include <variant>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace hlsl {
 namespace rootsig {
 
@@ -173,6 +173,6 @@ LLVM_ABI void dumpRootElements(raw_ostream &OS, ArrayRef<RootElement> Elements);
 
 } // namespace rootsig
 } // namespace hlsl
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_FRONTEND_HLSL_HLSLROOTSIGNATURE_H

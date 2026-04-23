@@ -19,8 +19,9 @@
 #include "llvm/CodeGen/MachineInstrBuilder.h"
 #include "llvm/CodeGen/MachineOperand.h"
 #include "llvm/CodeGen/TargetInstrInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static inline unsigned VCTPOpcodeToLSTP(unsigned Opcode, bool IsDoLoop) {
   switch (Opcode) {
@@ -187,6 +188,6 @@ inline void RevertLoopEnd(MachineInstr *MI, const TargetInstrInfo *TII,
   MI->eraseFromParent();
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARM_MVETAILPREDUTILS_H

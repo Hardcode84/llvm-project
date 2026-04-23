@@ -16,6 +16,7 @@
 #include "RISCVInstrInfo.h"
 #include "llvm/CodeGen/MachineFunctionPass.h"
 #include "llvm/CodeGen/MachineInstrBuilder.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -192,10 +193,10 @@ bool RISCVPostRAExpandPseudo::expandMERGE(MachineBasicBlock &MBB,
 
 INITIALIZE_PASS(RISCVPostRAExpandPseudo, "riscv-post-ra-expand-pseudo",
                 RISCV_POST_RA_EXPAND_PSEUDO_NAME, false, false)
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 FunctionPass *createRISCVPostRAExpandPseudoPass() {
   return new RISCVPostRAExpandPseudo();
 }
 
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm

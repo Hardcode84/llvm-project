@@ -15,8 +15,9 @@
 #include "llvm/MCA/Pipeline.h"
 #include "llvm/MCA/HWEventListener.h"
 #include "llvm/Support/Debug.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 #define DEBUG_TYPE "llvm-mca"
@@ -105,4 +106,4 @@ void Pipeline::notifyCycleEnd() {
     Listener->onCycleEnd();
 }
 } // namespace mca.
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

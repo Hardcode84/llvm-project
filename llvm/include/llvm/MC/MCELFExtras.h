@@ -17,8 +17,10 @@
 
 #include <cstdint>
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::ELF {
+LLVM_NAMESPACE_BEGIN
+namespace ELF {
 // Encode relocations as CREL to OS. ToCrel is responsible for converting a
 // const RelocsTy & to an Elf_Crel.
 template <bool Is64, class RelocsTy, class F>
@@ -58,6 +60,7 @@ void encodeCrel(raw_ostream &OS, RelocsTy Relocs, F ToCrel) {
     }
   }
 }
-} // namespace llvm::ELF
+}
+LLVM_NAMESPACE_END // namespace llvm::ELF
 
 #endif

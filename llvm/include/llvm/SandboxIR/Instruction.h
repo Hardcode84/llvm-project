@@ -18,7 +18,8 @@
 #include "llvm/SandboxIR/User.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 // Forward declaration for MSVC.
 class IntrinsicInst;
@@ -2738,6 +2739,7 @@ public:
   }
 };
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir
 
 #endif // LLVM_SANDBOXIR_INSTRUCTION_H

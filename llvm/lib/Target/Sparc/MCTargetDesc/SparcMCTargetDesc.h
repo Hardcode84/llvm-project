@@ -17,8 +17,9 @@
 #include "llvm/Support/DataTypes.h"
 
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCAsmBackend;
 class MCCodeEmitter;
 class MCContext;
@@ -60,7 +61,7 @@ struct PrefetchTag {
 #define GET_PrefetchTagsList_DECL
 #include "SparcGenSearchableTables.inc"
 } // end namespace SparcPrefetchTag
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 // Defines symbolic names for Sparc registers.  This defines a mapping from
 // register name to register number.

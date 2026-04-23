@@ -41,7 +41,7 @@
 #include <string>
 #include <system_error>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 class LinkGraph;
@@ -2083,6 +2083,6 @@ LLVM_ABI void link(std::unique_ptr<LinkGraph> G,
                    std::unique_ptr<JITLinkContext> Ctx);
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_JITLINK_JITLINK_H

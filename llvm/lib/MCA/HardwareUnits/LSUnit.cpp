@@ -15,10 +15,11 @@
 #include "llvm/MCA/Instruction.h"
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "llvm-mca"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 LSUnitBase::LSUnitBase(const MCSchedModel &SM, unsigned LQ, unsigned SQ,
@@ -244,4 +245,4 @@ void LSUnit::onInstructionExecuted(const InstRef &IR) {
 }
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

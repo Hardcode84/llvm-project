@@ -536,6 +536,7 @@ SPIRVInstructionSelector::SPIRVInstructionSelector(const SPIRVTargetMachine &TM,
 #undef GET_GLOBALISEL_PREDICATES_INIT
 #define GET_GLOBALISEL_TEMPORARIES_INIT
 #include "SPIRVGenGlobalISel.inc"
+#include "llvm/Support/Compiler.h"
 #undef GET_GLOBALISEL_TEMPORARIES_INIT
 {
 }
@@ -6676,11 +6677,11 @@ void SPIRVInstructionSelector::errorIfInstrOutsideShader(
   }
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 InstructionSelector *
 createSPIRVInstructionSelector(const SPIRVTargetMachine &TM,
                                const SPIRVSubtarget &Subtarget,
                                const RegisterBankInfo &RBI) {
   return new SPIRVInstructionSelector(TM, Subtarget, RBI);
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

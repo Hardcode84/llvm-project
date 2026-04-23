@@ -13,8 +13,9 @@
 
 #include "llvm/MCA/CustomBehaviour.h"
 #include "llvm/MCA/Instruction.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 CustomBehaviour::~CustomBehaviour() = default;
@@ -96,4 +97,4 @@ unsigned InstrumentManager::getSchedClassID(
 }
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

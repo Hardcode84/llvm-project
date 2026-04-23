@@ -23,7 +23,8 @@
 #include <unordered_map>
 #include <vector>
 
-namespace llvm::xray {
+LLVM_NAMESPACE_BEGIN
+namespace xray {
 
 // Forward declare to make a friend.
 class InstrumentationMap;
@@ -100,9 +101,10 @@ public:
   const SledContainer &sleds() const { return Sleds; };
 };
 
-} // end namespace llvm::xray
+}
+LLVM_NAMESPACE_END // end namespace llvm::xray
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <>
 struct yaml::ScalarEnumerationTraits<xray::SledEntry::FunctionKinds> {
   static void enumeration(IO &IO, xray::SledEntry::FunctionKinds &Kind) {
@@ -129,7 +131,7 @@ template <> struct yaml::MappingTraits<xray::YAMLXRaySledEntry> {
 
   static constexpr bool flow = true;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(xray::YAMLXRaySledEntry)
 

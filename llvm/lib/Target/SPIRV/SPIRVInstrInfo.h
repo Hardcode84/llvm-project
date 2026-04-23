@@ -18,8 +18,9 @@
 
 #define GET_INSTRINFO_HEADER
 #include "SPIRVGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SPIRVSubtarget;
 
 class SPIRVInstrInfo : public SPIRVGenInstrInfo {
@@ -68,6 +69,6 @@ enum AsmComments : MachineInstr::AsmPrinterFlagTy {
 };
 } // namespace SPIRV
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVINSTRINFO_H

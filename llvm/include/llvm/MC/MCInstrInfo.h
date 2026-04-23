@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cassert>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCSubtargetInfo;
 
@@ -105,6 +105,6 @@ public:
                                   std::string &Info) const;
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

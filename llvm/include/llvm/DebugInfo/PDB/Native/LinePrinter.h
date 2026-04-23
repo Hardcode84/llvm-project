@@ -38,7 +38,7 @@ struct FilterOptions {
   bool JustMyCode;
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace msf {
 class MSFStreamLayout;
 } // namespace msf
@@ -182,6 +182,6 @@ private:
   bool UseColor;
 };
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

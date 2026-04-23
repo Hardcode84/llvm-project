@@ -16,12 +16,13 @@
 #include "llvm/ExecutionEngine/JITLink/COFF_x86_64.h"
 #include "llvm/Object/COFF.h"
 #include <cstring>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
 #define DEBUG_TYPE "jitlink"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 static StringRef getMachineName(uint16_t Machine) {
@@ -132,4 +133,4 @@ void link_COFF(std::unique_ptr<LinkGraph> G,
 }
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

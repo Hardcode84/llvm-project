@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MemoryBuffer;
 namespace pdb {
 class PDBFile;
@@ -142,6 +142,6 @@ private:
   IMap AddrToModuleIndex;
 };
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

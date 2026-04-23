@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_LOONGARCH_LOONGARCHFRAMELOWERING_H
 
 #include "llvm/CodeGen/TargetFrameLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LoongArchSubtarget;
 
 class LoongArchFrameLowering : public TargetFrameLowering {
@@ -64,5 +65,5 @@ private:
                  const DebugLoc &DL, Register DestReg, Register SrcReg,
                  int64_t Val, MachineInstr::MIFlag Flag) const;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif // LLVM_LIB_TARGET_LOONGARCH_LOONGARCHFRAMELOWERING_H

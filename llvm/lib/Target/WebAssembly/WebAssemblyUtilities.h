@@ -16,8 +16,9 @@
 #define LLVM_LIB_TARGET_WEBASSEMBLY_UTILS_WEBASSEMBLYUTILITIES_H
 
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineBasicBlock;
 class MachineInstr;
@@ -75,6 +76,6 @@ bool canLowerReturn(size_t ResultSize, const WebAssemblySubtarget *Subtarget);
 
 } // end namespace WebAssembly
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

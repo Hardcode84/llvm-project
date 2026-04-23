@@ -14,8 +14,9 @@
 #include "llvm/DebugInfo/DWARF/DWARFContext.h"
 #include <functional>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dwarf_linker {
 
 /// This class represents DWARF information for source file
@@ -55,6 +56,6 @@ public:
 };
 
 } // namespace dwarf_linker
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DWARFLINKER_DWARFFILE_H

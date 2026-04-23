@@ -22,8 +22,9 @@
 #include "llvm/CodeGen/RegisterPressure.h"
 #include <algorithm>
 #include <array>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineRegisterInfo;
 class raw_ostream;
@@ -589,6 +590,6 @@ LLVM_ABI void dumpMaxRegPressure(MachineFunction &MF,
                                  LiveIntervals &LIS,
                                  const MachineLoopInfo *MLI);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_GCNREGPRESSURE_H

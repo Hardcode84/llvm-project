@@ -20,8 +20,9 @@
 #include "llvm/MC/MCInstrDesc.h"
 #include "llvm/Support/DataTypes.h"
 #include "llvm/Support/ErrorHandling.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace X86 {
 // Enums for memory operand decoding. Each memory operand is represented with
 // a 5 operand sequence in the form: [Base, Scale, Index, Disp, Segment]
@@ -1368,5 +1369,5 @@ inline bool needSIB(MCRegister BaseReg, MCRegister IndexReg, bool In64BitMode) {
 }
 
 } // namespace X86II
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

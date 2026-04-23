@@ -18,8 +18,9 @@
 #include "llvm/CodeGen/MachineFrameInfo.h"
 #include "llvm/CodeGen/MachineFunction.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class XtensaMachineFunctionInfo : public MachineFunctionInfo {
   /// FrameIndex of the spill slot for the scratch register in BranchRelaxation.
@@ -59,6 +60,6 @@ public:
   unsigned createCPLabelId() { return CPLabelId++; }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif /* LLVM_LIB_TARGET_XTENSA_XTENSAMACHINEFUNCTIONINFO_H */

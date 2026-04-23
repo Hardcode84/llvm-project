@@ -15,8 +15,9 @@
 
 #include "VEMCTargetDesc.h"
 #include "llvm/MC/MCInstPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class VEInstPrinter : public MCInstPrinter {
 public:
@@ -55,6 +56,6 @@ public:
   void printRDOperand(const MCInst *MI, int OpNum, const MCSubtargetInfo &STI,
                       raw_ostream &OS);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

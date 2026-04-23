@@ -583,7 +583,7 @@ bool ARMBaseInstrInfo::isPredicable(const MachineInstr &MI) const {
   return true;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <> bool IsCPSRDead<MachineInstr>(const MachineInstr *MI) {
   for (const MachineOperand &MO : MI->operands()) {
@@ -598,7 +598,7 @@ template <> bool IsCPSRDead<MachineInstr>(const MachineInstr *MI) {
   return true;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 /// GetInstSize - Return the size of the specified MachineInstr.
 ///

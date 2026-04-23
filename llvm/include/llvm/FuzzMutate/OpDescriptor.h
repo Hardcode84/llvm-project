@@ -24,7 +24,7 @@
 #include "llvm/Support/Compiler.h"
 #include <functional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Instruction;
 namespace fuzzerop {
 
@@ -289,6 +289,6 @@ static inline SourcePred matchScalarOfFirstType() {
 }
 
 } // namespace fuzzerop
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_FUZZMUTATE_OPDESCRIPTOR_H

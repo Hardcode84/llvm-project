@@ -14,8 +14,9 @@
 #define LLVM_EXECUTIONENGINE_JITLINK_COFF_X86_64_H
 
 #include "llvm/ExecutionEngine/JITLink/JITLink.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 /// Create a LinkGraph from an COFF/x86-64 relocatable object.
@@ -33,6 +34,6 @@ void link_COFF_x86_64(std::unique_ptr<LinkGraph> G,
 /// Return the string name of the given COFF x86-64 edge kind.
 const char *getCOFFX86RelocationKindName(Edge::Kind R);
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_JITLINK_COFF_X86_64_H

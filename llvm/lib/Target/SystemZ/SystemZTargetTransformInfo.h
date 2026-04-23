@@ -12,8 +12,9 @@
 #include "SystemZTargetMachine.h"
 #include "llvm/Analysis/TargetTransformInfo.h"
 #include "llvm/CodeGen/BasicTTIImpl.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SystemZTTIImpl final : public BasicTTIImplBase<SystemZTTIImpl> {
   typedef BasicTTIImplBase<SystemZTTIImpl> BaseT;
@@ -173,6 +174,6 @@ public:
   /// @}
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

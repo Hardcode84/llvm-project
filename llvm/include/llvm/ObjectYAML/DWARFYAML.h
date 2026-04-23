@@ -26,7 +26,7 @@
 #include <unordered_map>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace DWARFYAML {
 
 struct AttributeAbbrev {
@@ -293,7 +293,7 @@ private:
 };
 
 } // end namespace DWARFYAML
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::DWARFYAML::AttributeAbbrev)
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::DWARFYAML::Abbrev)
@@ -329,7 +329,7 @@ LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::DWARFYAML::DebugNameEntry)
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::DWARFYAML::DebugNameAbbreviation)
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::DWARFYAML::IdxForm)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <> struct MappingTraits<DWARFYAML::Data> {
@@ -576,6 +576,6 @@ template <> struct ScalarEnumerationTraits<dwarf::LocationAtom> {
 };
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECTYAML_DWARFYAML_H

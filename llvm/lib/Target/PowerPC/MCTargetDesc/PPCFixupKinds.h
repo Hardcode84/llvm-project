@@ -10,10 +10,11 @@
 #define LLVM_LIB_TARGET_POWERPC_MCTARGETDESC_PPCFIXUPKINDS_H
 
 #include "llvm/MC/MCFixup.h"
+#include "llvm/Support/Compiler.h"
 
 #undef PPC
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace PPC {
 enum Fixups {
   // 24-bit PC relative relocation for direct branches like 'b' and 'bl'.
@@ -66,6 +67,6 @@ enum Fixups {
   NumTargetFixupKinds = LastTargetFixupKind - FirstTargetFixupKind
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

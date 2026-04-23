@@ -18,7 +18,7 @@
 #include "llvm/Support/Error.h"
 #include "llvm/Support/SwapByteOrder.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Triple;
 
@@ -2484,6 +2484,6 @@ enum LinkerOptimizationHintKind {
 };
 
 } // end namespace MachO
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

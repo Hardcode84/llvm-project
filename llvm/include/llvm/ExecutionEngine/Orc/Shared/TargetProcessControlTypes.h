@@ -26,8 +26,9 @@
 #include "llvm/Support/Memory.h"
 
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 namespace tpctypes {
 
@@ -340,6 +341,6 @@ public:
 
 } // end namespace shared
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_SHARED_TARGETPROCESSCONTROLTYPES_H

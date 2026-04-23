@@ -18,8 +18,9 @@
 
 #include "Utils/AMDGPUBaseInfo.h"
 #include "llvm/CodeGen/MIRFormatter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineFunction;
 struct PerFunctionMIParsingState;
@@ -67,6 +68,6 @@ private:
 
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

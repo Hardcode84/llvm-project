@@ -12,8 +12,9 @@
 #include "Utils/AArch64BaseInfo.h"
 #include "llvm/CodeGen/TargetLoweringObjectFileImpl.h"
 #include "llvm/Target/TargetLoweringObjectFile.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This implementation is used for AArch64 ELF targets (Linux in particular).
 class AArch64_ELFTargetObjectFile : public TargetLoweringObjectFileELF {
@@ -78,6 +79,6 @@ public:
 /// This implementation is used for AArch64 COFF targets.
 class AArch64_COFFTargetObjectFile : public TargetLoweringObjectFileCOFF {};
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

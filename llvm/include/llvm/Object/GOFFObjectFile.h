@@ -25,7 +25,7 @@
 #include "llvm/TargetParser/SubtargetFeature.h"
 #include "llvm/TargetParser/Triple.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace object {
 
@@ -153,6 +153,6 @@ public:
 
 } // namespace object
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

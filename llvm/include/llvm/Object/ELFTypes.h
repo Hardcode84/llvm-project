@@ -22,8 +22,9 @@
 #include <cstdint>
 #include <cstring>
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace callgraph {
 // ELF call graph section entry Flag field supported values.
@@ -834,6 +835,6 @@ template <class ELFT> struct Elf_Mips_ABIFlags {
 };
 
 } // end namespace object.
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.
 
 #endif // LLVM_OBJECT_ELFTYPES_H

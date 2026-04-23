@@ -29,6 +29,7 @@
 #include <optional>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -45,7 +46,7 @@ void InitializeSPIRVTarget() {
 }
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // The goal of this function is to facilitate integration of SPIRV Backend into
 // tools and libraries by means of exposing an API call that translate LLVM
@@ -159,4 +160,4 @@ SPIRVTranslateModule(Module *M, std::string &SpirvObj, std::string &ErrMsg,
                         std::move(TargetTriple));
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -26,10 +26,11 @@
 #include "llvm/TargetParser/SubtargetFeature.h"
 #include <cstring>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Options for LLVMCreateTargetMachine().
 struct LLVMTargetMachineOptions {
@@ -42,7 +43,7 @@ struct LLVMTargetMachineOptions {
   bool JIT;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 DEFINE_SIMPLE_CONVERSION_FUNCTIONS(LLVMTargetMachineOptions,
                                    LLVMTargetMachineOptionsRef)

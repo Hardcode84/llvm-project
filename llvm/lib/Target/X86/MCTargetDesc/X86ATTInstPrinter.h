@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_X86_MCTARGETDESC_X86ATTINSTPRINTER_H
 
 #include "X86InstPrinterCommon.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class X86ATTInstPrinter final : public X86InstPrinterCommon {
 public:
@@ -116,6 +117,6 @@ private:
   bool HasCustomInstComment;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_X86_MCTARGETDESC_X86ATTINSTPRINTER_H

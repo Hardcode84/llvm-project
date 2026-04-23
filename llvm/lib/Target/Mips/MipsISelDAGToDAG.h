@@ -17,6 +17,7 @@
 #include "MipsSubtarget.h"
 #include "MipsTargetMachine.h"
 #include "llvm/CodeGen/SelectionDAGISel.h"
+#include "llvm/Support/Compiler.h"
 
 //===----------------------------------------------------------------------===//
 // Instruction Selector Implementation
@@ -26,7 +27,7 @@
 // MipsDAGToDAGISel - MIPS specific code to select MIPS machine
 // instructions for SelectionDAG operations.
 //===----------------------------------------------------------------------===//
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MipsDAGToDAGISel : public SelectionDAGISel {
 public:
@@ -152,6 +153,6 @@ public:
   MipsDAGToDAGISelLegacy(std::unique_ptr<SelectionDAGISel> S);
   void getAnalysisUsage(AnalysisUsage &AU) const override;
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -17,7 +17,8 @@
 #define LLVM_LIB_TARGET_NVPTX_MCTARGETDESC_NVPTXBASEINFO_H
 
 #include "llvm/Support/NVPTXAddrSpace.h"
-namespace llvm {
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 using namespace NVPTXAS;
 
@@ -35,5 +36,5 @@ enum {
 };
 } // namespace NVPTXII
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

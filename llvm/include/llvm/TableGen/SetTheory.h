@@ -55,8 +55,9 @@
 #include <map>
 #include <memory>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DagInit;
 class Init;
@@ -140,6 +141,6 @@ public:
   const RecVec *expand(const Record *Set);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TABLEGEN_SETTHEORY_H

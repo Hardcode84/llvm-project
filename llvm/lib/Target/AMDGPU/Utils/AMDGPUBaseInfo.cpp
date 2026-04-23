@@ -32,6 +32,7 @@
 #define GET_INSTRINFO_NAMED_OPS
 #define GET_INSTRMAP_INFO
 #include "AMDGPUGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
 static llvm::cl::opt<unsigned> DefaultAMDHSACodeObjectVersion(
     "amdhsa-code-object-version", llvm::cl::Hidden,
@@ -195,7 +196,7 @@ inline unsigned getHoldCntBitShift() { return 7; }
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace AMDGPU {
 
@@ -3844,4 +3845,4 @@ raw_ostream &operator<<(raw_ostream &OS,
   return OS;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

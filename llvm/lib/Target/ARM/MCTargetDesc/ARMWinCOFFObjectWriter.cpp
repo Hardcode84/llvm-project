@@ -18,6 +18,7 @@
 #include "llvm/MC/MCValue.h"
 #include "llvm/MC/MCWinCOFFObjectWriter.h"
 #include "llvm/Support/ErrorHandling.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -95,11 +96,11 @@ bool ARMWinCOFFObjectWriter::recordRelocation(const MCFixup &Fixup) const {
   return static_cast<unsigned>(Fixup.getKind()) != ARM::fixup_t2_movt_hi16;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 std::unique_ptr<MCObjectTargetWriter>
 createARMWinCOFFObjectWriter() {
   return std::make_unique<ARMWinCOFFObjectWriter>();
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

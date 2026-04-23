@@ -19,7 +19,7 @@
 
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sandboxir {
 
 class Argument;
@@ -331,6 +331,6 @@ template <> struct DenseMapInfo<sandboxir::Context::CallbackID> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SANDBOXIR_CONTEXT_H

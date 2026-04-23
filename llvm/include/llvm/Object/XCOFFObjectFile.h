@@ -22,7 +22,7 @@
 #include "llvm/Support/Endian.h"
 #include <limits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 
 class xcoff_symbol_iterator;
@@ -999,6 +999,6 @@ public:
 
 LLVM_ABI bool doesXCOFFTracebackTableBegin(ArrayRef<uint8_t> Bytes);
 } // namespace object
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_OBJECT_XCOFFOBJECTFILE_H

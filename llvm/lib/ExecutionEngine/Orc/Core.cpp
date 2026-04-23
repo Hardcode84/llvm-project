@@ -20,10 +20,11 @@
 #include <condition_variable>
 #include <future>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 char ResourceTrackerDefunct::ID = 0;
@@ -3262,4 +3263,4 @@ void ExecutionSession::dumpDispatchInfo(Task &T) {
 #endif // NDEBUG
 
 } // End namespace orc.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.

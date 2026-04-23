@@ -26,7 +26,7 @@
 #include <thread>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 /// Mediates between MachO initialization and ExecutionSession state.
@@ -444,6 +444,6 @@ struct MachOHeaderInfo {
 LLVM_ABI MachOHeaderInfo getMachOHeaderInfoFromTriple(const Triple &TT);
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_MACHOPLATFORM_H

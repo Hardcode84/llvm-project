@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_ARC_MCTARGETDESC_ARCMCASMINFO_H
 
 #include "llvm/MC/MCAsmInfoELF.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Triple;
 
@@ -26,6 +27,6 @@ public:
   explicit ARCMCAsmInfo(const Triple &TT);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARC_MCTARGETDESC_ARCMCASMINFO_H

@@ -11,6 +11,7 @@
 #include "llvm/Support/ConvertUTF.h"
 #include "llvm/Support/raw_ostream.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::minidump;
@@ -251,7 +252,7 @@ static Directory layout(BlobAllocator &File, Stream &S) {
   return Result;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 bool yaml2minidump(MinidumpYAML::Object &Obj, raw_ostream &Out,
@@ -271,4 +272,4 @@ bool yaml2minidump(MinidumpYAML::Object &Obj, raw_ostream &Out,
 }
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -24,7 +24,7 @@
 #include <cassert>
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   class Type;
   struct fltSemantics;
@@ -601,6 +601,6 @@ namespace llvm {
     return OS;
   }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CODEGEN_MACHINEVALUETYPE_H

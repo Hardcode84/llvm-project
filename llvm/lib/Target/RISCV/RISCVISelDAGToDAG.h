@@ -17,10 +17,11 @@
 #include "RISCVTargetMachine.h"
 #include "llvm/CodeGen/SelectionDAGISel.h"
 #include "llvm/Support/KnownBits.h"
+#include "llvm/Support/Compiler.h"
 
 // RISC-V specific code to select RISC-V machine instructions for
 // SelectionDAG operations.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class RISCVDAGToDAGISel : public SelectionDAGISel {
   const RISCVSubtarget *Subtarget = nullptr;
 
@@ -215,6 +216,6 @@ public:
                                    CodeGenOptLevel OptLevel);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

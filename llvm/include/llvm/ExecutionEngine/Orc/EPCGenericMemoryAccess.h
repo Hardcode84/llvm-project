@@ -20,8 +20,9 @@
 
 #include "llvm/ExecutionEngine/Orc/Core.h"
 #include "llvm/ExecutionEngine/Orc/MemoryAccess.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 class EPCGenericMemoryAccess : public MemoryAccess {
@@ -208,6 +209,6 @@ private:
 };
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_EPCGENERICMEMORYACCESS_H

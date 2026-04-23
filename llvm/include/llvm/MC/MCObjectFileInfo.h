@@ -23,7 +23,7 @@
 #include <array>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCContext;
 class MCSection;
 
@@ -479,6 +479,6 @@ private:
   MCSection *getDwarfComdatSection(const char *Name, uint64_t Hash) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -23,10 +23,11 @@
 // Pull in OpName enum definition and getNamedOperandIdx() declaration.
 #define GET_INSTRINFO_OPERAND_ENUM
 #include "AMDGPUGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
 struct amd_kernel_code_t;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct Align;
 class Argument;
@@ -1915,6 +1916,6 @@ private:
 raw_ostream &operator<<(raw_ostream &OS,
                         const AMDGPU::IsaInfo::TargetIDSetting S);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_UTILS_AMDGPUBASEINFO_H

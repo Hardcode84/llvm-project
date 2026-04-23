@@ -12,6 +12,7 @@
 //===----------------------------------------------------------------------===//
 
 #include "SPIRVMetadata.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -66,7 +67,7 @@ static MDString *getOCLKernelArgAttribute(const Function &F, unsigned ArgIdx,
   return nullptr;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 MDString *getOCLKernelArgAccessQual(const Function &F, unsigned ArgIdx) {
   assert(
@@ -82,4 +83,4 @@ MDString *getOCLKernelArgTypeQual(const Function &F, unsigned ArgIdx) {
   return getOCLKernelArgAttribute(F, ArgIdx, "kernel_arg_type_qual");
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

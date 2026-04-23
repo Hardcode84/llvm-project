@@ -18,8 +18,9 @@
 #include "llvm/Support/MemoryBuffer.h"
 #include "llvm/Support/SmallVectorMemoryBuffer.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 IRSymbolMapper::ManglingOptions
@@ -93,4 +94,4 @@ ConcurrentIRCompiler::operator()(Module &M) {
 }
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

@@ -30,7 +30,7 @@
 #include "llvm/IR/Type.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 /// A layer that breaks up IR modules into smaller submodules that only contains
@@ -81,6 +81,6 @@ private:
 };
 
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

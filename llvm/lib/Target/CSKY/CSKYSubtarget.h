@@ -22,8 +22,9 @@
 
 #define GET_SUBTARGETINFO_HEADER
 #include "CSKYGenSubtargetInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 class CSKYSubtarget : public CSKYGenSubtargetInfo {
@@ -209,6 +210,6 @@ public:
 
   const unsigned XLen = 32;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_CSKY_CSKYSUBTARGET_H

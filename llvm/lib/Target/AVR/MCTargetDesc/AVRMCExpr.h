@@ -12,8 +12,9 @@
 #include "llvm/MC/MCExpr.h"
 
 #include "MCTargetDesc/AVRFixupKinds.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A expression in AVR machine code.
 class AVRMCExpr : public MCSpecifierExpr {
@@ -50,6 +51,6 @@ private:
       : MCSpecifierExpr(Expr, S), Negated(Negated) {}
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_AVR_MCEXPR_H

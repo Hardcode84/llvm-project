@@ -16,8 +16,9 @@
 #include "MCTargetDesc/AVRMCExpr.h"
 #include "llvm/MC/MCAsmInfoELF.h"
 #include "llvm/MC/MCExpr.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Triple;
 
@@ -58,6 +59,6 @@ enum {
 };
 } // namespace AVR
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_AVR_ASM_INFO_H

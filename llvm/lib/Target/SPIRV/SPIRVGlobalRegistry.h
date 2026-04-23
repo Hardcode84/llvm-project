@@ -23,8 +23,9 @@
 #include "llvm/CodeGen/GlobalISel/MachineIRBuilder.h"
 #include "llvm/IR/Constant.h"
 #include "llvm/IR/TypedPointerType.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SPIRVSubtarget;
 
 using StructOffsetDecorator = std::function<void(Register)>;
@@ -692,5 +693,5 @@ public:
   void buildAssignPtr(IRBuilder<> &B, Type *ElemTy, Value *Arg);
   void updateAssignType(CallInst *AssignCI, Value *Arg, Value *OfType);
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVGLOBALREGISTRY_H

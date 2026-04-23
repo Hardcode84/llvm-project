@@ -12,8 +12,9 @@
 #include "llvm/BinaryFormat/COFF.h"
 #include "llvm/Object/COFF.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 namespace coff {
 
@@ -36,6 +37,6 @@ public:
 
 } // end namespace coff
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_OBJCOPY_COFF_COFFREADER_H

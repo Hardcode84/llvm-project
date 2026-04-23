@@ -12,8 +12,9 @@
 #include "llvm/DebugInfo/DWARF/DWARFContext.h"
 #include "llvm/DebugInfo/DWARF/LowLevel/DWARFExpression.h"
 #include "llvm/Support/FormatVariadic.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using namespace dwarf_linker;
 using namespace dwarf_linker::classic;
@@ -213,4 +214,4 @@ void CompileUnit::addTypeAccelerator(const DIE *Die,
   Pubtypes.emplace_back(Name, Die, QualifiedNameHash, ObjcClassImplementation);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

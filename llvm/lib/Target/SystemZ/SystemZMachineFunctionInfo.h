@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_SYSTEMZ_SYSTEMZMACHINEFUNCTIONINFO_H
 
 #include "llvm/CodeGen/MachineFunction.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace SystemZ {
 // A struct to hold the low and high GPR registers to be saved/restored as
@@ -109,6 +110,6 @@ public:
   void setADAVirtualRegister(Register Reg) { VRegADA = Reg; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

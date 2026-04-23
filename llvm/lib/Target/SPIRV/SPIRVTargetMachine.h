@@ -16,8 +16,9 @@
 #include "SPIRVSubtarget.h"
 #include "llvm/CodeGen/CodeGenTargetMachineImpl.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SPIRVTargetMachine : public CodeGenTargetMachineImpl {
   std::unique_ptr<TargetLoweringObjectFile> TLOF;
   SPIRVSubtarget Subtarget;
@@ -48,6 +49,6 @@ public:
 
   void registerPassBuilderCallbacks(PassBuilder &PB) override;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVTARGETMACHINE_H

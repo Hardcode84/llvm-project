@@ -14,7 +14,7 @@
 #include "llvm/Support/Compiler.h"
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DataLayout;
 
@@ -89,6 +89,6 @@ public:
 };
 
 } // namespace sandboxir
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SANDBOXIR_MODULE_H

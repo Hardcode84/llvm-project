@@ -18,8 +18,9 @@
 #include "llvm/CodeGen/CodeGenTargetMachineImpl.h"
 #include "llvm/IR/DataLayout.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class RISCVTargetMachine : public CodeGenTargetMachineImpl {
   std::unique_ptr<TargetLoweringObjectFile> TLOF;
   mutable StringMap<std::unique_ptr<RISCVSubtarget>> SubtargetMap;
@@ -68,6 +69,6 @@ public:
 std::unique_ptr<ScheduleDAGMutation>
 createRISCVVectorMaskDAGMutation(const TargetRegisterInfo *TRI);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

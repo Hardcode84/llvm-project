@@ -51,9 +51,9 @@ using namespace llvm;
 STATISTIC(RISCVNumInstrsCompressed,
           "Number of RISC-V Compressed instructions emitted");
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern const SubtargetFeatureKV RISCVFeatureKV[RISCV::NumSubtargetFeatures];
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 class RISCVAsmPrinter : public AsmPrinter {

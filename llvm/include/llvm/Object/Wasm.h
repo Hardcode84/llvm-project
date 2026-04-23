@@ -30,7 +30,7 @@
 #include <cstdint>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 
 class WasmSymbol {
@@ -376,6 +376,6 @@ inline raw_ostream &operator<<(raw_ostream &OS, const object::WasmSymbol &Sym) {
   return OS;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECT_WASM_H

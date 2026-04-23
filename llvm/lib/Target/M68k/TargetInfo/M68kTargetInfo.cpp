@@ -11,15 +11,16 @@
 ///
 //===----------------------------------------------------------------------===//
 #include "llvm/MC/TargetRegistry.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 Target &getTheM68kTarget() {
   static Target TheM68kTarget;
   return TheM68kTarget;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeM68kTargetInfo() {
   RegisterTarget<Triple::m68k, /*HasJIT=*/true> X(

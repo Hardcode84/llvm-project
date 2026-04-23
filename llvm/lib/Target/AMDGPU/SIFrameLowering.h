@@ -11,8 +11,9 @@
 
 #include "AMDGPUFrameLowering.h"
 #include "SIRegisterInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SIFrameLowering final : public AMDGPUFrameLowering {
 public:
@@ -107,6 +108,6 @@ public:
   bool mayReserveScratchForCWSR(const MachineFunction &MF) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_SIFRAMELOWERING_H

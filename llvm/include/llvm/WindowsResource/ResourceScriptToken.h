@@ -17,8 +17,9 @@
 #define LLVM_INCLUDE_LLVM_SUPPORT_WINDOWS_RESOURCE_SCRIPTTOKEN_H
 
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // A definition of a single resource script token. Each token has its kind
 // (declared in ResourceScriptTokenList) and holds a value - a reference
@@ -53,6 +54,6 @@ private:
   StringRef TokenValue;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

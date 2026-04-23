@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_XCORE_XCORETARGETOBJECTFILE_H
 
 #include "llvm/CodeGen/TargetLoweringObjectFileImpl.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static const unsigned CodeModelLargeSize = 256;
 
@@ -34,6 +35,6 @@ static const unsigned CodeModelLargeSize = 256;
                                      const Constant *C, Align &Alignment,
                                      const Function *F) const override;
   };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -8,7 +8,9 @@
 #ifndef LLVM_BINARYFORMAT_SWIFT_H
 #define LLVM_BINARYFORMAT_SWIFT_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 namespace binaryformat {
 
 enum Swift5ReflectionSectionKind {
@@ -19,6 +21,6 @@ enum Swift5ReflectionSectionKind {
   last = unknown
 };
 } // end of namespace binaryformat
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm
 
 #endif

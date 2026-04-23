@@ -120,6 +120,7 @@ struct ContextDecision {
 };
 
 #include "X86GenDisassemblerTables.inc"
+#include "llvm/Support/Compiler.h"
 
 static InstrUID decode(OpcodeType type, InstructionContext insnContext,
                        uint8_t opcode, uint8_t modRM) {
@@ -1805,7 +1806,7 @@ static int readOperands(struct InternalInstruction *insn) {
   return 0;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Fill-ins to make the compiler happy. These constants are never actually
 // assigned; they are just filler to make an automatically-generated switch
@@ -1821,7 +1822,7 @@ namespace X86 {
   };
 } // namespace X86
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static bool translateInstruction(MCInst &target,
                                 InternalInstruction &source,

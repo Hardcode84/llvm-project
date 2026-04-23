@@ -13,7 +13,9 @@
 #ifndef LLVM_LIB_TARGET_WEBASSEMBLY_UTILS_WASMADDRESSSPACES_H
 #define LLVM_LIB_TARGET_WEBASSEMBLY_UTILS_WASMADDRESSSPACES_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 namespace WebAssembly {
 
@@ -43,6 +45,6 @@ inline bool isValidAddressSpace(unsigned AS) {
 
 } // namespace WebAssembly
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_WEBASSEMBLY_UTILS_WASMADDRESSSPACES_H

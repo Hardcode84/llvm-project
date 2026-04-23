@@ -28,7 +28,7 @@
 #include <thread>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 /// Mediates between COFF initialization and ExecutionSession state.
@@ -208,6 +208,6 @@ private:
 };
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_COFFPLATFORM_H

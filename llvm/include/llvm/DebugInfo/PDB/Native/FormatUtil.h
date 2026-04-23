@@ -20,7 +20,7 @@
 
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 #define PUSH_MASKED_FLAG(Enum, Mask, TheOpt, Value, Text)                      \
@@ -85,5 +85,5 @@ detail::EndianAdapter<T> fmtle(support::detail::packed_endian_specific_integral<
   return detail::EndianAdapter<T>(std::move(Value));
 }
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

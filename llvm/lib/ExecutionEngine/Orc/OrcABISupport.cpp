@@ -9,6 +9,7 @@
 #include "llvm/ExecutionEngine/Orc/OrcABISupport.h"
 #include "llvm/Support/FormatVariadic.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
@@ -39,7 +40,7 @@ static bool stubAndPointerRangesOk(ExecutorAddr StubBlockAddr,
          (LastStub - LastPointer <= MaxDisp);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 void OrcAArch64::writeResolverCode(char *ResolverWorkingMem,
@@ -1238,4 +1239,4 @@ void OrcLoongArch64::writeIndirectStubsBlock(
 }
 
 } // End namespace orc.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.

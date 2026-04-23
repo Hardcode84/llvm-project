@@ -34,13 +34,14 @@
 #include "llvm/Support/raw_ostream.h"
 
 #include <set>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
 using namespace llvm::jitlink;
 using namespace llvm::object;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 // Helper class to emit and fixup an individual debug object
@@ -421,4 +422,4 @@ Error ELFDebugObjectPlugin::notifyRemovingResources(JITDylib &JD,
 }
 
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

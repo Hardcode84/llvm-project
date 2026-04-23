@@ -14,12 +14,13 @@
 #define LLVM_LIB_TARGET_ARC_MCTARGETDESC_ARCMCTARGETDESC_H
 
 #include "llvm/Support/DataTypes.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Target;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 // Defines symbolic names for ARC registers.  This defines a mapping from
 // register name to register number.

@@ -15,8 +15,9 @@
 
 #include "llvm/MC/MCAsmInfoELF.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BPFMCAsmInfo : public MCAsmInfoELF {
 public:
@@ -53,6 +54,6 @@ public:
     return nullptr;
   }
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

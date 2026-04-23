@@ -23,8 +23,9 @@
 #include "llvm/CAS/FileOffset.h"
 #include "llvm/Support/Error.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -237,6 +238,6 @@ private:
 };
 
 } // namespace cas
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CAS_ONDISKTRIERAWHASHMAP_H

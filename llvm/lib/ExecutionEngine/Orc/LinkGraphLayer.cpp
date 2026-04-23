@@ -11,6 +11,7 @@
 #include "llvm/ExecutionEngine/JITLink/JITLink.h"
 #include "llvm/ExecutionEngine/Orc/Shared/MachOObjectFormat.h"
 #include "llvm/ExecutionEngine/Orc/Shared/ObjectFormats.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
@@ -38,7 +39,8 @@ bool hasInitializerSection(LinkGraph &G) {
 
 } // end anonymous namespace
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 LinkGraphLayer::~LinkGraphLayer() = default;
 
@@ -102,4 +104,5 @@ void LinkGraphMaterializationUnit::discard(const JITDylib &JD,
     }
 }
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc

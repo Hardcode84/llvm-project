@@ -21,7 +21,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BinaryStreamWriter;
 namespace codeview {
 class DebugSubsection;
@@ -154,6 +154,6 @@ private:
 
 } // end namespace pdb
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_PDB_NATIVE_DBIMODULEDESCRIPTORBUILDER_H

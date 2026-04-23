@@ -21,7 +21,7 @@
 #include "llvm/Support/Compiler.h"
 #include <map>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace msgpack {
 
 class ArrayDocNode;
@@ -477,6 +477,6 @@ public:
 };
 
 } // namespace msgpack
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_BINARYFORMAT_MSGPACKDOCUMENT_H

@@ -12,8 +12,10 @@
 #include "llvm/CAS/OnDiskGraphDB.h"
 #include "llvm/CAS/ValidationResult.h"
 #include <atomic>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::cas::ondisk {
+LLVM_NAMESPACE_BEGIN
+namespace cas::ondisk {
 
 class OnDiskKeyValueDB;
 
@@ -179,6 +181,7 @@ private:
   std::shared_ptr<ondisk::OnDiskCASLogger> Logger = nullptr;
 };
 
-} // namespace llvm::cas::ondisk
+}
+LLVM_NAMESPACE_END // namespace llvm::cas::ondisk
 
 #endif // LLVM_CAS_UNIFIEDONDISKCACHE_H

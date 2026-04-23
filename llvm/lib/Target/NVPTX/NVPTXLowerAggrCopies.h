@@ -14,10 +14,12 @@
 #ifndef LLVM_LIB_TARGET_NVPTX_NVPTXLOWERAGGRCOPIES_H
 #define LLVM_LIB_TARGET_NVPTX_NVPTXLOWERAGGRCOPIES_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class FunctionPass;
 
 FunctionPass *createLowerAggrCopies();
-}
+LLVM_NAMESPACE_END
 
 #endif

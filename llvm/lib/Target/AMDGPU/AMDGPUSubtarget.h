@@ -18,8 +18,9 @@
 #include "llvm/IR/CallingConv.h"
 #include "llvm/Support/Alignment.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 enum AMDGPUDwarfFlavour : unsigned;
 class Function;
@@ -316,6 +317,6 @@ public:
   virtual ~AMDGPUSubtarget() = default;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_AMDGPUSUBTARGET_H

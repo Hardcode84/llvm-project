@@ -17,8 +17,9 @@
 
 #define GET_REGINFO_HEADER
 #include "SparcGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SparcSubtarget;
 
 struct SparcRegisterInfo : public SparcGenRegisterInfo {
@@ -47,6 +48,6 @@ public:
   Register getFrameRegister(const MachineFunction &MF) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

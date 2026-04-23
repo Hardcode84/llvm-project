@@ -12,8 +12,9 @@
 
 #include "llvm/ExecutionEngine/Orc/Shared/ObjectFormats.h"
 #include "llvm/ADT/STLExtras.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 StringRef ELFEHFrameSectionName = ".eh_frame";
@@ -67,4 +68,4 @@ bool isCOFFInitializerSection(StringRef SecName) {
 }
 
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

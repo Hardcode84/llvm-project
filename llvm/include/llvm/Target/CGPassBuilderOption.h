@@ -19,7 +19,7 @@
 #include "llvm/Target/TargetOptions.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 enum class RunOutliner {
   TargetDefault,
@@ -93,6 +93,6 @@ struct CGPassBuilderOption {
 
 LLVM_ABI CGPassBuilderOption getCGPassBuilderOption();
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TARGET_CGPASSBUILDEROPTION_H

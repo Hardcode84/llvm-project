@@ -21,17 +21,18 @@
 #include "llvm/InitializePasses.h"
 #include "llvm/Support/Debug.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "arc-branch-finalize"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 void initializeARCBranchFinalizePass(PassRegistry &Registry);
 FunctionPass *createARCBranchFinalizePass();
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace {
 

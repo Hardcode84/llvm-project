@@ -10,8 +10,9 @@
 #define LLVM_DEBUGINFO_GSYM_GSYMTYPES_H
 
 #include <stdint.h>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace gsym {
 
 /// The type of string offset used in the code.
@@ -21,6 +22,6 @@ namespace gsym {
 typedef uint64_t gsym_strp_t;
 
 } // namespace gsym
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_GSYM_GSYMTYPES_H

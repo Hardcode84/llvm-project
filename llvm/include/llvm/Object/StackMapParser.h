@@ -17,8 +17,9 @@
 #include <cstddef>
 #include <cstdint>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A parser for the latest stackmap format.  At the moment, latest=V3.
 template <llvm::endianness Endianness> class StackMapParser {
@@ -461,6 +462,6 @@ private:
   std::vector<unsigned> StackMapRecordOffsets;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECT_STACKMAPPARSER_H

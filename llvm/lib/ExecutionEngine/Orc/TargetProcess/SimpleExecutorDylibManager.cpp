@@ -13,10 +13,11 @@
 #include "llvm/Support/MSVCErrorWorkarounds.h"
 
 #include <future>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 namespace rt_bootstrap {
 
@@ -97,4 +98,4 @@ SimpleExecutorDylibManager::resolveWrapper(const char *ArgData,
 
 } // namespace rt_bootstrap
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

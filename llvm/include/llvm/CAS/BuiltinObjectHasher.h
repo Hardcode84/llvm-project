@@ -11,8 +11,10 @@
 
 #include "llvm/CAS/ObjectStore.h"
 #include "llvm/Support/Endian.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::cas {
+LLVM_NAMESPACE_BEGIN
+namespace cas {
 
 /// Hasher for stored objects in builtin CAS.
 template <class HasherT> class BuiltinObjectHasher {
@@ -79,6 +81,7 @@ private:
   HasherT Hasher;
 };
 
-} // namespace llvm::cas
+}
+LLVM_NAMESPACE_END // namespace llvm::cas
 
 #endif // LLVM_CAS_BUILTINOBJECTHASHER_H

@@ -34,8 +34,9 @@
 #include <condition_variable>
 #include <optional>
 #include <queue>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Returns false if a debuginfod lookup can be determined to have no chance of
 /// succeeding.
@@ -158,6 +159,6 @@ struct DebuginfodServer {
   DebuginfodServer(DebuginfodLog &Log, DebuginfodCollection &Collection);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

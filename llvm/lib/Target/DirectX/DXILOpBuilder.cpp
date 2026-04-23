@@ -463,6 +463,7 @@ static dxil::Attributes getDXILAttributes(dxil::OpCode OpCode,
     break;                                                                     \
   };
 #include "DXILOperation.inc"
+#include "llvm/Support/Compiler.h"
     }
   }
   return Attributes;
@@ -484,7 +485,7 @@ static void setDXILAttributes(CallInst *CI, dxil::OpCode OpCode,
   return;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dxil {
 
 // No extra checks on TargetTriple need be performed to verify that the
@@ -629,4 +630,4 @@ const char *DXILOpBuilder::getOpCodeName(dxil::OpCode DXILOp) {
   return ::getOpCodeName(DXILOp);
 }
 } // namespace dxil
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

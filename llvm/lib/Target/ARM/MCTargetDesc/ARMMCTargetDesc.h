@@ -17,8 +17,9 @@
 #include "llvm/MC/MCInstrDesc.h"
 #include <memory>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class formatted_raw_ostream;
 class MCAsmBackend;
 class MCCodeEmitter;
@@ -126,7 +127,7 @@ bool isCDECoproc(size_t Coproc, const MCSubtargetInfo &STI);
 
 } // end namespace ARM
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 // Defines symbolic names for ARM registers.  This defines a mapping from
 // register name to register number.

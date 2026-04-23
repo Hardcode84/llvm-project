@@ -18,7 +18,7 @@
 #include "llvm/TargetParser/Triple.h"
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 namespace LoongArch {
@@ -100,6 +100,6 @@ LLVM_ABI StringRef getDefaultArch(bool Is64Bit);
 
 } // namespace LoongArch
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TARGETPARSER_LOONGARCHTARGETPARSER_H

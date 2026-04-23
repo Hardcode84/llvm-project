@@ -18,8 +18,9 @@
 #include "llvm/Support/DataTypes.h"
 
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCAsmBackend;
 class MCCodeEmitter;
 class MCContext;
@@ -42,7 +43,7 @@ MCAsmBackend *createBPFbeAsmBackend(const Target &T, const MCSubtargetInfo &STI,
                                     const MCTargetOptions &Options);
 
 std::unique_ptr<MCObjectTargetWriter> createBPFELFObjectWriter(uint8_t OSABI);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Defines symbolic names for BPF registers.  This defines a mapping from
 // register name to register number.

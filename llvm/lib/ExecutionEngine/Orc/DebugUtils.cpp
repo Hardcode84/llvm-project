@@ -15,6 +15,7 @@
 #include "llvm/Support/MemoryBuffer.h"
 #include "llvm/Support/Path.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
@@ -134,7 +135,7 @@ struct PrintSymbolMapElemsMatchingCLOpts {
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 raw_ostream &operator<<(raw_ostream &OS, const SymbolNameSet &Symbols) {
@@ -350,4 +351,4 @@ StringRef DumpObjects::getBufferIdentifier(MemoryBuffer &B) {
 }
 
 } // End namespace orc.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.

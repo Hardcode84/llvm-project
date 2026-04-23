@@ -11,14 +11,15 @@
 
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 
 extern "C" bool
 SPIRVTranslateModule(Module *M, std::string &SpirvObj, std::string &ErrMsg,
                      const std::vector<std::string> &AllowExtNames,
                      const std::vector<std::string> &Opts);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVAPI_H

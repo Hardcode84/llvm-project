@@ -14,8 +14,9 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/StringSwitch.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace Xtensa {
 struct CPUInfo {
@@ -91,4 +92,4 @@ void fillValidCPUList(std::vector<StringRef> &Values) {
 }
 
 } // namespace Xtensa
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

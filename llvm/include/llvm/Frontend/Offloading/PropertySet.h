@@ -16,7 +16,7 @@
 #include <map>
 #include <variant>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 class MemoryBufferRef;
 
@@ -33,4 +33,4 @@ LLVM_ABI Expected<PropertySetRegistry>
 readPropertiesFromJSON(MemoryBufferRef Buf);
 
 } // namespace offloading
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

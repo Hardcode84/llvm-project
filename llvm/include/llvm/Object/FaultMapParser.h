@@ -14,7 +14,7 @@
 #include <cassert>
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -163,6 +163,6 @@ LLVM_ABI raw_ostream &operator<<(raw_ostream &OS,
 
 LLVM_ABI raw_ostream &operator<<(raw_ostream &OS, const FaultMapParser &);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

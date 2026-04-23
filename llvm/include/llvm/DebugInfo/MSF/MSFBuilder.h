@@ -19,7 +19,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class FileBufferByteStream;
 namespace msf {
 
@@ -143,6 +143,6 @@ private:
 };
 
 } // end namespace msf
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_MSF_MSFBUILDER_H

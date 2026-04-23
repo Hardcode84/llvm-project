@@ -19,7 +19,7 @@
 #include "llvm/IR/Instruction.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Getters for the default sets of operations, per general category.
 /// @{
@@ -60,6 +60,6 @@ LLVM_ABI OpDescriptor shuffleVectorDescriptor(unsigned Weight);
 
 } // namespace fuzzerop
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_FUZZMUTATE_OPERATIONS_H

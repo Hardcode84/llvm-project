@@ -19,8 +19,9 @@
 #include "llvm/Analysis/TargetTransformInfo.h"
 #include "llvm/CodeGen/BasicTTIImpl.h"
 #include "llvm/Transforms/Utils/ScalarEvolutionExpander.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BPFTTIImpl final : public BasicTTIImplBase<BPFTTIImpl> {
   typedef BasicTTIImplBase<BPFTTIImpl> BaseT;
   typedef TargetTransformInfo TTI;
@@ -83,6 +84,6 @@ public:
   unsigned getMaxNumArgs() const override { return 5; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_BPF_BPFTARGETTRANSFORMINFO_H

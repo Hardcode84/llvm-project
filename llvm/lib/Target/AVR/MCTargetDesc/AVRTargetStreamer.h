@@ -10,8 +10,9 @@
 #define LLVM_AVR_TARGET_STREAMER_H
 
 #include "llvm/MC/MCELFStreamer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCStreamer;
 
 /// A generic AVR target output stream.
@@ -26,6 +27,6 @@ public:
   explicit AVRTargetAsmStreamer(MCStreamer &S);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_AVR_TARGET_STREAMER_H

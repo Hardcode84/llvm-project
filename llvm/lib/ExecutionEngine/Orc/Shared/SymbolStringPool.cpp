@@ -8,11 +8,14 @@
 
 #include "llvm/ExecutionEngine/Orc/SymbolStringPool.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 raw_ostream &operator<<(raw_ostream &OS, const SymbolStringPtrBase &Sym) {
   return OS << Sym.S->first();
 }
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc

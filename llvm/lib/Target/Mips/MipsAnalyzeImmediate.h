@@ -11,8 +11,9 @@
 
 #include "llvm/ADT/SmallVector.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   class MipsAnalyzeImmediate {
   public:
@@ -61,6 +62,6 @@ namespace llvm {
     InstSeq Insts;
   };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_MIPS_MIPSANALYZEIMMEDIATE_H

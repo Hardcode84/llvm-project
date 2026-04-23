@@ -13,8 +13,9 @@
 #include "llvm/ADT/StringExtras.h"
 #include "llvm/ADT/StringMap.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// StringToOffsetTable - This class uniques a bunch of nul-terminated strings
 /// and keeps track of their offset in a massive contiguous string allocation.
@@ -71,6 +72,6 @@ public:
   void EmitString(raw_ostream &O) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

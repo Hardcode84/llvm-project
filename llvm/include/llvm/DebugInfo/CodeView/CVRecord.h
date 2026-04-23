@@ -18,8 +18,9 @@
 #include "llvm/Support/Endian.h"
 #include "llvm/Support/Error.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace codeview {
 
@@ -128,6 +129,6 @@ using CVTypeArray = VarStreamArray<CVType>;
 using CVTypeRange = iterator_range<CVTypeArray::Iterator>;
 } // namespace codeview
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_CODEVIEW_CVRECORD_H

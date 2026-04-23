@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_X86_ASMPARSER_X86ASMPARSERCOMMON_H
 
 #include "llvm/Support/MathExtras.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 inline bool isImmSExti16i8Value(uint64_t Value) {
   return isInt<8>(Value) ||
@@ -43,6 +44,6 @@ inline bool isImmUnsignedi6Value(uint64_t Value) {
   return isUInt<6>(Value);
 }
 
-} // End of namespace llvm
+LLVM_NAMESPACE_END // End of namespace llvm
 
 #endif

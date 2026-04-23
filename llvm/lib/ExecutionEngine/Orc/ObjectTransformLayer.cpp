@@ -8,8 +8,9 @@
 
 #include "llvm/ExecutionEngine/Orc/ObjectTransformLayer.h"
 #include "llvm/Support/MemoryBuffer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 char ObjectTransformLayer::ID;
@@ -41,4 +42,4 @@ void ObjectTransformLayer::emit(
 }
 
 } // End namespace orc.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.

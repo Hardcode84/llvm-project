@@ -9,13 +9,15 @@
 #ifndef LLVM_OBJCOPY_XCOFF_XCOFFCONFIG_H
 #define LLVM_OBJCOPY_XCOFF_XCOFFCONFIG_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 
 // XCOFF specific configuration for copying/stripping a single file.
 struct XCOFFConfig {};
 
 } // namespace objcopy
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_OBJCOPY_XCOFF_XCOFFCONFIG_H

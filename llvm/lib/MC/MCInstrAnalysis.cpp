@@ -10,10 +10,11 @@
 
 #include "llvm/ADT/APInt.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCSubtargetInfo;
-}
+LLVM_NAMESPACE_END
 
 using namespace llvm;
 

@@ -18,8 +18,9 @@
 #include "MCTargetDesc/CSKYBaseInfo.h"
 #include "llvm/CodeGen/CallingConvLower.h"
 #include "llvm/CodeGen/TargetLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class CSKYSubtarget;
 
 class CSKYTargetLowering : public TargetLowering {
@@ -161,6 +162,6 @@ private:
   bool isCheapToSpeculateCtlz(Type *Ty) const override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_CSKY_CSKYISELLOWERING_H

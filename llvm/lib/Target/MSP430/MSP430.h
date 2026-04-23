@@ -16,6 +16,7 @@
 
 #include "MCTargetDesc/MSP430MCTargetDesc.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
 namespace MSP430CC {
   // MSP430 specific condition code.
@@ -33,7 +34,7 @@ namespace MSP430CC {
   };
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class FunctionPass;
 class MSP430TargetMachine;
 class PassRegistry;
@@ -46,6 +47,6 @@ FunctionPass *createMSP430BranchSelectionPass();
 void initializeMSP430AsmPrinterPass(PassRegistry &);
 void initializeMSP430DAGToDAGISelLegacyPass(PassRegistry &);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -11,7 +11,8 @@
 
 #include "llvm/DebugInfo/PDB/IPDBEnumChildren.h"
 #include "llvm/DebugInfo/PDB/PDBSymbol.h"
-namespace llvm {
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 class NativeSession;
@@ -30,6 +31,6 @@ private:
   uint32_t Index;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

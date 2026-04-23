@@ -231,13 +231,13 @@ unsigned llvm::HexagonConvertUnits(unsigned ItinUnits, unsigned *Lanes) {
 }
 
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace HexagonFUnits {
 bool isSlot0Only(unsigned units) {
   return HexagonItinerariesV62FU::SLOT0 == units;
 }
 } // namespace HexagonFUnits
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 

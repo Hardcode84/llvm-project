@@ -17,7 +17,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 class LLVM_ABI HardwareUnit {
@@ -30,5 +30,5 @@ public:
 };
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_MCA_HARDWAREUNITS_HARDWAREUNIT_H

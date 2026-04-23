@@ -16,8 +16,9 @@
 
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/MCA/Instruction.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 // MSVC >= 19.15, < 19.20 need to see the definition of class Instruction to
@@ -83,6 +84,6 @@ public:
 };
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_MCA_SOURCEMGR_H

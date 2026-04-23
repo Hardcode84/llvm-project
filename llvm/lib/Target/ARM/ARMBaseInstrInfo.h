@@ -33,8 +33,9 @@
 
 #define GET_INSTRINFO_HEADER
 #include "ARMGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ARMBaseRegisterInfo;
 class ARMSubtarget;
@@ -986,6 +987,6 @@ inline bool isMVEVectorInstruction(const MachineInstr *MI) {
   return (Flags & ARMII::DomainMask) == ARMII::DomainMVE;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARM_ARMBASEINSTRINFO_H

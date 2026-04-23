@@ -22,8 +22,9 @@
 #include "llvm/CodeGen/SelectionDAGISel.h"
 #include "llvm/Support/AMDGPUAddrSpace.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static inline bool getConstantValue(SDValue N, uint32_t &Out) {
   // This is only used for packed vectors, where using 0 for undef should
@@ -333,6 +334,6 @@ public:
   StringRef getPassName() const override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_AMDGPUISELDAGTODAG_H

@@ -13,8 +13,9 @@
 #include "llvm/DebugInfo/DWARF/DWARFSection.h"
 #include "llvm/Object/ObjectFile.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // This is responsible for low level access to the object file. It
 // knows how to find the required sections and compute relocated
 // values.
@@ -86,5 +87,5 @@ public:
                                              uint64_t Pos) const = 0;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

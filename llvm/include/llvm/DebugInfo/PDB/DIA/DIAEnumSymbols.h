@@ -12,8 +12,9 @@
 #include "DIASupport.h"
 #include "llvm/DebugInfo/PDB/IPDBEnumChildren.h"
 #include "llvm/DebugInfo/PDB/PDBSymbol.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 class DIASession;
 
@@ -32,6 +33,6 @@ private:
   CComPtr<IDiaEnumSymbols> Enumerator;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

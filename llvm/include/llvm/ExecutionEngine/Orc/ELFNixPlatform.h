@@ -25,7 +25,7 @@
 #include <unordered_map>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 struct ELFPerObjectSectionsToRegister {
@@ -319,6 +319,6 @@ using SPSELFNixJITDylibDepInfoMap =
 
 } // end namespace shared
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_ELFNIXPLATFORM_H

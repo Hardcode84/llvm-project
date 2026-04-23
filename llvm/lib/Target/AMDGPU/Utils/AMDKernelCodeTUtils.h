@@ -19,8 +19,9 @@
 #include "AMDKernelCodeT.h"
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCAsmParser;
 class MCContext;
 class MCExpr;
@@ -88,6 +89,6 @@ struct AMDGPUMCKernelCodeT {
 };
 
 } // end namespace AMDGPU
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_MCTARGETDESC_AMDGPUMCKERNELCODET_H

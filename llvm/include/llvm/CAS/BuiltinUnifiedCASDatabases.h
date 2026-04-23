@@ -11,8 +11,10 @@
 
 #include "llvm/CAS/ValidationResult.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::cas {
+LLVM_NAMESPACE_BEGIN
+namespace cas {
 
 class ActionCache;
 class ObjectStore;
@@ -44,6 +46,7 @@ Expected<ValidationResult> validateOnDiskUnifiedCASDatabasesIfNeeded(
     StringRef Path, bool CheckHash, bool AllowRecovery, bool ForceValidation,
     std::optional<StringRef> LLVMCasBinaryPath);
 
-} // namespace llvm::cas
+}
+LLVM_NAMESPACE_END // namespace llvm::cas
 
 #endif // LLVM_CAS_BUILTINUNIFIEDCASDATABASES_H

@@ -16,7 +16,7 @@
 #include "llvm/DebugInfo/DWARF/LowLevel/DWARFDataExtractorSimple.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A DWARFDataExtractor (typically for an in-memory copy of an object-file
 /// section) plus a relocation map for that section, if there is one.
@@ -65,6 +65,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFDATAEXTRACTOR_H

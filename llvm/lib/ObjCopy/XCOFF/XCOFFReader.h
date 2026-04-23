@@ -10,8 +10,9 @@
 #define LLVM_LIB_OBJCOPY_XCOFF_XCOFFREADER_H
 
 #include "XCOFFObject.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 namespace xcoff {
 
@@ -30,6 +31,6 @@ private:
 
 } // end namespace xcoff
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_OBJCOPY_XCOFF_XCOFFREADER_H

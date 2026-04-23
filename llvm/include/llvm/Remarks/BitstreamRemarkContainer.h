@@ -17,8 +17,9 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Bitstream/BitCodes.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace remarks {
 
 /// The current version of the remark container.
@@ -101,6 +102,6 @@ constexpr StringLiteral
 constexpr StringLiteral RemarkArgWithoutDebugLocName("Argument");
 
 } // end namespace remarks
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_REMARKS_BITSTREAMREMARKCONTAINER_H

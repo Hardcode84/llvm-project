@@ -13,7 +13,7 @@
 #include "llvm/DebugInfo/CodeView/CodeView.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 /// Return true if this symbol opens a scope. This implies that the symbol has
 /// "parent" and "end" fields, which contain the offset of the S_END or
@@ -58,6 +58,6 @@ LLVM_ABI CVSymbolArray limitSymbolArrayToScope(const CVSymbolArray &Symbols,
                                                uint32_t ScopeBegin);
 
 } // namespace codeview
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

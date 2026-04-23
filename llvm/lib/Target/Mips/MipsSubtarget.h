@@ -28,8 +28,9 @@
 
 #define GET_SUBTARGETINFO_HEADER
 #include "MipsGenSubtargetInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 enum CompactBranchPolicy {
@@ -442,6 +443,6 @@ public:
   const RegisterBankInfo *getRegBankInfo() const override;
   InstructionSelector *getInstructionSelector() const override;
 };
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

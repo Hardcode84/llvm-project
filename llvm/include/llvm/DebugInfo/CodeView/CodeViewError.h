@@ -12,7 +12,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 enum class cv_error_code {
   unspecified = 1,
@@ -23,14 +23,14 @@ enum class cv_error_code {
   unknown_member_record,
 };
 } // namespace codeview
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace std {
 template <>
 struct is_error_code_enum<llvm::codeview::cv_error_code> : std::true_type {};
 } // namespace std
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 LLVM_ABI const std::error_category &CVErrorCategory();
 
@@ -48,6 +48,6 @@ public:
 };
 
 } // namespace codeview
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

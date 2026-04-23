@@ -37,7 +37,7 @@
 #include <memory>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 // Forward declare some classes.
@@ -2046,6 +2046,6 @@ MaterializationResponsibility::delegate(const SymbolNameSet &Symbols) {
 }
 
 } // End namespace orc
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_CORE_H

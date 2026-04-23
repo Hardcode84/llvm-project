@@ -19,8 +19,10 @@
 #include "llvm/CAS/CASID.h"
 #include "llvm/CAS/CASReference.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::cas {
+LLVM_NAMESPACE_BEGIN
+namespace cas {
 
 class ObjectStore;
 class CASID;
@@ -104,6 +106,7 @@ LLVM_ABI std::unique_ptr<ActionCache> createInMemoryActionCache();
 LLVM_ABI Expected<std::unique_ptr<ActionCache>>
 createOnDiskActionCache(StringRef Path);
 
-} // end namespace llvm::cas
+}
+LLVM_NAMESPACE_END // end namespace llvm::cas
 
 #endif // LLVM_CAS_ACTIONCACHE_H

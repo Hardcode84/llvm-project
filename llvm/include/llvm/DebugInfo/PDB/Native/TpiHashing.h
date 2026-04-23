@@ -13,7 +13,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 LLVM_ABI Expected<uint32_t> hashTypeRecord(const llvm::codeview::CVType &Type);
@@ -67,6 +67,6 @@ private:
 LLVM_ABI Expected<TagRecordHash> hashTagRecord(const codeview::CVType &Type);
 
 } // end namespace pdb
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_PDB_NATIVE_TPIHASHING_H

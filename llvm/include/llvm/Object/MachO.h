@@ -37,7 +37,7 @@
 #include <string>
 #include <system_error>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 
 /// DiceRef - This is a value type class that represents a single
@@ -930,6 +930,6 @@ inline const ObjectFile *DiceRef::getObjectFile() const {
 }
 
 } // end namespace object
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECT_MACHO_H

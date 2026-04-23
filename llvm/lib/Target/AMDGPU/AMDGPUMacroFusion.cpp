@@ -15,6 +15,7 @@
 #include "MCTargetDesc/AMDGPUMCTargetDesc.h"
 #include "SIInstrInfo.h"
 #include "llvm/CodeGen/MacroFusion.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -57,10 +58,10 @@ static bool shouldScheduleAdjacent(const TargetInstrInfo &TII_,
 } // end namespace
 
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 std::unique_ptr<ScheduleDAGMutation> createAMDGPUMacroFusionDAGMutation() {
   return createMacroFusionDAGMutation(shouldScheduleAdjacent);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

@@ -20,14 +20,17 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm::jitlink {
+LLVM_NAMESPACE_BEGIN
+namespace jitlink {
 class Block;
 class LinkGraph;
 class Section;
 class Symbol;
-} // namespace llvm::jitlink
+}
+LLVM_NAMESPACE_END // namespace llvm::jitlink
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 class ObjectLinkingLayer;
 class RedirectableSymbolManager;
@@ -69,6 +72,7 @@ createJITLinkLazyReexportsManager(ObjectLinkingLayer &ObjLinkingLayer,
                                   JITDylib &PlatformJD,
                                   LazyReexportsManager::Listener *L = nullptr);
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc
 
 #endif // LLVM_EXECUTIONENGINE_ORC_JITLINKREENTRYTRAMPOLINES_H

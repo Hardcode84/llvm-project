@@ -10,8 +10,9 @@
 #define LLVM_DEBUGINFO_DWARF_DWARFSECTION_H
 
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct DWARFSection {
   StringRef Data;
@@ -23,6 +24,6 @@ struct SectionName {
   bool IsNameUnique;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFSECTION_H

@@ -23,7 +23,7 @@
 #include "llvm/Support/ErrorHandling.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BasicBlock;
 class Function;
 class Instruction;
@@ -225,6 +225,6 @@ LLVM_ABI size_t writeModule(const Module &M, uint8_t *Dest, size_t MaxSize);
 LLVM_ABI std::unique_ptr<Module>
 parseAndVerify(const uint8_t *Data, size_t Size, LLVMContext &Context);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_FUZZMUTATE_IRMUTATOR_H

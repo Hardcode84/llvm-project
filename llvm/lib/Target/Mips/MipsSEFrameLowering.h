@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_MIPS_MIPSSEFRAMELOWERING_H
 
 #include "MipsFrameLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineBasicBlock;
 class MachineFunction;
@@ -46,6 +47,6 @@ private:
                                  MachineBasicBlock &MBB) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_MIPS_MIPSSEFRAMELOWERING_H

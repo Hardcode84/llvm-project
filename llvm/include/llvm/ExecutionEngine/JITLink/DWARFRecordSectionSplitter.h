@@ -10,8 +10,9 @@
 #define LLVM_EXECUTIONENGINE_JITLINK_DWARFRECORDSECTIONSPLITTER_H
 
 #include "llvm/ExecutionEngine/JITLink/JITLink.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 /// A LinkGraph pass that splits blocks in a section that follows the DWARF
@@ -30,6 +31,6 @@ private:
 };
 
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_JITLINK_DWARFRECORDSECTIONSPLITTER_H

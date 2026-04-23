@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_SPARC_SPARCTARGETOBJECTFILE_H
 
 #include "llvm/CodeGen/TargetLoweringObjectFileImpl.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCContext;
 class TargetMachine;
@@ -29,6 +30,6 @@ public:
                                         MCStreamer &Streamer) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

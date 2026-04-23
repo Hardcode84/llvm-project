@@ -15,8 +15,9 @@
 #define LLVM_LIB_TARGET_M68K_M68KTARGETOBJECTFILE_H
 
 #include "llvm/CodeGen/TargetLoweringObjectFileImpl.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class M68kTargetMachine;
 class M68kELFTargetObjectFile : public TargetLoweringObjectFileELF {
   const M68kTargetMachine *TM;
@@ -26,6 +27,6 @@ class M68kELFTargetObjectFile : public TargetLoweringObjectFileELF {
 public:
   void Initialize(MCContext &Ctx, const TargetMachine &TM) override;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_M68K_M68KTARGETOBJECTFILE_H

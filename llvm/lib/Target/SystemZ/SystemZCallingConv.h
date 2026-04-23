@@ -13,8 +13,9 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/CodeGen/CallingConvLower.h"
 #include "llvm/MC/MCRegisterInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace SystemZ {
   const unsigned ELFNumArgGPRs = 5;
   extern const MCPhysReg ELFArgGPRs[ELFNumArgGPRs];
@@ -174,6 +175,6 @@ inline bool CC_SystemZ_GHC_Error(unsigned &, MVT &, MVT &,
   return false;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

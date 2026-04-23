@@ -14,7 +14,7 @@
 #include "llvm/Support/Compiler.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 class DebugChecksumsSubsection;
 class DebugChecksumsSubsectionRef;
@@ -105,6 +105,6 @@ private:
 };
 
 } // end namespace codeview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_CODEVIEW_STRINGSANDCHECKSUMS_H

@@ -18,7 +18,7 @@
 #include <cstddef>
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DataExtractor;
 class DWARFUnit;
@@ -220,6 +220,6 @@ private:
   std::optional<FixedSizeInfo> FixedAttributeSize;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFABBREVIATIONDECLARATION_H

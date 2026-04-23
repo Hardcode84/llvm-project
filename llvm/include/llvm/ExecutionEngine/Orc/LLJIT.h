@@ -29,7 +29,7 @@
 #include "llvm/Support/ThreadPool.h"
 #include <variant>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 class LLJITBuilderState;
@@ -635,6 +635,6 @@ private:
 };
 
 } // End namespace orc
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_LLJIT_H

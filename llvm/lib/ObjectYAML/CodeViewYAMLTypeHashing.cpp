@@ -15,13 +15,14 @@
 
 #include "llvm/Support/BinaryStreamReader.h"
 #include "llvm/Support/BinaryStreamWriter.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::codeview;
 using namespace llvm::CodeViewYAML;
 using namespace llvm::yaml;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 void MappingTraits<DebugHSection>::mapping(IO &io, DebugHSection &DebugH) {
@@ -41,7 +42,7 @@ StringRef ScalarTraits<GlobalHash>::input(StringRef Scalar, void *Ctx,
 }
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 DebugHSection llvm::CodeViewYAML::fromDebugH(ArrayRef<uint8_t> DebugH) {
   assert(DebugH.size() >= 8);

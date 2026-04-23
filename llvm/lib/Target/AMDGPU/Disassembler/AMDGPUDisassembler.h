@@ -23,8 +23,9 @@
 #include "llvm/MC/MCInstrInfo.h"
 #include "llvm/Support/DataExtractor.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCAsmInfo;
 class MCInst;
@@ -224,6 +225,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_DISASSEMBLER_AMDGPUDISASSEMBLER_H

@@ -12,8 +12,9 @@
 #include "Utils/AMDGPUBaseInfo.h"
 #include "Utils/AMDGPUPALMetadata.h"
 #include "llvm/MC/MCStreamer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCELFStreamer;
 class MCSymbol;
@@ -222,5 +223,5 @@ public:
                              const MCExpr *ReserveVCC,
                              const MCExpr *ReserveFlatScr) override;
 };
-}
+LLVM_NAMESPACE_END
 #endif

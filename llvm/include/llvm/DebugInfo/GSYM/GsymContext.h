@@ -12,8 +12,9 @@
 #include "llvm/DebugInfo/DIContext.h"
 #include <cstdint>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace gsym {
 
@@ -61,6 +62,6 @@ private:
 
 } // end namespace gsym
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_GSYM_GSYMCONTEXT_H

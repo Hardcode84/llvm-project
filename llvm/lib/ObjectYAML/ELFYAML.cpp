@@ -24,8 +24,9 @@
 #include <cassert>
 #include <cstdint>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 ELFYAML::Chunk::~Chunk() = default;
 
@@ -1992,4 +1993,4 @@ void MappingTraits<ELFYAML::CallGraphEntryWeight>::mapping(
 
 } // end namespace yaml
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

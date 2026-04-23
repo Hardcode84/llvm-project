@@ -28,7 +28,7 @@
 
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 class TargetMachine;
 
@@ -357,5 +357,5 @@ private:
   /// manager.
   bool DebugPassManager = false;
 };
-}
+LLVM_NAMESPACE_END
 #endif

@@ -21,8 +21,10 @@
 #include "llvm/CAS/FileOffset.h"
 #include "llvm/CAS/OnDiskCASLogger.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::cas {
+LLVM_NAMESPACE_BEGIN
+namespace cas {
 
 /// Sink for data. Stores variable length data with 8-byte alignment. Does not
 /// track size of data, which is assumed to known from context, or embedded.
@@ -93,6 +95,7 @@ private:
   std::unique_ptr<ImplType> Impl;
 };
 
-} // namespace llvm::cas
+}
+LLVM_NAMESPACE_END // namespace llvm::cas
 
 #endif // LLVM_CAS_ONDISKDATAALLOCATOR_H

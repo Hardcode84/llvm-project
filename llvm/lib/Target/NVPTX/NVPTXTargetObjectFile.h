@@ -12,8 +12,9 @@
 #include "llvm/MC/MCSection.h"
 #include "llvm/MC/SectionKind.h"
 #include "llvm/Target/TargetLoweringObjectFile.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class NVPTXTargetObjectFile : public TargetLoweringObjectFile {
 public:
@@ -36,6 +37,6 @@ public:
                                     const TargetMachine &TM) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_NVPTX_NVPTXTARGETOBJECTFILE_H

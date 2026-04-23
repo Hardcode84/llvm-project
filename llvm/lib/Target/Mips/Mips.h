@@ -16,6 +16,7 @@
 
 #include "MCTargetDesc/MipsMCTargetDesc.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
 #define IsMFLOMFHI(instr)                                                      \
   (instr == Mips::MFLO || instr == Mips::MFLO64 || instr == Mips::MFHI ||      \
@@ -28,7 +29,7 @@
    instr == Mips::PseudoMULT || instr == Mips::DMULT ||                        \
    instr == Mips::PseudoDMULT)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class FunctionPass;
 class InstructionSelector;
 class MipsRegisterBankInfo;
@@ -66,6 +67,6 @@ void initializeMipsMulMulBugFixPass(PassRegistry &);
 void initializeMipsPostLegalizerCombinerPass(PassRegistry &);
 void initializeMipsPreLegalizerCombinerPass(PassRegistry &);
 void initializeMipsSetMachineRegisterFlagsPass(PassRegistry &);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -28,7 +28,7 @@
 #include <functional>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Error;
 class Module;
@@ -320,6 +320,6 @@ struct LTOLLVMContext : LLVMContext {
 };
 
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

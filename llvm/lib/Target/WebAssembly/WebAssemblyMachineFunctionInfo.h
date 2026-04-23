@@ -19,8 +19,9 @@
 #include "llvm/CodeGen/MIRYamlMapping.h"
 #include "llvm/CodeGen/MachineRegisterInfo.h"
 #include "llvm/MC/MCSymbolWasm.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class WebAssemblyTargetLowering;
 
 struct WasmEHFuncInfo;
@@ -218,6 +219,6 @@ template <> struct CustomMappingTraits<BBNumberMap> {
 
 } // end namespace yaml
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

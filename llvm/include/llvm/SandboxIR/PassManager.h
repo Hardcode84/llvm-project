@@ -26,7 +26,8 @@
 #include "llvm/SandboxIR/Pass.h"
 #include "llvm/Support/Debug.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 class Value;
 
@@ -293,6 +294,7 @@ public:
   bool runOnRegion(Region &R, const Analyses &A) final;
 };
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir
 
 #endif // LLVM_SANDBOXIR_PASSMANAGER_H

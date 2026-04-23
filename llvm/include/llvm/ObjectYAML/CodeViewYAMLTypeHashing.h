@@ -22,8 +22,9 @@
 #include "llvm/Support/YAMLTraits.h"
 #include <cstdint>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace CodeViewYAML {
 
@@ -51,7 +52,7 @@ ArrayRef<uint8_t> toDebugH(const DebugHSection &DebugH,
 
 } // end namespace CodeViewYAML
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 LLVM_YAML_DECLARE_MAPPING_TRAITS(CodeViewYAML::DebugHSection)
 LLVM_YAML_DECLARE_SCALAR_TRAITS(CodeViewYAML::GlobalHash, QuotingType::None)

@@ -17,8 +17,9 @@
 #include "MCTargetDesc/WebAssemblyMCTargetDesc.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/CodeGen/RuntimeLibcallUtil.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class WebAssemblySubtarget;
 
@@ -34,6 +35,6 @@ void getLibcallSignature(const WebAssemblySubtarget &Subtarget, StringRef Name,
                          SmallVectorImpl<wasm::ValType> &Params);
 
 } // end namespace WebAssembly
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

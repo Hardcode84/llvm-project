@@ -16,8 +16,9 @@
 
 #include "AMDGPUISelLowering.h"
 #include "llvm/CodeGen/MachineFunction.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class R600Subtarget;
 
@@ -120,6 +121,6 @@ private:
   shouldExpandAtomicRMWInIR(const AtomicRMWInst *RMW) const override;
 };
 
-} // End namespace llvm;
+LLVM_NAMESPACE_END // End namespace llvm;
 
 #endif

@@ -23,7 +23,7 @@
 #include "llvm/TextAPI/Architecture.h"
 #include "llvm/TextAPI/InterfaceFile.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -71,6 +71,6 @@ private:
 };
 
 } // end namespace object.
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.
 
 #endif // LLVM_OBJECT_TAPIFILE_H

@@ -25,7 +25,7 @@
 #include <cassert>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCAsmInfo;
 class MCAssembler;
@@ -754,6 +754,6 @@ inline MCSection::iterator &MCSection::iterator::operator++() {
   return *this;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCSECTION_H

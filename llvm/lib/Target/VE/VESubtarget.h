@@ -23,8 +23,9 @@
 
 #define GET_SUBTARGETINFO_HEADER
 #include "VEGenSubtargetInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 class VESubtarget : public VEGenSubtargetInfo {
@@ -81,6 +82,6 @@ public:
   bool isTargetLinux() const { return TargetTriple.isOSLinux(); }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

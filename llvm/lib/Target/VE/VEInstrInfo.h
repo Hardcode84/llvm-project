@@ -18,8 +18,9 @@
 
 #define GET_INSTRINFO_HEADER
 #include "VEGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class VESubtarget;
 
@@ -119,6 +120,6 @@ public:
   bool expandGetStackTopPseudo(MachineInstr &MI) const;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

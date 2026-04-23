@@ -25,8 +25,9 @@
 #include "llvm/Support/ModRef.h"
 #include <map>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class Module;
   class ConstantRange;
   class FunctionType;
@@ -705,6 +706,6 @@ namespace llvm {
     bool parseUseListOrderIndexes(SmallVectorImpl<unsigned> &Indexes);
     bool sortUseListOrder(Value *V, ArrayRef<unsigned> Indexes, SMLoc Loc);
   };
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

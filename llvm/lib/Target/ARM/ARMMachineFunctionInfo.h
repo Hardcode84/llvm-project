@@ -19,8 +19,9 @@
 #include "llvm/CodeGen/MachineFunction.h"
 #include "llvm/IR/GlobalVariable.h"
 #include "llvm/Support/ErrorHandling.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace yaml {
 struct ARMFunctionInfo;
@@ -322,6 +323,6 @@ template <> struct MappingTraits<ARMFunctionInfo> {
 
 } // end namespace yaml
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARM_ARMMACHINEFUNCTIONINFO_H

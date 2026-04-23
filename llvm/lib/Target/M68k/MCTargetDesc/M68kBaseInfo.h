@@ -28,8 +28,9 @@
 #define GET_INSTRINFO_OPERAND_TYPES_ENUM
 #define GET_INSTRINFO_LOGICAL_OPERAND_SIZE_MAP
 #include "M68kGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace M68k {
 
@@ -318,6 +319,6 @@ static inline unsigned getMaskedSpillRegister(unsigned order) {
 
 } // namespace M68kII
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_M68K_MCTARGETDESC_M68KBASEINFO_H

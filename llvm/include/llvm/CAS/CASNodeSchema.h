@@ -13,7 +13,8 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/ExtensibleRTTI.h"
 
-namespace llvm::cas {
+LLVM_NAMESPACE_BEGIN
+namespace cas {
 
 class ObjectProxy;
 
@@ -42,6 +43,7 @@ public:
   virtual ~NodeSchema() = default;
 };
 
-} // namespace llvm::cas
+}
+LLVM_NAMESPACE_END // namespace llvm::cas
 
 #endif // LLVM_CAS_CASNODESCHEMA_H

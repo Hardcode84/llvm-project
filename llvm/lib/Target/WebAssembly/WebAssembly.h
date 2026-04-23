@@ -20,8 +20,9 @@
 #include "llvm/CodeGen/GlobalISel/InstructionSelector.h"
 #include "llvm/PassRegistry.h"
 #include "llvm/Support/CodeGen.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class WebAssemblyTargetMachine;
 class ModulePass;
@@ -123,6 +124,6 @@ enum TargetIndex {
 };
 } // end namespace WebAssembly
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

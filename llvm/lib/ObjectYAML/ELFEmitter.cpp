@@ -30,6 +30,7 @@
 #include "llvm/Support/YAMLTraits.h"
 #include "llvm/Support/raw_ostream.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -2162,7 +2163,7 @@ bool ELFState<ELFT>::writeELF(raw_ostream &OS, ELFYAML::Object &Doc,
   return true;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 bool yaml2elf(llvm::ELFYAML::Object &Doc, raw_ostream &Out, ErrorHandler EH,
@@ -2180,4 +2181,4 @@ bool yaml2elf(llvm::ELFYAML::Object &Doc, raw_ostream &Out, ErrorHandler EH,
 }
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

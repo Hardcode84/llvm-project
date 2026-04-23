@@ -15,8 +15,9 @@
 
 #include "llvm/MC/MCInstPrinter.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class PPCInstPrinter : public MCInstPrinter {
   Triple TT;
@@ -101,6 +102,6 @@ public:
   void printMemRegReg(const MCInst *MI, unsigned OpNo,
                       const MCSubtargetInfo &STI, raw_ostream &O);
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

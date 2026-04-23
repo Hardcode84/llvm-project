@@ -17,8 +17,9 @@
 #include "ARC.h"
 #include "llvm/CodeGen/SelectionDAG.h"
 #include "llvm/CodeGen/TargetLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Forward delcarations
 class ARCSubtarget;
@@ -84,6 +85,6 @@ private:
   bool mayBeEmittedAsTailCall(const CallInst *CI) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARC_ARCISELLOWERING_H

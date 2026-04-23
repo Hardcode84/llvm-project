@@ -24,8 +24,9 @@
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/TargetParser/Triple.h"
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 
 static int64_t getELFAddend(RelocationRef R) {
@@ -922,4 +923,4 @@ uint64_t resolveRelocation(RelocationResolver Resolver, const RelocationRef &R,
 }
 
 } // namespace object
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

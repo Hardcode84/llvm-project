@@ -20,7 +20,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/TargetParser/Triple.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace PPC {
 LLVM_ABI bool isValidCPU(StringRef CPU);
 LLVM_ABI void fillValidCPUList(SmallVectorImpl<StringRef> &Values);
@@ -44,6 +44,6 @@ LLVM_ABI std::optional<llvm::StringMap<bool>>
 getPPCDefaultTargetFeatures(const Triple &T, StringRef CPUName);
 
 } // namespace PPC
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -18,7 +18,7 @@
 #include <cstdint>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace msf {
 
 static const char Magic[] = {'M',  'i',  'c',    'r', 'o', 's',  'o',  'f',
@@ -180,6 +180,6 @@ inline uint32_t getNumFpmIntervals(const MSFLayout &L,
 LLVM_ABI Error validateSuperBlock(const SuperBlock &SB);
 
 } // end namespace msf
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_MSF_MSFCOMMON_H

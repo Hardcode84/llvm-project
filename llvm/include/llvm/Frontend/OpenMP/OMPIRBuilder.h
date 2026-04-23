@@ -32,7 +32,7 @@
 #include <map>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class CanonicalLoopInfo;
 class ScanInfo;
 struct TargetRegionEntryInfo;
@@ -4440,6 +4440,6 @@ public:
   ~ScanInfo() { delete (ScanBuffPtrs); }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_FRONTEND_OPENMP_OMPIRBUILDER_H

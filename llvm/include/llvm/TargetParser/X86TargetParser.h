@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include <array>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T> class SmallVectorImpl;
 class StringRef;
 
@@ -188,6 +188,6 @@ getCpuSupportsMask(ArrayRef<StringRef> FeatureStrs);
 LLVM_ABI unsigned getFeaturePriority(ProcessorFeatures Feat);
 
 } // namespace X86
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

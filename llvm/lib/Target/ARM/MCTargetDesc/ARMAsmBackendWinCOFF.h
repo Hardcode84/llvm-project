@@ -11,8 +11,9 @@
 
 #include "ARMAsmBackend.h"
 #include "llvm/MC/MCObjectWriter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class ARMAsmBackendWinCOFF : public ARMAsmBackend {
 public:
   ARMAsmBackendWinCOFF(const Target &T)
@@ -22,6 +23,6 @@ public:
     return createARMWinCOFFObjectWriter();
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARM_MCTARGETDESC_ARMASMBACKENDWINCOFF_H

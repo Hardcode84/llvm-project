@@ -20,8 +20,9 @@
 #include "llvm/MC/MCCodeEmitter.h"
 #include "llvm/MC/MCObjectStreamer.h"
 #include "llvm/MC/MCObjectWriter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCInst;
 class raw_ostream;
 
@@ -37,6 +38,6 @@ public:
   void emitCommonSymbol(MCSymbol *, uint64_t, Align) override {}
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCDXCONTAINERSTREAMER_H

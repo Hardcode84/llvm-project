@@ -14,8 +14,9 @@
 #include "llvm/ADT/APFloat.h"
 #include "llvm/MC/MCExpr.h"
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class NVPTXFloatMCExpr : public MCTargetExpr {
 public:
@@ -123,6 +124,6 @@ public:
     return E->getKind() == MCExpr::Target;
   }
   };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

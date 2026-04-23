@@ -14,7 +14,7 @@
 #include "llvm/TargetParser/Triple.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCAssembler;
 class MCFixup;
@@ -146,6 +146,6 @@ protected:
   MCAssembler *Asm = nullptr;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCOBJECTWRITER_H

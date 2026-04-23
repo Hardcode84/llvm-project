@@ -21,11 +21,12 @@ namespace {
 #define GET_GLOBALISEL_PREDICATE_BITSET
 #define AMDGPUSubtarget GCNSubtarget
 #include "AMDGPUGenGlobalISel.inc"
+#include "llvm/Support/Compiler.h"
 #undef GET_GLOBALISEL_PREDICATE_BITSET
 #undef AMDGPUSubtarget
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace AMDGPU {
 struct ImageDimIntrinsicInfo;
@@ -477,5 +478,5 @@ private:
 #undef GET_GLOBALISEL_TEMPORARIES_DECL
 };
 
-} // End llvm namespace.
+LLVM_NAMESPACE_END // End llvm namespace.
 #endif

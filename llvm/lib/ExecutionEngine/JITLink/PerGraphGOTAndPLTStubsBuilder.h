@@ -15,10 +15,11 @@
 
 #include "llvm/ExecutionEngine/JITLink/JITLink.h"
 #include "llvm/Support/Debug.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 /// Per-object GOT and PLT Stub builder.
@@ -119,7 +120,7 @@ private:
 };
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #undef DEBUG_TYPE
 

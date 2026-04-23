@@ -22,7 +22,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/raw_ostream.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// The structure of the serialized stable function map is as follows:
 /// - Number of unique function/module names
@@ -116,6 +116,6 @@ private:
   void deserialize(const unsigned char *&Ptr, bool Lazy);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

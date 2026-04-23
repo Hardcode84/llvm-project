@@ -11,6 +11,7 @@
 #include "llvm/ADT/APInt.h"
 #include "llvm/MC/MCInstBuilder.h"
 #include "llvm/Support/MathExtras.h"
+#include "llvm/Support/Compiler.h"
 using namespace llvm;
 
 static int getInstSeqCost(RISCVMatInt::InstSeq &Res, bool HasRVC) {
@@ -290,7 +291,8 @@ static void generateInstSeqLeadingZeros(int64_t Val, const MCSubtargetInfo &STI,
   }
 }
 
-namespace llvm::RISCVMatInt {
+LLVM_NAMESPACE_BEGIN
+namespace RISCVMatInt {
 InstSeq generateInstSeq(int64_t Val, const MCSubtargetInfo &STI) {
   RISCVMatInt::InstSeq Res;
   generateInstSeqImpl(Val, STI, Res);
@@ -627,4 +629,5 @@ OpndKind Inst::getOpndKind() const {
   }
 }
 
-} // namespace llvm::RISCVMatInt
+}
+LLVM_NAMESPACE_END // namespace llvm::RISCVMatInt

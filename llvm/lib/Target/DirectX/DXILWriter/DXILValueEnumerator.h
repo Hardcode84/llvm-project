@@ -23,8 +23,9 @@
 #include <cstdint>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 class Comdat;
@@ -303,6 +304,6 @@ private:
 };
 
 } // end namespace dxil
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DXILWRITER_VALUEENUMERATOR_H

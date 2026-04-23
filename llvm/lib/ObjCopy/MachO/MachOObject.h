@@ -18,8 +18,9 @@
 #include <cstdint>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 namespace macho {
 
@@ -369,6 +370,6 @@ struct Object {
 
 } // end namespace macho
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_OBJCOPY_MACHO_MACHOOBJECT_H

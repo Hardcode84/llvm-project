@@ -16,7 +16,7 @@
 #include "llvm/TextAPI/ArchitectureSet.h"
 #include "llvm/TextAPI/Target.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace MachO {
 
 // clang-format off
@@ -194,6 +194,6 @@ struct SimpleSymbol {
 LLVM_ABI SimpleSymbol parseSymbol(StringRef SymName);
 
 } // end namespace MachO.
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.
 
 #endif // LLVM_TEXTAPI_SYMBOL_H

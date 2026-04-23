@@ -18,8 +18,9 @@
 #include "llvm/MC/MCSection.h"
 #include "llvm/MC/SectionKind.h"
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCSymbol;
 
@@ -90,6 +91,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCSECTIONCOFF_H

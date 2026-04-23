@@ -14,6 +14,7 @@
 #include "llvm/Support/ErrorHandling.h"
 
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::orc;
@@ -75,7 +76,7 @@ OrcErrorCategory &getOrcErrCat() {
 }
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 char DuplicateDefinition::ID = 0;
@@ -126,4 +127,4 @@ const std::string &JITSymbolNotFound::getSymbolName() const {
 }
 
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

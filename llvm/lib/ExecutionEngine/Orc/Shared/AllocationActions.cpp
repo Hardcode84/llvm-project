@@ -7,8 +7,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/ExecutionEngine/Orc/Shared/AllocationActions.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 namespace shared {
 
@@ -41,4 +42,4 @@ Error runDeallocActions(ArrayRef<WrapperFunctionCall> DAs) {
 
 } // namespace shared
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

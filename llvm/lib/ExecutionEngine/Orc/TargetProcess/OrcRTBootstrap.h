@@ -22,8 +22,9 @@
 
 #include "llvm/ADT/StringMap.h"
 #include "llvm/ExecutionEngine/Orc/Shared/ExecutorAddress.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 namespace rt_bootstrap {
 
@@ -31,6 +32,6 @@ void addTo(StringMap<ExecutorAddr> &M);
 
 } // namespace rt_bootstrap
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LIB_EXECUTIONENGINE_ORC_TARGETPROCESS_ORCRTBOOTSTRAP_H

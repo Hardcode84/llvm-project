@@ -10,8 +10,9 @@
 #include "llvm/ADT/StringSwitch.h"
 #include "llvm/ADT/Twine.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace MachO {
 
 Expected<Target> Target::create(StringRef TargetValue) {
@@ -83,4 +84,4 @@ std::string getTargetTripleName(const Target &Targ) {
 }
 
 } // end namespace MachO.
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.

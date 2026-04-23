@@ -16,8 +16,9 @@
 #include "SPIRVGlobalRegistry.h"
 #include "llvm/CodeGen/GlobalISel/CallLowering.h"
 #include "llvm/CodeGen/GlobalISel/MachineIRBuilder.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace SPIRV {
 /// Parses the name part of the demangled builtin call.
 std::string lookupBuiltinNameHelper(StringRef DemangledCall,
@@ -84,5 +85,5 @@ SPIRVTypeInst lowerBuiltinType(const Type *Type,
                                MachineIRBuilder &MIRBuilder,
                                SPIRVGlobalRegistry *GR);
 } // namespace SPIRV
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVBUILTINS_H

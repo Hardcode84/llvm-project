@@ -12,8 +12,9 @@
 #include "llvm/BinaryFormat/XCOFF.h"
 #include "llvm/MC/MCSymbol.h"
 #include "llvm/MC/MCSymbolTableEntry.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCSectionXCOFF;
 
@@ -97,6 +98,6 @@ private:
   bool HasRename = false;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCSYMBOLXCOFF_H

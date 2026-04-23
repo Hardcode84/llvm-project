@@ -16,8 +16,9 @@
 
 #include "llvm/CodeGen/CallingConvLower.h"
 #include "llvm/CodeGen/GlobalISel/CallLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineInstrBuilder;
 class MachineIRBuilder;
@@ -50,6 +51,6 @@ private:
                            CCState &CCInfo) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_RISCV_RISCVCALLLOWERING_H

@@ -20,8 +20,9 @@
 #include "llvm/CodeGen/SelectionDAG.h"
 #include "llvm/CodeGen/TargetLowering.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace SystemZICMP {
 // Describes whether an integer comparison needs to be signed or unsigned,
@@ -513,6 +514,6 @@ public:
   bool isVectorConstantLegal(const SystemZSubtarget &Subtarget);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

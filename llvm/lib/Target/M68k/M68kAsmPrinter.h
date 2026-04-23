@@ -25,7 +25,7 @@
 #include <memory>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCStreamer;
 class MachineInstr;
 class MachineBasicBlock;
@@ -75,6 +75,6 @@ public:
   void emitFunctionBodyEnd() override;
   void emitEndOfAsmFile(Module &M) override;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_M68K_M68KASMPRINTER_H

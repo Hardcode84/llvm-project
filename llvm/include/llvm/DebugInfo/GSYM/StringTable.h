@@ -13,8 +13,9 @@
 #include "llvm/DebugInfo/GSYM/ExtractRanges.h"
 #include "llvm/DebugInfo/GSYM/GsymTypes.h"
 #include <stdint.h>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace gsym {
 
 /// String tables in GSYM files are required to start with an empty
@@ -63,5 +64,5 @@ inline void dump(raw_ostream &OS, const StringTable &S,
 }
 
 } // namespace gsym
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_DEBUGINFO_GSYM_STRINGTABLE_H

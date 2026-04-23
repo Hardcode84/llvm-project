@@ -16,8 +16,9 @@
 #include "llvm/ObjectYAML/YAML.h"
 #include <optional>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace XCOFFYAML {
 
 struct FileHeader {
@@ -219,14 +220,14 @@ struct Object {
   Object();
 };
 } // namespace XCOFFYAML
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(XCOFFYAML::Symbol)
 LLVM_YAML_IS_SEQUENCE_VECTOR(XCOFFYAML::Relocation)
 LLVM_YAML_IS_SEQUENCE_VECTOR(XCOFFYAML::Section)
 LLVM_YAML_IS_SEQUENCE_VECTOR(std::unique_ptr<llvm::XCOFFYAML::AuxSymbolEnt>)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <> struct ScalarBitSetTraits<XCOFF::SectionTypeFlags> {
@@ -290,6 +291,6 @@ template <> struct MappingTraits<XCOFFYAML::Object> {
 };
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_OBJECTYAML_XCOFFYAML_H

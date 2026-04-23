@@ -29,8 +29,9 @@
 
 #define GET_INSTRINFO_HEADER
 #include "MipsGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineInstr;
 class MachineOperand;
@@ -237,6 +238,6 @@ enum FClassMask {
 
 } // namespace Mips
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_MIPS_MIPSINSTRINFO_H

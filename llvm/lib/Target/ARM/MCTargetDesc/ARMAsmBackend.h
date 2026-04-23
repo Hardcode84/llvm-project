@@ -14,8 +14,9 @@
 #include "llvm/MC/MCAsmBackend.h"
 #include "llvm/MC/MCSubtargetInfo.h"
 #include "llvm/MC/TargetRegistry.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ARMAsmBackend : public MCAsmBackend {
 public:
@@ -62,6 +63,6 @@ public:
 
   unsigned getPointerSize() const { return 4; }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

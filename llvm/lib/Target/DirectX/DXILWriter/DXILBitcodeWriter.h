@@ -20,8 +20,9 @@
 #include "llvm/Support/MemoryBufferRef.h"
 #include <memory>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BitstreamWriter;
 class Module;
@@ -61,6 +62,6 @@ void WriteDXILToFile(const Module &M, raw_ostream &Out);
 
 } // namespace dxil
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DXILWRITER_DXILBITCODEWRITER_H

@@ -14,8 +14,9 @@
 #include "llvm/DebugInfo/PDB/PDBTypes.h"
 
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 class NativeSession;
@@ -36,6 +37,6 @@ private:
 };
 
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -20,8 +20,10 @@
 
 #include <algorithm>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::orc::detail {
+LLVM_NAMESPACE_BEGIN
+namespace orc::detail {
 
 class WaitingOnGraphTest;
 
@@ -781,6 +783,7 @@ private:
   Coalescer CoalesceToPendingSNs;
 };
 
-} // namespace llvm::orc::detail
+}
+LLVM_NAMESPACE_END // namespace llvm::orc::detail
 
 #endif // LLVM_EXECUTIONENGINE_ORC_WAITINGONGRAPH_H

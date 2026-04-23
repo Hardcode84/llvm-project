@@ -26,12 +26,13 @@
 #include "llvm/Support/EndianStream.h"
 #include <cassert>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "mccodeemitter"
 
 STATISTIC(MCNumEmitted, "Number of MC instructions emitted");
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace {
 
@@ -297,7 +298,7 @@ unsigned LanaiMCCodeEmitter::getBranchTargetOpValue(
 
 #include "LanaiGenMCCodeEmitter.inc"
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 llvm::MCCodeEmitter *
 llvm::createLanaiMCCodeEmitter(const MCInstrInfo &InstrInfo,

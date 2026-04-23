@@ -16,8 +16,9 @@
 
 #define GET_REGINFO_HEADER
 #include "R600GenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct R600RegisterInfo final : public R600GenRegisterInfo {
   R600RegisterInfo() : R600GenRegisterInfo(0) {}
@@ -54,6 +55,6 @@ struct R600RegisterInfo final : public R600GenRegisterInfo {
   void reserveRegisterTuples(BitVector &Reserved, unsigned Reg) const;
 };
 
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 
 #endif

@@ -15,7 +15,7 @@
 #include "llvm/Support/Error.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T> struct VarStreamArrayExtractor;
 
 namespace pdb {
@@ -67,6 +67,6 @@ template <> struct VarStreamArrayExtractor<pdb::DbiModuleDescriptor> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_PDB_NATIVE_DBIMODULEDESCRIPTOR_H

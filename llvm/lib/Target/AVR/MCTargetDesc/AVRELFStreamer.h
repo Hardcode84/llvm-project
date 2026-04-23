@@ -10,8 +10,9 @@
 #define LLVM_AVR_ELF_STREAMER_H
 
 #include "AVRTargetStreamer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A target streamer for an AVR ELF object file.
 class AVRELFStreamer : public AVRTargetStreamer {
@@ -23,6 +24,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -15,7 +15,7 @@
 #include <deque>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 enum OnCuIndexOverflow {
   HardStop,
   SoftStop,
@@ -113,5 +113,5 @@ writeIndex(MCStreamer &Out, MCSection *Section,
            const MapVector<uint64_t, UnitIndexEntry> &IndexEntries,
            uint32_t IndexVersion);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_DWP_DWP_H

@@ -16,8 +16,9 @@
 #include "LanaiRegisterInfo.h"
 #include "llvm/CodeGen/MachineFunction.h"
 #include "llvm/CodeGen/MachineRegisterInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // LanaiMachineFunctionInfo - This class is derived from MachineFunction and
 // contains private Lanai target-specific information for each MachineFunction.
@@ -52,6 +53,6 @@ public:
   void setVarArgsFrameIndex(int Index) { VarArgsFrameIndex = Index; }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_LANAI_LANAIMACHINEFUNCTIONINFO_H

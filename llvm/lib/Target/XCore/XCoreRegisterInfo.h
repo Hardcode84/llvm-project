@@ -17,8 +17,9 @@
 
 #define GET_REGINFO_HEADER
 #include "XCoreGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct XCoreRegisterInfo : public XCoreGenRegisterInfo {
 public:
@@ -45,6 +46,6 @@ public:
   static bool needsFrameMoves(const MachineFunction &MF);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

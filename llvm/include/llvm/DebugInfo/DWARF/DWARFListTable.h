@@ -20,7 +20,7 @@
 #include <map>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A base class for DWARF list entries, such as range or location list
 /// entries.
@@ -293,6 +293,6 @@ DWARFListTableBase<DWARFListType>::findList(DWARFDataExtractor Data,
   return List;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFLISTTABLE_H

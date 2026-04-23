@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_MIPS_MIPS16FRAMELOWERING_H
 
 #include "MipsFrameLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Mips16FrameLowering : public MipsFrameLowering {
 public:
   explicit Mips16FrameLowering(const MipsSubtarget &STI);
@@ -42,6 +43,6 @@ public:
                             RegScavenger *RS) const override;
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

@@ -13,8 +13,9 @@
 #define LLVM_LIB_TARGET_BPF_GISEL_BPFMACHINELEGALIZER_H
 
 #include "llvm/CodeGen/GlobalISel/LegalizerInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BPFSubtarget;
 
@@ -24,5 +25,5 @@ class BPFLegalizerInfo : public LegalizerInfo {
 public:
   BPFLegalizerInfo(const BPFSubtarget &ST);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

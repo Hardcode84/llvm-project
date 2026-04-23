@@ -18,7 +18,7 @@
 #include <memory>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct XCOFFSymbolInfoTy {
   std::optional<XCOFF::StorageMappingClass> StorageMappingClass;
@@ -237,6 +237,6 @@ public:
   mutable raw_ostream *CommentStream = nullptr;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCDISASSEMBLER_MCDISASSEMBLER_H

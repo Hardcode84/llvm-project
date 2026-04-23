@@ -13,8 +13,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/MCA/Stages/Stage.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 // Pin the vtable here in the implementation file.
@@ -26,4 +27,4 @@ void Stage::addListener(HWEventListener *Listener) {
 
 char InstStreamPause::ID = 0;
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

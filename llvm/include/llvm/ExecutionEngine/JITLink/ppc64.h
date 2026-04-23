@@ -18,7 +18,8 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Endian.h"
 
-namespace llvm::jitlink::ppc64 {
+LLVM_NAMESPACE_BEGIN
+namespace jitlink::ppc64 {
 
 /// Represents ppc64 fixups and other ppc64-specific edge kinds.
 enum EdgeKind_ppc64 : Edge::Kind {
@@ -494,6 +495,7 @@ inline Error applyFixup(LinkGraph &G, Block &B, const Edge &E,
   return Error::success();
 }
 
-} // end namespace llvm::jitlink::ppc64
+}
+LLVM_NAMESPACE_END // end namespace llvm::jitlink::ppc64
 
 #endif // LLVM_EXECUTIONENGINE_JITLINK_PPC64_H

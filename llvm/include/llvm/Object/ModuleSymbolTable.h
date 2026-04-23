@@ -26,7 +26,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GlobalValue;
 class Module;
@@ -69,6 +69,6 @@ public:
                     function_ref<void(StringRef, StringRef)> AsmSymver);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECT_MODULESYMBOLTABLE_H

@@ -15,8 +15,9 @@
 
 #include "llvm/MC/MCSection.h"
 #include "llvm/MC/SectionKind.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCSectionSPIRV final : public MCSection {
   friend class MCContext;
@@ -27,6 +28,6 @@ class MCSectionSPIRV final : public MCSection {
   // TODO: Add StringRef Name to MCSectionSPIRV.
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCSECTIONSPIRV_H

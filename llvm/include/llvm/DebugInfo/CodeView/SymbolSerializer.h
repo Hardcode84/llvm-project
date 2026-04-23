@@ -23,7 +23,7 @@
 #include <array>
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 
 class LLVM_ABI SymbolSerializer : public SymbolVisitorCallbacks {
@@ -79,6 +79,6 @@ private:
 };
 
 } // end namespace codeview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_CODEVIEW_SYMBOLSERIALIZER_H

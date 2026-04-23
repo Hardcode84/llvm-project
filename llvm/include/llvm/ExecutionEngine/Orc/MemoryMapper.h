@@ -20,7 +20,7 @@
 
 #include <mutex>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 /// Manages mapping, content transfer and protections for JIT memory
@@ -178,6 +178,6 @@ private:
 };
 
 } // namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_MEMORYMAPPER_H

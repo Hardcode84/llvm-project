@@ -20,13 +20,14 @@
 
 #define GET_TARGET_REGBANK_IMPL
 #include "M68kGenRegisterBank.inc"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
 // FIXME: TableGen this.
 // If it grows too much and TableGen still isn't ready to do the job, extract it
 // into an M68kGenRegisterBankInfo.def (similar to AArch64).
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace M68k {
 enum PartialMappingIdx {
   PMI_GPR,
@@ -53,7 +54,7 @@ const RegisterBankInfo::ValueMapping ValueMappings[] = {
 
 };
 } // end namespace M68k
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 M68kRegisterBankInfo::M68kRegisterBankInfo(const TargetRegisterInfo &TRI)
     : M68kGenRegisterBankInfo() {}

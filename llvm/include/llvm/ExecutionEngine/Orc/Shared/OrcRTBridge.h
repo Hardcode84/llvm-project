@@ -19,7 +19,7 @@
 #include "llvm/ExecutionEngine/Orc/Shared/TargetProcessControlTypes.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 namespace rt {
 
@@ -122,6 +122,6 @@ LLVM_ABI extern const char *UnwindInfoManagerRegisterActionName;
 LLVM_ABI extern const char *UnwindInfoManagerDeregisterActionName;
 } // end namespace rt_alt
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_SHARED_ORCRTBRIDGE_H

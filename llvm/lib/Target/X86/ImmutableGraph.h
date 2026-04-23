@@ -32,8 +32,9 @@
 #include <iterator>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename NodeValueT, typename EdgeValueT> class ImmutableGraph {
   using Traits = GraphTraits<ImmutableGraph<NodeValueT, EdgeValueT> *>;
@@ -440,6 +441,6 @@ struct GraphTraits<ImmutableGraph<NodeValueT, EdgeValueT> *> {
   static typename GraphT::size_type size(GraphT *G) { return G->nodes_size(); }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_X86_IMMUTABLEGRAPH_H

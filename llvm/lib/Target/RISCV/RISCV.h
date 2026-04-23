@@ -16,8 +16,9 @@
 
 #include "MCTargetDesc/RISCVBaseInfo.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class FunctionPass;
 class InstructionSelector;
 class ModulePass;
@@ -133,6 +134,6 @@ FunctionPass *createRISCVVMV0EliminationPass();
 void initializeRISCVVMV0EliminationPass(PassRegistry &);
 
 void initializeRISCVAsmPrinterPass(PassRegistry &);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

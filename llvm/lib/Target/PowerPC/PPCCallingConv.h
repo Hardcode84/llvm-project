@@ -16,8 +16,9 @@
 
 #include "llvm/CodeGen/CallingConvLower.h"
 #include "llvm/IR/CallingConv.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 bool RetCC_PPC(unsigned ValNo, MVT ValVT, MVT LocVT,
                CCValAssign::LocInfo LocInfo, ISD::ArgFlagsTy ArgFlags,
@@ -45,7 +46,7 @@ bool CC_PPC32_SVR4_VarArg(unsigned ValNo, MVT ValVT, MVT LocVT,
                           ISD::ArgFlagsTy ArgFlags, Type *OrigTy,
                           CCState &State);
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif
 

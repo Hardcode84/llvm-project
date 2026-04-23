@@ -19,7 +19,7 @@
 #include "llvm/ExecutionEngine/Orc/DylibManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 class ExecutorProcessControl;
@@ -92,6 +92,6 @@ private:
 };
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_EPCDYNAMICLIBRARYSEARCHGENERATOR_H

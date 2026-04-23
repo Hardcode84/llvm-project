@@ -12,7 +12,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 
 namespace object {
@@ -38,6 +38,6 @@ LLVM_ABI Error executeObjcopyOnBinary(const MultiFormatConfig &Config,
                                       object::Binary &In, raw_ostream &Out);
 
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJCOPY_OBJCOPY_H

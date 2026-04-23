@@ -21,8 +21,9 @@
 #include "llvm/CodeGen/BasicTTIImpl.h"
 #include "llvm/CodeGen/TargetLowering.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class PPCTTIImpl final : public BasicTTIImplBase<PPCTTIImpl> {
   typedef BasicTTIImplBase<PPCTTIImpl> BaseT;
@@ -185,6 +186,6 @@ private:
   /// @}
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

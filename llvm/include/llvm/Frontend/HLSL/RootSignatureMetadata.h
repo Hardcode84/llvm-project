@@ -20,7 +20,7 @@
 #include "llvm/MC/DXContainerRootSignature.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LLVMContext;
 class MDNode;
 class Metadata;
@@ -109,6 +109,6 @@ private:
 
 } // namespace rootsig
 } // namespace hlsl
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_FRONTEND_HLSL_ROOTSIGNATUREMETADATA_H

@@ -8,8 +8,10 @@
 
 #include "llvm/SandboxIR/Instruction.h"
 #include "llvm/SandboxIR/Function.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 const char *Instruction::getOpcodeName(Opcode Opc) {
   switch (Opc) {
@@ -1618,4 +1620,5 @@ ConstantTokenNone *ConstantTokenNone::get(Context &Ctx) {
   return cast<ConstantTokenNone>(Ctx.getOrCreateConstant(LLVMC));
 }
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir

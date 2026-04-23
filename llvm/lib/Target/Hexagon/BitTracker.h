@@ -17,8 +17,9 @@
 #include <map>
 #include <queue>
 #include <set>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BitVector;
 class ConstantInt;
@@ -488,6 +489,6 @@ struct BitTracker::MachineEvaluator {
   MachineRegisterInfo &MRI;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_HEXAGON_BITTRACKER_H

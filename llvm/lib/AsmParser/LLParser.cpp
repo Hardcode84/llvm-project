@@ -5101,7 +5101,7 @@ struct MDUnsignedOrMDField : MDEitherFieldImpl<MDUnsignedField, MDField> {
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <>
 bool LLParser::parseMDField(LocTy Loc, StringRef Name, MDAPSIntField &Result) {
@@ -5572,7 +5572,7 @@ bool LLParser::parseMDField(LocTy Loc, StringRef Name,
   return false;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 template <class ParserTy>
 bool LLParser::parseMDFieldsImplBody(ParserTy ParseField) {

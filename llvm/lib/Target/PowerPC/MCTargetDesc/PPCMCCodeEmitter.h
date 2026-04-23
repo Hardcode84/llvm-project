@@ -19,8 +19,9 @@
 #include "llvm/MC/MCInstrInfo.h"
 #include "llvm/MC/MCContext.h"
 #include "llvm/MC/MCInst.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class PPCMCCodeEmitter : public MCCodeEmitter {
   const MCInstrInfo &MCII;
@@ -118,6 +119,6 @@ public:
   bool isNoTOCCallInstr(const MCInst &MI) const;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_PPC_MCCODEEMITTER_PPCCODEEMITTER_H

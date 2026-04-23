@@ -27,7 +27,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 class Triple;
@@ -225,6 +225,6 @@ public:
   LLVM_ABI static void Split(std::vector<std::string> &V, StringRef S);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TARGETPARSER_SUBTARGETFEATURE_H

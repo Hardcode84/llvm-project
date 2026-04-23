@@ -17,8 +17,9 @@
 #include "M68k.h"
 
 #include "llvm/CodeGen/TargetFrameLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MachineInstrBuilder;
 class MCCFIInstruction;
 class M68kSubtarget;
@@ -168,6 +169,6 @@ protected:
   /// elimination is disabled, or if the frame address is taken.
   bool hasFPImpl(const MachineFunction &MF) const override;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_M68K_M68KFRAMELOWERING_H

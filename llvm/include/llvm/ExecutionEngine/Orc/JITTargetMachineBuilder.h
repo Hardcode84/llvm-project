@@ -25,7 +25,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -175,6 +175,6 @@ private:
 #endif // NDEBUG
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_JITTARGETMACHINEBUILDER_H

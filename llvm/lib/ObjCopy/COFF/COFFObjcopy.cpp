@@ -20,8 +20,9 @@
 #include "llvm/Support/Errc.h"
 #include "llvm/Support/Path.h"
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 namespace coff {
 
@@ -346,4 +347,4 @@ Error executeObjcopyOnBinary(const CommonConfig &Config,
 
 } // end namespace coff
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

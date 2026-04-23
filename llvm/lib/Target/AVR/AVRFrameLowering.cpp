@@ -23,8 +23,9 @@
 #include "llvm/CodeGen/MachineFunctionPass.h"
 #include "llvm/CodeGen/MachineInstrBuilder.h"
 #include "llvm/CodeGen/MachineRegisterInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 AVRFrameLowering::AVRFrameLowering()
     : TargetFrameLowering(TargetFrameLowering::StackGrowsDown, Align(1), -2) {}
@@ -494,4 +495,4 @@ char AVRFrameAnalyzer::ID = 0;
 /// Creates instance of the frame analyzer pass.
 FunctionPass *createAVRFrameAnalyzerPass() { return new AVRFrameAnalyzer(); }
 
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm

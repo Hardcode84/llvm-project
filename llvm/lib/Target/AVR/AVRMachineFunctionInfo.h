@@ -14,8 +14,9 @@
 #define LLVM_AVR_MACHINE_FUNCTION_INFO_H
 
 #include "llvm/CodeGen/MachineFunction.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Contains AVR-specific information for each MachineFunction.
 class AVRMachineFunctionInfo : public MachineFunctionInfo {
@@ -87,6 +88,6 @@ public:
   void setVarArgsFrameIndex(int Idx) { VarArgsFrameIndex = Idx; }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_AVR_MACHINE_FUNCTION_INFO_H

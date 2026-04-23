@@ -15,8 +15,9 @@
 #define LLVM_TARGET_DIRECTX_DXILPRETTYPRINTER_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A pass that prints resources in a format suitable for textual DXIL.
 class DXILPrettyPrinterPass : public PassInfoMixin<DXILPrettyPrinterPass> {
@@ -28,6 +29,6 @@ public:
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TARGET_DIRECTX_DXILPRETTYPRINTER_H

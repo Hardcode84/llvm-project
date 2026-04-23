@@ -13,7 +13,9 @@
 #ifndef LLVM_MC_MCDIRECTIVES_H
 #define LLVM_MC_MCDIRECTIVES_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 enum MCSymbolAttr {
   MCSA_Invalid = 0, ///< Not a valid directive.
@@ -67,6 +69,6 @@ enum MCVersionMinType {
   MCVM_WatchOSVersionMin,     ///< .watchos_version_min
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

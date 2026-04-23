@@ -12,8 +12,9 @@
 #include "llvm/Support/DataTypes.h"
 
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCAsmBackend;
 class MCCodeEmitter;
@@ -90,7 +91,7 @@ MCAsmBackend *createSystemZMCAsmBackend(const Target &T,
 std::unique_ptr<MCObjectTargetWriter>
 createSystemZELFObjectWriter(uint8_t OSABI);
 std::unique_ptr<MCObjectTargetWriter> createSystemZGOFFObjectWriter();
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 // Defines symbolic names for SystemZ registers.
 // This defines a mapping from register name to register number.

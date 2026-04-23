@@ -28,7 +28,7 @@
 #include <memory>
 #include <mutex>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MemoryBuffer;
 class AppleAcceleratorTable;
@@ -496,6 +496,6 @@ private:
                        std::vector<DILocal> &Result);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFCONTEXT_H

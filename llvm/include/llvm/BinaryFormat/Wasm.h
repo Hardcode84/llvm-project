@@ -20,7 +20,7 @@
 #include "llvm/Support/Compiler.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace wasm {
 
 // Object file magic string.
@@ -565,6 +565,6 @@ LLVM_ABI llvm::StringRef sectionTypeToString(uint32_t type);
 LLVM_ABI bool relocTypeHasAddend(uint32_t type);
 
 } // end namespace wasm
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

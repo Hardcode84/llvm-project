@@ -20,8 +20,9 @@
 #include "llvm/Support/CodeGen.h"
 #include "llvm/Support/NVPTXAddrSpace.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class FunctionPass;
 class MachineFunctionPass;
 class NVPTXTargetMachine;
@@ -283,7 +284,7 @@ enum class DivPrecisionLevel : unsigned {
 
 } // namespace NVPTX
 void initializeNVPTXDAGToDAGISelLegacyPass(PassRegistry &);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Defines symbolic names for NVPTX registers.  This defines a mapping from
 // register name to register number.

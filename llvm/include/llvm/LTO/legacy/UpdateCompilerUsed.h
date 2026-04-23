@@ -15,8 +15,9 @@
 
 #include "llvm/ADT/StringSet.h"
 #include "llvm/IR/GlobalValue.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 class TargetMachine;
 
@@ -26,6 +27,6 @@ class TargetMachine;
 /// global in \p TheModule.
 void updateCompilerUsed(Module &TheModule, const TargetMachine &TM,
                         const StringSet<> &AsmUndefinedRefs);
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_LTO_LEGACY_UPDATECOMPILERUSED_H

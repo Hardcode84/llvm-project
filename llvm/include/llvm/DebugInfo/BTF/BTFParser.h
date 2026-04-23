@@ -28,7 +28,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/DataExtractor.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 using object::ObjectFile;
 using object::SectionedAddress;
 using object::SectionRef;
@@ -129,6 +129,6 @@ public:
   LLVM_ABI static bool hasBTFSections(const ObjectFile &Obj);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_BTF_BTFPARSER_H

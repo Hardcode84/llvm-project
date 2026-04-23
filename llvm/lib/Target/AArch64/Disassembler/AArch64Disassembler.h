@@ -14,8 +14,9 @@
 
 #include "llvm/MC/MCDisassembler/MCDisassembler.h"
 #include "llvm/MC/MCInstrInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AArch64Disassembler : public MCDisassembler {
   std::unique_ptr<const MCInstrInfo> const MCII;
@@ -35,6 +36,6 @@ public:
                               uint64_t Address) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AARCH64_DISASSEMBLER_AARCH64DISASSEMBLER_H

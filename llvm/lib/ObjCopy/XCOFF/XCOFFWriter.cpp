@@ -8,8 +8,9 @@
 
 #include "llvm/Support/Errc.h"
 #include "XCOFFWriter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 namespace xcoff {
 
@@ -122,4 +123,4 @@ Error XCOFFWriter::write() {
 
 } // end namespace xcoff
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

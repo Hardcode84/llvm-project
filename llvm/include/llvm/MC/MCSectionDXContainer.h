@@ -15,8 +15,9 @@
 
 #include "llvm/MC/MCSection.h"
 #include "llvm/MC/SectionKind.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCSymbol;
 
@@ -27,6 +28,6 @@ class MCSectionDXContainer final : public MCSection {
       : MCSection(Name, K.isText(), /*IsVirtual=*/false, Begin) {}
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCSECTIONDXCONTAINER_H

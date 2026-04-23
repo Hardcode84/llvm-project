@@ -24,8 +24,9 @@
 
 #define GET_INSTRINFO_HEADER
 #include "M68kGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class M68kSubtarget;
 
@@ -335,6 +336,6 @@ public:
   getSerializableDirectMachineOperandTargetFlags() const override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_M68K_M68KINSTRINFO_H

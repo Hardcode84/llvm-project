@@ -15,7 +15,7 @@
 #include "llvm/Support/YAMLTraits.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -112,6 +112,6 @@ template <> struct ScalarTraits<BinaryRef> {
 
 } // end namespace yaml
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECTYAML_YAML_H

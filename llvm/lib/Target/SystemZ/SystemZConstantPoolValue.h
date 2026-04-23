@@ -11,8 +11,9 @@
 
 #include "llvm/CodeGen/MachineConstantPool.h"
 #include "llvm/Support/ErrorHandling.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GlobalValue;
 
@@ -52,6 +53,6 @@ public:
   SystemZCP::SystemZCPModifier getModifier() const { return Modifier; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

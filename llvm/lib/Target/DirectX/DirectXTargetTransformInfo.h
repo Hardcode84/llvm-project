@@ -15,8 +15,9 @@
 #include "DirectXTargetMachine.h"
 #include "llvm/CodeGen/BasicTTIImpl.h"
 #include "llvm/IR/Function.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DirectXTTIImpl final : public BasicTTIImplBase<DirectXTTIImpl> {
   using BaseT = BasicTTIImplBase<DirectXTTIImpl>;
   using TTI = TargetTransformInfo;
@@ -48,6 +49,6 @@ public:
     return InstructionCost::getInvalid();
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DIRECTX_DIRECTXTARGETTRANSFORMINFO_H

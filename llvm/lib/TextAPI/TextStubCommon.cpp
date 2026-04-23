@@ -13,10 +13,11 @@
 #include "TextStubCommon.h"
 #include "TextAPIContext.h"
 #include "llvm/ADT/StringSwitch.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm::MachO;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 void ScalarTraits<FlowStringRef>::output(const FlowStringRef &Value, void *Ctx,
@@ -229,4 +230,4 @@ QuotingType ScalarTraits<UUID>::mustQuote(StringRef) {
 }
 
 } // end namespace yaml.
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.

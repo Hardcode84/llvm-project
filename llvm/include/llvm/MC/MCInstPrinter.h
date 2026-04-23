@@ -15,7 +15,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCAsmInfo;
 class MCInst;
@@ -229,6 +229,6 @@ struct AliasMatchingData {
                             unsigned PredicateIndex);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCINSTPRINTER_H

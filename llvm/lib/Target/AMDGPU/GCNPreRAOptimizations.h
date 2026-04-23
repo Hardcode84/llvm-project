@@ -10,14 +10,15 @@
 #define LLVM_LIB_TARGET_AMDGPU_GCNPRERAOPTIMIZATIONS_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class GCNPreRAOptimizationsPass
     : public PassInfoMixin<GCNPreRAOptimizationsPass> {
 public:
   PreservedAnalyses run(MachineFunction &MF,
                         MachineFunctionAnalysisManager &MFAM);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_GCNPRERAOPTIMIZATIONS_H

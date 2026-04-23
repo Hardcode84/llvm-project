@@ -11,8 +11,9 @@
 
 #include "llvm/MC/MCObjectWriter.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCAsmBackend;
 class MCContext;
@@ -86,6 +87,6 @@ createWinCOFFObjectWriter(std::unique_ptr<MCWinCOFFObjectTargetWriter> MOTW,
 std::unique_ptr<MCObjectWriter>
 createWinCOFFDwoObjectWriter(std::unique_ptr<MCWinCOFFObjectTargetWriter> MOTW,
                              raw_pwrite_stream &OS, raw_pwrite_stream &DwoOS);
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCWINCOFFOBJECTWRITER_H

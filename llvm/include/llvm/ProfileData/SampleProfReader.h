@@ -246,7 +246,7 @@
 #include <system_error>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 class Twine;
@@ -933,6 +933,6 @@ protected:
 
 } // end namespace sampleprof
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_PROFILEDATA_SAMPLEPROFREADER_H

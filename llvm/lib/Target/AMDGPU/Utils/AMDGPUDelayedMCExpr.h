@@ -11,8 +11,9 @@
 
 #include "llvm/BinaryFormat/MsgPackDocument.h"
 #include <deque>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCExpr;
 
 class DelayedMCExprs {
@@ -34,6 +35,6 @@ public:
   bool empty();
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_UTILS_AMDGPUDELAYEDMCEXPR_H

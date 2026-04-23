@@ -12,8 +12,9 @@
 #include "llvm/IR/CallingConv.h"
 #include "llvm/MC/MCRegisterInfo.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> class ArrayRef;
 class MCTargetOptions;
@@ -74,6 +75,6 @@ public:
 
   unsigned GetEhDataReg(unsigned I) const;
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

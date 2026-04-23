@@ -27,8 +27,9 @@
 #include <unordered_set>
 
 #include "SPIRVTypeInst.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCInst;
 class MachineFunction;
 class MachineInstr;
@@ -594,5 +595,5 @@ unsigned getArrayComponentCount(const MachineRegisterInfo *MRI,
 std::optional<SPIRV::LinkageType::LinkageType>
 getSpirvLinkageTypeFor(const SPIRVSubtarget &ST, const GlobalValue &GV);
 Function *getOrCreateBackendServiceFunction(Module &M);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVUTILS_H

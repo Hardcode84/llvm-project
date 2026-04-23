@@ -17,8 +17,9 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/MC/MCInstPrinter.h"
 #include "../Utils/AArch64BaseInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AArch64InstPrinter : public MCInstPrinter {
 public:
@@ -274,6 +275,6 @@ public:
                                      unsigned AltIdx = AArch64::NoRegAltName);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AARCH64_MCTARGETDESC_AARCH64INSTPRINTER_H

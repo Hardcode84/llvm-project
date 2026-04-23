@@ -22,7 +22,7 @@
 #include <optional>
 #include <set>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace object {
 class ObjectFile;
@@ -111,6 +111,6 @@ LLVM_ABI Expected<std::optional<StringRef>>
 getRemarksSectionContents(const object::ObjectFile &Obj);
 
 } // end namespace remarks
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_REMARKS_REMARKLINKER_H

@@ -21,8 +21,9 @@
 
 #define GET_INSTRINFO_OPERAND_TYPES_ENUM
 #include "AVRGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCContext;
 class MCExpr;
@@ -101,6 +102,6 @@ private:
   MCContext &Ctx;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_AVR_CODE_EMITTER_H

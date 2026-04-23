@@ -11,8 +11,10 @@
 #include "llvm/SandboxIR/Function.h"
 #include "llvm/SandboxIR/Instruction.h"
 #include "llvm/SandboxIR/Module.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 std::unique_ptr<Value> Context::detachLLVMValue(llvm::Value *V) {
   std::unique_ptr<Value> Erased;
@@ -789,4 +791,5 @@ void Context::unregisterSetUseCallback(CallbackID ID) {
          "Callback ID not found in SetUseCallbacks during deregistration");
 }
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir

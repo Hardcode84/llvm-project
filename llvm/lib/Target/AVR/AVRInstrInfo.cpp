@@ -26,8 +26,9 @@
 
 #define GET_INSTRINFO_CTOR_DTOR
 #include "AVRGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 AVRInstrInfo::AVRInstrInfo(const AVRSubtarget &STI)
     : AVRGenInstrInfo(STI, RI, AVR::ADJCALLSTACKDOWN, AVR::ADJCALLSTACKUP),
@@ -571,4 +572,4 @@ void AVRInstrInfo::insertIndirectBranch(MachineBasicBlock &MBB,
     BuildMI(&MBB, DL, get(AVR::RJMPk)).addMBB(&NewDestBB);
 }
 
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm

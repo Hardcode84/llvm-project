@@ -2160,7 +2160,7 @@ unsigned MipsFastISel::fastEmitInst_rr(unsigned MachineInstOpcode,
   return FastISel::fastEmitInst_rr(MachineInstOpcode, RC, Op0, Op1);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 FastISel *Mips::createFastISel(FunctionLoweringInfo &funcInfo,
                                const TargetLibraryInfo *libInfo,
@@ -2168,4 +2168,4 @@ FastISel *Mips::createFastISel(FunctionLoweringInfo &funcInfo,
   return new MipsFastISel(funcInfo, libInfo, libcallLowering);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

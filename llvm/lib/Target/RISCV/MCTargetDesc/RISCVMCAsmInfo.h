@@ -16,8 +16,9 @@
 #include "llvm/MC/MCAsmInfoDarwin.h"
 #include "llvm/MC/MCAsmInfoELF.h"
 #include "llvm/MC/MCFixup.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Triple;
 
 class RISCVMCAsmInfo : public MCAsmInfoELF {
@@ -61,6 +62,6 @@ public:
                           const MCSpecifierExpr &Expr) const override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -13,8 +13,9 @@
 #define LLVM_LIB_TARGET_SPARC_LEON_PASSES_H
 
 #include "llvm/CodeGen/MachineFunctionPass.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SparcSubtarget;
 
 class LLVM_LIBRARY_VISIBILITY LEONMachineFunctionPass
@@ -104,6 +105,6 @@ public:
            "instructions with NOPs and floating-point store";
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_SPARC_LEON_PASSES_H

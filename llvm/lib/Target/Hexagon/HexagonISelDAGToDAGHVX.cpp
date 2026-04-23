@@ -26,6 +26,7 @@
 #include <unordered_map>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "hexagon-isel"
 using namespace llvm;
@@ -914,7 +915,7 @@ static const HexagonSubtarget &getHexagonSubtarget(SelectionDAG &G) {
   return G.getSubtarget<HexagonSubtarget>();
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   struct HvxSelector {
     const HexagonTargetLowering &Lower;
     HexagonDAGToDAGISel &ISel;
@@ -992,7 +993,7 @@ namespace llvm {
     bool scalarizeShuffle(ArrayRef<int> Mask, const SDLoc &dl, MVT ResTy,
                           SDValue Va, SDValue Vb, SDNode *N);
   };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static void splitMask(ArrayRef<int> Mask, MutableArrayRef<int> MaskL,
                       MutableArrayRef<int> MaskR) {

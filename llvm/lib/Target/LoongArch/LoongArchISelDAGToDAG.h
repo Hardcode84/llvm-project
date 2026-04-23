@@ -17,10 +17,11 @@
 #include "LoongArchSelectionDAGInfo.h"
 #include "LoongArchTargetMachine.h"
 #include "llvm/CodeGen/SelectionDAGISel.h"
+#include "llvm/Support/Compiler.h"
 
 // LoongArch-specific code to select LoongArch machine instructions for
 // SelectionDAG operations.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LoongArchDAGToDAGISel : public SelectionDAGISel {
   const LoongArchSubtarget *Subtarget = nullptr;
 
@@ -101,6 +102,6 @@ public:
                                        CodeGenOptLevel OptLevel);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_LOONGARCH_LOONGARCHISELDAGTODAG_H

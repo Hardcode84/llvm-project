@@ -11,8 +11,9 @@
 
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 enum class dia_error_code {
   unspecified = 1,
@@ -23,14 +24,14 @@ enum class dia_error_code {
   debug_info_mismatch,
 };
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace std {
 template <>
 struct is_error_code_enum<llvm::pdb::dia_error_code> : std::true_type {};
 } // namespace std
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 const std::error_category &DIAErrCategory();
 
@@ -46,5 +47,5 @@ public:
   static char ID;
 };
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

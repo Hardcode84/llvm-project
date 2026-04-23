@@ -13,7 +13,8 @@
 #include "llvm/SandboxIR/Constant.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 class Function : public GlobalWithNodeAPI<Function, llvm::Function,
                                           GlobalObject, llvm::GlobalObject> {
@@ -78,6 +79,7 @@ public:
 #endif
 };
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir
 
 #endif // LLVM_SANDBOXIR_FUNCTION_H

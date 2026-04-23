@@ -38,9 +38,10 @@ using namespace llvm;
 
 #define GET_INSTRMAP_INFO
 #include "MipsGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 #undef GET_INSTRMAP_INFO
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 MCCodeEmitter *createMipsMCCodeEmitterEB(const MCInstrInfo &MCII,
                                          MCContext &Ctx) {
@@ -52,7 +53,7 @@ MCCodeEmitter *createMipsMCCodeEmitterEL(const MCInstrInfo &MCII,
   return new MipsMCCodeEmitter(MCII, Ctx, true);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 static void addFixup(SmallVectorImpl<MCFixup> &Fixups, uint32_t Offset,
                      const MCExpr *Value, uint16_t Kind) {

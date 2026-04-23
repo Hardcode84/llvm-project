@@ -17,8 +17,9 @@
 #include "llvm/Support/DataTypes.h"
 
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class formatted_raw_ostream;
 class MCAsmBackend;
 class MCCodeEmitter;
@@ -76,7 +77,7 @@ enum OperandType {
 };
 } // namespace AArch64
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Defines symbolic names for AArch64 registers.  This defines a mapping from
 // register name to register number.

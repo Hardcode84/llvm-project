@@ -16,8 +16,9 @@
 
 #include "SPIRVSubtarget.h"
 #include "llvm/CodeGen/GlobalISel/CombinerHelper.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SPIRVCombinerHelper : public CombinerHelper {
 protected:
   const SPIRVSubtarget &STI;
@@ -57,6 +58,6 @@ private:
                              SPIRVGlobalRegistry *GR) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVCOMBINERHELPER_H

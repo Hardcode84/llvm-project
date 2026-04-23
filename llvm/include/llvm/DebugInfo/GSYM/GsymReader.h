@@ -27,7 +27,7 @@
 #include <stdint.h>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MemoryBuffer;
 class raw_ostream;
 
@@ -532,6 +532,6 @@ protected:
 };
 
 } // namespace gsym
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_GSYM_GSYMREADER_H

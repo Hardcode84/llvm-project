@@ -16,8 +16,9 @@
 #include "llvm/CodeGen/MachineFunction.h"
 #include "llvm/CodeGen/TargetFrameLowering.h"
 #include "llvm/Support/TypeSize.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineInstrBuilder;
 class MCCFIInstruction;
@@ -339,6 +340,6 @@ private:
                      MachineBasicBlock::reverse_iterator &MI) const;
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

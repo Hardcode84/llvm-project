@@ -12,8 +12,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/Target/RegisterTargetPassConfigCallback.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // TargetPassConfig callbacks
 static SmallVector<RegisterTargetPassConfigCallback *, 1>
     TargetPassConfigCallbacks{};
@@ -36,4 +37,4 @@ RegisterTargetPassConfigCallback::~RegisterTargetPassConfigCallback() {
   if (It != TargetPassConfigCallbacks.end())
     TargetPassConfigCallbacks.erase(It);
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

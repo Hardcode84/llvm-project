@@ -17,8 +17,9 @@
 #include "MSP430.h"
 #include "llvm/CodeGen/SelectionDAG.h"
 #include "llvm/CodeGen/TargetLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class MSP430Subtarget;
   class MSP430TargetLowering : public TargetLowering {
   public:
@@ -128,6 +129,6 @@ namespace llvm {
                                     SDValue &Offset, ISD::MemIndexedMode &AM,
                                     SelectionDAG &DAG) const override;
   };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

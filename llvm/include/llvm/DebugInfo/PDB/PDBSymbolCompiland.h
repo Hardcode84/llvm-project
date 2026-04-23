@@ -13,7 +13,7 @@
 #include "llvm/Support/Compiler.h"
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -33,6 +33,6 @@ public:
   std::string getSourceFileFullPath() const;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_DEBUGINFO_PDB_PDBSYMBOLCOMPILAND_H

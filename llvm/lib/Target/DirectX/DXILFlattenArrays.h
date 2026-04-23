@@ -10,14 +10,15 @@
 #define LLVM_TARGET_DIRECTX_DXILFLATTENARRAYS_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A pass that transforms multidimensional arrays into one-dimensional arrays.
 class DXILFlattenArrays : public PassInfoMixin<DXILFlattenArrays> {
 public:
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TARGET_DIRECTX_DXILFLATTENARRAYS_H

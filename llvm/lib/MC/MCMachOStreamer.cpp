@@ -33,13 +33,14 @@
 #include "llvm/Support/ErrorHandling.h"
 #include <cassert>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCInst;
 class MCStreamer;
 class MCSubtargetInfo;
 class Triple;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using namespace llvm;
 

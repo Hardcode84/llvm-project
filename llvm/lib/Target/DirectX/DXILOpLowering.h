@@ -14,14 +14,15 @@
 #define LLVM_LIB_TARGET_DIRECTX_DXILOPLOWERING_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DXILOpLowering : public PassInfoMixin<DXILOpLowering> {
 public:
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &MAM);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_DIRECTX_DXILOPLOWERING_H

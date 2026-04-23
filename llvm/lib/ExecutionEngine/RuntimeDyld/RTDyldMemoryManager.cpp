@@ -25,7 +25,7 @@
 #include <unistd.h>
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 RTDyldMemoryManager::~RTDyldMemoryManager() = default;
 
@@ -290,4 +290,4 @@ void *RTDyldMemoryManager::getPointerToNamedFunction(const std::string &Name,
 
 void RTDyldMemoryManager::anchor() {}
 void MCJITMemoryManager::anchor() {}
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

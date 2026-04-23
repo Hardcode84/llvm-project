@@ -17,8 +17,9 @@
 
 #define GET_REGBANK_DECLARATIONS
 #include "SPIRVGenRegisterBank.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class TargetRegisterInfo;
 
@@ -34,5 +35,5 @@ public:
   const RegisterBank &getRegBankFromRegClass(const TargetRegisterClass &RC,
                                              LLT Ty) const override;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVREGISTERBANKINFO_H

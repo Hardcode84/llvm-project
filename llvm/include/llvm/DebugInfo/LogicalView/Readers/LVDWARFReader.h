@@ -18,8 +18,9 @@
 #include "llvm/DebugInfo/DWARF/DWARFContext.h"
 #include "llvm/DebugInfo/LogicalView/Readers/LVBinaryReader.h"
 #include <unordered_set>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace logicalview {
 
 class LVElement;
@@ -151,6 +152,6 @@ public:
 };
 
 } // end namespace logicalview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_LOGICALVIEW_READERS_LVDWARFREADER_H

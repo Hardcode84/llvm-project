@@ -14,7 +14,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 /// Encapsulates a DWARF attribute value and all of the data required to
@@ -48,6 +48,6 @@ struct DWARFAttribute {
   LLVM_ABI static bool mayHaveLocationExpr(dwarf::Attribute Attr);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFATTRIBUTE_H

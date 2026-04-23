@@ -19,7 +19,7 @@
 #include "llvm/DebugInfo/CodeView/CodeView.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace logicalview {
 
 /// A source language supported by any of the debug info representations.
@@ -65,6 +65,6 @@ private:
 };
 
 } // end namespace logicalview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_LOGICALVIEW_CORE_LVSOURCELANGUAGE_H

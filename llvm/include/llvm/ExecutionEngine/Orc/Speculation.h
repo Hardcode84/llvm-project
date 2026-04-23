@@ -22,7 +22,7 @@
 #include <mutex>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 class Speculator;
@@ -204,6 +204,6 @@ private:
 };
 
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_SPECULATION_H

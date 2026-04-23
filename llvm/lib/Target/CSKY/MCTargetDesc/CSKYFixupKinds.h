@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_CSKY_MCTARGETDESC_CSKYFIXUPKINDS_H
 
 #include "llvm/MC/MCFixup.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace CSKY {
 enum Fixups {
   fixup_csky_addr32 = FirstTargetFixupKind,
@@ -56,6 +57,6 @@ enum Fixups {
   NumTargetFixupKinds = fixup_csky_invalid - FirstTargetFixupKind
 };
 } // end namespace CSKY
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_CSKY_MCTARGETDESC_CSKYFIXUPKINDS_H

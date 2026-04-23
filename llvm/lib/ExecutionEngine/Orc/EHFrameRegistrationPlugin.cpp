@@ -11,12 +11,14 @@
 #include "llvm/ExecutionEngine/JITLink/EHFrameSupport.h"
 #include "llvm/ExecutionEngine/Orc/Shared/MachOObjectFormat.h"
 #include "llvm/ExecutionEngine/Orc/Shared/OrcRTBridge.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
 using namespace llvm::jitlink;
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 Expected<std::unique_ptr<EHFrameRegistrationPlugin>>
 EHFrameRegistrationPlugin::Create(ExecutionSession &ES) {
@@ -62,4 +64,5 @@ void EHFrameRegistrationPlugin::modifyPassConfig(
   });
 }
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc

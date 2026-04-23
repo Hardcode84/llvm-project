@@ -23,10 +23,11 @@
 #include "llvm/Support/ErrorHandling.h"
 
 #include <cstring>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "asm-printer"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Include the auto-generated portion of the assembly writer.
 #define PRINT_ALIAS_INSTR
@@ -178,4 +179,4 @@ void AVRInstPrinter::printMemri(const MCInst *MI, unsigned OpNo,
   }
 }
 
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm

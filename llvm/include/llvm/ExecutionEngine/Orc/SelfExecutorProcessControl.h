@@ -17,8 +17,10 @@
 #include "llvm/ExecutionEngine/Orc/ExecutorProcessControl.h"
 
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 /// A ExecutorProcessControl implementation targeting the current process.
 class LLVM_ABI SelfExecutorProcessControl : public ExecutorProcessControl {
@@ -68,6 +70,7 @@ private:
 #endif // __APPLE__
 };
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc
 
 #endif // LLVM_EXECUTIONENGINE_ORC_SELFEXECUTORPROCESSCONTROL_H

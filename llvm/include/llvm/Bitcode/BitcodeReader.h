@@ -28,7 +28,7 @@
 #include <string>
 #include <system_error>
 #include <vector>
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LLVMContext;
 class Module;
@@ -321,7 +321,7 @@ struct ParserCallbacks {
     return std::error_code(static_cast<int>(E), BitcodeErrorCategory());
   }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace std {
 

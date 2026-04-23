@@ -9,7 +9,9 @@
 #ifndef LLVM_MC_MCPARSER_MCASMPARSERUTILS_H
 #define LLVM_MC_MCPARSER_MCASMPARSERUTILS_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class MCAsmParser;
 class MCExpr;
@@ -28,6 +30,6 @@ bool parseAssignmentExpression(StringRef Name, bool allow_redef,
 
 } // namespace MCParserUtils
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_MC_MCPARSER_MCASMPARSERUTILS_H

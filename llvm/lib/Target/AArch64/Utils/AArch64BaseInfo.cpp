@@ -13,151 +13,152 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/ADT/StringExtras.h"
 #include "llvm/Support/Regex.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace AArch64AT {
 #define GET_ATsList_IMPL
 #include "AArch64GenSystemOperands.inc"
   }
-}
+LLVM_NAMESPACE_END
 
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace AArch64DBnXS {
 #define GET_DBnXSsList_IMPL
 #include "AArch64GenSystemOperands.inc"
   }
-}
+LLVM_NAMESPACE_END
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace AArch64DB {
 #define GET_DBsList_IMPL
 #include "AArch64GenSystemOperands.inc"
   }
-}
+LLVM_NAMESPACE_END
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace AArch64DC {
 #define GET_DCsList_IMPL
 #include "AArch64GenSystemOperands.inc"
   }
-}
+LLVM_NAMESPACE_END
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace AArch64IC {
 #define GET_ICsList_IMPL
 #include "AArch64GenSystemOperands.inc"
   }
-}
+LLVM_NAMESPACE_END
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace AArch64ISB {
 #define GET_ISBsList_IMPL
 #include "AArch64GenSystemOperands.inc"
   }
-}
+LLVM_NAMESPACE_END
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace AArch64TSB {
 #define GET_TSBsList_IMPL
 #include "AArch64GenSystemOperands.inc"
   }
-}
+LLVM_NAMESPACE_END
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace AArch64PRFM {
 #define GET_PRFMsList_IMPL
 #include "AArch64GenSystemOperands.inc"
   }
-}
+LLVM_NAMESPACE_END
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace AArch64SVEPRFM {
 #define GET_SVEPRFMsList_IMPL
 #include "AArch64GenSystemOperands.inc"
   }
-}
+LLVM_NAMESPACE_END
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace AArch64RPRFM {
 #define GET_RPRFMsList_IMPL
 #include "AArch64GenSystemOperands.inc"
   } // namespace AArch64RPRFM
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace AArch64SVEPredPattern {
 #define GET_SVEPREDPATsList_IMPL
 #include "AArch64GenSystemOperands.inc"
   }
-}
+LLVM_NAMESPACE_END
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace AArch64SVEVecLenSpecifier {
 #define GET_SVEVECLENSPECIFIERsList_IMPL
 #include "AArch64GenSystemOperands.inc"
 } // namespace AArch64SVEVecLenSpecifier
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace AArch64ExactFPImm {
 #define GET_ExactFPImmsList_IMPL
 #include "AArch64GenSystemOperands.inc"
   }
-}
+LLVM_NAMESPACE_END
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace AArch64PState {
 #define GET_PStateImm0_15sList_IMPL
 #include "AArch64GenSystemOperands.inc"
 #define GET_PStateImm0_1sList_IMPL
 #include "AArch64GenSystemOperands.inc"
   }
-}
+LLVM_NAMESPACE_END
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace AArch64PSBHint {
 #define GET_PSBsList_IMPL
 #include "AArch64GenSystemOperands.inc"
   }
-}
+LLVM_NAMESPACE_END
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace AArch64PHint {
 #define GET_PHintsList_IMPL
 #include "AArch64GenSystemOperands.inc"
 } // namespace AArch64PHint
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace AArch64BTIHint {
 #define GET_BTIsList_IMPL
 #include "AArch64GenSystemOperands.inc"
   }
-}
+LLVM_NAMESPACE_END
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace AArch64CMHPriorityHint {
 #define GET_CMHPRIORITYHINT_IMPL
 #include "AArch64GenSystemOperands.inc"
 } // namespace AArch64CMHPriorityHint
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace AArch64TIndexHint {
 #define GET_TINDEX_IMPL
 #include "AArch64GenSystemOperands.inc"
 } // namespace AArch64TIndexHint
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace AArch64SysReg {
 #define GET_SysRegsList_IMPL
 #include "AArch64GenSystemOperands.inc"
   }
-}
+LLVM_NAMESPACE_END
 
 uint32_t AArch64SysReg::parseGenericRegister(StringRef Name) {
   // Try to parse an S<op0>_<op1>_<Cn>_<Cm>_<op2> register name
@@ -192,21 +193,21 @@ std::string AArch64SysReg::genericRegisterString(uint32_t Bits) {
          utostr(CRm) + "_" + utostr(Op2);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace AArch64TLBI {
 #define GET_TLBITable_IMPL
 #include "AArch64GenSystemOperands.inc"
 } // namespace AArch64TLBI
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace AArch64PLBI {
 #define GET_PLBITable_IMPL
 #include "AArch64GenSystemOperands.inc"
 } // namespace AArch64PLBI
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace AArch64TLBIP {
 #define GET_TLBIPTable_IMPL
 #include "AArch64GenSystemOperands.inc"
@@ -216,32 +217,32 @@ namespace AArch64MLBI {
 #define GET_MLBITable_IMPL
 #include "AArch64GenSystemOperands.inc"
 } // namespace AArch64MLBI
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace AArch64GIC {
 #define GET_GICTable_IMPL
 #include "AArch64GenSystemOperands.inc"
 } // namespace AArch64GIC
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace AArch64GICR {
 #define GET_GICRTable_IMPL
 #include "AArch64GenSystemOperands.inc"
 } // namespace AArch64GICR
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace AArch64GSB {
 #define GET_GSBTable_IMPL
 #include "AArch64GenSystemOperands.inc"
 } // namespace AArch64GSB
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace AArch64SVCR {
 #define GET_SVCRsList_IMPL
 #include "AArch64GenSystemOperands.inc"
   }
-}
+LLVM_NAMESPACE_END

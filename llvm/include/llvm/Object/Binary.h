@@ -23,7 +23,7 @@
 #include <memory>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LLVMContext;
 class StringRef;
@@ -251,6 +251,6 @@ createBinary(StringRef Path, LLVMContext *Context = nullptr,
 
 } // end namespace object
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECT_BINARY_H

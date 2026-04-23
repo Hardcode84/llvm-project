@@ -15,7 +15,7 @@
 #include <cstddef>
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 
 namespace gsym {
@@ -136,6 +136,6 @@ LLVM_ABI bool operator==(const Header &LHS, const Header &RHS);
 LLVM_ABI raw_ostream &operator<<(raw_ostream &OS, const llvm::gsym::Header &H);
 
 } // namespace gsym
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_GSYM_HEADER_H

@@ -11,14 +11,15 @@
 
 #include "llvm/CodeGen/ScheduleDAGMutation.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Note that you have to add:
 ///   DAG.addMutation(createAMDGPUMacroFusionDAGMutation());
 /// to AMDGPUTargetMachine::createMachineScheduler() to have an effect.
 std::unique_ptr<ScheduleDAGMutation> createAMDGPUMacroFusionDAGMutation();
 
-} // llvm
+LLVM_NAMESPACE_END // llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_AMDGPUMACROFUSION_H

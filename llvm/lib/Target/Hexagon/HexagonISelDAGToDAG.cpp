@@ -54,15 +54,16 @@ static cl::opt<bool> CheckSingleUse("hexagon-isel-su", cl::Hidden,
 
 #define GET_DAGISEL_BODY HexagonDAGToDAGISel
 #include "HexagonGenDAGISel.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// createHexagonISelDag - This pass converts a legalized DAG into a
 /// Hexagon-specific DAG, ready for instruction scheduling.
 FunctionPass *createHexagonISelDag(HexagonTargetMachine &TM,
                                    CodeGenOptLevel OptLevel) {
   return new HexagonDAGToDAGISelLegacy(TM, OptLevel);
 }
-}
+LLVM_NAMESPACE_END
 
 HexagonDAGToDAGISelLegacy::HexagonDAGToDAGISelLegacy(HexagonTargetMachine &tm,
                                                      CodeGenOptLevel OptLevel)

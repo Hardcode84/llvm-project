@@ -10,8 +10,9 @@
 
 #include "llvm/MC/MCSymbol.h"
 #include "llvm/MC/MCSymbolTableEntry.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCSymbolELF : public MCSymbol {
   friend class MCAsmInfoELF;
   /// An expression describing how to calculate the size of a symbol. If a
@@ -51,6 +52,6 @@ public:
 private:
   void setIsBindingSet() const;
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_LANAI_MCTARGETDESC_LANAIFIXUPKINDS_H
 
 #include "llvm/MC/MCFixup.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace Lanai {
 // Although most of the current fixup types reflect a unique relocation
 // one can have multiple fixup types for a given relocation and thus need
@@ -37,6 +38,6 @@ enum Fixups {
   NumTargetFixupKinds = LastTargetFixupKind - FirstTargetFixupKind
 };
 } // namespace Lanai
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_LANAI_MCTARGETDESC_LANAIFIXUPKINDS_H

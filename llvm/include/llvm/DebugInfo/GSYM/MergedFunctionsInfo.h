@@ -15,7 +15,7 @@
 #include <stdint.h>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 
 namespace gsym {
@@ -70,6 +70,6 @@ LLVM_ABI bool operator==(const MergedFunctionsInfo &LHS,
                          const MergedFunctionsInfo &RHS);
 
 } // namespace gsym
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_GSYM_MERGEDFUNCTIONSINFO_H

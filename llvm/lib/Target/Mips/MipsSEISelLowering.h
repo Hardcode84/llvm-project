@@ -16,8 +16,9 @@
 #include "MipsISelLowering.h"
 #include "llvm/CodeGen/SelectionDAGNodes.h"
 #include "llvm/CodeGenTypes/MachineValueType.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineBasicBlock;
 class MachineInstr;
@@ -143,6 +144,6 @@ class TargetRegisterClass;
                                           bool IsFGR64) const;
   };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_MIPS_MIPSSEISELLOWERING_H

@@ -22,7 +22,7 @@
 #include "llvm/ExecutionEngine/Orc/Core.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 class LLVM_ABI EPCGenericJITLinkMemoryManager
@@ -121,6 +121,6 @@ public:
 
 } // end namespace shared
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_EPCGENERICJITLINKMEMORYMANAGER_H

@@ -13,8 +13,9 @@
 
 #define GET_SDNODE_ENUM
 #include "M68kGenSDNodeInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class M68kSelectionDAGInfo : public SelectionDAGGenTargetInfo {
 public:
@@ -26,6 +27,6 @@ public:
                         const SDNode *N) const override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_M68K_M68KSELECTIONDAGINFO_H

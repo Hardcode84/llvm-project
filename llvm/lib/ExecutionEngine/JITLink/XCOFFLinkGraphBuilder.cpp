@@ -22,12 +22,13 @@
 #include "llvm/Support/Format.h"
 #include "llvm/Support/raw_ostream.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
 #define DEBUG_TYPE "jitlink"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 XCOFFLinkGraphBuilder::XCOFFLinkGraphBuilder(
@@ -417,4 +418,4 @@ Expected<std::unique_ptr<LinkGraph>> XCOFFLinkGraphBuilder::buildGraph() {
 }
 
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

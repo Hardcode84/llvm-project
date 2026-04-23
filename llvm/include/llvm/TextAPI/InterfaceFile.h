@@ -28,7 +28,7 @@
 #include "llvm/TextAPI/SymbolSet.h"
 #include "llvm/TextAPI/Target.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace MachO {
 
 /// Defines a list of Objective-C constraints.
@@ -463,6 +463,6 @@ typename C::iterator addEntry(C &Container, StringRef InstallName) {
 }
 
 } // end namespace MachO.
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.
 
 #endif // LLVM_TEXTAPI_INTERFACEFILE_H

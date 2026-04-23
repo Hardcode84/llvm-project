@@ -12,7 +12,7 @@
 #include "PDBTypes.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 namespace pdb {
@@ -74,6 +74,6 @@ private:
   bool RequireImpl;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

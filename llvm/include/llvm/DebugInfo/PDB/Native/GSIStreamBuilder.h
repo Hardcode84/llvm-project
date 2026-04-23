@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 class ConstantSym;
 class DataSym;
@@ -147,6 +147,6 @@ static_assert(std::is_trivially_copyable<BulkPublic>::value,
               "should be trivial");
 
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

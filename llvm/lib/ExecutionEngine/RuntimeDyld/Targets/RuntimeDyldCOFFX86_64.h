@@ -16,10 +16,11 @@
 #include "../RuntimeDyldCOFF.h"
 #include "llvm/BinaryFormat/COFF.h"
 #include "llvm/Object/COFF.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "dyld"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class RuntimeDyldCOFFX86_64 : public RuntimeDyldCOFF {
 
@@ -315,7 +316,7 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #undef DEBUG_TYPE
 

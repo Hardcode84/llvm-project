@@ -17,8 +17,9 @@
 #include "llvm/MC/MCInstPrinter.h"
 #include "llvm/MC/MCRegister.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCOperand;
 
@@ -81,6 +82,6 @@ protected:
   void printCond4Operand(const MCInst *MI, int OpNum, raw_ostream &O);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_SYSTEMZ_MCTARGETDESC_SYSTEMZINSTPRINTERCOMMON_H

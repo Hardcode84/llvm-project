@@ -17,8 +17,9 @@
 
 #define GET_REGINFO_HEADER
 #include "LanaiGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct LanaiRegisterInfo : public LanaiGenRegisterInfo {
   LanaiRegisterInfo();
@@ -45,6 +46,6 @@ struct LanaiRegisterInfo : public LanaiGenRegisterInfo {
   bool hasBasePointer(const MachineFunction &MF) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_LANAI_LANAIREGISTERINFO_H

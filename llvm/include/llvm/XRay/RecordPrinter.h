@@ -17,7 +17,8 @@
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/XRay/FDRRecords.h"
 
-namespace llvm::xray {
+LLVM_NAMESPACE_BEGIN
+namespace xray {
 
 class LLVM_ABI RecordPrinter : public RecordVisitor {
   raw_ostream &OS;
@@ -43,6 +44,7 @@ public:
   Error visit(TypedEventRecord &) override;
 };
 
-} // namespace llvm::xray
+}
+LLVM_NAMESPACE_END // namespace llvm::xray
 
 #endif // LLVM_XRAY_RECORDPRINTER_H

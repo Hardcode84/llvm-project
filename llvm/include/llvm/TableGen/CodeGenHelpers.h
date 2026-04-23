@@ -18,8 +18,9 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/raw_ostream.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Simple RAII helper for emitting ifdef-undef-endif scope. `LateUndef` controls
 // whether the undef is emitted at the start of the scope (false) or at the end
@@ -162,6 +163,6 @@ private:
   raw_ostream &OS;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TABLEGEN_CODEGENHELPERS_H

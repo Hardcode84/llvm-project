@@ -11,7 +11,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCFixup;
 class MCInst;
@@ -43,6 +43,6 @@ protected:
                                                     unsigned OpNum);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCCODEEMITTER_H

@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_LANAI_LANAIFRAMELOWERING_H
 
 #include "llvm/CodeGen/TargetFrameLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BitVector;
 class LanaiSubtarget;
@@ -51,6 +52,6 @@ protected:
   bool hasFPImpl(const MachineFunction & /*MF*/) const override { return true; }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_LANAI_LANAIFRAMELOWERING_H

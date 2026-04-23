@@ -10,8 +10,9 @@
 #define LLVM_DEBUGINFO_GSYM_GSYMDATAEXTRACTOR_H
 
 #include "llvm/Support/DataExtractor.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace gsym {
 
 /// A DataExtractor subclass that adds GSYM-specific string offset support.
@@ -53,6 +54,6 @@ public:
 };
 
 } // namespace gsym
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_GSYM_GSYMDATAEXTRACTOR_H

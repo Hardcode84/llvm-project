@@ -19,7 +19,7 @@
 #include "llvm/ObjCopy/wasm/WasmConfig.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 
 struct LLVM_ABI ConfigManager : public MultiFormatConfig {
@@ -50,6 +50,6 @@ struct LLVM_ABI ConfigManager : public MultiFormatConfig {
 };
 
 } // namespace objcopy
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_OBJCOPY_CONFIGMANAGER_H

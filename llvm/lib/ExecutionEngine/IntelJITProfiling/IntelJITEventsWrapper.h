@@ -18,8 +18,9 @@
 #define INTEL_JIT_EVENTS_WRAPPER_H
 
 #include "jitprofiling.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 typedef enum {
   LoadBinaryModule,
@@ -105,6 +106,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif //INTEL_JIT_EVENTS_WRAPPER_H

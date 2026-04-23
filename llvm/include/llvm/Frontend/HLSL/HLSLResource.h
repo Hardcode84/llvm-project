@@ -14,8 +14,9 @@
 #define LLVM_FRONTEND_HLSL_HLSLRESOURCE_H
 
 #include "llvm/Support/DXILABI.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace hlsl {
 
 // For now we use DXIL ABI enum values directly. This may change in the future.
@@ -25,6 +26,6 @@ using dxil::ResourceDimension;
 const unsigned CBufferRowSizeInBytes = 16U;
 
 } // namespace hlsl
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_FRONTEND_HLSL_HLSLRESOURCE_H

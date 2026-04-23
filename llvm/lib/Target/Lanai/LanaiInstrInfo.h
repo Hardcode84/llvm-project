@@ -19,8 +19,9 @@
 
 #define GET_INSTRINFO_HEADER
 #include "LanaiGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LanaiSubtarget;
 
@@ -173,6 +174,6 @@ static inline bool isRRMOpcode(unsigned Opcode) {
   }
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_LANAI_LANAIINSTRINFO_H

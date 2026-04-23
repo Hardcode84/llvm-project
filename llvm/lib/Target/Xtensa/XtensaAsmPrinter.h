@@ -18,7 +18,7 @@
 #include "llvm/CodeGen/MachineConstantPool.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCStreamer;
 class MachineBasicBlock;
 class MachineInstr;
@@ -66,6 +66,6 @@ public:
   // Return an MCOperand for MO.  Return an empty operand if MO is implicit.
   MCOperand lowerOperand(const MachineOperand &MO, unsigned Offset = 0) const;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif /* LLVM_LIB_TARGET_XTENSA_XTENSAASMPRINTER_H */

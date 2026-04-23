@@ -28,6 +28,7 @@
 
 #include <climits>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "spirv-prepare-globals"
 
@@ -153,8 +154,8 @@ char SPIRVPrepareGlobals::ID = 0;
 INITIALIZE_PASS(SPIRVPrepareGlobals, "prepare-globals",
                 "SPIRV prepare global variables", false, false)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 ModulePass *createSPIRVPrepareGlobalsPass() {
   return new SPIRVPrepareGlobals();
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

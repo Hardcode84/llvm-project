@@ -7,8 +7,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/ExecutionEngine/Orc/IRCompileLayer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 IRCompileLayer::IRCompiler::~IRCompiler() = default;
@@ -45,4 +46,4 @@ void IRCompileLayer::emit(std::unique_ptr<MaterializationResponsibility> R,
 }
 
 } // End namespace orc.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.

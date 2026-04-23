@@ -13,10 +13,12 @@
 #ifndef LLVM_LIB_TARGET_NVPTX_NVPTXATOMICLOWER_H
 #define LLVM_LIB_TARGET_NVPTX_NVPTXATOMICLOWER_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class FunctionPass;
 
 extern FunctionPass *createNVPTXAtomicLowerPass();
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

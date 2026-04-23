@@ -10,8 +10,10 @@
 #include "llvm/SandboxIR/Context.h"
 #include "llvm/SandboxIR/User.h"
 #include <sstream>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 Value::Value(ClassID SubclassID, llvm::Value *Val, Context &Ctx)
     : SubclassID(SubclassID), Val(Val), Ctx(Ctx) {
@@ -121,4 +123,5 @@ void Value::dump() const {
 }
 #endif // NDEBUG
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir

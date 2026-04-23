@@ -22,7 +22,7 @@
 #include "llvm/Object/COFFImportFile.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 
 struct COFFModuleDefinition {
@@ -45,6 +45,6 @@ parseCOFFModuleDefinition(MemoryBufferRef MB, COFF::MachineTypes Machine,
                           bool MingwDef = false, bool AddUnderscores = true);
 
 } // End namespace object.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.
 
 #endif

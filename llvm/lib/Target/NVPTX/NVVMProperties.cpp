@@ -31,8 +31,9 @@
 #include <numeric>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace {
 using AnnotationValues = std::map<std::string, std::vector<unsigned>>;
@@ -339,4 +340,4 @@ MaybeAlign getAlign(const CallInst &I, unsigned Index) {
   return std::nullopt;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

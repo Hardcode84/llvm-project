@@ -19,8 +19,9 @@
 
 #define GET_REGINFO_HEADER
 #include "MipsGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class TargetRegisterClass;
 
@@ -66,6 +67,6 @@ private:
                            int64_t SPOffset) const = 0;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_MIPS_MIPSREGISTERINFO_H

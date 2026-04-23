@@ -19,7 +19,7 @@
 #include "llvm/ExecutionEngine/Orc/Core.h"
 #include "llvm/ExecutionEngine/Orc/ObjectLinkingLayer.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 /// Log perf jitdump events for each object (see
@@ -64,6 +64,6 @@ private:
 };
 
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_PERFSUPPORTPLUGIN_H

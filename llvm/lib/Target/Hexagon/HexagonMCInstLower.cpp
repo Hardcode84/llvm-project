@@ -27,15 +27,16 @@
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/raw_ostream.h"
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 void HexagonLowerToMC(const MCInstrInfo &MCII, const MachineInstr *MI,
                       MCInst &MCB, HexagonAsmPrinter &AP);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 static MCOperand GetSymbolRef(const MachineOperand &MO, const MCSymbol *Symbol,
                               HexagonAsmPrinter &Printer, bool MustExtend) {

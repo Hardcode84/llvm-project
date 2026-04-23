@@ -27,6 +27,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <dirent.h>
 #include <fcntl.h>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::object;
@@ -175,12 +176,12 @@ void OProfileJITEventListener::notifyFreeingObject(ObjectKey Key) {
 
 }  // anonymous namespace.
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 JITEventListener *JITEventListener::createOProfileJITEventListener() {
   return new OProfileJITEventListener(std::make_unique<OProfileWrapper>());
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 LLVMJITEventListenerRef LLVMCreateOProfileJITEventListener(void)
 {

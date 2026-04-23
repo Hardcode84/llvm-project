@@ -11,8 +11,9 @@
 
 #include "DIASupport.h"
 #include "llvm/DebugInfo/PDB/IPDBSourceFile.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 class DIASession;
 
@@ -35,6 +36,6 @@ private:
   CComPtr<IDiaSourceFile> SourceFile;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

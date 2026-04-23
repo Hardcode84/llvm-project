@@ -17,8 +17,9 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/BinaryFormat/MsgPackDocument.h"
 #include "llvm/MC/MCContext.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Module;
 
@@ -229,6 +230,6 @@ private:
   void toMsgPackBlob(std::string &Blob);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_AMDGPUPALMETADATA_H

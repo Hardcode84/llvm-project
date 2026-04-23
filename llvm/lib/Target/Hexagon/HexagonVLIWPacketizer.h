@@ -13,8 +13,9 @@
 #include "llvm/CodeGen/MachineBasicBlock.h"
 #include "llvm/CodeGen/ScheduleDAG.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class HexagonInstrInfo;
 class HexagonRegisterInfo;
@@ -162,6 +163,6 @@ protected:
   unsigned int calcStall(const MachineInstr &MI);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_HEXAGON_HEXAGONVLIWPACKETIZER_H

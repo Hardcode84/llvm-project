@@ -24,7 +24,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace telemetry {
 
 class Serializer {
@@ -167,6 +167,6 @@ private:
 };
 
 } // namespace telemetry
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TELEMETRY_TELEMETRY_H

@@ -18,8 +18,9 @@
 
 #define GET_REGINFO_HEADER
 #include "X86GenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class Triple;
 
 class X86RegisterInfo final : public X86GenRegisterInfo {
@@ -184,6 +185,6 @@ public:
   }
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

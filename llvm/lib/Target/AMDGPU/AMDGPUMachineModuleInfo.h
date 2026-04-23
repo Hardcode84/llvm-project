@@ -17,8 +17,9 @@
 
 #include "llvm/CodeGen/MachineModuleInfoImpls.h"
 #include "llvm/IR/LLVMContext.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AMDGPUMachineModuleInfo final : public MachineModuleInfoELF {
 private:
@@ -153,6 +154,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_AMDGPUMACHINEMODULEINFO_H

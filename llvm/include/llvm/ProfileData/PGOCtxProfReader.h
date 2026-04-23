@@ -22,7 +22,7 @@
 #include "llvm/Support/Error.h"
 #include <map>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class PGOContextualProfile;
 class PGOCtxProfContext;
 
@@ -225,5 +225,5 @@ public:
 
 LLVM_ABI void convertCtxProfToYaml(raw_ostream &OS,
                                    const PGOCtxProfile &Profile);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

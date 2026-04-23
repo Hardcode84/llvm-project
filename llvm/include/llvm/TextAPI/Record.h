@@ -21,7 +21,7 @@
 #include "llvm/TextAPI/Symbol.h"
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace MachO {
 
 LLVM_ENABLE_BITMASK_ENUMS_IN_NAMESPACE();
@@ -234,6 +234,6 @@ private:
 };
 
 } // end namespace MachO.
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.
 
 #endif // LLVM_TEXTAPI_RECORD_H

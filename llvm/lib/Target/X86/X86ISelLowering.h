@@ -17,8 +17,9 @@
 #include "X86SelectionDAGInfo.h"
 #include "llvm/CodeGen/MachineFunction.h"
 #include "llvm/CodeGen/TargetLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class X86Subtarget;
   class X86TargetMachine;
 
@@ -1029,6 +1030,6 @@ namespace llvm {
   /// v8iX Hi --> <4, 4, 5, 5, 6, 6, 7, 7>
   void createSplat2ShuffleMask(MVT VT, SmallVectorImpl<int> &Mask, bool Lo);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_X86_X86ISELLOWERING_H

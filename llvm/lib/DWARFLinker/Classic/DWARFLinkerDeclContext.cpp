@@ -11,8 +11,9 @@
 #include "llvm/DebugInfo/DWARF/DWARFContext.h"
 #include "llvm/DebugInfo/DWARF/DWARFDie.h"
 #include "llvm/DebugInfo/DWARF/DWARFUnit.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using namespace dwarf_linker;
 using namespace dwarf_linker::classic;
@@ -220,4 +221,4 @@ DeclContextTree::getResolvedPath(CompileUnit &CU, unsigned FileNum,
   return It->second;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

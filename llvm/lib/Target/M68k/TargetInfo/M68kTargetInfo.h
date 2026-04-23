@@ -9,10 +9,12 @@
 #ifndef LLVM_LIB_TARGET_M68K_TARGETINFO_M68KTARGETINFO_H
 #define LLVM_LIB_TARGET_M68K_TARGETINFO_M68KTARGETINFO_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class Target;
 
 Target &getTheM68kTarget();
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_M68K_TARGETINFO_M68KTARGETINFO_H

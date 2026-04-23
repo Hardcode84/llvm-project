@@ -12,8 +12,9 @@
 #define LLVM_LIB_TARGET_HEXAGON_HEXAGONDEPTIMINGCLASSES_H
 
 #include "HexagonInstrInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 inline bool is_TC1(unsigned SchedClass) {
   switch (SchedClass) {
@@ -155,6 +156,6 @@ inline bool is_TC4x(unsigned SchedClass) {
     return false;
   }
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif  // LLVM_LIB_TARGET_HEXAGON_HEXAGONDEPTIMINGCLASSES_H

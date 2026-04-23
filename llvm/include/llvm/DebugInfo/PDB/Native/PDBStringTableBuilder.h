@@ -19,7 +19,7 @@
 #include "llvm/Support/Error.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BinaryStreamWriter;
 class WritableBinaryStreamRef;
 
@@ -66,6 +66,6 @@ private:
 };
 
 } // end namespace pdb
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_PDB_NATIVE_PDBSTRINGTABLEBUILDER_H

@@ -17,8 +17,9 @@
 #include "MCTargetDesc/SPIRVBaseInfo.h"
 #include "llvm/Support/CommandLine.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 class Triple;
 
@@ -48,5 +49,5 @@ private:
   static ExtensionSet DisabledExtensions;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVCOMMANDLINE_H

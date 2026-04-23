@@ -15,12 +15,13 @@
 #include "llvm/BinaryFormat/Dwarf.h"
 #include "llvm/CodeGen/CFIInstBuilder.h"
 #include "llvm/MC/MCContext.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "frame-info"
 
 STATISTIC(NumRedZoneFunctions, "Number of functions using red zone");
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static bool matchLibcall(const TargetLowering &TLI, const MachineOperand &MO,
                          RTLIB::Libcall LC) {
@@ -1792,4 +1793,4 @@ void AArch64EpilogueEmitter::finalizeEpilogue() const {
   }
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

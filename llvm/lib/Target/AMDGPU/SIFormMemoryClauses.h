@@ -10,13 +10,14 @@
 #define LLVM_LIB_TARGET_AMDGPU_SIFORMMEMORYCLAUSES_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SIFormMemoryClausesPass : public PassInfoMixin<SIFormMemoryClausesPass> {
 public:
   PreservedAnalyses run(MachineFunction &MF,
                         MachineFunctionAnalysisManager &MFAM);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_SIFORMMEMORYCLAUSES_H

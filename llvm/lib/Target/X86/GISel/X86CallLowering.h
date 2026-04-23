@@ -16,8 +16,9 @@
 
 #include "llvm/CodeGen/GlobalISel/CallLowering.h"
 #include <functional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> class ArrayRef;
 class X86TargetLowering;
@@ -42,6 +43,6 @@ public:
                       bool IsVarArg) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_X86_X86CALLLOWERING_H

@@ -15,8 +15,9 @@
 #define LLVM_LIB_TARGET_WEBASSEMBLY_MCTARGETDESC_WEBASSEMBLYMCASMINFO_H
 
 #include "llvm/MC/MCAsmInfoWasm.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Triple;
 
@@ -39,6 +40,6 @@ enum Specifier {
   S_TYPEINDEX, // Reference to a symbol's type (signature)
 };
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

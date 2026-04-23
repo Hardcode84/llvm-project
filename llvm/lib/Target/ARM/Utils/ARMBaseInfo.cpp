@@ -10,9 +10,10 @@
 //
 //===----------------------------------------------------------------------===//
 #include "ARMBaseInfo.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 ARM::PredBlockMask expandPredBlockMask(ARM::PredBlockMask BlockMask,
                                        ARMVCC::VPTCodes Kind) {
   using PredBlockMask = ARM::PredBlockMask;
@@ -71,4 +72,4 @@ namespace ARMBankedReg {
 #define GET_BankedRegsList_IMPL
 #include "ARMGenSystemRegister.inc"
 } // end namespace ARMSysReg
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

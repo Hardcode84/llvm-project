@@ -17,10 +17,11 @@
 #include "llvm/ADT/SmallString.h"
 #include "llvm/BinaryFormat/COFF.h"
 #include "llvm/Object/COFF.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "dyld"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static bool isThumbFunc(object::symbol_iterator Symbol,
                         const object::ObjectFile &Obj,
@@ -343,6 +344,6 @@ public:
   void registerEHFrames() override {}
 };
 
-}
+LLVM_NAMESPACE_END
 
 #endif

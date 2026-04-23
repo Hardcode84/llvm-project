@@ -18,12 +18,14 @@
 #include "llvm/Support/Compiler.h"
 #include <vector>
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 LLVM_ABI void addDefaultBootstrapValuesForHostProcess(
     StringMap<std::vector<char>> &BootstrapMap,
     StringMap<ExecutorAddr> &BootstrapSymbols);
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc
 
 #endif // LLVM_EXECUTIONENGINE_ORC_TARGETPROCESS_DEFAULTHOSTBOOTSTRAPVALUES_H

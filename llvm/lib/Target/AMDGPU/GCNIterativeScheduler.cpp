@@ -15,19 +15,20 @@
 #include "AMDGPUIGroupLP.h"
 #include "GCNSchedStrategy.h"
 #include "SIMachineFunctionInfo.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
 #define DEBUG_TYPE "machine-scheduler"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 std::vector<const SUnit *> makeMinRegSchedule(ArrayRef<const SUnit *> TopRoots,
                                               const ScheduleDAG &DAG);
 
 std::vector<const SUnit *> makeGCNILPScheduler(ArrayRef<const SUnit *> BotRoots,
                                                const ScheduleDAG &DAG);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // shim accessors for different order containers
 static inline MachineInstr *getMachineInstr(MachineInstr *MI) {

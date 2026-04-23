@@ -12,8 +12,9 @@
 #include "PDBSymbol.h"
 #include "PDBTypes.h"
 #include "llvm/ADT/SmallVector.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace pdb {
 /// PDBSymbolCustom represents symbols that are compiler-specific and do not
@@ -28,6 +29,6 @@ public:
 };
 
 } // namespace llvm
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_DEBUGINFO_PDB_PDBSYMBOLCUSTOM_H

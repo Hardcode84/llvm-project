@@ -160,6 +160,7 @@ void yaml::ScalarEnumerationTraits<StreamType>::enumeration(IO &IO,
 #define HANDLE_MDMP_STREAM_TYPE(CODE, NAME)                                    \
   IO.enumCase(Type, #NAME, StreamType::NAME);
 #include "llvm/BinaryFormat/MinidumpConstants.def"
+#include "llvm/Support/Compiler.h"
   IO.enumFallback<Hex32>(Type);
 }
 
@@ -177,7 +178,7 @@ template <std::size_t N> struct FixedSizeHex {
 };
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <std::size_t N> struct ScalarTraits<FixedSizeHex<N>> {
   static void output(const FixedSizeHex<N> &Fixed, void *, raw_ostream &OS) {
@@ -198,7 +199,7 @@ template <std::size_t N> struct ScalarTraits<FixedSizeHex<N>> {
   static QuotingType mustQuote(StringRef S) { return QuotingType::None; }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 void yaml::MappingTraits<CPUInfo::OtherInfo>::mapping(
     IO &IO, CPUInfo::OtherInfo &Info) {
   FixedSizeHex<sizeof(Info.ProcessorFeatures)> Features(Info.ProcessorFeatures);
@@ -214,7 +215,7 @@ template <std::size_t N> struct FixedSizeString {
 };
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <std::size_t N> struct ScalarTraits<FixedSizeString<N>> {
   static void output(const FixedSizeString<N> &Fixed, void *, raw_ostream &OS) {
@@ -233,7 +234,7 @@ template <std::size_t N> struct ScalarTraits<FixedSizeString<N>> {
   static QuotingType mustQuote(StringRef S) { return needsQuotes(S); }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 void yaml::MappingTraits<CPUInfo::X86Info>::mapping(IO &IO,
                                                     CPUInfo::X86Info &Info) {

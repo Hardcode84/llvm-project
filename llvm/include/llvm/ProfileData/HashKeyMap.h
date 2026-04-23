@@ -17,8 +17,9 @@
 
 #include "llvm/ADT/Hashing.h"
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace sampleprof {
 
@@ -123,6 +124,6 @@ public:
 
 }
 
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_PROFILEDATA_HASHKEYMAP_H

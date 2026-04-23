@@ -25,7 +25,7 @@
 #include "llvm/Support/BinaryByteStream.h"
 #include "llvm/Support/BinaryStreamRef.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BinaryStreamWriter;
 namespace codeview {
@@ -136,6 +136,6 @@ private:
   std::array<std::optional<DebugStream>, (int)DbgHeaderType::Max> DbgStreams;
 };
 } // namespace pdb
-}
+LLVM_NAMESPACE_END
 
 #endif

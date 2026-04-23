@@ -15,7 +15,7 @@
 #include <cassert>
 #include <cinttypes>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ScopedPrinter;
 class StringRef;
@@ -305,6 +305,6 @@ template <> struct DenseMapInfo<codeview::TypeIndex> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -19,7 +19,7 @@
 #include "llvm/DebugInfo/DWARF/LowLevel/DWARFExpression.h"
 #include "llvm/Support/Compiler.h"
 #include <map>
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DWARFUnit;
 
 namespace dwarf_linker {
@@ -143,5 +143,5 @@ public:
   virtual Error setTargetDWARFVersion(uint16_t TargetDWARFVersion) = 0;
 };
 } // end namespace dwarf_linker
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif // LLVM_DWARFLINKER_DWARFLINKERBASE_H

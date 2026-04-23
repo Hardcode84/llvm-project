@@ -28,7 +28,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 
 const char ArchiveMagic[] = "!<arch>\n";
@@ -435,6 +435,6 @@ public:
 };
 
 } // end namespace object
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECT_ARCHIVE_H

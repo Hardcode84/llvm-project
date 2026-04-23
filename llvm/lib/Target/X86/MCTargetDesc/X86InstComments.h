@@ -14,13 +14,15 @@
 #ifndef LLVM_LIB_TARGET_X86_MCTARGETDESC_X86INSTCOMMENTS_H
 #define LLVM_LIB_TARGET_X86_MCTARGETDESC_X86INSTCOMMENTS_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
   class MCInst;
   class MCInstrInfo;
   class raw_ostream;
   bool EmitAnyX86InstComments(const MCInst *MI, raw_ostream &OS,
                               const MCInstrInfo &MCII);
-}
+LLVM_NAMESPACE_END
 
 #endif

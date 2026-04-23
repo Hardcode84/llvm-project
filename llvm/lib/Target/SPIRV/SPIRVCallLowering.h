@@ -15,8 +15,9 @@
 
 #include "SPIRVGlobalRegistry.h"
 #include "llvm/CodeGen/GlobalISel/CallLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SPIRVGlobalRegistry;
 class SPIRVTargetLowering;
@@ -54,6 +55,6 @@ public:
   bool lowerCall(MachineIRBuilder &MIRBuilder,
                  CallLoweringInfo &Info) const override;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVCALLLOWERING_H

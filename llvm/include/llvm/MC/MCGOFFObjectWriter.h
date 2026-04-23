@@ -14,8 +14,9 @@
 #include "llvm/MC/MCValue.h"
 #include <memory>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCObjectWriter;
 class MCSectionGOFF;
 class MCSymbolGOFF;
@@ -108,6 +109,6 @@ public:
 std::unique_ptr<MCObjectWriter>
 createGOFFObjectWriter(std::unique_ptr<MCGOFFObjectTargetWriter> MOTW,
                        raw_pwrite_stream &OS);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

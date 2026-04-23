@@ -25,8 +25,9 @@
 
 #define GET_SUBTARGETINFO_HEADER
 #include "AMDGPUGenSubtargetInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GCNTargetMachine;
 
@@ -1110,6 +1111,6 @@ private:
   unsigned NumUsedUserSGPRs = 0;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_GCNSUBTARGET_H

@@ -22,7 +22,7 @@
 #include "llvm/MCA/Instruction.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 /// Abstract base interface for LS (load/store) units in llvm-mca.
@@ -502,6 +502,6 @@ private:
 };
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_MCA_HARDWAREUNITS_LSUNIT_H

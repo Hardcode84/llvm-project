@@ -20,8 +20,9 @@
 
 #include "EHFrameSupportImpl.h"
 #include "JITLinkGeneric.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 class MachOLinkGraphBuilder {
@@ -235,6 +236,6 @@ private:
 };
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LIB_EXECUTIONENGINE_JITLINK_MACHOLINKGRAPHBUILDER_H

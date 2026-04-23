@@ -17,7 +17,7 @@
 #include "llvm/TextAPI/ArchitectureSet.h"
 #include "llvm/TextAPI/Platform.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Triple;
 
@@ -76,6 +76,6 @@ LLVM_ABI std::string getTargetTripleName(const Target &Targ);
 LLVM_ABI raw_ostream &operator<<(raw_ostream &OS, const Target &Target);
 
 } // namespace MachO
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TEXTAPI_TARGET_H

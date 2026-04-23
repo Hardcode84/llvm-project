@@ -21,8 +21,9 @@
 #define GET_TARGET_REGBANK_IMPL
 
 #include "MipsGenRegisterBank.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace Mips {
 enum PartialMappingIdx {
   PMI_GPR32,
@@ -73,7 +74,7 @@ const RegisterBankInfo::ValueMapping ValueMappings[] = {
     {&PartMappings[PMI_MSA - PMI_Min], 1}};
 
 } // end namespace Mips
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 using namespace llvm;
 

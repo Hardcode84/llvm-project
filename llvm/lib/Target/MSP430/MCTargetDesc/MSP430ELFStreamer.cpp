@@ -19,11 +19,12 @@
 #include "llvm/MC/MCStreamer.h"
 #include "llvm/MC/MCSubtargetInfo.h"
 #include "llvm/Support/MSP430Attributes.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::MSP430Attrs;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MSP430TargetELFStreamer : public MCTargetStreamer {
 public:
@@ -75,4 +76,4 @@ createMSP430ObjectTargetStreamer(MCStreamer &S, const MCSubtargetInfo &STI) {
   return nullptr;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

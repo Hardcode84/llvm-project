@@ -14,8 +14,9 @@
 #include "llvm/ExecutionEngine/SectionMemoryManager.h"
 #include "llvm/Config/config.h"
 #include "llvm/Support/Process.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 bool SectionMemoryManager::hasSpace(const MemoryGroup &MemGroup,
                                     uintptr_t Size) const {
@@ -365,4 +366,4 @@ SectionMemoryManager::SectionMemoryManager(MemoryMapper *UnownedMM,
   }
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -20,7 +20,7 @@
 #include <atomic>
 #include <mutex>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -368,6 +368,6 @@ template <> struct DenseMapInfo<orc::NonOwningSymbolStringPtr> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_SYMBOLSTRINGPOOL_H

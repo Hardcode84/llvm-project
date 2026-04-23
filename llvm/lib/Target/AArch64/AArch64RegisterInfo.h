@@ -15,8 +15,9 @@
 
 #define GET_REGINFO_HEADER
 #include "AArch64GenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineFunction;
 class RegScavenger;
@@ -160,6 +161,6 @@ public:
   bool isIgnoredCVReg(MCRegister LLVMReg) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -15,7 +15,9 @@
 #ifndef LLVM_LIB_TARGET_MIPS_MIPS16HARDFLOATINFO_H
 #define LLVM_LIB_TARGET_MIPS_MIPS16HARDFLOATINFO_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 namespace Mips16HardFloatInfo {
 
@@ -44,6 +46,6 @@ extern const FuncNameSignature PredefinedFuncs[];
 
 extern FuncSignature const *findFuncSignature(const char *name);
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -18,8 +18,9 @@
 #include "llvm/CodeGen/GlobalISel/LegalizerInfo.h"
 #include "llvm/CodeGen/RuntimeLibcallUtil.h"
 #include "llvm/IR/Instructions.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ARMSubtarget;
 
@@ -62,5 +63,5 @@ private:
 
   const ARMSubtarget &ST;
 };
-} // End llvm namespace.
+LLVM_NAMESPACE_END // End llvm namespace.
 #endif

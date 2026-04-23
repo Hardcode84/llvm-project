@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_LANAI_DISASSEMBLER_LANAIDISASSEMBLER_H
 
 #include "llvm/MC/MCDisassembler/MCDisassembler.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LanaiDisassembler : public MCDisassembler {
 public:
@@ -29,6 +30,6 @@ public:
                  uint64_t Address, raw_ostream &CStream) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_LANAI_DISASSEMBLER_LANAIDISASSEMBLER_H

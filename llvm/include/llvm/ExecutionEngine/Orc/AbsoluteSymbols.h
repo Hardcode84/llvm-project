@@ -16,7 +16,8 @@
 #include "llvm/ExecutionEngine/Orc/MaterializationUnit.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 /// A MaterializationUnit implementation for pre-existing absolute symbols.
 ///
@@ -55,6 +56,7 @@ absoluteSymbols(SymbolMap Symbols) {
       std::move(Symbols));
 }
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc
 
 #endif // LLVM_EXECUTIONENGINE_ORC_ABSOLUTESYMBOLS_H

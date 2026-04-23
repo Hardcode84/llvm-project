@@ -34,8 +34,9 @@
 #include "llvm/Bitstream/BitstreamWriter.h"
 #include <cstdint>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace detail {
 /// Convenience base for all kinds of bitcode abbreviation fields.
 ///
@@ -482,6 +483,6 @@ public:
 
   ~BCBlockRAII() { Stream.ExitBlock(); }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

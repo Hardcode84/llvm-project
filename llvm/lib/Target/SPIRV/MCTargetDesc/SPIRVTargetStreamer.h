@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_SPIRV_MCTARGETDESC_SPIRVTARGETSTREAMER_H
 
 #include "llvm/MC/MCStreamer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCSection;
 
@@ -23,6 +24,6 @@ public:
   void changeSection(const MCSection *CurSection, MCSection *Section,
                      uint32_t SubSection, raw_ostream &OS) override {}
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_SPIRV_MCTARGETDESC_SPIRVTARGETSTREAMER_H

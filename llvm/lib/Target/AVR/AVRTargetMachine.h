@@ -23,8 +23,9 @@
 #include "AVRSubtarget.h"
 
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A generic AVR implementation.
 class AVRTargetMachine : public CodeGenTargetMachineImpl {
@@ -64,6 +65,6 @@ private:
   AVRSubtarget SubTarget;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_AVR_TARGET_MACHINE_H

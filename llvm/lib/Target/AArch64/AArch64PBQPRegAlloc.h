@@ -11,8 +11,9 @@
 
 #include "llvm/ADT/SetVector.h"
 #include "llvm/CodeGen/PBQPRAConstraint.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class TargetRegisterInfo;
 
@@ -35,6 +36,6 @@ private:
   void addInterChainConstraint(PBQPRAGraph &G, unsigned Rd, unsigned Ra);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AARCH64_AARCH64PBQPREGALOC_H

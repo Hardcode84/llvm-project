@@ -16,8 +16,9 @@
 
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/STLExtras.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // 31 entries have cost 0
 // 756 entries have cost 1
@@ -6818,6 +6819,6 @@ inline bool isDUPFirstSegmentMask(ArrayRef<int> Mask, unsigned Segments,
   });
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -12,8 +12,9 @@
 #include "llvm/Object/ArchiveWriter.h"
 #include "llvm/Support/Error.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 
 class MultiFormatConfig;
@@ -26,6 +27,6 @@ createNewArchiveMembers(const MultiFormatConfig &Config,
                         const object::Archive &Ar);
 
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_OBJCOPY_ARCHIVE_H

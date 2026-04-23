@@ -16,8 +16,9 @@
 #include <set>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class HexagonSubtarget;
 class MachineBasicBlock;
@@ -244,6 +245,6 @@ raw_ostream &operator<< (raw_ostream &OS,
 raw_ostream &operator<< (raw_ostream &OS,
       const HexagonBlockRanges::PrintRangeMap &P);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_HEXAGON_HEXAGONBLOCKRANGES_H

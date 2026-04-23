@@ -22,8 +22,9 @@
 #include <cstdint>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 class Comdat;
@@ -300,6 +301,6 @@ private:
   void EnumerateNamedMetadata(const Module &M);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_BITCODE_WRITER_VALUEENUMERATOR_H

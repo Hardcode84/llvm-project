@@ -14,8 +14,9 @@
 #define LLVM_EXECUTIONENGINE_JITLINK_XCOFF_H
 
 #include "llvm/ExecutionEngine/JITLink/JITLink.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 /// Create a LinkGraph from an XCOFF relocatable object.
@@ -32,6 +33,6 @@ void link_XCOFF(std::unique_ptr<LinkGraph> G,
                 std::unique_ptr<JITLinkContext> Ctx);
 
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_JITLINK_XCOFF_H

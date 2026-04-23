@@ -65,6 +65,7 @@ M68kInstructionSelector::M68kInstructionSelector(
 #undef GET_GLOBALISEL_PREDICATES_INIT
 #define GET_GLOBALISEL_TEMPORARIES_INIT
 #include "M68kGenGlobalISel.inc"
+#include "llvm/Support/Compiler.h"
 #undef GET_GLOBALISEL_TEMPORARIES_INIT
 {
 }
@@ -80,11 +81,11 @@ bool M68kInstructionSelector::select(MachineInstr &I) {
   return false;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 InstructionSelector *
 createM68kInstructionSelector(const M68kTargetMachine &TM,
                               const M68kSubtarget &Subtarget,
                               const M68kRegisterBankInfo &RBI) {
   return new M68kInstructionSelector(TM, Subtarget, RBI);
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

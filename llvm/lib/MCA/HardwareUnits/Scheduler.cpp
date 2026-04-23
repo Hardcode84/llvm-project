@@ -13,8 +13,9 @@
 #include "llvm/MCA/HardwareUnits/Scheduler.h"
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 #define DEBUG_TYPE "llvm-mca"
@@ -339,4 +340,4 @@ bool Scheduler::dispatch(InstRef &IR) {
 }
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

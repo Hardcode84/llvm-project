@@ -20,8 +20,9 @@
 #include "llvm/CodeGen/TargetLowering.h"
 #include "llvm/IR/CallingConv.h"
 #include "llvm/IR/Instruction.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AArch64TargetMachine;
 
@@ -945,6 +946,6 @@ FastISel *createFastISel(FunctionLoweringInfo &funcInfo,
                          const LibcallLoweringInfo *libcallLowering);
 } // end namespace AArch64
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

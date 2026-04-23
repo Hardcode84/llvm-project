@@ -22,7 +22,7 @@
 #include <windows.h>
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 namespace rt_bootstrap {
 
@@ -79,5 +79,5 @@ private:
 
 } // namespace rt_bootstrap
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_EXECUTIONENGINE_ORC_TARGETPROCESS_EXECUTORSHAREDMEMORYMAPPERSERVICE_H

@@ -22,7 +22,7 @@
 #include <cassert>
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 
 class ContinuationRecordBuilder;
@@ -115,6 +115,6 @@ public:
 };
 
 } // end namespace codeview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_CODEVIEW_GLOBALTYPETABLEBUILDER_H

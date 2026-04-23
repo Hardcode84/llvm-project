@@ -11,14 +11,15 @@
 
 #include "llvm/IR/PassManager.h"
 #include "llvm/Pass.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A pass that transforms Vectors to Arrays
 class DXILDataScalarization : public PassInfoMixin<DXILDataScalarization> {
 public:
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TARGET_DIRECTX_DXILDATASCALARIZATION_H

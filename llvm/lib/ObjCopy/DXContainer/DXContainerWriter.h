@@ -10,8 +10,9 @@
 #define LLVM_LIB_OBJCOPY_DXCONTAINER_DXCONTAINERWRITER_H
 
 #include "DXContainerObject.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 namespace dxbc {
 
@@ -34,6 +35,6 @@ private:
 
 } // end namespace dxbc
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_OBJCOPY_DXCONTAINER_DXCONTAINERWRITER_H

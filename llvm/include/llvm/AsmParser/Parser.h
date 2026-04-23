@@ -20,7 +20,7 @@
 #include <memory>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Constant;
 class DIExpression;
@@ -211,6 +211,6 @@ parseDIExpressionBodyAtBeginning(StringRef Asm, unsigned &Read,
                                  SMDiagnostic &Err, const Module &M,
                                  const SlotMapping *Slots);
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

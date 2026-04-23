@@ -11,8 +11,9 @@
 
 #include "LoongArchTargetStreamer.h"
 #include "llvm/MC/MCELFStreamer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LoongArchTargetELFStreamer : public LoongArchTargetStreamer {
 public:
@@ -31,5 +32,5 @@ MCELFStreamer *createLoongArchELFStreamer(MCContext &C,
                                           std::unique_ptr<MCAsmBackend> MAB,
                                           std::unique_ptr<MCObjectWriter> MOW,
                                           std::unique_ptr<MCCodeEmitter> MCE);
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif

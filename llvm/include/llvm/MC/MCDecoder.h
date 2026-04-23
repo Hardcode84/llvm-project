@@ -14,8 +14,10 @@
 #include "llvm/Support/MathExtras.h"
 #include <bitset>
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::MCD {
+LLVM_NAMESPACE_BEGIN
+namespace MCD {
 
 // Helper to propagate SoftFail status. Returns false if the status is Fail;
 // callers are expected to early-exit in that condition. (Note, the '&' operator
@@ -58,6 +60,7 @@ uint64_t fieldFromInstruction(const std::bitset<N> &Insn, unsigned StartBit,
   return ((Insn >> StartBit) & Mask).to_ullong();
 }
 
-} // namespace llvm::MCD
+}
+LLVM_NAMESPACE_END // namespace llvm::MCD
 
 #endif // LLVM_MC_MCDECODER_H

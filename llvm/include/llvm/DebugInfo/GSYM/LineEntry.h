@@ -10,8 +10,9 @@
 #define LLVM_DEBUGINFO_GSYM_LINEENTRY_H
 
 #include "llvm/DebugInfo/GSYM/ExtractRanges.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace gsym {
 
 /// Line entries are used to encode the line tables in FunctionInfo objects.
@@ -43,5 +44,5 @@ inline bool operator<(const LineEntry &LHS, const LineEntry &RHS) {
   return LHS.Addr < RHS.Addr;
 }
 } // namespace gsym
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_DEBUGINFO_GSYM_LINEENTRY_H

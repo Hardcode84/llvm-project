@@ -20,7 +20,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 /// Register frames in the given eh-frame section with libunwind.
@@ -32,7 +32,7 @@ LLVM_ABI Error deregisterEHFrameSection(const void *EHFrameSectionAddr,
                                         size_t EHFrameSectionSize);
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 extern "C" LLVM_ABI llvm::orc::shared::CWrapperFunctionBuffer
 llvm_orc_registerEHFrameSectionAllocAction(const char *ArgData, size_t ArgSize);

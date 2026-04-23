@@ -20,7 +20,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 namespace aarch32 {
 
@@ -409,6 +409,6 @@ private:
 
 } // namespace aarch32
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_JITLINK_AARCH32

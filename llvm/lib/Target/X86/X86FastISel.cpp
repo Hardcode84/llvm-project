@@ -71,6 +71,7 @@ public:
   bool fastLowerIntrinsicCall(const IntrinsicInst *II) override;
 
 #include "X86GenFastISel.inc"
+#include "llvm/Support/Compiler.h"
 
 private:
   bool X86FastEmitCompare(const Value *LHS, const Value *RHS, EVT VT,
@@ -4058,10 +4059,10 @@ Register X86FastISel::fastEmitInst_rrrr(unsigned MachineInstOpcode,
   return ResultReg;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 FastISel *X86::createFastISel(FunctionLoweringInfo &funcInfo,
                               const TargetLibraryInfo *libInfo,
                               const LibcallLoweringInfo *libcallLowering) {
   return new X86FastISel(funcInfo, libInfo, libcallLowering);
 }
-}
+LLVM_NAMESPACE_END

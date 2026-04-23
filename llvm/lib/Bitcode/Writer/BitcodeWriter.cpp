@@ -118,9 +118,9 @@ static cl::opt<bool> PreserveBitcodeUseListOrder(
     "preserve-bc-uselistorder", cl::Hidden, cl::init(true),
     cl::desc("Preserve use-list order when writing LLVM bitcode."));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern FunctionSummary::ForceSummaryHotnessType ForceSummaryEdgesCold;
-}
+LLVM_NAMESPACE_END
 
 namespace {
 

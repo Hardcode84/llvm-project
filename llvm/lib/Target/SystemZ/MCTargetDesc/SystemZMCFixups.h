@@ -11,8 +11,9 @@
 
 #include "llvm/MC/MCAsmBackend.h"
 #include "llvm/MC/MCFixup.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace SystemZ {
 enum FixupKind {
   // These correspond directly to R_390_* relocations.
@@ -64,6 +65,6 @@ const static MCFixupKindInfo MCFixupKindInfos[SystemZ::NumTargetFixupKinds] = {
 };
 // clang-format on
 } // end namespace SystemZ
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

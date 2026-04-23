@@ -23,8 +23,9 @@
 
 #define GET_SUBTARGETINFO_HEADER
 #include "MSP430GenSubtargetInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 class MSP430Subtarget : public MSP430GenSubtargetInfo {
@@ -77,6 +78,6 @@ public:
 
   void initLibcallLoweringInfo(LibcallLoweringInfo &Info) const override;
 };
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif  // LLVM_TARGET_MSP430_SUBTARGET_H

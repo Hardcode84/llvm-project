@@ -20,7 +20,7 @@
 #include <cstdint>
 #include <type_traits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> class ArrayRef;
 class APSInt;
@@ -268,6 +268,6 @@ private:
 };
 
 } // end namespace codeview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_CODEVIEW_CODEVIEWRECORDIO_H

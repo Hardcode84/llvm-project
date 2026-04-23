@@ -17,8 +17,9 @@
 #include "llvm/CodeGen/MIRYamlMapping.h"
 #include "llvm/CodeGen/MachineFrameInfo.h"
 #include "llvm/CodeGen/MachineFunction.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class RISCVMachineFunctionInfo;
 
@@ -225,6 +226,6 @@ public:
   bool hasCFProtectionBranch() const { return CFProtectionBranch; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_RISCV_RISCVMACHINEFUNCTIONINFO_H

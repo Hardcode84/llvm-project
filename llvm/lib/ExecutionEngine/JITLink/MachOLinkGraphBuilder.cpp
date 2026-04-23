@@ -14,12 +14,13 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/Sequence.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
 static const char *CommonSectionName = "__common";
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 MachOLinkGraphBuilder::~MachOLinkGraphBuilder() = default;
@@ -733,4 +734,4 @@ Error MachOLinkGraphBuilder::graphifyCStringSection(
 }
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

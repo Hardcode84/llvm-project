@@ -35,6 +35,7 @@
 #include <optional>
 #include <queue>
 #include <unordered_set>
+#include "llvm/Support/Compiler.h"
 
 // This pass performs the following transformation on LLVM IR level required
 // for the following translation to SPIR-V:
@@ -62,10 +63,12 @@ static cl::opt<bool>
                      cl::desc("Emit OpName for all instructions"),
                      cl::init(false));
 
-namespace llvm::SPIRV {
+LLVM_NAMESPACE_BEGIN
+namespace SPIRV {
 #define GET_BuiltinGroup_DECL
 #include "SPIRVGenTables.inc"
-} // namespace llvm::SPIRV
+}
+LLVM_NAMESPACE_END // namespace llvm::SPIRV
 
 namespace {
 // This class keeps track of which functions reference which global variables.

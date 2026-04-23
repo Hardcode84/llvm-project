@@ -18,8 +18,9 @@
 
 #include "../../CodeGen/AsmPrinter/DwarfCompileUnit.h"
 #include "llvm/ADT/DenseSet.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// NVPTX-specific DwarfDebug implementation.
 ///
@@ -60,6 +61,6 @@ protected:
   bool shouldEmitDwarfPubSections() const override { return false; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_NVPTX_NVPTXDWARFDEBUG_H

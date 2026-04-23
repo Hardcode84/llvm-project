@@ -19,7 +19,7 @@
 #include "llvm/MCA/Support.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 // An HWInstructionEvent represents state changes of instructions that
@@ -186,6 +186,6 @@ private:
   virtual void anchor();
 };
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_MCA_HWEVENTLISTENER_H

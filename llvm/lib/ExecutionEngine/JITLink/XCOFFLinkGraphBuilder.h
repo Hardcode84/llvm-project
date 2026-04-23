@@ -19,8 +19,9 @@
 #include "llvm/Object/XCOFFObjectFile.h"
 #include "llvm/TargetParser/SubtargetFeature.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 class XCOFFLinkGraphBuilder {
@@ -58,6 +59,6 @@ private:
 };
 
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LIB_EXECUTIONENGINE_JITLINK_XCOFFLINKGRAPHBUILDER_H

@@ -22,7 +22,7 @@
 #include <cstddef>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCAsmInfo;
 
@@ -221,6 +221,6 @@ private:
   StringRef LexUntilEndOfLine();
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCPARSER_ASMLEXER_H

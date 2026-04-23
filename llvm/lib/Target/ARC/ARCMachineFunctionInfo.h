@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_ARC_ARCMACHINEFUNCTIONINFO_H
 
 #include "llvm/CodeGen/MachineFunction.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// ARCFunctionInfo - This class is derived from MachineFunction private
 /// ARC target-specific information for each MachineFunction.
@@ -53,6 +54,6 @@ public:
   unsigned MaxCallStackReq;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARC_ARCMACHINEFUNCTIONINFO_H

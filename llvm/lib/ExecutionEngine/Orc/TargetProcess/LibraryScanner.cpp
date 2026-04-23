@@ -32,13 +32,15 @@
 
 #ifdef __APPLE__
 #include <sys/stat.h>
+#include "llvm/Support/Compiler.h"
 #undef LC_LOAD_DYLIB
 #undef LC_RPATH
 #endif // __APPLE__
 
 #define DEBUG_TYPE "orc-scanner"
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 void handleError(Error Err, StringRef context = "") {
   consumeError(handleErrors(std::move(Err), [&](const ErrorInfoBase &EIB) {
@@ -1142,4 +1144,5 @@ void LibraryScanner::scanNext(PathType K, size_t BatchSize) {
     scanBaseDir(const_cast<LibrarySearchPath *>(SP));
   }
 }
-} // end namespace llvm::orc
+}
+LLVM_NAMESPACE_END // end namespace llvm::orc

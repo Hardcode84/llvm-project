@@ -18,8 +18,9 @@
 #include "llvm/Support/ErrorHandling.h"
 #include <cstddef>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 namespace coff {
 
@@ -543,4 +544,4 @@ Error COFFWriter::write() {
 
 } // end namespace coff
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

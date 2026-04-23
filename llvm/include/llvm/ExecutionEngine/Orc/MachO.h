@@ -21,7 +21,7 @@
 #include "llvm/Support/MemoryBuffer.h"
 #include "llvm/TargetParser/Triple.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace object {
 
@@ -127,6 +127,6 @@ LLVM_ABI Expected<SymbolNameSet> getDylibInterface(
     GetFallbackArchsFn GetFallbackArchs = standardMachOFallbackArchs);
 
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_MACHO_H

@@ -26,6 +26,7 @@
 #include "llvm/TextAPI/TextAPIReader.h"
 #include "llvm/TextAPI/TextAPIWriter.h"
 #include <set>
+#include "llvm/Support/Compiler.h"
 
 // clang-format off
 /*
@@ -269,7 +270,7 @@ LLVM_YAML_IS_SEQUENCE_VECTOR(UmbrellaSection)
 LLVM_YAML_IS_FLOW_SEQUENCE_VECTOR(Target)
 LLVM_YAML_IS_SEQUENCE_VECTOR(UUIDv4)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <> struct MappingTraits<ExportSection> {
@@ -1054,7 +1055,7 @@ struct DocumentListTraits<std::vector<const MachO::InterfaceFile *>> {
 };
 
 } // end namespace yaml.
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static void DiagHandler(const SMDiagnostic &Diag, void *Context) {
   auto *File = static_cast<TextAPIContext *>(Context);

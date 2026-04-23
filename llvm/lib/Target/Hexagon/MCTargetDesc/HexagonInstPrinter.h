@@ -13,8 +13,9 @@
 #define LLVM_LIB_TARGET_HEXAGON_INSTPRINTER_HEXAGONINSTPRINTER_H
 
 #include "llvm/MC/MCInstPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Prints bundles as a newline separated list of individual instructions
 /// Duplexes are separated by a vertical tab \v character
 /// A trailing line includes bundle properties such as endloop0/1
@@ -48,6 +49,6 @@ private:
   bool HasExtender = false;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

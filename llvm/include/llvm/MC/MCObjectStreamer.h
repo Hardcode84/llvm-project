@@ -16,7 +16,7 @@
 #include "llvm/MC/MCStreamer.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCContext;
 class MCInst;
 class MCObjectWriter;
@@ -213,6 +213,6 @@ public:
   void emitPendingAssignments(MCSymbol *Symbol);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

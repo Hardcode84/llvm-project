@@ -15,7 +15,8 @@
 #include "llvm/SandboxIR/Value.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 class Context;
 
@@ -146,6 +147,7 @@ public:
 #endif
 };
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir
 
 #endif // LLVM_SANDBOXIR_USER_H

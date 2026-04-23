@@ -17,6 +17,7 @@
 #include "llvm/CodeGen/MachineFrameInfo.h"
 #include "llvm/CodeGen/RegisterScavenging.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -217,7 +218,7 @@ static void initLiveUnits(LiveRegUnits &LiveUnits, const SIRegisterInfo &TRI,
   }
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // SpillBuilder to save/restore special SGPR spills like the one needed for FP,
 // BP, etc. These spills are delayed until the current function's frame is
@@ -380,7 +381,7 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Emit flat scratch setup code, assuming `MFI->hasFlatScratchInit()`
 void SIFrameLowering::emitEntryFunctionFlatScratchInit(

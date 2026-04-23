@@ -17,7 +17,7 @@
 #include "llvm/Support/Error.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BinaryStreamReader;
 class BinaryStreamWriter;
 
@@ -53,6 +53,6 @@ private:
   CodeViewRecordIO IO;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

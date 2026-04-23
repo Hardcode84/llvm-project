@@ -20,15 +20,16 @@
 #include "llvm/IR/Module.h"
 #include "llvm/Pass.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "amdgpu-remove-incompatible-functions"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern const SubtargetFeatureKV
     AMDGPUFeatureKV[AMDGPU::NumSubtargetFeatures - 1];
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 

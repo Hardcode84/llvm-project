@@ -12,8 +12,9 @@
 #include "DIASupport.h"
 #include "llvm/DebugInfo/PDB/IPDBEnumChildren.h"
 #include "llvm/DebugInfo/PDB/IPDBLineNumber.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 class IPDBLineNumber;
 
@@ -30,6 +31,6 @@ private:
   CComPtr<IDiaEnumLineNumbers> Enumerator;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

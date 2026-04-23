@@ -7,8 +7,10 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/SandboxIR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 bool FunctionPassManager::runOnFunction(Function &F, const Analyses &A) {
   bool Change = false;
@@ -30,4 +32,5 @@ bool RegionPassManager::runOnRegion(Region &R, const Analyses &A) {
   return Change;
 }
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir

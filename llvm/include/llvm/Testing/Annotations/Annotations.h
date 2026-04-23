@@ -13,8 +13,9 @@
 #include "llvm/ADT/StringRef.h"
 #include <tuple>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -128,6 +129,6 @@ private:
 llvm::raw_ostream &operator<<(llvm::raw_ostream &O,
                               const llvm::Annotations::Range &R);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

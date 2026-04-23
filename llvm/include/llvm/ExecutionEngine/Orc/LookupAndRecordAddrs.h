@@ -24,7 +24,7 @@
 
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 /// Record addresses of the given symbols in the given ExecutorAddrs.
@@ -58,6 +58,6 @@ LLVM_ABI Error lookupAndRecordAddrs(
     SymbolLookupFlags LookupFlags = SymbolLookupFlags::RequiredSymbol);
 
 } // End namespace orc
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_LOOKUPANDRECORDADDRS_H

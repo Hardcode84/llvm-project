@@ -17,8 +17,9 @@
 #include "MCTargetDesc/XCoreMCTargetDesc.h"
 #include "llvm/PassRegistry.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class FunctionPass;
   class ModulePass;
   class PassRegistry;
@@ -34,6 +35,6 @@ namespace llvm {
   void initializeXCoreAsmPrinterPass(PassRegistry &);
   void initializeXCoreDAGToDAGISelLegacyPass(PassRegistry &);
 
-} // end namespace llvm;
+LLVM_NAMESPACE_END // end namespace llvm;
 
 #endif

@@ -15,12 +15,12 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/TargetParser/Triple.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 Target &getTheDirectXTarget() {
   static Target TheDirectXTarget;
   return TheDirectXTarget;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using namespace llvm;
 

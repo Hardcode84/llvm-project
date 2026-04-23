@@ -14,7 +14,9 @@
 #ifndef LLVM_FRONTEND_OPENMP_OMPGRIDVALUES_H
 #define LLVM_FRONTEND_OPENMP_OMPGRIDVALUES_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 namespace omp {
 
@@ -132,6 +134,6 @@ static constexpr GV SPIRVGridValues = {
 };
 
 } // namespace omp
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_FRONTEND_OPENMP_OMPGRIDVALUES_H

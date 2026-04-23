@@ -26,7 +26,7 @@
 #include <memory>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace codeview {
 
@@ -130,7 +130,7 @@ initializeStringsAndChecksums(ArrayRef<YAMLDebugSubsection> Sections,
 
 } // end namespace CodeViewYAML
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 LLVM_YAML_DECLARE_MAPPING_TRAITS(CodeViewYAML::YAMLDebugSubsection)
 

@@ -18,7 +18,7 @@
 #include <cstddef>
 #include <cstring>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using namespace XCOFF;
 
@@ -1665,4 +1665,4 @@ bool XCOFFTracebackTable::hasParmsOnStack() const {
 #undef GETBITWITHMASK
 #undef GETBITWITHMASKSHIFT
 } // namespace object
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

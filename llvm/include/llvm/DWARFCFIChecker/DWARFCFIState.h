@@ -20,7 +20,7 @@
 #include "llvm/Support/Compiler.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using DWARFRegNum = uint32_t;
 
@@ -48,6 +48,6 @@ private:
   bool IsInitiated;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

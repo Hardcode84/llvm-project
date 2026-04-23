@@ -26295,6 +26295,7 @@ RISCVTargetLowering::EmitKCFICheck(MachineBasicBlock &MBB,
 
 #define GET_REGISTER_MATCHER
 #include "RISCVGenAsmMatcher.inc"
+#include "llvm/Support/Compiler.h"
 
 Register
 RISCVTargetLowering::getRegisterByName(const char *RegName, LLT VT,
@@ -26529,12 +26530,14 @@ RISCVTargetLowering::findRepresentativeClass(const TargetRegisterInfo *TRI,
   return TargetLowering::findRepresentativeClass(TRI, VT);
 }
 
-namespace llvm::RISCVVIntrinsicsTable {
+LLVM_NAMESPACE_BEGIN
+namespace RISCVVIntrinsicsTable {
 
 #define GET_RISCVVIntrinsicsTable_IMPL
 #include "RISCVGenSearchableTables.inc"
 
-} // namespace llvm::RISCVVIntrinsicsTable
+}
+LLVM_NAMESPACE_END // namespace llvm::RISCVVIntrinsicsTable
 
 bool RISCVTargetLowering::hasInlineStackProbe(const MachineFunction &MF) const {
 

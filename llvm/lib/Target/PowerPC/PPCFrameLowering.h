@@ -15,8 +15,9 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/CodeGen/TargetFrameLowering.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class PPCSubtarget;
 
 class PPCFrameLowering: public TargetFrameLowering {
@@ -179,6 +180,6 @@ public:
 protected:
   bool hasFPImpl(const MachineFunction &MF) const override;
 };
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

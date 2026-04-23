@@ -80,6 +80,7 @@ SPIRVPreLegalizerCombinerImpl::SPIRVPreLegalizerCombinerImpl(
       RuleConfig(RuleConfig), STI(STI),
 #define GET_GICOMBINER_CONSTRUCTOR_INITS
 #include "SPIRVGenPreLegalizeGICombiner.inc"
+#include "llvm/Support/Compiler.h"
 #undef GET_GICOMBINER_CONSTRUCTOR_INITS
 {
 }
@@ -162,8 +163,8 @@ INITIALIZE_PASS_END(SPIRVPreLegalizerCombiner, DEBUG_TYPE,
                     "Combine SPIRV machine instrs before legalization", false,
                     false)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 FunctionPass *createSPIRVPreLegalizerCombiner() {
   return new SPIRVPreLegalizerCombiner();
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

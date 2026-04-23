@@ -11,8 +11,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_R600_H
 
 #include "llvm/Support/CodeGen.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class FunctionPass;
 class TargetMachine;
@@ -48,6 +49,6 @@ extern char &R600PacketizerID;
 void initializeR600EmitClauseMarkersPass(PassRegistry &);
 void initializeR600MachineCFGStructurizerPass(PassRegistry &);
 
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 
 #endif

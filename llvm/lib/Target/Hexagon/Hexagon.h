@@ -15,8 +15,9 @@
 #define LLVM_LIB_TARGET_HEXAGON_HEXAGON_H
 
 #include "llvm/Support/CodeGen.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class HexagonTargetMachine;
 class ImmutablePass;
 class PassRegistry;
@@ -120,6 +121,6 @@ FunctionPass *createHexagonVExtract();
 FunctionPass *createHexagonExpandCondsets();
 FunctionPass *createHexagonQFPOptimizer();
 
-} // end namespace llvm;
+LLVM_NAMESPACE_END // end namespace llvm;
 
 #endif

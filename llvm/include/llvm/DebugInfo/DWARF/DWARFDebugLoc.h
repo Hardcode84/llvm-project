@@ -15,7 +15,7 @@
 #include "llvm/Support/Errc.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DWARFUnit;
 class MCRegisterInfo;
 class raw_ostream;
@@ -161,6 +161,6 @@ private:
   dwarf::LoclistEntries Kind;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFDEBUGLOC_H

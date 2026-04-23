@@ -13,8 +13,9 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/MC/MCExpr.h"
 #include "llvm/MC/MCStreamer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCExpr;
 class MCSymbol;
@@ -31,6 +32,6 @@ public:
   virtual void emitLocalEntry(MCSymbolELF *S, const MCExpr *LocalOffset){};
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_POWERPC_PPCTARGETSTREAMER_H

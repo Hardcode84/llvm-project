@@ -16,8 +16,9 @@
 #include "LoongArchSubtarget.h"
 #include "llvm/CodeGen/MachineFrameInfo.h"
 #include "llvm/CodeGen/MachineFunction.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// LoongArchMachineFunctionInfo - This class is derived from
 /// MachineFunctionInfo and contains private LoongArch-specific information for
@@ -84,6 +85,6 @@ public:
   int getJumpInfoJTIIndex(unsigned Idx) { return JumpInfos[Idx].second; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_LOONGARCH_LOONGARCHMACHINEFUNCTIONINFO_H

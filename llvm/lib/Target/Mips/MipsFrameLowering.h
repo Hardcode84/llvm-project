@@ -15,8 +15,9 @@
 
 #include "Mips.h"
 #include "llvm/CodeGen/TargetFrameLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class MipsSubtarget;
 
 class MipsFrameLowering : public TargetFrameLowering {
@@ -56,6 +57,6 @@ protected:
 const MipsFrameLowering *createMips16FrameLowering(const MipsSubtarget &ST);
 const MipsFrameLowering *createMipsSEFrameLowering(const MipsSubtarget &ST);
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

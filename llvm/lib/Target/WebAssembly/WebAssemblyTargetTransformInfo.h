@@ -21,8 +21,9 @@
 
 #include "WebAssemblyTargetMachine.h"
 #include "llvm/CodeGen/BasicTTIImpl.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class WebAssemblyTTIImpl final : public BasicTTIImplBase<WebAssemblyTTIImpl> {
   typedef BasicTTIImplBase<WebAssemblyTTIImpl> BaseT;
@@ -118,6 +119,6 @@ public:
   /// @}
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

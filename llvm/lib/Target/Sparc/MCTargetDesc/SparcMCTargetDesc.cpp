@@ -22,7 +22,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/ErrorHandling.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace SparcASITag {
 #define GET_ASITagsList_IMPL
 #include "SparcGenSearchableTables.inc"
@@ -32,7 +32,7 @@ namespace SparcPrefetchTag {
 #define GET_PrefetchTagsList_IMPL
 #include "SparcGenSearchableTables.inc"
 } // end namespace SparcPrefetchTag
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 using namespace llvm;
 

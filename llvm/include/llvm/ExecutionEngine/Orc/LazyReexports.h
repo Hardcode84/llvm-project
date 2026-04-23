@@ -23,7 +23,7 @@
 #include "llvm/ExecutionEngine/Orc/Speculation.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Triple;
 
@@ -331,6 +331,6 @@ private:
 };
 
 } // End namespace orc
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_LAZYREEXPORTS_H

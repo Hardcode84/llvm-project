@@ -12,13 +12,14 @@
 
 #include "llvm/ADT/StringRef.h"
 #include "llvm/TableGen/TableGenBackend.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "skeleton-emitter"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class RecordKeeper;
 class raw_ostream;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using namespace llvm;
 

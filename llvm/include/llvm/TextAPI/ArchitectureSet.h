@@ -22,7 +22,7 @@
 #include <tuple>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 
 namespace MachO {
@@ -172,6 +172,6 @@ inline ArchitectureSet operator|(const Architecture &lhs,
 LLVM_ABI raw_ostream &operator<<(raw_ostream &OS, ArchitectureSet Set);
 
 } // end namespace MachO.
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.
 
 #endif // LLVM_TEXTAPI_ARCHITECTURESET_H

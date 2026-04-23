@@ -20,8 +20,10 @@
 #include "llvm/ExecutionEngine/Orc/SymbolStringPool.h"
 
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 class JITDylib;
 
@@ -42,6 +44,7 @@ using SymbolFlagsMap = DenseMap<SymbolStringPtr, JITSymbolFlags>;
 /// A map from JITDylibs to sets of symbols.
 using SymbolDependenceMap = DenseMap<JITDylib *, SymbolNameSet>;
 
-} // End namespace llvm::orc
+}
+LLVM_NAMESPACE_END // End namespace llvm::orc
 
 #endif // LLVM_EXECUTIONENGINE_ORC_CORECONTAINERS_H

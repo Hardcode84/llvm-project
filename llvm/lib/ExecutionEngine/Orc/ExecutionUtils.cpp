@@ -22,8 +22,9 @@
 #include "llvm/Object/MachOUniversal.h"
 #include "llvm/Target/TargetMachine.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 CtorDtorIterator::CtorDtorIterator(const GlobalVariable *GV, bool End)
@@ -584,4 +585,4 @@ DLLImportDefinitionGenerator::createStubsGraph(const SymbolMap &Resolved) {
 }
 
 } // End namespace orc.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.

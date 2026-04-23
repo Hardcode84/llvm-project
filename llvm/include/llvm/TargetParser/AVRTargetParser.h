@@ -17,12 +17,13 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/Error.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace AVR {
 
 LLVM_ABI Expected<std::string> getFeatureSetFromEFlag(const unsigned EFlag);
 
 } // namespace AVR
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

@@ -16,12 +16,13 @@
 #include "llvm/MC/MCStreamer.h"
 #include "llvm/Support/AArch64BuildAttributes.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
 namespace {
 class AArch64ELFStreamer;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AArch64TargetStreamer : public MCTargetStreamer {
 public:
@@ -201,6 +202,6 @@ createAArch64ObjectTargetStreamer(MCStreamer &S, const MCSubtargetInfo &STI);
 
 MCTargetStreamer *createAArch64NullTargetStreamer(MCStreamer &S);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

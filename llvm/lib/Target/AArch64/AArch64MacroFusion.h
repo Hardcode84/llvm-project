@@ -15,14 +15,15 @@
 #define LLVM_LIB_TARGET_AARCH64_AARCH64MACROFUSION_H
 
 #include "llvm/CodeGen/MachineScheduler.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Note that you have to add:
 ///   DAG.addMutation(createAArch64MacroFusionDAGMutation());
 /// to AArch64TargetMachine::createMachineScheduler() to have an effect.
 std::unique_ptr<ScheduleDAGMutation> createAArch64MacroFusionDAGMutation();
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AARCH64_AARCH64MACROFUSION_H

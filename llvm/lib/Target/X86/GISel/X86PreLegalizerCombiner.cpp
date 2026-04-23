@@ -84,6 +84,7 @@ X86PreLegalizerCombinerImpl::X86PreLegalizerCombinerImpl(
       RuleConfig(RuleConfig), STI(STI),
 #define GET_GICOMBINER_CONSTRUCTOR_INITS
 #include "X86GenPreLegalizeGICombiner.inc"
+#include "llvm/Support/Compiler.h"
 #undef GET_GICOMBINER_CONSTRUCTOR_INITS
 {
 }
@@ -170,8 +171,8 @@ INITIALIZE_PASS_END(X86PreLegalizerCombiner, DEBUG_TYPE,
                     "Combine X86 machine instrs before legalization", false,
                     false)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 FunctionPass *createX86PreLegalizerCombiner() {
   return new X86PreLegalizerCombiner();
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

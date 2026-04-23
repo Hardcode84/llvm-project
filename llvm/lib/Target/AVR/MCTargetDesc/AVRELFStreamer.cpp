@@ -4,8 +4,9 @@
 #include "llvm/MC/MCELFObjectWriter.h"
 #include "llvm/MC/MCSubtargetInfo.h"
 #include "llvm/TargetParser/SubtargetFeature.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static unsigned getEFlagsForFeatureSet(const FeatureBitset &Features) {
   unsigned EFlags = 0;
@@ -62,4 +63,4 @@ AVRELFStreamer::AVRELFStreamer(MCStreamer &S, const MCSubtargetInfo &STI)
   W.setELFHeaderEFlags(EFlags);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

@@ -26,7 +26,7 @@
 #include "llvm/Support/Compiler.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 /// This is a convenience struct to hold the parameters necessary for creating
@@ -80,5 +80,5 @@ public:
 };
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_MCA_CONTEXT_H

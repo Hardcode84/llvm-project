@@ -16,8 +16,9 @@
 #include "llvm/MC/MCRegisterInfo.h"
 #include "llvm/MC/MCTargetOptions.h"
 #include "llvm/Support/DataTypes.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCAsmBackend;
 class MCCodeEmitter;
 class MCContext;
@@ -34,7 +35,7 @@ MCAsmBackend *createLanaiAsmBackend(const Target &T, const MCSubtargetInfo &STI,
                                     const MCTargetOptions &Options);
 
 std::unique_ptr<MCObjectTargetWriter> createLanaiELFObjectWriter(uint8_t OSABI);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Defines symbolic names for Lanai registers.  This defines a mapping from
 // register name to register number.

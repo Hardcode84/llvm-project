@@ -26,7 +26,7 @@
 #include "llvm/Support/raw_ostream.h"
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace mca {
 
@@ -756,6 +756,6 @@ inline raw_ostream &operator<<(raw_ostream &OS, const InstRef &IR) {
 #endif
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_MCA_INSTRUCTION_H

@@ -21,6 +21,7 @@
 #include "llvm/IR/IntrinsicsSPIRV.h"
 #include "llvm/Support/Debug.h"
 #include <stack>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "spirv-postlegalizer"
 
@@ -35,7 +36,7 @@ public:
 };
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 //  Defined in SPIRVPreLegalizer.cpp.
 extern void updateRegType(Register Reg, Type *Ty, SPIRVTypeInst SpirvTy,
                           SPIRVGlobalRegistry *GR, MachineIRBuilder &MIB,
@@ -43,7 +44,7 @@ extern void updateRegType(Register Reg, Type *Ty, SPIRVTypeInst SpirvTy,
 extern void processInstr(MachineInstr &MI, MachineIRBuilder &MIB,
                          MachineRegisterInfo &MRI, SPIRVGlobalRegistry *GR,
                          SPIRVTypeInst KnownResType);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static SPIRVTypeInst deduceIntTypeFromResult(Register ResVReg,
                                              MachineIRBuilder &MIB,

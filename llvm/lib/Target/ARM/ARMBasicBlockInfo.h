@@ -18,8 +18,9 @@
 #include "llvm/Support/MathExtras.h"
 #include <algorithm>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct BasicBlockInfo;
 using BBInfoVector = SmallVectorImpl<BasicBlockInfo>;
@@ -154,6 +155,6 @@ public:
 
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARM_ARMBASICBLOCKINFO_H

@@ -13,7 +13,7 @@
 #include "llvm/Object/ObjectFile.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 
 struct SymEntry {
@@ -28,6 +28,6 @@ LLVM_ABI int compareAddress(const SymEntry *A, const SymEntry *B);
 LLVM_ABI std::vector<std::pair<SymbolRef, uint64_t>>
 computeSymbolSizes(const ObjectFile &O);
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

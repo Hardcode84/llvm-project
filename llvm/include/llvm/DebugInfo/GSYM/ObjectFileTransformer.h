@@ -12,7 +12,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace object {
 class ObjectFile;
@@ -46,6 +46,6 @@ public:
 };
 
 } // namespace gsym
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_GSYM_OBJECTFILETRANSFORMER_H

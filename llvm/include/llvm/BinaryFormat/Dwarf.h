@@ -29,7 +29,7 @@
 
 #include <limits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 namespace dwarf {
@@ -1261,6 +1261,6 @@ struct format_provider<Enum, std::enable_if_t<dwarf::EnumTraits<Enum>::value>> {
       OS << Str;
   }
 };
-} // End of namespace llvm
+LLVM_NAMESPACE_END // End of namespace llvm
 
 #endif

@@ -24,7 +24,7 @@
 #include <set>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace logicalview {
 
 // Generate get and set 'bool' functions.
@@ -645,6 +645,6 @@ public:
 inline LVPatterns &patterns() { return *LVPatterns::getPatterns(); }
 
 } // namespace logicalview
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_LOGICALVIEW_CORE_LVOPTIONS_H

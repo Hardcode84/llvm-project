@@ -19,8 +19,9 @@
 #include <cassert>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// XCoreFunctionInfo - This class is derived from MachineFunction private
 /// XCore target-specific information for each MachineFunction.
@@ -96,6 +97,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_XCORE_XCOREMACHINEFUNCTIONINFO_H

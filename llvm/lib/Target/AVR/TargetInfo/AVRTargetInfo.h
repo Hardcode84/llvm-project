@@ -9,10 +9,12 @@
 #ifndef LLVM_AVR_TARGET_INFO_H
 #define LLVM_AVR_TARGET_INFO_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class Target;
 
 Target &getTheAVRTarget();
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_AVR_TARGET_INFO_H

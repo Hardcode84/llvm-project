@@ -21,7 +21,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Target/TargetMachine.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename DataT> class AccelTable;
 
 class MCCodeEmitter;
@@ -328,6 +328,6 @@ private:
 
 } // end of namespace classic
 } // end of namespace dwarf_linker
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm
 
 #endif // LLVM_DWARFLINKER_CLASSIC_DWARFSTREAMER_H

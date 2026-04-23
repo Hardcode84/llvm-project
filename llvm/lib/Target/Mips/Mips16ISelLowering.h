@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_MIPS_MIPS16ISELLOWERING_H
 
 #include "MipsISelLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class Mips16TargetLowering : public MipsTargetLowering  {
   public:
     explicit Mips16TargetLowering(const MipsTargetMachine &TM,
@@ -75,6 +76,6 @@ namespace llvm {
                                             MachineInstr &MI,
                                             MachineBasicBlock *BB) const;
   };
-}
+LLVM_NAMESPACE_END
 
 #endif

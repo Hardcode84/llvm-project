@@ -26,7 +26,7 @@
 #include "llvm/MCA/View.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 /// Class which can be overriden by targets to modify the
@@ -205,6 +205,6 @@ public:
 };
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif /* LLVM_MCA_CUSTOMBEHAVIOUR_H */

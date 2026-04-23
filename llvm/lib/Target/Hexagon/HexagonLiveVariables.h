@@ -33,10 +33,11 @@
 #include <algorithm>
 #include <cstdint>
 #include <list>
+#include "llvm/Support/Compiler.h"
 
 class HexagonLiveVariablesImpl;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 typedef std::pair<BitVector, BitVector> UseDef_t; // (Use, Def)
 typedef DenseMap<MachineBasicBlock *, UseDef_t> MBBUseDef_t;
@@ -129,6 +130,6 @@ private:
   std::unique_ptr<HexagonLiveVariablesImpl> HLV;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

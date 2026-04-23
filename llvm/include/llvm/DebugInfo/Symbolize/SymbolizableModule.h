@@ -14,8 +14,9 @@
 
 #include "llvm/DebugInfo/DIContext.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace symbolize {
 
 using FunctionNameKind = DILineInfoSpecifier::FunctionNameKind;
@@ -48,6 +49,6 @@ public:
 };
 
 } // end namespace symbolize
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif  // LLVM_DEBUGINFO_SYMBOLIZE_SYMBOLIZABLEMODULE_H

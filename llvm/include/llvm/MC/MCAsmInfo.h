@@ -23,7 +23,7 @@
 #include "llvm/Support/Compiler.h"
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCAssembler;
 class MCContext;
@@ -743,6 +743,6 @@ public:
                                          const MCAssembler *Asm) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCASMINFO_H

@@ -15,7 +15,7 @@
 
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace offloading {
 using EntryArrayTy = std::pair<GlobalVariable *, GlobalVariable *>;
 /// Wraps the input device images into the module \p M as global symbols and
@@ -73,6 +73,6 @@ wrapSYCLBinaries(llvm::Module &M, llvm::ArrayRef<char> Buffer,
                  SYCLJITOptions Options = SYCLJITOptions());
 
 } // namespace offloading
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_FRONTEND_OFFLOADING_OFFLOADWRAPPER_H

@@ -15,8 +15,9 @@
 
 #include "llvm/ADT/APInt.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using PointerTy = void *;
 
@@ -49,6 +50,6 @@ struct GenericValue {
 inline GenericValue PTOGV(void *P) { return GenericValue(P); }
 inline void *GVTOP(const GenericValue &GV) { return GV.PointerVal; }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_GENERICVALUE_H

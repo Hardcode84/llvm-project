@@ -30,6 +30,7 @@
 #include "llvm/Support/Error.h"
 #include "llvm/Support/FormatAdapters.h"
 #include "llvm/Support/FormatVariadic.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::codeview;
@@ -39,7 +40,7 @@ using namespace llvm::logicalview;
 
 #define DEBUG_TYPE "CodeViewUtilities"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace logicalview {
 
 static TypeIndex getTrueType(TypeIndex &TI) {
@@ -103,12 +104,12 @@ static StringRef getRecordName(LazyRandomTypeCollection &Types, TypeIndex TI) {
 }
 
 } // namespace logicalview
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #undef DEBUG_TYPE
 #define DEBUG_TYPE "CodeViewDataVisitor"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace logicalview {
 
 // Keeps the type indexes with line information.
@@ -318,7 +319,7 @@ struct LVShared {
   ~LVShared() = default;
 };
 } // namespace logicalview
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 void LVTypeRecords::add(uint32_t StreamIdx, TypeIndex TI, TypeLeafKind Kind,
                         LVElement *Element) {

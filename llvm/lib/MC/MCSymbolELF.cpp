@@ -8,8 +8,9 @@
 
 #include "llvm/MC/MCSymbolELF.h"
 #include "llvm/BinaryFormat/ELF.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace {
 enum {
@@ -206,4 +207,4 @@ void MCSymbolELF::setMemtag(bool Tagged) {
   else
     setFlags(OtherFlags);
 }
-}
+LLVM_NAMESPACE_END

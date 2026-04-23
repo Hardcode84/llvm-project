@@ -19,7 +19,7 @@
 #include "llvm/MC/MCRegisterInfo.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCContext;
 class MCInst;
 class MCSubtargetInfo;
@@ -64,5 +64,5 @@ public:
   virtual void onLabel(const MCSymbol *Symbol) {}
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

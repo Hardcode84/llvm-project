@@ -11,6 +11,7 @@
 #include "llvm/MC/MCStreamer.h"
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/MipsABIFlags.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -55,7 +56,7 @@ uint8_t MipsABIFlagsSection::getCPR1SizeValue() {
   return (uint8_t)CPR1Size;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 MCStreamer &operator<<(MCStreamer &OS, MipsABIFlagsSection &ABIFlagsSection) {
   // Write out a Elf_Internal_ABIFlags_v0 struct
@@ -73,4 +74,4 @@ MCStreamer &operator<<(MCStreamer &OS, MipsABIFlagsSection &ABIFlagsSection) {
   return OS;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

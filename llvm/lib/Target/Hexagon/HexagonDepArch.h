@@ -11,8 +11,9 @@
 
 #include "llvm/ADT/StringSwitch.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace Hexagon {
 enum class ArchEnum {
   NoArch,
@@ -55,6 +56,6 @@ inline std::optional<Hexagon::ArchEnum> getCpu(StringRef CPU) {
       .Default(std::nullopt);
 }
 } // namespace Hexagon
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_HEXAGON_HEXAGONDEPARCH_H

@@ -15,8 +15,9 @@
 
 #include "MCTargetDesc/LoongArchMCTargetDesc.h"
 #include "llvm/MC/MCInstPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LoongArchInstPrinter : public MCInstPrinter {
 public:
@@ -49,6 +50,6 @@ private:
   void printOperand(const MCInst *MI, unsigned OpNo, const MCSubtargetInfo &STI,
                     raw_ostream &O);
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_LOONGARCH_MCTARGETDESC_LOONGARCHINSTPRINTER_H

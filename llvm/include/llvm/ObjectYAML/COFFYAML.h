@@ -23,8 +23,9 @@
 #include <cstdint>
 #include <optional>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace COFF {
 
@@ -124,14 +125,14 @@ struct Object {
 
 } // end namespace COFFYAML
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(COFFYAML::Section)
 LLVM_YAML_IS_SEQUENCE_VECTOR(COFFYAML::Symbol)
 LLVM_YAML_IS_SEQUENCE_VECTOR(COFFYAML::Relocation)
 LLVM_YAML_IS_SEQUENCE_VECTOR(COFFYAML::SectionDataEntry)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <>
@@ -285,6 +286,6 @@ struct MappingTraits<COFFYAML::Object> {
 };
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECTYAML_COFFYAML_H

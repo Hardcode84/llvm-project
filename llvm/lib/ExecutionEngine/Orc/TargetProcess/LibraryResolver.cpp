@@ -25,10 +25,12 @@
 #include "llvm/Support/Error.h"
 
 #include <mutex>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc-resolver"
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 LibraryResolver::LibraryResolver(const LibraryResolver::Setup &S)
     : LibMgr(LibraryManager()),
@@ -404,4 +406,5 @@ bool LibraryResolver::scanLibrariesIfNeeded(PathType PK, size_t BatchSize) {
   Scanner.scanNext(PK, BatchSize);
   return true;
 }
-} // end namespace llvm::orc
+}
+LLVM_NAMESPACE_END // end namespace llvm::orc

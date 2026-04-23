@@ -42,6 +42,7 @@
 #include <unistd.h>
 #else
 #include <io.h>
+#include "llvm/Support/Compiler.h"
 #endif
 
 using namespace llvm;
@@ -982,7 +983,7 @@ computeMemberData(raw_ostream &StringTable, raw_ostream &SymNames,
   return std::move(Ret);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static ErrorOr<SmallString<128>> canonicalizePath(StringRef P) {
   SmallString<128> Ret = P;
@@ -1365,4 +1366,4 @@ writeArchiveToBuffer(ArrayRef<NewArchiveMember> NewMembers,
       std::move(ArchiveBufferVector), /*RequiresNullTerminator=*/false);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

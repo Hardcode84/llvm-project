@@ -12,8 +12,9 @@
 #include "llvm/DebugInfo/MSF/MappedBlockStream.h"
 #include "llvm/DebugInfo/PDB/Native/HashTable.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 struct SrcHeaderBlockEntry;
 struct SrcHeaderBlockHeader;
@@ -37,6 +38,6 @@ private:
   HashTable<SrcHeaderBlockEntry> InjectedSourceTable;
 };
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

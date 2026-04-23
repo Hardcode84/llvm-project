@@ -16,8 +16,9 @@
 #define LLVM_LIB_TARGET_WEBASSEMBLY_WEBASSEMBLYISELLOWERING_H
 
 #include "llvm/CodeGen/TargetLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class WebAssemblySubtarget;
 
@@ -145,6 +146,6 @@ FastISel *createFastISel(FunctionLoweringInfo &funcInfo,
                          const LibcallLoweringInfo *libcallLowering);
 } // end namespace WebAssembly
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

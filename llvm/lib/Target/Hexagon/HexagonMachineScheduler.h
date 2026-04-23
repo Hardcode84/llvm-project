@@ -17,8 +17,9 @@
 #include "llvm/CodeGen/RegisterPressure.h"
 #include "llvm/CodeGen/TargetSubtargetInfo.h"
 #include "llvm/CodeGen/VLIWMachineScheduler.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SUnit;
 
@@ -37,6 +38,6 @@ protected:
                      RegPressureDelta &Delta, bool verbose) override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_HEXAGON_HEXAGONMACHINESCHEDULER_H

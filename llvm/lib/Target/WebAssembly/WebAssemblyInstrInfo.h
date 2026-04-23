@@ -24,8 +24,9 @@
 
 #define GET_INSTRINFO_OPERAND_ENUM
 #include "WebAssemblyGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class WebAssemblySubtarget;
 
@@ -69,6 +70,6 @@ public:
                                 int64_t &Offset) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

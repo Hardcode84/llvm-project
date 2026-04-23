@@ -18,12 +18,13 @@
 #include "llvm/CodeGen/MachineFrameInfo.h"
 #include "llvm/CodeGen/MachineFunction.h"
 #include "llvm/CodeGen/TargetInstrInfo.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
 #define DEBUG_TYPE "nvptx-reg-info"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 StringRef getNVPTXRegClassName(TargetRegisterClass const *RC) {
   if (RC == &NVPTX::B128RegClass)
     return ".b128";
@@ -73,7 +74,7 @@ StringRef getNVPTXRegClassStr(TargetRegisterClass const *RC) {
     return "!Special!";
   return "INTERNAL";
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 NVPTXRegisterInfo::NVPTXRegisterInfo()
     : NVPTXGenRegisterInfo(0), StrPool(StrAlloc) {}

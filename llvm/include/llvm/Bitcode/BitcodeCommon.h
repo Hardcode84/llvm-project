@@ -15,8 +15,9 @@
 #define LLVM_BITCODE_BITCODECOMMON_H
 
 #include "llvm/ADT/Bitfields.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct AllocaPackedValues {
   // We increased the number of bits needed to represent alignment to be more
@@ -29,6 +30,6 @@ struct AllocaPackedValues {
   using AlignUpper = Bitfield::Element<unsigned, SwiftError::NextBit, 3>;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_BITCODE_BITCODECOMMON_H

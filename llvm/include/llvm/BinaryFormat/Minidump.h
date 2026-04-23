@@ -21,8 +21,9 @@
 #include "llvm/ADT/BitmaskEnum.h"
 #include "llvm/ADT/DenseMapInfo.h"
 #include "llvm/Support/Endian.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace minidump {
 
 LLVM_ENABLE_BITMASK_ENUMS_IN_NAMESPACE();
@@ -285,6 +286,6 @@ template <> struct DenseMapInfo<minidump::StreamType> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_BINARYFORMAT_MINIDUMP_H

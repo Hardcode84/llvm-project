@@ -20,6 +20,7 @@
 #include "llvm/CodeGen/MachineRegisterInfo.h"
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Debug.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "CopyHoist"
 
@@ -66,9 +67,9 @@ public:
 
 char HexagonCopyHoisting::ID = 0;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 char &HexagonCopyHoistingID = HexagonCopyHoisting::ID;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 bool HexagonCopyHoisting::runOnMachineFunction(MachineFunction &Fn) {
 

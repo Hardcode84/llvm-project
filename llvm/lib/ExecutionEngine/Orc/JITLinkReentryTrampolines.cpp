@@ -13,6 +13,7 @@
 #include "llvm/ExecutionEngine/Orc/ObjectLinkingLayer.h"
 
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
@@ -24,7 +25,8 @@ constexpr StringRef ReentryFnName = "__orc_rt_reenter";
 constexpr StringRef ReentrySectionName = "__orc_stubs";
 } // namespace
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 class JITLinkReentryTrampolines::TrampolineAddrScraperPlugin
     : public ObjectLinkingLayer::Plugin {
@@ -185,4 +187,5 @@ createJITLinkLazyReexportsManager(ObjectLinkingLayer &ObjLinkingLayer,
       RSMgr, PlatformJD, L);
 }
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc

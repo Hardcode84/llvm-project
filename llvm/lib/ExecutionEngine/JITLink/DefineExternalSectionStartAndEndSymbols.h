@@ -17,10 +17,11 @@
 
 #include "llvm/ExecutionEngine/JITLink/JITLink.h"
 #include "llvm/Support/Debug.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 struct SectionRangeSymbolDesc {
@@ -148,7 +149,7 @@ identifyMachOSectionStartAndEndSymbols(LinkGraph &G, Symbol &Sym) {
 }
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #undef DEBUG_TYPE
 

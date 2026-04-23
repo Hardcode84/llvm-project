@@ -11,10 +11,11 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/ExecutionEngine/JITLink/riscv.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 namespace riscv {
 
@@ -93,4 +94,4 @@ const char *getEdgeKindName(Edge::Kind K) {
 }
 } // namespace riscv
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

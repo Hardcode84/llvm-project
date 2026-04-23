@@ -11,8 +11,9 @@
 
 #include "DIASupport.h"
 #include "llvm/DebugInfo/PDB/IPDBRawSymbol.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 class DIASession;
 class DIARawSymbol : public IPDBRawSymbol {
@@ -228,6 +229,6 @@ private:
   CComPtr<IDiaSymbol> Symbol;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -23,8 +23,9 @@
 #include "llvm/IR/Function.h"
 
 #include <deque>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Define some predicates that are used for node matching.
 namespace M68k {
@@ -254,6 +255,6 @@ private:
 
   SDValue PerformDAGCombine(SDNode *N, DAGCombinerInfo &DCI) const override;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_M68K_M68KISELLOWERING_H

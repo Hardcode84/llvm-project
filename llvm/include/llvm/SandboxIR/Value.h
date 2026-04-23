@@ -14,7 +14,8 @@
 #include "llvm/SandboxIR/Use.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 // Forward declare all classes to avoid some MSVC build errors.
 #define DEF_INSTR(ID, OPC, CLASS) class CLASS;
@@ -314,6 +315,7 @@ public:
 #endif // NDEBUG
 };
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir
 
 #endif // LLVM_SANDBOXIR_VALUE_H

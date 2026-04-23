@@ -25,7 +25,7 @@
 #include "llvm/Support/MemoryBufferRef.h"
 #include "llvm/Support/raw_ostream.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 
 constexpr std::string_view ImportDescriptorPrefix = "__IMPORT_DESCRIPTOR_";
@@ -142,6 +142,6 @@ LLVM_ABI Error writeImportLibrary(StringRef ImportName, StringRef Path,
                                   ArrayRef<COFFShortExport> NativeExports = {});
 
 } // namespace object
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

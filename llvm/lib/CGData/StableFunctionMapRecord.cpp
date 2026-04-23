@@ -15,6 +15,7 @@
 
 #include "llvm/CGData/StableFunctionMapRecord.h"
 #include "llvm/Support/EndianStream.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "stable-function-map-record"
 
@@ -24,7 +25,7 @@ using namespace llvm::support;
 LLVM_YAML_IS_SEQUENCE_VECTOR(IndexPairHash)
 LLVM_YAML_IS_SEQUENCE_VECTOR(StableFunction)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <> struct MappingTraits<IndexPairHash> {
@@ -46,7 +47,7 @@ template <> struct MappingTraits<StableFunction> {
 };
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Get a sorted vector of StableFunctionEntry pointers.
 static SmallVector<const StableFunctionMap::StableFunctionEntry *>

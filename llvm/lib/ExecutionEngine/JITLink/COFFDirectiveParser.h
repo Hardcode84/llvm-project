@@ -20,8 +20,9 @@
 #include "llvm/Support/Error.h"
 #include "llvm/Support/StringSaver.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 enum {
@@ -43,6 +44,6 @@ private:
 };
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_JITLINK_COFFDIRECTIVEPARSER_H

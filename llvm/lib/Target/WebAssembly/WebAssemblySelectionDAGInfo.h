@@ -19,8 +19,9 @@
 
 #define GET_SDNODE_ENUM
 #include "WebAssemblyGenSDNodeInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace WebAssemblyISD {
 
 enum NodeType : unsigned {
@@ -57,6 +58,6 @@ public:
                                   MachinePointerInfo DstPtrInfo) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

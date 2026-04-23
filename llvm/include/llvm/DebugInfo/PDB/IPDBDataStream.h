@@ -13,8 +13,9 @@
 #include <cstdint>
 #include <optional>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 /// IPDBDataStream defines an interface used to represent a stream consisting
@@ -34,6 +35,6 @@ public:
 };
 
 } // end namespace pdb
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_PDB_IPDBDATASTREAM_H

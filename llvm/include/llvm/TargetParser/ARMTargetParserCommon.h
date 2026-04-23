@@ -16,7 +16,7 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace ARM {
 
 enum class ISAKind { INVALID = 0, ARM, THUMB, AARCH64 };
@@ -50,5 +50,5 @@ LLVM_ABI bool parseBranchProtection(StringRef Spec, ParsedBranchProtection &PBP,
                                     StringRef &Err, bool EnablePAuthLR = false);
 
 } // namespace ARM
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

@@ -119,8 +119,9 @@
 #define LLVM_LIB_TARGET_HEXAGON_HEXAGONVLCR_H
 
 #include "llvm/Transforms/Scalar/LoopPassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Loop;
 
@@ -134,6 +135,6 @@ struct HexagonVectorLoopCarriedReusePass
                         LoopStandardAnalysisResults &AR, LPMUpdater &U);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_HEXAGON_HEXAGONVLCR_H

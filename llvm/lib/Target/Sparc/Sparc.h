@@ -17,8 +17,9 @@
 #include "MCTargetDesc/SparcMCTargetDesc.h"
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AsmPrinter;
 class FunctionPass;
 class MCInst;
@@ -32,9 +33,9 @@ FunctionPass *createSparcDelaySlotFillerPass();
 void initializeSparcAsmPrinterPass(PassRegistry &);
 void initializeSparcDAGToDAGISelLegacyPass(PassRegistry &);
 void initializeErrataWorkaroundPass(PassRegistry &);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   // Enums corresponding to Sparc condition codes, both icc's and fcc's.  These
   // values must be kept in sync with the ones in the .td file.
   namespace SPCC {
@@ -186,5 +187,5 @@ namespace llvm {
     return ~LO10(~imm);
   }
 
-}  // end namespace llvm
+LLVM_NAMESPACE_END  // end namespace llvm
 #endif

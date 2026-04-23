@@ -23,7 +23,7 @@
 #include <memory>
 #include <mutex>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Module;
 
@@ -69,6 +69,6 @@ private:
 };
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_IRCOMPILELAYER_H

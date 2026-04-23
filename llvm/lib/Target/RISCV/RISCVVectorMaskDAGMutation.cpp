@@ -38,10 +38,11 @@
 #include "llvm/CodeGen/ScheduleDAGInstrs.h"
 #include "llvm/CodeGen/ScheduleDAGMutation.h"
 #include "llvm/TargetParser/RISCVTargetParser.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "machine-scheduler"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static bool isCopyToV0(const MachineInstr &MI) {
   return MI.isFullCopy() && MI.getOperand(0).getReg() == RISCV::V0 &&
@@ -107,4 +108,4 @@ createRISCVVectorMaskDAGMutation(const TargetRegisterInfo *TRI) {
   return std::make_unique<RISCVVectorMaskDAGMutation>(TRI);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

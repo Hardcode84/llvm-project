@@ -17,8 +17,9 @@
 
 #define GET_REGINFO_HEADER
 #include "ARCGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class TargetInstrInfo;
 class ARCSubtarget;
@@ -53,6 +54,6 @@ public:
   static bool needsFrameMoves(const MachineFunction &MF);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARC_ARCREGISTERINFO_H

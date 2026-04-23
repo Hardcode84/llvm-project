@@ -17,7 +17,7 @@
 #include "llvm/DebugInfo/LogicalView/Core/LVElement.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace logicalview {
 
 enum class LVLineKind {
@@ -156,6 +156,6 @@ public:
 };
 
 } // end namespace logicalview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_LOGICALVIEW_CORE_LVLINE_H

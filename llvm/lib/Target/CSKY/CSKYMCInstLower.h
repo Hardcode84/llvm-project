@@ -9,7 +9,9 @@
 #ifndef LLVM_LIB_TARGET_CSKY_CSKYMCINSTLOWER_H
 #define LLVM_LIB_TARGET_CSKY_CSKYMCINSTLOWER_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class AsmPrinter;
 class MCContext;
 class MachineInstr;
@@ -30,6 +32,6 @@ public:
   MCOperand lowerSymbolOperand(const MachineOperand &MO, MCSymbol *Sym) const;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_CSKY_CSKYMCINSTLOWER_H

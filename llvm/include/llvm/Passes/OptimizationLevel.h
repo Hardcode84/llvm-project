@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include <assert.h>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class OptimizationLevel final {
   unsigned SpeedLevel = 2;
@@ -94,6 +94,6 @@ public:
 
   unsigned getSpeedupLevel() const { return SpeedLevel; }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

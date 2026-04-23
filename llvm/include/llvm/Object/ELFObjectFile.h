@@ -39,7 +39,7 @@
 #include <cassert>
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> class SmallVectorImpl;
 
@@ -1517,6 +1517,6 @@ StringRef ELFObjectFile<ELFT>::getCrelDecodeProblem(DataRefImpl Sec) const {
 }
 
 } // end namespace object
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECT_ELFOBJECTFILE_H

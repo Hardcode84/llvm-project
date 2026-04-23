@@ -13,8 +13,9 @@
 #include "llvm/Support/Endian.h"
 #include "llvm/Support/Error.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace msf {
 
 class IMSFFile {
@@ -36,6 +37,6 @@ public:
 };
 
 } // end namespace msf
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_MSF_IMSFFILE_H

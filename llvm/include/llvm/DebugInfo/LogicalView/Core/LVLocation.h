@@ -17,7 +17,7 @@
 #include "llvm/DebugInfo/LogicalView/Core/LVObject.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace logicalview {
 
 using LVLineRange = std::pair<LVLine *, LVLine *>;
@@ -182,6 +182,6 @@ public:
 };
 
 } // end namespace logicalview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_LOGICALVIEW_CORE_LVLOCATION_H

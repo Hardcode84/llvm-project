@@ -22,7 +22,7 @@
 #include <cstdint>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ExecutionEngine;
 
@@ -154,6 +154,6 @@ private:
 DEFINE_SIMPLE_CONVERSION_FUNCTIONS(
     RTDyldMemoryManager, LLVMMCJITMemoryManagerRef)
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_RTDYLDMEMORYMANAGER_H

@@ -12,9 +12,10 @@
 #include "llvm/MC/MCExpr.h"
 #include "llvm/MC/MCSymbol.h"
 #include "llvm/MC/MCValue.h"
-namespace llvm {
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class MCSection;
-}
+LLVM_NAMESPACE_END
 
 using namespace llvm;
 

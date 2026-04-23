@@ -18,8 +18,10 @@
 #include "llvm/ExecutionEngine/Orc/Shared/ExecutorSymbolDef.h"
 #include "llvm/ExecutionEngine/Orc/Shared/SimpleRemoteEPCUtils.h"
 #include "llvm/ExecutionEngine/Orc/Shared/TargetProcessControlTypes.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 class ExecutorResolver {
 public:
@@ -44,5 +46,6 @@ private:
   tpctypes::DylibHandle Handle;
 };
 
-} // end namespace llvm::orc
+}
+LLVM_NAMESPACE_END // end namespace llvm::orc
 #endif // LLVM_EXECUTIONENGINE_ORC_TARGETPROCESS_EXECUTORRESOLVER_H

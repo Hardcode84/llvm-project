@@ -12,8 +12,9 @@
 #include "llvm/ADT/BitmaskEnum.h"
 #include "llvm/DebugInfo/CodeView/CodeView.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 const uint16_t kInvalidStreamIndex = 0xFFFF;
@@ -113,6 +114,6 @@ enum class OMFSegDescFlags : uint16_t {
 LLVM_ENABLE_BITMASK_ENUMS_IN_NAMESPACE();
 
 } // end namespace pdb
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_PDB_NATIVE_RAWCONSTANTS_H

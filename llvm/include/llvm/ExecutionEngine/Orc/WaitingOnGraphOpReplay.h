@@ -19,8 +19,10 @@
 #include <mutex>
 #include <optional>
 #include <variant>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::orc::detail {
+LLVM_NAMESPACE_BEGIN
+namespace orc::detail {
 
 /// Records WaitingOnGraph operations to a line-oriented text format on a
 /// raw_ostream. The format is a sequence of operations terminated by "end":
@@ -456,6 +458,7 @@ readWaitingOnGraphOpsFromBuffer(StringRef InputBuffer, Error &Err) {
   return make_fallible_range(std::move(Begin), std::move(End), Err);
 }
 
-} // namespace llvm::orc::detail
+}
+LLVM_NAMESPACE_END // namespace llvm::orc::detail
 
 #endif // LLVM_EXECUTIONENGINE_ORC_WAITINGONGRAPHOPREPLAY_H

@@ -9,7 +9,9 @@
 #ifndef LLVM_OBJCOPY_XCOFF_XCOFFOBJCOPY_H
 #define LLVM_OBJCOPY_XCOFF_XCOFFOBJCOPY_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class Error;
 class raw_ostream;
 
@@ -30,6 +32,6 @@ Error executeObjcopyOnBinary(const CommonConfig &Config, const XCOFFConfig &,
 
 } // end namespace xcoff
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJCOPY_XCOFF_XCOFFOBJCOPY_H

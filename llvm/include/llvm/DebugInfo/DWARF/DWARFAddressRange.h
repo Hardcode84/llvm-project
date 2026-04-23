@@ -18,7 +18,7 @@
 #include <tuple>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 class DWARFObject;
@@ -89,6 +89,6 @@ LLVM_ABI raw_ostream &operator<<(raw_ostream &OS, const DWARFAddressRange &R);
 /// DWARFAddressRangesVector - represents a set of absolute address ranges.
 using DWARFAddressRangesVector = std::vector<DWARFAddressRange>;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFADDRESSRANGE_H

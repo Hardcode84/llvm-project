@@ -15,7 +15,7 @@
 #include "llvm/Support/Error.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 class IPDBSession;
@@ -27,6 +27,6 @@ LLVM_ABI Error loadDataForEXE(PDB_ReaderType Type, StringRef Path,
                               std::unique_ptr<IPDBSession> &Session);
 
 } // end namespace pdb
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_PDB_PDB_H

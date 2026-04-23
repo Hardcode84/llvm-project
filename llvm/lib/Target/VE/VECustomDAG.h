@@ -18,8 +18,9 @@
 #include "VEISelLowering.h"
 #include "llvm/CodeGen/SelectionDAG.h"
 #include "llvm/CodeGen/TargetLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 std::optional<unsigned> getVVPOpcode(unsigned Opcode);
 
@@ -218,6 +219,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_VE_VECUSTOMDAG_H

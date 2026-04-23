@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 
 /// A class providing access to the contents of a minidump file.
@@ -398,6 +398,6 @@ MinidumpFile::getListStream(minidump::StreamType Type) const {
 }
 
 } // end namespace object
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECT_MINIDUMP_H

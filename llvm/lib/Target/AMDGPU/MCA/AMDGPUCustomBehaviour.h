@@ -21,8 +21,9 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/MCA/CustomBehaviour.h"
 #include "llvm/TargetParser/TargetParser.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 class AMDGPUInstrPostProcess : public InstrPostProcess {
@@ -100,6 +101,6 @@ public:
                              const InstRef &IR) override;
 };
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

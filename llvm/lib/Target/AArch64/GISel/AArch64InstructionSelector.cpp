@@ -48,6 +48,7 @@
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/raw_ostream.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "aarch64-isel"
 
@@ -55,10 +56,10 @@ using namespace llvm;
 using namespace MIPatternMatch;
 using namespace AArch64GISelUtils;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BlockFrequencyInfo;
 class ProfileSummaryInfo;
-}
+LLVM_NAMESPACE_END
 
 namespace {
 
@@ -8116,11 +8117,11 @@ void AArch64InstructionSelector::processPHIs(MachineFunction &MF) {
   }
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 InstructionSelector *
 createAArch64InstructionSelector(const AArch64TargetMachine &TM,
                                  const AArch64Subtarget &Subtarget,
                                  const AArch64RegisterBankInfo &RBI) {
   return new AArch64InstructionSelector(TM, Subtarget, RBI);
 }
-}
+LLVM_NAMESPACE_END

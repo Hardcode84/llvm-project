@@ -17,9 +17,10 @@
 
 #define GET_REGBANK_DECLARATIONS
 #include "M68kGenRegisterBank.inc"
+#include "llvm/Support/Compiler.h"
 #undef GET_REGBANK_DECLARATIONS
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class TargetRegisterInfo;
 
@@ -38,5 +39,5 @@ public:
   const InstructionMapping &
   getInstrMapping(const MachineInstr &MI) const override;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif // LLVM_LIB_TARGET_M68K_GLSEL_M68KREGISTERBANKINFO_H

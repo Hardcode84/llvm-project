@@ -18,8 +18,9 @@
 #include "llvm/ADT/SmallVector.h"
 #include <cstddef>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCSymbol;
 
@@ -87,6 +88,6 @@ private:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARM_MCTARGETDESC_ARMUNWINDOPASM_H

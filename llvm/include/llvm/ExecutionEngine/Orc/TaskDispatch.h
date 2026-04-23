@@ -29,7 +29,7 @@
 #include <thread>
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 /// Represents an abstract task for ORC to run.
@@ -150,6 +150,6 @@ private:
 #endif // LLVM_ENABLE_THREADS
 
 } // End namespace orc
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_TASKDISPATCH_H

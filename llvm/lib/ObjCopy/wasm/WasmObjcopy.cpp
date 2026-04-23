@@ -13,8 +13,9 @@
 #include "llvm/ObjCopy/CommonConfig.h"
 #include "llvm/Support/Errc.h"
 #include "llvm/Support/FileOutputBuffer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 namespace wasm {
 
@@ -152,4 +153,4 @@ Error executeObjcopyOnBinary(const CommonConfig &Config, const WasmConfig &,
 
 } // end namespace wasm
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

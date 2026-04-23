@@ -25,8 +25,9 @@
 #include <memory>
 #include <set>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 enum class DebugCompressionType;
 namespace objcopy {
 namespace elf {
@@ -1249,6 +1250,6 @@ public:
 
 } // end namespace elf
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_OBJCOPY_ELF_ELFOBJECT_H

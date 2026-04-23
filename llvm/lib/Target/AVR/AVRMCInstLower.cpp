@@ -19,8 +19,9 @@
 #include "llvm/IR/Mangler.h"
 #include "llvm/MC/MCInst.h"
 #include "llvm/Support/ErrorHandling.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 MCOperand
 AVRMCInstLower::lowerSymbolOperand(const MachineOperand &MO, MCSymbol *Sym,
@@ -116,4 +117,4 @@ void AVRMCInstLower::lowerInstruction(const MachineInstr &MI,
   }
 }
 
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm

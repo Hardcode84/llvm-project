@@ -11,8 +11,9 @@
 
 #include "llvm/ADT/StringRef.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class FunctionCallee;
 class FunctionType;
@@ -489,5 +490,5 @@ public:
 
   void setFunctionType(FunctionType *FT) { FuncTy = FT; }
 };
-}
+LLVM_NAMESPACE_END
 #endif // _AMDGPU_LIBFUNC_H_

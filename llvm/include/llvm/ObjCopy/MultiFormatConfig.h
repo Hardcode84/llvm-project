@@ -10,8 +10,9 @@
 #define LLVM_OBJCOPY_MULTIFORMATCONFIG_H
 
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 
 struct CommonConfig;
@@ -36,6 +37,6 @@ public:
 };
 
 } // namespace objcopy
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_OBJCOPY_MULTIFORMATCONFIG_H

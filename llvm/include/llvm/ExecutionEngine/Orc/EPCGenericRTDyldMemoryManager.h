@@ -20,7 +20,7 @@
 
 #define DEBUG_TYPE "orc"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 /// Remote-mapped RuntimeDyld-compatible memory manager.
@@ -123,7 +123,7 @@ private:
 };
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #undef DEBUG_TYPE
 

@@ -10,8 +10,9 @@
 #define LLVM_OBJCOPY_COFF_COFFCONFIG_H
 
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 
 // Coff specific configuration for copying/stripping a single file.
@@ -22,6 +23,6 @@ struct COFFConfig {
 };
 
 } // namespace objcopy
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_OBJCOPY_COFF_COFFCONFIG_H

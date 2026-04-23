@@ -16,8 +16,9 @@
 
 #include "llvm/MC/MCWinEH.h"
 #include "llvm/Support/Win64EH.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCStreamer;
 class MCSymbol;
 
@@ -71,6 +72,6 @@ public:
                       bool HandlerData) const override;
 };
 } // namespace Win64EH
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

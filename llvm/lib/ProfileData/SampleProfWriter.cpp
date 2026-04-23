@@ -35,6 +35,7 @@
 #include <system_error>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "llvm-profdata"
 
@@ -46,7 +47,7 @@ static cl::opt<bool> ExtBinaryWriteVTableTypeProf(
     "extbinary-write-vtable-type-prof", cl::init(false), cl::Hidden,
     cl::desc("Write vtable type profile in ext-binary sample profile writer"));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace support {
 namespace endian {
 namespace {
@@ -70,7 +71,7 @@ struct SeekableWriter {
 } // namespace
 } // namespace endian
 } // namespace support
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 DefaultFunctionPruningStrategy::DefaultFunctionPruningStrategy(
     SampleProfileMap &ProfileMap, size_t OutputSizeLimit)

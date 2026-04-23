@@ -15,7 +15,7 @@
 #include "llvm/Support/Compression.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 
 /// Decompressor helps to handle decompression of compressed sections.
@@ -53,6 +53,6 @@ private:
 };
 
 } // end namespace object
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECT_DECOMPRESSOR_H

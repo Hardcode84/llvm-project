@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_X86_X86ISELDAGTODAG_H
 
 #include "llvm/CodeGen/SelectionDAGISel.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class X86TargetMachine;
 
@@ -20,6 +21,6 @@ public:
   X86ISelDAGToDAGPass(X86TargetMachine &TM);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_X86_X86ISELDAGTODAG_H

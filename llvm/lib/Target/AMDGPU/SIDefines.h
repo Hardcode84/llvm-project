@@ -11,8 +11,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_SIDEFINES_H
 
 #include "llvm/MC/MCInstrDesc.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // This needs to be kept in sync with the field bits in SIRegisterClass.
 enum SIRCFlags : uint8_t {
@@ -1298,6 +1299,6 @@ enum {
 
 // clang-format on
 
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 
 #endif

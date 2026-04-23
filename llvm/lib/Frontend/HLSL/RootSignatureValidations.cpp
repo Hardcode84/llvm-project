@@ -13,8 +13,9 @@
 #include "llvm/Frontend/HLSL/RootSignatureValidations.h"
 
 #include <cmath>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace hlsl {
 namespace rootsig {
 
@@ -150,4 +151,4 @@ uint64_t computeRangeBound(uint64_t Offset, uint32_t Size) {
 }
 } // namespace rootsig
 } // namespace hlsl
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

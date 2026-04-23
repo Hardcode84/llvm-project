@@ -24,7 +24,7 @@
 #include <cstdint>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 
 class SymbolRecord {
@@ -1102,6 +1102,6 @@ LLVM_ABI Expected<CVSymbol> readSymbolFromStream(BinaryStreamRef Stream,
                                                  uint32_t Offset);
 
 } // end namespace codeview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_CODEVIEW_SYMBOLRECORD_H

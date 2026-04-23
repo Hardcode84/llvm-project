@@ -20,8 +20,9 @@
 #define LLVM_LIB_TARGET_VE_VEINSTRBUILDER_H
 
 #include "llvm/CodeGen/MachineInstrBuilder.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// addFrameReference - This function is used to add a reference to the base of
 /// an abstract object on the stack frame of the current function.  This
@@ -36,6 +37,6 @@ addFrameReference(const MachineInstrBuilder &MIB, int FI, int Offset = 0,
   return MIB.addFrameIndex(FI).addImm(Offset);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

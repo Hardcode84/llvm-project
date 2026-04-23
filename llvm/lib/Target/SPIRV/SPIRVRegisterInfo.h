@@ -17,8 +17,9 @@
 
 #define GET_REGINFO_HEADER
 #include "SPIRVGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct SPIRVRegisterInfo : public SPIRVGenRegisterInfo {
   SPIRVRegisterInfo();
@@ -33,6 +34,6 @@ struct SPIRVRegisterInfo : public SPIRVGenRegisterInfo {
     return 0;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVREGISTERINFO_H

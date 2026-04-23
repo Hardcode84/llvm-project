@@ -17,8 +17,9 @@
 
 #define GET_REGINFO_HEADER
 #include "CSKYGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class CSKYInstrInfo;
 
 class CSKYRegisterInfo : public CSKYGenRegisterInfo {
@@ -52,6 +53,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_CSKY_CSKYREGISTERINFO_H

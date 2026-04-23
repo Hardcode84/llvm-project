@@ -12,8 +12,10 @@
 #include "llvm/IR/Operator.h"
 #include "llvm/SandboxIR/Instruction.h"
 #include "llvm/SandboxIR/User.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 class Operator : public User {
 public:
@@ -94,6 +96,7 @@ public:
   }
 };
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir
 
 #endif // LLVM_SANDBOXIR_OPERATOR_H

@@ -17,8 +17,9 @@
 #include "llvm/BinaryFormat/GOFF.h"
 #include "llvm/ObjectYAML/YAML.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // The structure of the yaml files is not an exact 1:1 match to GOFF. In order
 // to use yaml::IO, we use these structures which are closer to the source.
@@ -40,7 +41,7 @@ struct Object {
   Object();
 };
 } // end namespace GOFFYAML
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 LLVM_YAML_DECLARE_MAPPING_TRAITS(GOFFYAML::FileHeader)
 LLVM_YAML_DECLARE_MAPPING_TRAITS(GOFFYAML::Object)

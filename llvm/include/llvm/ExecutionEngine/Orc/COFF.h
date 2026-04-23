@@ -20,7 +20,7 @@
 #include <set>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace object {
 class Archive;
@@ -40,6 +40,6 @@ private:
 };
 
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_MACHO_H

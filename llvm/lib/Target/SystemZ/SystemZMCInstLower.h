@@ -14,7 +14,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/DataTypes.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCInst;
 class MCOperand;
 class MachineInstr;
@@ -37,6 +37,6 @@ public:
   // Return an MCExpr for symbolic operand MO with variant kind Kind.
   const MCExpr *getExpr(const MachineOperand &MO, SystemZ::Specifier) const;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

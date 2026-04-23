@@ -17,7 +17,8 @@
 
 #include <memory>
 
-namespace llvm::omp {
+LLVM_NAMESPACE_BEGIN
+namespace omp {
 /// Parser class for OpenMP directive names. It only recognizes names listed
 /// in OMP.td, in particular it does not recognize Fortran's end-directives
 /// if they are not explicitly listed in OMP.td.
@@ -73,6 +74,7 @@ private:
 
   State InitialState;
 };
-} // namespace llvm::omp
+}
+LLVM_NAMESPACE_END // namespace llvm::omp
 
 #endif // LLVM_FRONTEND_OPENMP_DIRECTIVENAMEPARSER_H

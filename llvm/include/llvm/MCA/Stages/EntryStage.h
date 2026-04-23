@@ -21,7 +21,7 @@
 #include "llvm/MCA/Stages/Stage.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 class LLVM_ABI EntryStage final : public Stage {
@@ -48,6 +48,6 @@ public:
 };
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_MCA_STAGES_ENTRYSTAGE_H

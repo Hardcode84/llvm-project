@@ -18,7 +18,8 @@
 #include "llvm/SandboxIR/Instruction.h"
 #include "llvm/Support/raw_ostream.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 class Region;
 
@@ -188,6 +189,7 @@ public:
   static void remove(Region &Rgn, Instruction *I) { Rgn.remove(I); }
 };
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir
 
 #endif // LLVM_SANDBOXIR_REGION_H

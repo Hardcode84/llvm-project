@@ -16,7 +16,7 @@
 #include "llvm/ExecutionEngine/Orc/Core.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 /// Base class for performing redirection of call to symbol to another symbol in
@@ -97,6 +97,6 @@ private:
 };
 
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

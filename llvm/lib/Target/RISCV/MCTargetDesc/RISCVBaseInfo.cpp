@@ -19,8 +19,9 @@
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/TargetParser/TargetParser.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 extern const SubtargetFeatureKV RISCVFeatureKV[RISCV::NumSubtargetFeatures];
 
@@ -256,4 +257,4 @@ void RISCVZC::printRegList(unsigned RlistEncode, raw_ostream &OS) {
   OS << "}";
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

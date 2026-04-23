@@ -9,13 +9,15 @@
 #ifndef LLVM_LIB_TARGET_NVPTX_TARGETINFO_NVPTXTARGETINFO_H
 #define LLVM_LIB_TARGET_NVPTX_TARGETINFO_NVPTXTARGETINFO_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class Target;
 
 Target &getTheNVPTXTarget32();
 Target &getTheNVPTXTarget64();
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_NVPTX_TARGETINFO_NVPTXTARGETINFO_H

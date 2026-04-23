@@ -11,8 +11,9 @@
 
 #include "SPIRVTargetMachine.h"
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SPIRVPushConstantAccess : public PassInfoMixin<SPIRVPushConstantAccess> {
   const SPIRVTargetMachine &TM;
@@ -22,6 +23,6 @@ public:
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &AM);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVPUSHCONSTANTACCESS_H

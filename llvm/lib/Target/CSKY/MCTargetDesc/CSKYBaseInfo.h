@@ -18,8 +18,9 @@
 
 #include "MCTargetDesc/CSKYMCTargetDesc.h"
 #include "llvm/MC/MCInstrDesc.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // CSKYII - This namespace holds all of the target specific flags that
 // instruction info tracks. All definitions must match CSKYInstrFormats.td.
@@ -65,6 +66,6 @@ enum OperandType : unsigned {
 };
 } // namespace CSKYOp
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_CSKY_MCTARGETDESC_CSKYBASEINFO_H

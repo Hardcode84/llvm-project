@@ -21,8 +21,9 @@
 #include <cassert>
 #include <set>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T> class ArrayRef;
 class SourceMgr;
 class Twine;
@@ -477,6 +478,6 @@ private:
   void prepReportPreprocessorStackError();
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

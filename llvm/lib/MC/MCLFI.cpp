@@ -23,10 +23,11 @@
 #include "llvm/Support/Alignment.h"
 #include "llvm/Support/CommandLine.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
 static const char NoteNamespace[] = "LFI";
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 cl::opt<bool> FlagEnableRewriting("lfi-enable-rewriter",
                                   cl::desc("Enable rewriting for LFI."),
@@ -83,4 +84,4 @@ void emitLFINoteSection(MCStreamer &Streamer, MCContext &Ctx) {
   Streamer.emitValueToAlignment(Align(4));
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

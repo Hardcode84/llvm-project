@@ -10,8 +10,9 @@
 #define LLVM_ASMPARSER_NUMBEREDVALUES_H
 
 #include "llvm/ADT/DenseMap.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Mapping from value ID to value, which also remembers what the next unused
 /// ID is.
@@ -29,6 +30,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

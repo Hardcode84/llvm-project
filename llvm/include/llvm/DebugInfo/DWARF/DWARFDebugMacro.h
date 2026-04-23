@@ -14,8 +14,9 @@
 #include "llvm/DebugInfo/DWARF/DWARFUnit.h"
 #include "llvm/Support/Error.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -147,6 +148,6 @@ private:
                   DWARFDataExtractor Data, bool IsMacro);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFDEBUGMACRO_H

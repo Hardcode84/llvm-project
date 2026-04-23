@@ -38,8 +38,9 @@
 #include "llvm/MC/MCInstrDesc.h"
 #include "llvm/Support/raw_ostream.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// SystemZHazardRecognizer maintains the state for one MBB during scheduling.
 class SystemZHazardRecognizer : public ScheduleHazardRecognizer {
@@ -156,6 +157,6 @@ public:
   void copyState(SystemZHazardRecognizer *Incoming);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif /* LLVM_LIB_TARGET_SYSTEMZ_SYSTEMZHAZARDRECOGNIZER_H */

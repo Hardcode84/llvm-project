@@ -19,7 +19,7 @@
 
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BinaryByteStream;
 template <typename T> struct BinaryItemTraits;
 
@@ -84,6 +84,6 @@ private:
   uint32_t Idx;
 };
 } // namespace pdb
-}
+LLVM_NAMESPACE_END
 
 #endif

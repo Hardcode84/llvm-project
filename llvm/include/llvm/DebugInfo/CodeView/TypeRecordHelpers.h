@@ -13,7 +13,7 @@
 #include "llvm/DebugInfo/CodeView/TypeIndex.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 
 /// Given an arbitrary codeview type, determine if it is an LF_STRUCTURE,
@@ -64,6 +64,6 @@ LLVM_ABI uint64_t getSizeInBytesForTypeIndex(TypeIndex TI);
 LLVM_ABI uint64_t getSizeInBytesForTypeRecord(CVType CVT);
 
 } // namespace codeview
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -15,8 +15,9 @@
 #define LLVM_LIB_TARGET_X86_X86MACROFUSION_H
 
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ScheduleDAGMutation;
 
@@ -26,6 +27,6 @@ class ScheduleDAGMutation;
 std::unique_ptr<ScheduleDAGMutation>
 createX86MacroFusionDAGMutation();
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

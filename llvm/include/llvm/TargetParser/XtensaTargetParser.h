@@ -15,8 +15,9 @@
 #define LLVM_TARGETPARSER_XTENSATARGETPARSER_H
 
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 namespace Xtensa {
@@ -73,6 +74,6 @@ void getCPUFeatures(StringRef CPU, SmallVectorImpl<StringRef> &Features);
 void fillValidCPUList(SmallVectorImpl<StringRef> &Values);
 
 } // namespace Xtensa
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_XTENSATARGETPARSER_H

@@ -15,7 +15,8 @@
 
 #include "llvm/Support/raw_ostream.h"
 #include <random>
-namespace llvm {
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 /// Return a uniformly distributed random value between \c Min and \c Max
 template <typename T, typename GenT> T uniform(GenT &Gen, T Min, T Max) {
@@ -91,6 +92,6 @@ ReservoirSampler<T, GenT> makeSampler(GenT &RandGen) {
   return ReservoirSampler<T, GenT>(RandGen);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_FUZZMUTATE_RANDOM_H

@@ -20,8 +20,9 @@
 #include "llvm/MC/MCStreamer.h"
 #include <optional>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // AMDGPU Target Machine (R600+)
@@ -159,6 +160,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_AMDGPUTARGETMACHINE_H

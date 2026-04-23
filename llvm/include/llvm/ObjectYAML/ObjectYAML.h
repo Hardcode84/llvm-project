@@ -21,8 +21,9 @@
 #include "llvm/ObjectYAML/XCOFFYAML.h"
 #include "llvm/Support/YAMLTraits.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 class IO;
@@ -46,6 +47,6 @@ template <> struct MappingTraits<YamlObjectFile> {
 };
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECTYAML_OBJECTYAML_H

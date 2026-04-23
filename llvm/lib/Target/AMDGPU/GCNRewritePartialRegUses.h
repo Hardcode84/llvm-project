@@ -10,14 +10,15 @@
 #define LLVM_LIB_TARGET_AMDGPU_GCNREWRITEPARTIALREGUSES_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class GCNRewritePartialRegUsesPass
     : public PassInfoMixin<GCNRewritePartialRegUsesPass> {
 public:
   PreservedAnalyses run(MachineFunction &MF,
                         MachineFunctionAnalysisManager &MFAM);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_GCNREWRITEPARTIALREGUSES_H

@@ -18,8 +18,9 @@
 #define GET_SUBTARGETFEATURES_ENUM
 #define GET_SUBTARGETFEATURES_KV
 #include "llvm/TargetParser/PPCGenTargetFeatures.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace PPC {
 
 struct CPUInfo {
@@ -146,4 +147,4 @@ std::optional<StringMap<bool>> getPPCDefaultTargetFeatures(const Triple &T,
   return Features;
 }
 } // namespace PPC
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

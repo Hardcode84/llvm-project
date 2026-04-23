@@ -26,7 +26,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace DXContainerYAML {
 
 struct VersionTuple {
@@ -306,7 +306,7 @@ struct Object {
 };
 
 } // namespace DXContainerYAML
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::DXContainerYAML::Part)
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::DXContainerYAML::ResourceBindInfo)
@@ -332,7 +332,7 @@ LLVM_YAML_DECLARE_ENUM_TRAITS(llvm::dxbc::TextureAddressMode)
 LLVM_YAML_DECLARE_ENUM_TRAITS(llvm::dxbc::ShaderVisibility)
 LLVM_YAML_DECLARE_ENUM_TRAITS(llvm::dxbc::ComparisonFunc)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -433,6 +433,6 @@ template <> struct MappingTraits<llvm::DXContainerYAML::StaticSamplerYamlDesc> {
 
 } // namespace yaml
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_OBJECTYAML_DXCONTAINERYAML_H

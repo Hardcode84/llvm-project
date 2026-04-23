@@ -16,8 +16,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_VOPDUTILS_H
 
 #include "llvm/CodeGen/MachineScheduler.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SIInstrInfo;
 
@@ -27,6 +28,6 @@ bool checkVOPDRegConstraints(const SIInstrInfo &TII,
 
 std::unique_ptr<ScheduleDAGMutation> createVOPDPairingMutation();
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_VOPDUTILS_H

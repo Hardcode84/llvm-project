@@ -12,8 +12,9 @@
 #include "ARMAsmBackend.h"
 #include "MCTargetDesc/ARMMCTargetDesc.h"
 #include "llvm/MC/MCObjectWriter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class ARMAsmBackendELF : public ARMAsmBackend {
 public:
   uint8_t OSABI;
@@ -27,6 +28,6 @@ public:
 
   std::optional<MCFixupKind> getFixupKind(StringRef Name) const override;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARM_MCTARGETDESC_ELFARMASMBACKEND_H

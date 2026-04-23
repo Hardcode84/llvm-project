@@ -15,7 +15,7 @@
 #include "llvm/Support/Errc.h"
 #include "llvm/Support/MathExtras.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A DataExtractor suitable use for parsing dwarf from memory.  Clients use
 /// Relocator::getRelocatedValueImpl to relocate values as appropriate.
@@ -237,5 +237,5 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif // LLVM_DEBUGINFO_DWARF_LOWLEVEL_DWARFDATAEXTRACTORSIMPLE_H

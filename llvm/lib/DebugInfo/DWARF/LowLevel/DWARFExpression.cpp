@@ -10,11 +10,12 @@
 #include <cassert>
 #include <cstdint>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace dwarf;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 typedef DWARFExpression::Operation Op;
 typedef Op::Description Desc;
@@ -267,4 +268,4 @@ bool DWARFExpression::operator==(const DWARFExpression &RHS) const {
   return Data.getData() == RHS.Data.getData();
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

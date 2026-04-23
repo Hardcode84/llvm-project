@@ -17,7 +17,8 @@
 #include "llvm/ExecutionEngine/JITLink/JITLink.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm::jitlink::hexagon {
+LLVM_NAMESPACE_BEGIN
+namespace jitlink::hexagon {
 
 /// Represents Hexagon fixup kinds.
 enum EdgeKind_hexagon : Edge::Kind {
@@ -386,6 +387,7 @@ inline Error applyFixup(LinkGraph &G, Block &B, const Edge &E) {
   return Error::success();
 }
 
-} // namespace llvm::jitlink::hexagon
+}
+LLVM_NAMESPACE_END // namespace llvm::jitlink::hexagon
 
 #endif // LLVM_EXECUTIONENGINE_JITLINK_HEXAGON_H

@@ -21,7 +21,9 @@
 #ifndef LLVM_BITSTREAM_BITCODEENUMS_H
 #define LLVM_BITSTREAM_BITCODEENUMS_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 /// Offsets of the 32-bit fields of bitstream wrapper header.
 enum BitstreamWrapperHeader : unsigned {
   BWH_MagicField = 0 * 4,
@@ -85,6 +87,6 @@ enum BlockInfoCodes {
 };
 
 } // namespace bitc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

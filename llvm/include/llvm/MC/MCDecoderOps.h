@@ -10,7 +10,10 @@
 #ifndef LLVM_MC_MCDECODEROPS_H
 #define LLVM_MC_MCDECODEROPS_H
 
-namespace llvm::MCD {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
+namespace MCD {
 
 // Disassembler state machine opcodes.
 enum DecoderOps {
@@ -23,6 +26,7 @@ enum DecoderOps {
   OPC_SoftFail,       // OPC_SoftFail(uleb128 PMask, uleb128 NMask)
 };
 
-} // namespace llvm::MCD
+}
+LLVM_NAMESPACE_END // namespace llvm::MCD
 
 #endif

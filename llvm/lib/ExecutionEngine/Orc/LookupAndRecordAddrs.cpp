@@ -9,8 +9,9 @@
 #include "llvm/ExecutionEngine/Orc/LookupAndRecordAddrs.h"
 
 #include <future>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 void lookupAndRecordAddrs(
@@ -52,4 +53,4 @@ Error lookupAndRecordAddrs(
 }
 
 } // End namespace orc.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.

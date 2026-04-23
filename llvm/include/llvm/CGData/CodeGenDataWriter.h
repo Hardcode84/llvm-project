@@ -21,7 +21,7 @@
 #include "llvm/Support/EndianStream.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A wrapper class to abstract writer stream with support of bytes
 /// back patching.
@@ -112,6 +112,6 @@ private:
   Error writeImpl(CGDataOStream &COS);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CGDATA_CODEGENDATAWRITER_H

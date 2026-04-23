@@ -18,8 +18,9 @@
 
 #define GET_INSTRINFO_HEADER
 #include "CSKYGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CSKYRegisterInfo;
 class CSKYSubtarget;
@@ -85,6 +86,6 @@ public:
                   MachineInstr::MIFlag Flag = MachineInstr::NoFlags) const;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_CSKY_CSKYINSTRINFO_H

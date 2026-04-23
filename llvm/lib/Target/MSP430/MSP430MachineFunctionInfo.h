@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_MSP430_MSP430MACHINEFUNCTIONINFO_H
 
 #include "llvm/CodeGen/MachineFunction.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// MSP430MachineFunctionInfo - This class is derived from MachineFunction and
 /// contains private MSP430 target-specific information for each MachineFunction.
@@ -61,6 +62,6 @@ public:
   void setVarArgsFrameIndex(int Index) { VarArgsFrameIndex = Index; }
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

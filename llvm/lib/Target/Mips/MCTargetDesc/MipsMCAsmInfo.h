@@ -16,8 +16,9 @@
 #include "llvm/MC/MCAsmInfoCOFF.h"
 #include "llvm/MC/MCAsmInfoELF.h"
 #include "llvm/MC/MCFixup.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Triple;
 
 class MipsELFMCAsmInfo : public MCAsmInfoELF {
@@ -80,6 +81,6 @@ const MCSpecifierExpr *createGpOff(const MCExpr *Expr, Specifier S,
                                    MCContext &Ctx);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

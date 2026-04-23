@@ -13,8 +13,9 @@
 #include "llvm/ObjectYAML/XCOFFYAML.h"
 #include "llvm/BinaryFormat/XCOFF.h"
 #include <string.h>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace XCOFFYAML {
 
 Object::Object() { memset(&Header, 0, sizeof(Header)); }
@@ -402,4 +403,4 @@ void MappingTraits<XCOFFYAML::Object>::mapping(IO &IO, XCOFFYAML::Object &Obj) {
 }
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

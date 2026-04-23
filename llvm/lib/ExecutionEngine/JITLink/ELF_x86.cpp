@@ -17,6 +17,7 @@
 #include "llvm/BinaryFormat/ELF.h"
 #include "llvm/ExecutionEngine/JITLink/x86.h"
 #include "llvm/Object/ELFObjectFile.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
@@ -36,7 +37,8 @@ Error buildTables_ELF_x86(LinkGraph &G) {
 }
 } // namespace
 
-namespace llvm::jitlink {
+LLVM_NAMESPACE_BEGIN
+namespace jitlink {
 
 class ELFJITLinker_x86 : public JITLinker<ELFJITLinker_x86> {
   friend class JITLinker<ELFJITLinker_x86>;
@@ -287,4 +289,5 @@ void link_ELF_x86(std::unique_ptr<LinkGraph> G,
   ELFJITLinker_x86::link(std::move(Ctx), std::move(G), std::move(Config));
 }
 
-} // namespace llvm::jitlink
+}
+LLVM_NAMESPACE_END // namespace llvm::jitlink

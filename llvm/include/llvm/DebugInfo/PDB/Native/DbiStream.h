@@ -20,7 +20,7 @@
 #include "llvm/Support/Endian.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BinaryStream;
 namespace object {
 struct FpoData;
@@ -138,6 +138,6 @@ private:
   const DbiStreamHeader *Header;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

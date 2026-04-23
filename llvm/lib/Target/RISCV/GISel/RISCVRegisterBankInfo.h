@@ -17,8 +17,9 @@
 
 #define GET_REGBANK_DECLARATIONS
 #include "RISCVGenRegisterBank.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class TargetRegisterInfo;
 
@@ -56,5 +57,5 @@ private:
   bool onlyDefinesFP(const MachineInstr &MI, const MachineRegisterInfo &MRI,
                      const TargetRegisterInfo &TRI) const;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif

@@ -15,8 +15,9 @@
 
 #include "llvm/ADT/StringSwitch.h"
 #include "llvm/Support/ErrorHandling.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace LPAC {
 enum AluCode {
   ADD = 0x00,
@@ -114,6 +115,6 @@ inline static AluCode stringToLanaiAluCode(StringRef S) {
       .Default(UNKNOWN);
 }
 } // namespace LPAC
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_LANAI_LANAIALUCODE_H

@@ -13,13 +13,14 @@
 #include "llvm/CodeGen/FaultMaps.h"
 #include "llvm/CodeGen/StackMaps.h"
 #include "llvm/Passes/CodeGenPassBuilder.h"
+#include "llvm/Support/Compiler.h"
 
 // Implemented in X86MCInstLower.cpp
 namespace {
   class X86MCInstLower;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCCodeEmitter;
 class MCStreamer;
 class X86Subtarget;
@@ -223,6 +224,6 @@ public:
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &MAM);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

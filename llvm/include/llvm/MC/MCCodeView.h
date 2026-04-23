@@ -21,8 +21,9 @@
 #include <deque>
 #include <map>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCAssembler;
 class MCCVDefRangeFragment;
 class MCCVInlineLineTableFragment;
@@ -274,5 +275,5 @@ private:
       DefRangeStorage;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif

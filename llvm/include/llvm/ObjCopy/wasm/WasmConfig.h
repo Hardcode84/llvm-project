@@ -9,13 +9,15 @@
 #ifndef LLVM_OBJCOPY_WASM_WASMCONFIG_H
 #define LLVM_OBJCOPY_WASM_WASMCONFIG_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 
 // Wasm specific configuration for copying/stripping a single file.
 struct WasmConfig {};
 
 } // namespace objcopy
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_OBJCOPY_WASM_WASMCONFIG_H

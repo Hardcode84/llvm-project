@@ -44,13 +44,13 @@ using namespace llvm;
 
 // The generated AsmMatcher SparcGenAsmMatcher uses "Sparc" as the target
 // namespace. But SPARC backend uses "SP" as its namespace.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace Sparc {
 
     using namespace SP;
 
 } // end namespace Sparc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace {
 

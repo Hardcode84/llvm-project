@@ -30,7 +30,7 @@
 #include <string>
 #include <system_error>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace object {
 
@@ -325,6 +325,6 @@ LLVM_ABI void jitLinkForORC(
                          std::unique_ptr<RuntimeDyld::LoadedObjectInfo>, Error)>
         OnEmitted);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_RUNTIMEDYLD_H

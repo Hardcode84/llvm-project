@@ -18,10 +18,11 @@ static const char *DWSecNames[] = {
 #define HANDLE_DWARF_SECTION(ENUM_NAME, ELF_NAME, CMDLINE_NAME, OPTION)        \
   ELF_NAME,
 #include "llvm/BinaryFormat/Dwarf.def"
+#include "llvm/Support/Compiler.h"
 #undef HANDLE_DWARF_SECTION
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 StringRef ELFLinkGraphBuilderBase::CommonSectionName(".common");
@@ -30,4 +31,4 @@ ArrayRef<const char *> ELFLinkGraphBuilderBase::DwarfSectionNames = DWSecNames;
 ELFLinkGraphBuilderBase::~ELFLinkGraphBuilderBase() = default;
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

@@ -19,8 +19,9 @@
 #include "llvm/Support/CodeGen.h"
 #include <memory>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class StringRef;
 class TargetTransformInfo;
@@ -88,6 +89,6 @@ public:
   bool canLowerCondLoop() const override { return true; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_X86_X86TARGETMACHINE_H

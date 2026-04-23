@@ -7,8 +7,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "DXContainerReader.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 namespace dxbc {
 
@@ -35,4 +36,4 @@ Expected<std::unique_ptr<Object>> DXContainerReader::create() const {
 
 } // end namespace dxbc
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

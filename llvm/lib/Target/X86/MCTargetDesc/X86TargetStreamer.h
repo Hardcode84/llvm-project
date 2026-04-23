@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_X86_MCTARGETDESC_X86TARGETSTREAMER_H
 
 #include "llvm/MC/MCStreamer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// X86 target streamer implementing x86-only assembly directives.
 class X86TargetStreamer : public MCTargetStreamer {
@@ -44,6 +45,6 @@ inline MCTargetStreamer *createX86NullTargetStreamer(MCStreamer &S) {
   return new X86TargetStreamer(S);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

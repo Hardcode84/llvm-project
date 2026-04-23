@@ -19,6 +19,7 @@
 #include <unistd.h>
 #else
 #include <io.h>
+#include "llvm/Support/Compiler.h"
 #endif
 
 namespace {
@@ -33,7 +34,7 @@ struct FDMsgHeader {
 
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 namespace SimpleRemoteEPCDefaultBootstrapSymbolNames {
 
@@ -248,4 +249,4 @@ void FDSimpleRemoteEPCTransport::listenLoop() {
 }
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

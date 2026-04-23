@@ -18,6 +18,7 @@
 #include "CompactUnwindSupport.h"
 #include "DefineExternalSectionStartAndEndSymbols.h"
 #include "MachOLinkGraphBuilder.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
@@ -554,7 +555,7 @@ private:
 
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 Error buildTables_MachO_arm64(LinkGraph &G) {
@@ -734,4 +735,4 @@ LinkGraphPassFunction createEHFrameEdgeFixerPass_MachO_arm64() {
 }
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

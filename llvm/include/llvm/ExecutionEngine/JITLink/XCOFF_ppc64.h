@@ -15,8 +15,10 @@
 #define LLVM_EXECUTIONENGINE_JITLINK_XCOFF_PPC64_H
 
 #include "llvm/ExecutionEngine/JITLink/JITLink.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::jitlink {
+LLVM_NAMESPACE_BEGIN
+namespace jitlink {
 
 /// Create a LinkGraph from an XCOFF/ppc64 relocatable object.
 ///
@@ -32,6 +34,7 @@ Expected<std::unique_ptr<LinkGraph>> createLinkGraphFromXCOFFObject_ppc64(
 void link_XCOFF_ppc64(std::unique_ptr<LinkGraph> G,
                       std::unique_ptr<JITLinkContext> Ctx);
 
-} // end namespace llvm::jitlink
+}
+LLVM_NAMESPACE_END // end namespace llvm::jitlink
 
 #endif // LLVM_EXECUTIONENGINE_JITLINK_XCOFF_PPC64_H

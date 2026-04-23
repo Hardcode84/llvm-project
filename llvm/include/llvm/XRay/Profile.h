@@ -22,7 +22,8 @@
 #include <utility>
 #include <vector>
 
-namespace llvm::xray {
+LLVM_NAMESPACE_BEGIN
+namespace xray {
 
 class Profile;
 
@@ -143,6 +144,7 @@ public:
   bool empty() const { return Blocks.empty(); }
 };
 
-} // namespace llvm::xray
+}
+LLVM_NAMESPACE_END // namespace llvm::xray
 
 #endif

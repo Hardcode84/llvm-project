@@ -10,12 +10,13 @@
 #include "llvm/ExecutionEngine/Orc/Shared/OrcRTBridge.h"
 #include "llvm/Support/Alignment.h"
 #include "llvm/Support/FormatVariadic.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
 using namespace llvm::orc::shared;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 Expected<std::unique_ptr<EPCGenericRTDyldMemoryManager>>
@@ -312,4 +313,4 @@ void EPCGenericRTDyldMemoryManager::mapAllocsToRemoteAddrs(
 }
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

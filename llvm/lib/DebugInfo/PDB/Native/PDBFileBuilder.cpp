@@ -28,6 +28,7 @@
 #include "llvm/Support/xxhash.h"
 
 #include <ctime>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::codeview;
@@ -35,9 +36,9 @@ using namespace llvm::msf;
 using namespace llvm::pdb;
 using namespace llvm::support;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class WritableBinaryStream;
-}
+LLVM_NAMESPACE_END
 
 PDBFileBuilder::PDBFileBuilder(BumpPtrAllocator &Allocator)
     : Allocator(Allocator), InjectedSourceHashTraits(Strings),

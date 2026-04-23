@@ -17,8 +17,9 @@
 
 #define GET_REGINFO_HEADER
 #include "AVRGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Utilities relating to AVR registers.
 class AVRRegisterInfo : public AVRGenRegisterInfo {
@@ -56,6 +57,6 @@ public:
                       LiveIntervals &LIS) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_AVR_REGISTER_INFO_H

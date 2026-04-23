@@ -20,8 +20,9 @@
 
 #include "HexagonDepITypes.h"
 #include "MCTargetDesc/HexagonMCTargetDesc.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// HexagonII - This namespace holds all of the target specific flags that
 /// instruction info tracks.
@@ -317,6 +318,6 @@ namespace HexagonII {
   }
 } // end namespace HexagonII
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_HEXAGON_MCTARGETDESC_HEXAGONBASEINFO_H

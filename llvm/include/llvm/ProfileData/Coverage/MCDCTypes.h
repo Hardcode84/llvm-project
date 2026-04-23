@@ -18,8 +18,10 @@
 #include <cassert>
 #include <type_traits>
 #include <variant>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::coverage::mcdc {
+LLVM_NAMESPACE_BEGIN
+namespace coverage::mcdc {
 
 /// The ID for MCDCBranch.
 using ConditionID = int16_t;
@@ -69,6 +71,7 @@ static auto &getParams(MaybeConstMCDCParameters &MCDCParams) {
   return *Params;
 }
 
-} // namespace llvm::coverage::mcdc
+}
+LLVM_NAMESPACE_END // namespace llvm::coverage::mcdc
 
 #endif // LLVM_PROFILEDATA_COVERAGE_MCDCTYPES_H

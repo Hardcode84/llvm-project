@@ -18,10 +18,11 @@
 #include "llvm/BinaryFormat/COFF.h"
 #include "llvm/Object/COFF.h"
 #include "llvm/Support/Endian.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "dyld"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // This relocation type is used for handling long branch instruction
 // through the Stub.
@@ -386,7 +387,7 @@ public:
   void registerEHFrames() override {}
 };
 
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 
 #undef DEBUG_TYPE
 

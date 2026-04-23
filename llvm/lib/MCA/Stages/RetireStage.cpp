@@ -16,10 +16,11 @@
 #include "llvm/MCA/Stages/RetireStage.h"
 #include "llvm/MCA/HWEventListener.h"
 #include "llvm/Support/Debug.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "llvm-mca"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 llvm::Error RetireStage::cycleStart() {
@@ -72,4 +73,4 @@ void RetireStage::notifyInstructionRetired(const InstRef &IR) const {
 }
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

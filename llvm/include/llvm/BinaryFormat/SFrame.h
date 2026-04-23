@@ -21,7 +21,7 @@
 #include "llvm/Support/DataTypes.h"
 #include "llvm/Support/Endian.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> struct EnumEntry;
 
@@ -178,6 +178,6 @@ LLVM_ABI ArrayRef<EnumEntry<FREOffset>> getFREOffsets();
 LLVM_ABI ArrayRef<EnumEntry<BaseReg>> getBaseRegisters();
 
 } // namespace sframe
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_BINARYFORMAT_SFRAME_H

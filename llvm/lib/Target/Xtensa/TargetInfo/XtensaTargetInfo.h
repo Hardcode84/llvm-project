@@ -9,12 +9,14 @@
 #ifndef LLVM_LIB_TARGET_XTENSA_TARGETINFO_XTENSATARGETINFO_H
 #define LLVM_LIB_TARGET_XTENSA_TARGETINFO_XTENSATARGETINFO_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class Target;
 
 Target &getTheXtensaTarget();
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_XTENSA_TARGETINFO_XTENSATARGETINFO_H

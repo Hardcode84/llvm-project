@@ -25,7 +25,7 @@
 #include <thread>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 /// Bootstraps the vc runtime within jitdylibs.
@@ -85,6 +85,6 @@ private:
 };
 
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

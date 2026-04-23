@@ -20,8 +20,9 @@
 #include "llvm/Support/Error.h"
 #include "llvm/Support/FileSystem.h"
 #include <cstddef>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MemoryBuffer;
 template <typename T> class unique_function;
@@ -367,6 +368,6 @@ LLVM_ABI Expected<std::unique_ptr<ObjectStore>>
 createOnDiskCAS(const Twine &Path);
 
 } // namespace cas
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CAS_OBJECTSTORE_H

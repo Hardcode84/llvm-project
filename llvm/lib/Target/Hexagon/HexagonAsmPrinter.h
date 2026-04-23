@@ -18,8 +18,9 @@
 #include "llvm/CodeGen/MachineFunction.h"
 #include "llvm/MC/MCStreamer.h"
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineInstr;
 class MCInst;
@@ -78,6 +79,6 @@ class TargetMachine;
     void emitEndOfAsmFile(Module &M) override;
   };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_HEXAGON_HEXAGONASMPRINTER_H

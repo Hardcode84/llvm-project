@@ -25,8 +25,9 @@
 
 #define GET_SUBTARGETINFO_HEADER
 #include "SystemZGenSubtargetInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class GlobalValue;
 class StringRef;
 
@@ -125,6 +126,6 @@ public:
   // Returns TRUE if we are generating code for a s390x machine running zOS
   bool isTargetzOS() const { return TargetTriple.isOSzOS(); }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_SPIRV_MCTARGETDESC_SPIRVMCASMINFO_H
 
 #include "llvm/MC/MCAsmInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Triple;
 
@@ -24,6 +25,6 @@ public:
   explicit SPIRVMCAsmInfo(const Triple &TT, const MCTargetOptions &Options);
   bool shouldOmitSectionDirective(StringRef SectionName) const override;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_SPIRV_MCTARGETDESC_SPIRVMCASMINFO_H

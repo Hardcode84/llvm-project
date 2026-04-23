@@ -39,14 +39,15 @@
 #include <map>
 #include <set>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace dwarf;
 using namespace object;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DWARFDebugInfoEntry;
-}
+LLVM_NAMESPACE_END
 
 std::optional<DWARFAddressRange>
 DWARFVerifier::DieRangeInfo::insert(const DWARFAddressRange &R) {

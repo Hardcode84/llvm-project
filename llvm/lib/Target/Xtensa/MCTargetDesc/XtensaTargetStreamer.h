@@ -12,8 +12,9 @@
 #include "llvm/MC/MCELFStreamer.h"
 #include "llvm/MC/MCStreamer.h"
 #include "llvm/Support/SMLoc.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class formatted_raw_ostream;
 
 class XtensaTargetStreamer : public MCTargetStreamer {
@@ -53,6 +54,6 @@ public:
   void emitLiteralPosition() override {}
   void startLiteralSection(MCSection *Section) override;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_XTENSA_XTENSATARGETSTREAMER_H

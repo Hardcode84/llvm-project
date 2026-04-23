@@ -12,8 +12,9 @@
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Object/DXContainer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 namespace dxbc {
 
@@ -46,6 +47,6 @@ struct Object {
 
 } // end namespace dxbc
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_OBJCOPY_DXCONTAINER_DXCONTAINEROBJECT_H

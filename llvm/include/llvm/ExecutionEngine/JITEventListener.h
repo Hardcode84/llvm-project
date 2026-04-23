@@ -22,7 +22,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class IntelJITEventsWrapper;
 class OProfileWrapper;
@@ -111,6 +111,6 @@ private:
 
 DEFINE_SIMPLE_CONVERSION_FUNCTIONS(JITEventListener, LLVMJITEventListenerRef)
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_JITEVENTLISTENER_H

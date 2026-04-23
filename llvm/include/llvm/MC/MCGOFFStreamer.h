@@ -13,7 +13,7 @@
 #include "llvm/MC/MCObjectWriter.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class GOFFObjectWriter;
 class MCSymbolGOFF;
 
@@ -40,6 +40,6 @@ public:
                         Align ByteAlignment) override {}
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

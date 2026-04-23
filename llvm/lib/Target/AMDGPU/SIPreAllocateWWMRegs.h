@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_SIPREALLOCATEWWMREGS_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SIPreAllocateWWMRegsPass
     : public PassInfoMixin<SIPreAllocateWWMRegsPass> {
@@ -20,6 +21,6 @@ public:
                         MachineFunctionAnalysisManager &MFAM);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_SIPREALLOCATEWWMREGS_H

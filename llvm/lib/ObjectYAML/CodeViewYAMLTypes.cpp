@@ -37,6 +37,7 @@
 #include <cassert>
 #include <cstdint>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::codeview;
@@ -72,7 +73,7 @@ LLVM_YAML_DECLARE_BITSET_TRAITS(MethodOptions)
 LLVM_YAML_DECLARE_MAPPING_TRAITS(OneMethodRecord)
 LLVM_YAML_DECLARE_MAPPING_TRAITS(MemberPointerInfo)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace CodeViewYAML {
 namespace detail {
 
@@ -165,7 +166,7 @@ template <typename T> struct MemberRecordImpl : public MemberRecordBase {
 
 } // end namespace detail
 } // end namespace CodeViewYAML
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 void ScalarTraits<GUID>::output(const GUID &G, void *, llvm::raw_ostream &OS) {
   OS << G;
@@ -420,7 +421,7 @@ void MappingTraits<MemberPointerInfo>::mapping(IO &IO, MemberPointerInfo &MPI) {
   IO.mapRequired("Representation", MPI.Representation);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace CodeViewYAML {
 namespace detail {
 
@@ -498,7 +499,7 @@ void LeafRecordImpl<FieldListRecord>::map(IO &IO) {
 
 } // end namespace detail
 } // end namespace CodeViewYAML
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace {
 
@@ -555,7 +556,7 @@ void MappingTraits<OneMethodRecord>::mapping(IO &io, OneMethodRecord &Record) {
   io.mapRequired("Name", Record.Name);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace CodeViewYAML {
 namespace detail {
 
@@ -712,7 +713,7 @@ template <> void MemberRecordImpl<ListContinuationRecord>::map(IO &IO) {
 
 } // end namespace detail
 } // end namespace CodeViewYAML
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 template <typename T>
 static inline Expected<LeafRecord> fromCodeViewRecordImpl(CVType Type) {
@@ -745,7 +746,7 @@ LeafRecord::toCodeViewRecord(AppendingTypeTableBuilder &Serializer) const {
   return Leaf->toCodeViewRecord(Serializer);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <> struct MappingTraits<LeafRecordBase> {
@@ -757,7 +758,7 @@ template <> struct MappingTraits<MemberRecordBase> {
 };
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 template <typename ConcreteType>
 static void mapLeafRecordImpl(IO &IO, const char *Class, TypeLeafKind Kind,

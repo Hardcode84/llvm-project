@@ -16,8 +16,9 @@
 #include "VEFixupKinds.h"
 #include "llvm/MC/MCAsmInfoELF.h"
 #include "llvm/MC/MCExpr.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Triple;
 
@@ -55,6 +56,6 @@ enum Specifier {
 
 VE::Fixups getFixupKind(uint8_t S);
 } // namespace VE
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_VE_MCTARGETDESC_VEMCASMINFO_H

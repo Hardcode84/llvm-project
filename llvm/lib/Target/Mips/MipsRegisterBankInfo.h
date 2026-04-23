@@ -17,8 +17,9 @@
 
 #define GET_REGBANK_DECLARATIONS
 #include "MipsGenRegisterBank.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class TargetRegisterInfo;
 
@@ -228,5 +229,5 @@ private:
     };
   };
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif

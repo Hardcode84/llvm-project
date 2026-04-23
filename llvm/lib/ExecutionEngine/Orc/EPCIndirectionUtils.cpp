@@ -13,11 +13,12 @@
 #include "llvm/Support/MathExtras.h"
 
 #include <future>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::orc;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 class EPCIndirectionUtilsAccess {
@@ -32,7 +33,7 @@ public:
 };
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace {
 
@@ -227,7 +228,7 @@ Error EPCIndirectStubsManager::updatePointer(StringRef Name,
 
 } // end anonymous namespace.
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 EPCIndirectionUtils::ABISupport::~ABISupport() = default;
@@ -429,4 +430,4 @@ Error setUpInProcessLCTMReentryViaEPCIU(EPCIndirectionUtils &EPCIU) {
 }
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

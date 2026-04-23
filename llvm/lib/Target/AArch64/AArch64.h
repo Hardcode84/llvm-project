@@ -23,12 +23,13 @@
 #include "llvm/Support/DataTypes.h"
 #include "llvm/Target/TargetMachine.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
 struct AArch64O0PreLegalizerCombinerImplRuleConfig;
 struct AArch64PreLegalizerCombinerImplRuleConfig;
 struct AArch64PostLegalizerLoweringImplRuleConfig;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AArch64RegisterBankInfo;
 class AArch64Subtarget;
@@ -285,6 +286,6 @@ public:
                         MachineFunctionAnalysisManager &MFAM);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

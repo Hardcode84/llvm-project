@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_ARM_ARMREGISTERINFO_H
 
 #include "ARMBaseRegisterInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct ARMRegisterInfo : public ARMBaseRegisterInfo {
   virtual void anchor();
@@ -23,6 +24,6 @@ public:
   ARMRegisterInfo();
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

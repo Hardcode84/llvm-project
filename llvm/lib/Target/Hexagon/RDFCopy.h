@@ -15,8 +15,9 @@
 #include "llvm/CodeGen/MachineFunction.h"
 #include <map>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineBasicBlock;
 class MachineDominatorTree;
@@ -57,6 +58,6 @@ namespace rdf {
 
 } // end namespace rdf
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_HEXAGON_RDFCOPY_H

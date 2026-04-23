@@ -16,7 +16,8 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/XRay/FDRRecords.h"
 
-namespace llvm::xray {
+LLVM_NAMESPACE_BEGIN
+namespace xray {
 
 class LLVM_ABI BlockVerifier : public RecordVisitor {
 public:
@@ -63,6 +64,7 @@ public:
   void reset();
 };
 
-} // namespace llvm::xray
+}
+LLVM_NAMESPACE_END // namespace llvm::xray
 
 #endif // LLVM_XRAY_BLOCKVERIFIER_H

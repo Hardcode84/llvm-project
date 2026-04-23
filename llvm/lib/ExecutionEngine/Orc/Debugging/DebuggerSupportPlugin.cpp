@@ -18,6 +18,7 @@
 #include "llvm/DebugInfo/DWARF/DWARFDebugLine.h"
 
 #include <chrono>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
@@ -322,7 +323,7 @@ private:
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 Expected<std::unique_ptr<GDBJITDebugInfoRegistrationPlugin>>
@@ -425,4 +426,4 @@ void GDBJITDebugInfoRegistrationPlugin::modifyPassConfigForMachO(
 }
 
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

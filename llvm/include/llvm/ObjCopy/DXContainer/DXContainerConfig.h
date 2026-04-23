@@ -9,7 +9,9 @@
 #ifndef LLVM_OBJCOPY_DXCONTAINER_DXCONTAINERCONFIG_H
 #define LLVM_OBJCOPY_DXCONTAINER_DXCONTAINERCONFIG_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 
 // DXContainer specific configuration for copying/stripping a single file. This
@@ -18,6 +20,6 @@ namespace objcopy {
 struct DXContainerConfig {};
 
 } // namespace objcopy
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_OBJCOPY_DXCONTAINER_DXCONTAINERCONFIG_H

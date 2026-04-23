@@ -16,8 +16,9 @@
 #include "llvm/MC/MCTargetOptions.h"
 #include "llvm/Support/DataTypes.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCAsmBackend;
 class MCCodeEmitter;
 class MCContext;
@@ -38,7 +39,7 @@ MCAsmBackend *createLoongArchAsmBackend(const Target &T,
 std::unique_ptr<MCObjectTargetWriter>
 createLoongArchELFObjectWriter(uint8_t OSABI, bool Is64Bit);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 // Defines symbolic names for LoongArch registers.
 #define GET_REGINFO_ENUM

@@ -12,7 +12,8 @@
 #include "llvm/SandboxIR/Function.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 #ifndef NDEBUG
 void Constant::dumpOS(raw_ostream &OS) const {
@@ -488,4 +489,5 @@ GlobalValue *DSOLocalEquivalent::getGlobalValue() const {
       Ctx.getValue(cast<llvm::DSOLocalEquivalent>(Val)->getGlobalValue()));
 }
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir

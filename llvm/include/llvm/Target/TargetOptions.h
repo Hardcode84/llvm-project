@@ -22,7 +22,7 @@
 
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct fltSemantics;
 class MachineFunction;
 class MemoryBuffer;
@@ -413,6 +413,6 @@ public:
   std::string ObjectFilenameForDebug;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

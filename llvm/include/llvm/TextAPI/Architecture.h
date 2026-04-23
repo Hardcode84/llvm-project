@@ -17,7 +17,7 @@
 #include <cstdint>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 class StringRef;
 class Triple;
@@ -55,6 +55,6 @@ LLVM_ABI bool is64Bit(Architecture);
 LLVM_ABI raw_ostream &operator<<(raw_ostream &OS, Architecture Arch);
 
 } // end namespace MachO.
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.
 
 #endif // LLVM_TEXTAPI_ARCHITECTURE_H

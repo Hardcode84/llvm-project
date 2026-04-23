@@ -11,7 +11,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BPFAsmPrinter;
 class MCContext;
 class MCInst;
@@ -36,6 +36,6 @@ public:
   MCSymbol *GetGlobalAddressSymbol(const MachineOperand &MO) const;
   MCSymbol *GetExternalSymbolSymbol(const MachineOperand &MO) const;
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_MIPS_MIPSSEISELDAGTODAG_H
 
 #include "MipsISelDAGToDAG.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MipsSEDAGToDAGISel : public MipsDAGToDAGISel {
 
@@ -132,6 +133,6 @@ public:
 
 FunctionPass *createMipsSEISelDag(MipsTargetMachine &TM,
                                   CodeGenOptLevel OptLevel);
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -17,8 +17,9 @@
 #include "llvm/MC/MCLFIRewriter.h"
 #include "llvm/MC/MCRegister.h"
 #include "llvm/MC/MCRegisterInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCContext;
 class MCInst;
 class MCStreamer;
@@ -76,6 +77,6 @@ private:
                       const MCSubtargetInfo &STI);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AARCH64_MCTARGETDESC_AARCH64MCLFIREWRITER_H

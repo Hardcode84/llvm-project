@@ -21,6 +21,7 @@
 #include "EHFrameSupportImpl.h"
 #include "ELFLinkGraphBuilder.h"
 #include "JITLinkGeneric.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
@@ -96,7 +97,7 @@ Error buildTables_ELF_x86_64(LinkGraph &G) {
 }
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 class ELFLinkGraphBuilder_x86_64 : public ELFLinkGraphBuilder<object::ELF64LE> {
@@ -394,4 +395,4 @@ void link_ELF_x86_64(std::unique_ptr<LinkGraph> G,
   ELFJITLinker_x86_64::link(std::move(Ctx), std::move(G), std::move(Config));
 }
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

@@ -16,8 +16,9 @@
 #include "llvm/MC/MCELFStreamer.h"
 #include "llvm/MC/MCInstrInfo.h"
 #include "llvm/MC/MCObjectWriter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 const int SIZE_LONG = 4;
 const int SIZE_WORD = 2;
@@ -52,6 +53,6 @@ MCStreamer *createAVRELFStreamer(Triple const &TT, MCContext &Context,
                                  std::unique_ptr<MCObjectWriter> OW,
                                  std::unique_ptr<MCCodeEmitter> CE);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AVR_MCTARGETDESC_AVRMCELFSTREAMER_H

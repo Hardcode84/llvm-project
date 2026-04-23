@@ -15,8 +15,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_R600ASMPRINTER_H
 
 #include "llvm/CodeGen/AsmPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class R600AsmPrinter final : public AsmPrinter {
 
@@ -41,6 +42,6 @@ AsmPrinter *
 createR600AsmPrinterPass(TargetMachine &TM,
                          std::unique_ptr<MCStreamer> &&Streamer);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_R600ASMPRINTER_H

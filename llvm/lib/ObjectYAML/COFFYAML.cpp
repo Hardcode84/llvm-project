@@ -15,10 +15,11 @@
 #include "llvm/Support/YAMLTraits.h"
 #include <cstdint>
 #include <cstring>
+#include "llvm/Support/Compiler.h"
 
 #define ECase(X) IO.enumCase(Value, #X, COFF::X);
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace COFFYAML {
 
@@ -732,4 +733,4 @@ void MappingTraits<COFFYAML::Object>::mapping(IO &IO, COFFYAML::Object &Obj) {
 
 } // end namespace yaml
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

@@ -12,8 +12,9 @@
 #include "llvm/MC/MCELFStreamer.h"
 #include "llvm/MC/MCStreamer.h"
 #include "llvm/Support/FormattedStream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class VETargetStreamer : public MCTargetStreamer {
   virtual void anchor();
 
@@ -43,6 +44,6 @@ public:
   void emitVERegisterIgnore(unsigned reg) override {}
   void emitVERegisterScratch(unsigned reg) override {}
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

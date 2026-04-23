@@ -31,9 +31,10 @@
 
 #define GET_INSTRMAP_INFO
 #include "AVRGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 #undef GET_INSTRMAP_INFO
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static void addFixup(SmallVectorImpl<MCFixup> &Fixups, uint32_t Offset,
                      const MCExpr *Value, uint16_t Kind) {
@@ -297,4 +298,4 @@ MCCodeEmitter *createAVRMCCodeEmitter(const MCInstrInfo &MCII, MCContext &Ctx) {
 
 #include "AVRGenMCCodeEmitter.inc"
 
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm

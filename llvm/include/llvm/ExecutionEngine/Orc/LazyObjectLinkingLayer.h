@@ -16,7 +16,8 @@
 #include "llvm/ExecutionEngine/Orc/Layer.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 class ObjectLinkingLayer;
 class LazyReexportsManager;
@@ -54,6 +55,7 @@ private:
   LazyReexportsManager &LRMgr;
 };
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc
 
 #endif // LLVM_EXECUTIONENGINE_ORC_LAZYOBJECTLINKINGLAYER_H

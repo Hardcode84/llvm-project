@@ -15,8 +15,9 @@
 
 #include "llvm/ADT/Hashing.h"
 #include "llvm/BinaryFormat/Wasm.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Traits for using WasmSignature in a DenseMap.
 template <> struct DenseMapInfo<wasm::WasmSignature, void> {
@@ -105,6 +106,6 @@ template <> struct DenseMapInfo<wasm::WasmTableType, void> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_BINARYFORMAT_WASMTRAITS_H

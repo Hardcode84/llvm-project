@@ -11,7 +11,9 @@
 #ifndef LLVM_LIB_TARGET_DIRECTX_DIRECTX_H
 #define LLVM_LIB_TARGET_DIRECTX_DIRECTX_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class FunctionPass;
 class ModulePass;
 class PassRegistry;
@@ -126,6 +128,6 @@ void initializeDXILFinalizeLinkageLegacyPass(PassRegistry &);
 /// Pass to finalize linkage of functions.
 ModulePass *createDXILFinalizeLinkageLegacyPass();
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_DIRECTX_DIRECTX_H

@@ -9,7 +9,9 @@
 #ifndef LLVM_DEBUGINFO_PDB_NATIVE_ISECTIONCONTRIBVISITOR_H
 #define LLVM_DEBUGINFO_PDB_NATIVE_ISECTIONCONTRIBVISITOR_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 struct SectionContrib;
@@ -24,6 +26,6 @@ public:
 };
 
 } // end namespace pdb
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_PDB_NATIVE_ISECTIONCONTRIBVISITOR_H

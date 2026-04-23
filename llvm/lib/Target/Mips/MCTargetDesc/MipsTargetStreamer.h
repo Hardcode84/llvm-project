@@ -15,8 +15,9 @@
 #include "llvm/MC/MCELFStreamer.h"
 #include "llvm/MC/MCRegisterInfo.h"
 #include "llvm/MC/MCStreamer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class formatted_raw_ostream;
 
@@ -382,5 +383,5 @@ public:
 
   void emitMipsAbiFlags();
 };
-}
+LLVM_NAMESPACE_END
 #endif

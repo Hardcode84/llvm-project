@@ -20,7 +20,7 @@
 #include "llvm/Support/MemoryBuffer.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class WritableBinaryStream;
 namespace codeview {
 struct GUID;
@@ -107,6 +107,6 @@ private:
   DenseMap<uint32_t, std::string> NamedStreamData;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

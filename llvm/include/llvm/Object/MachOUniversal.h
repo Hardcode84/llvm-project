@@ -20,7 +20,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/TargetParser/Triple.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 class LLVMContext;
 
@@ -166,6 +166,6 @@ public:
   getArchiveForArch(StringRef ArchName) const;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

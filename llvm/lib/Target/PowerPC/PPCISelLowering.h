@@ -31,8 +31,9 @@
 #include "llvm/IR/Type.h"
 #include <optional>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   /// Define some predicates that are used for node matching.
   namespace PPC {
@@ -960,6 +961,6 @@ namespace llvm {
   bool convertToNonDenormSingle(APFloat &ArgAPFloat);
   bool checkConvertToNonDenormSingle(APFloat &ArgAPFloat);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_POWERPC_PPCISELLOWERING_H

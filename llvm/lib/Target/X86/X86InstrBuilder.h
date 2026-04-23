@@ -32,8 +32,9 @@
 #include "llvm/CodeGen/MachineOperand.h"
 #include "llvm/MC/MCInstrDesc.h"
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// X86AddressMode - This struct holds a generalized full x86 address mode.
 /// The base register can be a frame index, which will eventually be replaced
@@ -224,6 +225,6 @@ addConstantPoolReference(const MachineInstrBuilder &MIB, unsigned CPI,
     .addConstantPoolIndex(CPI, 0, OpFlags).addReg(0);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_X86_X86INSTRBUILDER_H

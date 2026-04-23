@@ -16,6 +16,7 @@
 #include "llvm/Support/ConvertEBCDIC.h"
 #include "llvm/Support/Endian.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -267,7 +268,7 @@ bool GOFFState::writeGOFF(raw_ostream &OS, GOFFYAML::Object &Doc,
 }
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 bool yaml2goff(llvm::GOFFYAML::Object &Doc, raw_ostream &Out,
@@ -276,4 +277,4 @@ bool yaml2goff(llvm::GOFFYAML::Object &Doc, raw_ostream &Out,
 }
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

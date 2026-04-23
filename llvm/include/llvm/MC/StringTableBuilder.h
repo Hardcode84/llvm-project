@@ -17,7 +17,7 @@
 #include <cstddef>
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -95,6 +95,6 @@ public:
   bool isFinalized() const { return Finalized; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_STRINGTABLEBUILDER_H

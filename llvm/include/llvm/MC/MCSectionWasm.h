@@ -14,8 +14,9 @@
 #define LLVM_MC_MCSECTIONWASM_H
 
 #include "llvm/MC/MCSection.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCSymbol;
 class MCSymbolWasm;
@@ -83,6 +84,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

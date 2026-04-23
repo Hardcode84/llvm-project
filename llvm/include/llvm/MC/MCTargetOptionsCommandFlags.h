@@ -18,7 +18,7 @@
 #include <optional>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCTargetOptions;
 enum class RelocSectionSymType;
@@ -80,6 +80,6 @@ LLVM_ABI MCTargetOptions InitMCTargetOptionsFromFlags();
 
 } // namespace mc
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

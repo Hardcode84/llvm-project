@@ -35,7 +35,7 @@
 #include "llvm/Support/Printable.h"
 #include "llvm/Support/raw_ostream.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   struct LaneBitmask {
     // When changing the underlying type, change the format string as well.
@@ -95,6 +95,6 @@ namespace llvm {
     });
   }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_LANEBITMASK_H

@@ -17,6 +17,7 @@
 #include "llvm/MC/MCAssembler.h"
 #include "llvm/MC/MCCodeEmitter.h"
 #include "llvm/MC/MCELFObjectWriter.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -84,7 +85,7 @@ public:
 };
 } // end namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 MCELFStreamer *createLoongArchELFStreamer(MCContext &C,
                                           std::unique_ptr<MCAsmBackend> MAB,
                                           std::unique_ptr<MCObjectWriter> MOW,
@@ -93,4 +94,4 @@ MCELFStreamer *createLoongArchELFStreamer(MCContext &C,
       C, std::move(MAB), std::move(MOW), std::move(MCE));
   return S;
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

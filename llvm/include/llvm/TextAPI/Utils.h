@@ -30,7 +30,8 @@
 #define MACCATALYST_PREFIX_PATH "/System/iOSSupport"
 #define DRIVERKIT_PREFIX_PATH "/System/DriverKit"
 
-namespace llvm::MachO {
+LLVM_NAMESPACE_BEGIN
+namespace MachO {
 
 using PathSeq = std::vector<std::string>;
 using PathToPlatform = std::pair<std::string, std::optional<PlatformType>>;
@@ -99,5 +100,6 @@ parseAliasList(std::unique_ptr<llvm::MemoryBuffer> &Buffer);
 LLVM_ABI PathSeq getPathsForPlatform(const PathToPlatformSeq &Paths,
                                      PlatformType Platform);
 
-} // namespace llvm::MachO
+}
+LLVM_NAMESPACE_END // namespace llvm::MachO
 #endif // LLVM_TEXTAPI_UTILS_H

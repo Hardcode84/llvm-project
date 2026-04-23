@@ -19,6 +19,7 @@
 #include "llvm/Support/Caching.h"
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/WithColor.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "cg-data"
 
@@ -32,13 +33,13 @@ static cl::opt<std::string>
     CodeGenDataUsePath("codegen-data-use-path", cl::init(""), cl::Hidden,
                        cl::desc("File path to where .cgdata file is read"));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 cl::opt<bool> CodeGenDataThinLTOTwoRounds(
     "codegen-data-thinlto-two-rounds", cl::init(false), cl::Hidden,
     cl::desc("Enable two-round ThinLTO code generation. The first round "
              "emits codegen data, while the second round uses the emitted "
              "codegen data for further optimizations."));
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 static std::string getCGDataErrString(cgdata_error Err,
                                       const std::string &ErrMsg = "") {
@@ -123,7 +124,7 @@ const char *CodeGenDataSectNamePrefix[] = {
 
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 std::string getCodeGenDataSectionName(CGDataSectKind CGSK,
                                       Triple::ObjectFormatType OF,
@@ -292,4 +293,4 @@ Expected<stable_hash> mergeCodeGenData(ArrayRef<StringRef> ObjFiles) {
 
 } // end namespace cgdata
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

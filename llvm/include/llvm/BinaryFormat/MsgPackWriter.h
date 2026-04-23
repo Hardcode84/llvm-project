@@ -32,7 +32,7 @@
 #include "llvm/Support/EndianStream.h"
 #include "llvm/Support/MemoryBufferRef.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -127,6 +127,6 @@ private:
 };
 
 } // end namespace msgpack
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_BINARYFORMAT_MSGPACKWRITER_H

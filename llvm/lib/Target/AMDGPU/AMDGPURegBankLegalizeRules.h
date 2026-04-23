@@ -12,8 +12,9 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/SmallVector.h"
 #include <functional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LLT;
 class MachineRegisterInfo;
@@ -467,6 +468,6 @@ public:
 };
 
 } // end namespace AMDGPU
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

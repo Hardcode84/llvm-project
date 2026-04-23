@@ -20,7 +20,7 @@
 #define HEX32(v) llvm::format_hex(v, 10)
 #define HEX64(v) llvm::format_hex(v, 18)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 
 namespace gsym {
@@ -77,6 +77,6 @@ LLVM_ABI raw_ostream &operator<<(raw_ostream &OS, const AddressRange &R);
 
 LLVM_ABI raw_ostream &operator<<(raw_ostream &OS, const AddressRanges &AR);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_GSYM_EXTRACTRANGES_H

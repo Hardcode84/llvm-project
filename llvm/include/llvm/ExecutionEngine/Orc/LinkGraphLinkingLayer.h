@@ -31,7 +31,7 @@
 
 class LinkGraphLinkingLayerTests;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace jitlink {
 class EHFrameRegistrar;
@@ -185,6 +185,6 @@ private:
 };
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_LINKGRAPHLINKINGLAYER_H

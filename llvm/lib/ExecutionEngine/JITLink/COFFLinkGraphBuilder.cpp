@@ -12,12 +12,13 @@
 #include "COFFLinkGraphBuilder.h"
 
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
 static const char *CommonSectionName = "__common";
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 static Triple createTripleWithCOFFFormat(Triple T) {
@@ -649,4 +650,4 @@ Symbol *GetImageBaseSymbol::operator()(LinkGraph &G) {
 }
 
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

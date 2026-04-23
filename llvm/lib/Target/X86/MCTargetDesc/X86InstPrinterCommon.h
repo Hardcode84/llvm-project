@@ -15,8 +15,9 @@
 #define LLVM_LIB_TARGET_X86_MCTARGETDESC_X86INSTPRINTERCOMMON_H
 
 #include "llvm/MC/MCInstPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCExpr;
 
 class X86InstPrinterCommon : public MCInstPrinter {
@@ -42,6 +43,6 @@ protected:
   void printVKPair(const MCInst *MI, unsigned OpNo, raw_ostream &OS);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_X86_MCTARGETDESC_X86INSTPRINTERCOMMON_H

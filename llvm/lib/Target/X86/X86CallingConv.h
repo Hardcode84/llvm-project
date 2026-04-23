@@ -17,8 +17,9 @@
 #include "MCTargetDesc/X86MCTargetDesc.h"
 #include "llvm/CodeGen/CallingConvLower.h"
 #include "llvm/IR/CallingConv.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 bool RetCC_X86(unsigned ValNo, MVT ValVT, MVT LocVT,
                CCValAssign::LocInfo LocInfo, ISD::ArgFlagsTy ArgFlags,
@@ -27,7 +28,7 @@ bool RetCC_X86(unsigned ValNo, MVT ValVT, MVT LocVT,
 bool CC_X86(unsigned ValNo, MVT ValVT, MVT LocVT, CCValAssign::LocInfo LocInfo,
             ISD::ArgFlagsTy ArgFlags, Type *OrigTy, CCState &State);
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif
 

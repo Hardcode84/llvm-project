@@ -13,8 +13,10 @@
 #include "llvm/Support/FileSystem.h"
 #include "llvm/Support/FormatVariadic.h"
 #include "llvm/Support/MemoryBuffer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 Expected<std::shared_ptr<SymbolTableDumpPlugin>>
 SymbolTableDumpPlugin::Create(StringRef Path) {
@@ -147,4 +149,5 @@ std::string DumpedSymbolTable::symbolicate(StringRef Backtrace) {
   return Result;
 }
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc

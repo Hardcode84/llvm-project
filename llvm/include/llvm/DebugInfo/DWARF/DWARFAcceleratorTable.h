@@ -19,7 +19,7 @@
 #include <cstdint>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 class ScopedPrinter;
@@ -882,6 +882,6 @@ struct ObjCSelectorNames {
 LLVM_ABI std::optional<ObjCSelectorNames>
 getObjCNamesIfSelector(StringRef Name);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFACCELERATORTABLE_H

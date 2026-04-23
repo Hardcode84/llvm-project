@@ -62,6 +62,7 @@
 #include "llvm/Support/DynamicLibrary.h"
 #include "llvm/Support/GraphWriter.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -191,7 +192,7 @@ private:
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <>
 struct GraphTraits<MachineGadgetGraph *>
@@ -235,7 +236,7 @@ struct DOTGraphTraits<MachineGadgetGraph *> : DefaultDOTGraphTraits {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 char X86LoadValueInjectionLoadHardeningLegacy::ID = 0;
 

@@ -18,8 +18,9 @@
 #include "llvm/CodeGen/GlobalISel/LegalizerHelper.h"
 #include "llvm/CodeGen/GlobalISel/LegalizerInfo.h"
 #include "llvm/CodeGen/MachineRegisterInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AArch64Subtarget;
 
@@ -73,5 +74,5 @@ private:
                        MachineRegisterInfo &MRI) const;
   const AArch64Subtarget *ST;
 };
-} // End llvm namespace.
+LLVM_NAMESPACE_END // End llvm namespace.
 #endif

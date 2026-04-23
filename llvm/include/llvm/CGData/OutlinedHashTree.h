@@ -23,7 +23,7 @@
 
 #include <unordered_map>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A HashNode is an entry in an OutlinedHashTree, holding a hash value
 /// and a collection of Successors (other HashNodes). If a HashNode has
@@ -94,6 +94,6 @@ private:
   HashNode Root;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

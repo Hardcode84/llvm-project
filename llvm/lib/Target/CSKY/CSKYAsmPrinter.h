@@ -13,8 +13,9 @@
 #include "CSKYSubtarget.h"
 #include "llvm/CodeGen/AsmPrinter.h"
 #include "llvm/MC/MCDirectives.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LLVM_LIBRARY_VISIBILITY CSKYAsmPrinter : public AsmPrinter {
   CSKYMCInstLower MCInstLowering;
 
@@ -64,6 +65,6 @@ public:
   bool PrintAsmMemoryOperand(const MachineInstr *MI, unsigned OpNo,
                              const char *ExtraCode, raw_ostream &OS) override;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_CSKY_CSKYASMPRINTER_H

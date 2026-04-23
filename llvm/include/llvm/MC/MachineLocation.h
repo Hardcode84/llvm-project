@@ -16,8 +16,9 @@
 
 #include <cstdint>
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineLocation {
 private:
@@ -53,6 +54,6 @@ inline bool operator!=(const MachineLocation &LHS, const MachineLocation &RHS) {
   return !(LHS == RHS);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MACHINELOCATION_H

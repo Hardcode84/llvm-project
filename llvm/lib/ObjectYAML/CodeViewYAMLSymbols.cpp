@@ -33,6 +33,7 @@
 #include <optional>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::codeview;
@@ -208,7 +209,7 @@ void ScalarEnumerationTraits<JumpTableEntrySize>::enumeration(
   }
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct MappingTraits<LocalVariableAddrRange> {
   static void mapping(IO &io, LocalVariableAddrRange &Range) {
@@ -224,9 +225,9 @@ template <> struct MappingTraits<LocalVariableAddrGap> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace CodeViewYAML {
 namespace detail {
 
@@ -620,14 +621,14 @@ template <> void SymbolRecordImpl<HotPatchFuncSym>::map(IO &IO) {
 
 } // end namespace detail
 } // end namespace CodeViewYAML
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 CVSymbol CodeViewYAML::SymbolRecord::toCodeViewSymbol(
     BumpPtrAllocator &Allocator, CodeViewContainer Container) const {
   return Symbol->toCodeViewSymbol(Allocator, Container);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <> struct MappingTraits<SymbolRecordBase> {
@@ -635,7 +636,7 @@ template <> struct MappingTraits<SymbolRecordBase> {
 };
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 template <typename SymbolType>
 static inline Expected<CodeViewYAML::SymbolRecord>

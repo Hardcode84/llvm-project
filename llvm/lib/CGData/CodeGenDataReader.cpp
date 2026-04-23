@@ -15,6 +15,7 @@
 #include "llvm/Object/ObjectFile.h"
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/MemoryBuffer.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "cg-data-reader"
 
@@ -26,7 +27,7 @@ static cl::opt<bool> IndexedCodeGenDataReadFunctionMapNames(
              "disabled to save memory and time for final consumption of the "
              "indexed CodeGenData in production."));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 cl::opt<bool> IndexedCodeGenDataLazyLoading(
     "indexed-codegen-data-lazy-loading", cl::init(false), cl::Hidden,
@@ -220,4 +221,4 @@ Error TextCodeGenDataReader::read() {
 
   return Error::success();
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

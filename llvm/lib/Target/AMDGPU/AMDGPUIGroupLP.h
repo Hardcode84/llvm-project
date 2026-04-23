@@ -11,8 +11,9 @@
 
 #include "llvm/CodeGen/ScheduleDAGMutation.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace AMDGPU {
 // The current phase of instruction scheduling
@@ -30,6 +31,6 @@ enum IGLPStrategyID : int {
 std::unique_ptr<ScheduleDAGMutation>
 createIGroupLPDAGMutation(AMDGPU::SchedulingPhase Phase);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_AMDGPUMFMAIGROUPLP_H

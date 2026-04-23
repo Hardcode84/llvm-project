@@ -16,8 +16,9 @@
 #include "TargetInfo/X86TargetInfo.h"
 #include "llvm-c/Visibility.h"
 #include "llvm/MC/TargetRegistry.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 void X86InstrPostProcess::setMemBarriers(Instruction &Inst, const MCInst &MCI) {
@@ -62,7 +63,7 @@ void X86InstrPostProcess::postProcessInstruction(Instruction &Inst,
 }
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using namespace llvm;
 using namespace mca;

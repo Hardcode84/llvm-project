@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_BPF_MCTARGETDESC_SYSTEMZMCFIXUPS_H
 
 #include "llvm/MC/MCFixup.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace BPF {
 enum FixupKind {
   // BPF specific relocations.
@@ -22,6 +23,6 @@ enum FixupKind {
   NumTargetFixupKinds = LastTargetFixupKind - FirstTargetFixupKind
 };
 } // end namespace BPF
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

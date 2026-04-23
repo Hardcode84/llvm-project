@@ -18,7 +18,7 @@
 #include <cstdint>
 #include <map>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BinaryStreamReader;
 class BinaryStreamWriter;
 namespace codeview {
@@ -65,6 +65,6 @@ private:
 };
 
 } // end namespace codeview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_CODEVIEW_DEBUGCROSSEXSUBSECTION_H

@@ -11,8 +11,9 @@
 
 #include "llvm/CodeGen/MachineBasicBlock.h"
 #include "llvm/CodeGen/Register.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace AArch64PAuth {
 
 /// Variants of check performed on an authenticated pointer.
@@ -105,6 +106,6 @@ enum class AuthCheckMethod {
 unsigned getCheckerSizeInBytes(AuthCheckMethod Method);
 
 } // end namespace AArch64PAuth
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

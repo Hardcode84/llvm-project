@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_VE_MCTARGETDESC_VEFIXUPKINDS_H
 
 #include "llvm/MC/MCFixup.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace VE {
 enum Fixups {
   /// fixup_ve_reflong - 32-bit fixup corresponding to foo
@@ -59,6 +60,6 @@ enum Fixups {
   NumTargetFixupKinds = LastTargetFixupKind - FirstTargetFixupKind
 };
 } // namespace VE
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

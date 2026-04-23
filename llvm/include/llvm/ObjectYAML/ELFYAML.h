@@ -25,8 +25,9 @@
 #include <memory>
 #include <optional>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace ELFYAML {
 
 StringRef dropUniqueSuffix(StringRef S);
@@ -777,7 +778,7 @@ bool shouldAllocateFileSpace(ArrayRef<ProgramHeader> Phdrs,
                              const NoBitsSection &S);
 
 } // end namespace ELFYAML
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::ELFYAML::StackSizeEntry)
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::ELFYAML::BBAddrMapEntry)
@@ -802,7 +803,7 @@ LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::ELFYAML::Relocation)
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::ELFYAML::SectionOrType)
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::ELFYAML::ARMIndexTableEntry)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <> struct ScalarTraits<ELFYAML::YAMLIntUInt> {
@@ -1029,6 +1030,6 @@ template <> struct MappingTraits<ELFYAML::SectionOrType> {
 };
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECTYAML_ELFYAML_H

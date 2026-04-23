@@ -19,8 +19,9 @@
 
 #include <optional>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace detail {
 struct ErrorHolder {
   std::vector<std::shared_ptr<ErrorInfoBase>> Infos;
@@ -249,6 +250,6 @@ public:
 };
 
 } // namespace unittest
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

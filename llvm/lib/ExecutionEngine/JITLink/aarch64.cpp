@@ -13,10 +13,11 @@
 #include "llvm/ExecutionEngine/JITLink/aarch64.h"
 
 #include "llvm/Support/BinaryStreamWriter.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 namespace aarch64 {
 
@@ -406,4 +407,4 @@ Error lowerPointer64AuthEdgesToSigningFunction(LinkGraph &G) {
 
 } // namespace aarch64
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -107,13 +107,13 @@ void LTO::emitRemark(OptimizationRemark &Remark) {
 static cl::opt<bool>
     DumpThinCGSCCs("dump-thin-cg-sccs", cl::init(false), cl::Hidden,
                    cl::desc("Dump the SCCs in the ThinLTO index's callgraph"));
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> CodeGenDataThinLTOTwoRounds;
 extern cl::opt<bool> ForceImportAll;
 extern cl::opt<bool> AlwaysRenamePromotedLocals;
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Enable global value internalization in LTO.
 cl::opt<bool> EnableLTOInternalization(
     "enable-lto-internalization", cl::init(true), cl::Hidden,
@@ -129,7 +129,7 @@ extern cl::opt<bool> SupportsHotColdNew;
 
 /// Enable MemProf context disambiguation for thin link.
 extern cl::opt<bool> EnableMemProfContextDisambiguation;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Computes a unique hash for the Module considering the current list of
 // export/import and other global analysis results.

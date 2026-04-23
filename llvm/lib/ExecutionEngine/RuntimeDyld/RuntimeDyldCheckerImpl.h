@@ -10,8 +10,9 @@
 #define LLVM_LIB_EXECUTIONENGINE_RUNTIMEDYLD_RUNTIMEDYLDCHECKERIMPL_H
 
 #include "RuntimeDyldImpl.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Holds target-specific properties for a symbol.
 using TargetFlagsType = uint8_t;
@@ -80,6 +81,6 @@ private:
   SubtargetFeatures TF;
   llvm::raw_ostream &ErrStream;
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

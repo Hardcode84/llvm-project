@@ -28,7 +28,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MemoryBuffer;
 class MemoryBufferRef;
@@ -64,5 +64,5 @@ private:
 };
 
 } // namespace windows_manifest
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

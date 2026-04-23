@@ -16,8 +16,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_MCTARGETDESC_R600MCTARGETDESC_H
 
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCCodeEmitter;
 class MCContext;
 class MCInstrInfo;
@@ -26,7 +27,7 @@ MCCodeEmitter *createR600MCCodeEmitter(const MCInstrInfo &MCII,
                                        MCContext &Ctx);
 MCInstrInfo *createR600MCInstrInfo();
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #define GET_REGINFO_ENUM
 #include "R600GenRegisterInfo.inc"

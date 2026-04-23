@@ -16,12 +16,13 @@
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Support/MathExtras.h"
+#include "llvm/Support/Compiler.h"
 
 //===----------------------------------------------------------------------===//
 //  Vector Mask Decoding
 //===----------------------------------------------------------------------===//
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 void DecodeINSERTPSMask(unsigned Imm, SmallVectorImpl<int> &ShuffleMask,
                         bool SrcIsMem) {
@@ -570,4 +571,4 @@ void DecodeVPERMV3Mask(ArrayRef<uint64_t> RawMask, const APInt &UndefElts,
   }
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

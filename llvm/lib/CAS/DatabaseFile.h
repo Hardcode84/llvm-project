@@ -19,8 +19,10 @@
 #include "llvm/CAS/MappedFileRegionArena.h"
 #include "llvm/CAS/OnDiskCASLogger.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::cas::ondisk {
+LLVM_NAMESPACE_BEGIN
+namespace cas::ondisk {
 
 using MappedFileRegion = MappedFileRegionArena::RegionT;
 
@@ -150,6 +152,7 @@ Error createTableConfigError(std::errc ErrC, StringRef Path,
 Error checkTable(StringRef Label, size_t Expected, size_t Observed,
                  StringRef Path, StringRef TrieName);
 
-} // namespace llvm::cas::ondisk
+}
+LLVM_NAMESPACE_END // namespace llvm::cas::ondisk
 
 #endif

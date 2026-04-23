@@ -22,8 +22,9 @@
 
 #define GET_INSTRINFO_HEADER
 #include "X86GenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class X86Subtarget;
 
 // X86 MachineCombiner patterns
@@ -774,6 +775,6 @@ private:
                           MachineBasicBlock::iterator InsertBefore,
                           const GlobalValue *GV) const override;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

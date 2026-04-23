@@ -17,8 +17,9 @@
 
 #define GET_SDNODE_ENUM
 #include "BPFGenSDNodeInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BPFSelectionDAGInfo : public SelectionDAGGenTargetInfo {
 public:
@@ -34,6 +35,6 @@ public:
   unsigned getCommonMaxStoresPerMemFunc() const { return 128; }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -13,8 +13,9 @@
 #include "llvm/ObjectYAML/ObjectYAML.h"
 #include "llvm/Support/WithColor.h"
 #include "llvm/Support/YAMLTraits.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 bool convertYAML(yaml::Input &YIn, raw_ostream &Out, ErrorHandler ErrHandler,
@@ -83,4 +84,4 @@ yaml2ObjectFile(SmallVectorImpl<char> &Storage, StringRef Yaml,
 }
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

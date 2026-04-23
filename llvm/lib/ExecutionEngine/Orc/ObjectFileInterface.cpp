@@ -15,10 +15,11 @@
 #include "llvm/Object/ObjectFile.h"
 #include "llvm/Object/XCOFFObjectFile.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 void addInitSymbol(MaterializationUnit::Interface &I, ExecutionSession &ES,
@@ -335,4 +336,4 @@ getObjectFileInterface(ExecutionSession &ES, MemoryBufferRef ObjBuffer) {
 }
 
 } // End namespace orc.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.

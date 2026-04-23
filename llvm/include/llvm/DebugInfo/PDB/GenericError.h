@@ -12,7 +12,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 enum class pdb_error_code {
@@ -24,14 +24,14 @@ enum class pdb_error_code {
   unspecified,
 };
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace std {
 template <>
 struct is_error_code_enum<llvm::pdb::pdb_error_code> : std::true_type {};
 } // namespace std
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 LLVM_ABI const std::error_category &PDBErrCategory();
 
@@ -47,5 +47,5 @@ public:
   LLVM_ABI static char ID;
 };
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

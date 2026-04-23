@@ -15,7 +15,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/DataExtractor.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DWARFUnit;
 struct DIDumpOptions;
 class MCRegisterInfo;
@@ -171,6 +171,6 @@ inline bool operator==(const DWARFExpression::iterator &LHS,
   return LHS.Expr == RHS.Expr && LHS.Offset == RHS.Offset;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_LOWLEVEL_DWARFEXPRESSION_H

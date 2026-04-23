@@ -15,8 +15,9 @@
 
 #include "llvm/Support/DataTypes.h"
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCAsmBackend;
 class MCCodeEmitter;
 class MCContext;
@@ -33,7 +34,7 @@ MCCodeEmitter *createSPIRVMCCodeEmitter(const MCInstrInfo &MCII,
 MCAsmBackend *createSPIRVAsmBackend(const Target &T, const MCSubtargetInfo &STI,
                                     const MCRegisterInfo &MRI,
                                     const MCTargetOptions &Options);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Defines symbolic names for SPIR-V registers.  This defines a mapping from
 // register name to register number.
@@ -48,11 +49,13 @@ MCAsmBackend *createSPIRVAsmBackend(const Target &T, const MCSubtargetInfo &STI,
 #define GET_SUBTARGETINFO_ENUM
 #include "SPIRVGenSubtargetInfo.inc"
 
-namespace llvm::SPIRV {
+LLVM_NAMESPACE_BEGIN
+namespace SPIRV {
 inline unsigned getIDFromRegister(unsigned Reg) {
   assert(Reg & (1U << 31));
   return Reg & ~(1U << 31);
 }
-} // namespace llvm::SPIRV
+}
+LLVM_NAMESPACE_END // namespace llvm::SPIRV
 
 #endif // LLVM_LIB_TARGET_SPIRV_MCTARGETDESC_SPIRVMCTARGETDESC_H

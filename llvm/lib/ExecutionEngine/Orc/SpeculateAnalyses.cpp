@@ -17,6 +17,7 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/Passes/PassBuilder.h"
 #include "llvm/Support/ErrorHandling.h"
+#include "llvm/Support/Compiler.h"
 
 namespace {
 using namespace llvm;
@@ -41,7 +42,7 @@ SmallVector<const BasicBlock *, 8> findBBwithCalls(const Function &F,
 // Implementations of Queries shouldn't need to lock the resources
 // such as LLVMContext, each argument (function) has a non-shared LLVMContext
 // Plus, if Queries contain states necessary locking scheme should be provided.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 // Collect direct calls only
@@ -299,4 +300,4 @@ SpeculateQuery::ResultTy SequenceBBQuery::operator()(Function &F) {
 }
 
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

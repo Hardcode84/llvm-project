@@ -11,7 +11,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCInst;
 class MachineInstr;
 namespace SPIRV {
@@ -24,6 +24,6 @@ public:
   void lower(const MachineInstr *MI, MCInst &OutMI,
              SPIRV::ModuleAnalysisInfo *MAI) const;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVMCINSTLOWER_H

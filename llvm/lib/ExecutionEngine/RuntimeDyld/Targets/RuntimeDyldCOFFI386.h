@@ -16,10 +16,11 @@
 #include "../RuntimeDyldCOFF.h"
 #include "llvm/BinaryFormat/COFF.h"
 #include "llvm/Object/COFF.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "dyld"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class RuntimeDyldCOFFI386 : public RuntimeDyldCOFF {
 public:
@@ -222,7 +223,7 @@ public:
   void registerEHFrames() override {}
 };
 
-}
+LLVM_NAMESPACE_END
 
 #endif
 

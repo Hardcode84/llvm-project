@@ -11,8 +11,9 @@
 
 #include "llvm/MC/MCELFStreamer.h"
 #include "llvm/MC/MCStreamer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class formatted_raw_ostream;
 
@@ -45,6 +46,6 @@ public:
   void emitSparcRegisterIgnore(unsigned reg) override {}
   void emitSparcRegisterScratch(unsigned reg) override {}
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

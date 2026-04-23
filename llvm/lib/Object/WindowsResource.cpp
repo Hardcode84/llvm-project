@@ -18,11 +18,12 @@
 #include "llvm/Support/ScopedPrinter.h"
 #include <ctime>
 #include <queue>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace object;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 
 #define RETURN_IF_ERROR(X)                                                     \
@@ -1014,4 +1015,4 @@ writeWindowsResourceCOFF(COFF::MachineTypes MachineType,
 }
 
 } // namespace object
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

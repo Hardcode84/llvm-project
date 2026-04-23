@@ -10,10 +10,11 @@
 
 #include "llvm/ExecutionEngine/JITLink/JITLink.h"
 #include "llvm/Support/Process.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm::jitlink;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 class MapperJITLinkMemoryManager::InFlightAlloc
@@ -185,4 +186,4 @@ void MapperJITLinkMemoryManager::deallocate(
 }
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_AARCH64_AARCH64CALLINGCONVENTION_H
 
 #include "llvm/CodeGen/CallingConvLower.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 bool CC_AArch64_AAPCS(unsigned ValNo, MVT ValVT, MVT LocVT,
                       CCValAssign::LocInfo LocInfo, ISD::ArgFlagsTy ArgFlags,
                       Type *OrigTy, CCState &State);
@@ -76,6 +77,6 @@ bool RetCC_AArch64_Arm64EC_CFGuard_Check(unsigned ValNo, MVT ValVT, MVT LocVT,
                                          CCValAssign::LocInfo LocInfo,
                                          ISD::ArgFlagsTy ArgFlags, Type *OrigTy,
                                          CCState &State);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

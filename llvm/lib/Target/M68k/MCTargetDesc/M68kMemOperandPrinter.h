@@ -18,8 +18,9 @@
 #include "M68kBaseInfo.h"
 
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <class Derived, typename InstTy> class M68kMemOperandPrinter {
   Derived &impl() { return *static_cast<Derived *>(this); }
 
@@ -76,5 +77,5 @@ protected:
     O << ')';
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif

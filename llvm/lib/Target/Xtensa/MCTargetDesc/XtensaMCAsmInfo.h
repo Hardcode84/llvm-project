@@ -17,8 +17,9 @@
 
 #include "llvm/MC/MCAsmInfoELF.h"
 #include "llvm/MC/MCExpr.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Triple;
 class StringRef;
 
@@ -37,6 +38,6 @@ uint8_t parseSpecifier(StringRef name);
 StringRef getSpecifierName(uint8_t S);
 } // namespace Xtensa
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_XTENSA_MCTARGETDESC_XTENSATARGETASMINFO_H

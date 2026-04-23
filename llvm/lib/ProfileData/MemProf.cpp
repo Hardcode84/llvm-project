@@ -5,8 +5,9 @@
 #include "llvm/ProfileData/SampleProf.h"
 #include "llvm/Support/Endian.h"
 #include "llvm/Support/EndianStream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace memprof {
 MemProfSchema getFullSchema() {
   MemProfSchema List;
@@ -383,4 +384,4 @@ Expected<MemProfSchema> readMemProfSchema(const unsigned char *&Buffer) {
   return Result;
 }
 } // namespace memprof
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

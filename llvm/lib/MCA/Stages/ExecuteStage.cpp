@@ -17,10 +17,11 @@
 #include "llvm/MCA/Stages/ExecuteStage.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Support/Debug.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "llvm-mca"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 HWStallEvent::GenericEventType toHWStallEventType(Scheduler::Status Status) {
@@ -292,4 +293,4 @@ void ExecuteStage::notifyReservedOrReleasedBuffers(const InstRef &IR,
 }
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

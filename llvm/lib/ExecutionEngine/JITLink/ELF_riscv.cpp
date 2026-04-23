@@ -22,6 +22,7 @@
 #include "llvm/Object/ELF.h"
 #include "llvm/Object/ELFObjectFile.h"
 #include "llvm/Support/Endian.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 using namespace llvm;
@@ -130,7 +131,7 @@ const uint8_t
         0x67, 0x00, 0x0e, 0x00,  // jr    t3
         0x13, 0x00, 0x00, 0x00}; // nop
 } // namespace
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 static uint32_t extractBits(uint32_t Num, unsigned Low, unsigned Size) {
@@ -1034,4 +1035,4 @@ void link_ELF_riscv(std::unique_ptr<LinkGraph> G,
 LinkGraphPassFunction createRelaxationPass_ELF_riscv() { return relax; }
 
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

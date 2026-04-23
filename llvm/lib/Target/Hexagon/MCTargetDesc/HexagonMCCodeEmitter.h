@@ -21,8 +21,9 @@
 #include "llvm/TargetParser/SubtargetFeature.h"
 #include <cstddef>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCContext;
 class MCInst;
@@ -83,6 +84,6 @@ private:
   uint32_t parseBits(size_t Last, MCInst const &MCB, MCInst const &MCI) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_HEXAGON_MCTARGETDESC_HEXAGONMCCODEEMITTER_H

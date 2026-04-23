@@ -14,8 +14,9 @@
 #include "llvm/Support/Error.h"
 
 #include <system_error>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 namespace pdb {
@@ -89,5 +90,5 @@ private:
   CComPtr<IDiaSession> Session;
 };
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

@@ -10,8 +10,9 @@
 #define LLVM_MC_MCASMINFOWASM_H
 
 #include "llvm/MC/MCAsmInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCAsmInfoWasm : public MCAsmInfo {
   void printSwitchToSection(const MCSection &, uint32_t, const Triple &,
                             raw_ostream &) const final;
@@ -19,6 +20,6 @@ class MCAsmInfoWasm : public MCAsmInfo {
 protected:
   MCAsmInfoWasm();
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

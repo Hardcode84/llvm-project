@@ -22,7 +22,8 @@
 #include <mutex>
 #include <vector>
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 class SymbolLookupSet;
 
@@ -71,6 +72,7 @@ public:
                                   SymbolLookupCompleteFn F) = 0;
 };
 
-} // end namespace llvm::orc
+}
+LLVM_NAMESPACE_END // end namespace llvm::orc
 
 #endif // LLVM_EXECUTIONENGINE_ORC_DYLIBMANAGER_H

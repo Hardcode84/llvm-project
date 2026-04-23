@@ -4,8 +4,9 @@
 #define LLVM_LIB_TARGET_LANAI_LANAICONDCODE_H
 
 #include "llvm/ADT/StringSwitch.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace LPCC {
 enum CondCode {
   ICC_T = 0,   //  true
@@ -95,6 +96,6 @@ inline static CondCode suffixToLanaiCondCode(StringRef S) {
       .Default(LPCC::UNKNOWN);
 }
 } // namespace LPCC
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_LANAI_LANAICONDCODE_H

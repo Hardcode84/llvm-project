@@ -20,6 +20,7 @@
 #include "VETargetMachine.h"
 #include "llvm/Analysis/TargetTransformInfo.h"
 #include "llvm/CodeGen/BasicTTIImpl.h"
+#include "llvm/Support/Compiler.h"
 
 static llvm::Type *getVectorElementType(llvm::Type *Ty) {
   return llvm::cast<llvm::FixedVectorType>(Ty)->getElementType();
@@ -47,7 +48,7 @@ static bool isVectorLaneType(llvm::Type &ElemTy) {
   return false;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class VETTIImpl final : public BasicTTIImplBase<VETTIImpl> {
   using BaseT = BasicTTIImplBase<VETTIImpl>;
@@ -170,6 +171,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_VE_VETARGETTRANSFORMINFO_H

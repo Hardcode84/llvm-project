@@ -16,13 +16,14 @@
 #define LLVM_LIB_TARGET_M68K_MCTARGETDESC_M68KMCCODEEMITTER_H
 
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace M68k {
 
 const uint8_t *getMCInstrBeads(unsigned);
 
 } // namespace M68k
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_M68K_MCTARGETDESC_M68KMCCODEEMITTER_H

@@ -14,8 +14,9 @@
 #include "llvm/Support/Error.h"
 #include "llvm/Support/FileSystem.h"
 #include "llvm/Support/Path.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dwarf_linker {
 
 /// This function calls \p Iteration() until it returns false.
@@ -104,6 +105,6 @@ inline bool isPathAbsoluteOnWindowsOrPosix(const Twine &Path) {
 }
 
 } // end of namespace dwarf_linker
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm
 
 #endif // LLVM_DWARFLINKER_UTILS_H

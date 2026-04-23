@@ -51,7 +51,8 @@
 #include "llvm/Support/Debug.h"
 #include <memory>
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 class BasicBlock;
 class CallBrInst;
@@ -524,6 +525,7 @@ public:
 #endif // NDEBUG
 };
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir
 
 #endif // LLVM_SANDBOXIR_TRACKER_H

@@ -19,7 +19,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace codeview {
 
@@ -70,6 +70,6 @@ template <> struct format_provider<codeview::GUID> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_CODEVIEW_FORMATTERS_H

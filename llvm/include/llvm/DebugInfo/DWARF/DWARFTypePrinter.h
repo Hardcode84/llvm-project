@@ -15,8 +15,9 @@
 #include "llvm/Support/Error.h"
 
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -844,6 +845,6 @@ void DWARFTypePrinter<DieType>::appendScopes(DieType D) {
   appendUnqualifiedName(D);
   OS << "::";
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFTYPEPRINTER_H

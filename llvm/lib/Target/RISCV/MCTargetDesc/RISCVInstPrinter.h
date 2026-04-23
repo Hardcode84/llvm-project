@@ -15,8 +15,9 @@
 
 #include "MCTargetDesc/RISCVMCTargetDesc.h"
 #include "llvm/MC/MCInstPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class RISCVInstPrinter : public MCInstPrinter {
 public:
@@ -78,6 +79,6 @@ public:
   static const char *getRegisterName(MCRegister Reg);
   static const char *getRegisterName(MCRegister Reg, unsigned AltIdx);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

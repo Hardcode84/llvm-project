@@ -28,6 +28,7 @@ using namespace llvm;
 
 #define GET_REGINFO_TARGET_DESC
 #include "AMDGPUGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
 static cl::opt<bool> EnableSpillSGPRToVGPR(
   "amdgpu-spill-sgpr-to-vgpr",
@@ -51,7 +52,7 @@ static void emitUnsupportedError(const Function &Fn, const MachineInstr &MI,
       DiagnosticInfoUnsupported(Fn, ErrMsg, MI.getDebugLoc()));
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // A temporary struct to spill SGPRs.
 // This is mostly to spill SGPRs to memory. Spilling SGPRs into VGPR lanes emits
@@ -323,7 +324,7 @@ struct SGPRSpillBuilder {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 SIRegisterInfo::SIRegisterInfo(const GCNSubtarget &ST)
     : AMDGPUGenRegisterInfo(AMDGPU::PC_REG, ST.getAMDGPUDwarfFlavour(),

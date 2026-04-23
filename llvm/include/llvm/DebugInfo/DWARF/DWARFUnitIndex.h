@@ -15,7 +15,7 @@
 #include <cstdint>
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 class DataExtractor;
@@ -195,6 +195,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFUNITINDEX_H

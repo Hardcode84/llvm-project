@@ -11,10 +11,11 @@
 #include "llvm/ExecutionEngine/Orc/AbsoluteSymbols.h"
 #include "llvm/ExecutionEngine/Orc/DebugUtils.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 Expected<std::unique_ptr<EPCDynamicLibrarySearchGenerator>>
@@ -118,4 +119,4 @@ Error EPCDynamicLibrarySearchGenerator::addAbsolutes(JITDylib &JD,
 }
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

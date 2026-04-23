@@ -16,8 +16,9 @@
 
 #include "llvm/CodeGen/CallingConvLower.h"
 #include "llvm/CodeGen/TargetLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AVRSubtarget;
 class AVRTargetMachine;
@@ -147,6 +148,6 @@ private:
                                               unsigned Opcode, int Width) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_AVR_ISEL_LOWERING_H

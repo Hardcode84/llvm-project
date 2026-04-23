@@ -17,8 +17,9 @@
 #include "llvm/CodeGen/MachineFrameInfo.h"
 #include "llvm/CodeGen/MachineInstrBuilder.h"
 #include "llvm/CodeGen/MachineMemOperand.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Add a BDX memory reference for frame object FI to MIB.
 static inline const MachineInstrBuilder &
@@ -39,6 +40,6 @@ addFrameReference(const MachineInstrBuilder &MIB, int FI) {
   return MIB.addFrameIndex(FI).addImm(Offset).addReg(0).addMemOperand(MMO);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

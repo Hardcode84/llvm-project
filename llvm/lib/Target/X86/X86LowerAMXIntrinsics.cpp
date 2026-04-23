@@ -41,13 +41,14 @@
 #include "llvm/Target/TargetMachine.h"
 #include "llvm/Transforms/Utils/BasicBlockUtils.h"
 #include "llvm/Transforms/Utils/LoopUtils.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace PatternMatch;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> ProfcheckDisableMetadataFixes;
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #define DEBUG_TYPE "x86-lower-amx-intrinsics"
 

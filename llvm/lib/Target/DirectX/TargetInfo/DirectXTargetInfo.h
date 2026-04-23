@@ -9,10 +9,12 @@
 #ifndef LLVM_DIRECTX_TARGETINFO_DIRECTXTARGETINFO_H
 #define LLVM_DIRECTX_TARGETINFO_DIRECTXTARGETINFO_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class Target;
 
 Target &getTheDirectXTarget();
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DIRECTX_TARGETINFO_DIRECTXTARGETINFO_H

@@ -18,8 +18,9 @@
 
 #include <array>
 #include <stdint.h>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -113,6 +114,6 @@ public:
 };
 
 } // namespace mcdxbc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_MC_DXCONTAINERPSVINFO_H

@@ -20,7 +20,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/LEB128.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 namespace loongarch {
 
@@ -545,6 +545,6 @@ public:
 
 } // namespace loongarch
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

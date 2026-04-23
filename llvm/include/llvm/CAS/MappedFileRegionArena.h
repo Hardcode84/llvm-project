@@ -18,8 +18,10 @@
 #include "llvm/Support/Alignment.h"
 #include "llvm/Support/FileSystem.h"
 #include <atomic>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::cas {
+LLVM_NAMESPACE_BEGIN
+namespace cas {
 
 namespace ondisk {
 class OnDiskCASLogger;
@@ -132,6 +134,7 @@ private:
   std::shared_ptr<ondisk::OnDiskCASLogger> Logger = nullptr;
 };
 
-} // namespace llvm::cas
+}
+LLVM_NAMESPACE_END // namespace llvm::cas
 
 #endif // LLVM_CAS_MAPPEDFILEREGIONARENA_H

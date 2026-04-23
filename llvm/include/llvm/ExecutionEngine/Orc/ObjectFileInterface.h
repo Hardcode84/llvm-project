@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/MemoryBuffer.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 /// Adds an initializer symbol to the given MU interface.
@@ -34,6 +34,6 @@ LLVM_ABI Expected<MaterializationUnit::Interface>
 getObjectFileInterface(ExecutionSession &ES, MemoryBufferRef ObjBuffer);
 
 } // End namespace orc
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_OBJECTFILEINTERFACE_H

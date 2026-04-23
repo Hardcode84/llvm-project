@@ -37,7 +37,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class APInt;
 class AssemblerConstantPools;
@@ -1143,6 +1143,6 @@ inline MCContext &MCTargetStreamer::getContext() {
 /// timing the assembler front end.
 LLVM_ABI MCStreamer *createNullStreamer(MCContext &Ctx);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCSTREAMER_H

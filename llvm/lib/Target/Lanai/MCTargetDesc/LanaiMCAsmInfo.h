@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_LANAI_MCTARGETDESC_LANAIMCASMINFO_H
 
 #include "llvm/MC/MCAsmInfoELF.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Triple;
 
 class LanaiMCAsmInfo : public MCAsmInfoELF {
@@ -33,6 +34,6 @@ using Specifier = uint8_t;
 enum { S_None, S_ABS_HI, S_ABS_LO };
 } // namespace Lanai
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_LANAI_MCTARGETDESC_LANAIMCASMINFO_H

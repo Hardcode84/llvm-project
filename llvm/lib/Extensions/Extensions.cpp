@@ -15,12 +15,15 @@
 #define HANDLE_EXTENSION(Ext)                                                  \
 		llvm::PassPluginLibraryInfo get##Ext##PluginInfo();
 #include "llvm/Support/Extension.def"
+#include "llvm/Support/Compiler.h"
 #undef HANDLE_EXTENSION
 
-namespace llvm::details {
+LLVM_NAMESPACE_BEGIN
+namespace details {
 void extensions_anchor() {
 #define HANDLE_EXTENSION(Ext)                                                  \
 			get##Ext##PluginInfo();
 #include "llvm/Support/Extension.def"
 }
-} // namespace llvm::details
+}
+LLVM_NAMESPACE_END // namespace llvm::details

@@ -25,7 +25,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace logicalview {
 
 using LVReaders = std::vector<std::unique_ptr<LVReader>>;
@@ -95,6 +95,6 @@ public:
 };
 
 } // end namespace logicalview
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_LOGICALVIEW_READERS_LVREADERHANDLER_H

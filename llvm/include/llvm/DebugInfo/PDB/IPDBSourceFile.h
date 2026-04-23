@@ -14,7 +14,7 @@
 #include <memory>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 
 namespace pdb {
@@ -35,6 +35,6 @@ public:
   getCompilands() const = 0;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

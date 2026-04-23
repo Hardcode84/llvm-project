@@ -13,8 +13,9 @@
 #include "llvm/ADT/StringRef.h"
 #include <cstdint>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 class DataExtractor;
@@ -77,6 +78,6 @@ public:
   bool HasError = false;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFGDBINDEX_H

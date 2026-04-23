@@ -18,8 +18,9 @@
 #include "llvm/CodeGen/CallingConvLower.h"
 #include "llvm/CodeGen/SelectionDAG.h"
 #include "llvm/CodeGen/TargetLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LoongArchSubtarget;
 class LoongArchTargetLowering : public TargetLowering {
   const LoongArchSubtarget &Subtarget;
@@ -293,6 +294,6 @@ private:
                                          EVT VT) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_LOONGARCH_LOONGARCHISELLOWERING_H

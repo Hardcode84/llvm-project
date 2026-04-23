@@ -19,8 +19,9 @@
 #include "ARMMCTargetDesc.h"
 #include "llvm/Support/ErrorHandling.h"
 #include "Utils/ARMBaseInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace ARM_PROC {
   enum IMod {
@@ -478,6 +479,6 @@ namespace ARMII {
 
 } // end namespace ARMII
 
-} // end namespace llvm;
+LLVM_NAMESPACE_END // end namespace llvm;
 
 #endif

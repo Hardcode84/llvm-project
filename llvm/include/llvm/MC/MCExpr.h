@@ -14,7 +14,7 @@
 #include "llvm/Support/SMLoc.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCAsmInfo;
 class MCAssembler;
@@ -513,6 +513,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCEXPR_H

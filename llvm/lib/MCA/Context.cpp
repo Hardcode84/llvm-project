@@ -24,8 +24,9 @@
 #include "llvm/MCA/Stages/InOrderIssueStage.h"
 #include "llvm/MCA/Stages/MicroOpQueueStage.h"
 #include "llvm/MCA/Stages/RetireStage.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 std::unique_ptr<Pipeline>
@@ -93,4 +94,4 @@ Context::createInOrderPipeline(const PipelineOptions &Opts, SourceMgr &SrcMgr,
 }
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

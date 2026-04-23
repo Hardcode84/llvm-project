@@ -13,7 +13,7 @@
 #include "llvm/IR/Module.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AtomicInfo {
 protected:
   IRBuilderBase *Builder;
@@ -102,6 +102,6 @@ public:
 
   LLVM_ABI void EmitAtomicStoreLibcall(AtomicOrdering AO, Value *Source);
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif /* LLVM_FRONTEND_ATOMIC_ATOMIC_H */

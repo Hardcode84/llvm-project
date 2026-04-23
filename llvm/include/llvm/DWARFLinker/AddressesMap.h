@@ -15,8 +15,9 @@
 #include "llvm/DebugInfo/DWARF/DWARFUnit.h"
 #include "llvm/DebugInfo/DWARF/LowLevel/DWARFExpression.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dwarf_linker {
 
 /// Mapped value in the address map is the offset to apply to the
@@ -203,6 +204,6 @@ protected:
 };
 
 } // namespace dwarf_linker
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DWARFLINKER_ADDRESSESMAP_H

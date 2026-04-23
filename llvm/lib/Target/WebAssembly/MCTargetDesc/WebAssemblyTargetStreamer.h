@@ -18,8 +18,9 @@
 #include "llvm/BinaryFormat/Wasm.h"
 #include "llvm/CodeGenTypes/MachineValueType.h"
 #include "llvm/MC/MCStreamer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCSymbolWasm;
 class formatted_raw_ostream;
@@ -110,6 +111,6 @@ public:
   void emitExportName(const MCSymbolWasm *, StringRef) override {}
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

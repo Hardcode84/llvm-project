@@ -19,8 +19,9 @@
 
 #define GET_REGINFO_HEADER
 #include "PPCGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class PPCTargetMachine;
 
 inline static unsigned getCRFromCRBit(unsigned SrcReg) {
@@ -195,6 +196,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

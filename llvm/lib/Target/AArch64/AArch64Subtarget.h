@@ -30,8 +30,9 @@
 
 #define GET_SUBTARGETINFO_HEADER
 #include "AArch64GenSubtargetInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class GlobalValue;
 class StringRef;
 
@@ -490,6 +491,6 @@ public:
 
   bool enableAggressiveInterleaving() const { return AggressiveInterleaving; }
 };
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

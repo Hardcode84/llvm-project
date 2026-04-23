@@ -54,9 +54,9 @@ STATISTIC(RISCVNumInstrsCompressed,
 static cl::opt<bool> AddBuildAttributes("riscv-add-build-attributes",
                                         cl::init(false));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern const SubtargetFeatureKV RISCVFeatureKV[RISCV::NumSubtargetFeatures];
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 struct RISCVOperand;

@@ -18,8 +18,9 @@
 #include "llvm/Remarks/BitstreamRemarkContainer.h"
 #include "llvm/Remarks/RemarkSerializer.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace remarks {
 
 struct Remarks;
@@ -154,6 +155,6 @@ struct BitstreamMetaSerializer : public MetaSerializer {
 };
 
 } // end namespace remarks
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_REMARKS_BITSTREAMREMARKSERIALIZER_H

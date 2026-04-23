@@ -12,7 +12,7 @@
 #include "llvm/CodeGen/MachineOperand.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class MCContext;
   class MCInst;
   class MCOperand;
@@ -34,6 +34,6 @@ private:
   MCOperand LowerSymbolOperand(const MachineOperand &MO,
                                MachineOperandType MOTy, unsigned Offset) const;
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

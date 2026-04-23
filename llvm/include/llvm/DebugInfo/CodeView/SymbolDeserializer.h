@@ -17,8 +17,9 @@
 #include "llvm/Support/BinaryByteStream.h"
 #include "llvm/Support/BinaryStreamReader.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 class SymbolVisitorDelegate;
 class SymbolDeserializer : public SymbolVisitorCallbacks {
@@ -94,6 +95,6 @@ private:
   std::unique_ptr<MappingInfo> Mapping;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -21,8 +21,9 @@
 #include "llvm/Analysis/TargetTransformInfo.h"
 #include "llvm/CodeGen/BasicTTIImpl.h"
 #include "llvm/IR/Function.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AVRTTIImpl final : public BasicTTIImplBase<AVRTTIImpl> {
   using BaseT = BasicTTIImplBase<AVRTTIImpl>;
@@ -45,6 +46,6 @@ public:
                      const TargetTransformInfo::LSRCost &C2) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AVR_AVRTARGETTRANSFORMINFO_H

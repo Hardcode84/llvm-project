@@ -20,6 +20,7 @@
 #include "llvm/Support/Endian.h"
 #include "llvm/Support/MemoryBuffer.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::object;
@@ -211,7 +212,7 @@ LoadedELFObjectInfo::getObjectForDebug(const ObjectFile &Obj) const {
 
 } // anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 RuntimeDyldELF::RuntimeDyldELF(RuntimeDyld::MemoryManager &MemMgr,
                                JITSymbolResolver &Resolver)
@@ -3017,4 +3018,4 @@ bool RuntimeDyldELF::relocationNeedsStub(const RelocationRef &R) const {
   }
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

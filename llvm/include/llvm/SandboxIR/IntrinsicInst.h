@@ -11,8 +11,10 @@
 
 #include "llvm/IR/IntrinsicInst.h"
 #include "llvm/SandboxIR/Instruction.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 class IntrinsicInst : public CallInst {
   IntrinsicInst(llvm::IntrinsicInst *I, Context &Ctx) : CallInst(I, Ctx) {}
@@ -39,6 +41,7 @@ public:
   }
 };
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir
 
 #endif // LLVM_SANDBOXIR_INTRINSICINST_H

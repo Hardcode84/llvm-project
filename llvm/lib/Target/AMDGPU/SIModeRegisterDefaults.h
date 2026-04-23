@@ -11,8 +11,9 @@
 
 #include "Utils/AMDGPUBaseInfo.h"
 #include "llvm/ADT/FloatingPointMode.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GCNSubtarget;
 
@@ -153,6 +154,6 @@ uint32_t decodeFltRoundToHWConversionTable(uint32_t FltRounds);
 
 } // end namespace AMDGPU
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_SIMODEREGISTERDEFAULTS_H

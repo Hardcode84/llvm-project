@@ -9,7 +9,10 @@
 #ifndef LLVM_CAS_VALIDATIONRESULT_H
 #define LLVM_CAS_VALIDATIONRESULT_H
 
-namespace llvm::cas {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
+namespace cas {
 
 /// Represents the result of validating the contents using
 /// \c validateOnDiskUnifiedCASDatabasesIfNeeded.
@@ -24,6 +27,7 @@ enum class ValidationResult {
   Skipped,
 };
 
-} // namespace llvm::cas
+}
+LLVM_NAMESPACE_END // namespace llvm::cas
 
 #endif // LLVM_CAS_VALIDATIONRESULT_H

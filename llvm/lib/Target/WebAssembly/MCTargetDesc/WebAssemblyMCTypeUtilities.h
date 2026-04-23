@@ -16,8 +16,9 @@
 #define LLVM_LIB_TARGET_WEBASSEMBLY_MCTARGETDESC_WEBASSEMBLYMCTYPEUTILITIES_H
 
 #include "llvm/BinaryFormat/Wasm.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace WebAssembly {
 
@@ -74,6 +75,6 @@ std::optional<wasm::ValType> parseType(StringRef Type);
 BlockType parseBlockType(StringRef Type);
 
 } // end namespace WebAssembly
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

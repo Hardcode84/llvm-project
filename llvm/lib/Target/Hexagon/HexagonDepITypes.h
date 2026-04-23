@@ -11,7 +11,9 @@
 #ifndef LLVM_LIB_TARGET_HEXAGON_HEXAGONDEPITYPES_H
 #define LLVM_LIB_TARGET_HEXAGON_HEXAGONDEPITYPES_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 namespace HexagonII {
 enum Type {
   TypeALU32_2op = 0,
@@ -63,6 +65,6 @@ enum Type {
   TypeV4LDST = 48,
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif  // LLVM_LIB_TARGET_HEXAGON_HEXAGONDEPITYPES_H

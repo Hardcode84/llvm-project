@@ -10,8 +10,9 @@
 #define LLVM_MC_MCASMINFOXCOFF_H
 
 #include "llvm/MC/MCAsmInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCAsmInfoXCOFF : public MCAsmInfo {
 protected:
@@ -26,6 +27,6 @@ public:
   bool isAcceptableChar(char C) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCASMINFOXCOFF_H

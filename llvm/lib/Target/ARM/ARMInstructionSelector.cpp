@@ -153,18 +153,19 @@ private:
 // cost of constructing placeholder values.
 #define GET_GLOBALISEL_TEMPORARIES_DECL
 #include "ARMGenGlobalISel.inc"
+#include "llvm/Support/Compiler.h"
 #undef GET_GLOBALISEL_TEMPORARIES_DECL
 };
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 InstructionSelector *
 createARMInstructionSelector(const ARMBaseTargetMachine &TM,
                              const ARMSubtarget &STI,
                              const ARMRegisterBankInfo &RBI) {
   return new ARMInstructionSelector(TM, STI, RBI);
 }
-}
+LLVM_NAMESPACE_END
 
 #define GET_GLOBALISEL_IMPL
 #include "ARMGenGlobalISel.inc"

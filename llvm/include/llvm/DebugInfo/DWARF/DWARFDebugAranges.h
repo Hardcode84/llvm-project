@@ -13,8 +13,9 @@
 #include "llvm/ADT/STLFunctionalExtras.h"
 #include <cstdint>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DWARFDataExtractor;
 class Error;
 
@@ -82,6 +83,6 @@ private:
   DenseSet<uint64_t> ParsedCUOffsets;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFDEBUGARANGES_H

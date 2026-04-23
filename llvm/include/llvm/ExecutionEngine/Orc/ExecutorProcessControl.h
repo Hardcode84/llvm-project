@@ -28,7 +28,8 @@
 #include <mutex>
 #include <vector>
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 class DylibManager;
 class ExecutionSession;
@@ -315,6 +316,7 @@ protected:
   StringMap<ExecutorAddr> BootstrapSymbols;
 };
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc
 
 #endif // LLVM_EXECUTIONENGINE_ORC_EXECUTORPROCESSCONTROL_H

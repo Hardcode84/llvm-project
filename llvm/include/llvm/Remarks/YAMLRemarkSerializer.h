@@ -17,7 +17,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/YAMLTraits.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace remarks {
 
 /// Serialize the remarks to YAML. One remark entry looks like this:
@@ -57,6 +57,6 @@ struct LLVM_ABI YAMLMetaSerializer : public MetaSerializer {
 };
 
 } // end namespace remarks
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_REMARKS_YAMLREMARKSERIALIZER_H

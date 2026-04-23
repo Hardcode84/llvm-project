@@ -17,8 +17,9 @@
 #include "WebAssemblyISelLowering.h"
 #include "llvm/CodeGen/GlobalISel/CallLowering.h"
 #include "llvm/IR/CallingConv.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class WebAssemblyTargetLowering;
 
@@ -38,6 +39,6 @@ public:
   bool lowerCall(MachineIRBuilder &MIRBuilder,
                  CallLoweringInfo &Info) const override;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -53,12 +53,12 @@
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 void HexagonLowerToMC(const MCInstrInfo &MCII, const MachineInstr *MI,
                       MCInst &MCB, HexagonAsmPrinter &AP);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #define DEBUG_TYPE "asm-printer"
 

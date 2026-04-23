@@ -45,6 +45,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::codeview;
@@ -78,7 +79,7 @@ LLVM_YAML_DECLARE_MAPPING_TRAITS(SourceFileChecksumEntry)
 LLVM_YAML_DECLARE_MAPPING_TRAITS(SourceLineBlock)
 LLVM_YAML_DECLARE_MAPPING_TRAITS(InlineeSite)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace CodeViewYAML {
 namespace detail {
 
@@ -96,7 +97,7 @@ struct YAMLSubsectionBase {
 
 } // end namespace detail
 } // end namespace CodeViewYAML
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace {
 

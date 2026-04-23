@@ -10,8 +10,9 @@
 #define LLVM_MC_MCSYMBOLTABLEENTRY_H
 
 #include "llvm/ADT/StringMapEntry.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCSymbol;
 
@@ -40,6 +41,6 @@ struct MCSymbolTableValue {
 /// bytes -- half the size of a StringRef) to the entry to access it.
 using MCSymbolTableEntry = StringMapEntry<MCSymbolTableValue>;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

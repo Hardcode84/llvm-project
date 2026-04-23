@@ -10,9 +10,10 @@
 #define LLVM_LIB_TARGET_SPARC_MCTARGETDESC_SPARCFIXUPKINDS_H
 
 #include "llvm/MC/MCFixup.h"
+#include "llvm/Support/Compiler.h"
 
 // clang-format off
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace Sparc {
   // clang-format off
     enum Fixups {
@@ -28,6 +29,6 @@ namespace llvm {
     };
   // clang-format on
   }
-}
+LLVM_NAMESPACE_END
 // clang-format on
 #endif

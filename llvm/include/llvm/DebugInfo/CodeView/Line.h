@@ -13,7 +13,7 @@
 #include "llvm/Support/Endian.h"
 #include <cinttypes>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 
 using llvm::support::ulittle32_t;
@@ -127,6 +127,6 @@ public:
 };
 
 } // namespace codeview
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

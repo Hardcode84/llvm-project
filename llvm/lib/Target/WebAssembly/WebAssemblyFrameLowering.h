@@ -16,8 +16,9 @@
 #define LLVM_LIB_TARGET_WEBASSEMBLY_WEBASSEMBLYFRAMELOWERING_H
 
 #include "llvm/CodeGen/TargetFrameLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class WebAssemblyFrameLowering final : public TargetFrameLowering {
 public:
@@ -77,6 +78,6 @@ private:
   bool needsSPWriteback(const MachineFunction &MF) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

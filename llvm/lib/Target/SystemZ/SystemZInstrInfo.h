@@ -24,8 +24,9 @@
 
 #define GET_INSTRINFO_HEADER
 #include "SystemZGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SystemZSubtarget;
 
@@ -406,6 +407,6 @@ public:
   MCInst getNop() const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_SYSTEMZ_SYSTEMZINSTRINFO_H

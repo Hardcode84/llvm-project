@@ -15,8 +15,9 @@
 #define LLVM_LIB_TARGET_M68K_MCTARGETDESC_M68KMCASMINFO_H
 
 #include "llvm/MC/MCAsmInfoELF.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Triple;
 
 class M68kELFMCAsmInfo : public MCAsmInfoELF {
@@ -41,6 +42,6 @@ enum Specifier {
 };
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_M68K_MCTARGETDESC_M68KMCASMINFO_H

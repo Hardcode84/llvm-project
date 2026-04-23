@@ -11,7 +11,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Error;
 class raw_ostream;
 
@@ -34,6 +34,6 @@ LLVM_ABI Error executeObjcopyOnBinary(const CommonConfig &Config,
 
 } // end namespace wasm
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJCOPY_WASM_WASMOBJCOPY_H

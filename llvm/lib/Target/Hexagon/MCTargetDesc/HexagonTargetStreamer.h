@@ -10,8 +10,9 @@
 #define HEXAGONTARGETSTREAMER_H
 
 #include "llvm/MC/MCStreamer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class HexagonTargetStreamer : public MCTargetStreamer {
 public:
   HexagonTargetStreamer(MCStreamer &S) : MCTargetStreamer(S) {}
@@ -34,6 +35,6 @@ public:
 
   virtual void reset() {}
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

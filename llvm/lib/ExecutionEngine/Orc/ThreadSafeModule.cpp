@@ -10,8 +10,9 @@
 #include "llvm/Bitcode/BitcodeReader.h"
 #include "llvm/Bitcode/BitcodeWriter.h"
 #include "llvm/Transforms/Utils/Cloning.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 static std::pair<std::string, SmallVector<char, 1>>
@@ -107,4 +108,4 @@ ThreadSafeModule cloneToNewContext(const ThreadSafeModule &TSM,
 }
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

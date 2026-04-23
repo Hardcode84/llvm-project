@@ -21,7 +21,7 @@
 #include "llvm/Support/Compiler.h"
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 class StringRef;
@@ -70,6 +70,6 @@ struct StringTable {
 };
 
 } // end namespace remarks
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_REMARKS_REMARKSTRINGTABLE_H

@@ -13,12 +13,13 @@
 
 #include "VECustomDAG.h"
 #include "VESelectionDAGInfo.h"
+#include "llvm/Support/Compiler.h"
 
 #ifndef DEBUG_TYPE
 #define DEBUG_TYPE "vecustomdag"
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 bool isPackedVectorType(EVT SomeVT) {
   if (!SomeVT.isVector())
@@ -587,4 +588,4 @@ SDValue VECustomDAG::getLegalReductionOpVVP(unsigned VVPOpcode, EVT ResVT,
         getNode(VVPOpcode, ResVT, {VectorV, Mask, AVL}, Flags));
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

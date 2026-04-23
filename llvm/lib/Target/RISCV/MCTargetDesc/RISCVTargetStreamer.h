@@ -12,8 +12,9 @@
 #include "RISCV.h"
 #include "llvm/MC/MCStreamer.h"
 #include "llvm/MC/MCSubtargetInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class formatted_raw_ostream;
 
@@ -95,5 +96,5 @@ public:
   void emitDirectiveVariantCC(MCSymbol &Symbol) override;
 };
 
-}
+LLVM_NAMESPACE_END
 #endif

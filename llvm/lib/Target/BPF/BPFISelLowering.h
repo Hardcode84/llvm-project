@@ -17,8 +17,9 @@
 #include "BPF.h"
 #include "llvm/CodeGen/SelectionDAG.h"
 #include "llvm/CodeGen/TargetLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BPFSubtarget;
 
 class BPFTargetLowering : public TargetLowering {
@@ -178,6 +179,6 @@ private:
                       const SmallVectorImpl<ISD::OutputArg> &Outs,
                       LLVMContext &Context, const Type *RetTy) const override;
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

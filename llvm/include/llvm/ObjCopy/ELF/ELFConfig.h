@@ -11,8 +11,9 @@
 
 #include "llvm/ObjCopy/CommonConfig.h"
 #include "llvm/Object/ELFTypes.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 
 // Note to remove info specified by --remove-note option.
@@ -43,6 +44,6 @@ struct ELFConfig {
 };
 
 } // namespace objcopy
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_OBJCOPY_ELF_ELFCONFIG_H

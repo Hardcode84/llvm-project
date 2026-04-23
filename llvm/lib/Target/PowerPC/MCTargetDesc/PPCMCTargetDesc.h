@@ -20,8 +20,9 @@
 #include "llvm/Support/MathExtras.h"
 #include <cstdint>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCAsmBackend;
 class MCCodeEmitter;
@@ -177,7 +178,7 @@ enum {
 };
 } // end namespace PPCII
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 // Defines symbolic names for PowerPC registers.  This defines a mapping from
 // register name to register number.
@@ -285,7 +286,7 @@ using llvm::MCPhysReg;
   static const MCPhysReg DMRRegs[8] = PPC_REGS0_7(PPC::DMR);                   \
   static const MCPhysReg DMRpRegs[4] = PPC_REGS0_3(PPC::DMRp);
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace PPC {
 static inline bool isVFRegister(MCRegister Reg) {
   return Reg >= PPC::VF0 && Reg <= PPC::VF31;
@@ -299,6 +300,6 @@ static inline bool isDMRROWpRegister(unsigned Reg) {
   return Reg >= PPC::DMRROWp0 && Reg <= PPC::DMRROWp31;
 }
 } // namespace PPC
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_POWERPC_MCTARGETDESC_PPCMCTARGETDESC_H

@@ -22,7 +22,8 @@
 #include <mutex>
 #include <string>
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 /// Dumps symbol tables from LinkGraphs to enable backtrace symbolication.
 ///
@@ -94,6 +95,7 @@ private:
   std::unique_ptr<MemoryBuffer> SymtabBuffer;
 };
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc
 
 #endif // LLVM_EXECUTIONENGINE_ORC_BACKTRACETOOLS_H

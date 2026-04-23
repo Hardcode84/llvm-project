@@ -20,7 +20,7 @@
 #include <memory>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct DILineInfo;
 class DIInliningInfo;
 struct DIGlobal;
@@ -156,6 +156,6 @@ public:
   void listEnd() override;
 };
 } // namespace symbolize
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

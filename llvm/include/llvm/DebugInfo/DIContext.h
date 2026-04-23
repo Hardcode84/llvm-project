@@ -25,8 +25,9 @@
 #include <string>
 #include <tuple>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A format-neutral container for source line information.
 struct DILineInfo {
@@ -336,6 +337,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DICONTEXT_H

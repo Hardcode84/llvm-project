@@ -20,8 +20,9 @@
 #include "llvm/Analysis/LoopInfo.h"
 #include "llvm/IR/Dominators.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class IntrinsicInst;
 class SPIRVSubtarget;
 class MachineFunction;
@@ -180,5 +181,5 @@ ConvergenceRegionInfo getConvergenceRegions(Function &F, DominatorTree &DT,
                                             LoopInfo &LI);
 } // namespace SPIRV
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_LIB_TARGET_SPIRV_ANALYSIS_SPIRVCONVERGENCEREGIONANALYSIS_H

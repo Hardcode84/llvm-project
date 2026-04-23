@@ -10,8 +10,10 @@
 #include "llvm/SandboxIR/Context.h"
 #include "llvm/SandboxIR/Function.h"
 #include "llvm/SandboxIR/Instruction.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 BBIterator &BBIterator::operator++() {
   auto ItE = BB->end();
@@ -155,4 +157,5 @@ void BasicBlock::verify() const {
 }
 #endif // NDEBUG
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir

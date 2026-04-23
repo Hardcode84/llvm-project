@@ -16,8 +16,9 @@
 #include "llvm/CodeGen/GlobalISel/LegalizerHelper.h"
 #include "llvm/CodeGen/GlobalISel/LegalizerInfo.h"
 #include "llvm/CodeGen/Register.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GISelChangeObserver;
 class MachineIRBuilder;
@@ -53,5 +54,5 @@ private:
   bool legalizeLoadStore(MachineInstr &MI, LegalizerHelper &Helper,
                          MachineIRBuilder &MIB) const;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif

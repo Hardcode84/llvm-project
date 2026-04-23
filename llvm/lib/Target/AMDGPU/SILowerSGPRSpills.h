@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_SILOWERSGPRSPILLS_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SILowerSGPRSpillsPass : public PassInfoMixin<SILowerSGPRSpillsPass> {
 public:
   PreservedAnalyses run(MachineFunction &MF,
@@ -22,6 +23,6 @@ public:
     return MachineFunctionProperties().setIsSSA().setNoVRegs();
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_SILOWERSGPRSPILLS_H

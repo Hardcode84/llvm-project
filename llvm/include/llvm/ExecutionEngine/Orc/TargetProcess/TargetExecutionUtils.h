@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 /// Run a main function, returning the result.
@@ -36,6 +36,6 @@ LLVM_ABI int runAsVoidFunction(int (*Func)(void));
 LLVM_ABI int runAsIntFunction(int (*Func)(int), int Arg);
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_TARGETPROCESS_TARGETEXECUTIONUTILS_H

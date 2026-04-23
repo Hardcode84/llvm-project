@@ -11,8 +11,9 @@
 
 #include "llvm/CodeGen/TargetFrameLowering.h"
 #include "llvm/Support/TypeSize.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ARMSubtarget;
 class CalleeSavedInfo;
@@ -114,6 +115,6 @@ private:
                                 MachineBasicBlock::iterator MI) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARM_ARMFRAMELOWERING_H

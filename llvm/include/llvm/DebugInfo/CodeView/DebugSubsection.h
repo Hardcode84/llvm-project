@@ -15,7 +15,7 @@
 
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BinaryStreamWriter;
 namespace codeview {
 
@@ -49,6 +49,6 @@ protected:
 };
 
 } // namespace codeview
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_CODEVIEW_DEBUGSUBSECTION_H

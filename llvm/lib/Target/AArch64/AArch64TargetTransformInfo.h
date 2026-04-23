@@ -27,8 +27,9 @@
 #include "llvm/Support/InstructionCost.h"
 #include <cstdint>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class APInt;
 class Instruction;
@@ -564,6 +565,6 @@ public:
   /// @}
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AARCH64_AARCH64TARGETTRANSFORMINFO_H

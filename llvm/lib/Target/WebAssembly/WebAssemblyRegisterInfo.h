@@ -17,8 +17,9 @@
 
 #define GET_REGINFO_HEADER
 #include "WebAssemblyGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineFunction;
 class RegScavenger;
@@ -50,6 +51,6 @@ public:
       const MachineOperand &MO, const MachineRegisterInfo &MRI) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -22,7 +22,7 @@
 #include "llvm/Support/Compiler.h"
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 class Function;
 class Module;
@@ -60,6 +60,6 @@ public:
   static bool isRequired() { return true; }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

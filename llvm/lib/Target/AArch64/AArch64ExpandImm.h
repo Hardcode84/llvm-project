@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_AARCH64_MCTARGETDESC_AARCH64EXPANDIMM_H
 
 #include "llvm/ADT/SmallVector.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace AArch64_IMM {
 
@@ -30,6 +31,6 @@ void expandMOVImm(uint64_t Imm, unsigned BitSize,
 
 } // end namespace AArch64_IMM
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

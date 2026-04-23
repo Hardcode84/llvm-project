@@ -16,6 +16,7 @@
 #include "SIInstrInfo.h"
 #include "llvm/CodeGen/LiveIntervals.h"
 #include "llvm/CodeGen/MachineRegisterInfo.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -135,7 +136,8 @@ static const char *getReasonStr(SIScheduleCandReason Reason) {
 
 #endif
 
-namespace llvm::SISched {
+LLVM_NAMESPACE_BEGIN
+namespace SISched {
 static bool tryLess(int TryVal, int CandVal,
                     SISchedulerCandidate &TryCand,
                     SISchedulerCandidate &Cand,
@@ -169,7 +171,8 @@ static bool tryGreater(int TryVal, int CandVal,
   Cand.setRepeat(Reason);
   return false;
 }
-} // end namespace llvm::SISched
+}
+LLVM_NAMESPACE_END // end namespace llvm::SISched
 
 // SIScheduleBlock //
 

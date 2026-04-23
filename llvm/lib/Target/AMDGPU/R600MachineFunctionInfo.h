@@ -13,8 +13,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_R600MACHINEFUNCTIONINFO_H
 
 #include "AMDGPUMachineFunctionInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class R600Subtarget;
 
@@ -24,6 +25,6 @@ public:
   unsigned CFStackSize;
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

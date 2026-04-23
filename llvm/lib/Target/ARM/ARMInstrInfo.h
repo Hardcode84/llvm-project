@@ -15,8 +15,9 @@
 
 #include "ARMBaseInstrInfo.h"
 #include "ARMRegisterInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class ARMSubtarget;
 
 class ARMInstrInfo : public ARMBaseInstrInfo {
@@ -41,6 +42,6 @@ private:
   void expandLoadStackGuard(MachineBasicBlock::iterator MI) const override;
 };
 
-}
+LLVM_NAMESPACE_END
 
 #endif

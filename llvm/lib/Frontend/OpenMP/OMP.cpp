@@ -28,6 +28,7 @@ using namespace llvm::omp;
 
 #define GEN_DIRECTIVES_IMPL
 #include "llvm/Frontend/OpenMP/OMP.inc"
+#include "llvm/Support/Compiler.h"
 
 static iterator_range<ArrayRef<Directive>::iterator>
 getFirstCompositeRange(iterator_range<ArrayRef<Directive>::iterator> Leafs) {
@@ -97,7 +98,8 @@ collectPrivatizingConstructs(llvm::SmallSet<Directive, 16> &Constructs,
   }
 }
 
-namespace llvm::omp {
+LLVM_NAMESPACE_BEGIN
+namespace omp {
 ArrayRef<Directive> getLeafConstructs(Directive D) {
   auto Idx = static_cast<std::size_t>(D);
   if (Idx >= Directive_enumSize)
@@ -265,4 +267,5 @@ std::string deconstructOpenMPKernelName(StringRef KernelName,
     return "";
   return demangle(PrettyName.take_front(LineIdx));
 }
-} // namespace llvm::omp
+}
+LLVM_NAMESPACE_END // namespace llvm::omp

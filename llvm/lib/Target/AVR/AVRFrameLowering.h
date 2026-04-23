@@ -10,8 +10,9 @@
 #define LLVM_AVR_FRAME_LOWERING_H
 
 #include "llvm/CodeGen/TargetFrameLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Utilities for creating function call frames.
 class AVRFrameLowering : public TargetFrameLowering {
@@ -42,6 +43,6 @@ protected:
   bool hasFPImpl(const MachineFunction &MF) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_AVR_FRAME_LOWERING_H

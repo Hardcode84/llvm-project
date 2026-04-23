@@ -9,6 +9,7 @@
 #include "llvm/DebugInfo/PDB/Native/EnumTables.h"
 #include "llvm/DebugInfo/PDB/Native/RawConstants.h"
 #include "llvm/Support/ScopedPrinter.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::pdb;
@@ -29,10 +30,10 @@ static const EnumEntry<uint16_t> OMFSegMapDescFlagNames[] = {
     PDB_ENUM_CLASS_ENT(OMFSegDescFlags, IsGroup),
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 ArrayRef<EnumEntry<uint16_t>> getOMFSegMapDescFlagNames() {
   return ArrayRef(OMFSegMapDescFlagNames);
 }
 }
-}
+LLVM_NAMESPACE_END

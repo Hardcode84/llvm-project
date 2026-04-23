@@ -11,10 +11,12 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/ExecutionEngine/JITLink/x86.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
-namespace llvm::jitlink::x86 {
+LLVM_NAMESPACE_BEGIN
+namespace jitlink::x86 {
 
 const char *getEdgeKindName(Edge::Kind K) {
   switch (K) {
@@ -86,4 +88,5 @@ Error optimizeGOTAndStubAccesses(LinkGraph &G) {
   return Error::success();
 }
 
-} // namespace llvm::jitlink::x86
+}
+LLVM_NAMESPACE_END // namespace llvm::jitlink::x86

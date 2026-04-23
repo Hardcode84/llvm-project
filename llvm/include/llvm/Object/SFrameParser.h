@@ -16,7 +16,7 @@
 #include "llvm/Support/Error.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 
 template <endianness E> class SFrameParser {
@@ -115,6 +115,6 @@ extern template class LLVM_TEMPLATE_ABI SFrameParser<endianness::big>;
 extern template class LLVM_TEMPLATE_ABI SFrameParser<endianness::little>;
 
 } // end namespace object
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECT_SFRAME_H

@@ -18,8 +18,9 @@
 #include "llvm/BinaryFormat/Wasm.h"
 #include "llvm/CodeGenTypes/MachineValueType.h"
 #include "llvm/MC/MCInstPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCSubtargetInfo;
 
@@ -64,6 +65,6 @@ public:
   static const char *getRegisterName(MCRegister Reg);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

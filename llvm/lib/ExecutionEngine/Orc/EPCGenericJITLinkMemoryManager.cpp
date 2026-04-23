@@ -13,10 +13,11 @@
 #include "llvm/ExecutionEngine/Orc/Shared/OrcRTBridge.h"
 
 #include <limits>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm::jitlink;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 const EPCGenericJITLinkMemoryManager::SymbolNames
@@ -202,4 +203,4 @@ void EPCGenericJITLinkMemoryManager::completeAllocation(
 }
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

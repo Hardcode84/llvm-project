@@ -27,7 +27,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachObjectWriter;
 
@@ -346,6 +346,6 @@ public:
 
   uint64_t writeObject() override;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCMACHOBJECTWRITER_H

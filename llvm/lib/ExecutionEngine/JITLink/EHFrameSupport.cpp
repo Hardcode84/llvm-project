@@ -12,10 +12,11 @@
 #include "llvm/Config/config.h"
 #include "llvm/ExecutionEngine/Orc/TargetProcess/RegisterEHFrames.h"
 #include "llvm/Support/DynamicLibrary.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 EHFrameEdgeFixer::EHFrameEdgeFixer(StringRef EHFrameSectionName,
@@ -682,4 +683,4 @@ Section *getEHFrameSection(LinkGraph &G) {
 }
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

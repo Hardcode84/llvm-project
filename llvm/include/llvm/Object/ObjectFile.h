@@ -31,7 +31,7 @@
 #include <cstdint>
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SubtargetFeatures;
 
@@ -667,6 +667,6 @@ template <> struct DenseMapInfo<object::SectionRef> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECT_OBJECTFILE_H

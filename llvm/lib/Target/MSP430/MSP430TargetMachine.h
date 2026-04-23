@@ -17,8 +17,9 @@
 #include "MSP430Subtarget.h"
 #include "llvm/CodeGen/CodeGenTargetMachineImpl.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 /// MSP430TargetMachine
@@ -49,6 +50,6 @@ public:
                             const TargetSubtargetInfo *STI) const override;
 }; // MSP430TargetMachine.
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

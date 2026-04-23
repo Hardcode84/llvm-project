@@ -20,7 +20,7 @@
 #include "llvm/TargetParser/Host.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -52,6 +52,6 @@ emitDebugSections(StringRef YAMLString,
                   bool IsLittleEndian = sys::IsLittleEndianHost,
                   bool Is64BitAddrSize = true);
 } // end namespace DWARFYAML
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECTYAML_DWARFEMITTER_H

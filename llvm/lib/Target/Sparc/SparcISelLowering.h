@@ -16,8 +16,9 @@
 
 #include "Sparc.h"
 #include "llvm/CodeGen/TargetLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class SparcSubtarget;
 
   class SparcTargetLowering : public TargetLowering {
@@ -205,6 +206,6 @@ namespace llvm {
     void AdjustInstrPostInstrSelection(MachineInstr &MI,
                                        SDNode *Node) const override;
   };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_SPARC_SPARCISELLOWERING_H

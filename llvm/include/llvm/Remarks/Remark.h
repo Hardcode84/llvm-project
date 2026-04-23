@@ -22,7 +22,7 @@
 #include <optional>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace remarks {
 
 /// The current version of the remark entry.
@@ -234,6 +234,6 @@ inline raw_ostream &operator<<(raw_ostream &OS, const Remark &Remark) {
 }
 
 } // end namespace remarks
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif /* LLVM_REMARKS_REMARK_H */

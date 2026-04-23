@@ -21,7 +21,8 @@
 #include "llvm/Support/DataTypes.h"
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/raw_ostream.h"
-namespace llvm {
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class IntrinsicLowering;
 template<typename T> class generic_gep_type_iterator;
@@ -229,6 +230,6 @@ private:  // Helper functions
 
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

@@ -18,10 +18,11 @@
 #include "llvm/Passes/PassBuilder.h"
 #include "llvm/Passes/StandardInstrumentations.h"
 #include "llvm/Support/CBindingWrapping.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Helper struct for holding a set of builder options for LLVMRunPasses. This
 /// structure is used to keep LLVMRunPasses backwards compatible with future
 /// versions in case we modify the options the new Pass Manager utilizes.
@@ -39,7 +40,7 @@ public:
   const char *AAPipeline;
   PipelineTuningOptions PTO;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static TargetMachine *unwrap(LLVMTargetMachineRef P) {
   return reinterpret_cast<TargetMachine *>(P);

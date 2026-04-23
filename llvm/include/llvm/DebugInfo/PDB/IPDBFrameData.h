@@ -13,7 +13,7 @@
 #include <cstdint>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 /// IPDBFrameData defines an interface used to represent a frame data of some
@@ -31,6 +31,6 @@ public:
 };
 
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

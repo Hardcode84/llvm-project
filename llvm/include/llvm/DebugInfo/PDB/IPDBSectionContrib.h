@@ -10,8 +10,9 @@
 #define LLVM_DEBUGINFO_PDB_IPDBSECTIONCONTRIB_H
 
 #include "PDBTypes.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 /// IPDBSectionContrib defines an interface used to represent section
@@ -44,6 +45,6 @@ public:
   virtual uint32_t getCompilandId() const = 0;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_DEBUGINFO_PDB_IPDBSECTIONCONTRIB_H

@@ -13,7 +13,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/TextAPI/InterfaceFile.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Error;
 class raw_ostream;
@@ -51,6 +51,6 @@ public:
 };
 
 } // end namespace MachO.
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.
 
 #endif // LLVM_TEXTAPI_TEXTAPIWRITER_H

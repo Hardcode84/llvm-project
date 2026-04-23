@@ -12,8 +12,10 @@
 #include "llvm/CAS/CASID.h"
 #include "llvm/Support/BLAKE3.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::cas::builtin {
+LLVM_NAMESPACE_BEGIN
+namespace cas::builtin {
 
 /// Current hash type for the builtin CAS.
 ///
@@ -84,6 +86,7 @@ public:
   static void printID(ArrayRef<uint8_t> Digest, raw_ostream &OS);
 };
 
-} // namespace llvm::cas::builtin
+}
+LLVM_NAMESPACE_END // namespace llvm::cas::builtin
 
 #endif // LLVM_CAS_BUILTINCASCONTEXT_H

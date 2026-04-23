@@ -23,7 +23,7 @@
 #include <cassert>
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachObjectWriter;
 class MCAssembler;
@@ -184,6 +184,6 @@ public:
 using MCLOHArgs = MCLOHDirective::LOHArgs;
 using MCLOHDirectives = MCLOHContainer::LOHDirectives;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCLINKEROPTIMIZATIONHINT_H

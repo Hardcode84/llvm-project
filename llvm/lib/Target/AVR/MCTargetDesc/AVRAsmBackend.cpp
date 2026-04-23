@@ -25,6 +25,7 @@
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/MathExtras.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 namespace adjust {
 
@@ -242,7 +243,7 @@ static void ms8(unsigned Size, const MCFixup &Fixup, uint64_t &Value,
 } // namespace ldi
 } // namespace adjust
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Prepare value for the target space for it
 void AVRAsmBackend::adjustFixupValue(const MCFixup &Fixup,
@@ -525,4 +526,4 @@ MCAsmBackend *createAVRAsmBackend(const Target &T, const MCSubtargetInfo &STI,
   return new AVRAsmBackend(STI.getTargetTriple().getOS());
 }
 
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm

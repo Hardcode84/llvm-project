@@ -16,7 +16,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 enum class EmitDwarfUnwindType {
   Always,          // Always emit dwarf unwind
@@ -132,6 +132,6 @@ public:
   LLVM_ABI StringRef getAssemblyLanguage() const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCTARGETOPTIONS_H

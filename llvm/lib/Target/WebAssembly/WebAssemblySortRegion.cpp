@@ -1,18 +1,19 @@
 #include "WebAssemblySortRegion.h"
 #include "WebAssemblyExceptionInfo.h"
 #include "llvm/CodeGen/MachineLoopInfo.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace WebAssembly;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace WebAssembly {
 template <>
 bool ConcreteSortRegion<MachineLoop>::isLoop() const {
   return true;
 }
 } // end namespace WebAssembly
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 const SortRegion *SortRegionInfo::getRegionFor(const MachineBasicBlock *MBB) {
   const auto *ML = MLI.getLoopFor(MBB);

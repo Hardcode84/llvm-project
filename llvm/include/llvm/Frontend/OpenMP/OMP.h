@@ -20,7 +20,8 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/ADT/StringRef.h"
 
-namespace llvm::omp {
+LLVM_NAMESPACE_BEGIN
+namespace omp {
 LLVM_ABI ArrayRef<Directive> getLeafConstructs(Directive D);
 LLVM_ABI ArrayRef<Directive> getLeafConstructsOrSelf(Directive D);
 
@@ -84,6 +85,7 @@ LLVM_ABI std::string prettifyFunctionName(StringRef FunctionName);
 LLVM_ABI std::string deconstructOpenMPKernelName(StringRef KernelName,
                                                  unsigned &LineNo);
 
-} // namespace llvm::omp
+}
+LLVM_NAMESPACE_END // namespace llvm::omp
 
 #endif // LLVM_FRONTEND_OPENMP_OMP_H

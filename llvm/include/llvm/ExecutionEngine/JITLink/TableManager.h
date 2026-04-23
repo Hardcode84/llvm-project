@@ -15,8 +15,9 @@
 
 #include "llvm/ExecutionEngine/JITLink/JITLink.h"
 #include "llvm/Support/Debug.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 /// A CRTP base for tables that are built on demand, e.g. Global Offset Tables
@@ -73,6 +74,6 @@ private:
 };
 
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

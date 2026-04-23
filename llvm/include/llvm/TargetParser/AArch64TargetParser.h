@@ -26,7 +26,7 @@
 #include <set>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Triple;
 
@@ -293,6 +293,6 @@ LLVM_ABI void
 printEnabledExtensions(const std::set<StringRef> &EnabledFeatureNames);
 
 } // namespace AArch64
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -15,8 +15,9 @@
 #define LLVM_LIB_TARGET_X86_X86MACHINELEGALIZER_H
 
 #include "llvm/CodeGen/GlobalISel/LegalizerInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class X86Subtarget;
 class X86TargetMachine;
@@ -61,5 +62,5 @@ private:
   bool legalizeSETROUNDING(MachineInstr &MI, MachineRegisterInfo &MRI,
                            LegalizerHelper &Helper) const;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

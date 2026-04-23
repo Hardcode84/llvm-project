@@ -16,8 +16,9 @@
 #include "llvm/MC/MCSectionELF.h"
 
 #include "AVR.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 void AVRTargetObjectFile::Initialize(MCContext &Ctx, const TargetMachine &TM) {
   Base::Initialize(Ctx, TM);
   ProgmemDataSection =
@@ -80,4 +81,4 @@ MCSection *AVRTargetObjectFile::SelectSectionForGlobal(
   // Otherwise, we work the same way as ELF.
   return Base::SelectSectionForGlobal(GO, Kind, TM);
 }
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm

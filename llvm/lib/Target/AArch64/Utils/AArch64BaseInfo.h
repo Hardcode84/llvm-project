@@ -26,8 +26,9 @@
 #include "llvm/ADT/StringSwitch.h"
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/TargetParser/SubtargetFeature.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 inline static MCRegister getWRegFromXReg(MCRegister Reg) {
   switch (Reg.id()) {
@@ -1075,6 +1076,6 @@ namespace AArch64 {
 static constexpr unsigned SVEBitsPerBlock = 128;
 static constexpr unsigned SVEMaxBitsPerVector = 2048;
 } // end namespace AArch64
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

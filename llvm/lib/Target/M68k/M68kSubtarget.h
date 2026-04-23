@@ -29,11 +29,12 @@
 
 #define GET_SUBTARGETINFO_HEADER
 #include "M68kGenSubtargetInfo.inc"
+#include "llvm/Support/Compiler.h"
 
 extern bool M68kReserveGP;
 extern bool M68kNoCpload;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 class M68kTargetMachine;
@@ -181,6 +182,6 @@ public:
   const LegalizerInfo *getLegalizerInfo() const override;
   const RegisterBankInfo *getRegBankInfo() const override;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_M68K_M68KSUBTARGET_H

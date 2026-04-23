@@ -18,9 +18,10 @@
 
 #define GET_SDNODE_ENUM
 #include "AArch64GenSDNodeInfo.inc"
+#include "llvm/Support/Compiler.h"
 #undef GET_SDNODE_ENUM
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AArch64SelectionDAGInfo : public SelectionDAGGenTargetInfo {
 public:
@@ -68,6 +69,6 @@ public:
                                             SDValue Op1, SDValue Size,
                                             RTLIB::Libcall LC) const;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

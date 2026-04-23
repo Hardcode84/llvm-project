@@ -15,8 +15,9 @@
 
 #include "SparcMCTargetDesc.h"
 #include "llvm/MC/MCInstPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SparcInstPrinter : public MCInstPrinter {
 public:
@@ -62,6 +63,6 @@ public:
   void printPrefetchTag(const MCInst *MI, int opNum, const MCSubtargetInfo &STI,
                         raw_ostream &O);
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

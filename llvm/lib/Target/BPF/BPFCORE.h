@@ -11,8 +11,9 @@
 
 #include "llvm/ADT/StringRef.h"
 #include "llvm/IR/Instructions.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BasicBlock;
 class Instruction;
@@ -59,6 +60,6 @@ public:
   static void removeUnionAccessCall(CallInst *Call);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

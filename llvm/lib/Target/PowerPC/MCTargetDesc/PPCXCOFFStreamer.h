@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_PPC_MCXCOFFSTREAMER_PPCXCOFFSTREAMER_H
 
 #include "llvm/MC/MCXCOFFStreamer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class PPCXCOFFStreamer : public MCXCOFFStreamer {
 public:
@@ -33,6 +34,6 @@ MCStreamer *createPPCXCOFFStreamer(const Triple &, MCContext &,
                                    std::unique_ptr<MCAsmBackend> &&MAB,
                                    std::unique_ptr<MCObjectWriter> &&OW,
                                    std::unique_ptr<MCCodeEmitter> &&Emitter);
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_PPC_MCXCOFFSTREAMER_PPCXCOFFSTREAMER_H

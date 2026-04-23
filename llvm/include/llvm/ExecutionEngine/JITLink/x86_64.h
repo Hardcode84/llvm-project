@@ -17,7 +17,7 @@
 #include "llvm/ExecutionEngine/JITLink/TableManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 namespace x86_64 {
 
@@ -787,6 +787,6 @@ LLVM_ABI Error optimizeGOTAndStubAccesses(LinkGraph &G);
 
 } // namespace x86_64
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_JITLINK_X86_64_H

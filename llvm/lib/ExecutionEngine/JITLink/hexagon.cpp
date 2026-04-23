@@ -11,10 +11,12 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/ExecutionEngine/JITLink/hexagon.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
-namespace llvm::jitlink::hexagon {
+LLVM_NAMESPACE_BEGIN
+namespace jitlink::hexagon {
 
 const char *getEdgeKindName(Edge::Kind K) {
   switch (K) {
@@ -71,4 +73,5 @@ const char *getEdgeKindName(Edge::Kind K) {
   }
 }
 
-} // namespace llvm::jitlink::hexagon
+}
+LLVM_NAMESPACE_END // namespace llvm::jitlink::hexagon

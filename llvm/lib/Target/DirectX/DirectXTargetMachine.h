@@ -14,8 +14,9 @@
 #include "DirectXSubtarget.h"
 #include "llvm/CodeGen/CodeGenTargetMachineImpl.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Function;
 class DirectXTargetMachine : public CodeGenTargetMachineImpl {
   std::unique_ptr<TargetLoweringObjectFile> TLOF;
@@ -49,6 +50,6 @@ public:
   TargetTransformInfo getTargetTransformInfo(const Function &F) const override;
   void registerPassBuilderCallbacks(PassBuilder &PB) override;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DIRECTX_DIRECTXTARGETMACHINE_H

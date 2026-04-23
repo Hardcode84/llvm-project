@@ -21,8 +21,9 @@
 #include "llvm/PassInfo.h"
 #include "llvm/Support/CodeGen.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class FunctionPass;
 class InstructionSelector;
@@ -503,6 +504,6 @@ enum : unsigned {
 };
 } // End X86AS namespace
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

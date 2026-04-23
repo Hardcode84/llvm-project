@@ -19,8 +19,9 @@
 #include "AArch64RegisterInfo.h"
 #include "llvm/CodeGen/LivePhysRegs.h"
 #include "llvm/CodeGen/MachineFunction.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AArch64FunctionInfo;
 class AArch64FrameLowering;
@@ -208,6 +209,6 @@ private:
   DebugLoc DL;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

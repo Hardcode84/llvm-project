@@ -20,8 +20,9 @@
 
 #include "llvm/Analysis/CGSCCPassManager.h"
 #include "llvm/Analysis/LazyCallGraph.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AMDGPUPerfHintAnalysis;
 class CallGraphSCC;
@@ -72,5 +73,5 @@ struct AMDGPUPerfHintAnalysisPass
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &AM);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_LIB_TARGET_AMDGPU_AMDGPUPERFHINTANALYSIS_H

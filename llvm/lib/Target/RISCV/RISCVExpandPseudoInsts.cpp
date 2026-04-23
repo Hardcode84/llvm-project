@@ -20,6 +20,7 @@
 #include "llvm/CodeGen/MachineFunctionPass.h"
 #include "llvm/CodeGen/MachineInstrBuilder.h"
 #include "llvm/MC/MCContext.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -842,9 +843,9 @@ INITIALIZE_PASS(RISCVExpandPseudo, "riscv-expand-pseudo",
 INITIALIZE_PASS(RISCVPreRAExpandPseudo, "riscv-prera-expand-pseudo",
                 RISCV_PRERA_EXPAND_PSEUDO_NAME, false, false)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 FunctionPass *createRISCVExpandPseudoPass() { return new RISCVExpandPseudo(); }
 FunctionPass *createRISCVPreRAExpandPseudoPass() { return new RISCVPreRAExpandPseudo(); }
 
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm

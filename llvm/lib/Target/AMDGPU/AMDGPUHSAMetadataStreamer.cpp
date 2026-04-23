@@ -22,6 +22,7 @@
 #include "llvm/MC/MCContext.h"
 #include "llvm/MC/MCExpr.h"
 #include "llvm/Target/TargetLoweringObjectFile.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -61,7 +62,7 @@ static std::string getEnqueuedBlockSymbolName(const AMDGPUTargetMachine &TM,
   return Name.str().str();
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static cl::opt<bool> DumpHSAMetadata(
     "amdgpu-dump-hsa-metadata",
@@ -763,4 +764,4 @@ void MetadataStreamerMsgPackV6::emitKernelAttrs(const AMDGPUTargetMachine &TM,
 }
 
 } // end namespace AMDGPU::HSAMD
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

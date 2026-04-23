@@ -27,7 +27,7 @@
 #include <iterator>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCRegUnitIterator;
 class MCSubRegIterator;
@@ -830,6 +830,6 @@ MCRegisterInfo::regunits(MCRegister Reg) const {
   return make_range({Reg, this}, MCRegUnitIterator());
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCREGISTERINFO_H

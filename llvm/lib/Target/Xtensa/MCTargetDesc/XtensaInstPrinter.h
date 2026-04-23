@@ -18,7 +18,7 @@
 #include "llvm/MC/MCInstPrinter.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCOperand;
 
 class XtensaInstPrinter : public MCInstPrinter {
@@ -78,6 +78,6 @@ private:
   void printB4constu_AsmOperand(const MCInst *MI, int OpNum, raw_ostream &O);
   void printImm7_22_AsmOperand(const MCInst *MI, int OpNum, raw_ostream &O);
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif /* LLVM_LIB_TARGET_XTENSA_MCTARGETDESC_XTENSAINSTPRINTER_H */

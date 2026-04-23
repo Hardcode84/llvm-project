@@ -24,7 +24,7 @@
 #include <memory>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace codeview {
 class AppendingTypeTableBuilder;
@@ -59,7 +59,7 @@ toDebugT(ArrayRef<LeafRecord>, BumpPtrAllocator &Alloc, StringRef SectionName);
 
 } // end namespace CodeViewYAML
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 LLVM_YAML_DECLARE_SCALAR_TRAITS(codeview::GUID, QuotingType::Single)
 

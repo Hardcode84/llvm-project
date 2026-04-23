@@ -15,8 +15,9 @@
 
 #include "llvm/Support/CommandLine.h"
 #include <map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 class RecordKeeper;
@@ -45,6 +46,6 @@ int TableGenMain(const char *argv0, MultiFileTableGenMainFn MainFn = nullptr);
 /// Typically set to false when building with MSVC.
 extern cl::opt<bool> EmitLongStrLiterals;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TABLEGEN_MAIN_H

@@ -15,7 +15,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace logicalview {
 
 class LVObject;
@@ -50,6 +50,6 @@ LLVM_ABI LVSortValue sortByLine(const LVObject *LHS, const LVObject *RHS);
 LLVM_ABI LVSortValue sortByName(const LVObject *LHS, const LVObject *RHS);
 
 } // end namespace logicalview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_LOGICALVIEW_CORE_LVSORT_H

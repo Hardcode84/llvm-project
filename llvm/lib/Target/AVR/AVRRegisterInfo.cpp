@@ -26,8 +26,9 @@
 
 #define GET_REGINFO_TARGET_DESC
 #include "AVRGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 AVRRegisterInfo::AVRRegisterInfo() : AVRGenRegisterInfo(0) {}
 
@@ -316,4 +317,4 @@ bool AVRRegisterInfo::shouldCoalesce(
                                             NewRC, LIS);
 }
 
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm

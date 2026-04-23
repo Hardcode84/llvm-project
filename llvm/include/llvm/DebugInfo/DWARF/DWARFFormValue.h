@@ -16,7 +16,7 @@
 #include "llvm/Support/DataExtractor.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DWARFContext;
 class DWARFObject;
@@ -441,6 +441,6 @@ LLVM_ABI bool doesFormBelongToClass(dwarf::Form Form,
 
 } // end namespace dwarf
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFFORMVALUE_H

@@ -17,8 +17,9 @@
 #include "llvm/ADT/DenseSet.h"
 #include "llvm/MC/MCInstPrinter.h"
 #include "llvm/MC/MCRegister.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SPIRVInstPrinter : public MCInstPrinter {
 private:
   SmallDenseMap<MCRegister, SPIRV::InstructionSet::InstructionSet> ExtInstSetIDs;
@@ -54,6 +55,6 @@ public:
   void printInstruction(const MCInst *MI, uint64_t Address, raw_ostream &O);
   static const char *getRegisterName(MCRegister Reg);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_SPIRV_MCTARGETDESC_SPIRVINSTPRINTER_H

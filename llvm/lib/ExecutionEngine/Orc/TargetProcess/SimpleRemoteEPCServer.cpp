@@ -16,12 +16,13 @@
 #include "llvm/TargetParser/Host.h"
 
 #include "OrcRTBootstrap.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
 using namespace llvm::orc::shared;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 ExecutorBootstrapService::~ExecutorBootstrapService() = default;
@@ -292,4 +293,4 @@ SimpleRemoteEPCServer::jitDispatchEntry(void *DispatchCtx, const void *FnTag,
 }
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

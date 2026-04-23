@@ -20,8 +20,9 @@
 #include "llvm/MC/MCExpr.h"
 #include "llvm/Support/Casting.h"
 #include "llvm/Support/ErrorHandling.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class X86MCExpr : public MCTargetExpr {
 
@@ -62,6 +63,6 @@ public:
     return E->getKind() == MCExpr::Target;
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -22,9 +22,10 @@
 #include <unistd.h>
 #elif defined(_WIN32)
 #include <windows.h>
+#include "llvm/Support/Compiler.h"
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 MemoryMapper::~MemoryMapper() = default;
@@ -467,4 +468,4 @@ SharedMemoryMapper::~SharedMemoryMapper() {
 
 } // namespace orc
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

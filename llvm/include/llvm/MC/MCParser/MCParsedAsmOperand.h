@@ -14,7 +14,7 @@
 #include "llvm/Support/SMLoc.h"
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCAsmInfo;
 class MCRegister;
@@ -95,6 +95,6 @@ public:
   /// dump - Print to the debug stream.
   virtual void dump() const;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCPARSER_MCPARSEDASMOPERAND_H

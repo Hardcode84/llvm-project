@@ -16,8 +16,9 @@
 #include "X86ISelLowering.h"
 #include "X86InstrInfo.h"
 #include "llvm/IR/IntrinsicsX86.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 enum IntrinsicType : uint16_t {
   CVTNEPS2BF16_MASK,
@@ -2106,6 +2107,6 @@ static void verifyIntrinsicTables() {
           std::end(IntrinsicsWithChain)) &&
          "Intrinsic data tables should have unique entries");
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

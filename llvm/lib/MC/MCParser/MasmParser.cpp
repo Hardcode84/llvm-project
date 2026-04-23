@@ -66,6 +66,7 @@
 #include <tuple>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -959,11 +960,11 @@ private:
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 extern cl::opt<unsigned> AsmMacroMaxNestingDepth;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 enum { DEFAULT_ADDRSPACE = 0 };
 

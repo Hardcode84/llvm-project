@@ -26,7 +26,7 @@
 
 #define DEBUG_TYPE "llvm-mca"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 class LLVM_ABI InstructionTables final : public Stage {
@@ -45,6 +45,6 @@ public:
   Error execute(InstRef &IR) override;
 };
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_MCA_STAGES_INSTRUCTIONTABLES_H

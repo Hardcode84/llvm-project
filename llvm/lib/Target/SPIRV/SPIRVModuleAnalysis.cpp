@@ -28,6 +28,7 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/CodeGen/MachineModuleInfo.h"
 #include "llvm/CodeGen/TargetPassConfig.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -884,7 +885,7 @@ void SPIRV::RequirementHandler::removeCapabilityIf(
     AllCaps.erase(ToRemove);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace SPIRV {
 void RequirementHandler::initAvailableCapabilities(const SPIRVSubtarget &ST) {
   // Provided by both all supported Vulkan versions and OpenCl.
@@ -1006,7 +1007,7 @@ void RequirementHandler::initAvailableCapabilitiesForVulkan(
 }
 
 } // namespace SPIRV
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Add the required capabilities from a decoration instruction (including
 // BuiltIns).

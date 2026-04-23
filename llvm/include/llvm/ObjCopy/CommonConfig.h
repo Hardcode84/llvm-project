@@ -23,7 +23,7 @@
 #include "llvm/Support/Regex.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 
 enum class FileFormat { Unspecified, ELF, Binary, IHex, SREC };
@@ -291,6 +291,6 @@ struct CommonConfig {
 };
 
 } // namespace objcopy
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_OBJCOPY_COMMONCONFIG_H

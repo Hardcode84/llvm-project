@@ -88,6 +88,7 @@ MipsInstructionSelector::MipsInstructionSelector(
 #undef GET_GLOBALISEL_PREDICATES_INIT
 #define GET_GLOBALISEL_TEMPORARIES_INIT
 #include "MipsGenGlobalISel.inc"
+#include "llvm/Support/Compiler.h"
 #undef GET_GLOBALISEL_TEMPORARIES_INIT
 {
 }
@@ -905,11 +906,11 @@ bool MipsInstructionSelector::select(MachineInstr &I) {
   return true;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 InstructionSelector *
 createMipsInstructionSelector(const MipsTargetMachine &TM,
                               const MipsSubtarget &Subtarget,
                               const MipsRegisterBankInfo &RBI) {
   return new MipsInstructionSelector(TM, Subtarget, RBI);
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

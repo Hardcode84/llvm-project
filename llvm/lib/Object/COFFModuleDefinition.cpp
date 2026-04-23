@@ -21,11 +21,12 @@
 #include "llvm/Object/Error.h"
 #include "llvm/Support/Error.h"
 #include "llvm/Support/Path.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm::COFF;
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 
 enum Kind {
@@ -373,4 +374,4 @@ Expected<COFFModuleDefinition> parseCOFFModuleDefinition(MemoryBufferRef MB,
 }
 
 } // namespace object
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

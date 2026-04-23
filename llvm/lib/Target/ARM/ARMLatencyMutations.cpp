@@ -22,8 +22,9 @@
 #include <array>
 #include <initializer_list>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace {
 
@@ -972,4 +973,4 @@ createARMLatencyMutations(const ARMSubtarget &ST, AAResults *AA) {
   return nullptr;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

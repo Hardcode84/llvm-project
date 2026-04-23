@@ -15,7 +15,7 @@
 #include "llvm/Support/SMLoc.h"
 #include <cassert>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCExpr;
 
 /// Extensible enumeration to represent the type of a fixup.
@@ -137,6 +137,6 @@ inline bool isRelocRelocation(MCFixupKind FixupKind) {
 }
 } // namespace mc
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

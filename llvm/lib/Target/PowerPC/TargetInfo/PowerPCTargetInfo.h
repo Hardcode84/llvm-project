@@ -9,7 +9,9 @@
 #ifndef LLVM_LIB_TARGET_POWERPC_TARGETINFO_POWERPCTARGETINFO_H
 #define LLVM_LIB_TARGET_POWERPC_TARGETINFO_POWERPCTARGETINFO_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class Target;
 
@@ -18,6 +20,6 @@ Target &getThePPC32LETarget();
 Target &getThePPC64Target();
 Target &getThePPC64LETarget();
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_POWERPC_TARGETINFO_POWERPCTARGETINFO_H

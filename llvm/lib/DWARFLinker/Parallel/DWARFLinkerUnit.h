@@ -17,8 +17,9 @@
 #include "llvm/DWARFLinker/StringPool.h"
 #include "llvm/DebugInfo/DWARF/DWARFUnit.h"
 #include "llvm/Support/LEB128.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dwarf_linker {
 namespace parallel {
 
@@ -226,6 +227,6 @@ inline bool isODRLanguage(uint16_t Language) {
 
 } // end of namespace parallel
 } // end of namespace dwarf_linker
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm
 
 #endif // LLVM_LIB_DWARFLINKER_PARALLEL_DWARFLINKERUNIT_H

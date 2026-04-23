@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_CSKY_CSKYMACHINEFUNCTIONINFO_H
 
 #include "llvm/CodeGen/MachineFunction.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CSKYMachineFunctionInfo : public MachineFunctionInfo {
   Register GlobalBaseReg = 0;
@@ -62,6 +63,6 @@ public:
   void initPICLabelUId(unsigned UId) { PICLabelUId = UId; }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_CSKY_CSKYMACHINEFUNCTIONINFO_H

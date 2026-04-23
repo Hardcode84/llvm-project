@@ -13,8 +13,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_MCTARGETDESC_AMDGPUINSTPRINTER_H
 
 #include "llvm/MC/MCInstPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCInstrDesc;
 
 class AMDGPUInstPrinter : public MCInstPrinter {
@@ -251,6 +252,6 @@ protected:
                    raw_ostream &O);
 };
 
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 
 #endif

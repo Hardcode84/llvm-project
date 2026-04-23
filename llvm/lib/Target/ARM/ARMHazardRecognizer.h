@@ -19,8 +19,9 @@
 #include "llvm/CodeGen/ScheduleHazardRecognizer.h"
 #include "llvm/Support/DataTypes.h"
 #include <initializer_list>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DataLayout;
 class MachineFunction;
@@ -63,6 +64,6 @@ private:
   inline HazardType CheckOffsets(unsigned O0, unsigned O1);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

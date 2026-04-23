@@ -18,8 +18,9 @@
 #include "LanaiRegisterInfo.h"
 #include "llvm/CodeGen/SelectionDAG.h"
 #include "llvm/CodeGen/TargetLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LanaiSubtarget;
 
@@ -107,6 +108,6 @@ private:
 
   const LanaiRegisterInfo *TRI;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_LANAI_LANAIISELLOWERING_H

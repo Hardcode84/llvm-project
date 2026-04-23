@@ -26,8 +26,9 @@
 #include "llvm/CodeGen/RDFGraph.h"
 #include "llvm/CodeGen/RDFLiveness.h"
 #include "llvm/ADT/SetVector.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class MachineRegisterInfo;
 
 namespace rdf {
@@ -61,6 +62,6 @@ namespace rdf {
     void processUse(NodeAddr<UseNode*> UA, SetQueue<NodeId> &WorkQ);
   };
 } // namespace rdf
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

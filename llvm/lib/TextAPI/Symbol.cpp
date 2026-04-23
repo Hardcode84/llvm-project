@@ -12,8 +12,9 @@
 
 #include "llvm/TextAPI/Symbol.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace MachO {
 
 #if !defined(NDEBUG) || defined(LLVM_ENABLE_DUMP)
@@ -92,4 +93,4 @@ SimpleSymbol parseSymbol(StringRef SymName) {
 }
 
 } // end namespace MachO.
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.

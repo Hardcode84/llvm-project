@@ -21,7 +21,7 @@
 #include "llvm/Support/YAMLTraits.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace CodeViewYAML {
 
 namespace detail {
@@ -42,7 +42,7 @@ struct SymbolRecord {
 };
 
 } // end namespace CodeViewYAML
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 LLVM_YAML_DECLARE_MAPPING_TRAITS(CodeViewYAML::SymbolRecord)
 LLVM_YAML_IS_SEQUENCE_VECTOR(CodeViewYAML::SymbolRecord)

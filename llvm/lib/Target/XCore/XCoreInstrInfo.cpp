@@ -26,8 +26,9 @@ using namespace llvm;
 
 #define GET_INSTRINFO_CTOR_DTOR
 #include "XCoreGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace XCore {
 
   // XCore Condition Codes
@@ -37,7 +38,7 @@ namespace XCore {
     COND_INVALID
   };
 }
-}
+LLVM_NAMESPACE_END
 
 // Pin the vtable to this file.
 void XCoreInstrInfo::anchor() {}

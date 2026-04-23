@@ -11,8 +11,9 @@
 
 #include "PDBSymbol.h"
 #include "PDBTypes.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace pdb {
 
@@ -46,6 +47,6 @@ public:
 };
 
 } // namespace llvm
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_DEBUGINFO_PDB_PDBSYMBOLCOMPILANDDETAILS_H

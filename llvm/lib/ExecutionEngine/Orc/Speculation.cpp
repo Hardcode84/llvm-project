@@ -18,8 +18,9 @@
 #include "llvm/IR/Module.h"
 #include "llvm/IR/Type.h"
 #include "llvm/IR/Verifier.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace orc {
 
@@ -139,4 +140,4 @@ void IRSpeculationLayer::emit(std::unique_ptr<MaterializationResponsibility> R,
 }
 
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

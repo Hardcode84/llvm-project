@@ -43,6 +43,7 @@ using namespace llvm;
 
 #define GET_SUBTARGETINFO_MC_DESC
 #include "X86GenSubtargetInfo.inc"
+#include "llvm/Support/Compiler.h"
 
 std::string X86_MC::ParseX86Triple(const Triple &TT) {
   std::string FS;
@@ -521,7 +522,7 @@ static MCRelocationInfo *createX86MCRelocationInfo(const Triple &TheTriple,
   return llvm::createMCRelocationInfo(TheTriple, Ctx);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace X86_MC {
 
 class X86MCInstrAnalysis : public MCInstrAnalysis {
@@ -728,7 +729,7 @@ X86MCInstrAnalysis::getMemoryOperandRelocationOffset(const MCInst &Inst,
 
 } // end of namespace X86_MC
 
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm
 
 static MCInstrAnalysis *createX86MCInstrAnalysis(const MCInstrInfo *Info) {
   return new X86_MC::X86MCInstrAnalysis(Info);

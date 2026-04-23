@@ -35,7 +35,7 @@
 #define FORWARD_SYMBOL_ID_METHOD(MethodName)                                   \
   FORWARD_SYMBOL_ID_METHOD_WITH_NAME(MethodName, MethodName)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class StringRef;
 class raw_ostream;
@@ -172,6 +172,6 @@ protected:
 };
 
 } // namespace llvm
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -10,8 +10,9 @@
 #define LLVM_DEBUGINFO_PDB_IPDBTABLE_H
 
 #include "PDBTypes.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 class IPDBTable {
 public:
@@ -22,6 +23,6 @@ public:
   virtual PDB_TableType getTableType() const = 0;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_DEBUGINFO_PDB_IPDBTABLE_H

@@ -14,8 +14,9 @@
 #include "gmock/gmock.h"
 #include <ostream>
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace detail {
 
 template <typename T>
@@ -122,6 +123,6 @@ IsStringMapEntry(KeyMatcherT KM, ValueMatcherT VM) {
       std::move(KM), std::move(VM));
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

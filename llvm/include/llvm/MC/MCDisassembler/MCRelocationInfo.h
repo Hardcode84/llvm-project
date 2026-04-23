@@ -17,7 +17,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCContext;
 class MCExpr;
@@ -41,6 +41,6 @@ public:
                                                      unsigned VariantKind);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCDISASSEMBLER_MCRELOCATIONINFO_H

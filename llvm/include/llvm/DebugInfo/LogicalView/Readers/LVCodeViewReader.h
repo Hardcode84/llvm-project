@@ -26,8 +26,9 @@
 #include "llvm/Support/BinaryByteStream.h"
 #include "llvm/Support/BinaryItemStream.h"
 #include "llvm/Support/BinaryStreamArray.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct BinaryItemTraits<codeview::CVType> {
   static size_t length(const codeview::CVType &Item) { return Item.length(); }
   static ArrayRef<uint8_t> bytes(const codeview::CVType &Item) {
@@ -231,6 +232,6 @@ public:
 };
 
 } // end namespace logicalview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_LOGICALVIEW_READERS_CODEVIEWREADER_H

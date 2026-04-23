@@ -50,8 +50,9 @@
 
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/Support/TrailingObjects.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace BTF {
 
 enum : uint32_t { MAGIC = 0xeB9F, VERSION = 1 };
@@ -354,6 +355,6 @@ struct Enum64Type final : CommonType,
 #undef BTF_DEFINE_TAIL_ARR
 
 } // End namespace BTF.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.
 
 #endif

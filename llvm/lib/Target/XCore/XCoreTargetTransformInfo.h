@@ -21,8 +21,9 @@
 #include "llvm/Analysis/TargetTransformInfo.h"
 #include "llvm/CodeGen/BasicTTIImpl.h"
 #include "llvm/CodeGen/TargetLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class XCoreTTIImpl final : public BasicTTIImplBase<XCoreTTIImpl> {
   typedef BasicTTIImplBase<XCoreTTIImpl> BaseT;
@@ -49,6 +50,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

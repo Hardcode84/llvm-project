@@ -19,7 +19,7 @@
 #include "llvm/TargetParser/Triple.h"
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 namespace CSKY {
@@ -200,6 +200,6 @@ LLVM_ABI void fillValidCPUArchList(SmallVectorImpl<StringRef> &Values);
 
 } // namespace CSKY
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

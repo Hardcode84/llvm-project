@@ -15,8 +15,9 @@
 #define LLVM_LIB_TARGET_MIPS_MIPSSEREGISTERINFO_H
 
 #include "MipsRegisterInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MipsSERegisterInfo : public MipsRegisterInfo {
 public:
@@ -34,6 +35,6 @@ private:
                    int64_t SPOffset) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

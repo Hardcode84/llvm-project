@@ -15,8 +15,9 @@
 
 #include "llvm/MC/MCTargetOptions.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCAsmBackend;
 class MCCodeEmitter;
 class MCContext;
@@ -35,7 +36,7 @@ MCAsmBackend *createCSKYAsmBackend(const Target &T, const MCSubtargetInfo &STI,
                                    const MCTargetOptions &Options);
 
 MCCodeEmitter *createCSKYMCCodeEmitter(const MCInstrInfo &MCII, MCContext &Ctx);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #define GET_REGINFO_ENUM
 #include "CSKYGenRegisterInfo.inc"

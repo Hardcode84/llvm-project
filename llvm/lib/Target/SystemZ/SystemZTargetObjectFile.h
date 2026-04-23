@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_SYSTEMZ_SYSTEMZTARGETOBJECTFILE_H
 
 #include "llvm/CodeGen/TargetLoweringObjectFileImpl.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This implementation is used for SystemZ ELF targets.
 class SystemZELFTargetObjectFile : public TargetLoweringObjectFileELF {
@@ -22,6 +23,6 @@ public:
   const MCExpr *getDebugThreadLocalSymbol(const MCSymbol *Sym) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

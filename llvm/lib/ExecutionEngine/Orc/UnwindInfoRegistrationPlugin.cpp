@@ -11,12 +11,14 @@
 #include "llvm/ExecutionEngine/Orc/Shared/MachOObjectFormat.h"
 #include "llvm/ExecutionEngine/Orc/Shared/OrcRTBridge.h"
 #include "llvm/IR/Module.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
 using namespace llvm::jitlink;
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 Expected<std::shared_ptr<UnwindInfoRegistrationPlugin>>
 UnwindInfoRegistrationPlugin::Create(ExecutionSession &ES) {
@@ -119,4 +121,5 @@ Error UnwindInfoRegistrationPlugin::addUnwindInfoRegistrationActions(
   return Error::success();
 }
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc

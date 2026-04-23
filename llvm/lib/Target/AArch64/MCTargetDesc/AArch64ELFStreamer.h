@@ -14,13 +14,14 @@
 #define LLVM_LIB_TARGET_AARCH64_MCTARGETDESC_AARCH64ELFSTREAMER_H
 
 #include "llvm/MC/MCELFStreamer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 MCStreamer *createAArch64ELFStreamer(const Triple &, MCContext &Context,
                                      std::unique_ptr<MCAsmBackend> &&TAB,
                                      std::unique_ptr<MCObjectWriter> &&OW,
                                      std::unique_ptr<MCCodeEmitter> &&Emitter);
-}
+LLVM_NAMESPACE_END
 
 #endif

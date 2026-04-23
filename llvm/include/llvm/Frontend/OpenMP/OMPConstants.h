@@ -17,8 +17,9 @@
 #include "llvm/ADT/BitmaskEnum.h"
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Frontend/OpenMP/OMP.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace omp {
 LLVM_ENABLE_BITMASK_ENUMS_IN_NAMESPACE();
 
@@ -311,7 +312,7 @@ enum class WorksharingLoopType {
 
 } // end namespace omp
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #include "OMPDeviceConstants.h"
 

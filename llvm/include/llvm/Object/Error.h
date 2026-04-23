@@ -17,7 +17,7 @@
 #include "llvm/Support/Error.h"
 #include <system_error>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Twine;
 
@@ -89,7 +89,7 @@ inline Error createError(const Twine &Err) {
 
 } // end namespace object.
 
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.
 
 namespace std {
 template <>

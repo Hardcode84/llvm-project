@@ -14,6 +14,7 @@
 #include "llvm/ExecutionEngine/Orc/DebugUtils.h"
 #include "llvm/ExecutionEngine/Orc/Shared/ObjectFormats.h"
 #include "llvm/Support/MemoryBuffer.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
@@ -21,7 +22,7 @@ using namespace llvm;
 using namespace llvm::jitlink;
 using namespace llvm::orc;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct BlockDepInfo;
 
@@ -88,7 +89,7 @@ template <> struct GraphTraits<BlockDepInfo *> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 
@@ -112,7 +113,7 @@ ExecutorAddr getJITSymbolPtrForSymbol(Symbol &Sym, const Triple &TT) {
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 class LinkGraphLinkingLayer::JITLinkCtx final : public JITLinkContext {
@@ -691,4 +692,4 @@ void LinkGraphLinkingLayer::handleTransferResources(JITDylib &JD,
 }
 
 } // End namespace orc.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.

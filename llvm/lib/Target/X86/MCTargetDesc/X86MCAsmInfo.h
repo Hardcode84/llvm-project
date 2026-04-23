@@ -19,8 +19,9 @@
 #include "llvm/MC/MCAsmInfoDarwin.h"
 #include "llvm/MC/MCAsmInfoELF.h"
 #include "llvm/MC/MCExpr.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Triple;
 
 class X86MCAsmInfoDarwin : public MCAsmInfoDarwin {
@@ -108,6 +109,6 @@ enum {
   S_TPOFF,
 };
 } // namespace X86
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

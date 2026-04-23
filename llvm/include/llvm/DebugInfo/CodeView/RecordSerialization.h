@@ -19,7 +19,7 @@
 #include "llvm/Support/Error.h"
 #include <cinttypes>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class APSInt;
 namespace codeview {
 using llvm::support::little32_t;
@@ -225,6 +225,6 @@ Error consume(BinaryStreamReader &Reader, T &&X, U &&Y, Args &&... Rest) {
 }
 
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -9,8 +9,10 @@
 #include "llvm/SandboxIR/Use.h"
 #include "llvm/SandboxIR/Context.h"
 #include "llvm/SandboxIR/User.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 Value *Use::get() const { return Ctx->getValue(LLVMUse->get()); }
 
@@ -58,4 +60,5 @@ void Use::dumpOS(raw_ostream &OS) const {
 void Use::dump() const { dumpOS(dbgs()); }
 #endif // NDEBUG
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir

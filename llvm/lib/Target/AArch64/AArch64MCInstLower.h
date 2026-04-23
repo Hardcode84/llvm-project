@@ -13,7 +13,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/TargetParser/Triple.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AsmPrinter;
 class MCContext;
 class MCInst;
@@ -48,6 +48,6 @@ public:
   MCSymbol *GetGlobalAddressSymbol(const MachineOperand &MO) const;
   MCSymbol *GetExternalSymbolSymbol(const MachineOperand &MO) const;
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -17,8 +17,9 @@
 
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/Support/X86DisassemblerDecoderCommon.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace X86Disassembler {
 // Helper macros
 #define bitFromOffset0(val) ((val) & 0x1)
@@ -794,6 +795,6 @@ struct InternalInstruction {
 };
 
 } // namespace X86Disassembler
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

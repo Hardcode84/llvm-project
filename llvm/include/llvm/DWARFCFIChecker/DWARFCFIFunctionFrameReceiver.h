@@ -15,8 +15,9 @@
 #define LLVM_DWARFCFICHECKER_DWARFCFIFUNCTIONFRAMERECEIVER_H
 
 #include "llvm/ADT/ArrayRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCCFIInstruction;
 class MCContext;
@@ -49,6 +50,6 @@ private:
   MCContext &Context;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

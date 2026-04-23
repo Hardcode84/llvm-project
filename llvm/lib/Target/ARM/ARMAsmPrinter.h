@@ -11,8 +11,9 @@
 
 #include "llvm/CodeGen/AsmPrinter.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ARMFunctionInfo;
 class ARMBaseTargetMachine;
@@ -169,6 +170,6 @@ public:
   void emitMachineConstantPoolValue(MachineConstantPoolValue *MCPV) override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -15,7 +15,9 @@
 #ifndef LLVM_LIB_TARGET_M68K_M68K_H
 #define LLVM_LIB_TARGET_M68K_M68K_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class FunctionPass;
 class InstructionSelector;
@@ -52,6 +54,6 @@ void initializeM68kExpandPseudoPass(PassRegistry &);
 void initializeM68kGlobalBaseRegPass(PassRegistry &);
 void initializeM68kCollapseMOVEMPass(PassRegistry &);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_M68K_M68K_H

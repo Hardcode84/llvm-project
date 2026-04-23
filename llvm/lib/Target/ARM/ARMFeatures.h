@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_ARM_ARMFEATURES_H
 
 #include "MCTargetDesc/ARMMCTargetDesc.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template<typename InstrType> // could be MachineInstr or MCInst
 bool IsCPSRDead(const InstrType *Instr);
@@ -92,6 +93,6 @@ inline bool isV8EligibleForIT(const InstrType *Instr) {
   }
 }
 
-}
+LLVM_NAMESPACE_END
 
 #endif

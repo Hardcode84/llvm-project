@@ -19,6 +19,7 @@
 #include "llvm/Support/Format.h"
 #include "llvm/Support/WithColor.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "correlator"
 
@@ -200,7 +201,7 @@ std::optional<size_t> InstrProfCorrelator::getDataSize() const {
   return {};
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <>
 InstrProfCorrelatorImpl<uint32_t>::InstrProfCorrelatorImpl(
@@ -221,7 +222,7 @@ bool InstrProfCorrelatorImpl<uint64_t>::classof(const InstrProfCorrelator *C) {
   return C->getKind() == InstrProfCorrelatorKind::CK_64Bit;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 template <class IntPtrT>
 llvm::Expected<std::unique_ptr<InstrProfCorrelatorImpl<IntPtrT>>>

@@ -18,8 +18,9 @@
 #include "llvm/ProfileData/MemProfSummary.h"
 #include "llvm/Support/FormatVariadic.h"
 #include "llvm/Support/OnDiskHashTable.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Serialize Schema.
 static void writeMemProfSchema(ProfOStream &OS,
@@ -481,4 +482,4 @@ Error IndexedMemProfReader::deserialize(const unsigned char *Start,
 
   return Error::success();
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

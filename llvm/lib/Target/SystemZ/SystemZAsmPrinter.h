@@ -18,7 +18,7 @@
 #include "llvm/MC/MCInstBuilder.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCStreamer;
 class MachineInstr;
 class Module;
@@ -172,6 +172,6 @@ private:
   void LowerPATCHABLE_RET(const MachineInstr &MI, SystemZMCInstLower &Lower);
   void emitAttributes(Module &M);
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -18,8 +18,9 @@
 
 #define GET_REGINFO_HEADER
 #include "LoongArchGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct LoongArchRegisterInfo : public LoongArchGenRegisterInfo {
 
@@ -52,6 +53,6 @@ struct LoongArchRegisterInfo : public LoongArchGenRegisterInfo {
   }
   bool canRealignStack(const MachineFunction &MF) const override;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_LOONGARCH_LOONGARCHREGISTERINFO_H

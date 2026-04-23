@@ -10,8 +10,9 @@
 #define LLVM_MC_MCXCOFFOBJECTWRITER_H
 
 #include "llvm/MC/MCObjectWriter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_pwrite_stream;
 
@@ -56,6 +57,6 @@ std::unique_ptr<MCObjectWriter>
 createXCOFFObjectWriter(std::unique_ptr<MCXCOFFObjectTargetWriter> MOTW,
                         raw_pwrite_stream &OS);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCXCOFFOBJECTWRITER_H

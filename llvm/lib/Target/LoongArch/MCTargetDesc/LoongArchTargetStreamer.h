@@ -13,8 +13,9 @@
 #include "llvm/MC/MCStreamer.h"
 #include "llvm/MC/MCSubtargetInfo.h"
 #include "llvm/Support/FormattedStream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LoongArchTargetStreamer : public MCTargetStreamer {
   LoongArchABI::ABI TargetABI = LoongArchABI::ABI_Unknown;
 
@@ -42,5 +43,5 @@ public:
   void emitDirectiveOptionNoRelax() override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif

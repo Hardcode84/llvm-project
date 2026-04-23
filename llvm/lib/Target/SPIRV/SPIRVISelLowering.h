@@ -17,8 +17,9 @@
 #include "SPIRVGlobalRegistry.h"
 #include "llvm/CodeGen/TargetLowering.h"
 #include <set>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SPIRVSubtarget;
 
 class SPIRVTargetLowering : public TargetLowering {
@@ -83,6 +84,6 @@ public:
   AtomicExpansionKind
   shouldCastAtomicRMWIInIR(AtomicRMWInst *RMWI) const override;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVISELLOWERING_H

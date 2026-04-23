@@ -18,8 +18,9 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/CodeGen/MachineFunctionPass.h"
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GCNSubtarget;
 class MachineFunction;
@@ -85,5 +86,5 @@ public:
   AMDGPUResourceUsageAnalysis(const GCNTargetMachine &TM_) : TM(TM_) {}
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_LIB_TARGET_AMDGPU_AMDGPURESOURCEUSAGEANALYSIS_H

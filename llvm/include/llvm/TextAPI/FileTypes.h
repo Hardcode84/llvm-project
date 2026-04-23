@@ -10,7 +10,9 @@
 #define LLVM_TEXTAPI_FILETYPES_H
 
 #include "llvm/ADT/BitmaskEnum.h"
-namespace llvm::MachO {
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
+namespace MachO {
 /// Defines the file type TextAPI files can represent.
 enum FileType : unsigned {
   /// Invalid file type.
@@ -45,5 +47,6 @@ enum FileType : unsigned {
   LLVM_MARK_AS_BITMASK_ENUM(/*LargestValue=*/All),
 };
 
-} // namespace llvm::MachO
+}
+LLVM_NAMESPACE_END // namespace llvm::MachO
 #endif // LLVM_TEXTAPI_FILETYPES_H

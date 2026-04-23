@@ -15,8 +15,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/MCA/Stages/InstructionTables.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 Error InstructionTables::execute(InstRef &IR) {
@@ -66,4 +67,4 @@ Error InstructionTables::execute(InstRef &IR) {
 }
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

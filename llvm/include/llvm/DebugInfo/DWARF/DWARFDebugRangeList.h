@@ -14,7 +14,7 @@
 #include <cstdint>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 class DWARFDataExtractor;
@@ -76,6 +76,6 @@ public:
   getAbsoluteRanges(std::optional<object::SectionedAddress> BaseAddr) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFDEBUGRANGELIST_H

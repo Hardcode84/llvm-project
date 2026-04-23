@@ -12,8 +12,10 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/CAS/BuiltinCASContext.h"
 #include "llvm/CAS/ObjectStore.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::cas {
+LLVM_NAMESPACE_BEGIN
+namespace cas {
 class ActionCache;
 namespace ondisk {
 class UnifiedOnDiskCache;
@@ -94,6 +96,7 @@ constexpr StringLiteral DefaultDirProxy = "/^llvm::cas::builtin::default";
 constexpr StringLiteral DefaultDir = "llvm.cas.builtin.default";
 
 } // end namespace builtin
-} // end namespace llvm::cas
+}
+LLVM_NAMESPACE_END // end namespace llvm::cas
 
 #endif // LLVM_LIB_CAS_BUILTINCAS_H

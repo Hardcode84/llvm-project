@@ -19,13 +19,14 @@
 #include "llvm/TargetParser/Triple.h"
 #include <functional>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::ifs;
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(IFSSymbol)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 /// YAML traits for ELFSymbolType.
@@ -161,7 +162,7 @@ template <> struct MappingTraits<IFSStubTriple> {
   }
 };
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 /// Attempt to determine if a Text stub uses target triple.
 bool usesTriple(StringRef Buf) {

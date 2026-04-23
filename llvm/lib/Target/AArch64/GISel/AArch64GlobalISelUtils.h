@@ -18,8 +18,9 @@
 #include "llvm/CodeGen/Register.h"
 #include "llvm/IR/InstrTypes.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace AArch64GISelUtils {
 
@@ -83,6 +84,6 @@ void changeVectorFCMPPredToAArch64CC(const CmpInst::Predicate P,
                                      bool &Invert);
 
 } // namespace AArch64GISelUtils
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

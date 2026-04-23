@@ -13,7 +13,7 @@
 #include "llvm/DebugInfo/CodeView/CVRecord.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T> class SmallVectorImpl;
 namespace codeview {
 class TypeIndex;
@@ -42,6 +42,6 @@ LLVM_ABI bool discoverTypeIndicesInSymbol(ArrayRef<uint8_t> RecordData,
 LLVM_ABI bool discoverTypeIndicesInSymbol(ArrayRef<uint8_t> RecordData,
                                           SmallVectorImpl<TypeIndex> &Indices);
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

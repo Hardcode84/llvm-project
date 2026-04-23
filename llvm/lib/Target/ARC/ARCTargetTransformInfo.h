@@ -19,8 +19,9 @@
 #include "ARC.h"
 #include "llvm/Analysis/TargetTransformInfo.h"
 #include "llvm/CodeGen/BasicTTIImpl.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ARCSubtarget;
 class ARCTargetLowering;
@@ -49,6 +50,6 @@ public:
         TLI(std::move(Arg.TLI)) {}
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARC_ARCTARGETTRANSFORMINFO_H

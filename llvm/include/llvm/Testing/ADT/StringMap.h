@@ -15,8 +15,9 @@
 #include "llvm/Testing/ADT/StringMapEntry.h"
 #include <ostream>
 #include <sstream>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Support for printing to std::ostream, for use with e.g. producing more
 /// useful error messages with Google Test.
@@ -41,6 +42,6 @@ std::ostream &operator<<(std::ostream &OS, const StringMap<T> &M) {
                    .str();
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

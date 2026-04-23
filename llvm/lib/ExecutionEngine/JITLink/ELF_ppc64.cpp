@@ -19,6 +19,7 @@
 #include "EHFrameSupportImpl.h"
 #include "ELFLinkGraphBuilder.h"
 #include "JITLinkGeneric.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
@@ -191,7 +192,8 @@ Error buildTables_ELF_ppc64(LinkGraph &G) {
 
 } // namespace
 
-namespace llvm::jitlink {
+LLVM_NAMESPACE_BEGIN
+namespace jitlink {
 
 template <llvm::endianness Endianness>
 class ELFLinkGraphBuilder_ppc64
@@ -545,4 +547,5 @@ void link_ELF_ppc64le(std::unique_ptr<LinkGraph> G,
   return link_ELF_ppc64<llvm::endianness::little>(std::move(G), std::move(Ctx));
 }
 
-} // end namespace llvm::jitlink
+}
+LLVM_NAMESPACE_END // end namespace llvm::jitlink

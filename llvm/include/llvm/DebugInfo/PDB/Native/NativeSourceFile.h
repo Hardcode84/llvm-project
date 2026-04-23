@@ -14,7 +14,7 @@
 #include "llvm/DebugInfo/PDB/PDBTypes.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 class PDBSymbolCompiland;
 template <typename ChildType> class IPDBEnumChildren;
@@ -38,5 +38,5 @@ private:
   const codeview::FileChecksumEntry Checksum;
 };
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

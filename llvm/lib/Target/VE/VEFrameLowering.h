@@ -16,8 +16,9 @@
 #include "VE.h"
 #include "llvm/CodeGen/TargetFrameLowering.h"
 #include "llvm/Support/TypeSize.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class VESubtarget;
 class VEFrameLowering : public TargetFrameLowering {
@@ -84,6 +85,6 @@ private:
                     MachineBasicBlock::iterator MBBI) const;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

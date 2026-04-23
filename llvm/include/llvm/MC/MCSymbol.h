@@ -25,7 +25,7 @@
 #include <cstddef>
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCAsmInfo;
 class MCContext;
@@ -384,6 +384,6 @@ inline raw_ostream &operator<<(raw_ostream &OS, const MCSymbol &Sym) {
 
 bool isRangeRelaxable(const MCSymbol *Begin, const MCSymbol *End);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCSYMBOL_H

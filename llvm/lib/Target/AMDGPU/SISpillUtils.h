@@ -9,7 +9,9 @@
 #ifndef LLVM_LIB_TARGET_AMDGPU_SISPILLUTILS_H
 #define LLVM_LIB_TARGET_AMDGPU_SISPILLUTILS_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class BitVector;
 class MachineBasicBlock;
@@ -20,6 +22,6 @@ class MachineFrameInfo;
 void clearDebugInfoForSpillFIs(MachineFrameInfo &MFI, MachineBasicBlock &MBB,
                                const BitVector &SpillFIs);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_SISPILLUTILS_H

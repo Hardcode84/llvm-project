@@ -22,8 +22,10 @@
 #include "llvm/ADT/DenseSet.h"
 #include "llvm/ADT/iterator.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::xray {
+LLVM_NAMESPACE_BEGIN
+namespace xray {
 
 /// A Graph object represents a Directed Graph and is used in XRay to compute
 /// and store function call graphs and associated statistical information.
@@ -484,6 +486,7 @@ public:
     return p;
   }
 };
-} // namespace llvm::xray
+}
+LLVM_NAMESPACE_END // namespace llvm::xray
 
 #endif

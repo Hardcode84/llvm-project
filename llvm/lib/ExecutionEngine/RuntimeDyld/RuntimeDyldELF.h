@@ -15,8 +15,9 @@
 
 #include "RuntimeDyldImpl.h"
 #include "llvm/ADT/DenseMap.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 class ELFObjectFileBase;
 }
@@ -250,6 +251,6 @@ public:
                      ObjSectionToIDMap &SectionMap) override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_EXECUTIONENGINE_RUNTIMEDYLD_RUNTIMEDYLDELF_H

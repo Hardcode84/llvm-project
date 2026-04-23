@@ -17,8 +17,9 @@
 
 #include <functional>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BasicBlock;
 class BitcodeReaderValueList;
 class BitstreamCursor;
@@ -93,6 +94,6 @@ public:
   /// Perform bitcode upgrades on llvm.dbg.* calls.
   void upgradeDebugIntrinsics(Function &F);
 };
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_LIB_BITCODE_READER_METADATALOADER_H

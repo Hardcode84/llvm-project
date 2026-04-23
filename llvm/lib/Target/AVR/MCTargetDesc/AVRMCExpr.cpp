@@ -11,12 +11,13 @@
 #include "llvm/MC/MCAsmInfo.h"
 #include "llvm/MC/MCAssembler.h"
 #include "llvm/MC/MCContext.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 const AVRMCExpr *AVRMCExpr::create(Specifier Kind, const MCExpr *Expr,
                                    bool Negated, MCContext &Ctx) {
   return new (Ctx) AVRMCExpr(Kind, Expr, Negated);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

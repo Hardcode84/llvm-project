@@ -12,7 +12,7 @@
 #include "llvm/DebugInfo/DWARF/LowLevel/DWARFCFIProgram.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct DIDumpOptions;
 
@@ -25,6 +25,6 @@ LLVM_ABI void printCFIProgram(const CFIProgram &P, raw_ostream &OS,
 
 } // end namespace dwarf
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFCFIPRINTER_H

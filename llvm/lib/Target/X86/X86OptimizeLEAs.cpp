@@ -49,6 +49,7 @@
 #include <cassert>
 #include <cstdint>
 #include <iterator>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -112,7 +113,7 @@ public:
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Provide DenseMapInfo for MemOpKey.
 template <> struct DenseMapInfo<MemOpKey> {
@@ -184,7 +185,7 @@ template <> struct DenseMapInfo<MemOpKey> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 /// Returns a hash table key based on memory operands of \p MI. The
 /// number of the first memory operand of \p MI is specified through \p N.

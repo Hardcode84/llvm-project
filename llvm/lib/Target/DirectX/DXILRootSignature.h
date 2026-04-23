@@ -21,8 +21,9 @@
 #include "llvm/IR/PassManager.h"
 #include "llvm/MC/DXContainerRootSignature.h"
 #include "llvm/Pass.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dxil {
 
 class RootSignatureBindingInfo {
@@ -92,5 +93,5 @@ public:
 };
 
 } // namespace dxil
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

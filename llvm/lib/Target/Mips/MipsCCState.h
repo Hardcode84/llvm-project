@@ -12,8 +12,9 @@
 #include "MipsISelLowering.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/CodeGen/CallingConvLower.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SDNode;
 class MipsSubtarget;
 
@@ -39,6 +40,6 @@ public:
 
   SpecialCallingConvType getSpecialCallingConv() { return SpecialCallingConv; }
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

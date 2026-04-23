@@ -23,7 +23,7 @@
 #include "llvm/Support/ToolOutputFile.h"
 #include <map>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace logicalview {
 
 constexpr LVSectionIndex UndefinedSectionIndex = 0;
@@ -366,6 +366,6 @@ inline LVScopeCompileUnit *getReaderCompileUnit() {
 }
 
 } // end namespace logicalview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_LOGICALVIEW_CORE_LVREADER_H

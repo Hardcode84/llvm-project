@@ -13,7 +13,7 @@
 #include <cstdint>
 #include <cstring>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 
 namespace codeview {
@@ -50,6 +50,6 @@ inline bool operator!=(const GUID &LHS, const GUID &RHS) {
 LLVM_ABI raw_ostream &operator<<(raw_ostream &OS, const GUID &Guid);
 
 } // namespace codeview
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

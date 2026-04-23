@@ -12,7 +12,9 @@
 #ifndef LLVM_LIB_TARGET_DIRECTX_DXILCONSTANTS_H
 #define LLVM_LIB_TARGET_DIRECTX_DXILCONSTANTS_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 namespace dxil {
 
 enum class OpCode : unsigned {
@@ -48,6 +50,6 @@ inline Attributes &operator|=(Attributes &a, Attributes &b) {
 }
 
 } // namespace dxil
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

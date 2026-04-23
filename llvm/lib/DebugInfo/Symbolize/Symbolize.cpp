@@ -36,8 +36,9 @@
 #include "llvm/Support/Path.h"
 #include <cassert>
 #include <cstring>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 union DebugInfo;
 }
@@ -961,4 +962,4 @@ void CachedBinary::pushEvictor(std::function<void()> NewEvictor) {
 }
 
 } // namespace symbolize
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

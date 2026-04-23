@@ -35,7 +35,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Constant;
 class Function;
@@ -573,6 +573,6 @@ LLVM_ABI Error addFunctionPointerRelocationsToCurrentSymbol(
 
 } // end namespace orc
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_INDIRECTIONUTILS_H

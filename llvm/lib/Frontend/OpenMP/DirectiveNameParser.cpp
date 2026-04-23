@@ -14,8 +14,10 @@
 
 #include <cassert>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::omp {
+LLVM_NAMESPACE_BEGIN
+namespace omp {
 DirectiveNameParser::DirectiveNameParser(SourceLanguage L) {
   // Take every directive, get its name in every version, break the name up
   // into whitespace-separated tokens, and insert each token.
@@ -80,4 +82,5 @@ DirectiveNameParser::State *DirectiveNameParser::State::next(StringRef Tok) {
   auto F = Transition->find(Tok);
   return F != Transition->end() ? &F->second : nullptr;
 }
-} // namespace llvm::omp
+}
+LLVM_NAMESPACE_END // namespace llvm::omp

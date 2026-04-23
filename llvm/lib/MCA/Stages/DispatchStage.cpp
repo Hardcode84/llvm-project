@@ -18,10 +18,11 @@
 #include "llvm/MCA/Stages/DispatchStage.h"
 #include "llvm/MCA/HWEventListener.h"
 #include "llvm/Support/Debug.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "llvm-mca"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 DispatchStage::DispatchStage(const MCSubtargetInfo &Subtarget,
@@ -182,4 +183,4 @@ void DispatchStage::dump() const {
 }
 #endif
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -22,7 +22,7 @@
 #include "llvm/MCA/Support.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 /// Used to notify the internal state of a processor resource.
@@ -475,6 +475,6 @@ public:
 #endif
 };
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_MCA_HARDWAREUNITS_RESOURCEMANAGER_H

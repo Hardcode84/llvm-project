@@ -14,8 +14,9 @@
 #include "llvm/MCA/Instruction.h"
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 void WriteState::writeStartEvent(unsigned IID, MCPhysReg RegID,
@@ -261,4 +262,4 @@ void Instruction::cycleEvent() {
 }
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

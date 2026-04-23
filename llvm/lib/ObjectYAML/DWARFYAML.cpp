@@ -15,8 +15,9 @@
 #include "llvm/BinaryFormat/Dwarf.h"
 #include "llvm/Support/Errc.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 bool DWARFYAML::Data::isEmpty() const {
   return getNonEmptySectionNames().empty();
@@ -397,4 +398,4 @@ void MappingTraits<DWARFYAML::ListTable<EntryType>>::mapping(
 
 } // end namespace yaml
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

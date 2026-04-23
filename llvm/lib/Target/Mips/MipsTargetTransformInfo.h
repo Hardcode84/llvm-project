@@ -12,8 +12,9 @@
 #include "MipsTargetMachine.h"
 #include "llvm/Analysis/TargetTransformInfo.h"
 #include "llvm/CodeGen/BasicTTIImpl.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MipsTTIImpl final : public BasicTTIImplBase<MipsTTIImpl> {
   using BaseT = BasicTTIImplBase<MipsTTIImpl>;
@@ -47,6 +48,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

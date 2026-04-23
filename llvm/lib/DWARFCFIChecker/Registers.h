@@ -17,8 +17,9 @@
 
 #include "llvm/MC/MCRegister.h"
 #include "llvm/MC/MCRegisterInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This analysis only keeps track and cares about super registers, not the
 /// subregisters. All reads from/writes to subregisters are considered the
@@ -59,6 +60,6 @@ inline MCRegister getSuperReg(const MCRegisterInfo *MCRI, MCRegister Reg) {
   llvm_unreachable("Should either be a super reg, or have a super reg");
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

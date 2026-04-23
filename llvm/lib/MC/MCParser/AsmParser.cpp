@@ -70,6 +70,7 @@
 #include <tuple>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -739,11 +740,11 @@ public:
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 extern cl::opt<unsigned> AsmMacroMaxNestingDepth;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 AsmParser::AsmParser(SourceMgr &SM, MCContext &Ctx, MCStreamer &Out,
                      const MCAsmInfo &MAI, unsigned CB = 0)

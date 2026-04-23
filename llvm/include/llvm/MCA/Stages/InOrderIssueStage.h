@@ -18,8 +18,9 @@
 #include "llvm/MCA/HardwareUnits/ResourceManager.h"
 #include "llvm/MCA/SourceMgr.h"
 #include "llvm/MCA/Stages/Stage.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 class LSUnitBase;
 class RegisterFile;
@@ -124,6 +125,6 @@ public:
 };
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_MCA_STAGES_INORDERISSUESTAGE_H

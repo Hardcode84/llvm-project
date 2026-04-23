@@ -19,8 +19,9 @@
 #include "llvm/Support/CodeGen.h"
 
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MachineFunction;
 class HexagonInstrInfo;
 class HexagonRegisterInfo;
@@ -168,6 +169,6 @@ public:
   explicit HexagonDAGToDAGISelLegacy(HexagonTargetMachine &tm,
                                      CodeGenOptLevel OptLevel);
 };
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_LIB_TARGET_HEXAGON_HEXAGONISELDAGTODAG_H

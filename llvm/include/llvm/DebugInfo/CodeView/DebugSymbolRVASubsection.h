@@ -16,8 +16,9 @@
 #include "llvm/Support/Error.h"
 #include <cstdint>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BinaryStreamReader;
 
@@ -61,6 +62,6 @@ private:
 
 } // end namespace codeview
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_CODEVIEW_DEBUGSYMBOLRVASUBSECTION_H

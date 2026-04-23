@@ -18,8 +18,9 @@
 #include "llvm/Support/SMLoc.h"
 #include <cstdint>
 #include <map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCContext;
 class MCExpr;
@@ -102,6 +103,6 @@ private:
   ConstantPool &getOrCreateConstantPool(MCSection *Section);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_CONSTANTPOOLS_H

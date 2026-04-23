@@ -15,8 +15,9 @@
 #include "ARMSubtarget.h"
 #include "llvm/CodeGen/MacroFusion.h"
 #include "llvm/CodeGen/TargetInstrInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Fuse AES crypto encoding or decoding.
 static bool isAESPair(const MachineInstr *FirstMI,
@@ -66,4 +67,4 @@ std::unique_ptr<ScheduleDAGMutation> createARMMacroFusionDAGMutation() {
   return createMacroFusionDAGMutation(shouldScheduleAdjacent);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

@@ -27,8 +27,9 @@
 #include <queue>
 #include <shared_mutex>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 class LibraryManager;
@@ -518,6 +519,6 @@ private:
 using LibraryDepsInfo = LibraryScanner::LibraryDepsInfo;
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_TARGETPROCESS_LIBRARYSCANNER_H

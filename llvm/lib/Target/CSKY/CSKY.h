@@ -16,8 +16,9 @@
 
 #include "llvm/PassRegistry.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class CSKYTargetMachine;
 class FunctionPass;
 class PassRegistry;
@@ -29,6 +30,6 @@ FunctionPass *createCSKYConstantIslandPass();
 void initializeCSKYConstantIslandsPass(PassRegistry &);
 void initializeCSKYDAGToDAGISelLegacyPass(PassRegistry &);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_CSKY_CSKY_H

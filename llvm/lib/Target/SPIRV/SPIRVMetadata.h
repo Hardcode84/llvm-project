@@ -16,8 +16,9 @@
 
 #include "llvm/IR/Metadata.h"
 #include "llvm/IR/Module.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // OpenCL Metadata
@@ -26,5 +27,5 @@ namespace llvm {
 MDString *getOCLKernelArgAccessQual(const Function &F, unsigned ArgIdx);
 MDString *getOCLKernelArgTypeQual(const Function &F, unsigned ArgIdx);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVMETADATA_H

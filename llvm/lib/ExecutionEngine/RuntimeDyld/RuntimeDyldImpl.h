@@ -31,11 +31,12 @@
 #include <map>
 #include <system_error>
 #include <unordered_map>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::object;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 #define UNIMPLEMENTED_RELOC(RelType) \
   case RelType: \
@@ -594,6 +595,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

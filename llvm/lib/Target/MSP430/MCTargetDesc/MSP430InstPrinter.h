@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_MSP430_MCTARGETDESC_MSP430INSTPRINTER_H
 
 #include "llvm/MC/MCInstPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class MSP430InstPrinter : public MCInstPrinter {
   public:
     MSP430InstPrinter(const MCAsmInfo &MAI, const MCInstrInfo &MII,
@@ -47,6 +48,6 @@ namespace llvm {
     void printCCOperand(const MCInst *MI, unsigned OpNo, raw_ostream &O);
 
   };
-}
+LLVM_NAMESPACE_END
 
 #endif

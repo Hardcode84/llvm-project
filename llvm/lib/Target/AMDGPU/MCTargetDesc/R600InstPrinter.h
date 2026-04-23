@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_MCTARGETDESC_R600INSTPRINTER_H
 
 #include "llvm/MC/MCInstPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class R600InstPrinter : public MCInstPrinter {
 public:
@@ -44,6 +45,6 @@ public:
   void printWrite(const MCInst *MI, unsigned OpNo, raw_ostream &O);
 };
 
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 
 #endif

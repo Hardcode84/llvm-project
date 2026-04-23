@@ -65,6 +65,7 @@
 #include <bitset>
 #include <cctype>
 #include <numeric>
+#include "llvm/Support/Compiler.h"
 using namespace llvm;
 
 #define DEBUG_TYPE "x86-isel"
@@ -5655,7 +5656,7 @@ static bool getTargetConstantBitsFromNode(SDValue Op, unsigned EltSizeInBits,
   return false;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace X86 {
 bool isConstantSplat(SDValue Op, APInt &SplatVal, bool AllowPartialUndefs) {
   APInt UndefElts;
@@ -5695,7 +5696,7 @@ int getRoundingModeX86(unsigned RM) {
 }
 
 } // namespace X86
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static bool getTargetShuffleMaskIndices(SDValue MaskNode,
                                         unsigned MaskEltSizeInBits,
@@ -41633,13 +41634,13 @@ static SDValue combineX86ShufflesConstants(MVT VT, ArrayRef<SDValue> Ops,
   return DAG.getBitcast(VT, CstOp);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace X86 {
     enum {
       MaxShuffleCombineDepth = 8
     };
   } // namespace X86
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 /// Fully generic combining of x86 shuffle instructions.
 ///

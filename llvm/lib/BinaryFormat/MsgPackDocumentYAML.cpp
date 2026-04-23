@@ -12,6 +12,7 @@
 
 #include "llvm/BinaryFormat/MsgPackDocument.h"
 #include "llvm/Support/YAMLTraits.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace msgpack;
@@ -150,7 +151,7 @@ StringRef ScalarDocNode::getYAMLTag() const {
   }
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 /// YAMLIO for DocNode
@@ -241,7 +242,7 @@ template <> struct SequenceTraits<ArrayDocNode> {
 };
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 /// Convert MsgPack Document to YAML text.
 void msgpack::Document::toYAML(raw_ostream &OS) {

@@ -15,8 +15,9 @@
 #define LLVM_LIB_TARGET_MIPS_MIPSCALLLOWERING_H
 
 #include "llvm/CodeGen/GlobalISel/CallLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MipsTargetLowering;
 
@@ -36,6 +37,6 @@ public:
                  CallLoweringInfo &Info) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_MIPS_MIPSCALLLOWERING_H

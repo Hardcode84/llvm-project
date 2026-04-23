@@ -21,8 +21,9 @@
 #include "llvm/Support/MathExtras.h"
 #include <cstddef>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class HexagonMCChecker;
 class MCContext;
@@ -379,6 +380,6 @@ void tryCompound(MCInstrInfo const &MCII, MCSubtargetInfo const &STI,
 
 } // end namespace HexagonMCInstrInfo
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_HEXAGON_MCTARGETDESC_HEXAGONMCINSTRINFO_H

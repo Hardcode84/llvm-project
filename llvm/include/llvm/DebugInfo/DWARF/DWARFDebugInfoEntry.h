@@ -14,7 +14,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DWARFUnit;
 class DWARFDataExtractor;
@@ -75,6 +75,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFDEBUGINFOENTRY_H

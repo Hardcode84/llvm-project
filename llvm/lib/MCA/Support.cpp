@@ -16,8 +16,9 @@
 #include "llvm/MC/MCSchedule.h"
 #include "llvm/Support/Debug.h"
 #include <numeric>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 #define DEBUG_TYPE "llvm-mca"
@@ -109,4 +110,4 @@ double computeBlockRThroughput(const MCSchedModel &SM, unsigned DispatchWidth,
 }
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

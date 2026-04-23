@@ -61,6 +61,7 @@
 #include "llvm/CodeGen/MachineInstrBuilder.h"
 #include "llvm/Support/Debug.h"
 #include <limits>
+#include "llvm/Support/Compiler.h"
 using namespace llvm;
 
 #define DEBUG_TYPE "wasm-fix-irreducible-control-flow"
@@ -139,7 +140,7 @@ private:
 };
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct GraphTraits<ReachabilityGraph *> {
   using NodeRef = ReachabilityNode *;
   using ChildIteratorType = SmallVectorImpl<NodeRef>::iterator;
@@ -156,7 +157,7 @@ template <> struct GraphTraits<ReachabilityGraph *> {
     return N->Succs.end();
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace {
 

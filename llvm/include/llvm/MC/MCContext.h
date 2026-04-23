@@ -43,7 +43,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CodeViewContext;
 class MCAsmInfo;
@@ -856,7 +856,7 @@ public:
   MCPseudoProbeTable &getMCPseudoProbeTable() { return PseudoProbeTable; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 // operator new and delete aren't allowed inside namespaces.
 // The throw specifications are mandated by the standard.

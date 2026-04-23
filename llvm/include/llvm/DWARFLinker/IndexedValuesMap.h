@@ -12,8 +12,9 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/SmallVector.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dwarf_linker {
 
 /// This class stores values sequentually and assigns index to the each value.
@@ -42,6 +43,6 @@ protected:
 };
 
 } // end of namespace dwarf_linker
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm
 
 #endif // LLVM_DWARFLINKER_INDEXEDVALUESMAP_H

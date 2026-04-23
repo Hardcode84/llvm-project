@@ -10,13 +10,15 @@
 #include "llvm/ExecutionEngine/Orc/Debugging/DebuggerSupportPlugin.h"
 #include "llvm/ExecutionEngine/Orc/Debugging/ELFDebugObjectPlugin.h"
 #include "llvm/ExecutionEngine/Orc/LLJIT.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
 using namespace llvm;
 using namespace llvm::orc;
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 Error enableDebuggerSupport(LLJIT &J) {
   auto *ObjLinkingLayer = dyn_cast<ObjectLinkingLayer>(&J.getObjLinkingLayer());
@@ -56,4 +58,5 @@ Error enableDebuggerSupport(LLJIT &J) {
   }
 }
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc

@@ -18,8 +18,9 @@
 #include "llvm-c/DisassemblerTypes.h"
 #include "llvm/MC/MCDisassembler/MCSymbolizer.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Symbolize using user-provided, C API, callbacks.
 ///
@@ -53,6 +54,6 @@ public:
                                        uint64_t Address) override;
 };
 
-}
+LLVM_NAMESPACE_END
 
 #endif

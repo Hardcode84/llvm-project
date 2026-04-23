@@ -17,7 +17,7 @@
 #include "llvm/Support/Error.h"
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 
 namespace yaml {
@@ -144,6 +144,6 @@ LLVM_ABI raw_ostream &operator<<(raw_ostream &OS,
                                  const CallSiteInfoCollection &CSIC);
 
 } // namespace gsym
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_GSYM_CALLSITEINFO_H

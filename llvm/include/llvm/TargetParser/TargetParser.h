@@ -20,7 +20,7 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> class SmallVectorImpl;
 class Triple;
@@ -136,6 +136,6 @@ LLVM_ABI std::optional<llvm::StringMap<bool>>
 getCPUDefaultTargetFeatures(StringRef CPU,
                             ArrayRef<BasicSubtargetSubTypeKV> ProcDesc,
                             ArrayRef<BasicSubtargetFeatureKV> ProcFeatures);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

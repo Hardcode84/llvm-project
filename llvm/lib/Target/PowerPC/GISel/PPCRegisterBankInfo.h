@@ -20,8 +20,9 @@
 
 #define GET_REGBANK_DECLARATIONS
 #include "PPCGenRegisterBank.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class TargetRegisterInfo;
 
 class PPCGenRegisterBankInfo : public RegisterBankInfo {
@@ -91,6 +92,6 @@ private:
   bool onlyDefinesFP(const MachineInstr &MI, const MachineRegisterInfo &MRI,
                      const TargetRegisterInfo &TRI, unsigned Depth = 0) const;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

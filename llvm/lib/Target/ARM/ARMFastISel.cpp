@@ -3158,7 +3158,7 @@ bool ARMFastISel::fastLowerArguments() {
   return true;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 FastISel *ARM::createFastISel(FunctionLoweringInfo &funcInfo,
                               const TargetLibraryInfo *libInfo,
@@ -3169,4 +3169,4 @@ FastISel *ARM::createFastISel(FunctionLoweringInfo &funcInfo,
   return nullptr;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

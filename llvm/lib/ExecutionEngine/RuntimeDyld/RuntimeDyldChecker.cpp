@@ -24,6 +24,7 @@
 #include <cctype>
 #include <memory>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "rtdyld"
 
@@ -42,7 +43,7 @@ struct TargetInfo {
 };
 } // anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Helper class that implements the language evaluated by RuntimeDyldChecker.
 class RuntimeDyldCheckerExprEval {
@@ -813,7 +814,7 @@ private:
                        std::move(MII), std::move(InstPrinter)});
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 RuntimeDyldCheckerImpl::RuntimeDyldCheckerImpl(
     IsSymbolValidFunction IsSymbolValid, GetSymbolInfoFunction GetSymbolInfo,

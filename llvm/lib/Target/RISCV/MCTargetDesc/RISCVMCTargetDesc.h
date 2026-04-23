@@ -16,8 +16,9 @@
 #include "llvm/MC/MCTargetOptions.h"
 #include "llvm/Support/DataTypes.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCAsmBackend;
 class MCCodeEmitter;
 class MCContext;
@@ -44,7 +45,7 @@ namespace RISCV {
 void updateCZceFeatureImplications(MCSubtargetInfo &STI);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Defines symbolic names for RISC-V registers.
 #define GET_REGINFO_ENUM

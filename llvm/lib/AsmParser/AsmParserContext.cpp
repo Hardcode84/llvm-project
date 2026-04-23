@@ -7,8 +7,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/AsmParser/AsmParserContext.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 std::optional<FileLocRange>
 AsmParserContext::getFunctionLocation(const Function *F) const {
@@ -114,4 +115,4 @@ bool AsmParserContext::addValueReferenceAtLocation(Value *V,
   return true;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

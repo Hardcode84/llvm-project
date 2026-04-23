@@ -17,8 +17,9 @@
 
 #define GET_SDNODE_ENUM
 #include "X86GenSDNodeInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace X86ISD {
 
 enum NodeType : unsigned {
@@ -92,6 +93,6 @@ public:
                                   MachinePointerInfo SrcPtrInfo) const override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

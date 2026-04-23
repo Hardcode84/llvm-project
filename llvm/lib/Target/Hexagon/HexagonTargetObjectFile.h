@@ -11,8 +11,9 @@
 
 #include "llvm/CodeGen/TargetLoweringObjectFileImpl.h"
 #include "llvm/MC/MCSectionELF.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class Type;
 
   class HexagonTargetObjectFile : public TargetLoweringObjectFileELF {
@@ -54,6 +55,6 @@ namespace llvm {
                                            const Function *Fn) const;
   };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

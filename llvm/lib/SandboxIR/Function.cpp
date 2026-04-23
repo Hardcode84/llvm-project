@@ -9,8 +9,10 @@
 #include "llvm/SandboxIR/Function.h"
 #include "llvm/IR/Value.h"
 #include "llvm/SandboxIR/Context.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 FunctionType *Function::getFunctionType() const {
   return cast<FunctionType>(
@@ -59,4 +61,5 @@ void Function::dumpOS(raw_ostream &OS) const {
 }
 #endif // NDEBUG
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir

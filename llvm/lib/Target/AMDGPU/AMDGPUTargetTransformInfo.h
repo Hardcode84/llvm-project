@@ -21,8 +21,9 @@
 #include "llvm/CodeGen/BasicTTIImpl.h"
 #include "llvm/Support/AMDGPUAddrSpace.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AMDGPUTargetMachine;
 class GCNSubtarget;
@@ -337,6 +338,6 @@ public:
                  const SmallBitVector &UniformArgs) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_AMDGPUTARGETTRANSFORMINFO_H

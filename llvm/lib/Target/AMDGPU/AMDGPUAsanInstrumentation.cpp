@@ -7,12 +7,13 @@
 //===-------------------------------------------------------------===//
 
 #include "AMDGPUAsanInstrumentation.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "amdgpu-asan-instrumentation"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace AMDGPU {
 
 static uint64_t getRedzoneSizeForScale(int AsanScale) {
@@ -365,4 +366,4 @@ void getInterestingMemoryOperands(
   }
 }
 } // end namespace AMDGPU
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

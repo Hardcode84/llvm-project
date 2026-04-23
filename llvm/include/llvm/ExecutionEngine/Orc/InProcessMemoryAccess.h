@@ -14,8 +14,10 @@
 #define LLVM_EXECUTIONENGINE_ORC_INPROCESSMEMORYACCESS_H
 
 #include "llvm/ExecutionEngine/Orc/MemoryAccess.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 class LLVM_ABI InProcessMemoryAccess : public MemoryAccess {
 public:
@@ -63,6 +65,7 @@ private:
   bool IsArch64Bit;
 };
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc
 
 #endif // LLVM_EXECUTIONENGINE_ORC_INPROCESSMEMORYACCESS_H

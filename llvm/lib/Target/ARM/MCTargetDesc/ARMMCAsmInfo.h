@@ -17,8 +17,9 @@
 #include "llvm/MC/MCAsmInfoDarwin.h"
 #include "llvm/MC/MCAsmInfoELF.h"
 #include "llvm/MC/MCExpr.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Triple;
 
 namespace ARM {
@@ -141,6 +142,6 @@ const MCSpecifierExpr *createLower8_15(const MCExpr *Expr, MCContext &Ctx);
 const MCSpecifierExpr *createLower0_7(const MCExpr *Expr, MCContext &Ctx);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

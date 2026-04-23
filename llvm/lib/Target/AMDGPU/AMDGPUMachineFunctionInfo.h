@@ -16,8 +16,9 @@
 #include "llvm/IR/Function.h"
 #include "llvm/IR/GlobalValue.h"
 #include "llvm/IR/GlobalVariable.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AMDGPUSubtarget;
 
@@ -121,5 +122,5 @@ public:
   bool isDynamicLDSUsed() const;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

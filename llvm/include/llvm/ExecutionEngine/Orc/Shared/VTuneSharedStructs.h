@@ -16,8 +16,9 @@
 #include "ExecutorAddress.h"
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 using VTuneLineTable = std::vector<std::pair<unsigned, unsigned>>;
@@ -101,6 +102,6 @@ public:
 
 } // end namespace shared
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

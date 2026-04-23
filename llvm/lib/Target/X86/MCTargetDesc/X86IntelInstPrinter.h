@@ -15,8 +15,9 @@
 
 #include "X86InstPrinterCommon.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class X86IntelInstPrinter final : public X86InstPrinterCommon {
 public:
@@ -134,6 +135,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_X86_MCTARGETDESC_X86INTELINSTPRINTER_H

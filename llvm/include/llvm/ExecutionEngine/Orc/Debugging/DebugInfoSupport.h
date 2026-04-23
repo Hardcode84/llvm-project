@@ -19,7 +19,7 @@
 
 #include "llvm/DebugInfo/DWARF/DWARFContext.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace orc {
 
@@ -58,6 +58,6 @@ public:
 
 } // namespace orc
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

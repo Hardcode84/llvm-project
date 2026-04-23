@@ -18,8 +18,9 @@
 #include <cstddef>
 #include <cstdint>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 namespace coff {
 
@@ -208,6 +209,6 @@ void copyPeHeader(PeHeader1Ty &Dest, const PeHeader2Ty &Src) {
 
 } // end namespace coff
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_OBJCOPY_COFF_COFFOBJECT_H

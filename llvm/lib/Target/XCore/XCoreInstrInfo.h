@@ -18,8 +18,9 @@
 
 #define GET_INSTRINFO_HEADER
 #include "XCoreGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class XCoreSubtarget;
 
 class XCoreInstrInfo : public XCoreGenInstrInfo {
@@ -91,6 +92,6 @@ public:
                                             unsigned Reg, uint64_t Value) const;
 };
 
-}
+LLVM_NAMESPACE_END
 
 #endif

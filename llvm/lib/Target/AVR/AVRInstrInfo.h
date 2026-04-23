@@ -19,9 +19,10 @@
 
 #define GET_INSTRINFO_HEADER
 #include "AVRGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 #undef GET_INSTRINFO_HEADER
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AVRSubtarget;
 
@@ -122,6 +123,6 @@ protected:
   const AVRSubtarget &STI;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_AVR_INSTR_INFO_H

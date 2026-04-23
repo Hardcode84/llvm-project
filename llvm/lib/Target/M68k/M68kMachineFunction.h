@@ -17,8 +17,9 @@
 #include "llvm/CodeGen/CallingConvLower.h"
 #include "llvm/CodeGen/MachineFunction.h"
 #include "llvm/CodeGenTypes/MachineValueType.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class M68kMachineFunctionInfo : public MachineFunctionInfo {
   /// Non-zero if the function has base pointer and makes call to
@@ -113,6 +114,6 @@ private:
   virtual void anchor();
 };
 
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm
 
 #endif // LLVM_LIB_TARGET_M68K_M68KMACHINEFUNCTION_H

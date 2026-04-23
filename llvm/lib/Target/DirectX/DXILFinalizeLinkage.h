@@ -18,8 +18,9 @@
 
 #include "llvm/IR/PassManager.h"
 #include "llvm/Pass.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DXILFinalizeLinkage : public PassInfoMixin<DXILFinalizeLinkage> {
 public:
@@ -34,6 +35,6 @@ public:
 
   static char ID; // Pass identification.
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TARGET_DIRECTX_DXILFINALIZELINKAGE_H

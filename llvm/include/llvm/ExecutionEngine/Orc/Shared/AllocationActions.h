@@ -20,7 +20,7 @@
 
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 namespace shared {
 
@@ -97,6 +97,6 @@ public:
 
 } // end namespace shared
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_SHARED_ALLOCATIONACTIONS_H

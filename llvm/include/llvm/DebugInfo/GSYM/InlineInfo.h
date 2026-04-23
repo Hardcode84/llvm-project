@@ -18,7 +18,7 @@
 #include <stdint.h>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 
 namespace gsym {
@@ -188,6 +188,6 @@ inline bool operator==(const InlineInfo &LHS, const InlineInfo &RHS) {
 LLVM_ABI raw_ostream &operator<<(raw_ostream &OS, const InlineInfo &FI);
 
 } // namespace gsym
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_GSYM_INLINEINFO_H

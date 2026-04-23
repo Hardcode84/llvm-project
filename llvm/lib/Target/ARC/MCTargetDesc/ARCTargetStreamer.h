@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_ARC_ARCTARGETSTREAMER_H
 
 #include "llvm/MC/MCStreamer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ARCTargetStreamer : public MCTargetStreamer {
 public:
@@ -19,6 +20,6 @@ public:
   ~ARCTargetStreamer() override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARC_ARCTARGETSTREAMER_H

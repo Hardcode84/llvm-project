@@ -16,8 +16,9 @@
 #define LLVM_FRONTEND_OPENMP_OMPASSUME_H
 
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace omp {
 
@@ -50,6 +51,6 @@ inline std::string getAllAssumeClauseOptions() {
 
 } // namespace omp
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_FRONTEND_OPENMP_OMPASSUME_H

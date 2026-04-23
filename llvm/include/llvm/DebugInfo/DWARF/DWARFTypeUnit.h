@@ -12,8 +12,9 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/DebugInfo/DWARF/DWARFUnit.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct DIDumpOptions;
 class DWARFContext;
@@ -40,6 +41,6 @@ public:
   static bool classof(const DWARFUnit *U) { return U->isTypeUnit(); }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFTYPEUNIT_H

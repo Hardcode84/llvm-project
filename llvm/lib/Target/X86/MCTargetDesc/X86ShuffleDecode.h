@@ -15,12 +15,13 @@
 #define LLVM_LIB_TARGET_X86_UTILS_X86SHUFFLEDECODE_H
 
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
 //===----------------------------------------------------------------------===//
 //  Vector Mask Decoding
 //===----------------------------------------------------------------------===//
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class APInt;
 template <typename T> class ArrayRef;
 template <typename T> class SmallVectorImpl;
@@ -162,6 +163,6 @@ void DecodeVPERMVMask(ArrayRef<uint64_t> RawMask, const APInt &UndefElts,
 /// Decode a VPERMT2 W/D/Q/PS/PD mask from a raw array of constants.
 void DecodeVPERMV3Mask(ArrayRef<uint64_t> RawMask, const APInt &UndefElts,
                       SmallVectorImpl<int> &ShuffleMask);
-} // llvm namespace
+LLVM_NAMESPACE_END // llvm namespace
 
 #endif

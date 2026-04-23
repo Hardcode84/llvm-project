@@ -19,8 +19,9 @@
 #include "llvm/Support/Error.h"
 #include <functional>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A handler which streams the returned data to a CachedFileStream. The cache
 /// file is only created if a 200 OK status is observed.
@@ -44,6 +45,6 @@ public:
   Error handleBodyChunk(StringRef BodyChunk) override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_HTTP_STREAMEDHTTPRESPONSEHANDLER_H

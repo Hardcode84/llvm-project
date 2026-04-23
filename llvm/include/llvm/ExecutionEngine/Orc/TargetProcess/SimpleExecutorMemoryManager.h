@@ -25,7 +25,7 @@
 
 #include <mutex>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 namespace rt_bootstrap {
 
@@ -97,6 +97,6 @@ private:
 
 } // end namespace rt_bootstrap
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_TARGETPROCESS_SIMPLEEXECUTORMEMORYMANAGER_H

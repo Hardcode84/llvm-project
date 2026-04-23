@@ -11,13 +11,15 @@
 #include "llvm/IR/SystemLibraries.h"
 #include "llvm/ProfileData/InstrProfCorrelator.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern llvm::cl::opt<llvm::InstrProfCorrelator::ProfCorrelatorKind>
     ProfileCorrelate;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm::driver {
+LLVM_NAMESPACE_BEGIN
+namespace driver {
 
 llvm::VectorLibrary
 convertDriverVectorLibraryToVectorLibrary(llvm::driver::VectorLibrary VecLib) {
@@ -55,4 +57,5 @@ std::string getDefaultProfileGenName() {
              ? "default_%m.proflite"
              : "default_%m.profraw";
 }
-} // namespace llvm::driver
+}
+LLVM_NAMESPACE_END // namespace llvm::driver

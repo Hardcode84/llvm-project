@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_R600FRAMELOWERING_H
 
 #include "AMDGPUFrameLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class R600FrameLowering : public AMDGPUFrameLowering {
 public:
@@ -31,6 +32,6 @@ protected:
   bool hasFPImpl(const MachineFunction &MF) const override { return false; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_R600FRAMELOWERING_H

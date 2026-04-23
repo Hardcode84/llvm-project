@@ -21,8 +21,9 @@
 #include "llvm/Support/raw_ostream.h"
 #include <iomanip>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace logicalview {
 
 class LVStringPool {
@@ -86,6 +87,6 @@ public:
 };
 
 } // namespace logicalview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_LOGICALVIEW_CORE_LVSTRINGPOOL_H

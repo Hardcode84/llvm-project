@@ -17,8 +17,9 @@
 #include "llvm/CodeGen/GlobalISel/LegalizerInfo.h"
 #include "AMDGPUArgumentUsageInfo.h"
 #include "SIInstrInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GCNTargetMachine;
 class GCNSubtarget;
@@ -267,5 +268,5 @@ public:
   bool legalizeIntrinsic(LegalizerHelper &Helper,
                          MachineInstr &MI) const override;
 };
-} // End llvm namespace.
+LLVM_NAMESPACE_END // End llvm namespace.
 #endif

@@ -20,7 +20,7 @@
 #include "llvm/Support/MathExtras.h"
 #include "llvm/Support/raw_ostream.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Triple;
 
@@ -200,6 +200,6 @@ LLVM_ABI unsigned getSEWLMULRatio(unsigned SEW, VLMUL VLMul);
 LLVM_ABI std::optional<VLMUL> getSameRatioLMUL(unsigned Ratio, unsigned EEW);
 } // namespace RISCVVType
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

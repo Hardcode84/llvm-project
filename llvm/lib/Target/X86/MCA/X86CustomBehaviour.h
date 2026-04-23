@@ -19,8 +19,9 @@
 
 #include "llvm/MCA/CustomBehaviour.h"
 #include "llvm/TargetParser/TargetParser.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 class X86InstrPostProcess : public InstrPostProcess {
@@ -43,6 +44,6 @@ public:
 };
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

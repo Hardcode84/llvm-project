@@ -21,7 +21,7 @@
 #include <cstdint>
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCContext;
 class MCInst;
@@ -535,6 +535,6 @@ public:
   virtual void onEndOfFile() {}
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCPARSER_MCTARGETASMPARSER_H

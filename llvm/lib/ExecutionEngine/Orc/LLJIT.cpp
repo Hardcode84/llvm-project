@@ -28,6 +28,7 @@
 #include "llvm/IR/Mangler.h"
 #include "llvm/IR/Module.h"
 #include "llvm/Support/DynamicLibrary.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
@@ -597,7 +598,7 @@ public:
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 Error ORCPlatformSupport::initialize(orc::JITDylib &JD) {
@@ -1355,4 +1356,4 @@ LLVM_ATTRIBUTE_USED void linkComponents() {
 }
 
 } // End namespace orc.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.

@@ -13,8 +13,9 @@
 #define LLVM_LIB_TARGET_NVPTX_NVPTXALIASANALYSIS_H
 
 #include "llvm/Analysis/AliasAnalysis.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MemoryLocation;
 
@@ -107,6 +108,6 @@ public:
 ImmutablePass *createNVPTXAAWrapperPass();
 ImmutablePass *createNVPTXExternalAAWrapperPass();
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_NVPTX_NVPTXALIASANALYSIS_H

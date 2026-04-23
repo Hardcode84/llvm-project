@@ -11,8 +11,9 @@
 
 #include "llvm/MC/MCObjectWriter.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCFixup;
 class MCSectionWasm;
@@ -58,6 +59,6 @@ std::unique_ptr<MCObjectWriter>
 createWasmDwoObjectWriter(std::unique_ptr<MCWasmObjectTargetWriter> MOTW,
                           raw_pwrite_stream &OS, raw_pwrite_stream &DwoOS);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

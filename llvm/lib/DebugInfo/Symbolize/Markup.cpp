@@ -14,8 +14,9 @@
 #include "llvm/DebugInfo/Symbolize/Markup.h"
 
 #include "llvm/ADT/STLExtras.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace symbolize {
 
 // Matches the following:
@@ -201,4 +202,4 @@ std::optional<StringRef> MarkupParser::parseMultiLineEnd(StringRef Line) {
 }
 
 } // end namespace symbolize
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

@@ -18,7 +18,8 @@
 #include "llvm/ExecutionEngine/Orc/SymbolStringPool.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 class MaterializationResponsibility;
 
@@ -99,6 +100,7 @@ private:
   virtual void discard(const JITDylib &JD, const SymbolStringPtr &Name) = 0;
 };
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc
 
 #endif // LLVM_EXECUTIONENGINE_ORC_MATERIALIZATIONUNIT_H

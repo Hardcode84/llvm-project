@@ -21,7 +21,7 @@
 
 #include <mutex>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 class ExecutorProcessControl;
@@ -220,6 +220,6 @@ EPCIndirectionUtils::CreateWithABI(ExecutorProcessControl &EPC,
 }
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_EPCINDIRECTIONUTILS_H

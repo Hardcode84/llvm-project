@@ -18,8 +18,9 @@
 
 #include "llvm/ADT/SmallVector.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCContext;
 class MCObjectStreamer;
@@ -42,5 +43,5 @@ public:
                                SmallVectorImpl<char> &Out, MCFragment *FDEFrag);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif // LLVM_MC_MCSFRAME_H

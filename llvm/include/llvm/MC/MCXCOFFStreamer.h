@@ -10,8 +10,9 @@
 #define LLVM_MC_MCXCOFFSTREAMER_H
 
 #include "llvm/MC/MCObjectStreamer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class XCOFFObjectWriter;
 
 class MCXCOFFStreamer : public MCObjectStreamer {
@@ -40,6 +41,6 @@ public:
   void emitXCOFFCInfoSym(StringRef Name, StringRef Metadata) override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCXCOFFSTREAMER_H

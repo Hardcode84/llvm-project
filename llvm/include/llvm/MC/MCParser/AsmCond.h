@@ -9,7 +9,9 @@
 #ifndef LLVM_MC_MCPARSER_ASMCOND_H
 #define LLVM_MC_MCPARSER_ASMCOND_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 /// AsmCond - Class to support conditional assembly
 ///
@@ -32,6 +34,6 @@ public:
   bool Ignore = false;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCPARSER_ASMCOND_H

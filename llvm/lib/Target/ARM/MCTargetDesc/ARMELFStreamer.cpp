@@ -54,6 +54,7 @@
 #include <climits>
 #include <cstdint>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -1486,7 +1487,7 @@ void ARMELFStreamer::emitUnwindRaw(int64_t Offset,
   UnwindOpAsm.EmitRaw(Opcodes);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 MCTargetStreamer *createARMTargetAsmStreamer(MCStreamer &S,
                                              formatted_raw_ostream &OS,
@@ -1518,4 +1519,4 @@ MCELFStreamer *createARMELFStreamer(MCContext &Context,
   return S;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

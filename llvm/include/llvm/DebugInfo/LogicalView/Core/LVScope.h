@@ -23,7 +23,7 @@
 #include <map>
 #include <set>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace logicalview {
 
 // Name address, Code size.
@@ -867,6 +867,6 @@ public:
 };
 
 } // end namespace logicalview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_LOGICALVIEW_CORE_LVSCOPE_H

@@ -19,8 +19,9 @@
 #include "llvm/MC/MCInstrDesc.h"
 #include "llvm/Support/DataTypes.h"
 #include "llvm/Support/ErrorHandling.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// MipsII - This namespace holds all of the target specific flags that
 /// instruction info tracks.
@@ -164,6 +165,6 @@ inline static MCRegister getFloatRegFromFReg(MCRegister Reg) {
   return Mips::NoRegister;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -19,6 +19,7 @@
 #include "llvm/Support/Errc.h"
 #include "llvm/Support/Error.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -390,7 +391,7 @@ Error DXContainerWriter::write(raw_ostream &OS) {
   return writeParts(OS);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 bool yaml2dxcontainer(DXContainerYAML::Object &Doc, raw_ostream &Out,
@@ -405,4 +406,4 @@ bool yaml2dxcontainer(DXContainerYAML::Object &Doc, raw_ostream &Out,
 }
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

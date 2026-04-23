@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_SIFOLDOPERANDS_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SIFoldOperandsPass : public PassInfoMixin<SIFoldOperandsPass> {
 public:
   SIFoldOperandsPass() = default;
@@ -22,6 +23,6 @@ public:
     return MachineFunctionProperties().setIsSSA();
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_SIFOLDOPERANDS_H

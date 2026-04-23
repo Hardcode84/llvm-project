@@ -139,10 +139,10 @@ static cl::opt<bool> OneComplexPerPacket(
     "single-complex-packet", cl::Hidden,
     cl::desc("Allow only one complex instruction in a packet"));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 FunctionPass *createHexagonGlobalScheduler();
 void initializeHexagonGlobalSchedulerPass(PassRegistry &);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 class HexagonGlobalSchedulerImpl;

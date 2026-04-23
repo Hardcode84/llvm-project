@@ -12,8 +12,9 @@
 #include "DWARFLinkerCompileUnit.h"
 #include "llvm/ADT/PointerIntPair.h"
 #include "llvm/ADT/SmallVector.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DWARFDebugInfoEntry;
 class DWARFDie;
 
@@ -269,6 +270,6 @@ protected:
 
 } // end of namespace parallel
 } // end of namespace dwarf_linker
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm
 
 #endif // LLVM_LIB_DWARFLINKER_PARALLEL_DEPENDENCYTRACKER_H

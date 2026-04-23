@@ -16,8 +16,9 @@
 
 #include "llvm/ADT/STLFunctionalExtras.h"
 #include "llvm/Support/SourceMgr.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Record;
 class RecordVal;
 class Init;
@@ -55,6 +56,6 @@ void dumpMessage(SMLoc Loc, const Init *Message);
 extern SourceMgr SrcMgr;
 extern unsigned ErrorsPrinted;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

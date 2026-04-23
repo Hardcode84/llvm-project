@@ -13,8 +13,9 @@
 
 #define GET_SDNODE_ENUM
 #include "PPCGenSDNodeInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace PPCISD {
 
 enum NodeType : unsigned {
@@ -101,6 +102,6 @@ public:
                           const CallInst *CI) const override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_POWERPC_PPCSELECTIONDAGINFO_H

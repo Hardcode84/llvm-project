@@ -18,8 +18,9 @@
 #include "llvm/CodeGen/MachinePostDominators.h"
 #include "llvm/CodeGen/MachineRegisterInfo.h"
 #include "llvm/CodeGen/MachineSSAUpdater.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace AMDGPU {
 /// Incoming for lane mask phi as machine instruction, incoming register \p Reg
 /// and incoming block \p Block are taken from machine instruction.
@@ -95,4 +96,4 @@ public:
   virtual void constrainAsLaneMask(Incoming &In) = 0;
 };
 } // namespace AMDGPU
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

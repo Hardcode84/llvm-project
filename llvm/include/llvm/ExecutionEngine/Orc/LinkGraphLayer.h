@@ -22,7 +22,8 @@
 #include <atomic>
 #include <memory>
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 class LLVM_ABI LinkGraphLayer {
 public:
@@ -106,6 +107,7 @@ inline Error LinkGraphLayer::add(ResourceTrackerSP RT,
                    std::move(RT));
 }
 
-} // end namespace llvm::orc
+}
+LLVM_NAMESPACE_END // end namespace llvm::orc
 
 #endif // LLVM_EXECUTIONENGINE_ORC_LINKGRAPHLAYER_H

@@ -16,8 +16,9 @@
 
 #include "M68kMemOperandPrinter.h"
 #include "llvm/MC/MCInstPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class TargetMachine;
 
@@ -160,6 +161,6 @@ private:
     printPCIMem(MI, Address, opNum, O);
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_M68K_INSTPRINTER_M68KINSTPRINTER_H

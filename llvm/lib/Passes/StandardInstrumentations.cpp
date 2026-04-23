@@ -44,6 +44,7 @@
 #include <unordered_set>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -2107,7 +2108,7 @@ void DotCfgDiffNode::finalize(DotCfgDiff &G) {
 
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <> struct GraphTraits<DotCfgDiffDisplayGraph *> {
   using NodeRef = const DisplayNode *;
@@ -2169,7 +2170,7 @@ struct DOTGraphTraits<DotCfgDiffDisplayGraph *> : public DefaultDOTGraphTraits {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 
@@ -2187,7 +2188,7 @@ void DotCfgDiffDisplayGraph::generateDotFile(StringRef DotFile) {
 
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 DCData::DCData(const BasicBlock &B) {
   // Build up transition labels.
@@ -2544,4 +2545,4 @@ template class ChangeReporter<IRDataT<EmptyData>>;
 template class TextChangeReporter<IRDataT<EmptyData>>;
 template class IRComparer<EmptyData>;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

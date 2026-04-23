@@ -12,7 +12,7 @@
 #include "llvm/CodeGen/MachineOperand.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCContext;
 class MCInst;
@@ -38,6 +38,6 @@ private:
                                MachineOperandType MOTy, unsigned Offset) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARC_ARCMCINSTLOWER_H

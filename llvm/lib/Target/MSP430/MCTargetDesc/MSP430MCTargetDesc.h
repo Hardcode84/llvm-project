@@ -15,8 +15,9 @@
 
 #include "llvm/Support/DataTypes.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Target;
 class MCAsmBackend;
 class MCCodeEmitter;
@@ -44,7 +45,7 @@ createMSP430ObjectTargetStreamer(MCStreamer &S, const MCSubtargetInfo &STI);
 std::unique_ptr<MCObjectTargetWriter>
 createMSP430ELFObjectWriter(uint8_t OSABI);
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 // Defines symbolic names for MSP430 registers.
 // This defines a mapping from register name to register number.

@@ -13,12 +13,13 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/MCA/HardwareUnits/HardwareUnit.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 // Pin the vtable with this method.
 HardwareUnit::~HardwareUnit() = default;
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

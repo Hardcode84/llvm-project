@@ -26,7 +26,7 @@
 #include <optional>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCInst;
 
@@ -328,6 +328,6 @@ public:
   virtual bool shouldPrefetchAddressSpace(unsigned AS) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCSUBTARGETINFO_H

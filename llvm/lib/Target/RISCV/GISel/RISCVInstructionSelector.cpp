@@ -196,6 +196,7 @@ RISCVInstructionSelector::RISCVInstructionSelector(
 #undef GET_GLOBALISEL_PREDICATES_INIT
 #define GET_GLOBALISEL_TEMPORARIES_INIT
 #include "RISCVGenGlobalISel.inc"
+#include "llvm/Support/Compiler.h"
 #undef GET_GLOBALISEL_TEMPORARIES_INIT
 {
 }
@@ -1996,11 +1997,11 @@ void RISCVInstructionSelector::emitFence(AtomicOrdering FenceOrdering,
   BuildMI(MBB, MI, DL, TII.get(RISCV::FENCE)).addImm(Pred).addImm(Succ);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 InstructionSelector *
 createRISCVInstructionSelector(const RISCVTargetMachine &TM,
                                const RISCVSubtarget &Subtarget,
                                const RISCVRegisterBankInfo &RBI) {
   return new RISCVInstructionSelector(TM, Subtarget, RBI);
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

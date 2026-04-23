@@ -16,8 +16,9 @@
 #define LLVM_LIB_TARGET_ARC_INSTPRINTER_ARCINSTPRINTER_H
 
 #include "llvm/MC/MCInstPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ARCInstPrinter : public MCInstPrinter {
 public:
@@ -50,6 +51,6 @@ private:
   void printU6ShiftedBy(unsigned ShiftBy, const MCInst *MI, int OpNum,
                         raw_ostream &O);
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARC_INSTPRINTER_ARCINSTPRINTER_H

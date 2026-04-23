@@ -14,7 +14,7 @@
 #include "llvm/DebugInfo/DWARF/LowLevel/DWARFExpression.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // This functionality is separated from the main data structure so that nothing
 // in DWARFExpression.cpp needs build-time dependencies on DWARFUnit or other
@@ -61,6 +61,6 @@ LLVM_ABI bool prettyPrintRegisterOp(DWARFUnit *U, raw_ostream &OS,
                                     DIDumpOptions DumpOpts, uint8_t Opcode,
                                     ArrayRef<uint64_t> Operands);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFEXPRESSIONPRINTER_H

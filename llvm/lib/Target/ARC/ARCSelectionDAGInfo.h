@@ -13,8 +13,9 @@
 
 #define GET_SDNODE_ENUM
 #include "ARCGenSDNodeInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ARCSelectionDAGInfo : public SelectionDAGGenTargetInfo {
 public:
@@ -23,6 +24,6 @@ public:
   ~ARCSelectionDAGInfo() override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARC_ARCSELECTIONDAGINFO_H

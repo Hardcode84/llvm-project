@@ -21,8 +21,9 @@
 #include "llvm/Support/CodeGen.h"
 #include <memory>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MipsTargetMachine : public CodeGenTargetMachineImpl {
   bool isLittle;
@@ -106,6 +107,6 @@ public:
                       bool JIT);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_MIPS_MIPSTARGETMACHINE_H

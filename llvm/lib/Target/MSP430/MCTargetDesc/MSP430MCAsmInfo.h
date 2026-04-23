@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_MSP430_MCTARGETDESC_MSP430MCASMINFO_H
 
 #include "llvm/MC/MCAsmInfoELF.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Triple;
 
 class MSP430MCAsmInfo : public MCAsmInfoELF {
@@ -25,6 +26,6 @@ public:
   explicit MSP430MCAsmInfo(const Triple &TT);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

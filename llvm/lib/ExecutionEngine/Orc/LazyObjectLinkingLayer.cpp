@@ -11,6 +11,7 @@
 #include "llvm/ExecutionEngine/Orc/LazyReexports.h"
 #include "llvm/ExecutionEngine/Orc/ObjectLinkingLayer.h"
 #include "llvm/ExecutionEngine/Orc/RedirectionManager.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::jitlink;
@@ -21,7 +22,8 @@ constexpr StringRef FnBodySuffix = "$orc_fnbody";
 
 } // anonymous namespace
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 class LazyObjectLinkingLayer::RenamerPlugin
     : public ObjectLinkingLayer::Plugin {
@@ -109,4 +111,5 @@ void LazyObjectLinkingLayer::emit(
   return BaseLayer.emit(std::move(MR), std::move(Obj));
 }
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc

@@ -22,6 +22,7 @@
 #include "llvm/DebugInfo/PDB/PDBSymbolTypeVTableShape.h"
 #include "llvm/Support/ConvertUTF.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::pdb;
@@ -188,14 +189,14 @@ void DumpDIAValue(llvm::raw_ostream &OS, int Indent, StringRef Name,
 }
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 llvm::raw_ostream &operator<<(llvm::raw_ostream &OS, const GUID &G) {
   StringRef GuidBytes(reinterpret_cast<const char *>(&G), sizeof(G));
   codeview::detail::GuidAdapter A(GuidBytes);
   A.format(OS, "");
   return OS;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 DIARawSymbol::DIARawSymbol(const DIASession &PDBSession,
                            CComPtr<IDiaSymbol> DiaSymbol)

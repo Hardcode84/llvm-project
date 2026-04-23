@@ -17,8 +17,9 @@
 
 #include "llvm/Object/BuildID.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DebuginfodFetcher : public object::BuildIDFetcher {
 public:
@@ -31,6 +32,6 @@ public:
   std::optional<std::string> fetch(object::BuildIDRef BuildID) const override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFOD_DIFETCHER_H

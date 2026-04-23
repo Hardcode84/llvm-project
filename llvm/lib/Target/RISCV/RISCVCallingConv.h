@@ -12,8 +12,9 @@
 
 #include "MCTargetDesc/RISCVBaseInfo.h"
 #include "llvm/CodeGen/CallingConvLower.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This is used for assigining arguments to locations when making calls.
 CCAssignFn CC_RISCV;
@@ -27,4 +28,4 @@ ArrayRef<MCPhysReg> getArgGPRs(const RISCVABI::ABI ABI);
 
 } // end namespace RISCV
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

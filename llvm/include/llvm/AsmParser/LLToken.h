@@ -13,7 +13,9 @@
 #ifndef LLVM_ASMPARSER_LLTOKEN_H
 #define LLVM_ASMPARSER_LLTOKEN_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 namespace lltok {
 enum Kind {
   // Markers
@@ -531,6 +533,6 @@ enum Kind {
   APSInt   // APSInt
 };
 } // end namespace lltok
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

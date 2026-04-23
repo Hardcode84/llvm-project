@@ -16,8 +16,9 @@
 
 #include "MCTargetDesc/SystemZMCTargetDesc.h"
 #include "llvm/Support/CodeGen.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class FunctionPass;
 class PassRegistry;
 class SystemZTargetMachine;
@@ -213,6 +214,6 @@ namespace SYSTEMZAS {
 enum : unsigned { PTR32 = 1 };
 } // namespace SYSTEMZAS
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

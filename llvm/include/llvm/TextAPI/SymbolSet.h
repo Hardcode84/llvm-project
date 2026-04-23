@@ -21,7 +21,7 @@
 #include "llvm/TextAPI/Symbol.h"
 #include <stddef.h>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct SymbolsMapKey {
   MachO::EncodeKind Kind;
@@ -175,5 +175,5 @@ public:
 };
 
 } // namespace MachO
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_TEXTAPI_SYMBOLSET_H

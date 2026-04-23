@@ -22,8 +22,9 @@
 #include "llvm/Support/raw_ostream.h"
 #include <optional>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace remarks {
 
 class YAMLParseError : public ErrorInfo<YAMLParseError> {
@@ -95,6 +96,6 @@ Expected<std::unique_ptr<YAMLRemarkParser>> createYAMLParserFromMeta(
     std::optional<StringRef> ExternalFilePrependPath = std::nullopt);
 
 } // end namespace remarks
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif /* LLVM_REMARKS_YAML_REMARK_PARSER_H */

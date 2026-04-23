@@ -12,10 +12,11 @@
 #include "llvm/BinaryFormat/Magic.h"
 #include "llvm/ExecutionEngine/Orc/MachO.h"
 #include "llvm/Support/FileSystem.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 static Expected<std::unique_ptr<MemoryBuffer>>
@@ -134,4 +135,4 @@ loadLinkableFile(StringRef Path, const Triple &TT, LoadArchives LA,
 }
 
 } // End namespace orc.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.

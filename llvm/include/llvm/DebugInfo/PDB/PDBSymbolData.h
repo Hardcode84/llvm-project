@@ -14,7 +14,7 @@
 #include "llvm/DebugInfo/PDB/IPDBRawSymbol.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace pdb {
 
@@ -55,6 +55,6 @@ public:
   uint32_t getCompilandId() const;
 };
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_PDB_PDBSYMBOLDATA_H

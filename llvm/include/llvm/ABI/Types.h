@@ -22,8 +22,9 @@
 #include "llvm/Support/Allocator.h"
 #include "llvm/Support/Casting.h"
 #include "llvm/Support/TypeSize.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace abi {
 
 enum class TypeKind {
@@ -426,6 +427,6 @@ public:
 };
 
 } // namespace abi
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

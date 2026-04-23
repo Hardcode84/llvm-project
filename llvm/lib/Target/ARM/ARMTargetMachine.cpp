@@ -80,9 +80,9 @@ static cl::opt<cl::boolOrDefault>
 EnableGlobalMerge("arm-global-merge", cl::Hidden,
                   cl::desc("Enable the global merge pass"));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   void initializeARMExecutionDomainFixPass(PassRegistry&);
-}
+LLVM_NAMESPACE_END
 
 extern "C" LLVM_ABI LLVM_EXTERNAL_VISIBILITY void LLVMInitializeARMTarget() {
   // Register the target.

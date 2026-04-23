@@ -22,8 +22,9 @@
 #include "llvm/TargetParser/RISCVISAInfo.h"
 #include "llvm/TargetParser/RISCVTargetParser.h"
 #include "llvm/TargetParser/SubtargetFeature.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace RISCVOp {
 enum OperandType : unsigned {
@@ -883,6 +884,6 @@ struct NDSVLNPseudo {
 #include "RISCVGenSearchableTables.inc"
 } // namespace RISCV
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

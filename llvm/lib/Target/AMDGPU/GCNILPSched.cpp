@@ -11,6 +11,7 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/CodeGen/ScheduleDAG.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -351,10 +352,10 @@ GCNILPScheduler::schedule(ArrayRef<const SUnit*> BotRoots,
   return Schedule;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 std::vector<const SUnit*> makeGCNILPScheduler(ArrayRef<const SUnit*> BotRoots,
                                               const ScheduleDAG &DAG) {
   GCNILPScheduler S;
   return S.schedule(BotRoots, DAG);
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

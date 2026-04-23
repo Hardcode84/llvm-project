@@ -35,8 +35,9 @@
 #include <deque>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Argument;
 class FastISel;
@@ -552,6 +553,6 @@ FastISel *createFastISel(FunctionLoweringInfo &funcInfo,
 
 } // end namespace Mips
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_MIPS_MIPSISELLOWERING_H

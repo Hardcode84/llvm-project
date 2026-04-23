@@ -21,6 +21,7 @@
 #include "llvm/IR/Attributes.h"
 #include "llvm/IR/Constants.h"
 #include "llvm/IR/IntrinsicsSPIRV.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "spirv-prelegalizer"
 
@@ -426,7 +427,7 @@ static void setInsertPtAfterDef(MachineIRBuilder &MIB, MachineInstr *Def) {
   MIB.setInsertPt(MBB, DefIt);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 void updateRegType(Register Reg, Type *Ty, SPIRVTypeInst SpvType,
                    SPIRVGlobalRegistry *GR, MachineIRBuilder &MIB,
                    MachineRegisterInfo &MRI) {
@@ -463,7 +464,7 @@ void processInstr(MachineInstr &MI, MachineIRBuilder &MIB,
       MRI.setType(OpReg, GR->getRegType(SpvType));
   }
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static void
 generateAssignInstrs(MachineFunction &MF, SPIRVGlobalRegistry *GR,

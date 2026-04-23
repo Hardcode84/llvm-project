@@ -13,8 +13,9 @@
 #include "llvm/DWARFLinker/Parallel/DWARFLinker.h"
 #include "llvm/DWARFLinker/StringPool.h"
 #include "llvm/Support/PerThreadBumpPtrAllocator.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DWARFDie;
 
@@ -158,6 +159,6 @@ protected:
 
 } // end of namespace parallel
 } // end of namespace dwarf_linker
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm
 
 #endif // LLVM_LIB_DWARFLINKER_PARALLEL_DWARFLINKERGLOBALDATA_H

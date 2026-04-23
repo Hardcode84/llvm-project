@@ -31,7 +31,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 class ELFObjectFileBase;
 class MachOObjectFile;
@@ -294,6 +294,6 @@ private:
 };
 
 } // end namespace symbolize
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_SYMBOLIZE_SYMBOLIZE_H

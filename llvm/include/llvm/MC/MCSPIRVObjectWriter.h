@@ -14,8 +14,9 @@
 #include "llvm/Support/EndianStream.h"
 #include "llvm/Support/raw_ostream.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCSPIRVObjectTargetWriter : public MCObjectTargetWriter {
 public:
@@ -56,6 +57,6 @@ std::unique_ptr<MCObjectWriter>
 createSPIRVObjectWriter(std::unique_ptr<MCSPIRVObjectTargetWriter> MOTW,
                         raw_pwrite_stream &OS);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

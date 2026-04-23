@@ -26,7 +26,7 @@
 #include "llvm/Support/MemoryBuffer.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace object {
 
@@ -263,5 +263,5 @@ LLVM_ABI bool areTargetsCompatible(const OffloadFile::TargetID &LHS,
 
 } // namespace object
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

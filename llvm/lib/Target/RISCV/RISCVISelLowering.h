@@ -20,8 +20,9 @@
 #include "llvm/CodeGen/SelectionDAG.h"
 #include "llvm/CodeGen/TargetLowering.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class InstructionCost;
 class RISCVSubtarget;
 struct RISCVRegisterInfo;
@@ -662,6 +663,6 @@ using namespace RISCV;
 
 } // end namespace RISCVVIntrinsicsTable
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

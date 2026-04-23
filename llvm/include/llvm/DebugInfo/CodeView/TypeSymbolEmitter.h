@@ -9,7 +9,9 @@
 #ifndef LLVM_DEBUGINFO_CODEVIEW_TYPESYMBOLEMITTER_H
 #define LLVM_DEBUGINFO_CODEVIEW_TYPESYMBOLEMITTER_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 namespace codeview {
@@ -30,6 +32,6 @@ public:
   virtual void writeUserDefinedType(TypeIndex TI, StringRef Name) = 0;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

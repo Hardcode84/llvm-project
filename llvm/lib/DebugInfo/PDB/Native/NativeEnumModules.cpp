@@ -12,8 +12,9 @@
 #include "llvm/DebugInfo/PDB/Native/SymbolCache.h"
 #include "llvm/DebugInfo/PDB/PDBSymbol.h"
 #include "llvm/DebugInfo/PDB/PDBSymbolCompiland.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 NativeEnumModules::NativeEnumModules(NativeSession &PDBSession, uint32_t Index)
@@ -37,4 +38,4 @@ std::unique_ptr<PDBSymbol> NativeEnumModules::getNext() {
 void NativeEnumModules::reset() { Index = 0; }
 
 }
-}
+LLVM_NAMESPACE_END

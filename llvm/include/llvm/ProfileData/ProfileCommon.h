@@ -27,7 +27,7 @@
 #include <memory>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 LLVM_ABI extern cl::opt<bool> UseContextLessSummary;
 LLVM_ABI extern cl::opt<int> ProfileSummaryCutoffHot;
@@ -112,6 +112,6 @@ void ProfileSummaryBuilder::addCount(uint64_t Count) {
   CountFrequencies[Count]++;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_PROFILEDATA_PROFILECOMMON_H

@@ -11,10 +11,12 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/ExecutionEngine/JITLink/ppc64.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
-namespace llvm::jitlink::ppc64 {
+LLVM_NAMESPACE_BEGIN
+namespace jitlink::ppc64 {
 
 const char NullPointerContent[8] = {0x00, 0x00, 0x00, 0x00,
                                     0x00, 0x00, 0x00, 0x00};
@@ -141,4 +143,5 @@ const char *getEdgeKindName(Edge::Kind K) {
   }
 }
 
-} // end namespace llvm::jitlink::ppc64
+}
+LLVM_NAMESPACE_END // end namespace llvm::jitlink::ppc64

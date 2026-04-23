@@ -13,8 +13,9 @@
 #include "llvm/DebugInfo/CodeView/SymbolVisitorCallbacks.h"
 #include "llvm/Support/Error.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 
 class SymbolVisitorCallbackPipeline : public SymbolVisitorCallbacks {
@@ -73,6 +74,6 @@ private:
 };
 
 } // end namespace codeview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_CODEVIEW_SYMBOLVISITORCALLBACKPIPELINE_H

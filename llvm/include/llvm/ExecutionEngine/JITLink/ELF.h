@@ -14,8 +14,9 @@
 #define LLVM_EXECUTIONENGINE_JITLINK_ELF_H
 
 #include "llvm/ExecutionEngine/JITLink/JITLink.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 /// Create a LinkGraph from an ELF relocatable object.
@@ -35,6 +36,6 @@ void link_ELF(std::unique_ptr<LinkGraph> G,
               std::unique_ptr<JITLinkContext> Ctx);
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_JITLINK_ELF_H

@@ -17,8 +17,9 @@
 
 #include <memory>
 #include <stdint.h>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DataLayout;
 class Type;
 
@@ -38,6 +39,6 @@ public:
 };
 
 } // namespace dxil
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

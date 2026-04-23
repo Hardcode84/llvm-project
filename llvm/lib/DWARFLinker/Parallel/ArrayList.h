@@ -11,8 +11,9 @@
 
 #include "llvm/Support/PerThreadBumpPtrAllocator.h"
 #include <atomic>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dwarf_linker {
 namespace parallel {
 
@@ -162,6 +163,6 @@ protected:
 
 } // end of namespace parallel
 } // end of namespace dwarf_linker
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm
 
 #endif // LLVM_LIB_DWARFLINKER_PARALLEL_ARRAYLIST_H

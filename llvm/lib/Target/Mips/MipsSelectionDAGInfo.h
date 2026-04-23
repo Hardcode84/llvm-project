@@ -13,8 +13,9 @@
 
 #define GET_SDNODE_ENUM
 #include "MipsGenSDNodeInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace MipsISD {
 
 enum NodeType : unsigned {
@@ -42,6 +43,6 @@ public:
                         const SDNode *N) const override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_MIPS_MIPSSELECTIONDAGINFO_H

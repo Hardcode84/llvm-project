@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_MIPS_MCTARGETDESC_MIPSFIXUPKINDS_H
 
 #include "llvm/MC/MCFixup.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace Mips {
 // Although most of the current fixup types reflect a unique relocation
 // one can have multiple fixup types for a given relocation and thus need
@@ -233,6 +234,6 @@ enum Fixups {
   NumTargetFixupKinds = LastTargetFixupKind - FirstTargetFixupKind
 };
 } // namespace Mips
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

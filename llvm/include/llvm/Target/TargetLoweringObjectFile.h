@@ -19,7 +19,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct Align;
 struct MachineJumpTableEntry;
@@ -312,6 +312,6 @@ protected:
                                             const TargetMachine &TM) const = 0;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TARGET_TARGETLOWERINGOBJECTFILE_H

@@ -24,8 +24,9 @@
 #include "llvm/Support/FormatVariadic.h"
 #include <cstdarg>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DataLayout;
 class TargetMachine;
@@ -183,6 +184,6 @@ inline raw_ostream &operator<<(raw_ostream &O, AddressSpace A) {
 }
 
 } // namespace NVPTX
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

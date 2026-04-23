@@ -18,6 +18,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace gsym;
@@ -100,7 +101,7 @@ CallSiteInfoCollection::decode(GsymDataExtractor &Data) {
 }
 
 /// Structures necessary for reading CallSiteInfo from YAML.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 struct CallSiteYAML {
@@ -142,7 +143,7 @@ template <> struct MappingTraits<FunctionsYAML> {
 };
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(CallSiteYAML)
 LLVM_YAML_IS_SEQUENCE_VECTOR(FunctionYAML)

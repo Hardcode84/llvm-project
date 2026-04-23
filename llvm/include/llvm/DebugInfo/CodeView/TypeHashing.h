@@ -22,7 +22,7 @@
 
 #include <type_traits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 namespace codeview {
 
@@ -238,6 +238,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -10,8 +10,9 @@
 #define LLVM_HEXAGON_HEXAGONFIXUPKINDS_H
 
 #include "llvm/MC/MCFixup.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace Hexagon {
 enum Fixups {
   // Branch fixups for R_HEX_B{22,15,7}_PCREL.
@@ -137,6 +138,6 @@ enum FixupBitmaps : unsigned {
   Word32_X26 = 0x0fff3fff
 };
 } // namespace Hexagon
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_HEXAGON_HEXAGONFIXUPKINDS_H

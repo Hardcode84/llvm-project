@@ -16,8 +16,9 @@
 
 #include "PPCISelLowering.h"
 #include "llvm/CodeGen/GlobalISel/CallLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class PPCTargetLowering;
 
@@ -68,6 +69,6 @@ public:
       : PPCIncomingValueHandler(MIRBuilder, MRI) {}
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

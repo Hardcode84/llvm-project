@@ -16,8 +16,9 @@
 #include "RISCVSubtarget.h"
 #include "RISCVVSETVLIInfoAnalysis.h"
 #include "llvm/CodeGen/MachineScheduler.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A GenericScheduler implementation for RISCV pre RA scheduling.
 class RISCVPreRAMachineSchedStrategy : public GenericScheduler {
@@ -45,6 +46,6 @@ protected:
   void schedNode(SUnit *SU, bool IsTopNode) override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

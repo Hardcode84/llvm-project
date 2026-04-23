@@ -21,8 +21,9 @@
 #include "llvm/ADT/Hashing.h"
 #include "llvm/CodeGen/GlobalISel/MachineIRBuilder.h"
 #include "llvm/CodeGen/MachineModuleInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace SPIRV {
 
 inline size_t to_hash(const MachineInstr *MI) {
@@ -297,5 +298,5 @@ public:
     return findMI(SPIRV::handle(Obj), MF);
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVIRMAPPING_H

@@ -16,8 +16,9 @@
 
 #include "llvm/ADT/StringRef.h"
 #include "llvm/CodeGen/MachineFunction.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class NVPTXMachineFunctionInfo : public MachineFunctionInfo {
 private:
   /// Stores a mapping from index to symbol name for image handles that are
@@ -53,6 +54,6 @@ public:
     return llvm::is_contained(ImageHandleList, Symbol);
   }
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

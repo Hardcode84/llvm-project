@@ -19,8 +19,9 @@
 
 #include "llvm/CodeGen/TargetFrameLowering.h"
 #include "llvm/Support/Alignment.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SPIRVSubtarget;
 
 class SPIRVFrameLowering : public TargetFrameLowering {
@@ -36,5 +37,5 @@ public:
 protected:
   bool hasFPImpl(const MachineFunction &MF) const override { return false; }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVFRAMELOWERING_H

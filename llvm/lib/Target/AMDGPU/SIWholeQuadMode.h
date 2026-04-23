@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_SIWHOLEQUADMODE_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SIWholeQuadModePass : public PassInfoMixin<SIWholeQuadModePass> {
 public:
   PreservedAnalyses run(MachineFunction &MF,
@@ -21,6 +22,6 @@ public:
     return MachineFunctionProperties().setIsSSA();
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_SIWHOLEQUADMODE_H

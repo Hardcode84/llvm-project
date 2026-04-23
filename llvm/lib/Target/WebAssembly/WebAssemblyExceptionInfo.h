@@ -17,8 +17,9 @@
 #include "WebAssembly.h"
 #include "llvm/ADT/SmallPtrSet.h"
 #include "llvm/CodeGen/MachineFunctionPass.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineDominatorTree;
 class MachineDominanceFrontier;
@@ -169,6 +170,6 @@ public:
   void print(raw_ostream &OS, const Module *M = nullptr) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

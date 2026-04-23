@@ -18,8 +18,9 @@
 
 #define GET_REGINFO_HEADER
 #include "RISCVGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace RISCVRI {
 enum : uint8_t {
@@ -175,6 +176,6 @@ struct RISCVRegisterInfo : public RISCVGenRegisterInfo {
     return RISCVRI::isVRegClass(RC->TSFlags);
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

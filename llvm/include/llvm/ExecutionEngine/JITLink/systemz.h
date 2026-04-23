@@ -15,10 +15,11 @@
 
 #include "TableManager.h"
 #include "llvm/ExecutionEngine/JITLink/JITLink.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm::support::endian;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 namespace systemz {
 
@@ -937,6 +938,6 @@ LLVM_ABI Error optimizeGOTAndStubAccesses(LinkGraph &G);
 
 } // namespace systemz
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_JITLINK_SYSTEMZ_H

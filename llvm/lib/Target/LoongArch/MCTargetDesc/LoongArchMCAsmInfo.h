@@ -15,8 +15,9 @@
 
 #include "llvm/MC/MCAsmInfoELF.h"
 #include "llvm/MC/MCExpr.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Triple;
 class StringRef;
 
@@ -51,6 +52,6 @@ namespace LoongArch {
 uint16_t parseSpecifier(StringRef name);
 } // namespace LoongArch
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_LOONGARCH_MCTARGETDESC_LOONGARCHMCASMINFO_H

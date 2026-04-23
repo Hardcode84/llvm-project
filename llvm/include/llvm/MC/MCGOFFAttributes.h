@@ -16,8 +16,9 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/BinaryFormat/GOFF.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace GOFF {
 // An "External Symbol Definition" in the GOFF file has a type, and depending on
 // the type a different subset of the fields is used.
@@ -98,6 +99,6 @@ constexpr StringLiteral CLASS_PPA2 = "C_@@QPPA2";
 constexpr StringLiteral CLASS_SINIT = "C_@@SQINIT";
 
 } // namespace GOFF
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

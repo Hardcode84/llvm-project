@@ -20,13 +20,14 @@
 
 #define GET_TARGET_REGBANK_IMPL
 #include "ARMGenRegisterBank.inc"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
 // FIXME: TableGen this.
 // If it grows too much and TableGen still isn't ready to do the job, extract it
 // into an ARMGenRegisterBankInfo.def (similar to AArch64).
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace ARM {
 enum PartialMappingIdx {
   PMI_GPR,
@@ -128,7 +129,7 @@ static void checkValueMappings() {
 }
 #endif
 } // end namespace arm
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 ARMRegisterBankInfo::ARMRegisterBankInfo(const TargetRegisterInfo &TRI) {
   // We have only one set of register banks, whatever the subtarget

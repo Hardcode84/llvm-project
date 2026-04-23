@@ -32,6 +32,7 @@
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -46,9 +47,9 @@ static cl::opt<bool> DisableVSXFMAMutate(
 
 #define DEBUG_TYPE "ppc-vsx-fma-mutate"
 
-namespace llvm { namespace PPC {
+LLVM_NAMESPACE_BEGIN namespace PPC {
 int32_t getAltVSXFMAOpcode(uint32_t Opcode);
-} }
+} LLVM_NAMESPACE_END
 
 namespace {
   // PPCVSXFMAMutate pass - For copies between VSX registers and non-VSX registers

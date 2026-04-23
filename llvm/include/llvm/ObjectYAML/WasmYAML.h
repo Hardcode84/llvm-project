@@ -22,8 +22,9 @@
 #include <cstdint>
 #include <memory>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace WasmYAML {
 
 LLVM_YAML_STRONG_TYPEDEF(uint32_t, SectionType)
@@ -422,7 +423,7 @@ struct Object {
 };
 
 } // end namespace WasmYAML
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(std::unique_ptr<llvm::WasmYAML::Section>)
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::WasmYAML::Signature)
@@ -448,7 +449,7 @@ LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::WasmYAML::Comdat)
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::WasmYAML::DylinkImportInfo)
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::WasmYAML::DylinkExportInfo)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <> struct MappingTraits<WasmYAML::FileHeader> {
@@ -600,6 +601,6 @@ template <> struct MappingTraits<WasmYAML::DylinkExportInfo> {
 };
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECTYAML_WASMYAML_H

@@ -23,7 +23,7 @@
 #include <cstdint>
 #include <iterator>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DWARFUnit;
 class raw_ostream;
@@ -407,7 +407,7 @@ inline iterator_range<DWARFDie::iterator> DWARFDie::children() const {
   return make_range(begin(), end());
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace std {
 
@@ -467,7 +467,7 @@ public:
 
 } // namespace std
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 inline bool operator==(const std::reverse_iterator<DWARFDie::iterator> &LHS,
                        const std::reverse_iterator<DWARFDie::iterator> &RHS) {
@@ -491,6 +491,6 @@ LLVM_ABI void dumpTypeQualifiedName(const DWARFDie &DIE, raw_ostream &OS);
 LLVM_ABI void dumpTypeUnqualifiedName(const DWARFDie &DIE, raw_ostream &OS,
                                       std::string *OriginalFullName = nullptr);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFDIE_H

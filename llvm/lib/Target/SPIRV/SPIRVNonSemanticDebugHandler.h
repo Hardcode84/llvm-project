@@ -28,8 +28,9 @@
 #include "llvm/IR/DebugInfoMetadata.h"
 #include "llvm/MC/MCInst.h"
 #include "llvm/MC/MCRegister.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SPIRVSubtarget;
 
@@ -168,6 +169,6 @@ private:
   static unsigned toNSDISrcLang(unsigned DwarfSrcLang);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVNONSEMANTICDEBUGHANDLER_H

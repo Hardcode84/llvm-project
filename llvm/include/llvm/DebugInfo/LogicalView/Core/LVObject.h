@@ -22,14 +22,14 @@
 #include <limits>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dwarf {
 // Support for CodeView ModifierOptions::Unaligned.
 constexpr Tag DW_TAG_unaligned = Tag(dwarf::DW_TAG_hi_user + 1);
 } // namespace dwarf
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace logicalview {
 
 using LVSectionIndex = uint64_t;
@@ -321,6 +321,6 @@ public:
 };
 
 } // end namespace logicalview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_LOGICALVIEW_CORE_LVOBJECT_H

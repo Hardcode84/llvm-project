@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_SIOPTIMIZEVGPRLIVERANGE_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SIOptimizeVGPRLiveRangePass
     : public PassInfoMixin<SIOptimizeVGPRLiveRangePass> {
 public:
@@ -26,6 +27,6 @@ public:
     return MachineFunctionProperties().setNoPHIs();
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_SIOPTIMIZEVGPRLIVERANGE_H

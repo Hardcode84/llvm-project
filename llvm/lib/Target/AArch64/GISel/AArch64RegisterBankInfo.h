@@ -18,8 +18,9 @@
 
 #define GET_REGBANK_DECLARATIONS
 #include "AArch64GenRegisterBank.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class TargetRegisterInfo;
 class AArch64RegisterInfo;
@@ -164,5 +165,5 @@ public:
   const InstructionMapping &
   getInstrMapping(const MachineInstr &MI) const override;
 };
-} // End llvm namespace.
+LLVM_NAMESPACE_END // End llvm namespace.
 #endif

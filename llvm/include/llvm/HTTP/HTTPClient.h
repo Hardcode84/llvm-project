@@ -22,8 +22,9 @@
 
 #include <chrono>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 enum class HTTPMethod { GET };
 
@@ -87,6 +88,6 @@ public:
   unsigned responseCode();
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_HTTP_HTTPCLIENT_H

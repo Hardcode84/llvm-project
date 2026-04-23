@@ -20,6 +20,7 @@
 #include "llvm/MC/MCValue.h"
 #include "llvm/Support/Casting.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -33,13 +34,13 @@ static cl::opt<DefaultOnOff> DwarfExtendedLoc(
                clEnumVal(Enable, "Enabled"), clEnumVal(Disable, "Disabled")),
     cl::init(Default));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 cl::opt<cl::boolOrDefault> UseLEB128Directives(
     "use-leb128-directives", cl::Hidden,
     cl::desc(
         "Disable the usage of LEB128 directives, and generate .byte instead."),
     cl::init(cl::BOU_UNSET));
-}
+LLVM_NAMESPACE_END
 
 MCAsmInfo::MCAsmInfo() {
   if (DwarfExtendedLoc != Default)

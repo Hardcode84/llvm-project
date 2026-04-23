@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_SPIRV_SPIRVTYPEINST_H
 
 #include "llvm/ADT/DenseMapInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MachineInstr;
 class MachineRegisterInfo;
 
@@ -71,5 +72,5 @@ template <> struct DenseMapInfo<SPIRVTypeInst> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVTYPEINST_H

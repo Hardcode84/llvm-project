@@ -17,8 +17,9 @@
 
 #define GET_REGINFO_HEADER
 #include "BPFGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct BPFRegisterInfo : public BPFGenRegisterInfo {
 
@@ -37,6 +38,6 @@ struct BPFRegisterInfo : public BPFGenRegisterInfo {
 
   Register getFrameRegister(const MachineFunction &MF) const override;
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

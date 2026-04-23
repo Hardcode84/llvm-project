@@ -23,7 +23,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <map>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace symbolize {
 
 class LLVMSymbolizer;
@@ -161,6 +161,6 @@ private:
 };
 
 } // end namespace symbolize
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_SYMBOLIZE_MARKUPFILTER_H

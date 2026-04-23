@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -80,6 +80,6 @@ createRemarkSerializer(Format RemarksFormat, raw_ostream &OS,
                        remarks::StringTable StrTab);
 
 } // end namespace remarks
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_REMARKS_REMARKSERIALIZER_H

@@ -13,8 +13,9 @@
 #define LLVM_LIB_TARGET_POWERPC_GISEL_PPCLEGALIZERINFO_H
 
 #include "llvm/CodeGen/GlobalISel/LegalizerInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class PPCSubtarget;
 
@@ -24,5 +25,5 @@ class PPCLegalizerInfo : public LegalizerInfo {
 public:
   PPCLegalizerInfo(const PPCSubtarget &ST);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

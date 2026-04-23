@@ -16,8 +16,9 @@
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace LoongArchABI {
 
@@ -188,4 +189,4 @@ MCRegister getBPReg() { return LoongArch::R31; }
 
 } // end namespace LoongArchABI
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

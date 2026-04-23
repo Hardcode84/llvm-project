@@ -15,6 +15,7 @@
 #include "llvm/MC/MCInstrAnalysis.h"
 #include "llvm/TargetParser/Triple.h"
 #include "llvm/Transforms/Utils/Cloning.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
@@ -54,7 +55,7 @@ private:
 
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 TrampolinePool::~TrampolinePool() = default;
@@ -448,4 +449,4 @@ Error addFunctionPointerRelocationsToCurrentSymbol(jitlink::Symbol &Sym,
 }
 
 } // End namespace orc.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.

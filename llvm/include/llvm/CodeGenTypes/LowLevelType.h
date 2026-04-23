@@ -37,7 +37,7 @@
 #include "llvm/Support/ErrorHandling.h"
 #include <cassert>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Type;
 class raw_ostream;
@@ -702,6 +702,6 @@ template <> struct DenseMapInfo<LLT> {
   static bool isEqual(const LLT &LHS, const LLT &RHS) { return LHS == RHS; }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CODEGEN_LOWLEVELTYPE_H

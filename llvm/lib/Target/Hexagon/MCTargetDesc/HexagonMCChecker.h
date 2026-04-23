@@ -20,8 +20,9 @@
 #include "llvm/Support/SMLoc.h"
 #include <set>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCContext;
 class MCInst;
@@ -129,6 +130,6 @@ public:
   void reportBranchErrors();
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_HEXAGON_MCTARGETDESC_HEXAGONMCCHECKER_H

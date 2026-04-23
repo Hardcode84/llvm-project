@@ -46,6 +46,7 @@
 #include "llvm/Transforms/Utils/FunctionImportUtils.h"
 #include "llvm/Transforms/Utils/SplitModule.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace lto;
@@ -80,9 +81,9 @@ static cl::list<std::string>
                              "path matches this for -save-temps options"),
                     cl::CommaSeparated, cl::Hidden);
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> NoPGOWarnMismatch;
-}
+LLVM_NAMESPACE_END
 
 [[noreturn]] static void reportOpenError(StringRef Path, Twine Msg) {
   errs() << "failed to open " << Path << ": " << Msg << '\n';

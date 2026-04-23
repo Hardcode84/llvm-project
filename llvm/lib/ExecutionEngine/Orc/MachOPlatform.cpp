@@ -18,6 +18,7 @@
 #include "llvm/ExecutionEngine/Orc/MachOBuilder.h"
 #include "llvm/Support/Debug.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
@@ -25,7 +26,7 @@ using namespace llvm;
 using namespace llvm::orc;
 using namespace llvm::orc::shared;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 namespace shared {
 
@@ -84,7 +85,7 @@ public:
 
 } // namespace shared
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 
@@ -240,7 +241,7 @@ struct ObjCImageInfoFlags {
 };
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 std::optional<MachOPlatform::HeaderOptions::BuildVersionOpts>
@@ -1871,4 +1872,4 @@ MachOHeaderInfo getMachOHeaderInfoFromTriple(const Triple &TT) {
 }
 
 } // End namespace orc.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.

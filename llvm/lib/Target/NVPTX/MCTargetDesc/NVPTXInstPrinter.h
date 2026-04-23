@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_NVPTX_MCTARGETDESC_NVPTXINSTPRINTER_H
 
 #include "llvm/MC/MCInstPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCSubtargetInfo;
 
@@ -72,6 +73,6 @@ public:
                     raw_ostream &O);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

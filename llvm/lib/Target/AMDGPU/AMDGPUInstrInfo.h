@@ -16,8 +16,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_AMDGPUINSTRINFO_H
 
 #include "Utils/AMDGPUBaseInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineMemOperand;
 class MachineInstr;
@@ -87,6 +88,6 @@ const ImageDimIntrinsicInfo *
 getImageDimIntrinsicByBaseOpcode(unsigned BaseOpcode, unsigned Dim);
 
 } // end AMDGPU namespace
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

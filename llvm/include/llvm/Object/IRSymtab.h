@@ -37,7 +37,7 @@
 #include <cstdint>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct BitcodeFileContents;
 class StringTableBuilder;
@@ -378,6 +378,6 @@ struct FileContents {
 LLVM_ABI Expected<FileContents> readBitcode(const BitcodeFileContents &BFC);
 
 } // end namespace irsymtab
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECT_IRSYMTAB_H

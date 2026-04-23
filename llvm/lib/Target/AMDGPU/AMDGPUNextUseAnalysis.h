@@ -33,8 +33,9 @@
 #include "llvm/Support/JSON.h"
 #include <limits>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AMDGPUNextUseAnalysisImpl;
 
@@ -374,5 +375,5 @@ public:
   static bool isRequired() { return true; }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_LIB_TARGET_AMDGPU_AMDGPUNEXTUSEANALYSIS_H

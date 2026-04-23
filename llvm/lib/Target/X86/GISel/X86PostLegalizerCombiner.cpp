@@ -107,6 +107,7 @@ X86PostLegalizerCombinerImpl::X86PostLegalizerCombinerImpl(
       RuleConfig(RuleConfig), STI(MF.getSubtarget<X86Subtarget>()),
 #define GET_GICOMBINER_CONSTRUCTOR_INITS
 #include "X86GenPostLegalizeGICombiner.inc"
+#include "llvm/Support/Compiler.h"
 #undef GET_GICOMBINER_CONSTRUCTOR_INITS
 {
 }
@@ -185,7 +186,7 @@ INITIALIZE_PASS_END(X86PostLegalizerCombinerLegacy, DEBUG_TYPE,
                     "Combine X86 MachineInstrs after legalization", false,
                     false)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 PreservedAnalyses
 X86PostLegalizerCombinerPass::run(MachineFunction &MF,
@@ -220,4 +221,4 @@ X86PostLegalizerCombinerPass::run(MachineFunction &MF,
 FunctionPass *createX86PostLegalizerCombinerLegacy() {
   return new X86PostLegalizerCombinerLegacy();
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

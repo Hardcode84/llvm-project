@@ -20,7 +20,8 @@
 #include "llvm/Support/Allocator.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm::cas {
+LLVM_NAMESPACE_BEGIN
+namespace cas {
 
 class NamedValuesProxy;
 
@@ -155,6 +156,7 @@ private:
   const NamedValuesSchema *Schema;
 };
 
-} // namespace llvm::cas
+}
+LLVM_NAMESPACE_END // namespace llvm::cas
 
 #endif

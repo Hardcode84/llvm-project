@@ -25,8 +25,9 @@
 #include <cstdint>
 #include <memory>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace remarks {
 
 class BitstreamBlockParserHelperBase {
@@ -260,6 +261,6 @@ Expected<std::unique_ptr<BitstreamRemarkParser>> createBitstreamParserFromMeta(
     std::optional<StringRef> ExternalFilePrependPath = std::nullopt);
 
 } // end namespace remarks
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif /* LLVM_LIB_REMARKS_BITSTREAM_REMARK_PARSER_H */

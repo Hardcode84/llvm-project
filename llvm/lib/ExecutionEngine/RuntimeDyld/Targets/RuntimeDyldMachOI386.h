@@ -10,10 +10,11 @@
 #define LLVM_LIB_EXECUTIONENGINE_RUNTIMEDYLD_TARGETS_RUNTIMEDYLDMACHOI386_H
 
 #include "../RuntimeDyldMachO.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "dyld"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class RuntimeDyldMachOI386
     : public RuntimeDyldMachOCRTPBase<RuntimeDyldMachOI386> {
@@ -243,7 +244,7 @@ private:
   }
 
 };
-}
+LLVM_NAMESPACE_END
 
 #undef DEBUG_TYPE
 

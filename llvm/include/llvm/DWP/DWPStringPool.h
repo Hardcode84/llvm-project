@@ -5,8 +5,9 @@
 #include "llvm/MC/MCSection.h"
 #include "llvm/MC/MCStreamer.h"
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DWPStringPool {
 
   struct CStrDenseMapInfo {
@@ -51,6 +52,6 @@ public:
     return Pair.first->second;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DWP_DWPSTRINGPOOL_H

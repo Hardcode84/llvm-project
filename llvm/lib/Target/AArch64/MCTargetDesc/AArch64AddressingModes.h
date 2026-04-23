@@ -19,8 +19,9 @@
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/MathExtras.h"
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// AArch64_AM - AArch64 Addressing Mode Stuff
 namespace AArch64_AM {
@@ -944,6 +945,6 @@ static inline bool isSVELogicalImm(unsigned SizeInBits, uint64_t ImmVal,
 
 } // end namespace AArch64_AM
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

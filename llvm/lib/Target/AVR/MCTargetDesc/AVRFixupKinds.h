@@ -10,8 +10,9 @@
 #define LLVM_AVR_FIXUP_KINDS_H
 
 #include "llvm/MC/MCFixup.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace AVR {
 
 /// The set of supported fixups.
@@ -142,6 +143,6 @@ template <typename T> inline void adjustBranchTarget(T &val) { val >>= 1; }
 
 } // end of namespace fixups
 } // namespace AVR
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_AVR_FIXUP_KINDS_H

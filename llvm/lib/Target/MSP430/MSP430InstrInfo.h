@@ -18,8 +18,9 @@
 
 #define GET_INSTRINFO_HEADER
 #include "MSP430GenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MSP430Subtarget;
 
@@ -74,6 +75,6 @@ public:
   }
 };
 
-}
+LLVM_NAMESPACE_END
 
 #endif

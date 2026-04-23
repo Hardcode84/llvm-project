@@ -19,8 +19,9 @@
 #include "llvm/Support/SMLoc.h"
 #include "llvm/Support/SourceMgr.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class Type;
   class SMDiagnostic;
   class LLVMContext;
@@ -140,6 +141,6 @@ namespace llvm {
     }
     void LexError(const Twine &Msg) { LexError(getLoc(), Msg); }
   };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -11311,13 +11311,13 @@ unsigned ARMAsmParser::checkTargetMatchPredicate(MCInst &Inst) {
   return Match_Success;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <> inline bool IsCPSRDead<MCInst>(const MCInst *Instr) {
   return true; // In an assembly source, no need to second-guess
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 // Returns true if Inst is unpredictable if it is in and IT block, but is not
 // the last instruction in the block.

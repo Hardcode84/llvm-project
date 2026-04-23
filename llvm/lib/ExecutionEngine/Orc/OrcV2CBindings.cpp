@@ -19,11 +19,12 @@
 #include "llvm/ExecutionEngine/Orc/ObjectTransformLayer.h"
 #include "llvm/ExecutionEngine/Orc/RTDyldObjectLinkingLayer.h"
 #include "llvm/ExecutionEngine/SectionMemoryManager.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::orc;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 class InProgressLookupState;
@@ -40,7 +41,7 @@ public:
 };
 
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 inline LLVMOrcSymbolStringPoolEntryRef wrap(SymbolStringPoolEntryUnsafe E) {
   return reinterpret_cast<LLVMOrcSymbolStringPoolEntryRef>(E.rawPtr());
@@ -256,7 +257,7 @@ fromExecutorSymbolDef(const ExecutorSymbolDef &S) {
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 class CAPIDefinitionGenerator final : public DefinitionGenerator {
@@ -313,7 +314,7 @@ private:
 };
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 void LLVMOrcExecutionSessionSetErrorReporter(
     LLVMOrcExecutionSessionRef ES, LLVMOrcErrorReporterFunction ReportError,

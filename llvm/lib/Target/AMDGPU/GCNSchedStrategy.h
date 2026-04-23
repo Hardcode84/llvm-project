@@ -20,8 +20,9 @@
 #include "llvm/CodeGen/MachineInstr.h"
 #include "llvm/CodeGen/MachineScheduler.h"
 #include "llvm/CodeGen/Rematerializer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SIMachineFunctionInfo;
 class SIRegisterInfo;
@@ -800,6 +801,6 @@ public:
                            bool RemoveKillFlags);
 };
 
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_GCNSCHEDSTRATEGY_H

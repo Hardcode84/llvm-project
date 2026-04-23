@@ -70,6 +70,7 @@ using namespace llvm;
 #include "HexagonDepTimingClasses.h"
 #include "HexagonGenDFAPacketizer.inc"
 #include "HexagonGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
 cl::opt<bool> ScheduleInlineAsm("hexagon-sched-inline-asm", cl::Hidden,
   cl::init(false), cl::desc("Do not consider inline-asm a scheduling/"
@@ -122,11 +123,11 @@ HexagonInstrInfo::HexagonInstrInfo(const HexagonSubtarget &ST)
                           Hexagon::ADJCALLSTACKUP),
       RegInfo(ST.getHwMode()), Subtarget(ST) {}
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace HexagonFUnits {
   bool isSlot0Only(unsigned units);
 }
-}
+LLVM_NAMESPACE_END
 
 static bool isIntRegForSubInst(Register Reg) {
   return (Reg >= Hexagon::R0 && Reg <= Hexagon::R7) ||
@@ -4783,7 +4784,8 @@ bool HexagonInstrInfo::isQFPMul(const MachineInstr *MI) const {
           MI->getOpcode() == Hexagon::V6_vmpy_qf32);
 }
 
-namespace llvm::HexagonII {
+LLVM_NAMESPACE_BEGIN
+namespace HexagonII {
 
 static constexpr RegTypeInfo make(RegType Out, RegType In1 = RegType::Unknown,
                                   RegType In2 = RegType::Unknown,
@@ -4894,7 +4896,8 @@ RegTypeInfo getRegTypeInfo(unsigned Opcode) {
   }
 }
 
-} // namespace llvm::HexagonII
+}
+LLVM_NAMESPACE_END // namespace llvm::HexagonII
 
 bool HexagonInstrInfo::usesQF32Operand(MachineInstr *MI, unsigned Index) const {
   auto Info = HexagonII::getRegTypeInfo(MI->getOpcode());

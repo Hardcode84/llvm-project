@@ -10,10 +10,11 @@
 #define LLVM_LIB_EXECUTIONENGINE_RUNTIMEDYLD_TARGETS_RUNTIMEDYLDELFMIPS_H
 
 #include "../RuntimeDyldELF.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "dyld"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class RuntimeDyldELFMips : public RuntimeDyldELF {
 public:
@@ -59,7 +60,7 @@ private:
                            uint32_t Type);
 
 };
-}
+LLVM_NAMESPACE_END
 
 #undef DEBUG_TYPE
 

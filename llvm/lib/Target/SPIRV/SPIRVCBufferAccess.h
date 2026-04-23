@@ -9,14 +9,15 @@
 #define LLVM_LIB_TARGET_SPIRV_SPIRVCBUFFERACCESS_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SPIRVCBufferAccess : public PassInfoMixin<SPIRVCBufferAccess> {
 public:
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &AM);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVCBUFFERACCESS_H

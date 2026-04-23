@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_PRELOAD_KERNARG_PROLOG_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AMDGPUPreloadKernArgPrologPass
     : public PassInfoMixin<AMDGPUPreloadKernArgPrologPass> {
@@ -20,6 +21,6 @@ public:
                         MachineFunctionAnalysisManager &AM);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_PRELOAD_KERNARG_PROLOG_H

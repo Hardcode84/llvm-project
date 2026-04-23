@@ -12,8 +12,9 @@
 //===---------------------------------------------------------------------===//
 
 #include "llvm/Telemetry/Telemetry.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace telemetry {
 
 void TelemetryInfo::serialize(Serializer &serializer) const {
@@ -40,4 +41,4 @@ void Manager::addDestination(std::unique_ptr<Destination> Dest) {
 Error Manager::preDispatch(TelemetryInfo *Entry) { return Error::success(); }
 
 } // namespace telemetry
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

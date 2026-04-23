@@ -11,11 +11,12 @@
 
 #include "llvm/CodeGen/ScheduleDAGMutation.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 std::unique_ptr<ScheduleDAGMutation> createAMDGPUExportClusteringDAGMutation();
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_AMDGPUEXPORTCLUSTERING_H

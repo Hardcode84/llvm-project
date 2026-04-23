@@ -18,6 +18,7 @@
 #include "llvm/Object/ObjectFile.h"
 #include "llvm/Support/FormatVariadic.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::object;
@@ -42,7 +43,7 @@ public:
 };
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 std::unique_ptr<RuntimeDyldCOFF>
 llvm::RuntimeDyldCOFF::create(Triple::ArchType Arch,
@@ -128,4 +129,4 @@ bool RuntimeDyldCOFF::relocationNeedsDLLImportStub(
   return TargetNameOrErr->starts_with(getImportSymbolPrefix());
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -22,12 +22,13 @@
 #include "llvm/Support/Error.h"
 #include "llvm/Support/ErrorHandling.h"
 #include <system_error>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
 #define DEBUG_TYPE "jitlink"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 Expected<std::unique_ptr<LinkGraph>> createLinkGraphFromXCOFFObject_ppc64(
@@ -118,4 +119,4 @@ void link_XCOFF_ppc64(std::unique_ptr<LinkGraph> G,
 }
 
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -17,7 +17,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/VersionTuple.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace MachO {
 
 using PlatformSet = SmallSet<PlatformType, 3>;
@@ -33,6 +33,6 @@ LLVM_ABI std::string getOSAndEnvironmentName(PlatformType Platform,
 LLVM_ABI VersionTuple mapToSupportedOSVersion(const Triple &Triple);
 
 } // end namespace MachO.
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.
 
 #endif // LLVM_TEXTAPI_PLATFORM_H

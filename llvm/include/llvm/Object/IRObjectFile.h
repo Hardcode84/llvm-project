@@ -19,7 +19,7 @@
 #include "llvm/Object/SymbolicFile.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 
 namespace object {
@@ -84,6 +84,6 @@ struct IRSymtabFile {
 LLVM_ABI Expected<IRSymtabFile> readIRSymtab(MemoryBufferRef MBRef);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

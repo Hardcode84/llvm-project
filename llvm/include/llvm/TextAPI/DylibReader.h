@@ -20,7 +20,8 @@
 #include "llvm/TextAPI/ArchitectureSet.h"
 #include "llvm/TextAPI/RecordsSlice.h"
 
-namespace llvm::MachO::DylibReader {
+LLVM_NAMESPACE_BEGIN
+namespace MachO::DylibReader {
 
 struct ParseOption {
   /// Determines arch slice to parse.
@@ -54,6 +55,7 @@ using SymbolToSourceLocMap = llvm::StringMap<RecordLoc>;
 LLVM_ABI SymbolToSourceLocMap accumulateSourceLocFromDSYM(const StringRef DSYM,
                                                           const Target &T);
 
-} // namespace llvm::MachO::DylibReader
+}
+LLVM_NAMESPACE_END // namespace llvm::MachO::DylibReader
 
 #endif // LLVM_TEXTAPI_DYLIBREADER_H

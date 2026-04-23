@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_MCTARGETDESC_AMDGPUFIXUPKINDS_H
 
 #include "llvm/MC/MCFixup.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace AMDGPU {
 enum Fixups {
   /// 16-bit PC relative fixup for SOPP branch instructions.
@@ -22,6 +23,6 @@ enum Fixups {
   NumTargetFixupKinds = LastTargetFixupKind - FirstTargetFixupKind
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

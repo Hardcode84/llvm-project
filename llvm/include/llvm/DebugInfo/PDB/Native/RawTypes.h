@@ -12,8 +12,9 @@
 #include "llvm/DebugInfo/CodeView/GUID.h"
 #include "llvm/DebugInfo/CodeView/TypeRecord.h"
 #include "llvm/Support/Endian.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 // This struct is defined as "SO" in langapi/include/pdb.h.
 struct SectionOffset {
@@ -344,6 +345,6 @@ struct SrcHeaderBlockEntry {
 static_assert(sizeof(SrcHeaderBlockEntry) == 40, "Incorrect struct size!");
 
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

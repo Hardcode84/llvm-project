@@ -20,8 +20,9 @@
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/TargetParser/SubtargetFeature.h"
 #include "MCTargetDesc/ARMMCTargetDesc.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Enums corresponding to ARM condition codes
 namespace ARMCC {
@@ -232,6 +233,6 @@ namespace ARMBankedReg {
 #include "ARMGenSystemRegister.inc"
 } // end namespace ARMBankedReg
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARM_UTILS_ARMBASEINFO_H

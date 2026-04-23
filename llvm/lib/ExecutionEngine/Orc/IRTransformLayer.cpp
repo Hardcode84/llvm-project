@@ -7,8 +7,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/ExecutionEngine/Orc/IRTransformLayer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 IRTransformLayer::IRTransformLayer(ExecutionSession &ES, IRLayer &BaseLayer,
@@ -29,4 +30,4 @@ void IRTransformLayer::emit(std::unique_ptr<MaterializationResponsibility> R,
 }
 
 } // End namespace orc.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.

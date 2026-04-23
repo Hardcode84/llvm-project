@@ -63,6 +63,7 @@
 #include <unistd.h>
 #else
 #include <io.h>
+#include "llvm/Support/Compiler.h"
 #endif
 
 using namespace llvm;
@@ -70,7 +71,7 @@ using namespace ThinLTOCodeGeneratorImpl;
 
 #define DEBUG_TYPE "thinlto"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Flags -discard-value-names, defined in LTOCodeGenerator.cpp
 extern cl::opt<bool> LTODiscardValueNames;
 extern cl::opt<std::string> RemarksFilename;
@@ -79,7 +80,7 @@ extern cl::opt<bool> RemarksWithHotness;
 extern cl::opt<std::optional<uint64_t>, false, remarks::HotnessThresholdParser>
     RemarksHotnessThreshold;
 extern cl::opt<std::string> RemarksFormat;
-}
+LLVM_NAMESPACE_END
 
 // Default to using all available threads in the system, but using only one
 // thred per core, as indicated by the usage of

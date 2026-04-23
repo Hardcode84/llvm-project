@@ -19,8 +19,9 @@
 #include <cstddef>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BlockAddress;
 class Constant;
@@ -258,6 +259,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif /* LLVM_LIB_TARGET_XTENSA_XTENSACONSTANTPOOLVALUE_H */

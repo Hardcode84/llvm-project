@@ -19,6 +19,7 @@
 #include "llvm/Object/Decompressor.h"
 #include "llvm/Object/ELFObjectFile.h"
 #include <limits>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::object;
@@ -351,7 +352,7 @@ handleCompressedSection(std::deque<SmallString<32>> &UncompressedSections,
   return Error::success();
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Parse and return the header of an info section compile/type unit.
 Expected<InfoSectionUnitHeader> parseInfoSectionUnitHeader(StringRef Info) {
   InfoSectionUnitHeader Header;
@@ -1000,4 +1001,4 @@ Error write(MCStreamer &Out, ArrayRef<std::string> Inputs,
 
   return Error::success();
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

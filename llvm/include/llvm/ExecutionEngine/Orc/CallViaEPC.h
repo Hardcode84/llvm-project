@@ -20,8 +20,10 @@
 #include "llvm/Support/MSVCErrorWorkarounds.h"
 
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 namespace detail {
 
@@ -148,6 +150,7 @@ private:
   ExecutorSymbolDef Fn;
 };
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc
 
 #endif // LLVM_EXECUTIONENGINE_ORC_CALLVIAEPC_H

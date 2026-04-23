@@ -72,7 +72,7 @@
 #include <unordered_map>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCSymbol;
 class MCObjectStreamer;
@@ -537,6 +537,6 @@ private:
                              const uint32_t CurChildIndex);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCPSEUDOPROBE_H

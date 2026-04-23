@@ -26,7 +26,7 @@
 #include <iterator>
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LLVMContext;
 class raw_ostream;
@@ -217,6 +217,6 @@ inline const SymbolicFile *BasicSymbolRef::getObject() const {
 }
 
 } // end namespace object
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECT_SYMBOLICFILE_H

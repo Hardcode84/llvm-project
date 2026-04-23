@@ -15,8 +15,9 @@
 #include "llvm/ADT/IndexedMap.h"
 #include "llvm/CodeGen/TargetFrameLowering.h"
 #include "llvm/Support/TypeSize.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SystemZSubtarget;
 
 class SystemZFrameLowering : public TargetFrameLowering {
@@ -176,6 +177,6 @@ public:
 protected:
   bool hasFPImpl(const MachineFunction &MF) const override;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

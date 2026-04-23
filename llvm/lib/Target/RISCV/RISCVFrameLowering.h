@@ -15,8 +15,9 @@
 
 #include "llvm/CodeGen/TargetFrameLowering.h"
 #include "llvm/Support/TypeSize.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class RISCVSubtarget;
 
 class RISCVFrameLowering : public TargetFrameLowering {
@@ -116,5 +117,5 @@ private:
                                    MachineInstr::MIFlag Flag, bool EmitCFI,
                                    bool DynAllocation) const;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

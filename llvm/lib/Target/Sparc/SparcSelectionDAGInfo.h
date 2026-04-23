@@ -13,8 +13,9 @@
 
 #define GET_SDNODE_ENUM
 #include "SparcGenSDNodeInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SparcSelectionDAGInfo : public SelectionDAGGenTargetInfo {
 public:
@@ -23,6 +24,6 @@ public:
   ~SparcSelectionDAGInfo() override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_SPARC_SPARCSELECTIONDAGINFO_H

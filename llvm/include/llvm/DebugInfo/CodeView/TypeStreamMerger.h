@@ -14,7 +14,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T> class SmallVectorImpl;
 namespace codeview {
 
@@ -114,6 +114,6 @@ LLVM_ABI Error mergeIdRecords(GlobalTypeTableBuilder &Dest,
                               ArrayRef<GloballyHashedType> Hashes);
 
 } // end namespace codeview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_CODEVIEW_TYPESTREAMMERGER_H

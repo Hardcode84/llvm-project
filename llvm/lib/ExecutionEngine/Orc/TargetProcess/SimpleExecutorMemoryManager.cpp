@@ -11,10 +11,11 @@
 #include "llvm/ADT/ScopeExit.h"
 #include "llvm/ExecutionEngine/Orc/Shared/OrcRTBridge.h"
 #include "llvm/Support/FormatVariadic.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 namespace rt_bootstrap {
 
@@ -350,4 +351,4 @@ SimpleExecutorMemoryManager::releaseWrapper(const char *ArgData,
 
 } // namespace rt_bootstrap
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

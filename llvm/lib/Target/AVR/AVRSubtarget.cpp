@@ -23,8 +23,9 @@
 #define GET_SUBTARGETINFO_TARGET_DESC
 #define GET_SUBTARGETINFO_CTOR
 #include "AVRGenSubtargetInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 AVRSubtarget::AVRSubtarget(const Triple &TT, const std::string &CPU,
                            const std::string &FS, const AVRTargetMachine &TM)
@@ -42,4 +43,4 @@ AVRSubtarget::initializeSubtargetDependencies(StringRef CPU, StringRef FS,
   return *this;
 }
 
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm

@@ -19,8 +19,9 @@
 #include "llvm/Support/FileSystem.h"
 #include "llvm/Support/Path.h"
 #include <atomic>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dwarf_linker {
 namespace classic {
 
@@ -192,6 +193,6 @@ struct DeclMapInfo : private DenseMapInfo<DeclContext *> {
 
 } // end of namespace classic
 } // end of namespace dwarf_linker
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm
 
 #endif // LLVM_DWARFLINKER_CLASSIC_DWARFLINKERDECLCONTEXT_H

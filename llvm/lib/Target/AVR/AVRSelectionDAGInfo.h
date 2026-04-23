@@ -17,8 +17,9 @@
 
 #define GET_SDNODE_ENUM
 #include "AVRGenSDNodeInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Holds information about the AVR instruction selection DAG.
 class AVRSelectionDAGInfo : public SelectionDAGGenTargetInfo {
@@ -28,6 +29,6 @@ public:
   ~AVRSelectionDAGInfo() override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_AVR_SELECTION_DAG_INFO_H

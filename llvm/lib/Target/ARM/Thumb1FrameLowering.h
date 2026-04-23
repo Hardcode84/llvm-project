@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_ARM_THUMB1FRAMELOWERING_H
 
 #include "ARMFrameLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ARMSubtarget;
 class MachineFunction;
@@ -84,6 +85,6 @@ private:
   bool emitPopSpecialFixUp(MachineBasicBlock &MBB, bool DoIt) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARM_THUMB1FRAMELOWERING_H

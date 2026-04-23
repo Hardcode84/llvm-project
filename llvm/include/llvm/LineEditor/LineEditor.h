@@ -18,7 +18,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LineEditor {
 public:
@@ -151,6 +151,6 @@ private:
   std::unique_ptr<const CompleterConcept> Completer;
 };
 
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -12,11 +12,12 @@
 //===---------------------------------------------------------------------===//
 
 #include "llvm/Passes/CodeGenPassBuilder.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 #define DUMMY_MACHINE_FUNCTION_ANALYSIS(NAME, CREATE_PASS)                     \
   AnalysisKey PASS_NAME::Key;
 #include "llvm/Passes/MachinePassRegistry.def"
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

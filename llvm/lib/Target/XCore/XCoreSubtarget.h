@@ -24,8 +24,9 @@
 
 #define GET_SUBTARGETINFO_HEADER
 #include "XCoreGenSubtargetInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 class XCoreSubtarget : public XCoreGenSubtargetInfo {
@@ -60,6 +61,6 @@ public:
     return &InstrInfo.getRegisterInfo();
   }
 };
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

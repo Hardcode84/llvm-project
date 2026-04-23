@@ -19,14 +19,15 @@
 #include "llvm/Support/SMLoc.h"
 #include "llvm/Support/raw_ostream.h"
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 cl::opt<unsigned> AsmMacroMaxNestingDepth(
     "asm-macro-max-nesting-depth", cl::init(20), cl::Hidden,
     cl::desc("The maximum nesting depth allowed for assembly macros."));
-}
+LLVM_NAMESPACE_END
 
 MCAsmParser::MCAsmParser(MCContext &Ctx, MCStreamer &Out, SourceMgr &SM,
                          const MCAsmInfo &MAI)

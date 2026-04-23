@@ -22,8 +22,9 @@
 
 #define GET_SUBTARGETINFO_HEADER
 #include "DirectXGenSubtargetInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DirectXTargetMachine;
 
@@ -55,6 +56,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DIRECTX_DIRECTXSUBTARGET_H

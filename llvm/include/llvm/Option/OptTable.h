@@ -20,7 +20,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 template <typename Fn> class function_ref;
@@ -503,7 +503,7 @@ protected:
 
 } // end namespace opt
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #define LLVM_MAKE_OPT_ID_WITH_ID_PREFIX(                                       \
     ID_PREFIX, PREFIXES_OFFSET, PREFIXED_NAME_OFFSET, ID, KIND, GROUP, ALIAS,  \

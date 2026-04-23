@@ -8,8 +8,10 @@
 #include "AMDGPUAsmUtils.h"
 #include "AMDGPUBaseInfo.h"
 #include "SIDefines.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::AMDGPU {
+LLVM_NAMESPACE_BEGIN
+namespace AMDGPU {
 
 //===----------------------------------------------------------------------===//
 // Custom Operands.
@@ -706,4 +708,5 @@ ArrayRef<GFXVersion> getGFXVersions() {
 
 } // namespace UCVersion
 
-} // namespace llvm::AMDGPU
+}
+LLVM_NAMESPACE_END // namespace llvm::AMDGPU

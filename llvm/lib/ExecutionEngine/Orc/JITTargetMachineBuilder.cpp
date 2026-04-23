@@ -12,8 +12,9 @@
 #include "llvm/MC/TargetRegistry.h"
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/TargetParser/Host.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 JITTargetMachineBuilder::JITTargetMachineBuilder(Triple TT)
@@ -143,4 +144,4 @@ void JITTargetMachineBuilderPrinter::print(raw_ostream &OS) const {
 #endif // NDEBUG
 
 } // End namespace orc.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.

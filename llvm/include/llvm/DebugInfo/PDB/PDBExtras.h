@@ -17,7 +17,7 @@
 #include <cstdint>
 #include <unordered_map>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace pdb {
 
@@ -56,6 +56,6 @@ void dumpSymbolField(raw_ostream &OS, StringRef Name, T Value, int Indent) {
 
 } // end namespace pdb
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_PDB_PDBEXTRAS_H

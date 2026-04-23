@@ -12,8 +12,9 @@
 //===----------------------------------------------------------------------===//
 
 #include <llvm/ObjectYAML/OffloadYAML.h>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace yaml {
 
@@ -76,4 +77,4 @@ void MappingTraits<OffloadYAML::Binary::Member>::mapping(
 
 } // namespace yaml
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

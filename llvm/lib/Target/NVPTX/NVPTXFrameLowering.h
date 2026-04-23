@@ -15,8 +15,9 @@
 
 #include "llvm/CodeGen/TargetFrameLowering.h"
 #include "llvm/Support/TypeSize.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class NVPTXFrameLowering : public TargetFrameLowering {
 public:
@@ -36,6 +37,6 @@ protected:
   bool hasFPImpl(const MachineFunction &MF) const override;
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

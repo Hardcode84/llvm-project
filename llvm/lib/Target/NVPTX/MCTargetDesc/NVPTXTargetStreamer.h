@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_NVPTX_MCTARGETDESC_NVPTXTARGETSTREAMER_H
 
 #include "llvm/MC/MCStreamer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCSection;
 class formatted_raw_ostream;
 
@@ -83,6 +84,6 @@ public:
   void emitAddressSizeDirective(unsigned AddrSize) override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

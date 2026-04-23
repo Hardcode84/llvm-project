@@ -15,8 +15,9 @@
 #define LLVM_MC_MCINSTBUILDER_H
 
 #include "llvm/MC/MCInst.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCInstBuilder {
   MCInst Inst;
@@ -80,6 +81,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

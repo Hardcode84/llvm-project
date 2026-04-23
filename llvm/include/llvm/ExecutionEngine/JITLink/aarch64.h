@@ -18,7 +18,7 @@
 #include "llvm/ExecutionEngine/Orc/Shared/MemoryFlags.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 namespace aarch64 {
 
@@ -926,6 +926,6 @@ LLVM_ABI Error lowerPointer64AuthEdgesToSigningFunction(LinkGraph &G);
 
 } // namespace aarch64
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_JITLINK_AARCH64_H

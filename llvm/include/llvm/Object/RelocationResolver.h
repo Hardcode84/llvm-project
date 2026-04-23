@@ -19,7 +19,7 @@
 #include <cstdint>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 
 class ObjectFile;
@@ -38,6 +38,6 @@ LLVM_ABI uint64_t resolveRelocation(RelocationResolver Resolver,
                                     uint64_t LocData);
 
 } // end namespace object
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECT_RELOCATIONRESOLVER_H

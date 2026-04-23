@@ -15,8 +15,9 @@
 #include "llvm/ADT/StringExtras.h"
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -141,6 +142,6 @@ template <> struct DenseMapInfo<cas::CASID> {
   static bool isEqual(cas::CASID LHS, cas::CASID RHS) { return LHS == RHS; }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CAS_CASID_H

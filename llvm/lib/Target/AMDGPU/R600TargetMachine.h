@@ -18,8 +18,9 @@
 #include "R600Subtarget.h"
 #include "llvm/Target/TargetMachine.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // R600 Target Machine (R600 -> Cayman)
@@ -57,6 +58,6 @@ public:
   createMachineScheduler(MachineSchedContext *C) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_R600TARGETMACHINE_H

@@ -17,7 +17,7 @@
 #include "llvm/Support/Compiler.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 class StringRef;
 
@@ -256,6 +256,6 @@ public:
 LLVM_ENABLE_BITMASK_ENUMS_IN_NAMESPACE();
 
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

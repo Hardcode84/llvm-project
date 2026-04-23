@@ -17,8 +17,9 @@
 
 #define GET_REGBANK_DECLARATIONS
 #include "X86GenRegisterBank.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LLT;
 
@@ -92,5 +93,5 @@ public:
   getInstrMapping(const MachineInstr &MI) const override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

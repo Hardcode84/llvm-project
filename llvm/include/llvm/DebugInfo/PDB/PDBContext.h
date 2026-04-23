@@ -14,8 +14,9 @@
 #include <cstdint>
 #include <memory>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace object {
 class COFFObjectFile;
@@ -64,6 +65,6 @@ namespace pdb {
 
 } // end namespace pdb
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_PDB_PDBCONTEXT_H

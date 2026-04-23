@@ -21,8 +21,9 @@
 #define GET_INSTRINFO_HEADER
 #include "RISCVGenInstrInfo.inc"
 #include "RISCVGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // If Value is of the form C1<<C2, where C1 = 3, 5 or 9,
 // returns log2(C1 - 1) and assigns Shift = C2.
@@ -447,5 +448,5 @@ struct RISCVMaskedPseudoInfo {
 #include "RISCVGenSearchableTables.inc"
 } // end namespace RISCV
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif

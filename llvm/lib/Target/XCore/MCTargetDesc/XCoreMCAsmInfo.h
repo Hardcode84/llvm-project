@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_XCORE_MCTARGETDESC_XCOREMCASMINFO_H
 
 #include "llvm/MC/MCAsmInfoELF.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Triple;
 
 class XCoreMCAsmInfo : public MCAsmInfoELF {
@@ -25,6 +26,6 @@ public:
   explicit XCoreMCAsmInfo(const Triple &TT);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

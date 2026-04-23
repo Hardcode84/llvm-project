@@ -16,8 +16,9 @@
 #include "llvm/MC/MCStreamer.h"
 #include "llvm/Support/SMLoc.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCSymbol;
 class Module;
@@ -81,6 +82,6 @@ public:
   iterator_range<const_symver_iterator> symverAliases();
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_OBJECT_RECORDSTREAMER_H

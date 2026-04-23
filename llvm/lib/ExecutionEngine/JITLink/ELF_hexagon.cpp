@@ -16,6 +16,7 @@
 #include "llvm/BinaryFormat/ELF.h"
 #include "llvm/ExecutionEngine/JITLink/hexagon.h"
 #include "llvm/Object/ELFObjectFile.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
@@ -185,7 +186,8 @@ public:
 
 } // anonymous namespace
 
-namespace llvm::jitlink {
+LLVM_NAMESPACE_BEGIN
+namespace jitlink {
 
 Expected<std::unique_ptr<LinkGraph>> createLinkGraphFromELFObject_hexagon(
     MemoryBufferRef ObjectBuffer, std::shared_ptr<orc::SymbolStringPool> SSP) {
@@ -231,4 +233,5 @@ void link_ELF_hexagon(std::unique_ptr<LinkGraph> G,
   ELFJITLinker_hexagon::link(std::move(Ctx), std::move(G), std::move(Config));
 }
 
-} // namespace llvm::jitlink
+}
+LLVM_NAMESPACE_END // namespace llvm::jitlink

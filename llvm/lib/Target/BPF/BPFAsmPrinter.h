@@ -12,8 +12,9 @@
 #include "BPFTargetMachine.h"
 #include "BTFDebug.h"
 #include "llvm/CodeGen/AsmPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BPFAsmPrinter : public AsmPrinter {
 public:
@@ -45,6 +46,6 @@ private:
   const BPFTargetMachine &getBTM() const;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif /* LLVM_LIB_TARGET_BPF_BPFASMPRINTER_H */

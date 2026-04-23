@@ -15,8 +15,9 @@
 #include "llvm/ADT/StringExtras.h"
 #include "llvm/Support/Format.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace MachO {
 
 bool PackedVersion::parse32(StringRef Str) {
@@ -116,4 +117,4 @@ void PackedVersion::print(raw_ostream &OS) const {
 }
 
 } // end namespace MachO.
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.

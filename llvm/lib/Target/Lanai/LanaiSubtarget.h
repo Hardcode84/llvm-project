@@ -23,8 +23,9 @@
 
 #define GET_SUBTARGETINFO_HEADER
 #include "LanaiGenSubtargetInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LanaiSubtarget : public LanaiGenSubtargetInfo {
 public:
@@ -69,6 +70,6 @@ private:
   LanaiTargetLowering TLInfo;
   LanaiSelectionDAGInfo TSInfo;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_LANAI_LANAISUBTARGET_H

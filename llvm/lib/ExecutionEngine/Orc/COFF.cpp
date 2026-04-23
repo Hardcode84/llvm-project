@@ -8,10 +8,12 @@
 
 #include "llvm/ExecutionEngine/Orc/COFF.h"
 #include "llvm/Object/Binary.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 Expected<bool> COFFImportFileScanner::operator()(object::Archive &A,
                                                  MemoryBufferRef MemberBuf,
@@ -36,4 +38,5 @@ Expected<bool> COFFImportFileScanner::operator()(object::Archive &A,
   return true;
 }
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc

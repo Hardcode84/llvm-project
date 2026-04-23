@@ -12,8 +12,9 @@
 
 #include "llvm/TextAPI/ArchitectureSet.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace MachO {
 
 ArchitectureSet::ArchitectureSet(const std::vector<Architecture> &Archs)
@@ -67,4 +68,4 @@ raw_ostream &operator<<(raw_ostream &os, ArchitectureSet set) {
 }
 
 } // end namespace MachO.
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.

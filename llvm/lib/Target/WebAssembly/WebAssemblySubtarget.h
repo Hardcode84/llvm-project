@@ -29,8 +29,9 @@
 
 #define GET_SUBTARGETINFO_HEADER
 #include "WebAssemblyGenSubtargetInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Defined in WebAssemblyGenSubtargetInfo.inc.
 extern const SubtargetFeatureKV
@@ -138,6 +139,6 @@ public:
   const RegisterBankInfo *getRegBankInfo() const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

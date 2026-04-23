@@ -26,8 +26,9 @@
 
 #define GET_SUBTARGETINFO_HEADER
 #include "NVPTXGenSubtargetInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // FullSmVersion encoding: SM * 10 + ArchSuffixOffset
 // ArchSuffixOffset: 0 (base), 2 ('f'), 3 ('a')
@@ -353,6 +354,6 @@ public:
   void failIfClustersUnsupported(std::string const &FailureMessage) const;
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

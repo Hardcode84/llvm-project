@@ -21,6 +21,7 @@
 #include "EHFrameSupportImpl.h"
 #include "ELFLinkGraphBuilder.h"
 #include "JITLinkGeneric.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
@@ -747,7 +748,7 @@ Error buildTables_ELF_loongarch(LinkGraph &G) {
 
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 Expected<std::unique_ptr<LinkGraph>> createLinkGraphFromELFObject_loongarch(
@@ -816,4 +817,4 @@ void link_ELF_loongarch(std::unique_ptr<LinkGraph> G,
 LinkGraphPassFunction createRelaxationPass_ELF_loongarch() { return relax; }
 
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

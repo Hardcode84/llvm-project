@@ -18,7 +18,7 @@
 #include <memory>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class ScopedPrinter;
 
 namespace codeview {
@@ -56,6 +56,6 @@ private:
   bool PrintRecordBytes;
 };
 } // end namespace codeview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_CODEVIEW_SYMBOLDUMPER_H

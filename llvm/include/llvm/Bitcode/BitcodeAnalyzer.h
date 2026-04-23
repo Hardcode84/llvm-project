@@ -22,7 +22,7 @@
 #include <optional>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -104,6 +104,6 @@ private:
                                   StringRef Blob, raw_ostream &OS);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_BITCODE_BITCODEANALYZER_H

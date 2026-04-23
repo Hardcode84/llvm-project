@@ -26,8 +26,9 @@
 #include "llvm/Support/Error.h"
 #include <stack>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace logicalview {
 
 using namespace llvm::codeview;
@@ -479,6 +480,6 @@ public:
 };
 
 } // namespace logicalview
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_LOGICALVIEW_READERS_CODEVIEWVISITOR_H

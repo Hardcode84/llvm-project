@@ -149,7 +149,7 @@ static MCStreamer *createMCStreamer(const Triple &T, MCContext &Context,
                                  std::move(Emitter));
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace AMDGPU {
 
 bool AMDGPUMCInstrAnalysis::evaluateBranch(const MCInst &Inst, uint64_t Addr,
@@ -181,7 +181,7 @@ void AMDGPUMCInstrAnalysis::updateState(const MCInst &Inst,
 }
 
 } // end namespace AMDGPU
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 static MCInstrAnalysis *createAMDGPUMCInstrAnalysis(const MCInstrInfo *Info) {
   return new AMDGPU::AMDGPUMCInstrAnalysis(Info);

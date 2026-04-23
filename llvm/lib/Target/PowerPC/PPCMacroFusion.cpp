@@ -17,6 +17,7 @@
 #include "llvm/CodeGen/MacroFusion.h"
 #include "llvm/CodeGen/ScheduleDAGMutation.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 namespace {
@@ -284,10 +285,10 @@ static bool shouldScheduleAdjacent(const TargetInstrInfo &TII,
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 std::unique_ptr<ScheduleDAGMutation> createPowerPCMacroFusionDAGMutation() {
   return createMacroFusionDAGMutation(shouldScheduleAdjacent);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

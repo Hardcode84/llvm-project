@@ -17,8 +17,9 @@
 #include "llvm/TableGen/Error.h"
 #include "llvm/TableGen/Record.h"
 #include <map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SourceMgr;
 class Twine;
 struct ForeachLoop;
@@ -340,6 +341,6 @@ private: // Parser methods.
                               const Record *ArgsRec);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -18,8 +18,9 @@
 #include "llvm/Support/DXILABI.h"
 #include "llvm/Support/Error.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 class IRBuilderBase;
 class CallInst;
@@ -78,6 +79,6 @@ private:
 };
 
 } // namespace dxil
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

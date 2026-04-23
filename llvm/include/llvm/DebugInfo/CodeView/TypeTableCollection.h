@@ -15,7 +15,7 @@
 
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 
 class LLVM_ABI TypeTableCollection : public TypeCollection {
@@ -39,6 +39,6 @@ private:
   ArrayRef<ArrayRef<uint8_t>> Records;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

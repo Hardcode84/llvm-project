@@ -22,7 +22,7 @@
 #include <mutex>
 #include <set>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 struct DWARFAddressRange;
 class DWARFUnit;
@@ -420,6 +420,6 @@ static inline bool operator<(const DWARFVerifier::DieRangeInfo &LHS,
   return std::tie(LHS.Ranges, LHS.Die) < std::tie(RHS.Ranges, RHS.Die);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFVERIFIER_H

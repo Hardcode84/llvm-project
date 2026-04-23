@@ -21,7 +21,7 @@
 #include <memory>
 #include <mutex>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 /// An LLVMContext together with an associated mutex that can be used to lock
@@ -173,6 +173,6 @@ LLVM_ABI ThreadSafeModule cloneToNewContext(
     GVModifier UpdateClonedDefSource = GVModifier());
 
 } // End namespace orc
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_THREADSAFEMODULE_H

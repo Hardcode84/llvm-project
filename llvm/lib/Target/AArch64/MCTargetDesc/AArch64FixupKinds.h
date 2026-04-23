@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_AARCH64_MCTARGETDESC_AARCH64FIXUPKINDS_H
 
 #include "llvm/MC/MCFixup.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace AArch64 {
 
 enum Fixups {
@@ -69,6 +70,6 @@ enum Fixups {
 };
 
 } // end namespace AArch64
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

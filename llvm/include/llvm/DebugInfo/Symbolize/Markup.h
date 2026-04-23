@@ -22,7 +22,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Regex.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace symbolize {
 
 /// A node of symbolizer markup.
@@ -117,6 +117,6 @@ private:
 };
 
 } // end namespace symbolize
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_SYMBOLIZE_MARKUP_H

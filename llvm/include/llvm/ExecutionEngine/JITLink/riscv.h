@@ -16,7 +16,7 @@
 #include "llvm/ExecutionEngine/JITLink/JITLink.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 namespace riscv {
 
@@ -240,6 +240,6 @@ enum EdgeKind_riscv : Edge::Kind {
 LLVM_ABI const char *getEdgeKindName(Edge::Kind K);
 } // namespace riscv
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

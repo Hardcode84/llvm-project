@@ -20,8 +20,9 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/VersionTuple.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace SPIRV {
 namespace OperandCategory {
 #define GET_OperandCategory_DECL
@@ -313,5 +314,5 @@ std::string getSPIRVStringOperand(const InstType &MI, unsigned StartIndex) {
   }
   return s;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_LIB_TARGET_SPIRV_MCTARGETDESC_SPIRVBASEINFO_H

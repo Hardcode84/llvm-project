@@ -21,8 +21,9 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DataExtractor;
 
@@ -107,6 +108,6 @@ private:
 
 } // end namespace symbolize
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_SYMBOLIZE_SYMBOLIZABLEOBJECTFILE_H

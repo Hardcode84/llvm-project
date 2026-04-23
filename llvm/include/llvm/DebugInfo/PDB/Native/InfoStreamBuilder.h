@@ -15,7 +15,7 @@
 #include "llvm/DebugInfo/CodeView/GUID.h"
 #include "llvm/DebugInfo/PDB/Native/RawConstants.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class WritableBinaryStreamRef;
 
 namespace msf {
@@ -70,6 +70,6 @@ private:
   NamedStreamMap &NamedStreams;
 };
 } // namespace pdb
-}
+LLVM_NAMESPACE_END
 
 #endif

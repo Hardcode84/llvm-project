@@ -21,7 +21,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 
 namespace gsym {
@@ -245,6 +245,6 @@ inline bool operator<(const FunctionInfo &LHS, const FunctionInfo &RHS) {
 LLVM_ABI raw_ostream &operator<<(raw_ostream &OS, const FunctionInfo &R);
 
 } // namespace gsym
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_GSYM_FUNCTIONINFO_H

@@ -15,7 +15,7 @@
 #include <cstdint>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace gsym {
 
 struct FunctionInfo;
@@ -229,6 +229,6 @@ public:
 LLVM_ABI raw_ostream &operator<<(raw_ostream &OS, const gsym::LineTable &LT);
 
 } // namespace gsym
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_GSYM_LINETABLE_H

@@ -16,8 +16,9 @@
 
 #include "llvm/CodeGen/MachineScheduler.h"
 #include "llvm/CodeGen/ScheduleDAGMutation.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AAResults;
 class ARMBaseInstrInfo;
@@ -51,6 +52,6 @@ protected:
 std::unique_ptr<ScheduleDAGMutation>
 createARMLatencyMutations(const class ARMSubtarget &, AAResults *AA);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

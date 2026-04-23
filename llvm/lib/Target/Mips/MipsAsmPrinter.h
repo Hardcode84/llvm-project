@@ -23,7 +23,7 @@
 #include <map>
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCOperand;
 class MCSubtargetInfo;
@@ -161,6 +161,6 @@ public:
   void emitDebugValue(const MCExpr *Value, unsigned Size) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_MIPS_MIPSASMPRINTER_H

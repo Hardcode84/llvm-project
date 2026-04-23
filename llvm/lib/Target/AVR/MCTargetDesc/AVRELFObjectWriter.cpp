@@ -16,8 +16,9 @@
 #include "llvm/MC/MCObjectWriter.h"
 #include "llvm/MC/MCValue.h"
 #include "llvm/Support/ErrorHandling.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Writes AVR machine code into an ELF32 object file.
 class AVRELFObjectWriter : public MCELFObjectTargetWriter {
@@ -153,4 +154,4 @@ std::unique_ptr<MCObjectTargetWriter> createAVRELFObjectWriter(uint8_t OSABI) {
   return std::make_unique<AVRELFObjectWriter>(OSABI);
 }
 
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm

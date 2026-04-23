@@ -17,7 +17,7 @@
 #include "llvm/Support/Compiler.h"
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MallocAllocator;
 class StringRef;
 template <typename ValueTy, typename AllocatorTy> class StringMap;
@@ -86,6 +86,6 @@ LLVM_ABI VendorSignatures getVendorSignature(unsigned *MaxLeaf = nullptr);
 } // namespace x86
 } // namespace detail
 } // namespace sys
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

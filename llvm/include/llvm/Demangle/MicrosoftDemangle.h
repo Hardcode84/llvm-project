@@ -16,8 +16,9 @@
 #include <cassert>
 #include <string_view>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace ms_demangle {
 // This memory allocator is extremely fast, but it doesn't call dtors
 // for allocated objects. That means you can't use STL containers
@@ -297,6 +298,6 @@ private:
 };
 
 } // namespace ms_demangle
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEMANGLE_MICROSOFTDEMANGLE_H

@@ -19,7 +19,7 @@
 #include <optional>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace ifs {
 
 typedef uint16_t IFSArch;
@@ -153,6 +153,6 @@ LLVM_ABI IFSEndiannessType convertELFEndiannessToIFS(uint8_t Endianness);
 /// @param SymbolType Binary symbol st_info to extract symbol type from.
 LLVM_ABI IFSSymbolType convertELFSymbolTypeToIFS(uint8_t SymbolType);
 } // namespace ifs
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_INTERFACESTUB_IFSSTUB_H

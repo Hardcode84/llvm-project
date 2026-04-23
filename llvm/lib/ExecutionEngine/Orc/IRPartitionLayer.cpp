@@ -9,6 +9,7 @@
 #include "llvm/ExecutionEngine/Orc/IRPartitionLayer.h"
 #include "llvm/ExecutionEngine/Orc/ExecutionUtils.h"
 #include "llvm/ExecutionEngine/Orc/IndirectionUtils.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::orc;
@@ -62,7 +63,7 @@ static ThreadSafeModule extractSubModule(ThreadSafeModule &TSM,
   return NewTSM;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 class PartitioningIRMaterializationUnit : public IRMaterializationUnit {
@@ -97,7 +98,7 @@ private:
 };
 
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 IRPartitionLayer::IRPartitionLayer(ExecutionSession &ES, IRLayer &BaseLayer)
     : IRLayer(ES, BaseLayer.getManglingOptions()), BaseLayer(BaseLayer) {}

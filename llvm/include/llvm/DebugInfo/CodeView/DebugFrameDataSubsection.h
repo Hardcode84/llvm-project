@@ -17,7 +17,7 @@
 #include "llvm/Support/Endian.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BinaryStreamReader;
 class BinaryStreamWriter;
 
@@ -63,6 +63,6 @@ private:
   std::vector<FrameData> Frames;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

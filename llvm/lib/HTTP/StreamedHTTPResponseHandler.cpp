@@ -7,8 +7,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/HTTP/StreamedHTTPResponseHandler.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 Error StreamedHTTPResponseHandler::handleBodyChunk(StringRef BodyChunk) {
   if (!FileStream) {
@@ -31,4 +32,4 @@ Error StreamedHTTPResponseHandler::commit() {
   return Error::success();
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

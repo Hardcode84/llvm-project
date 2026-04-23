@@ -12,8 +12,9 @@
 #include "MCTargetDesc/AMDGPUMCTargetDesc.h"
 #include "llvm/CodeGen/Register.h"
 #include <variant>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LLT;
 class raw_ostream;
@@ -165,6 +166,6 @@ struct AMDGPUFunctionArgInfo {
   static const AMDGPUFunctionArgInfo FixedABIFunctionInfo;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

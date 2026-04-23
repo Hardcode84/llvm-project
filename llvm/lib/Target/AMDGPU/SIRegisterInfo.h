@@ -20,8 +20,9 @@
 #include "AMDGPUGenRegisterInfo.inc"
 
 #include "SIDefines.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GCNSubtarget;
 class LiveIntervals;
@@ -504,6 +505,6 @@ namespace AMDGPU {
 unsigned getRegBitWidth(const TargetRegisterClass &RC);
 } // namespace AMDGPU
 
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 
 #endif

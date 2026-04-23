@@ -16,8 +16,9 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/CodeGen/MachineFunction.h"
 #include "llvm/CodeGen/TargetCallingConv.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// PPCFunctionInfo - This class is derived from MachineFunction private
 /// PowerPC target-specific information for each MachineFunction.
@@ -286,6 +287,6 @@ public:
   MCSymbol *getTOCOffsetSymbol(MachineFunction &MF) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_POWERPC_PPCMACHINEFUNCTIONINFO_H

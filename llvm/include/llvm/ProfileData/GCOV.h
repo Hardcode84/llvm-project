@@ -33,7 +33,7 @@
 #include <string>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GCOVFunction;
 class GCOVBlock;
@@ -333,6 +333,6 @@ public:
 LLVM_ABI void gcovOneInput(const GCOV::Options &options, StringRef filename,
                            StringRef gcno, StringRef gcda, GCOVFile &file);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_PROFILEDATA_GCOV_H

@@ -7,12 +7,14 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/ExecutionEngine/Orc/SectCreate.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
 using namespace llvm::jitlink;
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 void SectCreateMaterializationUnit::materialize(
     std::unique_ptr<MaterializationResponsibility> R) {
@@ -49,4 +51,5 @@ MaterializationUnit::Interface SectCreateMaterializationUnit::getInterface(
   return {std::move(SymbolFlags), nullptr};
 }
 
-} // End namespace llvm::orc.
+}
+LLVM_NAMESPACE_END // End namespace llvm::orc.

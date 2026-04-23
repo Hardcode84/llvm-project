@@ -10,13 +10,14 @@
 #include "llvm/MC/MCAsmInfoDarwin.h"
 #include "llvm/MC/SectionKind.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCAsmInfo;
 class MCExpr;
 class MCSymbol;
 class Triple;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using namespace llvm;
 

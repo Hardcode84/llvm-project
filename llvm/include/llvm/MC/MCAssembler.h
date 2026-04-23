@@ -26,7 +26,7 @@
 #include <string>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCBoundaryAlignFragment;
 class MCCVDefRangeFragment;
@@ -221,6 +221,6 @@ public:
   LLVM_ABI void dump() const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCASSEMBLER_H

@@ -17,8 +17,9 @@
 #include "llvm/MC/MCInstrDesc.h"
 #include "llvm/MC/MCObjectWriter.h"
 #include "llvm/Support/DataTypes.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCAsmBackend;
 class MCCodeEmitter;
 class MCContext;
@@ -43,7 +44,7 @@ MCCodeEmitter *createM68kMCCodeEmitter(const MCInstrInfo &MCII,
 /// Construct an M68k ELF object writer.
 std::unique_ptr<MCObjectTargetWriter> createM68kELFObjectWriter(uint8_t OSABI);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Defines symbolic names for M68k registers. This defines a mapping from
 // register name to register number.

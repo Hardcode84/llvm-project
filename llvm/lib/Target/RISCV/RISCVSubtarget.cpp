@@ -31,12 +31,15 @@ using namespace llvm;
 
 #define GET_RISCV_MACRO_FUSION_PRED_IMPL
 #include "RISCVGenMacroFusion.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::RISCVTuneInfoTable {
+LLVM_NAMESPACE_BEGIN
+namespace RISCVTuneInfoTable {
 
 #define GET_RISCVTuneInfoTable_IMPL
 #include "RISCVGenSearchableTables.inc"
-} // namespace llvm::RISCVTuneInfoTable
+}
+LLVM_NAMESPACE_END // namespace llvm::RISCVTuneInfoTable
 
 static cl::opt<unsigned> RVVVectorLMULMax(
     "riscv-v-fixed-length-vector-lmul-max",

@@ -19,8 +19,9 @@
 #include "llvm/Support/CodeGen.h"
 #include "llvm/Support/ErrorHandling.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 inline std::optional<CodeModel::Model> unwrap(LLVMCodeModel Model, bool &JIT) {
   JIT = false;
@@ -59,6 +60,6 @@ inline LLVMCodeModel wrap(CodeModel::Model Model) {
   }
   llvm_unreachable("Bad CodeModel!");
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

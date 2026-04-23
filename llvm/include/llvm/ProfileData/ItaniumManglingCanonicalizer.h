@@ -17,7 +17,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class StringRef;
 
@@ -89,6 +89,6 @@ private:
   struct Impl;
   Impl *P;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_PROFILEDATA_ITANIUMMANGLINGCANONICALIZER_H

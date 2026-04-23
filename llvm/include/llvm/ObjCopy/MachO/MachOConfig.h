@@ -14,8 +14,9 @@
 #include "llvm/ADT/StringRef.h"
 #include <optional>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 
 // Mach-O specific configuration for copying/stripping a single file.
@@ -42,6 +43,6 @@ struct MachOConfig {
 };
 
 } // namespace objcopy
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_OBJCOPY_MACHO_MACHOCONFIG_H

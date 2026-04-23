@@ -18,8 +18,9 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Error.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace remarks {
 
 // Parse remarks hotness threshold argument value.
@@ -60,5 +61,5 @@ public:
 };
 
 } // namespace remarks
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_REMARKS_HOTNESSTHRESHOLDPARSER_H

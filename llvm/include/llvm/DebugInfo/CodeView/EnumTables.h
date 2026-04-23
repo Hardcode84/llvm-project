@@ -15,7 +15,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T> struct EnumEntry;
 namespace codeview {
 
@@ -52,6 +52,6 @@ LLVM_ABI ArrayRef<EnumEntry<uint16_t>> getLabelTypeEnum();
 LLVM_ABI ArrayRef<EnumEntry<uint16_t>> getJumpTableEntrySizeNames();
 
 } // end namespace codeview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_CODEVIEW_ENUMTABLES_H

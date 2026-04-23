@@ -19,8 +19,9 @@
 #include "llvm/IR/Constants.h"
 #include "llvm/Support/AMDGPUAddrSpace.h"
 #include "llvm/Support/Casting.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AsmPrinter;
 class MCContext;
 
@@ -62,5 +63,5 @@ static inline const MCExpr *lowerAddrSpaceCast(const Constant *CV,
   return nullptr;
 }
 } // namespace
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_LIB_TARGET_AMDGPU_AMDGPUMCINSTLOWER_H

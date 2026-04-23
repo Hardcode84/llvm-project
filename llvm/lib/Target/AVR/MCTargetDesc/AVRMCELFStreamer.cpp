@@ -15,6 +15,7 @@
 #include "llvm/MC/MCExpr.h"
 #include "llvm/MC/MCObjectWriter.h"
 #include "llvm/MC/MCSymbol.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "avrmcelfstreamer"
 
@@ -40,7 +41,7 @@ void AVRMCELFStreamer::emitValueForModiferKind(
                            SizeInBytes, Loc);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 MCStreamer *createAVRELFStreamer(Triple const &TT, MCContext &Context,
                                  std::unique_ptr<MCAsmBackend> MAB,
                                  std::unique_ptr<MCObjectWriter> OW,
@@ -49,4 +50,4 @@ MCStreamer *createAVRELFStreamer(Triple const &TT, MCContext &Context,
                               std::move(CE));
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

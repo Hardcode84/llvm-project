@@ -20,8 +20,9 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/DataTypes.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCAsmBackend;
 class MCCodeEmitter;
@@ -124,7 +125,7 @@ enum TOF {
 
 } // end namespace WebAssemblyII
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 // Defines symbolic names for WebAssembly registers. This defines a mapping from
 // register name to register number.
@@ -138,7 +139,7 @@ enum TOF {
 #define GET_INSTRINFO_MC_HELPER_DECLS
 #include "WebAssemblyGenInstrInfo.inc"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace WebAssembly {
 
 /// Instruction opcodes emitted via means other than CodeGen.
@@ -616,7 +617,7 @@ unsigned inline getWARegStackId(MCRegister Reg) {
 }
 
 } // end namespace WebAssembly
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #define GET_SUBTARGETINFO_ENUM
 #include "WebAssemblyGenSubtargetInfo.inc"

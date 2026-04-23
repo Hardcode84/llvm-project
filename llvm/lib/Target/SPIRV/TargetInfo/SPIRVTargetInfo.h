@@ -9,7 +9,9 @@
 #ifndef LLVM_LIB_TARGET_SPIRV_TARGETINFO_SPIRVTARGETINFO_H
 #define LLVM_LIB_TARGET_SPIRV_TARGETINFO_SPIRVTARGETINFO_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class Target;
 
@@ -17,6 +19,6 @@ Target &getTheSPIRV32Target();
 Target &getTheSPIRV64Target();
 Target &getTheSPIRVLogicalTarget();
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_SPIRV_TARGETINFO_SPIRVTARGETINFO_H

@@ -22,8 +22,9 @@
 
 #define GET_TARGET_REGBANK_IMPL
 #include "RISCVGenRegisterBank.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace RISCV {
 
 const RegisterBankInfo::PartialMapping PartMappings[] = {
@@ -106,7 +107,7 @@ enum ValueMappingIdx {
   VRB512Idx = 25,
 };
 } // namespace RISCV
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using namespace llvm;
 

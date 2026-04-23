@@ -14,7 +14,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 class DebugSymbolsSubsectionRef final : public DebugSubsectionRef {
 public:
@@ -51,6 +51,6 @@ private:
   std::vector<CVSymbol> Records;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

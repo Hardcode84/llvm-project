@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_SILOADSTOREOPTIMIZER_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SILoadStoreOptimizerPass
     : public PassInfoMixin<SILoadStoreOptimizerPass> {
@@ -24,6 +25,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_SILOADSTOREOPTIMIZER_H

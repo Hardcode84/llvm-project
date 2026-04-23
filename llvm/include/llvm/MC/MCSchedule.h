@@ -22,7 +22,7 @@
 #include <cassert>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> class ArrayRef;
 struct InstrItinerary;
@@ -472,6 +472,6 @@ int MCSchedModel::computeInstrLatency(
   return MCSchedModel::computeInstrLatency(STI, *SCDesc);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

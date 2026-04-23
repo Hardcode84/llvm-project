@@ -19,7 +19,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class RISCVISAInfo {
 public:
@@ -110,6 +110,6 @@ private:
   postProcessAndChecking(std::unique_ptr<RISCVISAInfo> &&ISAInfo);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

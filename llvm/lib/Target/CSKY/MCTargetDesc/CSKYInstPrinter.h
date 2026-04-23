@@ -15,8 +15,9 @@
 
 #include "MCTargetDesc/CSKYMCTargetDesc.h"
 #include "llvm/MC/MCInstPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CSKYInstPrinter : public MCInstPrinter {
 private:
@@ -69,6 +70,6 @@ public:
   static const char *getRegisterName(MCRegister Reg, unsigned AltIdx);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_CSKY_MCTARGETDESC_CSKYINSTPRINTER_H

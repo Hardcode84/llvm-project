@@ -41,7 +41,7 @@ static cl::opt<bool> GenerateMergedBaseProfiles(
              "generate extra base profile for function with all its context "
              "profiles merged into it."));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sampleprof {
 bool FunctionSamples::ProfileIsProbeBased = false;
 bool FunctionSamples::ProfileIsCS = false;
@@ -68,7 +68,7 @@ serializeTypeMap(const TypeCountMap &Map,
   return sampleprof_error::success;
 }
 } // namespace sampleprof
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 

@@ -17,8 +17,9 @@
 
 #define GET_REGINFO_HEADER
 #include "VEGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct VERegisterInfo : public VEGenRegisterInfo {
 public:
   VERegisterInfo();
@@ -40,6 +41,6 @@ public:
   Register getFrameRegister(const MachineFunction &MF) const override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -20,8 +20,9 @@
 #include "llvm/Support/Casting.h"
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BlockAddress;
 class Constant;
@@ -274,6 +275,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARM_ARMCONSTANTPOOLVALUE_H

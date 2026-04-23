@@ -26,7 +26,7 @@
 #include <cstring>
 #include <type_traits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace ELF {
 
 using Elf32_Addr = uint32_t; // Program address
@@ -2071,6 +2071,6 @@ LLVM_ABI uint8_t convertNameToOSABI(StringRef Name);
 LLVM_ABI StringRef convertOSABIToName(uint8_t OSABI);
 
 } // end namespace ELF
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_BINARYFORMAT_ELF_H

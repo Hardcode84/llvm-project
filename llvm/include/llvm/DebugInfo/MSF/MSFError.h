@@ -12,7 +12,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace msf {
 enum class msf_error_code {
   unspecified = 1,
@@ -28,14 +28,14 @@ enum class msf_error_code {
   stream_directory_overflow,
 };
 } // namespace msf
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace std {
 template <>
 struct is_error_code_enum<llvm::msf::msf_error_code> : std::true_type {};
 } // namespace std
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace msf {
 LLVM_ABI const std::error_category &MSFErrCategory();
 
@@ -71,6 +71,6 @@ public:
   LLVM_ABI static char ID;
 };
 } // namespace msf
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_MSF_MSFERROR_H

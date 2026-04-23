@@ -23,6 +23,7 @@
 #include "llvm/IR/MDBuilder.h"
 #include "llvm/IR/PatternMatch.h"
 #include <cmath>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "amdgpu-simplifylib"
 
@@ -46,7 +47,7 @@ static cl::list<std::string> UseNative("amdgpu-use-native",
 
 enum class PowKind { Pow, PowR, PowN, RootN };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AMDGPULibCalls {
 private:
@@ -159,7 +160,7 @@ public:
   bool useNative(CallInst *CI);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 template <typename IRB>
 static CallInst *CreateCallEx(IRB &B, FunctionCallee Callee, Value *Arg,
@@ -864,7 +865,7 @@ bool AMDGPULibCalls::TDOFold(CallInst *CI, const FuncInfo &FInfo) {
   return false;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 static double log2(double V) {
 #if _XOPEN_SOURCE >= 600 || defined(_ISOC99_SOURCE) || _POSIX_C_SOURCE >= 200112L
   return ::log2(V);
@@ -872,7 +873,7 @@ static double log2(double V) {
   return log(V) / numbers::ln2;
 #endif
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 bool AMDGPULibCalls::fold_pow(FPMathOperator *FPOp, IRBuilder<> &B,
                               const FuncInfo &FInfo) {

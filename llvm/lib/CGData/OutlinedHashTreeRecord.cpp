@@ -17,13 +17,14 @@
 #include "llvm/ObjectYAML/YAML.h"
 #include "llvm/Support/Endian.h"
 #include "llvm/Support/EndianStream.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "outlined-hash-tree"
 
 using namespace llvm;
 using namespace llvm::support;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <> struct MappingTraits<HashNodeStable> {
@@ -53,7 +54,7 @@ template <> struct CustomMappingTraits<IdHashNodeStableMapTy> {
 };
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 void OutlinedHashTreeRecord::serialize(raw_ostream &OS) const {
   IdHashNodeStableMapTy IdNodeStableMap;

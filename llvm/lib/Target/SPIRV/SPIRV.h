@@ -13,8 +13,9 @@
 #include "llvm/Pass.h"
 #include "llvm/PassRegistry.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SPIRVTargetMachine;
 class SPIRVSubtarget;
 class InstructionSelector;
@@ -58,6 +59,6 @@ void initializeSPIRVPrepareGlobalsPass(PassRegistry &);
 void initializeSPIRVLegalizeImplicitBindingPass(PassRegistry &);
 void initializeSPIRVLegalizeZeroSizeArraysLegacyPass(PassRegistry &);
 void initializeSPIRVCtorDtorLoweringLegacyPass(PassRegistry &);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRV_H

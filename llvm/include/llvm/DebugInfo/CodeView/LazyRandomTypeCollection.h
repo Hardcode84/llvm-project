@@ -21,7 +21,7 @@
 #include <cstdint>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 
 /// Provides amortized O(1) random access to a CodeView type stream.
@@ -111,6 +111,6 @@ private:
 };
 
 } // end namespace codeview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_CODEVIEW_LAZYRANDOMTYPECOLLECTION_H

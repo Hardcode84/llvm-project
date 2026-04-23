@@ -15,7 +15,8 @@
 #include <limits>
 #include <tuple>
 
-namespace llvm::directive {
+LLVM_NAMESPACE_BEGIN
+namespace directive {
 
 struct VersionRange {
   static constexpr int MaxValue = std::numeric_limits<int>::max();
@@ -37,6 +38,7 @@ struct Spelling {
 LLVM_ABI StringRef FindName(llvm::iterator_range<const Spelling *>,
                             unsigned Version);
 
-} // namespace llvm::directive
+}
+LLVM_NAMESPACE_END // namespace llvm::directive
 
 #endif // LLVM_FRONTEND_DIRECTIVE_SPELLING_H

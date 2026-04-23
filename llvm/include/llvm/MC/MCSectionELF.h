@@ -19,8 +19,9 @@
 #include "llvm/MC/MCSection.h"
 #include "llvm/MC/MCSymbolELF.h"
 #include "llvm/MC/SectionKind.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This represents a section on linux, lots of unix variants and some bare
 /// metal systems.
@@ -94,6 +95,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCSECTIONELF_H

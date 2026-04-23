@@ -24,7 +24,7 @@
 #include "llvm/Support/Compiler.h"
 #include <map>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DWARFExpression;
 class DWARFUnit;
 class DataExtractor;
@@ -846,6 +846,6 @@ private:
 
 } // end of namespace classic
 } // end of namespace dwarf_linker
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm
 
 #endif // LLVM_DWARFLINKER_CLASSIC_DWARFLINKER_H

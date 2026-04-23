@@ -16,8 +16,10 @@
 #define LLVM_CAS_ONDISKKEYVALUEDB_H
 
 #include "llvm/CAS/OnDiskTrieRawHashMap.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::cas::ondisk {
+LLVM_NAMESPACE_BEGIN
+namespace cas::ondisk {
 
 class UnifiedOnDiskCache;
 
@@ -86,6 +88,7 @@ private:
   UnifiedOnDiskCache *UnifiedCache = nullptr;
 };
 
-} // namespace llvm::cas::ondisk
+}
+LLVM_NAMESPACE_END // namespace llvm::cas::ondisk
 
 #endif // LLVM_CAS_ONDISKKEYVALUEDB_H

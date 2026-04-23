@@ -20,8 +20,9 @@
 #include "llvm/Support/Alignment.h"
 #include <cstdint>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Argument;
 class CallInst;
@@ -64,6 +65,6 @@ inline MaybeAlign getAlign(const Function &F, unsigned Index) {
 }
 MaybeAlign getAlign(const CallInst &, unsigned);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

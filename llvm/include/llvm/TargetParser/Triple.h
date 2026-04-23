@@ -19,7 +19,7 @@
 #undef mips
 #undef sparc
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 enum class ExceptionHandling;
 class Twine;
 
@@ -1354,6 +1354,6 @@ public:
   LLVM_ABI std::string computeDataLayout(StringRef ABIName = "") const;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

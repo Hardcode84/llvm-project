@@ -11,10 +11,11 @@
 //===----------------------------------------------------------------------===//
 
 #include "JITLinkGeneric.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 JITLinkerBase::~JITLinkerBase() = default;
@@ -343,4 +344,4 @@ void prune(LinkGraph &G) {
 }
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

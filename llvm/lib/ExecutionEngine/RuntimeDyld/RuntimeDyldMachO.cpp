@@ -16,6 +16,7 @@
 #include "Targets/RuntimeDyldMachOI386.h"
 #include "Targets/RuntimeDyldMachOX86_64.h"
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::object;
@@ -40,7 +41,7 @@ public:
 
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 int64_t RuntimeDyldMachO::memcpyAddend(const RelocationEntry &RE) const {
   unsigned NumBytes = 1 << RE.Size;
@@ -378,4 +379,4 @@ RuntimeDyldMachO::loadObject(const object::ObjectFile &O) {
   }
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

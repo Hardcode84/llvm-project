@@ -15,8 +15,9 @@
 
 #include "ARMBaseInstrInfo.h"
 #include "ThumbRegisterInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class ARMSubtarget;
 
 class Thumb1InstrInfo : public ARMBaseInstrInfo {
@@ -56,6 +57,6 @@ public:
 private:
   void expandLoadStackGuard(MachineBasicBlock::iterator MI) const override;
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

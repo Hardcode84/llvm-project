@@ -16,8 +16,9 @@
 
 #include "MCTargetDesc/ARCMCTargetDesc.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ARCTargetMachine;
 class FunctionPass;
@@ -30,6 +31,6 @@ FunctionPass *createARCBranchFinalizePass();
 void initializeARCAsmPrinterPass(PassRegistry &);
 void initializeARCDAGToDAGISelLegacyPass(PassRegistry &);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARC_ARC_H

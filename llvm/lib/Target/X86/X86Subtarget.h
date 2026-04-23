@@ -26,8 +26,9 @@
 
 #define GET_SUBTARGETINFO_HEADER
 #include "X86GenSubtargetInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CallLowering;
 class GlobalValue;
@@ -441,6 +442,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_X86_X86SUBTARGET_H

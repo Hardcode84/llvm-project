@@ -13,7 +13,7 @@
 #include "llvm/CodeGen/MachineOperand.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineBasicBlock;
 class MachineInstr;
@@ -48,6 +48,6 @@ private:
   bool lowerLongBranch(const MachineInstr *MI, MCInst &OutMI) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_MIPS_MIPSMCINSTLOWER_H

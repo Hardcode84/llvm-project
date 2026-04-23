@@ -25,8 +25,9 @@
 #include <algorithm>
 #include <optional>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BitstreamWriter {
   /// Owned buffer, used to init Buffer if the provided stream doesn't happen to
@@ -702,6 +703,6 @@ public:
 };
 
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

@@ -24,6 +24,7 @@
 #include "llvm/MC/MCContext.h"
 #include "llvm/Support/CodeGen.h"
 #include "llvm/Support/ErrorHandling.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -935,7 +936,7 @@ INITIALIZE_PASS(LoongArchPreRAExpandPseudo, "loongarch-prera-expand-pseudo",
 INITIALIZE_PASS(LoongArchExpandPseudo, "loongarch-expand-pseudo",
                 LOONGARCH_EXPAND_PSEUDO_NAME, false, false)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 FunctionPass *createLoongArchPreRAExpandPseudoPass() {
   return new LoongArchPreRAExpandPseudo();
@@ -944,4 +945,4 @@ FunctionPass *createLoongArchExpandPseudoPass() {
   return new LoongArchExpandPseudo();
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

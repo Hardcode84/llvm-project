@@ -19,8 +19,9 @@
 #include "llvm/Support/ScopedPrinter.h"
 #include <cstdint>
 #include <system_error>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // This assert is duplicated here to leave a breadcrumb of the places that need
 // to be updated if flags grow past 64-bits.
@@ -776,4 +777,4 @@ void DXContainerYAML::PSVInfo::mapInfoForVersion(yaml::IO &IO) {
   IO.mapRequired("EntryName", EntryName);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

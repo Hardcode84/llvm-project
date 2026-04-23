@@ -11,7 +11,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace opt {
 
 class Option;
@@ -35,6 +35,6 @@ public:
 };
 
 } // end namespace opt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OPTION_OPTSPECIFIER_H

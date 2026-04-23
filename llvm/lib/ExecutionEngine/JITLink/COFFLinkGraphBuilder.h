@@ -20,10 +20,11 @@
 #include "COFFDirectiveParser.h"
 #include "EHFrameSupportImpl.h"
 #include "JITLinkGeneric.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 class COFFLinkGraphBuilder {
@@ -233,6 +234,6 @@ private:
 };
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LIB_EXECUTIONENGINE_JITLINK_COFFLINKGRAPHBUILDER_H

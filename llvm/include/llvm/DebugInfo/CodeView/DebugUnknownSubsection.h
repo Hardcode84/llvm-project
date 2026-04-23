@@ -11,8 +11,9 @@
 
 #include "llvm/DebugInfo/CodeView/DebugSubsection.h"
 #include "llvm/Support/BinaryStreamRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 
 class DebugUnknownSubsectionRef final : public DebugSubsectionRef {
@@ -26,6 +27,6 @@ private:
   BinaryStreamRef Data;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

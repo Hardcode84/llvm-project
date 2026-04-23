@@ -16,8 +16,9 @@
 #define LLVM_LIB_TARGET_XTENSA_MCTARGETDESC_XTENSAMCTARGETDESC_H
 #include "llvm/Support/DataTypes.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class FeatureBitset;
 class MCAsmBackend;
@@ -68,7 +69,7 @@ bool checkRegister(MCRegister RegNo, const FeatureBitset &FeatureBits,
 // Get Xtensa User Register by register encoding value.
 MCRegister getUserRegister(unsigned Code, const MCRegisterInfo &MRI);
 } // namespace Xtensa
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 // Defines symbolic names for Xtensa registers.
 // This defines a mapping from register name to register number.

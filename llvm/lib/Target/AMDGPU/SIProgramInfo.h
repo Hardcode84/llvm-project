@@ -21,7 +21,7 @@
 #include <cstdint>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GCNSubtarget;
 class MCContext;
@@ -121,6 +121,6 @@ struct LLVM_EXTERNAL_VISIBILITY SIProgramInfo {
   const MCExpr *getPGMRSrc2(CallingConv::ID CC, MCContext &Ctx) const;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_SIPROGRAMINFO_H

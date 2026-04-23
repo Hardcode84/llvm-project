@@ -18,7 +18,7 @@
 #include "llvm/Support/Compiler.h"
 #include <random>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AllocaInst;
 class BasicBlock;
 class Function;
@@ -111,6 +111,6 @@ struct RandomIRBuilder {
   LLVM_ABI Function *createFunctionDefinition(Module &M);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_FUZZMUTATE_RANDOMIRBUILDER_H

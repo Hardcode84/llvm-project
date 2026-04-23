@@ -24,6 +24,7 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -205,7 +206,7 @@ struct SlotWithTag {
 };
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct DenseMapInfo<SlotWithTag> {
   static inline SlotWithTag getEmptyKey() { return {-2, -2}; }
   static inline SlotWithTag getTombstoneKey() { return {-3, -3}; }
@@ -217,7 +218,7 @@ template <> struct DenseMapInfo<SlotWithTag> {
     return A == B;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static bool isSlotPreAllocated(MachineFrameInfo *MFI, int FI) {
   return MFI->getUseLocalStackAllocationBlock() &&

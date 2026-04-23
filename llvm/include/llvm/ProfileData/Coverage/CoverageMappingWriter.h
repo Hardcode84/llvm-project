@@ -19,7 +19,7 @@
 #include "llvm/ProfileData/Coverage/CoverageMapping.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -78,6 +78,6 @@ public:
 
 } // end namespace coverage
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_PROFILEDATA_COVERAGE_COVERAGEMAPPINGWRITER_H

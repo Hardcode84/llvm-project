@@ -19,7 +19,8 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/WithColor.h"
 
-namespace llvm::mca {
+LLVM_NAMESPACE_BEGIN
+namespace mca {
 
 void AMDGPUInstrPostProcess::postProcessInstruction(Instruction &Inst,
                                                     const MCInst &MCI) {
@@ -334,7 +335,8 @@ bool AMDGPUCustomBehaviour::isAlwaysGDS(uint32_t Opcode) const {
          Opcode == AMDGPU::DS_SUB_GS_REG_RTN || isGWS(Opcode);
 }
 
-} // namespace llvm::mca
+}
+LLVM_NAMESPACE_END // namespace llvm::mca
 
 using namespace llvm;
 using namespace mca;

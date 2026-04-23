@@ -14,12 +14,13 @@
 #include "llvm/CodeGen/MachineInstr.h"
 #include "llvm/CodeGen/TargetSubtargetInfo.h"
 #include "llvm/Support/Debug.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "arm-bb-utils"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // mayOptimizeThumb2Instruction - Returns true if optimizeThumb2Instructions
 // below may shrink MI.
@@ -142,4 +143,4 @@ void ARMBasicBlockUtils::adjustBBOffsetsAfter(MachineBasicBlock *BB) {
   }
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

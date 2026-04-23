@@ -24,7 +24,7 @@
 #include <mutex>
 #include <unordered_map>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using IndexPairHash = std::pair<IndexPair, stable_hash>;
 using IndexOperandHashVecType = SmallVector<IndexPairHash>;
@@ -190,6 +190,6 @@ private:
   friend struct StableFunctionMapRecord;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

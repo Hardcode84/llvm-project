@@ -11,8 +11,9 @@
 
 #include "llvm/MC/MCDirectives.h"
 #include "llvm/MC/MCObjectStreamer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCAsmBackend;
 class MCContext;
@@ -80,6 +81,6 @@ private:
   void Error(const Twine &Msg) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCWINCOFFSTREAMER_H

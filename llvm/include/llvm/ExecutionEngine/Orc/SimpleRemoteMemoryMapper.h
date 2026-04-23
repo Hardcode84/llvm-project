@@ -15,8 +15,10 @@
 #define LLVM_EXECUTIONENGINE_ORC_SIMPLEREMOTEMEMORYMAPPER_H
 
 #include "llvm/ExecutionEngine/Orc/MemoryMapper.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 /// Manages remote memory by making SPS-based EPC calls.
 class LLVM_ABI SimpleRemoteMemoryMapper final : public MemoryMapper {
@@ -82,6 +84,7 @@ private:
   SymbolAddrs SAs;
 };
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc
 
 #endif // LLVM_EXECUTIONENGINE_ORC_SIMPLEREMOTEMEMORYMAPPER_H

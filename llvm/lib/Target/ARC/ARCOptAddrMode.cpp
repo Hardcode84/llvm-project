@@ -26,6 +26,7 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -33,7 +34,7 @@ using namespace llvm;
 #define OPTADDRMODE_NAME "arc-addr-mode"
 #define DEBUG_TYPE "arc-addr-mode"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static cl::opt<unsigned> ArcKillAddrMode("arc-kill-addr-mode", cl::init(0),
                                          cl::ReallyHidden);
@@ -46,7 +47,7 @@ static cl::opt<unsigned> ArcKillAddrMode("arc-kill-addr-mode", cl::init(0),
 
 FunctionPass *createARCOptAddrMode();
 void initializeARCOptAddrModePass(PassRegistry &);
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace {
 class ARCOptAddrMode : public MachineFunctionPass {

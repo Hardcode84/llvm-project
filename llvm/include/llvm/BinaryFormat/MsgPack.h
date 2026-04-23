@@ -16,8 +16,9 @@
 
 #include "llvm/Support/DataTypes.h"
 #include "llvm/Support/Endian.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace msgpack {
 
 /// The endianness of all multi-byte encoded values in MessagePack.
@@ -87,6 +88,6 @@ namespace FixMin {
 }
 
 } // end namespace msgpack
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_BINARYFORMAT_MSGPACK_H

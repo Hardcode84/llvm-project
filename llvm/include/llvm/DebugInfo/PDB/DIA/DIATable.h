@@ -11,8 +11,9 @@
 
 #include "DIASupport.h"
 #include "llvm/DebugInfo/PDB/IPDBTable.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 class DIATable : public IPDBTable {
 public:
@@ -26,6 +27,6 @@ private:
   CComPtr<IDiaTable> Table;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_DEBUGINFO_PDB_DIA_DIATABLE_H

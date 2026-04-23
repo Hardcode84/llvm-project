@@ -17,7 +17,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace remarks {
 
 constexpr StringLiteral Magic("REMARKS");
@@ -35,6 +35,6 @@ LLVM_ABI Expected<Format> magicToFormat(StringRef Magic);
 LLVM_ABI Expected<Format> detectFormat(Format Selected, StringRef Magic);
 
 } // end namespace remarks
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_REMARKS_REMARKFORMAT_H

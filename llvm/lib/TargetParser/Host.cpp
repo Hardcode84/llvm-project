@@ -57,6 +57,7 @@
 #if defined(__GNUC__) || defined(__clang__)
 #if (defined(__i386__) || defined(__x86_64__)) && !defined(_MSC_VER)
 #include <cpuid.h>
+#include "llvm/Support/Compiler.h"
 #endif
 #endif
 
@@ -659,7 +660,7 @@ static bool getX86CpuIDAndInfo(unsigned value, unsigned *rEAX, unsigned *rEBX,
 #endif
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 namespace detail {
 namespace x86 {
@@ -688,7 +689,7 @@ VendorSignatures getVendorSignature(unsigned *MaxLeaf) {
 } // namespace x86
 } // namespace detail
 } // namespace sys
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using namespace llvm::sys::detail::x86;
 
@@ -1983,7 +1984,7 @@ StringRef sys::getHostCPUName() {
 }
 #else
 StringRef sys::getHostCPUName() { return "generic"; }
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 namespace detail {
 namespace x86 {
@@ -1995,7 +1996,7 @@ VendorSignatures getVendorSignature(unsigned *MaxLeaf) {
 } // namespace x86
 } // namespace detail
 } // namespace sys
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif
 
 #if (defined(__i386__) || defined(_M_IX86) || defined(__x86_64__) ||           \

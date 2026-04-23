@@ -11,8 +11,9 @@
 
 #include "DIASupport.h"
 #include "llvm/DebugInfo/PDB/IPDBSectionContrib.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 class DIASession;
 
@@ -49,6 +50,6 @@ private:
   CComPtr<IDiaSectionContrib> Section;
 };
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_PDB_DIA_DIASECTIONCONTRIB_H

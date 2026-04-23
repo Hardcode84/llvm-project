@@ -17,8 +17,9 @@
 
 #include "llvm/CodeGen/TargetFrameLowering.h"
 #include "llvm/Support/Alignment.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DirectXSubtarget;
 
 class DirectXFrameLowering : public TargetFrameLowering {
@@ -32,5 +33,5 @@ public:
 protected:
   bool hasFPImpl(const MachineFunction &) const override { return false; }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_DIRECTX_DIRECTXFRAMELOWERING_H

@@ -32,7 +32,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This class maintains the abbreviations read from a block info block.
 class BitstreamBlockInfo {
@@ -573,6 +573,6 @@ public:
   void setBlockInfo(BitstreamBlockInfo *BI) { BlockInfo = BI; }
 };
 
-} // end llvm namespace
+LLVM_NAMESPACE_END // end llvm namespace
 
 #endif // LLVM_BITSTREAM_BITSTREAMREADER_H

@@ -9,7 +9,9 @@
 #ifndef LLVM_FRONTEND_DEBUG_OPTIONS_H
 #define LLVM_FRONTEND_DEBUG_OPTIONS_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 namespace codegenoptions {
 
 enum DebugInfoFormat {
@@ -57,6 +59,6 @@ enum DebugInfoKind {
 enum class DebugTemplateNamesKind { Full, Simple, Mangled };
 
 } // end namespace codegenoptions
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

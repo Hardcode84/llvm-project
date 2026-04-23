@@ -17,6 +17,7 @@
 #include "llvm/CodeGen/MacroFusion.h"
 #include "llvm/CodeGen/ScheduleDAGMutation.h"
 #include "llvm/CodeGen/TargetInstrInfo.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -65,11 +66,11 @@ static bool shouldScheduleAdjacent(const TargetInstrInfo &TII,
   llvm_unreachable("unknown fusion type");
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 std::unique_ptr<ScheduleDAGMutation> createX86MacroFusionDAGMutation() {
   return createMacroFusionDAGMutation(shouldScheduleAdjacent,
                                       /*BranchOnly=*/true);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

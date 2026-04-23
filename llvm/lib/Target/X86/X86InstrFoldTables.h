@@ -15,8 +15,9 @@
 
 #include <cstdint>
 #include "llvm/Support/X86FoldTablesUtils.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // This struct is used for both the folding and unfold tables. They KeyOp
 // is used to determine the sorting order.
@@ -62,6 +63,6 @@ const X86FoldTableEntry *lookupBroadcastFoldTableBySize(unsigned MemOp,
                                                         unsigned BroadcastBits);
 
 bool matchBroadcastSize(const X86FoldTableEntry &Entry, unsigned BroadcastBits);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

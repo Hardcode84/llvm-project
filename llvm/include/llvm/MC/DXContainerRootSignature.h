@@ -14,7 +14,7 @@
 #include <cstdint>
 #include <limits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 namespace mcdxbc {
@@ -152,6 +152,6 @@ struct RootSignatureDesc {
   LLVM_ABI uint32_t computeStaticSamplersOffset() const;
 };
 } // namespace mcdxbc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_MC_DXCONTAINERROOTSIGNATURE_H

@@ -26,7 +26,7 @@
 #include "llvm/IR/LLVMContext.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct NVPTXScopes {
   NVPTXScopes() = default;
@@ -124,6 +124,6 @@ public:
   explicit NVPTXDAGToDAGISelLegacy(NVPTXTargetMachine &tm,
                                    CodeGenOptLevel OptLevel);
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

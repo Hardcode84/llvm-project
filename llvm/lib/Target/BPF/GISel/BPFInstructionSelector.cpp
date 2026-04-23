@@ -69,6 +69,7 @@ BPFInstructionSelector::BPFInstructionSelector(const BPFTargetMachine &TM,
 #undef GET_GLOBALISEL_PREDICATES_INIT
 #define GET_GLOBALISEL_TEMPORARIES_INIT
 #include "BPFGenGlobalISel.inc"
+#include "llvm/Support/Compiler.h"
 #undef GET_GLOBALISEL_TEMPORARIES_INIT
 {
 }
@@ -81,11 +82,11 @@ bool BPFInstructionSelector::select(MachineInstr &I) {
   return false;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 InstructionSelector *
 createBPFInstructionSelector(const BPFTargetMachine &TM,
                              const BPFSubtarget &Subtarget,
                              const BPFRegisterBankInfo &RBI) {
   return new BPFInstructionSelector(TM, Subtarget, RBI);
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

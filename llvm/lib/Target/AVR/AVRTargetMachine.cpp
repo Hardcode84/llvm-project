@@ -26,7 +26,7 @@
 
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Processes a CPU name.
 static StringRef getCPU(StringRef CPU) {
@@ -139,4 +139,4 @@ void AVRPassConfig::addPreEmitPass() {
   addPass(&BranchRelaxationPassID);
 }
 
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm

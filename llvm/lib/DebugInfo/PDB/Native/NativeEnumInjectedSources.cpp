@@ -13,8 +13,9 @@
 #include "llvm/DebugInfo/PDB/Native/PDBFile.h"
 #include "llvm/DebugInfo/PDB/Native/PDBStringTable.h"
 #include "llvm/DebugInfo/PDB/Native/RawTypes.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 namespace {
@@ -120,4 +121,4 @@ std::unique_ptr<IPDBInjectedSource> NativeEnumInjectedSources::getNext() {
 void NativeEnumInjectedSources::reset() { Cur = Stream.begin(); }
 
 }
-}
+LLVM_NAMESPACE_END

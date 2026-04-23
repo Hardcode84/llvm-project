@@ -11,8 +11,9 @@
 
 #include "llvm/IR/PassManager.h"
 #include "llvm/Pass.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Transform all llvm memory intrinsics to explicit loads and stores.
 class DXILMemIntrinsics : public PassInfoMixin<DXILMemIntrinsics> {
@@ -20,6 +21,6 @@ public:
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TARGET_DIRECTX_DXILMEMINTRINSICS_H

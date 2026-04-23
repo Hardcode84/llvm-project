@@ -19,8 +19,9 @@
 #include "llvm/IR/CallingConv.h"
 #include <cstdint>
 #include <functional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AArch64TargetLowering;
 class CCValAssign;
@@ -83,6 +84,6 @@ private:
                                     SmallVectorImpl<ArgInfo> &OutArgs) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AARCH64_AARCH64CALLLOWERING_H

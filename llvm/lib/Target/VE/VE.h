@@ -18,8 +18,9 @@
 #include "llvm/ADT/StringSwitch.h"
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AsmPrinter;
 class FunctionPass;
 class MCInst;
@@ -34,9 +35,9 @@ void initializeVEDAGToDAGISelLegacyPass(PassRegistry &);
 
 void LowerVEMachineInstrToMCInst(const MachineInstr *MI, MCInst &OutMI,
                                  AsmPrinter &AP);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Enums corresponding to VE condition codes, both icc's and fcc's.  These
 // values must be kept in sync with the ones in the .td file.
 namespace VECC {
@@ -379,5 +380,5 @@ inline unsigned M1(unsigned Val) { return Val; }
 static const unsigned StandardVectorWidth = 256;
 static const unsigned PackedVectorWidth = 512;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

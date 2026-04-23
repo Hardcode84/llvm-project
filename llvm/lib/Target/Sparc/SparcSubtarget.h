@@ -24,8 +24,9 @@
 
 #define GET_SUBTARGETINFO_HEADER
 #include "SparcGenSubtargetInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 class SparcSubtarget : public SparcGenSubtargetInfo {
@@ -94,6 +95,6 @@ public:
   int getAdjustedFrameSize(int stackSize) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_GCNDPPCOMBINE_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class GCNDPPCombinePass : public PassInfoMixin<GCNDPPCombinePass> {
 public:
   PreservedAnalyses run(MachineFunction &MF,
@@ -22,6 +23,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_GCNDPPCOMBINE_H

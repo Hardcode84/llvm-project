@@ -21,7 +21,7 @@
 
 #include <atomic>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 class LLVM_ABI JITLinkRedirectableSymbolManager
@@ -67,6 +67,6 @@ private:
 };
 
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_JITLINKREDIRECABLESYMBOLMANAGER_H

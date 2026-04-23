@@ -19,8 +19,9 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/Support/Memory.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 /// Describes Read/Write/Exec permissions for memory.
@@ -237,6 +238,6 @@ template <> struct DenseMapInfo<orc::AllocGroup> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_SHARED_MEMORYFLAGS_H

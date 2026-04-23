@@ -12,8 +12,9 @@
 #include "RISCVTargetStreamer.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/MC/MCELFStreamer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class RISCVELFStreamer : public MCELFStreamer {
   void reset() override;
@@ -105,6 +106,6 @@ MCStreamer *createRISCVELFStreamer(const Triple &, MCContext &C,
                                    std::unique_ptr<MCAsmBackend> &&MAB,
                                    std::unique_ptr<MCObjectWriter> &&MOW,
                                    std::unique_ptr<MCCodeEmitter> &&MCE);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_RISCV_MCTARGETDESC_RISCVELFSTREAMER_H

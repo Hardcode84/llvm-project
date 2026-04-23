@@ -18,8 +18,9 @@
 #include "llvm/MC/MCInstrAnalysis.h"
 #include <cstdint>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Target;
 class MCAsmBackend;
 class MCCodeEmitter;
@@ -68,7 +69,7 @@ public:
 
 } // namespace AMDGPU
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #define GET_REGINFO_ENUM
 #include "AMDGPUGenRegisterInfo.inc"

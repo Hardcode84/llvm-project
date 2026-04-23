@@ -7,8 +7,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "DXContainerObject.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 namespace dxbc {
 
@@ -26,4 +27,4 @@ void Object::recomputeHeader() {
 
 } // end namespace dxbc
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

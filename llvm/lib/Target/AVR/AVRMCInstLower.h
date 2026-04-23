@@ -12,7 +12,7 @@
 #include "AVRSubtarget.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AsmPrinter;
 class MachineInstr;
@@ -38,6 +38,6 @@ private:
   AsmPrinter &Printer;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_AVR_MCINST_LOWER_H

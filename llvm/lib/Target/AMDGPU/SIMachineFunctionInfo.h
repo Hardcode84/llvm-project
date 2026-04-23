@@ -26,8 +26,9 @@
 #include "llvm/CodeGen/PseudoSourceValue.h"
 #include "llvm/Support/raw_ostream.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineFrameInfo;
 class MachineFunction;
@@ -1227,6 +1228,6 @@ public:
   AMDGPU::ClusterDimsAttr getClusterDims() const { return ClusterDims; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_SIMACHINEFUNCTIONINFO_H

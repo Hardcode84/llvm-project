@@ -19,17 +19,18 @@
 #include "llvm/MC/MCSubtargetInfo.h"
 #include "llvm/MC/MCSymbol.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 using namespace llvm;
 
 #define DEBUG_TYPE "asm-printer"
 
 // The generated AsmMatcher SparcGenAsmWriter uses "Sparc" as the target
 // namespace. But SPARC backend uses "SP" as its namespace.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace Sparc {
   using namespace SP;
 }
-}
+LLVM_NAMESPACE_END
 
 #define GET_INSTRUCTION_NAME
 #define PRINT_ALIAS_INSTR

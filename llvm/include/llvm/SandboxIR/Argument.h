@@ -11,8 +11,10 @@
 
 #include "llvm/IR/Argument.h"
 #include "llvm/SandboxIR/Value.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::sandboxir {
+LLVM_NAMESPACE_BEGIN
+namespace sandboxir {
 
 /// Argument of a sandboxir::Function.
 class Argument : public sandboxir::Value {
@@ -33,6 +35,7 @@ public:
 #endif
 };
 
-} // namespace llvm::sandboxir
+}
+LLVM_NAMESPACE_END // namespace llvm::sandboxir
 
 #endif // LLVM_SANDBOXIR_ARGUMENT_H

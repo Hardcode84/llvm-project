@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_AMDGPUCTORDTORLOWERING_H
 
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 
 /// Lower llvm.global_ctors and llvm.global_dtors to special kernels.
@@ -21,6 +22,6 @@ public:
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &AM);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_AMDGPUCTORDTORLOWERING_H

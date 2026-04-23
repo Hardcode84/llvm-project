@@ -22,7 +22,7 @@
 #include <memory>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BitstreamWriter;
 class Module;
@@ -170,6 +170,6 @@ LLVM_ABI void embedBitcodeInModule(Module &M, MemoryBufferRef Buf,
                                    bool EmbedBitcode, bool EmbedCmdline,
                                    const std::vector<uint8_t> &CmdArgs);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_BITCODE_BITCODEWRITER_H

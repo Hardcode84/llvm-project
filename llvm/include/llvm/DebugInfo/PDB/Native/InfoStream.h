@@ -19,7 +19,7 @@
 
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 struct InfoStreamHeader;
 class InfoStream {
@@ -66,6 +66,6 @@ private:
   NamedStreamMap NamedStreams;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

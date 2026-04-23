@@ -19,7 +19,7 @@
 #include "llvm/Support/MemoryBufferRef.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace ifs {
 struct IFSStub;
@@ -39,6 +39,6 @@ LLVM_ABI Error writeBinaryStub(StringRef FilePath, const IFSStub &Stub,
                                bool WriteIfChanged = false);
 
 } // end namespace ifs
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_INTERFACESTUB_ELFOBJHANDLER_H

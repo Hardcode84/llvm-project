@@ -22,7 +22,7 @@
 #include <string>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class StringRef;
 class MCDisassembler;
@@ -202,6 +202,6 @@ private:
   std::unique_ptr<RuntimeDyldCheckerImpl> Impl;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

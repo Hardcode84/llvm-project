@@ -29,8 +29,9 @@
 #include "llvm/CodeGen/MachineScheduler.h"
 #include "llvm/CodeGen/ScheduleDAG.h"
 #include <set>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A MachineSchedStrategy implementation for SystemZ pre RA scheduling.
 class SystemZPreRASchedStrategy : public GenericScheduler {
@@ -184,6 +185,6 @@ public:
   void releaseBottomNode(SUnit *SU) override {};
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_SYSTEMZ_SYSTEMZMACHINESCHEDULER_H

@@ -13,7 +13,7 @@
 #include "llvm/DebugInfo/CodeView/SymbolVisitorCallbacks.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BinaryStreamReader;
 class BinaryStreamWriter;
 
@@ -42,6 +42,6 @@ private:
   CodeViewContainer Container;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

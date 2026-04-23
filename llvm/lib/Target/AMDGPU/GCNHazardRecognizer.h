@@ -19,8 +19,9 @@
 #include "llvm/CodeGen/ScheduleHazardRecognizer.h"
 #include "llvm/CodeGen/TargetSchedule.h"
 #include <list>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineFunction;
 class MachineInstr;
@@ -186,6 +187,6 @@ public:
   void Reset() override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif //LLVM_LIB_TARGET_AMDGPUHAZARDRECOGNIZERS_H

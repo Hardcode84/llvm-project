@@ -18,8 +18,9 @@
 #include "AMDGPUISelLowering.h"
 #include "SIDefines.h"
 #include "llvm/CodeGen/MachineFunction.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GCNSubtarget;
 class SIMachineFunctionInfo;
@@ -648,6 +649,6 @@ public:
 // memory or argument and does not require v_cndmask_b32 to be deserialized.
 bool isBoolSGPR(SDValue V);
 
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 
 #endif

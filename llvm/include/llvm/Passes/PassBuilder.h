@@ -31,7 +31,7 @@
 #include <optional>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 class AAManager;
 class TargetMachine;
@@ -1000,6 +1000,6 @@ public:
 
 /// Common option used by multiple tools to print pipeline passes
 LLVM_ABI extern cl::opt<bool> PrintPipelinePasses;
-}
+LLVM_NAMESPACE_END
 
 #endif

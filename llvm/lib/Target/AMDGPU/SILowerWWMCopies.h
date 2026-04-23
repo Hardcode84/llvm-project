@@ -10,13 +10,14 @@
 #define LLVM_LIB_TARGET_AMDGPU_SILOWERWWMCOPIES_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SILowerWWMCopiesPass : public PassInfoMixin<SILowerWWMCopiesPass> {
 public:
   PreservedAnalyses run(MachineFunction &MF,
                         MachineFunctionAnalysisManager &MFAM);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_SILOWERWWMCOPIES_H

@@ -14,8 +14,9 @@
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/StringSwitch.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace MachO {
 
 PlatformType mapToPlatformType(PlatformType Platform, bool WantSim) {
@@ -130,4 +131,4 @@ VersionTuple mapToSupportedOSVersion(const Triple &Triple) {
 }
 
 } // end namespace MachO.
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.

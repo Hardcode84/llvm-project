@@ -17,7 +17,8 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm::MachO {
+LLVM_NAMESPACE_BEGIN
+namespace MachO {
 enum class TextAPIErrorCode {
   NoSuchArchitecture,
   EmptyResults,
@@ -40,5 +41,6 @@ public:
   std::error_code convertToErrorCode() const override;
 };
 
-} // namespace llvm::MachO
+}
+LLVM_NAMESPACE_END // namespace llvm::MachO
 #endif // LLVM_TEXTAPI_TEXTAPIERROR_H

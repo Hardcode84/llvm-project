@@ -23,7 +23,7 @@
 #include <cstdint>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LLVMContext;
 
 namespace object {
@@ -111,6 +111,6 @@ LLVM_ABI Error writeUniversalBinaryToStream(
 
 } // end namespace object
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECT_MACHOUNIVERSALWRITER_H

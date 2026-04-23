@@ -9,12 +9,14 @@
 #ifndef LLVM_LIB_TARGET_SYSTEMZ_TARGETINFO_SYSTEMZTARGETINFO_H
 #define LLVM_LIB_TARGET_SYSTEMZ_TARGETINFO_SYSTEMZTARGETINFO_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class Target;
 
 Target &getTheSystemZTarget();
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_SYSTEMZ_TARGETINFO_SYSTEMZTARGETINFO_H

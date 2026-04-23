@@ -9,7 +9,9 @@
 #ifndef LLVM_OBJCOPY_DXCONTAINER_DXCONTAINEROBJCOPY_H
 #define LLVM_OBJCOPY_DXCONTAINER_DXCONTAINEROBJCOPY_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class Error;
 class raw_ostream;
 
@@ -31,6 +33,6 @@ Error executeObjcopyOnBinary(const CommonConfig &Config,
                              raw_ostream &Out);
 } // end namespace dxbc
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJCOPY_DXCONTAINER_DXCONTAINEROBJCOPY_H

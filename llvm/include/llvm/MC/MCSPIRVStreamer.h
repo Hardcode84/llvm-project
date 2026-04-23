@@ -17,8 +17,9 @@
 #include "llvm/MC/MCCodeEmitter.h"
 #include "llvm/MC/MCObjectStreamer.h"
 #include "llvm/MC/MCObjectWriter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCInst;
 class raw_ostream;
 
@@ -37,6 +38,6 @@ public:
                         Align ByteAlignment) override {}
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

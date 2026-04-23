@@ -26,8 +26,9 @@
 #include "llvm/IR/InlineAsm.h"
 #include <cstdint>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class HexagonSubtarget;
 
@@ -533,6 +534,6 @@ private:
   SDValue PerformHvxDAGCombine(SDNode *N, DAGCombinerInfo &DCI) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_HEXAGON_HEXAGONISELLOWERING_H

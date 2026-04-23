@@ -18,8 +18,9 @@
 
 #define GET_INSTRINFO_HEADER
 #include "DirectXGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DirectXSubtarget;
 
 struct DirectXInstrInfo : public DirectXGenInstrInfo {
@@ -28,6 +29,6 @@ struct DirectXInstrInfo : public DirectXGenInstrInfo {
   const DirectXRegisterInfo &getRegisterInfo() const { return RI; }
   ~DirectXInstrInfo() override;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DIRECTX_DIRECTXINSTRINFO_H

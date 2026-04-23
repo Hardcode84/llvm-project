@@ -17,8 +17,9 @@
 
 #define GET_SDNODE_ENUM
 #include "SystemZGenSDNodeInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace SystemZISD {
 
 enum NodeType : unsigned {
@@ -89,6 +90,6 @@ public:
                            MachinePointerInfo SrcPtrInfo) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

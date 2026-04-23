@@ -21,7 +21,7 @@
 #include "llvm/Support/Error.h"
 #include "llvm/Support/MathExtras.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 template <typename T>
@@ -117,6 +117,6 @@ LLVM_ABI double computeBlockRThroughput(const MCSchedModel &SM,
                                         unsigned NumMicroOps,
                                         ArrayRef<unsigned> ProcResourceUsage);
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_MCA_SUPPORT_H

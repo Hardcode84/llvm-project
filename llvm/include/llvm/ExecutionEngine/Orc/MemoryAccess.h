@@ -19,8 +19,10 @@
 #include "llvm/Support/MSVCErrorWorkarounds.h"
 
 #include <future>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 /// APIs for manipulating memory in the target process.
 class LLVM_ABI MemoryAccess {
@@ -190,6 +192,7 @@ public:
   }
 };
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc
 
 #endif // LLVM_EXECUTIONENGINE_ORC_MEMORYACCESS_H

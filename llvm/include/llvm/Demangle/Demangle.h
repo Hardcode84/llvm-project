@@ -14,8 +14,9 @@
 #include <optional>
 #include <string>
 #include <string_view>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// This is a llvm local version of __cxa_demangle. Other than the name and
 /// being in the llvm namespace it is identical.
 ///
@@ -143,6 +144,6 @@ private:
   void *RootNode;
   void *Context;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

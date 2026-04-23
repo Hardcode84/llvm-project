@@ -19,7 +19,7 @@
 #include <string>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 class StringRef;
 
@@ -76,6 +76,6 @@ inline raw_ostream &operator<<(raw_ostream &OS, const PackedVersion &Version) {
 }
 
 } // end namespace MachO.
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.
 
 #endif // LLVM_TEXTAPI_PACKEDVERSION_H

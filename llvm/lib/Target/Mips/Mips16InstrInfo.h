@@ -18,8 +18,9 @@
 #include "llvm/CodeGen/MachineBasicBlock.h"
 #include "llvm/Support/MathExtras.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCInstrDesc;
 class MipsSubtarget;
@@ -126,6 +127,6 @@ private:
                                      MachineBasicBlock::iterator I) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_MIPS_MIPS16INSTRINFO_H

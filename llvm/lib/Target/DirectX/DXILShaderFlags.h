@@ -23,7 +23,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 class GlobalVariable;
 class DXILResourceTypeMap;
@@ -149,6 +149,6 @@ public:
 };
 
 } // namespace dxil
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TARGET_DIRECTX_DXILSHADERFLAGS_H

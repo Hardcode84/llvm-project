@@ -41,16 +41,17 @@
 #include <cassert>
 #include <memory>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::msf;
 using namespace llvm::pdb;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 union DebugInfo;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static DbiStream *getDbiStreamPtr(PDBFile &File) {
   Expected<DbiStream &> DbiS = File.getPDBDbiStream();

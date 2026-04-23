@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_X86_X86TARGETOBJECTFILE_H
 
 #include "llvm/CodeGen/TargetLoweringObjectFileImpl.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   /// X86_64MachoTargetObjectFile - This TLOF implementation is used for Darwin
   /// x86-64.
@@ -58,6 +59,6 @@ namespace llvm {
                               MCStreamer &Streamer) const override;
   };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

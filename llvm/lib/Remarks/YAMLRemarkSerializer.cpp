@@ -15,6 +15,7 @@
 #include "llvm/Remarks/Remark.h"
 #include "llvm/Support/FileSystem.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::remarks;
@@ -31,7 +32,7 @@ mapRemarkHeader(yaml::IO &io, StringRef PassName, StringRef RemarkName,
   io.mapOptional("Args", Args);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <> struct MappingTraits<remarks::Remark *> {
@@ -127,7 +128,7 @@ template <> struct MappingTraits<Argument> {
 };
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(Argument)
 

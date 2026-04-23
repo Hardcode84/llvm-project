@@ -28,7 +28,7 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GlobalValue;
 class GlobalValueSummary;
@@ -437,6 +437,6 @@ private:
   void anchor() override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_JITSYMBOL_H

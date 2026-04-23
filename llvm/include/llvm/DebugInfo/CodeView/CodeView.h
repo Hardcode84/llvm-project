@@ -19,7 +19,7 @@
 #include "llvm/ADT/STLForwardCompat.h"
 #include "llvm/Support/Endian.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 
 /// Distinguishes individual records in .debug$T or .debug$P section or PDB type
@@ -620,6 +620,6 @@ enum class JumpTableEntrySize : uint16_t {
   Int16ShiftLeft = 10,
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

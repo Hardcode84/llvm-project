@@ -21,8 +21,10 @@
 #include "llvm/CAS/OnDiskDataAllocator.h"
 #include "llvm/CAS/OnDiskTrieRawHashMap.h"
 #include <atomic>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::cas::ondisk {
+LLVM_NAMESPACE_BEGIN
+namespace cas::ondisk {
 
 /// Standard 8 byte reference inside OnDiskGraphDB.
 class InternalRef {
@@ -521,6 +523,7 @@ private:
   std::shared_ptr<OnDiskCASLogger> Logger;
 };
 
-} // namespace llvm::cas::ondisk
+}
+LLVM_NAMESPACE_END // namespace llvm::cas::ondisk
 
 #endif // LLVM_CAS_ONDISKGRAPHDB_H

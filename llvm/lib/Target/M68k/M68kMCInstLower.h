@@ -18,8 +18,9 @@
 #include "llvm/CodeGen/MachineOperand.h"
 #include "llvm/MC/MCAsmInfo.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCContext;
 class MCInst;
 class MCOperand;
@@ -49,6 +50,6 @@ public:
 
   void Lower(const MachineInstr *MI, MCInst &OutMI) const;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_M68K_M68KMCINSTLOWER_H

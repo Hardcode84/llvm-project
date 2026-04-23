@@ -26,7 +26,7 @@
 #include "llvm/Support/DataTypes.h"
 #include <cassert>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace COFF {
 
 // The maximum number of sections that a COFF object can have (inclusive).
@@ -872,6 +872,6 @@ inline bool isReservedSectionNumber(int32_t SectionNumber) {
 LLVM_ABI bool encodeSectionName(char *Out, uint64_t Offset);
 
 } // End namespace COFF.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.
 
 #endif

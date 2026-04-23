@@ -13,8 +13,9 @@
 
 #define GET_SDNODE_ENUM
 #include "NVPTXGenSDNodeInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace NVPTXISD {
 
 enum NodeType : unsigned {
@@ -61,6 +62,6 @@ public:
                         const SDNode *N) const override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_NVPTX_NVPTXSELECTIONDAGINFO_H

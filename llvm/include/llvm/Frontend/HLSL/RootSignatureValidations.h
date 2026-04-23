@@ -18,7 +18,7 @@
 #include "llvm/Frontend/HLSL/HLSLRootSignature.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace hlsl {
 namespace rootsig {
 
@@ -46,6 +46,6 @@ LLVM_ABI uint64_t computeRangeBound(uint64_t Offset, uint32_t Size);
 
 } // namespace rootsig
 } // namespace hlsl
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_FRONTEND_HLSL_ROOTSIGNATUREVALIDATIONS_H

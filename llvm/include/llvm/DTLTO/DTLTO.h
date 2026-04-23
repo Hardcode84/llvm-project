@@ -11,8 +11,9 @@
 
 #include "llvm/LTO/LTO.h"
 #include "llvm/Support/MemoryBuffer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace lto {
 
 // The purpose of this class is to prepare inputs so that distributed ThinLTO
@@ -81,6 +82,6 @@ private:
 };
 
 } // namespace lto
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DTLTO_DTLTO_H

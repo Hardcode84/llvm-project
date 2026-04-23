@@ -16,8 +16,9 @@
 
 #include "MCTargetDesc/LoongArchBaseInfo.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AsmPrinter;
 class FunctionPass;
 class LoongArchTargetMachine;
@@ -49,6 +50,6 @@ void initializeLoongArchMergeBaseOffsetOptPass(PassRegistry &);
 void initializeLoongArchOptWInstrsPass(PassRegistry &);
 void initializeLoongArchPreRAExpandPseudoPass(PassRegistry &);
 void initializeLoongArchExpandPseudoPass(PassRegistry &);
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_LOONGARCH_LOONGARCH_H

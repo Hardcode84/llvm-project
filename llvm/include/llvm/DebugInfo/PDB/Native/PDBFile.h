@@ -19,7 +19,7 @@
 
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BinaryStream;
 
@@ -141,6 +141,6 @@ private:
   std::unique_ptr<PDBStringTable> Strings;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

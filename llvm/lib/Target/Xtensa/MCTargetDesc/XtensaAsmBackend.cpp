@@ -17,12 +17,13 @@
 #include "llvm/MC/MCSubtargetInfo.h"
 #include "llvm/MC/MCValue.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCObjectTargetWriter;
-}
+LLVM_NAMESPACE_END
 namespace {
 class XtensaAsmBackend : public MCAsmBackend {
   uint8_t OSABI;

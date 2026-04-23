@@ -16,7 +16,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 class LLJIT;
@@ -24,6 +24,6 @@ class LLJIT;
 LLVM_ABI Error enableDebuggerSupport(LLJIT &J);
 
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_DEBUGGERSUPPORT_H

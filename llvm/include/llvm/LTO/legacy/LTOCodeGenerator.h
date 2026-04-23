@@ -52,7 +52,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T> class ArrayRef;
 class LLVMContext;
 class DiagnosticInfo;
@@ -254,5 +254,5 @@ private:
 /// A convenience function that calls cl::ParseCommandLineOptions on the given
 /// set of options.
 LLVM_ABI void parseCommandLineOptions(std::vector<std::string> &Options);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

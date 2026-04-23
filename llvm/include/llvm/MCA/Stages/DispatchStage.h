@@ -24,8 +24,9 @@
 #include "llvm/MCA/HardwareUnits/RetireControlUnit.h"
 #include "llvm/MCA/Instruction.h"
 #include "llvm/MCA/Stages/Stage.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 // Implements the hardware dispatch logic.
@@ -82,6 +83,6 @@ public:
 #endif
 };
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_MCA_STAGES_DISPATCHSTAGE_H

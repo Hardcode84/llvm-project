@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_SIPEEPHOLESDWA_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SIPeepholeSDWAPass : public PassInfoMixin<SIPeepholeSDWAPass> {
 public:
@@ -19,6 +20,6 @@ public:
                         MachineFunctionAnalysisManager &MFAM);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_SIPEEPHOLESDWA_H

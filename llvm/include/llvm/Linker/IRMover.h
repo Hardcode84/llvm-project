@@ -17,7 +17,7 @@
 #include "llvm/Support/Compiler.h"
 #include <functional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Error;
 class GlobalValue;
 class Metadata;
@@ -96,6 +96,6 @@ private:
   NamedMDNodesT NamedMDNodes; ///< Cache for IRMover::linkNamedMDNodes().
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

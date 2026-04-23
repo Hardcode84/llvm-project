@@ -17,7 +17,7 @@
 #include "TargetMachine.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using PassConfigCallback =
     std::function<void(TargetMachine &, PassManagerBase &, TargetPassConfig *)>;
@@ -37,6 +37,6 @@ public:
 LLVM_ABI void
 invokeGlobalTargetPassConfigCallbacks(TargetMachine &TM, PassManagerBase &PM,
                                       TargetPassConfig *PassConfig);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TARGET_REGISTERTARGETPASSCONFIGCALLBACK_H

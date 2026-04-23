@@ -14,8 +14,9 @@
 #include "llvm/DebugInfo/GSYM/GsymTypes.h"
 #include <functional>
 #include <stdint.h>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace gsym {
 
 /// Files in GSYM are contained in FileEntry structs where we split the
@@ -70,5 +71,5 @@ template <> struct DenseMapInfo<gsym::FileEntry> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_DEBUGINFO_GSYM_FILEENTRY_H

@@ -13,8 +13,9 @@
 #define LLVM_LIB_TARGET_SPARC_SPARCMACHINEFUNCTIONINFO_H
 
 #include "llvm/CodeGen/MachineFunction.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   class SparcMachineFunctionInfo : public MachineFunctionInfo {
     virtual void anchor();
@@ -55,6 +56,6 @@ namespace llvm {
     void setLeafProc(bool rhs) { IsLeafProc = rhs; }
     bool isLeafProc() const { return IsLeafProc; }
   };
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -30,6 +30,7 @@
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/Errno.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::object;
@@ -382,7 +383,7 @@ void IntelJITEventListener::notifyFreeingObject(ObjectKey Key) {
 
 }  // anonymous namespace.
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 JITEventListener *JITEventListener::createIntelJITEventListener() {
   return new IntelJITEventListener(new IntelJITEventsWrapper);
 }
@@ -393,7 +394,7 @@ JITEventListener *JITEventListener::createIntelJITEventListener(
   return new IntelJITEventListener(TestImpl);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 LLVMJITEventListenerRef LLVMCreateIntelJITEventListener(void)
 {

@@ -19,8 +19,9 @@
 #define LLVM_BINARYFORMAT_GOFF_H
 
 #include "llvm/Support/DataTypes.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace GOFF {
 
@@ -273,6 +274,6 @@ struct BehavioralAttributes {
 };
 } // end namespace GOFF
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_BINARYFORMAT_GOFF_H

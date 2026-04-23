@@ -9,10 +9,11 @@
 #include "llvm/ExecutionEngine/Orc/Mangling.h"
 #include "llvm/IR/Constants.h"
 #include "llvm/IR/Mangler.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 MangleAndInterner::MangleAndInterner(ExecutionSession &ES, const DataLayout &DL)
@@ -80,4 +81,4 @@ void IRSymbolMapper::add(ExecutionSession &ES, const ManglingOptions &MO,
 }
 
 } // End namespace orc.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.

@@ -16,8 +16,9 @@
 
 #include "GCNSchedStrategy.h"
 #include "llvm/CodeGen/MachineScheduler.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace AMDGPU {
 
@@ -329,6 +330,6 @@ public:
 ScheduleDAGInstrs *createGCNCoExecMachineScheduler(MachineSchedContext *C);
 ScheduleDAGInstrs *createGCNNoopPostMachineScheduler(MachineSchedContext *C);
 
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_AMDGPUCOEXECSCHEDSTRATEGY_H

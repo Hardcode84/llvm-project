@@ -12,8 +12,9 @@
 #include "MCTargetDesc/CSKYMCAsmInfo.h"
 #include "llvm/MC/ConstantPools.h"
 #include "llvm/MC/MCStreamer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CSKYConstantPool {
   using EntryVecTy = SmallVector<ConstantPoolEntry, 4>;
@@ -105,6 +106,6 @@ public:
       : CSKYTargetStreamer(S), OS(OS) {}
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_CSKY_CSKYTARGETSTREAMER_H

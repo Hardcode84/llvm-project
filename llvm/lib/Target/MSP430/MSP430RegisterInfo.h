@@ -17,8 +17,9 @@
 
 #define GET_REGINFO_HEADER
 #include "MSP430GenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MSP430RegisterInfo : public MSP430GenRegisterInfo {
 public:
@@ -39,6 +40,6 @@ public:
   Register getFrameRegister(const MachineFunction &MF) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

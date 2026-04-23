@@ -8,8 +8,9 @@
 
 #include "COFFObject.h"
 #include "llvm/ADT/DenseSet.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 namespace coff {
 
@@ -130,4 +131,4 @@ void Object::truncateSections(function_ref<bool(const Section &)> ToTruncate) {
 
 } // end namespace coff
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

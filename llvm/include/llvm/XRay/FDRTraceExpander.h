@@ -16,8 +16,10 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/XRay/FDRRecords.h"
 #include "llvm/XRay/XRayRecord.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::xray {
+LLVM_NAMESPACE_BEGIN
+namespace xray {
 
 class TraceExpander : public RecordVisitor {
   // Type-erased callback for handling individual XRayRecord instances.
@@ -55,6 +57,7 @@ public:
   Error flush();
 };
 
-} // namespace llvm::xray
+}
+LLVM_NAMESPACE_END // namespace llvm::xray
 
 #endif // LLVM_XRAY_FDRTRACEEXPANDER_H

@@ -18,13 +18,14 @@
 #include "llvm/Remarks/RemarkSerializer.h"
 #include "llvm/Support/Error.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::remarks;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-}
+LLVM_NAMESPACE_END
 
 static Expected<StringRef>
 getRemarksSectionName(const object::ObjectFile &Obj) {

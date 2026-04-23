@@ -17,8 +17,10 @@
 #include <cstdint>
 #include <vector>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::xray {
+LLVM_NAMESPACE_BEGIN
+namespace xray {
 
 /// XRay traces all have a header providing some top-matter information useful
 /// to help tools determine how to interpret the information available in the
@@ -97,6 +99,7 @@ struct XRayRecord {
   std::string Data;
 };
 
-} // namespace llvm::xray
+}
+LLVM_NAMESPACE_END // namespace llvm::xray
 
 #endif // LLVM_XRAY_XRAYRECORD_H

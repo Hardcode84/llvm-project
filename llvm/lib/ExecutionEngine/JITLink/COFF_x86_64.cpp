@@ -18,6 +18,7 @@
 #include "llvm/ExecutionEngine/JITLink/x86_64.h"
 #include "llvm/Object/COFF.h"
 #include "llvm/Support/Endian.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
@@ -248,7 +249,7 @@ private:
 };
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 /// Return the string name of the given COFF x86_64 edge kind.
@@ -313,4 +314,4 @@ void link_COFF_x86_64(std::unique_ptr<LinkGraph> G,
 }
 
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

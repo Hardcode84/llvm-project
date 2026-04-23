@@ -11,8 +11,9 @@
 
 #include "llvm/DebugInfo/CodeView/StringsAndChecksums.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace codeview {
 
@@ -104,6 +105,6 @@ Error visitDebugSubsections(T &&FragmentRange, DebugSubsectionVisitor &V,
 
 } // end namespace codeview
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_CODEVIEW_DEBUGSUBSECTIONVISITOR_H

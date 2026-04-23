@@ -20,7 +20,7 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This class implements the `CFIFunctionFrameReceiver` interface to validate
 /// Call Frame Information in a stream of function frames. For validation, it
@@ -46,6 +46,6 @@ private:
   SmallVector<DWARFCFIAnalysis> UIAs;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

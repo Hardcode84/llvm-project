@@ -24,7 +24,7 @@
 #include <memory>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This class is an `MCStreamer` implementation that watches for machine
 /// instructions and CFI directives. It cuts the stream into function frames and
@@ -86,6 +86,6 @@ private:
   std::unique_ptr<CFIFunctionFrameReceiver> Receiver;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

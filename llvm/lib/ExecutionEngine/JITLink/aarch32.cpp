@@ -22,7 +22,7 @@
 
 #define DEBUG_TYPE "jitlink"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 namespace aarch32 {
 
@@ -988,4 +988,4 @@ const char *getCPUArchName(ARMBuildAttrs::CPUArch K) {
 
 } // namespace aarch32
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

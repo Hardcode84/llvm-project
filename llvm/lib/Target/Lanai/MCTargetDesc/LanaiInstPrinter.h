@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_LANAI_MCTARGETDESC_LANAIINSTPRINTER_H
 
 #include "llvm/MC/MCInstPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 class LanaiInstPrinter : public MCInstPrinter {
@@ -58,6 +59,6 @@ private:
                                  StringRef Opcode, int AddOffset);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_LANAI_MCTARGETDESC_LANAIINSTPRINTER_H

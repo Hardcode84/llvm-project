@@ -20,7 +20,7 @@
 #include "llvm/Support/DXILABI.h"
 #include "llvm/Support/ErrorHandling.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace hlsl {
 
 /// BindingInfo represents the ranges of bindings and free space for each
@@ -186,6 +186,6 @@ public:
 };
 
 } // namespace hlsl
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_FRONTEND_HLSL_HLSLBINDING_H

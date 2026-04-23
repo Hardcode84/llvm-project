@@ -17,10 +17,11 @@
 #include "llvm/ExecutionEngine/JITLink/MachO.h"
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/Endian.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink_cu"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 /// Split blocks in an __LD,__compact_unwind section on record boundaries.
@@ -693,7 +694,7 @@ private:
 };
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #undef DEBUG_TYPE
 

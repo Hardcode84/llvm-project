@@ -19,7 +19,7 @@
 #include <cstdint>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 class TypeIndex;
 enum class ContinuationRecordKind { FieldList, MethodOverloadList };
@@ -52,6 +52,6 @@ public:
   LLVM_ABI std::vector<CVType> end(TypeIndex Index);
 };
 } // namespace codeview
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

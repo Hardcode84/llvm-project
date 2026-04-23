@@ -13,8 +13,9 @@
 #define LLVM_LIB_TARGET_VE_VEMACHINEFUNCTIONINFO_H
 
 #include "llvm/CodeGen/MachineFunction.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class VEMachineFunctionInfo : public MachineFunctionInfo {
   virtual void anchor();
@@ -47,6 +48,6 @@ public:
   void setLeafProc(bool rhs) { IsLeafProc = rhs; }
   bool isLeafProc() const { return IsLeafProc; }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

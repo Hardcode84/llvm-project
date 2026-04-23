@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_ARM_ARMCALLINGCONV_H
 
 #include "llvm/CodeGen/CallingConvLower.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 bool CC_ARM_AAPCS(unsigned ValNo, MVT ValVT, MVT LocVT,
                   CCValAssign::LocInfo LocInfo, ISD::ArgFlagsTy ArgFlags,
@@ -49,6 +50,6 @@ bool RetFastCC_ARM_APCS(unsigned ValNo, MVT ValVT, MVT LocVT,
                         CCValAssign::LocInfo LocInfo, ISD::ArgFlagsTy ArgFlags,
                         Type *OrigTy, CCState &State);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

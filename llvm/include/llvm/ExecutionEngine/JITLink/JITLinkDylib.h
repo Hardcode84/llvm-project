@@ -14,8 +14,9 @@
 #define LLVM_EXECUTIONENGINE_JITLINK_JITLINKDYLIB_H
 
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 class JITLinkDylib {
@@ -30,6 +31,6 @@ private:
 };
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_JITLINK_JITLINKDYLIB_H

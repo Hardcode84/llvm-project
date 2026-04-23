@@ -14,8 +14,9 @@
 
 #include "llvm/IR/DerivedTypes.h"
 #include "llvm/IR/IRBuilder.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dxil {
 
 // Implement cbuffer layout in
@@ -126,4 +127,4 @@ llvm::TypeSize CBufferDataLayout::getTypeAllocSizeInBytes(Type *Ty) {
 }
 
 } // namespace dxil
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

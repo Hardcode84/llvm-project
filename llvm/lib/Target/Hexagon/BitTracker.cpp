@@ -62,6 +62,7 @@
 #include "llvm/CodeGen/MachineRegisterInfo.h"
 #include "llvm/IR/Constants.h"
 #include "llvm/Support/Debug.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -87,7 +88,7 @@ namespace {
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   raw_ostream &operator<<(raw_ostream &OS, const BT::BitValue &BV) {
     switch (BV.Type) {
@@ -172,7 +173,7 @@ namespace llvm {
     return OS;
   }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 void BitTracker::print_cells(raw_ostream &OS) const {
   for (const std::pair<unsigned, RegisterCell> P : Map)

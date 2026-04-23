@@ -11,8 +11,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/ExecutionEngine/Orc/Shared/MachOObjectFormat.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 StringRef MachODataCommonSectionName = "__DATA,__common";
@@ -74,4 +75,4 @@ bool isMachOInitializerSection(StringRef SegName, StringRef SecName) {
 }
 
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

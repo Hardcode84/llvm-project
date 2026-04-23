@@ -17,8 +17,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_MCTARGETDESC_AMDGPUMCKERNELDESCRIPTOR_H
 
 #include "llvm/Support/AMDHSAKernelDescriptor.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCExpr;
 class MCContext;
 class MCSubtargetInfo;
@@ -49,6 +50,6 @@ struct MCKernelDescriptor {
 };
 
 } // end namespace AMDGPU
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_MCTARGETDESC_AMDGPUMCKERNELDESCRIPTOR_H

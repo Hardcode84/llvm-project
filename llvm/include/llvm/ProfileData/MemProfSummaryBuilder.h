@@ -17,7 +17,7 @@
 #include "llvm/ProfileData/MemProfSummary.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace memprof {
 
 class MemProfSummaryBuilder {
@@ -47,6 +47,6 @@ public:
 };
 
 } // namespace memprof
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_PROFILEDATA_MEMPROFSUMMARYBUILDER_H

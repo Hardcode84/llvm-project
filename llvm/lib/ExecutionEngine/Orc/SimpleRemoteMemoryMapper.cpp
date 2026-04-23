@@ -10,8 +10,10 @@
 
 #include "llvm/ExecutionEngine/JITLink/JITLink.h"
 #include "llvm/ExecutionEngine/Orc/Shared/OrcRTBridge.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 SimpleRemoteMemoryMapper::SimpleRemoteMemoryMapper(ExecutorProcessControl &EPC,
                                                    SymbolAddrs SAs)
@@ -101,4 +103,5 @@ void SimpleRemoteMemoryMapper::release(ArrayRef<ExecutorAddr> Bases,
       SAs.Instance, Bases);
 }
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc

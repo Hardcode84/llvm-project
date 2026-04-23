@@ -56,13 +56,14 @@
 #include "llvm/Transforms/Utils/ModuleUtils.h"
 #include <optional>
 #include <system_error>
+#include "llvm/Support/Compiler.h"
 using namespace llvm;
 
 const char* LTOCodeGenerator::getVersionString() {
   return PACKAGE_NAME " version " PACKAGE_VERSION;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 cl::opt<bool> LTODiscardValueNames(
     "lto-discard-value-names",
     cl::desc("Strip names from Value during LTO (other than GlobalValue)."),
@@ -118,7 +119,7 @@ static cl::opt<bool>
 static cl::opt<std::string>
     LTOCSIRProfile("cs-profile-path",
                    cl::desc("Context sensitive profile file path"));
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 LTOCodeGenerator::LTOCodeGenerator(LLVMContext &Context)
     : Context(Context), MergedModule(new Module("ld-temp.o", Context)),

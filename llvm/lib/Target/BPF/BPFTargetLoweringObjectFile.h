@@ -11,8 +11,9 @@
 
 #include "llvm/CodeGen/TargetLoweringObjectFileImpl.h"
 #include "llvm/Target/TargetLoweringObjectFile.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BPFTargetLoweringObjectFileELF : public TargetLoweringObjectFileELF {
 
 public:
@@ -20,6 +21,6 @@ public:
   getSectionForJumpTable(const Function &F, const TargetMachine &TM,
                          const MachineJumpTableEntry *JTE) const override;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_BPF_BPFTARGETLOWERINGOBJECTFILE

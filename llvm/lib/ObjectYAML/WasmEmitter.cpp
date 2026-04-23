@@ -17,6 +17,7 @@
 #include "llvm/ObjectYAML/yaml2obj.h"
 #include "llvm/Support/Endian.h"
 #include "llvm/Support/LEB128.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -707,7 +708,7 @@ bool WasmWriter::writeWasm(raw_ostream &OS) {
   return true;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 bool yaml2wasm(WasmYAML::Object &Doc, raw_ostream &Out, ErrorHandler EH) {
@@ -716,4 +717,4 @@ bool yaml2wasm(WasmYAML::Object &Doc, raw_ostream &Out, ErrorHandler EH) {
 }
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

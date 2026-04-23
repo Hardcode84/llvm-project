@@ -22,9 +22,10 @@
 #include <sys/shm.h>
 #endif
 #include <unistd.h>
+#include "llvm/Support/Compiler.h"
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 namespace rt_bootstrap {
 
@@ -367,4 +368,4 @@ ExecutorSharedMemoryMapperService::releaseWrapper(const char *ArgData,
 
 } // namespace rt_bootstrap
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

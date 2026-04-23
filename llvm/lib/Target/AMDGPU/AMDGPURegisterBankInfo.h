@@ -20,8 +20,9 @@
 
 #define GET_REGBANK_DECLARATIONS
 #include "AMDGPUGenRegisterBank.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LLT;
 class GCNSubtarget;
@@ -190,5 +191,5 @@ private:
   bool foldInsertEltToCmpSelect(MachineIRBuilder &B, MachineInstr &MI,
                                 const OperandsMapper &OpdMapper) const;
 };
-} // End llvm namespace.
+LLVM_NAMESPACE_END // End llvm namespace.
 #endif

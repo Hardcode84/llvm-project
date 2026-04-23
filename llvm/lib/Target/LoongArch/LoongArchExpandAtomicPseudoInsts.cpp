@@ -20,6 +20,7 @@
 #include "llvm/CodeGen/LivePhysRegs.h"
 #include "llvm/CodeGen/MachineFunctionPass.h"
 #include "llvm/CodeGen/MachineInstrBuilder.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -746,10 +747,10 @@ bool LoongArchExpandAtomicPseudo::expandAtomicCmpXchg128(
 INITIALIZE_PASS(LoongArchExpandAtomicPseudo, "loongarch-expand-atomic-pseudo",
                 LoongArch_EXPAND_ATOMIC_PSEUDO_NAME, false, false)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 FunctionPass *createLoongArchExpandAtomicPseudoPass() {
   return new LoongArchExpandAtomicPseudo();
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

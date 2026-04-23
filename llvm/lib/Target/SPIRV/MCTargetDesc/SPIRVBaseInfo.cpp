@@ -15,8 +15,9 @@
 #include "SPIRVBaseInfo.h"
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace SPIRV {
 struct SymbolicOperand {
   OperandCategory::OperandCategory Category;
@@ -262,4 +263,4 @@ std::string getExtInstName(SPIRV::InstructionSet::InstructionSet Set,
 
   return Lookup->Name.str();
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

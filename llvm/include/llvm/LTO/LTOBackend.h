@@ -25,7 +25,7 @@
 #include "llvm/Target/TargetOptions.h"
 #include "llvm/Transforms/IPO/FunctionImport.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BitcodeModule;
 class Error;
@@ -80,6 +80,6 @@ LLVM_ABI bool initImportList(const Module &M,
                              const ModuleSummaryIndex &CombinedIndex,
                              FunctionImporter::ImportMapTy &ImportList);
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -35,7 +35,7 @@
 #include <optional>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AsmPrinter;
 class MCAsmBackend;
@@ -1395,6 +1395,6 @@ private:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_TARGETREGISTRY_H

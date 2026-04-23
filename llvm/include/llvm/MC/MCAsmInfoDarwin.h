@@ -15,8 +15,9 @@
 #define LLVM_MC_MCASMINFODARWIN_H
 
 #include "llvm/MC/MCAsmInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCAsmInfoDarwin : public MCAsmInfo {
 public:
@@ -31,6 +32,6 @@ public:
   static bool isSectionAtomizableBySymbols(const MCSection &Section);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCASMINFODARWIN_H

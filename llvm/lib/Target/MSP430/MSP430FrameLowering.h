@@ -15,8 +15,9 @@
 
 #include "MSP430.h"
 #include "llvm/CodeGen/TargetFrameLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MSP430Subtarget;
 class MSP430InstrInfo;
@@ -66,6 +67,6 @@ public:
                                  const DebugLoc &DL, bool IsPrologue) const;
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

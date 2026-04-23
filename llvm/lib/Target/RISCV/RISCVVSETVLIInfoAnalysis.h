@@ -17,8 +17,9 @@
 #include "llvm/CodeGen/LiveDebugVariables.h"
 #include "llvm/CodeGen/LiveIntervals.h"
 #include "llvm/CodeGen/LiveStacks.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace RISCV {
 /// Which subfields of VL or VTYPE have values we need to preserve?
 struct DemandedFields {
@@ -583,4 +584,4 @@ private:
 };
 
 } // namespace RISCV
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

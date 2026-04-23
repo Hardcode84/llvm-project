@@ -18,7 +18,7 @@
 #include "llvm/DebugInfo/DIContext.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LLVM_ABI BTFContext final : public DIContext {
   BTFParser BTF;
@@ -54,6 +54,6 @@ public:
       std::function<void(Error)> ErrorHandler = WithColor::defaultErrorHandler);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_BTF_BTFCONTEXT_H

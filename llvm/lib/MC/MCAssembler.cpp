@@ -37,12 +37,13 @@
 #include <cstdint>
 #include <tuple>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCSubtargetInfo;
-}
+LLVM_NAMESPACE_END
 
 #define DEBUG_TYPE "assembler"
 

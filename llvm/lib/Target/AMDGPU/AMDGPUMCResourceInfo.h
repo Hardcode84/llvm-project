@@ -17,8 +17,9 @@
 
 #include "AMDGPUResourceUsageAnalysis.h"
 #include "MCTargetDesc/AMDGPUMCExpr.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCContext;
 class MCSymbol;
@@ -115,6 +116,6 @@ public:
   const MCExpr *createTotalNumSGPRs(const MachineFunction &MF, bool hasXnack,
                                     MCContext &Ctx);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_AMDGPUMCRESOURCEINFO_H

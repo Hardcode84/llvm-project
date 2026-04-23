@@ -9,7 +9,9 @@
 #ifndef LLVM_LIB_TARGET_SPARC_TARGETINFO_SPARCTARGETINFO_H
 #define LLVM_LIB_TARGET_SPARC_TARGETINFO_SPARCTARGETINFO_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class Target;
 
@@ -17,6 +19,6 @@ Target &getTheSparcTarget();
 Target &getTheSparcV9Target();
 Target &getTheSparcelTarget();
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_SPARC_TARGETINFO_SPARCTARGETINFO_H

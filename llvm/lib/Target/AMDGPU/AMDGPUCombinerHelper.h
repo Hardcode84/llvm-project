@@ -18,8 +18,9 @@
 #include "GCNSubtarget.h"
 #include "llvm/CodeGen/GlobalISel/Combiner.h"
 #include "llvm/CodeGen/GlobalISel/CombinerHelper.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AMDGPUCombinerHelper : public CombinerHelper {
 protected:
   const GCNSubtarget &STI;
@@ -47,6 +48,6 @@ public:
   bool matchConstantIs32BitMask(Register Reg) const;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_AMDGPUCOMBINERHELPER_H

@@ -13,8 +13,9 @@
 #include "llvm/MC/MCRegister.h"
 #include "llvm/MC/MCSubtargetInfo.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class APInt;
 
 namespace RISCVMatInt {
@@ -79,5 +80,5 @@ InstSeq generateTwoRegInstSeq(int64_t Val, const MCSubtargetInfo &STI,
 int getIntMatCost(const APInt &Val, unsigned Size, const MCSubtargetInfo &STI,
                   bool CompressionCost = false, bool FreeZeroes = false);
 } // namespace RISCVMatInt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

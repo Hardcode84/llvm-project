@@ -11,8 +11,9 @@
 
 #include "llvm/IR/PassManager.h"
 #include "llvm/Pass.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A pass that transforms LLVM Metadata in the module to it's DXIL equivalent,
 /// then emits all recognized DXIL Metadata
@@ -37,6 +38,6 @@ public:
   bool runOnModule(Module &M) override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TARGET_DIRECTX_DXILTRANSLATEMETADATA_H

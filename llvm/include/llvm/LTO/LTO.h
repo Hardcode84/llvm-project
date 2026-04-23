@@ -34,7 +34,7 @@
 #include "llvm/Transforms/IPO/FunctionAttrs.h"
 #include "llvm/Transforms/IPO/FunctionImport.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Error;
 class IRMover;
@@ -695,6 +695,6 @@ struct SymbolResolution {
 };
 
 } // namespace lto
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

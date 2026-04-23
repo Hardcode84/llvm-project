@@ -12,8 +12,9 @@
 #include "llvm/ADT/DenseSet.h"
 #include "llvm/CodeGen/Register.h"
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MachineRegisterInfo;
 class GCNSubtarget;
@@ -54,6 +55,6 @@ void buildReadAnyLane(MachineIRBuilder &B, Register SgprDst, Register VgprSrc,
 void buildReadFirstLane(MachineIRBuilder &B, Register SgprDst, Register VgprSrc,
                         const RegisterBankInfo &RBI);
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

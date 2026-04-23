@@ -11,8 +11,9 @@
 
 #include "llvm/DebugInfo/GSYM/GsymCreator.h"
 #include "llvm/DebugInfo/GSYM/HeaderV2.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace gsym {
 
 /// GsymCreatorV2 emits GSYM V2 data with a GlobalData-based section layout.
@@ -32,6 +33,6 @@ public:
 };
 
 } // namespace gsym
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_GSYM_GSYMCREATORV2_H

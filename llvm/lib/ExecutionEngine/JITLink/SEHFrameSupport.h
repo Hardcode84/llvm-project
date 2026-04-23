@@ -18,8 +18,9 @@
 #include "llvm/ExecutionEngine/JITSymbol.h"
 #include "llvm/Support/Error.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 /// This pass adds keep-alive edge from SEH frame sections
 /// to the parent function content block.
@@ -57,6 +58,6 @@ private:
 };
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_JITLINK_SEHFRAMESUPPORT_H

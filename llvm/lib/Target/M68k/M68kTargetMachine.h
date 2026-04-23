@@ -23,8 +23,9 @@
 #include "llvm/CodeGen/TargetFrameLowering.h"
 
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class formatted_raw_ostream;
 class M68kRegisterInfo;
 
@@ -58,6 +59,6 @@ public:
     return TLOF.get();
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_M68K_M68KTARGETMACHINE_H

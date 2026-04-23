@@ -627,6 +627,7 @@ AArch64PostLegalizerCombinerImpl::AArch64PostLegalizerCombinerImpl(
       RuleConfig(RuleConfig), STI(STI),
 #define GET_GICOMBINER_CONSTRUCTOR_INITS
 #include "AArch64GenPostLegalizeGICombiner.inc"
+#include "llvm/Support/Compiler.h"
 #undef GET_GICOMBINER_CONSTRUCTOR_INITS
 {
 }
@@ -919,8 +920,8 @@ INITIALIZE_PASS_END(AArch64PostLegalizerCombiner, DEBUG_TYPE,
                     "Combine AArch64 MachineInstrs after legalization", false,
                     false)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 FunctionPass *createAArch64PostLegalizerCombiner(bool IsOptNone) {
   return new AArch64PostLegalizerCombiner(IsOptNone);
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

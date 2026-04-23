@@ -18,8 +18,9 @@
 #include "llvm/CodeGen/CodeGenTargetMachineImpl.h"
 #include "llvm/IR/DataLayout.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Common code between 32-bit and 64-bit PowerPC targets.
 ///
@@ -85,6 +86,6 @@ public:
 
   int unqualifiedInlineAsmVariant() const override { return 1; }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

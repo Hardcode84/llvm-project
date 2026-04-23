@@ -21,8 +21,9 @@
 
 #define GET_INSTRINFO_HEADER
 #include "AArch64GenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AArch64Subtarget;
 
@@ -916,6 +917,6 @@ int32_t getSVENonRevInstr(uint32_t Opcode);
 int32_t getSMEPseudoMap(uint32_t Opcode);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

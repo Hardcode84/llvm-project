@@ -16,8 +16,9 @@
 #include "llvm/MC/MCInstPrinter.h"
 
 #include "MCTargetDesc/AVRMCTargetDesc.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Prints AVR instructions to a textual stream.
 class AVRInstPrinter : public MCInstPrinter {
@@ -57,6 +58,6 @@ private:
                                raw_ostream &O);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_AVR_INST_PRINTER_H

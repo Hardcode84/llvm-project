@@ -17,8 +17,9 @@
 #include "AMDGPUMCResourceInfo.h"
 #include "SIProgramInfo.h"
 #include "llvm/CodeGen/AsmPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AMDGPUMachineFunctionInfo;
 class AMDGPUResourceUsageAnalysis;
@@ -151,6 +152,6 @@ protected:
   bool IsTargetStreamerInitialized;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_AMDGPUASMPRINTER_H

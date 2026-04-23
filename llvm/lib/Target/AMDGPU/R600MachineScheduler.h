@@ -16,8 +16,9 @@
 
 #include "llvm/CodeGen/MachineScheduler.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class R600InstrInfo;
 struct R600RegisterInfo;
@@ -92,6 +93,6 @@ private:
   void MoveUnits(std::vector<SUnit *> &QSrc, std::vector<SUnit *> &QDst);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_R600MACHINESCHEDULER_H

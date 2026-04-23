@@ -17,7 +17,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/TargetParser/Triple.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class StringRef;
 namespace COFF {
@@ -51,6 +51,6 @@ template <typename T> Triple::ArchType getMachineArchType(T machine) {
   }
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

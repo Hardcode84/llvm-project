@@ -24,8 +24,9 @@
 #include <cstdint>
 #include <memory>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace symbolize {
 
 class SourceCode {
@@ -420,4 +421,4 @@ void JSONPrinter::listEnd() {
 }
 
 } // end namespace symbolize
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

@@ -24,7 +24,7 @@
 #include "llvm/Support/MathExtras.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 struct IndirectStubsAllocationSizes {
@@ -412,6 +412,6 @@ public:
 };
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_ORCABISUPPORT_H

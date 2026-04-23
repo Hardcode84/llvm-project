@@ -12,7 +12,7 @@
 #include "llvm/Support/Compiler.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 class LLVM_ABI IPDBLineNumber {
 public:
@@ -32,6 +32,6 @@ public:
   virtual bool isStatement() const = 0;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -13,8 +13,9 @@
 #include "llvm/ADT/Hashing.h"
 #include <cassert>
 #include <limits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// An unsigned integer type large enough to represent all physical registers,
 /// but not necessarily virtual registers.
@@ -126,6 +127,6 @@ template <> struct DenseMapInfo<MCRegister> {
 inline hash_code hash_value(const MCRegister &Reg) {
   return hash_value(Reg.id());
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_MC_MCREGISTER_H

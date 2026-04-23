@@ -16,9 +16,10 @@
 #include "llvm/MCA/HardwareUnits/RegisterFile.h"
 #include "llvm/MCA/HardwareUnits/RetireControlUnit.h"
 #include "llvm/MCA/Instruction.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "llvm-mca"
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 void StallInfo::clear() {
@@ -447,4 +448,4 @@ llvm::Error InOrderIssueStage::cycleEnd() {
 }
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

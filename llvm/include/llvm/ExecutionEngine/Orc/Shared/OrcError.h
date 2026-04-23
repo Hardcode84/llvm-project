@@ -19,7 +19,7 @@
 #include <string>
 #include <system_error>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 enum class OrcErrorCode : int {
@@ -74,6 +74,6 @@ private:
 };
 
 } // End namespace orc.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.
 
 #endif // LLVM_EXECUTIONENGINE_ORC_SHARED_ORCERROR_H

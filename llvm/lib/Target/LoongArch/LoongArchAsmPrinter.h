@@ -19,7 +19,7 @@
 #include "llvm/MC/MCStreamer.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LLVM_LIBRARY_VISIBILITY LoongArchAsmPrinter : public AsmPrinter {
 public:
@@ -62,6 +62,6 @@ public:
   void emitJumpTableInfo() override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_LOONGARCH_LOONGARCHASMPRINTER_H

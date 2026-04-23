@@ -12,8 +12,9 @@
 #include "SIDefines.h"
 
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class StringLiteral;
 class MCSubtargetInfo;
@@ -147,6 +148,6 @@ constexpr const char *const ModMatrixScaleFmt[] = {
 } // namespace WMMAMods
 
 } // namespace AMDGPU
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

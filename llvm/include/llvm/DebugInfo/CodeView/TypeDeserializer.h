@@ -21,8 +21,9 @@
 #include <cassert>
 #include <cstdint>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 
 class TypeDeserializer : public TypeVisitorCallbacks {
@@ -160,6 +161,6 @@ private:
 };
 
 } // end namespace codeview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_CODEVIEW_TYPEDESERIALIZER_H

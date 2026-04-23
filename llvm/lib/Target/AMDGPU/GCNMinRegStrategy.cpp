@@ -14,6 +14,7 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/CodeGen/ScheduleDAG.h"
+#include "llvm/Support/Compiler.h"
 using namespace llvm;
 
 #define DEBUG_TYPE "machine-scheduler"
@@ -266,7 +267,7 @@ GCNMinRegScheduler::schedule(ArrayRef<const SUnit*> TopRoots,
   return Schedule;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 std::vector<const SUnit*> makeMinRegSchedule(ArrayRef<const SUnit*> TopRoots,
                                              const ScheduleDAG &DAG) {
@@ -274,4 +275,4 @@ std::vector<const SUnit*> makeMinRegSchedule(ArrayRef<const SUnit*> TopRoots,
   return S.schedule(TopRoots, DAG);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

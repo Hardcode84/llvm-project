@@ -21,6 +21,7 @@
 #include "EHFrameSupportImpl.h"
 #include "ELFLinkGraphBuilder.h"
 #include "JITLinkGeneric.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
@@ -669,7 +670,7 @@ Error buildTables_ELF_aarch64(LinkGraph &G) {
 
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 Expected<std::unique_ptr<LinkGraph>> createLinkGraphFromELFObject_aarch64(
@@ -731,4 +732,4 @@ void link_ELF_aarch64(std::unique_ptr<LinkGraph> G,
 }
 
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

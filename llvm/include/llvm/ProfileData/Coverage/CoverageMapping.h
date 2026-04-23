@@ -44,7 +44,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class IndexedInstrProfReader;
 
@@ -1554,6 +1554,6 @@ template<> struct DenseMapInfo<coverage::CounterExpression> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_PROFILEDATA_COVERAGE_COVERAGEMAPPING_H

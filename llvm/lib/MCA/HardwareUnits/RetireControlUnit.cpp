@@ -13,10 +13,11 @@
 
 #include "llvm/MCA/HardwareUnits/RetireControlUnit.h"
 #include "llvm/Support/Debug.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "llvm-mca"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 RetireControlUnit::RetireControlUnit(const MCSchedModel &SM)
@@ -100,4 +101,4 @@ void RetireControlUnit::dump() const {
 #endif
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

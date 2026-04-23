@@ -14,10 +14,11 @@
 #define LIB_EXECUTIONENGINE_JITLINK_JITLINKGENERIC_H
 
 #include "llvm/ExecutionEngine/JITLink/JITLink.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 /// Base class for a JIT linker.
@@ -186,7 +187,7 @@ private:
 void prune(LinkGraph &G);
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #undef DEBUG_TYPE // "jitlink"
 

@@ -14,8 +14,9 @@
 #include "llvm/Support/Error.h"
 #include <cstdint>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 class DWARFDataExtractor;
@@ -91,6 +92,6 @@ public:
   ArrayRef<uint64_t> getAddressEntries() const { return Addrs; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFDEBUGADDR_H

@@ -14,8 +14,9 @@
 #define LLVM_CGDATA_CGDATAPATCHITEM_H
 
 #include "llvm/ADT/SmallVector.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A struct to define how the data stream should be patched.
 struct CGDataPatchItem {
@@ -28,6 +29,6 @@ struct CGDataPatchItem {
       : Pos(Pos), D(D, D + N) {}
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CGDATA_CGDATAPATCHITEM_H

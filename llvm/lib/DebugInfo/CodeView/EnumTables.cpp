@@ -51,6 +51,7 @@ static const EnumEntry<uint16_t> RegisterNames_ARM64[] = {
 #define CV_REGISTERS_ARM64
 #define CV_REGISTER(name, val) CV_ENUM_CLASS_ENT(RegisterId, name),
 #include "llvm/DebugInfo/CodeView/CodeViewRegisters.def"
+#include "llvm/Support/Compiler.h"
 #undef CV_REGISTER
 #undef CV_REGISTERS_ARM64
 };
@@ -452,7 +453,7 @@ static const EnumEntry<uint16_t> JumpTableEntrySizeNames[] = {
     CV_ENUM_CLASS_ENT(JumpTableEntrySize, Int16ShiftLeft),
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 
 ArrayRef<EnumEntry<SymbolKind>> getSymbolTypeNames() {
@@ -582,4 +583,4 @@ ArrayRef<EnumEntry<uint16_t>> getJumpTableEntrySizeNames() {
 }
 
 } // end namespace codeview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

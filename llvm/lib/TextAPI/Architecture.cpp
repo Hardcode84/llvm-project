@@ -16,8 +16,9 @@
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace MachO {
 
 Architecture getArchitectureFromCpuType(uint32_t CPUType, uint32_t CPUSubType) {
@@ -95,4 +96,4 @@ raw_ostream &operator<<(raw_ostream &OS, Architecture Arch) {
 }
 
 } // end namespace MachO.
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.

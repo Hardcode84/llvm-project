@@ -15,8 +15,9 @@
 #include "llvm/Support/ErrorHandling.h"
 #include <cstddef>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 namespace coff {
 
@@ -222,4 +223,4 @@ Expected<std::unique_ptr<Object>> COFFReader::create() const {
 
 } // end namespace coff
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

@@ -20,8 +20,9 @@
 #include "llvm/CodeGen/MachineOperand.h"
 #include "llvm/MC/MCInstrDesc.h"
 #include "llvm/TargetParser/SubtargetFeature.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // This namespace holds all of the target specific flags that instruction info
 // tracks.
@@ -147,6 +148,6 @@ ABI getTargetABI(StringRef ABIName);
 MCRegister getBPReg();
 } // end namespace LoongArchABI
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_LOONGARCH_MCTARGETDESC_LOONGARCHBASEINFO_H

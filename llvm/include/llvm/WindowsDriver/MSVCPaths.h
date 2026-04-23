@@ -16,7 +16,7 @@
 #include <optional>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace vfs {
 class FileSystem;
@@ -113,6 +113,6 @@ findVCToolChainViaSetupConfig(vfs::FileSystem &VFS,
 LLVM_ABI bool findVCToolChainViaRegistry(std::string &Path,
                                          ToolsetLayout &VSLayout);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

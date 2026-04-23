@@ -40,7 +40,7 @@
 #include "llvm/MC/TargetRegistry.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// `DWARFCFIAnalysis` validates the DWARF Call Frame Information one machine
 /// instruction at a time. This class maintains an internal CFI state
@@ -99,6 +99,6 @@ private:
   bool IsEH;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -34,8 +34,9 @@
 #include "llvm/MC/MCInstrDesc.h"
 
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace M68k {
 static inline const MachineInstrBuilder &
 addOffset(const MachineInstrBuilder &MIB, int Offset) {
@@ -89,6 +90,6 @@ addMemOperand(const MachineInstrBuilder &MIB, int FI, int Offset = 0) {
   return MIB.addMemOperand(MMO);
 }
 } // end namespace M68k
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_M68K_M68KINSTRBUILDER_H

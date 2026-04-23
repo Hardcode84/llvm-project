@@ -17,8 +17,9 @@
 #include "MCTargetDesc/MipsFixupKinds.h"
 #include "llvm/MC/MCAsmBackend.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCAssembler;
 struct MCFixupKindInfo;
@@ -49,6 +50,6 @@ public:
                     const MCSubtargetInfo *STI) const override;
 }; // class MipsAsmBackend
 
-} // namespace
+LLVM_NAMESPACE_END // namespace
 
 #endif

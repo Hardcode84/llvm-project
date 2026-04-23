@@ -23,8 +23,9 @@
 #define GET_INSTRINFO_HEADER
 
 #include "XtensaGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class XtensaTargetMachine;
 class XtensaSubtarget;
@@ -122,6 +123,6 @@ public:
 
   const XtensaSubtarget &getSubtarget() const { return STI; }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif /* LLVM_LIB_TARGET_XTENSA_XTENSAINSTRINFO_H */

@@ -19,7 +19,7 @@
 #include <cstdint>
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BinaryStreamWriter;
 
@@ -95,6 +95,6 @@ using DebugSubsectionArray = VarStreamArray<DebugSubsectionRecord>;
 
 } // end namespace codeview
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_CODEVIEW_DEBUGSUBSECTIONRECORD_H

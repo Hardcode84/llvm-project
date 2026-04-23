@@ -21,7 +21,7 @@
 #include <cstdint>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 class PassBuilder;
 class TargetMachine;
@@ -112,7 +112,7 @@ private:
   sys::DynamicLibrary Library;
   PassPluginLibraryInfo Info;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // The function returns a struct with default initializers.
 #ifdef __clang__

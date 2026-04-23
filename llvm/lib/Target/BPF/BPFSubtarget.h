@@ -29,8 +29,9 @@
 
 #define GET_SUBTARGETINFO_HEADER
 #include "BPFGenSubtargetInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 class BPFSubtarget : public BPFGenSubtargetInfo {
@@ -123,6 +124,6 @@ public:
   const LegalizerInfo *getLegalizerInfo() const override;
   const RegisterBankInfo *getRegBankInfo() const override;
 };
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

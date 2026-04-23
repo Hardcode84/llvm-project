@@ -13,10 +13,11 @@
 #include "CompactUnwindSupport.h"
 
 #include "llvm/ADT/Sequence.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 Error splitCompactUnwindBlocks(LinkGraph &G, Section &CompactUnwindSection,
@@ -100,4 +101,4 @@ Error splitCompactUnwindBlocks(LinkGraph &G, Section &CompactUnwindSection,
 }
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

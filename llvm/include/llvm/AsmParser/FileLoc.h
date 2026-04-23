@@ -11,8 +11,9 @@
 
 #include <cassert>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Struct holding Line:Column location
 struct FileLoc {
@@ -56,6 +57,6 @@ struct FileLocRange {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

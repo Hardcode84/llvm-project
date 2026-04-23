@@ -16,9 +16,10 @@
 
 #include <memory>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class WindowsResourceProcessor {
 public:
@@ -45,6 +46,6 @@ private:
   bool IsVerbose, AppendNull;
 };
 
-}
+LLVM_NAMESPACE_END
 
 #endif

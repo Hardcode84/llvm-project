@@ -13,8 +13,9 @@
 
 #define GET_SDNODE_ENUM
 #include "MSP430GenSDNodeInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MSP430SelectionDAGInfo : public SelectionDAGGenTargetInfo {
 public:
@@ -23,6 +24,6 @@ public:
   ~MSP430SelectionDAGInfo() override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_MSP430_MSP430SELECTIONDAGINFO_H

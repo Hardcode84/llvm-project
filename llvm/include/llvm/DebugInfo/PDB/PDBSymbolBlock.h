@@ -10,8 +10,9 @@
 
 #include "PDBSymbol.h"
 #include "PDBTypes.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace pdb {
 
@@ -30,6 +31,6 @@ public:
   FORWARD_SYMBOL_METHOD(getVirtualAddress)
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_DEBUGINFO_PDB_PDBSYMBOLBLOCK_H

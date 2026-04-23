@@ -19,8 +19,9 @@
 #include "llvm/Support/Alignment.h"
 #include "llvm/Support/CommandLine.h"
 #include <algorithm>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static cl::opt<bool> ForceMinByValParamAlign(
     "nvptx-force-min-byval-param-align", cl::Hidden,
@@ -97,4 +98,4 @@ bool shouldEmitPTXNoReturn(const Value *V, const TargetMachine &TM) {
          !isKernelFunction(*F);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

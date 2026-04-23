@@ -13,8 +13,9 @@
 #include "llvm/DebugInfo/PDB/IPDBLineNumber.h"
 #include "llvm/DebugInfo/PDB/Native/NativeLineNumber.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 class NativeEnumLineNumbers : public IPDBEnumChildren<IPDBLineNumber> {
@@ -31,6 +32,6 @@ private:
   uint32_t Index;
 };
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

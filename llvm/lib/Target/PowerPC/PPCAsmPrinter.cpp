@@ -119,7 +119,7 @@ static cl::opt<bool> IFuncWarnInsteadOfError("test-ifunc-warn-noerror",
 // std::pair<const MCSymbol *, PPCMCExpr::Specifier> in DenseMap.
 // This specialization is needed here because that type is used as keys in the
 // map representing TOC entries.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <>
 struct DenseMapInfo<std::pair<const MCSymbol *, PPCMCExpr::Specifier>> {
   using TOCKey = std::pair<const MCSymbol *, PPCMCExpr::Specifier>;
@@ -135,7 +135,7 @@ struct DenseMapInfo<std::pair<const MCSymbol *, PPCMCExpr::Specifier>> {
   }
   static bool isEqual(const TOCKey &A, const TOCKey &B) { return A == B; }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace {
 

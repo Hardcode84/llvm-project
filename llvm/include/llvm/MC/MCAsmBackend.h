@@ -16,7 +16,7 @@
 #include "llvm/Support/Endian.h"
 #include <cstdint>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCFragment;
 class MCSymbol;
@@ -206,6 +206,6 @@ public:
   static const MCSubtargetInfo *getSubtargetInfo(const MCFragment &F);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCASMBACKEND_H

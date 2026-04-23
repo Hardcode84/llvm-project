@@ -11,7 +11,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class AsmPrinter;
   class MCContext;
   class MCInst;
@@ -40,6 +40,6 @@ public:
   MCSymbol *GetBlockAddressSymbol(const MachineOperand &MO) const;
 };
 
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -17,8 +17,9 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/TableGen/Main.h"
 #include "llvm/TableGen/Record.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class RecordKeeper;
 class raw_ostream;
@@ -92,6 +93,6 @@ bool ApplyCallback(const RecordKeeper &Records, TableGenOutputFiles &OutFiles,
 void emitSourceFileHeader(StringRef Desc, raw_ostream &OS,
                           const RecordKeeper &Record = RecordKeeper());
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TABLEGEN_TABLEGENBACKEND_H

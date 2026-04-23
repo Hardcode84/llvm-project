@@ -18,8 +18,9 @@
 
 #define GET_REGINFO_HEADER
 #include "HexagonGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace Hexagon {
   // Generic (pseudo) subreg indices for use with getHexagonSubRegIndex.
@@ -87,6 +88,6 @@ public:
   bool isEHReturnCalleeSaveReg(Register Reg) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

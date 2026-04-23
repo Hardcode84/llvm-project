@@ -26,7 +26,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 class RecycledInstErr : public ErrorInfo<RecycledInstErr> {
@@ -123,6 +123,6 @@ public:
   createInstruction(const MCInst &MCI, const SmallVector<Instrument *> &IVec);
 };
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_MCA_INSTRBUILDER_H

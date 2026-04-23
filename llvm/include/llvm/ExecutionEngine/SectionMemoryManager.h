@@ -22,7 +22,7 @@
 #include <string>
 #include <system_error>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This is a simple memory manager which implements the methods called by
 /// the RuntimeDyld class to allocate memory for section-based loading of
@@ -206,6 +206,6 @@ private:
   bool ReserveAllocation;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_SECTIONMEMORYMANAGER_H

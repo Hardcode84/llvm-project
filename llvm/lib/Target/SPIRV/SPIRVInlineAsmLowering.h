@@ -15,8 +15,9 @@
 #define LLVM_LIB_TARGET_SPIRV_SPIRVINLINEASMLOWERING_H
 
 #include "llvm/CodeGen/GlobalISel/InlineAsmLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SPIRVTargetLowering;
 
@@ -28,6 +29,6 @@ public:
                                std::vector<MachineOperand> &Ops,
                                MachineIRBuilder &MIRBuilder) const override;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_SPIRV_SPIRVINLINEASMLOWERING_H

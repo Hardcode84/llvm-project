@@ -28,7 +28,7 @@
 
 using namespace llvm::object;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 /// Translate from ELF relocation type to JITLink-internal edge kind.
@@ -334,4 +334,4 @@ void link_ELF_aarch32(std::unique_ptr<LinkGraph> G,
 }
 
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -26,6 +26,7 @@
 #include <unordered_set>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::ELF;
@@ -3075,7 +3076,7 @@ Error SRECWriter::write() {
   return Error::success();
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 namespace elf {
 
@@ -3091,4 +3092,4 @@ template class ELFWriter<ELF32BE>;
 
 } // end namespace elf
 } // end namespace objcopy
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

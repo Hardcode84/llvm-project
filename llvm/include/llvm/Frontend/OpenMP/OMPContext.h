@@ -22,7 +22,7 @@
 #include "llvm/Frontend/OpenMP/OMPConstants.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Triple;
 namespace omp {
 
@@ -216,5 +216,5 @@ template <> struct DenseMapInfo<omp::TraitProperty> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif // LLVM_FRONTEND_OPENMP_OMPCONTEXT_H

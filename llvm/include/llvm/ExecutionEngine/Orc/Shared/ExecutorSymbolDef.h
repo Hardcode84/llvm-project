@@ -16,8 +16,9 @@
 #include "llvm/ExecutionEngine/JITSymbol.h"
 #include "llvm/ExecutionEngine/Orc/Shared/ExecutorAddress.h"
 #include "llvm/ExecutionEngine/Orc/Shared/SimplePackedSerialization.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 /// Represents a defining location for a JIT symbol.
@@ -138,6 +139,6 @@ public:
 
 } // End namespace shared.
 } // End namespace orc.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.
 
 #endif // LLVM_EXECUTIONENGINE_ORC_SHARED_EXECUTORSYMBOLDEF_H

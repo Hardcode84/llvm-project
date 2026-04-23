@@ -18,8 +18,9 @@
 
 #define GET_INSTRINFO_HEADER
 #include "ARCGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ARCSubtarget;
 
@@ -99,6 +100,6 @@ public:
                                             unsigned Reg, uint64_t Value) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARC_ARCINSTRINFO_H

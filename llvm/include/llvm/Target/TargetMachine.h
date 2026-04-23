@@ -29,7 +29,7 @@
 #include <string>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 LLVM_ABI extern llvm::cl::opt<bool> NoKernelInfoEndLTO;
 
@@ -546,6 +546,6 @@ public:
   virtual bool canLowerCondLoop() const { return false; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TARGET_TARGETMACHINE_H

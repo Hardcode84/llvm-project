@@ -23,6 +23,7 @@
 #include <mutex>
 
 #include <future>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::object;
@@ -69,7 +70,7 @@ RuntimeDyldImpl::~RuntimeDyldImpl() = default;
 // Pin LoadedObjectInfo's vtables to this file.
 void RuntimeDyld::LoadedObjectInfo::anchor() {}
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 void RuntimeDyldImpl::registerEHFrames() {}
 
@@ -1488,4 +1489,4 @@ void jitLinkForORC(
                                  std::move(O), std::move(Info));
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

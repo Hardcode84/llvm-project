@@ -18,8 +18,9 @@
 #include "llvm/CodeGen/SelectionDAG.h"
 #include "llvm/CodeGen/TargetLowering.h"
 #include "llvm/Support/AtomicOrdering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class NVPTXSubtarget;
 
@@ -240,6 +241,6 @@ private:
   SDValue PerformDAGCombine(SDNode *N, DAGCombinerInfo &DCI) const override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

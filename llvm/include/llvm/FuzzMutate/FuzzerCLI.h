@@ -18,7 +18,7 @@
 #include "llvm/Support/DataTypes.h"
 #include <stddef.h>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class StringRef;
 
@@ -53,6 +53,6 @@ LLVM_ABI int runFuzzerOnInputs(
     int ArgC, char *ArgV[], FuzzerTestFun TestOne,
     FuzzerInitFun Init = [](int *, char ***) { return 0; });
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_FUZZMUTATE_FUZZERCLI_H

@@ -19,8 +19,9 @@
 
 #define GET_SDNODE_ENUM
 #include "ARMGenSDNodeInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace ARMISD {
 
 enum NodeType : unsigned {
@@ -128,6 +129,6 @@ public:
                                  RTLIB::Libcall LC) const;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -16,8 +16,9 @@
 
 #include "VE.h"
 #include "llvm/CodeGen/TargetLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class VESubtarget;
 
 /// Convert a DAG integer condition code to a VE ICC condition.
@@ -295,6 +296,6 @@ public:
   bool hasAndNot(SDValue Y) const override;
   /// } Target Optimization
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_VE_VEISELLOWERING_H

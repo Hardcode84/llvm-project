@@ -10,14 +10,15 @@
 
 #include "llvm/IR/PassManager.h"
 #include "llvm/Pass.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A pass that transforms DXIL Intrinsics that don't have DXIL opCodes
 class DXILIntrinsicExpansion : public PassInfoMixin<DXILIntrinsicExpansion> {
 public:
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TARGET_DIRECTX_DXILINTRINSICEXPANSION_H

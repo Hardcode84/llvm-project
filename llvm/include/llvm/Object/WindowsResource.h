@@ -41,7 +41,7 @@
 
 #include <map>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 class ScopedPrinter;
@@ -266,6 +266,6 @@ writeWindowsResourceCOFF(llvm::COFF::MachineTypes MachineType,
 
 LLVM_ABI void printResourceTypeName(uint16_t TypeID, raw_ostream &OS);
 } // namespace object
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

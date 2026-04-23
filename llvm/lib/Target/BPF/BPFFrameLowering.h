@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_BPF_BPFFRAMELOWERING_H
 
 #include "llvm/CodeGen/TargetFrameLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BPFSubtarget;
 
 class BPFFrameLowering : public TargetFrameLowering {
@@ -38,5 +39,5 @@ public:
 protected:
   bool hasFPImpl(const MachineFunction &MF) const override;
 };
-}
+LLVM_NAMESPACE_END
 #endif

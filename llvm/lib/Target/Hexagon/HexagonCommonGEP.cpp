@@ -1279,10 +1279,10 @@ bool HexagonCommonGEP::runOnFunction(Function &F) {
   return true;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   FunctionPass *createHexagonCommonGEP() {
     return new HexagonCommonGEP();
   }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

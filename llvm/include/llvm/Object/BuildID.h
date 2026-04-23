@@ -19,7 +19,7 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 
 /// A build ID in binary form.
@@ -51,6 +51,6 @@ private:
 };
 
 } // namespace object
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_OBJECT_BUILDID_H

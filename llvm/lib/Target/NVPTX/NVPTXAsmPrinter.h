@@ -55,7 +55,7 @@
 // A better approach is to clone the MCAsmStreamer to a MCPTXAsmStreamer
 // (subclass of MCStreamer).
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCOperand;
 class NVPTXTargetStreamer;
@@ -277,6 +277,6 @@ public:
   void emitGlobalVariable(const GlobalVariable *GV) override {}
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_NVPTX_NVPTXASMPRINTER_H

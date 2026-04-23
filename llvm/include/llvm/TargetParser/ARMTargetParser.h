@@ -21,7 +21,7 @@
 #include "llvm/TargetParser/ARMTargetParserCommon.h"
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Triple;
 
@@ -284,6 +284,6 @@ LLVM_ABI StringRef getARMCPUForArch(const llvm::Triple &Triple,
 LLVM_ABI void PrintSupportedExtensions(StringMap<StringRef> DescMap);
 
 } // namespace ARM
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

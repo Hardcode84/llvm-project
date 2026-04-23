@@ -15,8 +15,9 @@
 
 #include "llvm/MC/MCExpr.h"
 #include "llvm/Support/DataTypes.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 
 // Represents a relocatable expression in its most general form:
@@ -74,6 +75,6 @@ public:
 
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

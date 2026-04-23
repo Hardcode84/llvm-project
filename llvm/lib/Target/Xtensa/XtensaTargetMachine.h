@@ -18,8 +18,9 @@
 #include "XtensaSubtarget.h"
 #include "llvm/CodeGen/CodeGenTargetMachineImpl.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern Target TheXtensaTarget;
 
 class XtensaTargetMachine : public CodeGenTargetMachineImpl {
@@ -52,6 +53,6 @@ public:
 protected:
   mutable StringMap<std::unique_ptr<XtensaSubtarget>> SubtargetMap;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_XTENSA_XTENSATARGETMACHINE_H

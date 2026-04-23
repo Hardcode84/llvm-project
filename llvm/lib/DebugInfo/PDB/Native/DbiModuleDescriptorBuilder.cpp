@@ -17,17 +17,18 @@
 #include "llvm/DebugInfo/PDB/Native/RawConstants.h"
 #include "llvm/DebugInfo/PDB/Native/RawError.h"
 #include "llvm/Support/BinaryStreamWriter.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::codeview;
 using namespace llvm::msf;
 using namespace llvm::pdb;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 class DebugSubsection;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static uint32_t calculateDiSymbolStreamSize(uint32_t SymbolByteSize,
                                             uint32_t C13Size) {

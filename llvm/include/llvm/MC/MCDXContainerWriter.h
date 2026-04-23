@@ -13,8 +13,9 @@
 #include "llvm/MC/MCValue.h"
 #include "llvm/Support/EndianStream.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_pwrite_stream;
 
@@ -44,6 +45,6 @@ public:
 
   uint64_t writeObject() override;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCDXCONTAINERWRITER_H

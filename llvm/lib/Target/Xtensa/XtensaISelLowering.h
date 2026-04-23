@@ -17,8 +17,9 @@
 #include "llvm/CodeGen/CallingConvLower.h"
 #include "llvm/CodeGen/SelectionDAG.h"
 #include "llvm/CodeGen/TargetLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class XtensaSubtarget;
 
@@ -147,6 +148,6 @@ private:
                                   MachineBasicBlock *BB) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif /* LLVM_LIB_TARGET_XTENSA_XTENSAISELLOWERING_H */

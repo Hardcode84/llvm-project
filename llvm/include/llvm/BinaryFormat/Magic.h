@@ -12,7 +12,7 @@
 #include "llvm/Support/Compiler.h"
 #include <system_error>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 class Twine;
 
@@ -82,6 +82,6 @@ LLVM_ABI file_magic identify_magic(StringRef magic);
 /// @returns errc::success if result has been successfully set, otherwise a
 ///          platform-specific error_code.
 LLVM_ABI std::error_code identify_magic(const Twine &path, file_magic &result);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

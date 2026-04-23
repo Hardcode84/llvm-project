@@ -16,8 +16,9 @@
 #include "llvm/MC/MCAsmInfoELF.h"
 #include "llvm/MC/MCExpr.h"
 #include "llvm/MC/MCValue.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Triple;
 
 class CSKYMCAsmInfo : public MCAsmInfoELF {
@@ -52,6 +53,6 @@ enum {
   S_Invalid
 };
 } // namespace CSKY
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_CSKY_MCTARGETDESC_CSKYMCASMINFO_H

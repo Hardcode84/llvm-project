@@ -43,6 +43,7 @@ using namespace llvm;
 
 #define GET_INSTRINFO_CTOR_DTOR
 #include "RISCVGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "riscv-instr-info"
 STATISTIC(NumVRegSpilled,
@@ -69,21 +70,25 @@ static cl::opt<bool> OutlinerEnableRegSave(
     cl::desc("Enable RegSave strategy in machine outliner (save X5 to a "
              "temporary register when X5 is live across outlined calls)."));
 
-namespace llvm::RISCVVPseudosTable {
+LLVM_NAMESPACE_BEGIN
+namespace RISCVVPseudosTable {
 
 using namespace RISCV;
 
 #define GET_RISCVVPseudosTable_IMPL
 #include "RISCVGenSearchableTables.inc"
 
-} // namespace llvm::RISCVVPseudosTable
+}
+LLVM_NAMESPACE_END // namespace llvm::RISCVVPseudosTable
 
-namespace llvm::RISCV {
+LLVM_NAMESPACE_BEGIN
+namespace RISCV {
 
 #define GET_RISCVMaskedPseudosTable_IMPL
 #include "RISCVGenSearchableTables.inc"
 
-} // end namespace llvm::RISCV
+}
+LLVM_NAMESPACE_END // end namespace llvm::RISCV
 
 RISCVInstrInfo::RISCVInstrInfo(const RISCVSubtarget &STI)
     : RISCVGenInstrInfo(STI, RegInfo, RISCV::ADJCALLSTACKDOWN,

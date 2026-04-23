@@ -17,8 +17,9 @@
 
 #define GET_SDNODE_ENUM
 #include "XCoreGenSDNodeInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class XCoreSelectionDAGInfo : public SelectionDAGGenTargetInfo {
 public:
@@ -32,6 +33,6 @@ public:
                                   MachinePointerInfo SrcPtrInfo) const override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

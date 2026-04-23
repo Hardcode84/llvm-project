@@ -14,7 +14,7 @@
 
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace msf {
 class MappedBlockStream;
 }
@@ -42,6 +42,6 @@ private:
   std::unique_ptr<msf::MappedBlockStream> Stream;
 };
 } // namespace pdb
-}
+LLVM_NAMESPACE_END
 
 #endif

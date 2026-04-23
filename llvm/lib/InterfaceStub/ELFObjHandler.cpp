@@ -18,6 +18,7 @@
 #include "llvm/Support/MathExtras.h"
 #include "llvm/Support/MemoryBuffer.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using llvm::object::ELFObjectFile;
 
@@ -25,7 +26,7 @@ using namespace llvm;
 using namespace llvm::object;
 using namespace llvm::ELF;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace ifs {
 
 // Simple struct to hold relevant .dynamic entries.
@@ -731,4 +732,4 @@ Error writeBinaryStub(StringRef FilePath, const IFSStub &Stub,
 }
 
 } // end namespace ifs
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

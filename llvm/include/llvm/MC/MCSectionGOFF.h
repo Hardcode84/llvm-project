@@ -22,7 +22,7 @@
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/raw_ostream.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCExpr;
 
@@ -124,6 +124,6 @@ public:
     return hasExternalName() ? ExternalName : getName();
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

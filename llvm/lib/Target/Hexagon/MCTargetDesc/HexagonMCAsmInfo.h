@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_HEXAGON_MCTARGETDESC_HEXAGONMCASMINFO_H
 
 #include "llvm/MC/MCAsmInfoELF.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Triple;
 
 class HexagonMCAsmInfo : public MCAsmInfoELF {
@@ -25,6 +26,6 @@ public:
   explicit HexagonMCAsmInfo(const Triple &TT);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -18,8 +18,9 @@
 #include "llvm/MC/MCSchedule.h"
 #include <algorithm>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 /// These values represent a non-pipelined step in
@@ -236,6 +237,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCINSTRITINERARIES_H

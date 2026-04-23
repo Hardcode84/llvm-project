@@ -20,10 +20,11 @@
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/WithColor.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "llvm-mca-instrbuilder"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 char RecycledInstErr::ID = 0;
@@ -832,4 +833,4 @@ InstrBuilder::createInstruction(const MCInst &MCI,
     return std::move(CreatedIS);
 }
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

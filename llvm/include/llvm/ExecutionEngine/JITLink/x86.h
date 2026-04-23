@@ -17,7 +17,8 @@
 #include "llvm/ExecutionEngine/JITLink/TableManager.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm::jitlink::x86 {
+LLVM_NAMESPACE_BEGIN
+namespace jitlink::x86 {
 
 /// Represets x86 fixups
 enum EdgeKind_x86 : Edge::Kind {
@@ -408,6 +409,7 @@ public:
 /// target
 LLVM_ABI Error optimizeGOTAndStubAccesses(LinkGraph &G);
 
-} // namespace llvm::jitlink::x86
+}
+LLVM_NAMESPACE_END // namespace llvm::jitlink::x86
 
 #endif // LLVM_EXECUTIONENGINE_JITLINK_X86_H

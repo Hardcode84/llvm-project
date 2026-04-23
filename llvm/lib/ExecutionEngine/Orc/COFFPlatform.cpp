@@ -20,6 +20,7 @@
 #include "llvm/ExecutionEngine/Orc/EPCDynamicLibrarySearchGenerator.h"
 
 #include "llvm/ExecutionEngine/JITLink/x86_64.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
@@ -27,7 +28,7 @@ using namespace llvm;
 using namespace llvm::orc;
 using namespace llvm::orc::shared;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 namespace shared {
 
@@ -43,7 +44,7 @@ using SPSCOFFDeregisterObjectSectionsArgs =
 
 } // namespace shared
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 namespace {
 
 class COFFHeaderMaterializationUnit : public MaterializationUnit {
@@ -147,7 +148,7 @@ private:
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 Expected<std::unique_ptr<COFFPlatform>>
@@ -908,4 +909,4 @@ Error COFFPlatform::COFFPlatformPlugin::
 }
 
 } // End namespace orc.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.

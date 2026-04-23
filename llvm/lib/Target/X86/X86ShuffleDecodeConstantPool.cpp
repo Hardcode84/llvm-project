@@ -16,12 +16,13 @@
 #include "llvm/ADT/APInt.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/IR/Constants.h"
+#include "llvm/Support/Compiler.h"
 
 //===----------------------------------------------------------------------===//
 //  Vector Mask Decoding
 //===----------------------------------------------------------------------===//
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static bool extractConstantMask(const Constant *C, unsigned MaskEltSizeInBits,
                                 APInt &UndefElts,
@@ -293,4 +294,4 @@ void DecodeVPPERMMask(const Constant *C, unsigned Width,
   }
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

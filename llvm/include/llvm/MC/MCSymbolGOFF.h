@@ -19,8 +19,9 @@
 #include "llvm/MC/MCSectionGOFF.h"
 #include "llvm/MC/MCSymbol.h"
 #include "llvm/MC/MCSymbolTableEntry.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCSymbolGOFF : public MCSymbol {
 
@@ -96,6 +97,6 @@ public:
     return isInSection() && static_cast<MCSectionGOFF &>(getSection()).isED();
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

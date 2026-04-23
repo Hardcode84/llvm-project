@@ -24,8 +24,9 @@
 #include <ptrauth.h>
 #endif
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 using ExecutorAddrDiff = uint64_t;
@@ -361,6 +362,6 @@ template <> struct DenseMapInfo<orc::ExecutorAddr> {
   }
 };
 
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.
 
 #endif // LLVM_EXECUTIONENGINE_ORC_SHARED_EXECUTORADDRESS_H

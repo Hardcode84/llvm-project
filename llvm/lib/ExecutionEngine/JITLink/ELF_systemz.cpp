@@ -18,6 +18,7 @@
 #include "EHFrameSupportImpl.h"
 #include "ELFLinkGraphBuilder.h"
 #include "JITLinkGeneric.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
@@ -93,7 +94,7 @@ Error buildTables_ELF_systemz(LinkGraph &G) {
 
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 class ELFJITLinker_systemz : public JITLinker<ELFJITLinker_systemz> {
   friend class JITLinker<ELFJITLinker_systemz>;
@@ -485,4 +486,4 @@ void link_ELF_systemz(std::unique_ptr<LinkGraph> G,
 }
 
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

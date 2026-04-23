@@ -16,8 +16,9 @@
 #include "llvm/Support/DataTypes.h"
 
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCAsmBackend;
 class MCCodeEmitter;
@@ -43,7 +44,7 @@ MCAsmBackend *createAVRAsmBackend(const Target &T, const MCSubtargetInfo &STI,
 /// Creates an ELF object writer for AVR.
 std::unique_ptr<MCObjectTargetWriter> createAVRELFObjectWriter(uint8_t OSABI);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #define GET_REGINFO_ENUM
 #include "AVRGenRegisterInfo.inc"

@@ -19,8 +19,9 @@
 #include "llvm/CodeGen/CallingConvLower.h"
 #include "llvm/CodeGen/TargetInstrInfo.h"
 #include "llvm/IR/CallingConv.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static bool CC_CSKY_ABIV2_SOFT_64(unsigned &ValNo, MVT &ValVT, MVT &LocVT,
                                   CCValAssign::LocInfo &LocInfo,
@@ -58,6 +59,6 @@ static bool Ret_CSKY_ABIV2_SOFT_64(unsigned &ValNo, MVT &ValVT, MVT &LocVT,
   return true;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -32,8 +32,9 @@
 #include "llvm/Transforms/Instrumentation/AddressSanitizerCommon.h"
 #include "llvm/Transforms/Utils/BasicBlockUtils.h"
 #include "llvm/Transforms/Utils/ModuleUtils.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace AMDGPU {
 
 /// Given SizeInBytes of the Value to be instrunmented,
@@ -55,6 +56,6 @@ void getInterestingMemoryOperands(
     SmallVectorImpl<InterestingMemoryOperand> &Interesting);
 
 } // end namespace AMDGPU
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_UTILS_AMDGPU_ASAN_INSTRUMENTATION_H

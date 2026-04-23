@@ -24,8 +24,9 @@
 
 #define GET_SUBTARGETINFO_HEADER
 #include "LoongArchGenSubtargetInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 
 class LoongArchSubtarget : public LoongArchGenSubtargetInfo {
@@ -106,6 +107,6 @@ public:
   bool enableMachineScheduler() const override { return true; }
   bool useAA() const override;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_LOONGARCH_LOONGARCHSUBTARGET_H

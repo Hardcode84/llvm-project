@@ -31,6 +31,7 @@
 #include <cinttypes>
 #include <cstdint>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace dwarf;
@@ -860,7 +861,7 @@ bool DWARFAttribute::mayHaveLocationExpr(dwarf::Attribute Attr) {
   }
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 void dumpTypeQualifiedName(const DWARFDie &DIE, raw_ostream &OS) {
   DWARFTypePrinter<DWARFDie>(OS).appendQualifiedName(DIE);
@@ -871,4 +872,4 @@ void dumpTypeUnqualifiedName(const DWARFDie &DIE, raw_ostream &OS,
   DWARFTypePrinter<DWARFDie>(OS).appendUnqualifiedName(DIE, OriginalFullName);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

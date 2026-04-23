@@ -22,7 +22,8 @@
 
 #define DEBUG_TYPE "llvm-mca-riscv-custombehaviour"
 
-namespace llvm::RISCV {
+LLVM_NAMESPACE_BEGIN
+namespace RISCV {
 struct VXMemOpInfo {
   unsigned Log2IdxEEW : 3;
   unsigned IsOrdered : 1;
@@ -33,9 +34,10 @@ struct VXMemOpInfo {
 
 #define GET_RISCVBaseVXMemOpTable_IMPL
 #include "RISCVGenSearchableTables.inc"
-} // namespace llvm::RISCV
+}
+LLVM_NAMESPACE_END // namespace llvm::RISCV
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 const llvm::StringRef RISCVLMULInstrument::DESC_NAME = "RISCV-LMUL";
@@ -334,7 +336,7 @@ unsigned RISCVInstrumentManager::getSchedClassID(
 }
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using namespace llvm;
 using namespace mca;

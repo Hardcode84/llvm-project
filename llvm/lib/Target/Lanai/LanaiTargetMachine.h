@@ -19,8 +19,9 @@
 #include "LanaiSubtarget.h"
 #include "llvm/CodeGen/CodeGenTargetMachineImpl.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LanaiTargetMachine : public CodeGenTargetMachineImpl {
   LanaiSubtarget Subtarget;
@@ -56,6 +57,6 @@ public:
     return false;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_LANAI_LANAITARGETMACHINE_H

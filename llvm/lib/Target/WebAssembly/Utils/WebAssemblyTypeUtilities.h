@@ -21,8 +21,9 @@
 #include "llvm/CodeGenTypes/MachineValueType.h"
 #include "llvm/IR/DerivedTypes.h"
 #include "llvm/MC/MCSymbolWasm.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace WebAssembly {
 
@@ -63,6 +64,6 @@ void wasmSymbolSetType(MCSymbolWasm *Sym, const Type *GlobalVT,
                        ArrayRef<MVT> VTs);
 
 } // end namespace WebAssembly
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -21,8 +21,9 @@
 #include <memory>
 #include <optional>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCAssembler;
 class MCContext;
@@ -199,6 +200,6 @@ public:
   // Override the default e_ident[EI_ABIVERSION] in the ELF header.
   void setOverrideABIVersion(uint8_t V) { OverrideABIVersion = V; }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCELFOBJECTWRITER_H

@@ -24,7 +24,7 @@
 
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace jitlink {
 class EHFrameRegistrar;
@@ -89,6 +89,6 @@ public:
 };
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_OBJECTLINKINGLAYER_H

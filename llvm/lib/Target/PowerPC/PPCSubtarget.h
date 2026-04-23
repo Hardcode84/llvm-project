@@ -26,11 +26,12 @@
 
 #define GET_SUBTARGETINFO_HEADER
 #include "PPCGenSubtargetInfo.inc"
+#include "llvm/Support/Compiler.h"
 
 // GCC #defines PPC on Linux but we use it as our namespace name
 #undef PPC
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SelectionDAGTargetInfo;
 class StringRef;
 
@@ -308,6 +309,6 @@ public:
   const LegalizerInfo *getLegalizerInfo() const override;
   InstructionSelector *getInstructionSelector() const override;
 };
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

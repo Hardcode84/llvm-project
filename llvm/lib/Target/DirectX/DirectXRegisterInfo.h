@@ -17,8 +17,9 @@
 
 #define GET_REGINFO_HEADER
 #include "DirectXGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct DirectXRegisterInfo : public DirectXGenRegisterInfo {
   DirectXRegisterInfo() : DirectXGenRegisterInfo(0) {}
   ~DirectXRegisterInfo();
@@ -31,6 +32,6 @@ struct DirectXRegisterInfo : public DirectXGenRegisterInfo {
   // Debug information queries.
   Register getFrameRegister(const MachineFunction &MF) const override;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DIRECTX_DXILREGISTERINFO_H

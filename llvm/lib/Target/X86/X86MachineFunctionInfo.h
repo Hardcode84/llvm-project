@@ -20,8 +20,9 @@
 #include "llvm/CodeGen/MachineFunction.h"
 #include "llvm/Support/YAMLTraits.h"
 #include <set>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 enum AMXProgModelEnum { None = 0, DirectReg = 1, ManagedRA = 2 };
 
@@ -348,6 +349,6 @@ public:
   void setBPClobberedByInvoke(bool C) { BPClobberedByInvoke = C; }
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

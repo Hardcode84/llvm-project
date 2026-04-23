@@ -12,8 +12,9 @@
 #define LLVM_LIB_TARGET_XTENSA_MCTARGETDESC_XTENSAMCFIXUPS_H
 
 #include "llvm/MC/MCFixup.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace Xtensa {
 enum FixupKind {
   fixup_xtensa_branch_6 = FirstTargetFixupKind,
@@ -28,6 +29,6 @@ enum FixupKind {
   NumTargetFixupKinds = LastTargetFixupKind - FirstTargetFixupKind
 };
 } // end namespace Xtensa
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_XTENSA_MCTARGETDESC_XTENSAMCFIXUPS_H

@@ -18,8 +18,9 @@
 #include "llvm/MCA/HardwareUnits/HardwareUnit.h"
 #include "llvm/MCA/Instruction.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 /// This class tracks which instructions are in-flight (i.e., dispatched but not
@@ -110,6 +111,6 @@ public:
 };
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_MCA_HARDWAREUNITS_RETIRECONTROLUNIT_H

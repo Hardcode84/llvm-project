@@ -42,13 +42,16 @@ using namespace llvm;
 
 #define GET_INSTRINFO_CTOR_DTOR
 #include "AMDGPUGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::AMDGPU {
+LLVM_NAMESPACE_BEGIN
+namespace AMDGPU {
 #define GET_D16ImageDimIntrinsics_IMPL
 #define GET_ImageDimIntrinsicTable_IMPL
 #define GET_RsrcIntrinsics_IMPL
 #include "AMDGPUGenSearchableTables.inc"
-} // namespace llvm::AMDGPU
+}
+LLVM_NAMESPACE_END // namespace llvm::AMDGPU
 
 // Must be at least 4 to be able to branch over minimum unconditional branch
 // code. This is only for making it possible to write reasonably small tests for

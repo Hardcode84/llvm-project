@@ -23,7 +23,7 @@
 #include <string>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCAsmInfo;
 class MCAsmParserExtension;
@@ -354,6 +354,6 @@ LLVM_ABI MCAsmParser *createMCMasmParser(SourceMgr &, MCContext &, MCStreamer &,
                                          const MCAsmInfo &, struct tm,
                                          unsigned CB = 0);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCPARSER_MCASMPARSER_H

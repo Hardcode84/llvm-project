@@ -41,6 +41,7 @@
 #include "llvm/InitializePasses.h"
 #include "llvm/Support/DebugCounter.h"
 #include "llvm/TargetParser/TargetParser.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -172,11 +173,11 @@ enum WaitEventType {
 #undef AMDGPU_EVENT_ENUM
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct enum_iteration_traits<WaitEventType> {
   static constexpr bool is_iterable = true;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 

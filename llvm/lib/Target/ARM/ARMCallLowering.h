@@ -19,8 +19,9 @@
 #include "llvm/IR/CallingConv.h"
 #include <cstdint>
 #include <functional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ARMTargetLowering;
 class MachineInstrBuilder;
@@ -50,6 +51,6 @@ private:
                       MachineInstrBuilder &Ret) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARM_ARMCALLLOWERING_H

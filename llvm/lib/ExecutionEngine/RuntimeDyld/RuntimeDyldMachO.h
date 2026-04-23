@@ -16,8 +16,9 @@
 #include "RuntimeDyldImpl.h"
 #include "llvm/Object/MachO.h"
 #include "llvm/Support/Format.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class RuntimeDyldMachO : public RuntimeDyldImpl {
 protected:
   struct SectionOffsetPair {
@@ -155,6 +156,6 @@ public:
   void registerEHFrames() override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_EXECUTIONENGINE_RUNTIMEDYLD_RUNTIMEDYLDMACHO_H

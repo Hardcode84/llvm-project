@@ -14,7 +14,8 @@
 #define LLVM_LIB_TARGET_AMDGPU_MCTARGETDESC_AMDGPUMCASMINFO_H
 
 #include "llvm/MC/MCAsmInfoELF.h"
-namespace llvm {
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class Triple;
 
@@ -29,5 +30,5 @@ public:
   bool shouldOmitSectionDirective(StringRef SectionName) const override;
   unsigned getMaxInstLength(const MCSubtargetInfo *STI) const override;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

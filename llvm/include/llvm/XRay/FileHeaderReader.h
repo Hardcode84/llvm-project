@@ -19,13 +19,15 @@
 #include "llvm/XRay/XRayRecord.h"
 #include <cstdint>
 
-namespace llvm::xray {
+LLVM_NAMESPACE_BEGIN
+namespace xray {
 
 /// Convenience function for loading the file header given a data extractor at a
 /// specified offset.
 LLVM_ABI Expected<XRayFileHeader>
 readBinaryFormatHeader(DataExtractor &HeaderExtractor, uint64_t &OffsetPtr);
 
-} // namespace llvm::xray
+}
+LLVM_NAMESPACE_END // namespace llvm::xray
 
 #endif // LLVM_XRAY_FILEHEADERREADER_H

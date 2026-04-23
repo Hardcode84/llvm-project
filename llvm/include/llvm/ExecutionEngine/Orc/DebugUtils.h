@@ -22,7 +22,7 @@
 #include <memory>
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MemoryBuffer;
 
@@ -135,6 +135,6 @@ private:
 };
 
 } // End namespace orc
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_DEBUGUTILS_H

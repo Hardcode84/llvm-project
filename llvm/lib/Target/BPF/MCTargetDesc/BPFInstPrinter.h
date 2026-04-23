@@ -14,8 +14,9 @@
 #define LLVM_LIB_TARGET_BPF_MCTARGETDESC_BPFINSTPRINTER_H
 
 #include "llvm/MC/MCInstPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BPFInstPrinter : public MCInstPrinter {
 public:
   BPFInstPrinter(const MCAsmInfo &MAI, const MCInstrInfo &MII,
@@ -35,6 +36,6 @@ public:
   void printInstruction(const MCInst *MI, uint64_t Address, raw_ostream &O);
   static const char *getRegisterName(MCRegister Reg);
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

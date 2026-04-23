@@ -14,8 +14,9 @@
 
 #define GET_SDNODE_ENUM
 #include "RISCVGenSDNodeInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace RISCVISD {
 // RISCVISD Node TSFlags
@@ -62,6 +63,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_RISCV_RISCVSELECTIONDAGINFO_H

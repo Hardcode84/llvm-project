@@ -14,8 +14,9 @@
 
 #include "llvm/MCA/Stages/EntryStage.h"
 #include "llvm/MCA/Instruction.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 bool EntryStage::hasWorkToComplete() const {
@@ -83,4 +84,4 @@ llvm::Error EntryStage::cycleEnd() {
 }
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

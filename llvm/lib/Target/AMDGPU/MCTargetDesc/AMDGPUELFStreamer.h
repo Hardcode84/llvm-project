@@ -15,7 +15,8 @@
 #define LLVM_LIB_TARGET_AMDGPU_MCTARGETDESC_AMDGPUELFSTREAMER_H
 
 #include <memory>
-namespace llvm {
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class MCAsmBackend;
 class MCCodeEmitter;
 class MCContext;
@@ -27,6 +28,6 @@ MCELFStreamer *createAMDGPUELFStreamer(const Triple &T, MCContext &Context,
                                        std::unique_ptr<MCAsmBackend> MAB,
                                        std::unique_ptr<MCObjectWriter> OW,
                                        std::unique_ptr<MCCodeEmitter> Emitter);
-} // namespace llvm.
+LLVM_NAMESPACE_END // namespace llvm.
 
 #endif

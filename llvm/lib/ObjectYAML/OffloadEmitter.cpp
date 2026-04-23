@@ -10,11 +10,12 @@
 #include "llvm/ObjectYAML/OffloadYAML.h"
 #include "llvm/ObjectYAML/yaml2obj.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace OffloadYAML;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 bool yaml2offload(Binary &Doc, raw_ostream &Out, ErrorHandler EH) {
@@ -59,4 +60,4 @@ bool yaml2offload(Binary &Doc, raw_ostream &Out, ErrorHandler EH) {
 }
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

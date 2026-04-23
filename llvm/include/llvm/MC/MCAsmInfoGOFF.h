@@ -16,8 +16,9 @@
 #define LLVM_MC_MCASMINFOGOFF_H
 
 #include "llvm/MC/MCAsmInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCAsmInfoGOFF : public MCAsmInfo {
   void printSwitchToSection(const MCSection &, uint32_t, const Triple &,
                             raw_ostream &) const final;
@@ -25,6 +26,6 @@ class MCAsmInfoGOFF : public MCAsmInfo {
 protected:
   MCAsmInfoGOFF();
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_MC_MCASMINFOGOFF_H

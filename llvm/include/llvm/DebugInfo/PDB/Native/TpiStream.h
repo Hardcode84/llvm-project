@@ -18,7 +18,7 @@
 
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BinaryStream;
 namespace codeview {
 class TypeIndex;
@@ -111,6 +111,6 @@ private:
   const TpiStreamHeader *Header;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

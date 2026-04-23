@@ -26,8 +26,9 @@
 #include "llvm/MC/MCStreamer.h"
 #include "llvm/MC/MCTargetOptions.h"
 #include "llvm/Support/FormattedStream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCSymbolGOFF;
 
 class SystemZHLASMAsmStreamer final : public MCStreamer {
@@ -124,6 +125,6 @@ public:
 
   void finishImpl() override;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_SYSTEMZ_MCTARGETDESC_SYSTEMZHLASMASMSTREAMER_H

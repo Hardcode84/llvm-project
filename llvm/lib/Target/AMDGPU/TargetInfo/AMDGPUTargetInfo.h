@@ -13,7 +13,9 @@
 #ifndef LLVM_LIB_TARGET_AMDGPU_TARGETINFO_AMDGPUTARGETINFO_H
 #define LLVM_LIB_TARGET_AMDGPU_TARGETINFO_AMDGPUTARGETINFO_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class Target;
 
@@ -23,6 +25,6 @@ Target &getTheR600Target();
 /// The target for GCN GPUs.
 Target &getTheGCNTarget();
 
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_LIB_TARGET_AMDGPU_TARGETINFO_AMDGPUTARGETINFO_H

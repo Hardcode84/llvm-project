@@ -15,8 +15,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_AMDGPUCALLLOWERING_H
 
 #include "llvm/CodeGen/GlobalISel/CallLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GCNSubtarget;
 class MachineInstrBuilder;
@@ -90,5 +91,5 @@ public:
   static CCAssignFn *CCAssignFnForCall(CallingConv::ID CC, bool IsVarArg);
   static CCAssignFn *CCAssignFnForReturn(CallingConv::ID CC, bool IsVarArg);
 };
-} // End of namespace llvm;
+LLVM_NAMESPACE_END // End of namespace llvm;
 #endif

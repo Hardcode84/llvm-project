@@ -12,7 +12,7 @@
 #include "llvm/DebugInfo/DWARF/DWARFUnit.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DWARFContext;
 class DWARFDebugAbbrev;
@@ -39,6 +39,6 @@ public:
   static bool classof(const DWARFUnit *U) { return !U->isTypeUnit(); }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFCOMPILEUNIT_H

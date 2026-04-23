@@ -14,8 +14,9 @@
 #define LLVM_DIRECTX_DIRECTXTARGETLOWERING_H
 
 #include "llvm/CodeGen/TargetLowering.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DirectXSubtarget;
 class DirectXTargetMachine;
@@ -26,6 +27,6 @@ public:
                                  const DirectXSubtarget &STI);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DIRECTX_DIRECTXTARGETLOWERING_H

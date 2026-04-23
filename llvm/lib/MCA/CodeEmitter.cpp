@@ -11,8 +11,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/MCA/CodeEmitter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 CodeEmitter::EncodingInfo CodeEmitter::getOrCreateEncodingInfo(unsigned MCID) {
@@ -29,4 +30,4 @@ CodeEmitter::EncodingInfo CodeEmitter::getOrCreateEncodingInfo(unsigned MCID) {
 }
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

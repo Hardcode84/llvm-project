@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_HEXAGON_HEXAGONMCEXPR_H
 
 #include "llvm/MC/MCExpr.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class HexagonMCExpr : public MCTargetExpr {
 public:
   enum VariantKind : uint8_t {
@@ -59,6 +60,6 @@ private:
   bool S27_2_reloc;
   bool SignMismatch;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_HEXAGON_HEXAGONMCEXPR_H

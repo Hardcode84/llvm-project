@@ -16,7 +16,7 @@
 #include "llvm/Support/Compiler.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 class PDBSymbolCompiland;
 class PDBSymbolExe;
@@ -95,6 +95,6 @@ public:
   getFrameData() const = 0;
 };
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

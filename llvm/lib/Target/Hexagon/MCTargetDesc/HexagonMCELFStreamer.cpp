@@ -38,6 +38,7 @@
 #include "llvm/Support/MathExtras.h"
 #include <cassert>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "hexagonmcelfstreamer"
 
@@ -213,7 +214,7 @@ void HexagonTargetStreamer::emitTargetAttributes(const MCSubtargetInfo &STI) {
     emitAttribute(HexagonAttrs::CABAC, 1);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 MCStreamer *createHexagonELFStreamer(Triple const &TT, MCContext &Context,
                                      std::unique_ptr<MCAsmBackend> MAB,
                                      std::unique_ptr<MCObjectWriter> OW,
@@ -222,4 +223,4 @@ MCStreamer *createHexagonELFStreamer(Triple const &TT, MCContext &Context,
                                   std::move(CE));
   }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

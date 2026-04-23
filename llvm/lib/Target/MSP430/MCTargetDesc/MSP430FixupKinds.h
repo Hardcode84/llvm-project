@@ -10,10 +10,11 @@
 #define LLVM_LIB_TARGET_MSP430_MCTARGETDESC_MSP430FIXUPKINDS_H
 
 #include "llvm/MC/MCFixup.h"
+#include "llvm/Support/Compiler.h"
 
 #undef MSP430
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace MSP430 {
 
 // This table must be in the same order of
@@ -47,6 +48,6 @@ enum Fixups {
   NumTargetFixupKinds = LastTargetFixupKind - FirstTargetFixupKind
 };
 } // end namespace MSP430
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -25,7 +25,7 @@
 #include "llvm/Support/Error.h"
 #include "llvm/Support/Path.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace gsym {
 class FileWriter;
@@ -517,6 +517,6 @@ public:
 };
 
 } // namespace gsym
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_GSYM_GSYMCREATOR_H

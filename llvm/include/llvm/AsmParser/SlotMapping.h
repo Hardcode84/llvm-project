@@ -17,8 +17,9 @@
 #include "llvm/AsmParser/NumberedValues.h"
 #include "llvm/IR/TrackingMDRef.h"
 #include <map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class GlobalValue;
 class Type;
@@ -36,6 +37,6 @@ struct SlotMapping {
   std::map<unsigned, Type *> Types;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

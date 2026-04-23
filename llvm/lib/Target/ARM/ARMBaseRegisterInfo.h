@@ -23,8 +23,9 @@
 
 #define GET_REGINFO_HEADER
 #include "ARMGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LiveIntervals;
 
@@ -161,6 +162,6 @@ public:
   int getSEHRegNum(unsigned i) const { return getEncodingValue(i); }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARM_ARMBASEREGISTERINFO_H

@@ -16,7 +16,9 @@
 #ifndef LLVM_LIB_TARGET_ARC_MCTARGETDESC_ARCINFO_H
 #define LLVM_LIB_TARGET_ARC_MCTARGETDESC_ARCINFO_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 // Enums corresponding to ARC condition codes
 namespace ARCCC {
@@ -53,6 +55,6 @@ enum BRCondCode {
 
 } // end namespace ARCCC
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

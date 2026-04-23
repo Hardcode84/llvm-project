@@ -17,7 +17,7 @@
 #include "llvm/TextAPI/Record.h"
 #include "llvm/TextAPI/SymbolSet.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace MachO {
 
 /// Base class for any usage of traversing over collected Records.
@@ -50,6 +50,6 @@ private:
 };
 
 } // end namespace MachO.
-} // end namespace llvm.
+LLVM_NAMESPACE_END // end namespace llvm.
 
 #endif // LLVM_TEXTAPI_RECORDVISITOR_H

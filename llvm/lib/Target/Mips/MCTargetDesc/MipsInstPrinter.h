@@ -13,8 +13,9 @@
 #ifndef LLVM_LIB_TARGET_MIPS_MCTARGETDESC_MIPSINSTPRINTER_H
 #define LLVM_LIB_TARGET_MIPS_MCTARGETDESC_MIPSINSTPRINTER_H
 #include "llvm/MC/MCInstPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // These enumeration declarations were originally in MipsInstrInfo.h but
 // had to be moved here to avoid circular dependencies between
 // LLVMMipsCodeGen and LLVMMipsAsmPrinter.
@@ -126,6 +127,6 @@ private:
   void printRegisterList(const MCInst *MI, int opNum,
                          const MCSubtargetInfo &STI, raw_ostream &O);
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

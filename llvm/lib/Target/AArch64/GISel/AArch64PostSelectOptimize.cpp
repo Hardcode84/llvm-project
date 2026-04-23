@@ -22,6 +22,7 @@
 #include "llvm/CodeGen/MachineOperand.h"
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/ErrorHandling.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "aarch64-post-select-optimize"
 
@@ -309,7 +310,7 @@ INITIALIZE_PASS_BEGIN(AArch64PostSelectOptimizeLegacy, DEBUG_TYPE,
 INITIALIZE_PASS_END(AArch64PostSelectOptimizeLegacy, DEBUG_TYPE,
                     "Optimize AArch64 selected instructions", false, false)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 FunctionPass *createAArch64PostSelectOptimize() {
   return new AArch64PostSelectOptimizeLegacy();
 }
@@ -324,4 +325,4 @@ AArch64PostSelectOptimizePass::run(MachineFunction &MF,
   PA.preserveSet<CFGAnalyses>();
   return PA;
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

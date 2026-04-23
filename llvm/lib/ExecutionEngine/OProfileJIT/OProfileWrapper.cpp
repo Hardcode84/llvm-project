@@ -25,6 +25,7 @@
 #include <stddef.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "oprofile-wrapper"
 
@@ -35,7 +36,7 @@ llvm::sys::Mutex OProfileInitializationMutex;
 
 } // anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 OProfileWrapper::OProfileWrapper()
 : Agent(0),
@@ -264,4 +265,4 @@ int  OProfileWrapper::op_unload_native_code(uint64_t Addr) {
   return -1;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -16,7 +16,7 @@
 #include "llvm/Support/Compiler.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dwarf_linker {
 namespace classic {
 
@@ -363,6 +363,6 @@ private:
 
 } // end of namespace classic
 } // end of namespace dwarf_linker
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm
 
 #endif // LLVM_DWARFLINKER_CLASSIC_DWARFLINKERCOMPILEUNIT_H

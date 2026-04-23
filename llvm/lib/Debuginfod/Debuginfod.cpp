@@ -44,8 +44,9 @@
 #include <atomic>
 #include <optional>
 #include <thread>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using llvm::object::BuildIDRef;
 
@@ -562,4 +563,4 @@ DebuginfodServer::DebuginfodServer(DebuginfodLog &Log,
       }));
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

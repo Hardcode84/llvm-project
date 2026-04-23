@@ -93,10 +93,11 @@
 #include "llvm/Pass.h"
 #include "llvm/Transforms/Utils/BasicBlockUtils.h"
 #include <stack>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "bpf-abstract-member-access"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 uint32_t BPFCoreSharedInfo::SeqNum;
 
 Instruction *BPFCoreSharedInfo::insertPassThrough(Module *M, BasicBlock *BB,
@@ -111,7 +112,7 @@ Instruction *BPFCoreSharedInfo::insertPassThrough(Module *M, BasicBlock *BB,
   NewInst->insertBefore(Before->getIterator());
   return NewInst;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using namespace llvm;
 

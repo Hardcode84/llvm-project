@@ -10,8 +10,9 @@
 #define LLVM_OBJECT_CVDEBUGRECORD_H
 
 #include "llvm/Support/Endian.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace OMF {
 struct Signature {
   enum ID : uint32_t {
@@ -48,7 +49,7 @@ union DebugInfo {
   struct PDB70DebugInfo PDB70;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif
 

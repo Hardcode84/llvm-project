@@ -19,8 +19,9 @@
 #include <cstdint>
 #include <cstring>
 #include <functional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 typedef uint32_t SymIndexId;
@@ -595,7 +596,7 @@ struct Variant {
 };
 
 } // end namespace pdb
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 template <> struct std::hash<llvm::pdb::PDB_SymType> {
   std::size_t operator()(const llvm::pdb::PDB_SymType &Arg) const {

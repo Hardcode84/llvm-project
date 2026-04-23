@@ -17,7 +17,7 @@
 #include "llvm/ExecutionEngine/Orc/Shared/MachOObjectFormat.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 /// Create a LinkGraph from a MachO relocatable object.
@@ -60,6 +60,6 @@ inline Section &getMachODefaultTextSection(LinkGraph &G) {
 LLVM_ABI Expected<Symbol &> getOrCreateLocalMachOHeader(LinkGraph &G);
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_JITLINK_MACHO_H

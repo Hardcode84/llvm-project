@@ -27,7 +27,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===----------------------------------------------------------------------===//
 // Numeric substitution handling code.
@@ -892,6 +892,6 @@ struct FileCheckString {
                   std::vector<FileCheckDiag> *Diags) const;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

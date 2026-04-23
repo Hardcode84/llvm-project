@@ -19,7 +19,7 @@
 #include "llvm/CGData/OutlinedHashTree.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// HashNodeStable is the serialized, stable, and compact representation
 /// of a HashNode.
@@ -71,6 +71,6 @@ private:
   void convertFromStableData(const IdHashNodeStableMapTy &IdNodeStableMap);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CGDATA_OUTLINEDHASHTREERECORD_H

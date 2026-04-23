@@ -24,8 +24,9 @@
 
 #define GET_INSTRINFO_HEADER
 #include "AMDGPUGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class APInt;
 class GCNSubtarget;
@@ -1911,6 +1912,6 @@ enum Offsets {
 } // end namespace KernelInputOffsets
 } // end namespace SI
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_SIINSTRINFO_H

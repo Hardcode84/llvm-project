@@ -16,8 +16,9 @@
 
 #include "llvm/CodeGen/TargetFrameLowering.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class XCoreSubtarget;
 
   class XCoreFrameLowering: public TargetFrameLowering {
@@ -60,6 +61,6 @@ namespace llvm {
   protected:
     bool hasFPImpl(const MachineFunction &MF) const override;
   };
-}
+LLVM_NAMESPACE_END
 
 #endif

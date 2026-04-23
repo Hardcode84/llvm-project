@@ -15,8 +15,9 @@
 #include "llvm/ADT/StringMap.h"
 #include "llvm/MC/MCAsmBackend.h"
 #include "llvm/MC/MCSubtargetInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCAssembler;
 class MCObjectTargetWriter;
 class raw_ostream;
@@ -76,6 +77,6 @@ public:
 
   const MCTargetOptions &getTargetOptions() const { return TargetOptions; }
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

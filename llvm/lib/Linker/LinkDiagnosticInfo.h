@@ -10,8 +10,9 @@
 #define LLVM_LIB_LINKER_LINK_DIAGNOSTIC_INFO_H
 
 #include "llvm/IR/DiagnosticInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LinkDiagnosticInfo : public DiagnosticInfo {
   const Twine &Msg;
 
@@ -20,6 +21,6 @@ public:
                      const Twine &Msg LLVM_LIFETIME_BOUND);
   void print(DiagnosticPrinter &DP) const override;
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

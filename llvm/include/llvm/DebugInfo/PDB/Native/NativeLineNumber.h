@@ -11,8 +11,9 @@
 
 #include "llvm/DebugInfo/CodeView/Line.h"
 #include "llvm/DebugInfo/PDB/IPDBLineNumber.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 class NativeSession;
@@ -49,5 +50,5 @@ private:
   uint32_t CompilandId;
 };
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

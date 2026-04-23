@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_RISCV_RISCVTARGETOBJECTFILE_H
 
 #include "llvm/CodeGen/TargetLoweringObjectFileImpl.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// This implementation is used for RISC-V ELF targets.
 class RISCVELFTargetObjectFile : public TargetLoweringObjectFileELF {
@@ -63,6 +64,6 @@ public:
                          const TargetMachine &TM) const override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

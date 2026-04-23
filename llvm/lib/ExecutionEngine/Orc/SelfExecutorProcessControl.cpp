@@ -16,10 +16,12 @@
 #include "llvm/Support/DynamicLibrary.h"
 #include "llvm/Support/Process.h"
 #include "llvm/TargetParser/Host.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 class SelfExecutorProcessControl::InProcessDylibManager : public DylibManager {
 public:
@@ -190,4 +192,5 @@ void SelfExecutorProcessControl::InProcessDylibManager::lookupSymbolsAsync(
   Complete(std::move(R));
 }
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc

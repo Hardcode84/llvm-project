@@ -23,8 +23,9 @@
 #include "llvm/Support/SMLoc.h"
 #include <cassert>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// X86Operand - Instances of this class represent a parsed X86 machine
 /// instruction.
@@ -790,6 +791,6 @@ struct X86Operand final : public MCParsedAsmOperand {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_X86_ASMPARSER_X86OPERAND_H

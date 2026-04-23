@@ -15,7 +15,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 class TypeIndex;
 class TypeCollection;
@@ -55,6 +55,6 @@ LLVM_ABI Error visitTypeStream(TypeCollection &Types,
                                TypeVisitorCallbacks &Callbacks);
 
 } // end namespace codeview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_CODEVIEW_CVTYPEVISITOR_H

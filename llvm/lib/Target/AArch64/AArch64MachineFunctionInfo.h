@@ -27,8 +27,9 @@
 #include "llvm/MC/MCSymbol.h"
 #include <cassert>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace yaml {
 struct AArch64FunctionInfo;
@@ -642,6 +643,6 @@ template <> struct MappingTraits<AArch64FunctionInfo> {
 
 } // end namespace yaml
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AARCH64_AARCH64MACHINEFUNCTIONINFO_H

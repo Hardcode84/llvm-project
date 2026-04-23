@@ -19,7 +19,7 @@
 #include "llvm/Support/Error.h"
 #include "llvm/TargetParser/Triple.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 /// Inspect an eh-frame CFI record.
@@ -89,6 +89,6 @@ private:
 LLVM_ABI Section *getEHFrameSection(LinkGraph &G);
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_JITLINK_EHFRAMESUPPORT_H

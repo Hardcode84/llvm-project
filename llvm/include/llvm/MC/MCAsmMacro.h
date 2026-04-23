@@ -16,7 +16,7 @@
 #include "llvm/Support/SMLoc.h"
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Target independent representation for an assembler token.
 class AsmToken {
@@ -153,6 +153,6 @@ public:
   LLVM_DUMP_METHOD void dump(raw_ostream &OS) const;
 #endif
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

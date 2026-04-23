@@ -17,8 +17,9 @@
 #include <cstdint>
 #include <memory>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class formatted_raw_ostream;
 class MCAsmBackend;
 class MCCodeEmitter;
@@ -153,7 +154,7 @@ createX86WinCOFFObjectWriter(bool Is64Bit);
 /// \returns the sub or super register of a specific X86 register.
 MCRegister getX86SubSuperRegister(MCRegister Reg, unsigned Size,
                                   bool High = false);
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 
 // Defines symbolic names for X86 registers.  This defines a mapping from

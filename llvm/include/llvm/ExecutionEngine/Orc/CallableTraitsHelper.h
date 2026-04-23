@@ -15,8 +15,10 @@
 
 #include <tuple>
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 /// CallableTraitsHelper takes an implementation class template Impl and some
 /// callable type C and passes the return and argument types of C to the Impl
@@ -69,6 +71,7 @@ template <typename Callable>
 struct CallableArgInfo
     : public CallableTraitsHelper<detail::CallableArgInfoImpl, Callable> {};
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc
 
 #endif // LLVM_EXECUTIONENGINE_ORC_CALLABLETRAITSHELPER_H

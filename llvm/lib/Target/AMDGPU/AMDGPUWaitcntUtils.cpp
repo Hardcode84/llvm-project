@@ -8,8 +8,10 @@
 
 #include "AMDGPUWaitcntUtils.h"
 #include "Utils/AMDGPUBaseInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::AMDGPU {
+LLVM_NAMESPACE_BEGIN
+namespace AMDGPU {
 
 iota_range<InstCounterType> inst_counter_types(InstCounterType MaxCounter) {
   return enum_seq(LOAD_CNT, MaxCounter);
@@ -87,4 +89,5 @@ unsigned encodeStorecntDscnt(const IsaVersion &Version,
                              Decoded.get(DS_CNT));
 }
 
-} // namespace llvm::AMDGPU
+}
+LLVM_NAMESPACE_END // namespace llvm::AMDGPU

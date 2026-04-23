@@ -21,10 +21,11 @@
 #include <regex>
 #include <string>
 #include <tuple>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "spirv-builtins"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace SPIRV {
 #define GET_BuiltinGroup_DECL
 #include "SPIRVGenTables.inc"
@@ -3885,4 +3886,4 @@ lowerBuiltinType(const Type *OpaqueType,
   return TargetType;
 }
 } // namespace SPIRV
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -12,7 +12,9 @@
 
 #ifndef LLVM_LIB_TARGET_X86_X86ENCODINGOPTIMIZATION_H
 #define LLVM_LIB_TARGET_X86_X86ENCODINGOPTIMIZATION_H
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class MCInst;
 class MCInstrDesc;
 namespace X86 {
@@ -26,5 +28,5 @@ bool optimizeToFixedRegisterOrShortImmediateForm(MCInst &MI);
 unsigned getOpcodeForShortImmediateForm(unsigned Opcode);
 unsigned getOpcodeForLongImmediateForm(unsigned Opcode);
 } // namespace X86
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

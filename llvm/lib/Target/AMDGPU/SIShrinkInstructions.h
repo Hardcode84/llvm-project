@@ -10,8 +10,9 @@
 #define LLVM_LIB_TARGET_AMDGPU_SISHRINKINSTRUCTIONS_H
 
 #include "llvm/CodeGen/MachinePassManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SIShrinkInstructionsPass
     : public PassInfoMixin<SIShrinkInstructionsPass> {
@@ -20,6 +21,6 @@ public:
   PreservedAnalyses run(MachineFunction &MF, MachineFunctionAnalysisManager &);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_SISHRINKINSTRUCTIONS_H

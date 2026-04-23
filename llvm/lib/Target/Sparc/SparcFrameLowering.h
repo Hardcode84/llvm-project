@@ -16,8 +16,9 @@
 #include "Sparc.h"
 #include "llvm/CodeGen/TargetFrameLowering.h"
 #include "llvm/Support/TypeSize.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SparcSubtarget;
 class SparcFrameLowering : public TargetFrameLowering {
@@ -65,6 +66,6 @@ private:
 
 };
 
-} // End llvm namespace
+LLVM_NAMESPACE_END // End llvm namespace
 
 #endif

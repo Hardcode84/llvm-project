@@ -10,8 +10,9 @@
 #include "llvm/DebugInfo/GSYM/FileWriter.h"
 #include "llvm/DebugInfo/GSYM/GsymDataExtractor.h"
 #include <inttypes.h>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace gsym {
 
 void encodeRange(const AddressRange &Range, FileWriter &O, uint64_t BaseAddr) {
@@ -75,4 +76,4 @@ raw_ostream &operator<<(raw_ostream &OS, const AddressRanges &AR) {
   return OS;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

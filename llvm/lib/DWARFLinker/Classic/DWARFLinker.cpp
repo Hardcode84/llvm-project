@@ -37,8 +37,9 @@
 #include "llvm/Support/Path.h"
 #include "llvm/Support/ThreadPool.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using namespace dwarf_linker;
 using namespace dwarf_linker::classic;
@@ -3396,4 +3397,4 @@ void DWARFLinker::verifyInput(const DWARFFile &File) {
   }
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

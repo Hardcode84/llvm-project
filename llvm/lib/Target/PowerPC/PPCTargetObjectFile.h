@@ -12,8 +12,9 @@
 #include "llvm/CodeGen/TargetLoweringObjectFileImpl.h"
 #include "llvm/Target/TargetLoweringObjectFile.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
   /// PPC64LinuxTargetObjectFile - This implementation is used for
   /// 64-bit PowerPC Linux.
@@ -28,6 +29,6 @@ namespace llvm {
     const MCExpr *getDebugThreadLocalSymbol(const MCSymbol *Sym) const override;
   };
 
-}  // end namespace llvm
+LLVM_NAMESPACE_END  // end namespace llvm
 
 #endif

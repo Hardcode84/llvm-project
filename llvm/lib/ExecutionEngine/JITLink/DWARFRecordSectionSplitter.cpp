@@ -8,10 +8,11 @@
 
 #include "llvm/ExecutionEngine/JITLink/DWARFRecordSectionSplitter.h"
 #include "llvm/Support/BinaryStreamReader.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "jitlink"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 DWARFRecordSectionSplitter::DWARFRecordSectionSplitter(StringRef SectionName)
@@ -112,4 +113,4 @@ Error DWARFRecordSectionSplitter::processBlock(
 }
 
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

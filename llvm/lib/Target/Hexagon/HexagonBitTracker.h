@@ -11,8 +11,9 @@
 
 #include "BitTracker.h"
 #include "llvm/ADT/DenseMap.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class HexagonInstrInfo;
 class HexagonRegisterInfo;
@@ -71,6 +72,6 @@ private:
   RegExtMap VRX;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_HEXAGON_HEXAGONBITTRACKER_H

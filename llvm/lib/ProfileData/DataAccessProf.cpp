@@ -7,8 +7,9 @@
 #include "llvm/Support/Error.h"
 #include "llvm/Support/StringSaver.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace memprof {
 
 // If `Map` has an entry keyed by `Str`, returns the entry iterator. Otherwise,
@@ -261,4 +262,4 @@ Error DataAccessProfData::deserializeRecords(const unsigned char *&Ptr) {
   return Error::success();
 }
 } // namespace memprof
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

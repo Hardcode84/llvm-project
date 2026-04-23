@@ -14,8 +14,9 @@
 
 #include "llvm/Analysis/AliasAnalysis.h"
 #include "llvm/IR/Module.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DataLayout;
 class MemoryLocation;
@@ -95,6 +96,6 @@ public:
     }) {}
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_AMDGPUALIASANALYSIS_H

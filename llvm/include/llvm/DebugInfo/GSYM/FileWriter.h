@@ -17,7 +17,7 @@
 #include <stdint.h>
 #include <sys/types.h>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_pwrite_stream;
 
 namespace gsym {
@@ -144,6 +144,6 @@ private:
 };
 
 } // namespace gsym
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_DEBUGINFO_GSYM_FILEWRITER_H

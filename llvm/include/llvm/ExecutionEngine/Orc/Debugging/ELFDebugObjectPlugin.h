@@ -27,7 +27,7 @@
 #include <memory>
 #include <mutex>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 class DebugObject;
@@ -87,6 +87,6 @@ private:
 };
 
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_ELFDEBUGOBJECTPLUGIN_H

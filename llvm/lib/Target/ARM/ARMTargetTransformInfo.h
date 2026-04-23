@@ -27,8 +27,9 @@
 #include "llvm/IR/Function.h"
 #include "llvm/TargetParser/SubtargetFeature.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class APInt;
 class ARMTargetLowering;
@@ -497,6 +498,6 @@ inline bool isVREVMask(ArrayRef<int> M, EVT VT, unsigned BlockSize) {
   return true;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_ARM_ARMTARGETTRANSFORMINFO_H

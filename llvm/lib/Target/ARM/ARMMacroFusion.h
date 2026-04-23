@@ -15,14 +15,15 @@
 #define LLVM_LIB_TARGET_ARM_ARMMACROFUSION_H
 
 #include "llvm/CodeGen/MachineScheduler.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Note that you have to add:
 ///   DAG.addMutation(createARMMacroFusionDAGMutation());
 /// to ARMTargetMachine::createMachineScheduler() to have an effect.
 std::unique_ptr<ScheduleDAGMutation> createARMMacroFusionDAGMutation();
 
-} // llvm
+LLVM_NAMESPACE_END // llvm
 
 #endif

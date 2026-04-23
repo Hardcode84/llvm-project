@@ -42,7 +42,7 @@ using namespace llvm;
 
 extern StringRef getMnemonic(unsigned Opc);
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 WebAssemblyAsmTypeCheck::WebAssemblyAsmTypeCheck(MCAsmParser &Parser,
                                                  const MCInstrInfo &MII,
@@ -686,4 +686,4 @@ bool WebAssemblyAsmTypeCheck::typeCheck(SMLoc ErrorLoc, const MCInst &Inst,
   return Error;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

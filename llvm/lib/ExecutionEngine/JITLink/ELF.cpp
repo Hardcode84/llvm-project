@@ -24,12 +24,13 @@
 #include "llvm/ExecutionEngine/JITLink/ELF_x86_64.h"
 #include "llvm/Object/ELF.h"
 #include <cstring>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
 #define DEBUG_TYPE "jitlink"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 Expected<uint16_t> readTargetMachineArch(StringRef Buffer) {
@@ -162,4 +163,4 @@ void link_ELF(std::unique_ptr<LinkGraph> G,
 }
 
 } // end namespace jitlink
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

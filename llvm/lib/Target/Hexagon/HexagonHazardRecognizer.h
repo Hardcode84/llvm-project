@@ -16,8 +16,9 @@
 #include "llvm/ADT/SmallSet.h"
 #include "llvm/CodeGen/DFAPacketizer.h"
 #include "llvm/CodeGen/ScheduleHazardRecognizer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class HexagonHazardRecognizer : public ScheduleHazardRecognizer {
   DFAPacketizer *Resources;
@@ -80,6 +81,6 @@ public:
   void AdvanceCycle() override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_HEXAGON_HEXAGONPROFITRECOGNIZER_H

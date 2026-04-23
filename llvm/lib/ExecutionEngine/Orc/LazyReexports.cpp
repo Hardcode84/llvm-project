@@ -12,10 +12,11 @@
 #include "llvm/ExecutionEngine/Orc/OrcABISupport.h"
 #include "llvm/ExecutionEngine/Orc/Shared/SimplePackedSerialization.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "orc"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 LazyCallThroughManager::LazyCallThroughManager(ExecutionSession &ES,
@@ -610,4 +611,4 @@ bool SimpleLazyReexportsSpeculator::doNextSpeculativeLookup() {
 }
 
 } // End namespace orc.
-} // End namespace llvm.
+LLVM_NAMESPACE_END // End namespace llvm.

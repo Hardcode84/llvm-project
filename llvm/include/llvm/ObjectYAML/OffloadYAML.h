@@ -19,8 +19,9 @@
 #include "llvm/ObjectYAML/YAML.h"
 #include "llvm/Support/YAMLTraits.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace OffloadYAML {
 
 struct Binary {
@@ -45,12 +46,12 @@ struct Binary {
 };
 
 } // end namespace OffloadYAML
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::OffloadYAML::Binary::Member)
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::OffloadYAML::Binary::StringEntry)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <> struct ScalarEnumerationTraits<object::ImageKind> {
@@ -74,6 +75,6 @@ template <> struct MappingTraits<OffloadYAML::Binary::Member> {
 };
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECTYAML_OFFLOADYAML_H

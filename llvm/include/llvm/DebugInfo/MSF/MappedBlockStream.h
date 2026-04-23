@@ -22,7 +22,7 @@
 #include <memory>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace msf {
 
 /// MappedBlockStream represents data stored in an MSF file into chunks of a
@@ -156,6 +156,6 @@ private:
 };
 
 } // namespace msf
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_MSF_MAPPEDBLOCKSTREAM_H

@@ -14,7 +14,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/Error.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace msf {
 class MappedBlockStream;
 }
@@ -70,6 +70,6 @@ private:
   const PublicsStreamHeader *Header;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

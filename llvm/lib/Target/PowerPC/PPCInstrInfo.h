@@ -22,8 +22,9 @@
 
 #define GET_INSTRINFO_HEADER
 #include "PPCGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Instructions that have an immediate form might be convertible to that
 // form if the correct input is a result of a load immediate. In order to
@@ -793,6 +794,6 @@ public:
   analyzeLoopForPipelining(MachineBasicBlock *LoopBB) const override;
 };
 
-}
+LLVM_NAMESPACE_END
 
 #endif

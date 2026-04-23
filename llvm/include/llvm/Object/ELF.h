@@ -31,7 +31,7 @@
 #include <type_traits>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 
 struct VerdAux {
@@ -1489,6 +1489,6 @@ extern template class LLVM_TEMPLATE_ABI llvm::object::ELFFile<ELF64LE>;
 extern template class LLVM_TEMPLATE_ABI llvm::object::ELFFile<ELF64BE>;
 
 } // end namespace object
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECT_ELF_H

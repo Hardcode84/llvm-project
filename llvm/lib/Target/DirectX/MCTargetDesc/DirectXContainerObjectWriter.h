@@ -14,11 +14,12 @@
 #define LLVM_DIRECTX_DIRECTXCONTAINEROBJECTWRITER_H
 
 #include "llvm/MC/MCObjectWriter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 std::unique_ptr<MCObjectTargetWriter> createDXContainerTargetObjectWriter();
 
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_DIRECTX_DIRECTXCONTAINEROBJECTWRITER_H

@@ -17,10 +17,11 @@
 #include "llvm/IR/Metadata.h"
 #include "llvm/Support/DXILABI.h"
 #include "llvm/Support/ScopedPrinter.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace hlsl {
 namespace rootsig {
 
@@ -788,4 +789,4 @@ MetadataParser::ParseRootSignature(uint32_t Version) {
 }
 } // namespace rootsig
 } // namespace hlsl
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

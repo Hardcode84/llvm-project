@@ -13,7 +13,7 @@
 
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCContext;
 class MCStreamer;
@@ -24,4 +24,4 @@ LLVM_ABI void initializeLFIMCStreamer(MCStreamer &Streamer, MCContext &Ctx,
 
 LLVM_ABI void emitLFINoteSection(MCStreamer &Streamer, MCContext &Ctx);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

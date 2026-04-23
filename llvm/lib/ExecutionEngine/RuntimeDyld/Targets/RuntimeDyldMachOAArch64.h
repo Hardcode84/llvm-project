@@ -11,10 +11,11 @@
 
 #include "../RuntimeDyldMachO.h"
 #include "llvm/Support/Endian.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "dyld"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class RuntimeDyldMachOAArch64
     : public RuntimeDyldMachOCRTPBase<RuntimeDyldMachOAArch64> {
@@ -534,7 +535,7 @@ private:
   }
 
 };
-}
+LLVM_NAMESPACE_END
 
 #undef DEBUG_TYPE
 

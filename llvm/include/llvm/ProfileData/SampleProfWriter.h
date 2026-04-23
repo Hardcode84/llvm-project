@@ -24,7 +24,7 @@
 #include <set>
 #include <system_error>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sampleprof {
 
 enum SectionLayout {
@@ -438,6 +438,6 @@ private:
 };
 
 } // end namespace sampleprof
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_PROFILEDATA_SAMPLEPROFWRITER_H

@@ -18,8 +18,9 @@
 
 #define GET_INSTRINFO_HEADER
 #include "BPFGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BPFSubtarget;
 
 class BPFInstrInfo : public BPFGenInstrInfo {
@@ -65,6 +66,6 @@ private:
   void expandMEMCPY(MachineBasicBlock::iterator) const;
 
 };
-}
+LLVM_NAMESPACE_END
 
 #endif

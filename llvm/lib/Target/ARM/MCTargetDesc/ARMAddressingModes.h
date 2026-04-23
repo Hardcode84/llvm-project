@@ -19,8 +19,9 @@
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/MathExtras.h"
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// ARM_AM - ARM Addressing Mode Stuff
 namespace ARM_AM {
@@ -743,6 +744,6 @@ namespace ARM_AM {
   }
 
 } // end namespace ARM_AM
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

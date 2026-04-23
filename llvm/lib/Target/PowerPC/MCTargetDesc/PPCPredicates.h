@@ -13,6 +13,8 @@
 #ifndef LLVM_LIB_TARGET_POWERPC_MCTARGETDESC_PPCPREDICATES_H
 #define LLVM_LIB_TARGET_POWERPC_MCTARGETDESC_PPCPREDICATES_H
 
+
+#include "llvm/Support/Compiler.h"
 // GCC #defines PPC on Linux but we use it as our namespace name
 #undef PPC
 
@@ -20,7 +22,7 @@
 // undefine PPC here. PPC may be predefined on some hosts.
 #undef PPC
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace PPC {
   /// Predicate - These are "(BI << 5) | BO"  for various predicates.
   enum Predicate {
@@ -89,6 +91,6 @@ namespace PPC {
                        (Hint & BR_HINT_MASK));
   }
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

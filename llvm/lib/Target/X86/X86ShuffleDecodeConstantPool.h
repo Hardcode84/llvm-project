@@ -14,11 +14,13 @@
 #ifndef LLVM_LIB_TARGET_X86_X86SHUFFLEDECODECONSTANTPOOL_H
 #define LLVM_LIB_TARGET_X86_X86SHUFFLEDECODECONSTANTPOOL_H
 
+
+#include "llvm/Support/Compiler.h"
 //===----------------------------------------------------------------------===//
 //  Vector Mask Decoding
 //===----------------------------------------------------------------------===//
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Constant;
 template <typename T> class SmallVectorImpl;
 
@@ -38,6 +40,6 @@ void DecodeVPERMIL2PMask(const Constant *C, unsigned M2Z, unsigned ElSize,
 void DecodeVPPERMMask(const Constant *C, unsigned Width,
                       SmallVectorImpl<int> &ShuffleMask);
 
-} // llvm namespace
+LLVM_NAMESPACE_END // llvm namespace
 
 #endif

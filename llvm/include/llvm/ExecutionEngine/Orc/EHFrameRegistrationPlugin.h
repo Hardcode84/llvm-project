@@ -19,7 +19,8 @@
 #include <memory>
 #include <mutex>
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 /// Adds AllocationActions to register and deregister eh-frame sections in the
 /// absence of native Platform support.
@@ -51,6 +52,7 @@ private:
   ExecutorAddr DeregisterEHFrame;
 };
 
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc
 
 #endif // LLVM_EXECUTIONENGINE_ORC_EHFRAMEREGISTRATIONPLUGIN_H

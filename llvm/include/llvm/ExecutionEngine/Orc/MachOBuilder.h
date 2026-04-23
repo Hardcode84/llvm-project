@@ -20,8 +20,9 @@
 #include <list>
 #include <map>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 template <typename MachOStruct>
@@ -598,6 +599,6 @@ struct MachO64LE {
 };
 
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_MACHOBUILDER_H

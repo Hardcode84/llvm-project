@@ -28,10 +28,11 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<bool> ReuseFrameIndexVals;
-}
+LLVM_NAMESPACE_END
 
 using namespace llvm;
 

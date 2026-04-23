@@ -18,7 +18,7 @@
 #include "llvm/ExecutionEngine/Orc/Speculation.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace orc {
 
@@ -78,6 +78,6 @@ public:
 };
 
 } // namespace orc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_SPECULATEANALYSES_H

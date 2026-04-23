@@ -13,8 +13,9 @@
 
 #include "llvm/MC/MCExpr.h"
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCContext;
 namespace AMDGPU {
 
@@ -74,6 +75,6 @@ inline const MCExpr *maskShiftGet(const MCExpr *Val, uint32_t Mask,
 }
 
 } // end namespace AMDGPU
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_AMDGPU_UTILS_SIDEFINESUTILS_H

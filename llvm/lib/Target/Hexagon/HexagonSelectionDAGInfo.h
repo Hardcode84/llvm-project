@@ -17,8 +17,9 @@
 
 #define GET_SDNODE_ENUM
 #include "HexagonGenSDNodeInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace HexagonISD {
 
 enum NodeType : unsigned {
@@ -76,6 +77,6 @@ public:
                                   MachinePointerInfo SrcPtrInfo) const override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

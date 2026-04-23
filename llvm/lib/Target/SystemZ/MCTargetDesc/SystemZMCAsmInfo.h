@@ -13,7 +13,7 @@
 #include "llvm/MC/MCAsmInfoGOFF.h"
 #include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Triple;
 enum SystemZAsmDialect { AD_GNU = 0, AD_HLASM = 1 };
 
@@ -55,6 +55,6 @@ enum {
 };
 } // namespace SystemZ
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

@@ -27,12 +27,13 @@
 #include <cstdint>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm::COFF;
 using namespace llvm::object;
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 
 StringRef COFFImportFile::getFileFormatName() const {
@@ -804,4 +805,4 @@ Error writeImportLibrary(StringRef ImportName, StringRef Path,
 }
 
 } // namespace object
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

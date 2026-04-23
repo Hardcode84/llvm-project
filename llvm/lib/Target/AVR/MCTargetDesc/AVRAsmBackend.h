@@ -18,8 +18,9 @@
 
 #include "llvm/MC/MCAsmBackend.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCAssembler;
 class MCContext;
@@ -53,6 +54,6 @@ private:
   Triple::OSType OSType;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_AVR_ASM_BACKEND_H

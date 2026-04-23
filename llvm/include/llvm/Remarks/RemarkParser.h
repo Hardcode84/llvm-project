@@ -20,7 +20,7 @@
 #include <memory>
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace remarks {
 
 struct Remark;
@@ -85,6 +85,6 @@ LLVM_ABI Expected<std::unique_ptr<RemarkParser>> createRemarkParserFromMeta(
     std::optional<StringRef> ExternalFilePrependPath = std::nullopt);
 
 } // end namespace remarks
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_REMARKS_REMARKPARSER_H

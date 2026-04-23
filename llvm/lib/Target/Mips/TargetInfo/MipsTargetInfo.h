@@ -9,7 +9,9 @@
 #ifndef LLVM_LIB_TARGET_MIPS_TARGETINFO_MIPSTARGETINFO_H
 #define LLVM_LIB_TARGET_MIPS_TARGETINFO_MIPSTARGETINFO_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class Target;
 
@@ -18,6 +20,6 @@ Target &getTheMipselTarget();
 Target &getTheMips64Target();
 Target &getTheMips64elTarget();
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIB_TARGET_MIPS_TARGETINFO_MIPSTARGETINFO_H

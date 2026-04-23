@@ -17,7 +17,7 @@
 #include <map>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace dwarf {
 constexpr uint32_t InvalidRegisterNumber = UINT32_MAX;
@@ -316,6 +316,6 @@ parseRows(const CFIProgram &CFIP, UnwindRow &CurrRow,
 
 } // end namespace dwarf
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_LOWLEVEL_DWARFUNWINDTABLE_H

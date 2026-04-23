@@ -26,7 +26,7 @@
 #include <sstream>
 #include <type_traits>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace logicalview {
 
 // Returns the unique string pool instance.
@@ -271,6 +271,6 @@ LLVM_ABI std::string getScopedName(const LVStringRefs &Components,
 inline uint16_t getCodeViewOperationCode(uint8_t Code) { return 0x1100 | Code; }
 
 } // end namespace logicalview
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_LOGICALVIEW_CORE_LVSUPPORT_H

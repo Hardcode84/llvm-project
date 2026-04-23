@@ -21,8 +21,9 @@
 
 #define GET_REGINFO_HEADER
 #include "M68kGenRegisterInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class M68kSubtarget;
 class TargetInstrInfo;
 class Type;
@@ -112,6 +113,6 @@ public:
   const TargetRegisterClass *intRegClass(unsigned Size) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_M68K_M68KREGISTERINFO_H

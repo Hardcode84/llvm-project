@@ -18,6 +18,7 @@
 
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
 #ifdef LLVM_ENABLE_HTTPLIB
 // forward declarations
@@ -28,7 +29,7 @@ class Server;
 } // namespace httplib
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct HTTPResponse;
 struct StreamingHTTPResponse;
@@ -128,6 +129,6 @@ public:
   /// If the server is listening, stop and unbind the socket.
   void stop();
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_HTTP_HTTPSERVER_H

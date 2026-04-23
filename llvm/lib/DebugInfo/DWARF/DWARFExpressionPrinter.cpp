@@ -14,11 +14,12 @@
 #include "llvm/Support/FormatVariadic.h"
 #include <cassert>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace dwarf;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 typedef DWARFExpression::Operation Op;
 typedef Op::Description Desc;
@@ -378,4 +379,4 @@ bool prettyPrintRegisterOp(DWARFUnit *U, raw_ostream &OS,
   return false;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

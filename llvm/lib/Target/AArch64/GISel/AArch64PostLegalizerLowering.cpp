@@ -1259,6 +1259,7 @@ AArch64PostLegalizerLoweringImpl::AArch64PostLegalizerLoweringImpl(
       STI(STI),
 #define GET_GICOMBINER_CONSTRUCTOR_INITS
 #include "AArch64GenPostLegalizeGILowering.inc"
+#include "llvm/Support/Compiler.h"
 #undef GET_GICOMBINER_CONSTRUCTOR_INITS
 {
 }
@@ -1355,8 +1356,8 @@ AArch64PostLegalizerLoweringPass::run(MachineFunction &MF,
   return PA;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 FunctionPass *createAArch64PostLegalizerLowering() {
   return new AArch64PostLegalizerLoweringLegacy();
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

@@ -19,8 +19,9 @@
 #include "llvm/ADT/StringSwitch.h"
 #include "llvm/ADT/StringTable.h"
 #include "llvm/TargetParser/RISCVISAInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace RISCV {
 
 char ParserError::ID = 0;
@@ -460,4 +461,4 @@ std::optional<VLMUL> getSameRatioLMUL(unsigned Ratio, unsigned EEW) {
 
 } // namespace RISCVVType
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

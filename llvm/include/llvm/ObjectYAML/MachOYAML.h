@@ -24,8 +24,9 @@
 #include <optional>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace MachOYAML {
 
 struct Relocation {
@@ -167,7 +168,7 @@ struct UniversalBinary {
 };
 
 } // end namespace MachOYAML
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::MachOYAML::LoadCommand)
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::MachOYAML::Relocation)
@@ -181,7 +182,7 @@ LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::MachOYAML::FatArch)
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::MachOYAML::DataInCodeEntry)
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::MachO::build_tool_version)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -341,6 +342,6 @@ template <> struct MappingTraits<MachO::section_64> {
 
 } // end namespace yaml
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_OBJECTYAML_MACHOYAML_H

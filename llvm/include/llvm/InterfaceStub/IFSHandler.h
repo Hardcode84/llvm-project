@@ -24,7 +24,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 class Error;
@@ -63,6 +63,6 @@ LLVM_ABI Error filterIFSSyms(IFSStub &Stub, bool StripUndefined,
 LLVM_ABI IFSTarget parseTriple(StringRef TripleStr);
 
 } // end namespace ifs
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_INTERFACESTUB_IFSHANDLER_H

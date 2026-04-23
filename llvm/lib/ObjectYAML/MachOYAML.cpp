@@ -18,8 +18,9 @@
 #include "llvm/TargetParser/Host.h"
 #include <cstdint>
 #include <cstring>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 MachOYAML::LoadCommand::~LoadCommand() = default;
 
@@ -634,4 +635,4 @@ void MappingTraits<MachO::fileset_entry_command>::mapping(
 
 } // end namespace yaml
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

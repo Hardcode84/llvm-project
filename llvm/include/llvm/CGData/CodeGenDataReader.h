@@ -21,7 +21,7 @@
 #include "llvm/Support/LineIterator.h"
 #include "llvm/Support/VirtualFileSystem.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CodeGenDataReader {
   cgdata_error LastError = cgdata_error::success;
@@ -179,6 +179,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CGDATA_CODEGENDATAREADER_H

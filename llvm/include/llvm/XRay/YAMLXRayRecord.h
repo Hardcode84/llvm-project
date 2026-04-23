@@ -14,8 +14,10 @@
 
 #include "llvm/Support/YAMLTraits.h"
 #include "llvm/XRay/XRayRecord.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::xray {
+LLVM_NAMESPACE_BEGIN
+namespace xray {
 
 struct YAMLXRayFileHeader {
   uint16_t Version;
@@ -43,9 +45,10 @@ struct YAMLXRayTrace {
   std::vector<YAMLXRayRecord> Records;
 };
 
-} // namespace llvm::xray
+}
+LLVM_NAMESPACE_END // namespace llvm::xray
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // YAML Traits
 // -----------
 template <> struct yaml::ScalarEnumerationTraits<xray::RecordTypes> {
@@ -94,7 +97,7 @@ template <> struct yaml::MappingTraits<llvm::xray::YAMLXRayTrace> {
     IO.mapRequired("records", Trace.Records);
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(xray::YAMLXRayRecord)
 

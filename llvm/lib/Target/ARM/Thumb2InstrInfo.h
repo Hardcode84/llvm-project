@@ -15,8 +15,9 @@
 
 #include "ARMBaseInstrInfo.h"
 #include "ThumbRegisterInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class ARMSubtarget;
 
 class Thumb2InstrInfo : public ARMBaseInstrInfo {
@@ -99,6 +100,6 @@ int findVPTInactiveOperandIdx(const MachineInstr &MI);
 // MVEVPTBlockInsertion pass has run, and should be used whenever a predicated
 // instruction is added to/removed from the block.
 void recomputeVPTBlockMask(MachineInstr &Instr);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

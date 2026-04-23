@@ -152,10 +152,11 @@
 #include "llvm/Transforms/Vectorize/LoopVectorize.h"
 #include "llvm/Transforms/Vectorize/SLPVectorizer.h"
 #include "llvm/Transforms/Vectorize/VectorCombine.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static cl::opt<InliningAdvisorMode> UseInlineAdvisor(
     "enable-ml-inliner", cl::init(InliningAdvisorMode::Default), cl::Hidden,
@@ -321,7 +322,7 @@ extern cl::opt<std::string> UseCtxProfile;
 extern cl::opt<bool> PGOInstrumentColdFunctionOnly;
 
 extern cl::opt<bool> EnableMemProfContextDisambiguation;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 PipelineTuningOptions::PipelineTuningOptions() {
   LoopInterleaving = true;
@@ -341,9 +342,9 @@ PipelineTuningOptions::PipelineTuningOptions() {
   DevirtualizeSpeculatively = EnableDevirtualizeSpeculatively;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern cl::opt<unsigned> MaxDevirtIterations;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 void PassBuilder::invokePeepholeEPCallbacks(FunctionPassManager &FPM,
                                             OptimizationLevel Level) {

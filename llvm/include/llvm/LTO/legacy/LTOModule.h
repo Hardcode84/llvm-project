@@ -26,7 +26,7 @@
 #include <vector>
 
 // Forward references to llvm classes.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class Function;
   class GlobalValue;
   class MemoryBuffer;
@@ -228,5 +228,5 @@ private:
   makeLTOModule(MemoryBufferRef Buffer, const TargetOptions &options,
                 LLVMContext &Context, bool ShouldBeLazy);
 };
-}
+LLVM_NAMESPACE_END
 #endif

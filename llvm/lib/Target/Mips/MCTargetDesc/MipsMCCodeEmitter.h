@@ -15,8 +15,9 @@
 
 #include "llvm/MC/MCCodeEmitter.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCContext;
 class MCExpr;
@@ -270,6 +271,6 @@ private:
   void LowerCompactBranch(MCInst& Inst) const;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_MIPS_MCTARGETDESC_MIPSMCCODEEMITTER_H

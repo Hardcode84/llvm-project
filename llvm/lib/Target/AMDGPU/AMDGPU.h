@@ -16,8 +16,9 @@
 #include "llvm/Pass.h"
 #include "llvm/Support/AMDGPUAddrSpace.h"
 #include "llvm/Support/CodeGen.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AMDGPUTargetMachine;
 class LazyCallGraph;
@@ -634,6 +635,6 @@ static inline bool addrspacesMayAlias(unsigned AS1, unsigned AS2) {
 
 }
 
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 
 #endif

@@ -13,8 +13,9 @@
 #include "llvm/Object/ObjectFile.h"
 #include "llvm/Object/RelocationResolver.h"
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// RelocAddrEntry contains relocated value and section index.
 /// Section index is -1LL if relocation points to absolute symbol.
@@ -34,6 +35,6 @@ struct RelocAddrEntry {
 /// entire size of the debug info sections.
 using RelocAddrMap = DenseMap<uint64_t, RelocAddrEntry>;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_DEBUGINFO_DWARF_DWARFRELOCMAP_H
