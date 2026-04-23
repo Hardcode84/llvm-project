@@ -174,6 +174,34 @@ configure_file(
   ${MLIR_MAIN_INCLUDE_DIR}/mlir/Config/mlir-config.h.cmake
   ${MLIR_INCLUDE_DIR}/mlir/Config/mlir-config.h)
 
+# MLIR ABI namespace tag — see mlir/include/mlir/Support/ABINamespace.h
+# and llvm/CMakeLists.txt (LLVM_ABI_NAMESPACE block) for design.
+#
+# Default: track the LLVM_ABI_NAMESPACE value, so a standard build either has
+# both LLVM and MLIR tagged or neither. Set MLIR_ABI_NAMESPACE explicitly to
+# override (rare — intended for experiments that want to retag MLIR in a
+# build that keeps LLVM untagged).
+if(NOT DEFINED CACHE{MLIR_ABI_NAMESPACE})
+  set(MLIR_ABI_NAMESPACE "${LLVM_ABI_NAMESPACE}" CACHE STRING
+      "Inline namespace tag for MLIR ABI isolation. Empty = disabled. \
+Defaults to LLVM_ABI_NAMESPACE.")
+endif()
+
+if(MLIR_ABI_NAMESPACE)
+  if(NOT MLIR_ABI_NAMESPACE MATCHES "^[A-Za-z_][A-Za-z0-9_]*$")
+    message(FATAL_ERROR
+      "MLIR_ABI_NAMESPACE='${MLIR_ABI_NAMESPACE}' is not a valid C++ identifier. "
+      "It must match ^[A-Za-z_][A-Za-z0-9_]*$.")
+  endif()
+  set(MLIR_ABI_NAMESPACE_ACTIVE 1)
+else()
+  unset(MLIR_ABI_NAMESPACE_ACTIVE)
+endif()
+
+configure_file(
+  ${MLIR_MAIN_INCLUDE_DIR}/mlir/Support/ABINamespaceTag.h.cmake
+  ${MLIR_INCLUDE_DIR}/mlir/Support/ABINamespaceTag.h)
+
 #-------------------------------------------------------------------------------
 # Python Bindings Configuration
 # Requires:

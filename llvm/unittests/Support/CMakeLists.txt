@@ -4,6 +4,9 @@ set(LLVM_LINK_COMPONENTS
   )
 
 add_llvm_unittest(SupportTests
+  ABINamespaceTest.cpp
+  ABINamespaceTestTU1.cpp
+  ABINamespaceTestTU2.cpp
   AddressRangeTest.cpp
   AlignmentTest.cpp
   AlignOfTest.cpp

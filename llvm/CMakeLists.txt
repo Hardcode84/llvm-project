@@ -1282,6 +1282,38 @@ configure_file(
   ${LLVM_MAIN_INCLUDE_DIR}/llvm/Config/abi-breaking.h.cmake
   ${LLVM_INCLUDE_DIR}/llvm/Config/abi-breaking.h)
 
+# Inline versioned namespace tag.
+#
+# When non-empty, every C++ symbol under `namespace llvm` is wrapped in an
+# inline namespace named after this tag, so the mangled name becomes
+# `_ZN4llvm<len><tag>...` instead of `_ZN4llvm...`. This lets two
+# independently-built copies of LLVM coexist in one process for consumers
+# that link the C++ API.
+#
+# Empty (the default) disables tagging: macros expand to plain
+# `namespace llvm { ... }` and mangled names are bit-identical to today.
+#
+# Must be a valid C++ identifier when set. Downstream vendors are encouraged
+# to use a suffixed tag (e.g. `v${LLVM_VERSION_MAJOR}_${LLVM_VERSION_MINOR}_acme`)
+# to avoid collisions with other distributors.
+set(LLVM_ABI_NAMESPACE "" CACHE STRING
+    "Inline namespace tag for ABI isolation (e.g. v23_0). Empty = disabled.")
+
+if(LLVM_ABI_NAMESPACE)
+  if(NOT LLVM_ABI_NAMESPACE MATCHES "^[A-Za-z_][A-Za-z0-9_]*$")
+    message(FATAL_ERROR
+      "LLVM_ABI_NAMESPACE='${LLVM_ABI_NAMESPACE}' is not a valid C++ identifier. "
+      "It must match ^[A-Za-z_][A-Za-z0-9_]*$.")
+  endif()
+  set(LLVM_ABI_NAMESPACE_ACTIVE 1)
+else()
+  unset(LLVM_ABI_NAMESPACE_ACTIVE)
+endif()
+
+configure_file(
+  ${LLVM_MAIN_INCLUDE_DIR}/llvm/Support/ABINamespaceTag.h.cmake
+  ${LLVM_INCLUDE_DIR}/llvm/Support/ABINamespaceTag.h)
+
 if(APPLE AND DARWIN_LTO_LIBRARY)
   set(CMAKE_EXE_LINKER_FLAGS
     "${CMAKE_EXE_LINKER_FLAGS} -Wl,-lto_library -Wl,${DARWIN_LTO_LIBRARY}")

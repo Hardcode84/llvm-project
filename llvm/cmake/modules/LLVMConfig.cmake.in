@@ -14,6 +14,20 @@ set(LLVM_PACKAGE_BUGREPORT @PACKAGE_BUGREPORT@)
 
 set(LLVM_BUILD_TYPE @CMAKE_BUILD_TYPE@)
 
+# Inline versioned namespace tag this LLVM was built with. Exposed read-only.
+#
+# Downstream consumers MUST NOT redefine this on their own compile line.
+# Instead, include llvm/Support/ABINamespace.h and the value will be picked
+# up automatically via llvm/Support/ABINamespaceTag.h (which lives next to
+# this LLVM's installed headers). Setting a different tag on the compile
+# line produces an object file that refers to symbols (e.g.
+# `llvm::myvalue::Foo`) that do not exist in the installed libraries.
+#
+# Build systems that maintain precompiled-header or C++20 BMI caches must
+# include this value in the cache key — a cache entry produced with a
+# different tag is an ODR violation the linker cannot diagnose.
+set(LLVM_ABI_NAMESPACE "@LLVM_ABI_NAMESPACE@")
+
 set(CMAKE_MSVC_RUNTIME_LIBRARY @CMAKE_MSVC_RUNTIME_LIBRARY@)
 
 set(LLVM_USE_SPLIT_DWARF @LLVM_USE_SPLIT_DWARF@)

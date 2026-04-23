@@ -17,6 +17,14 @@
 
 #include "llvm/Config/llvm-config.h"
 
+#ifdef __cplusplus
+// ABINamespace.h is C++-only: its macros open a C++ namespace. Compiler.h is
+// also included from C sources (e.g. llvm-c/ headers go through llvm-config.h
+// which in turn brings Compiler.h transitively in a few places). Guarding on
+// __cplusplus keeps C TUs compatible.
+#include "llvm/Support/ABINamespace.h"
+#endif
+
 #include <stddef.h>
 
 #if defined(_MSC_VER)
