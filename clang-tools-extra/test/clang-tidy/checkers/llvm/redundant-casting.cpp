@@ -1,6 +1,7 @@
 // RUN: %check_clang_tidy -std=c++17-or-later %s llvm-redundant-casting %t -- -- -fno-delayed-template-parsing
 
-namespace llvm {
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 #define CAST_FUNCTION(name)                                          \
 template <typename To, typename From>                                \
 [[nodiscard]] inline decltype(auto) name(const From &Val) {          \
@@ -24,7 +25,7 @@ CAST_FUNCTION(cast_or_null)
 CAST_FUNCTION(cast_if_present)
 CAST_FUNCTION(dyn_cast_or_null)
 CAST_FUNCTION(dyn_cast_if_present)
-}
+LLVM_NAMESPACE_END
 
 struct A {};
 struct B : A {};
@@ -111,7 +112,7 @@ void testUpcastTransitive(C& value) {
   (void)a10;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 void testCastInLLVM(A& value) {
   A& a11 = cast<A>(value);
   // CHECK-MESSAGES: :[[@LINE-1]]:12: warning: redundant use of 'cast' [llvm-redundant-casting]
@@ -119,7 +120,7 @@ void testCastInLLVM(A& value) {
   // CHECK-FIXES: A& a11 = value;
   (void)a11;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 void testCastPointer(A* value) {
   A *a12 = llvm::cast<A>(value);
@@ -266,7 +267,7 @@ void testCastNonLLVMUnresolved(T& value) {
   (void)a27;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace magic {
 template<typename T>
 void testCastImplicitlyLLVMUnresolved(T& value) {
@@ -277,7 +278,7 @@ void testCastImplicitlyLLVMUnresolved(T& value) {
   (void)a28;
 }
 } // namespace magic
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // FIXME: this cast is redundant since it's immediately undone by the implicit cast
 void testCastUpdown(A& value) {

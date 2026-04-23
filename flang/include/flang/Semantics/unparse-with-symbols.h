@@ -11,10 +11,11 @@
 
 #include "flang/Parser/characters.h"
 #include <iosfwd>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-}
+LLVM_NAMESPACE_END
 
 namespace Fortran::common {
 class LangOptions;

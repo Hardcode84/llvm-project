@@ -16,10 +16,13 @@
 #include "llvm/Support/raw_ostream.h"
 #include <memory>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::lto {
+LLVM_NAMESPACE_BEGIN
+namespace lto {
 class LTO;
-} // namespace llvm::lto
+}
+LLVM_NAMESPACE_END // namespace llvm::lto
 
 namespace lld::macho {
 

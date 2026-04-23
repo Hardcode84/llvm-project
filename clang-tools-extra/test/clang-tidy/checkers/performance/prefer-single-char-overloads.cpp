@@ -4,12 +4,13 @@
 // RUN:             {performance-prefer-single-char-overloads.StringLikeClasses: \
 // RUN:                '::llvm::StringRef;'}}" -- -fno-delayed-template-parsing
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct StringRef {
   int find(const char *) const;
 };
-}  // namespace llvm
+LLVM_NAMESPACE_END  // namespace llvm
 
 struct NotStringRef {
   int find(const char *);

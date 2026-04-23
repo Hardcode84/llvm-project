@@ -13,11 +13,14 @@
 #include "clang/Lex/PPCallbacks.h"
 #include "clang/Lex/Preprocessor.h"
 #include "llvm/ADT/DenseSet.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::vfs {
+LLVM_NAMESPACE_BEGIN
+namespace vfs {
 class OverlayFileSystem;
 class InMemoryFileSystem;
-} // namespace llvm::vfs
+}
+LLVM_NAMESPACE_END // namespace llvm::vfs
 
 namespace clang {
 class CompilerInstance;

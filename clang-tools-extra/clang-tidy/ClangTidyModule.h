@@ -15,6 +15,7 @@
 #include "llvm/Support/Registry.h"
 #include <functional>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
 namespace clang::tidy {
 
@@ -100,8 +101,8 @@ using ClangTidyModuleRegistry = llvm::Registry<ClangTidyModule>;
 
 } // namespace clang::tidy
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern template class Registry<clang::tidy::ClangTidyModule>;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_TOOLS_EXTRA_CLANG_TIDY_CLANGTIDYMODULE_H

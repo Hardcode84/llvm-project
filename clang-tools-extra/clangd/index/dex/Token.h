@@ -26,6 +26,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 namespace clangd {
@@ -111,7 +112,7 @@ private:
 } // namespace clangd
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Support Tokens as DenseMap keys.
 template <> struct DenseMapInfo<clang::clangd::dex::Token> {
@@ -133,6 +134,6 @@ template <> struct DenseMapInfo<clang::clangd::dex::Token> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_TOOLS_EXTRA_CLANGD_INDEX_DEX_TOKEN_H

@@ -19,6 +19,7 @@
 #include "flang/Optimizer/Passes/Pipelines.h"
 #include "flang/Optimizer/Support/InitFIR.h"
 #include "flang/Optimizer/Transforms/Passes.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace mlir;
 namespace fir {
@@ -29,12 +30,12 @@ void registerTestFIROpenACCInterfacesPass();
 } // namespace fir
 
 // Defined in mlir/test, no pulic header.
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 void registerSideEffectTestPasses();
 namespace test {
 void registerTestOpenACC();
 } // namespace test
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 int main(int argc, char **argv) {
   fir::support::registerMLIRPassesForFortranTools();

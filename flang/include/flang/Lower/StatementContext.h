@@ -17,11 +17,12 @@
 #include "llvm/ADT/SmallVector.h"
 #include <functional>
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Location;
 class Region;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace fir {
 class FirOpBuilder;

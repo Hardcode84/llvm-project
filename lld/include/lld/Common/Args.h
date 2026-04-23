@@ -13,12 +13,13 @@
 #include "llvm/Support/CodeGen.h"
 #include "llvm/Support/MemoryBuffer.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace opt {
 class InputArgList;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace lld {
 namespace args {

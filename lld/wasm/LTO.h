@@ -27,12 +27,13 @@
 #include "llvm/Support/raw_ostream.h"
 #include <memory>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace lto {
 class LTO;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace lld::wasm {
 

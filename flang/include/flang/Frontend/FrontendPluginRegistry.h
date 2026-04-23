@@ -17,6 +17,7 @@
 
 #include "flang/Frontend/FrontendActions.h"
 #include "llvm/Support/Registry.h"
+#include "llvm/Support/Compiler.h"
 
 namespace Fortran::frontend {
 
@@ -25,8 +26,8 @@ using FrontendPluginRegistry = llvm::Registry<PluginParseTreeAction>;
 
 } // namespace Fortran::frontend
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern template class Registry<Fortran::frontend::PluginParseTreeAction>;
-}
+LLVM_NAMESPACE_END
 
 #endif // FORTRAN_FRONTEND_FRONTENDPLUGINREGISTRY_H

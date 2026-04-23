@@ -21,13 +21,14 @@
 #include "flang/Parser/dump-parse-tree.h"
 #include "llvm/Support/YAMLParser.h"
 #include "llvm/Support/YAMLTraits.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace Fortran::frontend;
 using namespace Fortran::parser;
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(LogRecord)
 LLVM_YAML_IS_SEQUENCE_VECTOR(ClauseInfo)
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 using llvm::yaml::IO;
 using llvm::yaml::MappingTraits;
@@ -46,7 +47,7 @@ template <> struct MappingTraits<LogRecord> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 class FlangOmpReport : public PluginParseTreeAction {
   void executeAction() override {

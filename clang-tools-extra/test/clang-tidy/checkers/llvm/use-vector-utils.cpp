@@ -2,7 +2,8 @@
 
 // CHECK-FIXES: #include "llvm/ADT/SmallVectorExtras.h"
 
-namespace llvm {
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> class SmallVector {};
 
@@ -38,7 +39,7 @@ filter_range<ContainerT, PredT> make_filter_range(ContainerT &&C, PredT &&P);
 template <typename ContainerT, typename PredT, typename ExtraT>
 filter_range<ContainerT, PredT> make_filter_range(ContainerT &&C, PredT &&P, ExtraT &&E);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 int transform(int x);
 bool is_even(int x);
@@ -101,7 +102,7 @@ void test_filter_range() {
   // CHECK-FIXES: auto result_sized = llvm::filter_to_vector<6>(vec, is_even);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 void test_inside_llvm_namespace() {
   SmallVector<int> vec;
@@ -112,7 +113,7 @@ void test_inside_llvm_namespace() {
   // CHECK-FIXES: auto result = map_to_vector(vec, transform);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Check that an empty macro between callee and `(` is handled.
 void test_macro() {

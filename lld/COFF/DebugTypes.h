@@ -16,14 +16,19 @@
 #include "llvm/DebugInfo/CodeView/TypeRecord.h"
 #include "llvm/Support/Error.h"
 #include "llvm/Support/MemoryBuffer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::codeview {
+LLVM_NAMESPACE_BEGIN
+namespace codeview {
 struct GloballyHashedType;
 }
-namespace llvm::pdb {
+LLVM_NAMESPACE_END
+LLVM_NAMESPACE_BEGIN
+namespace pdb {
 class NativeSession;
 class TpiStream;
 }
+LLVM_NAMESPACE_END
 
 namespace lld::coff {
 

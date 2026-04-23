@@ -21,6 +21,7 @@
 #include "llvm/ADT/StringMap.h"
 #include "llvm/BinaryFormat/WasmTraits.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "lld"
 
@@ -129,7 +130,7 @@ inline bool operator==(const ImportKey<T> &lhs, const ImportKey<T> &rhs) {
 
 // `ImportKey<T>` can be used as a key in a `DenseMap` if `T` can be used as a
 // key in a `DenseMap`.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T> struct DenseMapInfo<lld::wasm::ImportKey<T>> {
   static lld::wasm::ImportKey<T> getEmptyKey() {
     typename lld::wasm::ImportKey<T> key(llvm::DenseMapInfo<T>::getEmptyKey());
@@ -153,7 +154,7 @@ template <typename T> struct DenseMapInfo<lld::wasm::ImportKey<T>> {
     return lhs == rhs;
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace lld {
 namespace wasm {

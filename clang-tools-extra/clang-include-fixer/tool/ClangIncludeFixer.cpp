@@ -21,6 +21,7 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Path.h"
 #include "llvm/Support/YAMLTraits.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace clang;
 using namespace llvm;
@@ -30,7 +31,7 @@ LLVM_YAML_IS_DOCUMENT_LIST_VECTOR(IncludeFixerContext)
 LLVM_YAML_IS_FLOW_SEQUENCE_VECTOR(IncludeFixerContext::HeaderInfo)
 LLVM_YAML_IS_FLOW_SEQUENCE_VECTOR(IncludeFixerContext::QuerySymbolInfo)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <> struct MappingTraits<tooling::Range> {
@@ -76,7 +77,7 @@ template <> struct MappingTraits<IncludeFixerContext> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 cl::OptionCategory IncludeFixerCategory("Tool options");

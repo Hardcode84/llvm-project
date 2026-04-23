@@ -1,6 +1,7 @@
 // RUN: %check_clang_tidy %s llvm-prefer-register-over-unsigned %t
 
-namespace llvm { };
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN LLVM_NAMESPACE_END;
 
 // This class shouldn't trigger it despite the similarity as it's not inside the llvm namespace
 class Register {
@@ -24,10 +25,10 @@ void do_nothing_2() {
   // CHECK-FIXES-NEXT: unsigned Reg2 = getReg();
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 void do_nothing_3() {
   unsigned Reg3 = getReg();
   // CHECK-FIXES: void do_nothing_3() {
   // CHECK-FIXES-NEXT: unsigned Reg3 = getReg();
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

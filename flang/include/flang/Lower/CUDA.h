@@ -20,12 +20,13 @@
 #include "flang/Semantics/tools.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Dialect/OpenACC/OpenACC.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Value;
 class Location;
 class MLIRContext;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace hlfir {
 class ElementalOp;

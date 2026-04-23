@@ -9,11 +9,13 @@
 #ifndef FORTRAN_OPTIMIZER_BUILDER_RUNTIME_RAGGED_H
 #define FORTRAN_OPTIMIZER_BUILDER_RUNTIME_RAGGED_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class Location;
 class Value;
 class ValueRange;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace fir {
 class FirOpBuilder;

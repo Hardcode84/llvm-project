@@ -26,10 +26,13 @@
 #include "llvm/Support/raw_ostream.h"
 #include <memory>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::lto {
+LLVM_NAMESPACE_BEGIN
+namespace lto {
 class LTO;
 }
+LLVM_NAMESPACE_END
 
 namespace lld::elf {
 struct Ctx;

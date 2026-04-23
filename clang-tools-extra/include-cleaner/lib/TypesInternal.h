@@ -15,10 +15,11 @@
 #include <cstdint>
 #include <utility>
 #include <variant>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-}
+LLVM_NAMESPACE_END
 namespace clang::include_cleaner {
 /// A place where a symbol can be provided.
 /// It is either a physical file of the TU (SourceLocation) or a logical

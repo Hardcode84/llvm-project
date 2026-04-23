@@ -19,10 +19,11 @@
 #include "llvm/TargetParser/Triple.h"
 #include <optional>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class TarWriter;
-}
+LLVM_NAMESPACE_END
 
 namespace lld {
 namespace wasm {

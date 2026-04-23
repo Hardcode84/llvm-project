@@ -21,11 +21,12 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/CodeGen.h"
 #include "llvm/TargetParser/Triple.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ModuleOp;
 class Operation;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace fir {
 class KindMapping;

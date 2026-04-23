@@ -9,15 +9,17 @@
 #include "flang/Optimizer/Dialect/Support/KindMapping.h"
 #include "gtest/gtest.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
 using namespace fir;
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct fltSemantics;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class MLIRContext;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 using Bitsize = fir::KindMapping::Bitsize;
 using LLVMTypeID = fir::KindMapping::LLVMTypeID;

@@ -13,6 +13,7 @@
 #include "flang/Semantics/symbol.h"
 #include "llvm/Support/raw_ostream.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 namespace Fortran::parser {
 class CharBlock;
@@ -20,9 +21,9 @@ class Message;
 class MessageFixedText;
 } // namespace Fortran::parser
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-}
+LLVM_NAMESPACE_END
 
 namespace Fortran::semantics {
 

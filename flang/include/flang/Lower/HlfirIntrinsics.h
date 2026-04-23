@@ -25,13 +25,14 @@
 #include <cassert>
 #include <optional>
 #include <string>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Location;
 class Type;
 class Value;
 class ValueRange;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace fir {
 class FirOpBuilder;

@@ -28,11 +28,12 @@
 #include "mlir/IR/Operation.h"
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/DenseMap.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class SymbolTable;
 class StateStack;
-}
+MLIR_NAMESPACE_END
 
 namespace fir {
 class KindMapping;

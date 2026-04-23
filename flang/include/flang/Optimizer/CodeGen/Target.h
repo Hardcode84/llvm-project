@@ -21,10 +21,11 @@
 #include <memory>
 #include <tuple>
 #include <vector>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DataLayout;
-}
+MLIR_NAMESPACE_END
 
 namespace fir {
 

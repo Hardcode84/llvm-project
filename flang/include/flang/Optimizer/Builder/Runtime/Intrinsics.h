@@ -17,12 +17,13 @@
 #define FORTRAN_LOWER_RUNTIME_H
 
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Location;
 class Type;
 class Value;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace fir {
 class CharBoxValue;

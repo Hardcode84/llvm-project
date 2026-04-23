@@ -19,14 +19,15 @@
 #include "flang/Optimizer/HLFIR/HLFIRDialect.h"
 #include "flang/Optimizer/HLFIR/HLFIROps.h"
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
 namespace fir {
 class FirOpBuilder;
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class IRMapping;
-}
+MLIR_NAMESPACE_END
 
 namespace hlfir {
 

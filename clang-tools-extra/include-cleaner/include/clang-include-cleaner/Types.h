@@ -37,10 +37,11 @@
 #include <utility>
 #include <variant>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 namespace clang {
 class Decl;
 class IdentifierInfo;
@@ -213,7 +214,7 @@ private:
 } // namespace include_cleaner
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <> struct DenseMapInfo<clang::include_cleaner::Symbol> {
   using Outer = clang::include_cleaner::Symbol;
@@ -262,6 +263,6 @@ template <> struct DenseMapInfo<clang::include_cleaner::Header> {
     return Base::isEqual(LHS.Storage, RHS.Storage);
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

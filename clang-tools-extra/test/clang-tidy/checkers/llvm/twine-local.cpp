@@ -1,6 +1,7 @@
 // RUN: %check_clang_tidy %s llvm-twine-local %t
 
-namespace llvm {
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class Twine {
 public:
   Twine(const char *);
@@ -8,7 +9,7 @@ public:
   Twine();
   Twine &operator+(const Twine &);
 };
-}
+LLVM_NAMESPACE_END
 
 using namespace llvm;
 

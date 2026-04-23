@@ -12,6 +12,7 @@
 #include "../ClangTidyCheck.h"
 
 #include "llvm/ADT/DenseMapInfo.h"
+#include "llvm/Support/Compiler.h"
 
 namespace clang::tidy::cppcoreguidelines {
 
@@ -73,7 +74,7 @@ private:
 
 } // namespace clang::tidy::cppcoreguidelines
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Specialization of DenseMapInfo to allow ClassDefId objects in DenseMaps
 /// FIXME: Move this to the corresponding cpp file as is done for
 /// clang-tidy/readability/IdentifierNamingCheck.cpp.
@@ -109,6 +110,6 @@ struct DenseMapInfo<
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_TOOLS_EXTRA_CLANG_TIDY_CPPCOREGUIDELINES_SPECIALMEMBERFUNCTIONSCHECK_H

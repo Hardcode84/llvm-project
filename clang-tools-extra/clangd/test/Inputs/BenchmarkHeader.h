@@ -1,3 +1,4 @@
+#include "llvm/Support/Compiler.h"
 namespace clang {
 namespace clangd {
 namespace dex {
@@ -6,9 +7,9 @@ class Dex;
 } // namespace clangd
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 int get_physical_cores();
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 int Variable;

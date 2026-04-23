@@ -18,12 +18,13 @@
 #include "llvm/ADT/DenseMapInfo.h"
 #include "llvm/ADT/PointerIntPair.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "clang-tidy"
 
 using namespace clang::ast_matchers;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Specialization of DenseMapInfo to allow NamingCheckId objects in DenseMaps
 template <>
@@ -56,7 +57,7 @@ struct DenseMapInfo<clang::tidy::RenamerClangTidyCheck::NamingCheckId> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang::tidy {
 

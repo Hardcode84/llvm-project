@@ -11,11 +11,13 @@
 
 #include "flang/Common/enum-set.h"
 #include "llvm/Frontend/OpenMP/OMPConstants.h"
+#include "llvm/Support/Compiler.h"
 
 using OmpDirectiveSet = Fortran::common::EnumSet<llvm::omp::Directive,
     llvm::omp::Directive_enumSize>;
 
-namespace llvm::omp {
+LLVM_NAMESPACE_BEGIN
+namespace omp {
 //===----------------------------------------------------------------------===//
 // Directive sets for single directives
 //===----------------------------------------------------------------------===//
@@ -433,6 +435,7 @@ static const OmpDirectiveSet simpleStandaloneNonSimdOnlySet{
     Directive::OMPD_taskwait,
 };
 
-} // namespace llvm::omp
+}
+LLVM_NAMESPACE_END // namespace llvm::omp
 
 #endif // FORTRAN_SEMANTICS_OPENMP_DIRECTIVE_SETS_H_

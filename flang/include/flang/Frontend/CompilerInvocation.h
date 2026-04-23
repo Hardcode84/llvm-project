@@ -26,10 +26,11 @@
 #include "clang/Basic/DiagnosticOptions.h"
 #include "llvm/Option/ArgList.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class TargetMachine;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace Fortran::frontend {
 

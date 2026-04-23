@@ -199,8 +199,8 @@ using FeatureModuleRegistry = llvm::Registry<FeatureModule>;
 } // namespace clangd
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern template class Registry<clang::clangd::FeatureModule>;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

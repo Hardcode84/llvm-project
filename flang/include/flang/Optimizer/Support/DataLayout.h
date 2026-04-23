@@ -15,17 +15,19 @@
 
 #include "mlir/Interfaces/DataLayoutInterfaces.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class ModuleOp;
 namespace gpu {
 class GPUModuleOp;
 } // namespace gpu
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DataLayout;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace fir::support {
 /// Create an mlir::DataLayoutSpecInterface attribute from an llvm::DataLayout

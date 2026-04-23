@@ -11,6 +11,7 @@
 #include "llvm/Support/FileSystem.h"
 #include "llvm/Support/YAMLTraits.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 using ContextType = clang::find_all_symbols::SymbolInfo::ContextType;
 using clang::find_all_symbols::SymbolInfo;
@@ -20,7 +21,7 @@ using SymbolKind = clang::find_all_symbols::SymbolInfo::SymbolKind;
 LLVM_YAML_IS_DOCUMENT_LIST_VECTOR(SymbolAndSignals)
 LLVM_YAML_IS_SEQUENCE_VECTOR(SymbolInfo::Context)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct MappingTraits<SymbolAndSignals> {
   static void mapping(IO &io, SymbolAndSignals &Symbol) {
@@ -62,7 +63,7 @@ template <> struct MappingTraits<SymbolInfo::Context> {
 };
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 namespace find_all_symbols {

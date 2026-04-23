@@ -9,9 +9,11 @@
 #ifndef FLANG_OPTIMIZER_OPENMP_SUPPORT_REGISTEROPENMPEXTENSIONS_H_
 #define FLANG_OPTIMIZER_OPENMP_SUPPORT_REGISTEROPENMPEXTENSIONS_H_
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace fir::omp {
 

@@ -20,12 +20,13 @@
 #include "flang/Semantics/symbol.h"
 #include "mlir/Dialect/OpenMP/OpenMPDialect.h"
 #include <variant>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace omp {
 struct PrivateClauseOps;
 } // namespace omp
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace Fortran {
 namespace lower {

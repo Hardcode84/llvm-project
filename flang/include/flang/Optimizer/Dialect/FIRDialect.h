@@ -16,10 +16,11 @@
 #include "mlir/IR/Dialect.h"
 
 #include "flang/Optimizer/Dialect/FIRDialect.h.inc"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class IRMapping;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace fir {
 

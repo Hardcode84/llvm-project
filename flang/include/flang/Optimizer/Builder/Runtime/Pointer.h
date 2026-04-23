@@ -10,10 +10,11 @@
 #define FORTRAN_OPTIMIZER_BUILDER_RUNTIME_POINTER_H
 
 #include "mlir/IR/Value.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Location;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace fir {
 class FirOpBuilder;

@@ -25,10 +25,11 @@
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/IR/OwningOpRef.h"
 #include <set>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class TargetMachine;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace Fortran {
 namespace common {

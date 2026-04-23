@@ -17,6 +17,7 @@
 #include "llvm/Support/JSON.h"
 #include "llvm/Support/Mustache.h"
 #include "llvm/Support/Registry.h"
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 namespace doc {
@@ -147,8 +148,8 @@ extern volatile int MDMustacheGeneratorAnchorSource;
 } // namespace doc
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern template class Registry<clang::doc::Generator>;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_TOOLS_EXTRA_CLANG_DOC_GENERATOR_H

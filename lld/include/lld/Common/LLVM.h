@@ -20,8 +20,9 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/Casting.h"
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // ADT's.
 class raw_ostream;
 class Error;
@@ -55,7 +56,7 @@ struct WasmSignature;
 struct WasmTable;
 struct WasmTableType;
 } // namespace wasm
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace lld {
 // Casting operators.

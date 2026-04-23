@@ -12,6 +12,7 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/Error.h"
 #include "llvm/Support/Registry.h"
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 namespace clangd {
@@ -133,8 +134,8 @@ typedef llvm::Registry<URIScheme> URISchemeRegistry;
 } // namespace clangd
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern template class Registry<clang::clangd::URIScheme>;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_TOOLS_EXTRA_CLANGD_URI_H

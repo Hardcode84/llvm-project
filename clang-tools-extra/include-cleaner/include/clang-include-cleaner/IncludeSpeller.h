@@ -16,6 +16,7 @@
 #include "clang/Lex/HeaderSearch.h"
 #include "llvm/Support/Registry.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 namespace clang::include_cleaner {
 
@@ -46,8 +47,8 @@ using IncludeSpellingStrategy = llvm::Registry<IncludeSpeller>;
 std::string spellHeader(const IncludeSpeller::Input &Input);
 } // namespace clang::include_cleaner
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern template class Registry<clang::include_cleaner::IncludeSpeller>;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

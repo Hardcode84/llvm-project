@@ -11,11 +11,12 @@
 
 #include "mlir/IR/Operation.h"
 #include "mlir/IR/Value.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Operation;
 class Value;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace hlfir {
 class ElementalOpInterface;

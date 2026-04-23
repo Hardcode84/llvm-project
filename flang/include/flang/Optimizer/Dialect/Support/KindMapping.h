@@ -16,10 +16,11 @@
 #include "mlir/IR/OpDefinition.h"
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/IR/Type.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct fltSemantics;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace fir {
 

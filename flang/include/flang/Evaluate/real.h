@@ -17,14 +17,15 @@
 #include <cinttypes>
 #include <limits>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 // Some environments, viz. glibc 2.17 and *BSD, allow the macro HUGE
 // to leak out of <math.h>.
 #undef HUGE
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-}
+LLVM_NAMESPACE_END
 namespace Fortran::evaluate::value {
 
 // LOG10(2.)*1E12

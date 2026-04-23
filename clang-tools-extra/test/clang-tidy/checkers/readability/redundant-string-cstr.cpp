@@ -1,5 +1,6 @@
 // RUN: %check_clang_tidy %s readability-redundant-string-cstr %t
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 template <typename T>
 struct iterator {
@@ -7,12 +8,12 @@ struct iterator {
   T &operator*();
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct StringRef {
   StringRef(const char *p);
   StringRef(const std::string &);
 };
-}
+LLVM_NAMESPACE_END
 
 // Tests for std::string.
 

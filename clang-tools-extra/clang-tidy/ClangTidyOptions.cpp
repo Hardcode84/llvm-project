@@ -20,6 +20,7 @@
 #include <algorithm>
 #include <optional>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "clang-tidy-options"
 
@@ -30,7 +31,8 @@ using OptionsSource = clang::tidy::ClangTidyOptionsProvider::OptionsSource;
 LLVM_YAML_IS_FLOW_SEQUENCE_VECTOR(FileFilter)
 LLVM_YAML_IS_FLOW_SEQUENCE_VECTOR(FileFilter::LineRange)
 
-namespace llvm::yaml {
+LLVM_NAMESPACE_BEGIN
+namespace yaml {
 
 // Map std::pair<int, int> to a JSON array of size 2.
 template <> struct SequenceTraits<FileFilter::LineRange> {
@@ -246,7 +248,8 @@ template <> struct MappingTraits<ClangTidyOptions> {
   }
 };
 
-} // namespace llvm::yaml
+}
+LLVM_NAMESPACE_END // namespace llvm::yaml
 
 namespace clang::tidy {
 

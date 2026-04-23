@@ -11,10 +11,11 @@
 
 #include "flang/Lower/EnvironmentDefault.h"
 #include <vector>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Location;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace fir {
 class FirOpBuilder;

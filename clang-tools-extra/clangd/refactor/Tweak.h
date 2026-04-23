@@ -29,6 +29,7 @@
 #include "llvm/Support/Error.h"
 #include <optional>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 namespace clangd {
@@ -147,8 +148,8 @@ prepareTweak(StringRef ID, const Tweak::Selection &S,
 } // namespace clangd
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 extern template class Registry<clang::clangd::Tweak>;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

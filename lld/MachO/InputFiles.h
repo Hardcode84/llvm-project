@@ -26,8 +26,9 @@
 #include "llvm/TextAPI/TextAPIReader.h"
 
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace lto {
 class InputFile;
 } // namespace lto
@@ -35,7 +36,7 @@ namespace MachO {
 class InterfaceFile;
 } // namespace MachO
 class TarWriter;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace lld {
 namespace macho {

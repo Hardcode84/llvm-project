@@ -24,12 +24,13 @@
 #include "flang/Evaluate/type.h"
 #include "flang/Support/Fortran.h"
 #include "mlir/IR/BuiltinTypes.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Location;
 class MLIRContext;
 class Type;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace Fortran {
 namespace common {

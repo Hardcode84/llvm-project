@@ -19,16 +19,17 @@
 #define FORTRAN_OPTIMIZER_BUILDER_RUNTIME_ENVIRONMENTDEFAULTS_H
 
 #include <vector>
+#include "mlir/Support/ABINamespace.h"
 
 namespace fir {
 class FirOpBuilder;
 class GlobalOp;
 } // namespace fir
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Location;
 class Value;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace Fortran::lower {
 struct EnvironmentDefault;

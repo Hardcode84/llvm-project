@@ -19,14 +19,15 @@
 #include "llvm/Object/ELF.h"
 #include "llvm/Support/MemoryBufferRef.h"
 #include "llvm/Support/Threading.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct DILineInfo;
 class TarWriter;
 namespace lto {
 class InputFile;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace lld {
 class DWARFCache;

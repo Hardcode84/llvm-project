@@ -28,11 +28,12 @@
 #include "llvm/ADT/DenseMap.h"
 #include <optional>
 #include <utility>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DataLayout;
 class SymbolTable;
-}
+MLIR_NAMESPACE_END
 
 namespace fir {
 class AbstractArrayBox;

@@ -28,6 +28,7 @@
 
 #include <array>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 namespace clangd {
@@ -87,7 +88,7 @@ std::vector<Token> generateQueryTrigrams(llvm::StringRef Query);
 } // namespace clangd
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct DenseMapInfo<clang::clangd::dex::Trigram> {
   using Trigram = clang::clangd::dex::Trigram;
   static inline Trigram getEmptyKey() {
@@ -110,6 +111,6 @@ template <> struct DenseMapInfo<clang::clangd::dex::Trigram> {
     return LHS == RHS;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_TOOLS_EXTRA_CLANGD_INDEX_DEX_TRIGRAM_H

@@ -21,6 +21,7 @@
 #include "llvm/Object/WindowsMachineFlag.h"
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 namespace lld::coff {
 
@@ -1004,10 +1005,10 @@ public:
 
 } // namespace lld::coff
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <>
 struct DenseMapInfo<lld::coff::ChunkAndOffset>
     : lld::coff::ChunkAndOffset::DenseMapInfo {};
-}
+LLVM_NAMESPACE_END
 
 #endif

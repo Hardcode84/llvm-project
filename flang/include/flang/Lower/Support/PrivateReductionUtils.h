@@ -15,10 +15,11 @@
 
 #include "mlir/IR/Location.h"
 #include "mlir/IR/Value.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Region;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace Fortran {
 namespace semantics {

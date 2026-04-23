@@ -15,10 +15,12 @@
 #ifndef FORTRAN_OPTIMIZER_BUILDER_RUNTIME_TRAMPOLINE_H
 #define FORTRAN_OPTIMIZER_BUILDER_RUNTIME_TRAMPOLINE_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class Value;
 class Location;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace fir {
 class FirOpBuilder;

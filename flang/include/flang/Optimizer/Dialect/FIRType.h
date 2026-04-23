@@ -95,22 +95,24 @@ public:
 
 #define GET_TYPEDEF_CLASSES
 #include "flang/Optimizer/Dialect/FIROpsTypes.h.inc"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 class StringRef;
 template <typename>
 class ArrayRef;
 class hash_code;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectAsmParser;
 class DialectAsmPrinter;
 class ComplexType;
 class FloatType;
 class ValueRange;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace fir {
 namespace detail {

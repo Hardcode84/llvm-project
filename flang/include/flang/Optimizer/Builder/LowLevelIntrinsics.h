@@ -13,11 +13,13 @@
 #ifndef FLANG_OPTIMIZER_BUILDER_LOWLEVELINTRINSICS_H
 #define FLANG_OPTIMIZER_BUILDER_LOWLEVELINTRINSICS_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 namespace func {
 class FuncOp;
 } // namespace func
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 namespace fir {
 class FirOpBuilder;
 }

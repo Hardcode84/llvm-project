@@ -17,15 +17,16 @@
 
 #include <cinttypes>
 #include <utility>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Operation;
 class Location;
 namespace omp {
 enum class DeclareTargetDeviceType : uint32_t;
 enum class DeclareTargetCaptureClause : uint32_t;
 } // namespace omp
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace fir {
 class FirOpBuilder;

@@ -35,6 +35,7 @@
 #include <optional>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 // This file is using the LSP syntax for identifier names which is different
 // from the LLVM coding standard. To avoid the clang-tidy warnings, we're
@@ -2083,7 +2084,7 @@ llvm::raw_ostream &operator<<(llvm::raw_ostream &, const ASTNode &);
 } // namespace clangd
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <> struct DenseMapInfo<clang::clangd::Range> {
   using Range = clang::clangd::Range;
@@ -2113,7 +2114,7 @@ template <> struct format_provider<clang::clangd::Position> {
     OS << Pos;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // NOLINTEND(readability-identifier-naming)
 

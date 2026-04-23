@@ -29,6 +29,7 @@
 #include "llvm/Support/FileSystem/UniqueID.h"
 #include <optional>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 namespace clangd {
@@ -269,7 +270,7 @@ private:
 } // namespace clangd
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Support HeaderIDs as DenseMap keys.
 template <> struct DenseMapInfo<clang::clangd::IncludeStructure::HeaderID> {
@@ -292,6 +293,6 @@ template <> struct DenseMapInfo<clang::clangd::IncludeStructure::HeaderID> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_TOOLS_EXTRA_CLANGD_HEADERS_H

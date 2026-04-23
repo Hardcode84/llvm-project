@@ -14,14 +14,16 @@
 #define FORTRAN_LOWER_OPENACC_H
 
 #include "mlir/Dialect/OpenACC/OpenACC.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T, unsigned N>
 class SmallVector;
 class StringRef;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace func {
 class FuncOp;
 } // namespace func
@@ -30,7 +32,7 @@ class Type;
 class ModuleOp;
 class OpBuilder;
 class Value;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace fir {
 class FirOpBuilder;

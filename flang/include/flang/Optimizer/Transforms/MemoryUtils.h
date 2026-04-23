@@ -21,10 +21,11 @@
 #define FORTRAN_OPTIMIZER_TRANSFORMS_MEMORYUTILS_H
 
 #include "flang/Optimizer/Dialect/FIROps.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class RewriterBase;
-}
+MLIR_NAMESPACE_END
 
 namespace fir {
 

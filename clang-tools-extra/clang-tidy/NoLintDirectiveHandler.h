@@ -12,14 +12,15 @@
 #include "clang/Basic/Diagnostic.h"
 #include "llvm/ADT/StringRef.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
 namespace clang::tooling {
 struct Diagnostic;
 } // namespace clang::tooling
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T> class SmallVectorImpl;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang::tidy {
 

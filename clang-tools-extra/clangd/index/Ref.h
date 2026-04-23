@@ -18,6 +18,7 @@
 #include <cstdint>
 #include <set>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 namespace clangd {
@@ -168,7 +169,7 @@ private:
 } // namespace clangd
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct DenseMapInfo<clang::clangd::RefSlab::Builder::Entry> {
   using Entry = clang::clangd::RefSlab::Builder::Entry;
   static inline Entry getEmptyKey() {
@@ -193,6 +194,6 @@ template <> struct DenseMapInfo<clang::clangd::RefSlab::Builder::Entry> {
            LHS.Reference.Location.End == RHS.Reference.Location.End;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_TOOLS_EXTRA_CLANGD_INDEX_REF_H

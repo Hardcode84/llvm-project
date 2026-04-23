@@ -16,10 +16,11 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/SmallSet.h"
 #include "llvm/ADT/StringRef.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Block;
-}
+MLIR_NAMESPACE_END
 
 namespace Fortran {
 namespace semantics {

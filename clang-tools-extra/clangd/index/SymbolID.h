@@ -17,6 +17,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 namespace clangd {
@@ -78,7 +79,7 @@ llvm::raw_ostream &operator<<(llvm::raw_ostream &OS, const SymbolID &ID);
 } // namespace clangd
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Support SymbolIDs as DenseMap keys.
 template <> struct DenseMapInfo<clang::clangd::SymbolID> {
   static inline clang::clangd::SymbolID getEmptyKey() {
@@ -97,6 +98,6 @@ template <> struct DenseMapInfo<clang::clangd::SymbolID> {
     return LHS == RHS;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CLANG_TOOLS_EXTRA_CLANGD_INDEX_SYMBOLID_H

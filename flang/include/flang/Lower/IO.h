@@ -13,9 +13,11 @@
 #ifndef FORTRAN_LOWER_IO_H
 #define FORTRAN_LOWER_IO_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class Value;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace Fortran {
 namespace parser {

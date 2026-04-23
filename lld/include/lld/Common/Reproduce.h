@@ -12,10 +12,11 @@
 #include "lld/Common/LLVM.h"
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace opt { class Arg; }
-}
+LLVM_NAMESPACE_END
 
 namespace lld {
 

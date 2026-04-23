@@ -1,5 +1,6 @@
 // RUN: %check_clang_tidy %s abseil-str-cat-append %t
 
+#include "llvm/Support/Compiler.h"
 typedef unsigned __INT16_TYPE__ char16;
 typedef unsigned __INT32_TYPE__ char32;
 typedef __SIZE_TYPE__ size;
@@ -60,12 +61,12 @@ bool operator==(const std::string&, const std::string&);
 bool operator==(const std::string&, const char*);
 bool operator==(const char*, const std::string&);
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct StringRef {
   StringRef(const char* p);
   StringRef(const std::string&);
 };
-}  // namespace llvm
+LLVM_NAMESPACE_END  // namespace llvm
 
 namespace absl {
 

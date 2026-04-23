@@ -22,8 +22,9 @@
 #include <memory>
 #include <set>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct DILineInfo;
 namespace pdb {
 class DbiModuleDescriptorBuilder;
@@ -32,7 +33,7 @@ class NativeSession;
 namespace lto {
 class InputFile;
 }
-}
+LLVM_NAMESPACE_END
 
 namespace lld {
 class DWARFCache;

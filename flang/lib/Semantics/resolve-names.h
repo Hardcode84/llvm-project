@@ -9,9 +9,11 @@
 #ifndef FORTRAN_SEMANTICS_RESOLVE_NAMES_H_
 #define FORTRAN_SEMANTICS_RESOLVE_NAMES_H_
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-}
+LLVM_NAMESPACE_END
 
 namespace Fortran::parser {
 struct Program;

@@ -16,10 +16,11 @@
 #include "llvm/ADT/DenseMapInfo.h"
 #include "llvm/ADT/SmallPtrSet.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct LTOCodeGenerator;
-}
+LLVM_NAMESPACE_END
 
 namespace lld::coff {
 

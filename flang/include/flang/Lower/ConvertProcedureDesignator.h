@@ -17,11 +17,13 @@
 #ifndef FORTRAN_LOWER_CONVERT_PROCEDURE_DESIGNATOR_H
 #define FORTRAN_LOWER_CONVERT_PROCEDURE_DESIGNATOR_H
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class Location;
 class Value;
 class Type;
-}
+MLIR_NAMESPACE_END
 namespace fir {
 class ExtendedValue;
 }

@@ -13,12 +13,13 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/Support/LogicalResult.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Attribute;
 class OpBuilder;
 class Value;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace fir {
 

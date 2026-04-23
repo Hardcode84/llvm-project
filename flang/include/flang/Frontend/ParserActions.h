@@ -14,12 +14,13 @@
 #define FORTRAN_PARSER_ACTIONS_H_
 
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_string_ostream;
 class raw_ostream;
 class StringRef;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace Fortran::lower {
 class LoweringBridge;

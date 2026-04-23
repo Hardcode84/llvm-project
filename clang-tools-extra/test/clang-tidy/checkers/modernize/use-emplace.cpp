@@ -21,8 +21,9 @@
 #include <utility>
 #include <memory>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T>
 class LikeASmallVector {
 public:
@@ -33,7 +34,7 @@ public:
   void emplace_back(Args &&... args){};
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 void testInts() {
   std::vector<int> v;

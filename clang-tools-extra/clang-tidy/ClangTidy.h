@@ -14,10 +14,11 @@
 #include "llvm/ADT/StringSet.h"
 #include <memory>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 

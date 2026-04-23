@@ -1,6 +1,7 @@
 // RUN: %check_clang_tidy -std=c++17-or-later %s llvm-type-switch-case-types %t
 
-namespace llvm {
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 template <typename T, typename ResultT = int>
 class TypeSwitch {
@@ -21,7 +22,7 @@ public:
   TypeSwitch &Case(CallableT &&) { return *this; }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Test types for the switch cases.
 struct Base {};
@@ -108,7 +109,7 @@ void test_fully_qualified(Base *base) {
   // CHECK-FIXES: .Case([](DerivedA *a) { return 60; });
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 void test_inside_llvm_namespace(Base *base) {
   TypeSwitch<Base *, int>(base)
       .Case<DerivedA>([](DerivedA *a) { return 70; });
@@ -121,7 +122,7 @@ void test_inside_llvm_namespace(Base *base) {
   // CHECK-MESSAGES: :[[@LINE-2]]:26: note: replace 'auto' with explicit type
   // CHECK-MESSAGES: :[[@LINE-3]]:13: note: type from template argument can be inferred and removed
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 void test_macro_in_type(Base *base) {
 #define CASE_TYPE DerivedA

@@ -21,6 +21,7 @@
 #include "flang/Optimizer/Dialect/Support/KindMapping.h"
 #include "mlir/Conversion/LLVMCommon/TypeConverter.h"
 #include "llvm/Support/Debug.h"
+#include "mlir/Support/ABINamespace.h"
 
 // Position of the different values in a `fir.box`.
 static constexpr unsigned kAddrPosInBox = 0;
@@ -39,9 +40,9 @@ static constexpr unsigned kDimLowerBoundPos = 0;
 static constexpr unsigned kDimExtentPos = 1;
 static constexpr unsigned kDimStridePos = 2;
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DataLayout;
-}
+MLIR_NAMESPACE_END
 
 namespace fir {
 

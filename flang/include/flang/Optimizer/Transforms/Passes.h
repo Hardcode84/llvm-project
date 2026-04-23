@@ -16,15 +16,16 @@
 #include "mlir/Pass/Pass.h"
 #include "mlir/Pass/PassRegistry.h"
 #include <memory>
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class IRMapping;
 class GreedyRewriteConfig;
 class Operation;
 class Pass;
 class Region;
 class ModuleOp;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace fir {
 

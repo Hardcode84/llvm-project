@@ -12,10 +12,13 @@
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/StringRef.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::codeview {
+LLVM_NAMESPACE_BEGIN
+namespace codeview {
 union DebugInfo;
 }
+LLVM_NAMESPACE_END
 
 namespace lld {
 class Timer;

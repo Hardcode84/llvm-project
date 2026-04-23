@@ -11,8 +11,9 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class StringRef {
  public:
@@ -21,7 +22,7 @@ class StringRef {
   StringRef(const std::string&);
 };
 
-}  // namespace llvm
+LLVM_NAMESPACE_END  // namespace llvm
 
 std::string ReturnsAString();
 

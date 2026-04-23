@@ -9,9 +9,11 @@
 #ifndef FLANG_OPTIMIZER_OPENACC_REGISTEROPENACCEXTENSIONS_H_
 #define FLANG_OPTIMIZER_OPENACC_REGISTEROPENACCEXTENSIONS_H_
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace fir::acc {
 

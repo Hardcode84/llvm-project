@@ -18,10 +18,11 @@
 #include "flang/Lower/SymbolMap.h"
 #include "flang/Optimizer/Builder/FIRBuilder.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-}
+LLVM_NAMESPACE_END
 
 namespace Fortran {
 namespace evaluate {
@@ -291,7 +292,7 @@ bool isEqual(const ExplicitSpaceArrayBases &x,
 
 } // namespace Fortran::lower
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <>
 struct DenseMapInfo<Fortran::lower::ExplicitSpaceArrayBases> {
   static inline Fortran::lower::ExplicitSpaceArrayBases getEmptyKey() {
@@ -309,7 +310,7 @@ struct DenseMapInfo<Fortran::lower::ExplicitSpaceArrayBases> {
     return Fortran::lower::isEqual(lhs, rhs);
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace Fortran::lower {
 /// Fortran also allows arrays to be evaluated under constructs which allow the

@@ -33,14 +33,15 @@
 #include "mlir/IR/BuiltinOps.h"
 #include <memory>
 #include <optional>
+#include "mlir/Support/ABINamespace.h"
 
 namespace Fortran::semantics {
 class Symbol;
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Location;
-}
+MLIR_NAMESPACE_END
 
 namespace fir {
 class FortranProcedureFlagsEnumAttr;

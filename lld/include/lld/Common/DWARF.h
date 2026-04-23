@@ -16,10 +16,11 @@
 #include "llvm/DebugInfo/DWARF/DWARFDebugLine.h"
 #include <memory>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct DILineInfo;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace lld {
 

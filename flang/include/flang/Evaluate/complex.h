@@ -12,10 +12,11 @@
 #include "formatting.h"
 #include "real.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-}
+LLVM_NAMESPACE_END
 
 namespace Fortran::evaluate::value {
 

@@ -21,12 +21,13 @@
 #include "flang/Semantics/type.h"
 #include "mlir/IR/Location.h"
 #include "mlir/IR/Types.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 namespace omp {
 class DeclareReductionOp;
 } // namespace omp
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace Fortran {
 namespace lower {

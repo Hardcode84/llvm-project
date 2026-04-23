@@ -11,15 +11,16 @@
 
 #include "mlir/Pass/Pass.h"
 #include "mlir/Pass/PassRegistry.h"
+#include "mlir/Support/ABINamespace.h"
 
 namespace fir {
 class LLVMTypeConverter;
 }
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DataLayout;
 class SymbolTable;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace cuf {
 

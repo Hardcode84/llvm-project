@@ -1,6 +1,7 @@
 // RUN: %check_clang_tidy %s llvm-use-new-mlir-op-builder %t
 
-namespace mlir {
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class Location {};
 class Value {};
 class OpBuilder {
@@ -37,7 +38,7 @@ struct OperandOp {
     return OperandOp(val);
   }
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 #define ASSIGN(A, B, C, D) C A = B.create<C>(B.getUnknownLoc(), D)
 

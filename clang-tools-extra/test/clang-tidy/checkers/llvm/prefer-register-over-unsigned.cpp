@@ -1,6 +1,7 @@
 // RUN: %check_clang_tidy %s llvm-prefer-register-over-unsigned %t
 
-namespace llvm {
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class Register {
 public:
   operator unsigned();
@@ -15,7 +16,7 @@ public:
 
   unsigned Reg;
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 llvm::Register getReg();
 llvm::RegisterLike getRegLike();
@@ -39,14 +40,14 @@ void apply_2() {
   // CHECK-FIXES-NEXT:   llvm::Register Reg2 = getReg();
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 void apply_3() {
   unsigned Reg3 = getReg();
   // CHECK-MESSAGES: :[[@LINE-1]]:12: warning: variable 'Reg3' declared as 'unsigned int'; use 'Register' instead [llvm-prefer-register-over-unsigned]
   // CHECK-FIXES:      void apply_3() {
   // CHECK-FIXES-NEXT:   Register Reg3 = getReg();
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 void done_1() {
   llvm::Register Reg1 = getReg();
@@ -62,13 +63,13 @@ void done_2() {
   // CHECK-FIXES-NEXT:   Register Reg2 = getReg();
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 void done_3() {
   Register Reg3 = getReg();
   // CHECK-FIXES:      void done_3() {
   // CHECK-FIXES-NEXT:   Register Reg3 = getReg();
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 void do_nothing_1() {
   unsigned Reg1 = getRegLike();
@@ -84,13 +85,13 @@ void do_nothing_2() {
   // CHECK-FIXES-NEXT:   unsigned Reg2 = getRegLike();
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 void do_nothing_3() {
   unsigned Reg3 = getRegLike();
   // CHECK-FIXES:      void do_nothing_3() {
   // CHECK-FIXES-NEXT:   unsigned Reg3 = getRegLike();
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 void fn1(llvm::Register R);
 void do_nothing_4() {

@@ -26,10 +26,11 @@
 #include "llvm/Support/raw_ostream.h"
 
 #include <unordered_map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DWARFUnit;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace lld::macho {
 

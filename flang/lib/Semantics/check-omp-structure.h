@@ -25,8 +25,9 @@ using OmpClauseSet =
 
 #define GEN_FLANG_DIRECTIVE_CLAUSE_SETS
 #include "llvm/Frontend/OpenMP/OMP.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace omp {
 static OmpClauseSet privateSet{
     Clause::OMPC_private, Clause::OMPC_firstprivate, Clause::OMPC_lastprivate};
@@ -44,7 +45,7 @@ static const OmpDirectiveSet noWaitClauseNotAllowedSet{
     Directive::OMPD_workshare,
 };
 } // namespace omp
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace Fortran::semantics {
 struct AnalyzedCondStmt;

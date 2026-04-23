@@ -19,11 +19,12 @@
 #include "flang/Optimizer/Dialect/FIRType.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "llvm/ADT/iterator_range.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Location;
 class Value;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace fir::factory {
 

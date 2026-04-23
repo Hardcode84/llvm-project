@@ -16,10 +16,11 @@
 #include "llvm/BinaryFormat/Wasm.h"
 #include "llvm/Support/CachePruning.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 enum class CodeGenOptLevel;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace lld::wasm {
 

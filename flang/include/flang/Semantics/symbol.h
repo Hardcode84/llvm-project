@@ -25,10 +25,11 @@
 #include <set>
 #include <variant>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-}
+LLVM_NAMESPACE_END
 namespace Fortran::parser {
 struct Expr;
 struct OpenMPDeclarativeConstruct;
@@ -1232,7 +1233,7 @@ SourceOrderedSymbolSet OrderBySourcePosition(const A &container) {
 } // namespace Fortran::semantics
 
 // Define required  info so that SymbolRef can be used inside llvm::DenseMap.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct DenseMapInfo<Fortran::semantics::SymbolRef> {
   static inline Fortran::semantics::SymbolRef getEmptyKey() {
     auto ptr = DenseMapInfo<const Fortran::semantics::Symbol *>::getEmptyKey();
@@ -1255,5 +1256,5 @@ template <> struct DenseMapInfo<Fortran::semantics::SymbolRef> {
     return LHS == RHS;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // FORTRAN_SEMANTICS_SYMBOL_H_

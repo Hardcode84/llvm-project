@@ -12,10 +12,11 @@
 
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
 using testing::ElementsAre;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 raw_ostream &operator<<(raw_ostream &OS,
                         const clang::clangd::FeatureModuleRegistry::entry &E) {
   OS << "(name = " << E.getName() << ", description = '" << E.getDesc() << "')";
@@ -44,7 +45,7 @@ raw_ostream &operator<<(raw_ostream &OS, const clang::clangd::Tweak &T) {
      << "title = " << T.title() << ")";
   return OS;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang::clangd {
 namespace {

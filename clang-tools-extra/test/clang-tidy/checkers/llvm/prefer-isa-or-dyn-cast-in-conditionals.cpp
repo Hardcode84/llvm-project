@@ -1,5 +1,6 @@
 // RUN: %check_clang_tidy %s llvm-prefer-isa-or-dyn-cast-in-conditionals %t
 
+#include "llvm/Support/Compiler.h"
 struct X;
 struct Y;
 struct Z {
@@ -9,7 +10,7 @@ struct Z {
   bool baz(Y*);
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <class X, class Y>
 bool isa(Y *);
 template <class X, class Y>
@@ -20,7 +21,7 @@ template <class X, class Y>
 X *dyn_cast(Y *);
 template <class X, class Y>
 X *dyn_cast_or_null(Y *);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using namespace llvm;
 

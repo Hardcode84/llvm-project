@@ -21,6 +21,7 @@
 #include "mlir/IR/BuiltinAttributes.h"
 #include "llvm/ADT/SmallSet.h"
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
 namespace Fortran::evaluate {
 class Component;
@@ -125,7 +126,7 @@ void privatizeSymbol(
 } // end namespace Fortran::lower
 
 // DenseMapInfo for pointers to Fortran::lower::SomeExpr.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <>
 struct DenseMapInfo<const Fortran::lower::SomeExpr *> {
   static inline const Fortran::lower::SomeExpr *getEmptyKey() {
@@ -160,6 +161,6 @@ struct DenseMapInfo<const Fortran::evaluate::Component *> {
     return Fortran::lower::isEqual(lhs, rhs);
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // FORTRAN_LOWER_SUPPORT_UTILS_H

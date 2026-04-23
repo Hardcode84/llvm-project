@@ -32,6 +32,7 @@
 #include <optional>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 namespace clangd {
@@ -225,7 +226,7 @@ struct Config {
 } // namespace clangd
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct DenseMapInfo<clang::clangd::Config::ExternalIndexSpec> {
   using ExternalIndexSpec = clang::clangd::Config::ExternalIndexSpec;
   static inline ExternalIndexSpec getEmptyKey() {
@@ -243,6 +244,6 @@ template <> struct DenseMapInfo<clang::clangd::Config::ExternalIndexSpec> {
            std::tie(RHS.Kind, RHS.Location, RHS.MountPoint);
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

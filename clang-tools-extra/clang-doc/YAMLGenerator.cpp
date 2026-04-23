@@ -13,6 +13,7 @@
 #include "llvm/Support/YAMLTraits.h"
 #include "llvm/Support/raw_ostream.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using namespace clang::doc;
 
@@ -30,7 +31,7 @@ LLVM_YAML_IS_SEQUENCE_VECTOR(TypedefInfo)
 LLVM_YAML_IS_SEQUENCE_VECTOR(BaseRecordInfo)
 LLVM_YAML_IS_SEQUENCE_VECTOR(OwnedPtr<CommentInfo>)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <typename T> struct SequenceTraits<llvm::ArrayRef<T>> {
@@ -144,11 +145,11 @@ template <> struct ScalarTraits<QuotedString> {
   static QuotingType mustQuote(StringRef) { return QuotingType::Single; }
 };
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::yaml::QuotedString)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 // Helper functions to map infos to YAML.
@@ -449,7 +450,7 @@ template <> struct MappingTraits<OwnedPtr<CommentInfo>> {
 };
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace clang {
 namespace doc {

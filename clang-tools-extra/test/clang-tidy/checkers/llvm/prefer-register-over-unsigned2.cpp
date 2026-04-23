@@ -1,11 +1,12 @@
 // RUN: %check_clang_tidy %s llvm-prefer-register-over-unsigned %t
 
-namespace llvm {
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class Register {
 public:
   operator unsigned();
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 llvm::Register getReg();
 

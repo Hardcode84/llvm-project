@@ -1,3 +1,4 @@
+#include "llvm/Support/Compiler.h"
 namespace clang {
 namespace clangd {
 namespace remote {
@@ -7,4 +8,4 @@ char Character;
 } // namespace clangd
 } // namespace clang
 
-namespace llvm {} // namespace llvm
+LLVM_NAMESPACE_BEGINLLVM_NAMESPACE_END // namespace llvm

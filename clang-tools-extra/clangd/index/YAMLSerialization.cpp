@@ -27,6 +27,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <cstdint>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 namespace {
 struct YIncludeHeaderWithReferences;
@@ -73,7 +74,7 @@ struct YIncludeHeaderWithReferences {
 struct CompileCommandYAML : clang::tooling::CompileCommand {};
 
 } // namespace
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 using clang::clangd::FileDigest;
@@ -432,7 +433,7 @@ template <> struct MappingTraits<VariantEntry> {
 };
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace clang {
 namespace clangd {

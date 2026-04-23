@@ -1,5 +1,6 @@
 // RUN: %check_clang_tidy %s readability-redundant-string-cstr %t
 
+#include "llvm/Support/Compiler.h"
 namespace std {
 template <typename T>
 class allocator {};
@@ -16,12 +17,12 @@ struct basic_string {
 };
 typedef basic_string<char, std::char_traits<char>, std::allocator<char>> string;
 }
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct StringRef {
   StringRef(const char *p);
   StringRef(const std::string &);
 };
-}
+LLVM_NAMESPACE_END
 
 void f1(const std::string &s) {
   f1(s.c_str());

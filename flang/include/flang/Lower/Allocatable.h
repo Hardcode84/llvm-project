@@ -17,12 +17,13 @@
 #include "flang/Optimizer/Builder/MutableBox.h"
 #include "flang/Runtime/allocator-registry-consts.h"
 #include "llvm/ADT/StringRef.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Value;
 class ValueRange;
 class Location;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace fir {
 class FirOpBuilder;

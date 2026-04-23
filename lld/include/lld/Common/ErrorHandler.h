@@ -76,10 +76,11 @@
 #include "llvm/Support/FileOutputBuffer.h"
 #include "llvm/Support/raw_ostream.h"
 #include <mutex>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DiagnosticInfo;
-}
+LLVM_NAMESPACE_END
 
 namespace lld {
 

@@ -15,11 +15,12 @@
 
 #include "mlir/Dialect/OpenACC/OpenACCVariableInfo.h"
 #include "mlir/IR/BuiltinAttributes.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class DialectAsmParser;
 class DialectAsmPrinter;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace fir {
 

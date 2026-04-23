@@ -15,14 +15,16 @@
 
 #include "flang/Support/Fortran.h"
 #include "mlir/IR/BuiltinAttributes.h"
+#include "llvm/Support/Compiler.h"
+#include "mlir/Support/ABINamespace.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
-}
+LLVM_NAMESPACE_END
 
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class Operation;
-}
+MLIR_NAMESPACE_END
 
 #include "flang/Optimizer/Dialect/CUF/Attributes/CUFEnumAttr.h.inc"
 

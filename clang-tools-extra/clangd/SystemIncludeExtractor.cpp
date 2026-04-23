@@ -69,6 +69,7 @@
 #include <tuple>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 namespace clang::clangd {
 namespace {
@@ -214,7 +215,7 @@ private:
 };
 } // namespace
 } // namespace clang::clangd
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 using DriverArgs = clang::clangd::DriverArgs;
 template <> struct DenseMapInfo<DriverArgs> {
   static DriverArgs getEmptyKey() {
@@ -247,7 +248,7 @@ template <> struct DenseMapInfo<DriverArgs> {
     return LHS == RHS;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 namespace clang::clangd {
 namespace {
 bool isValidTarget(llvm::StringRef Triple) {

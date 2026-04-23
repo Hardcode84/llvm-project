@@ -13,10 +13,12 @@
 #ifndef FLANG_OPTIMIZER_DIALECT_CUF_GPUTOLLVMIRTRANSLATION_H_
 #define FLANG_OPTIMIZER_DIALECT_CUF_GPUTOLLVMIRTRANSLATION_H_
 
-namespace mlir {
+
+#include "mlir/Support/ABINamespace.h"
+MLIR_NAMESPACE_BEGIN
 class DialectRegistry;
 class MLIRContext;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
 namespace cuf {
 

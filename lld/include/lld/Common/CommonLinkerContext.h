@@ -22,10 +22,11 @@
 #include "lld/Common/ErrorHandler.h"
 #include "lld/Common/Memory.h"
 #include "llvm/Support/StringSaver.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace lld {
 struct SpecificAllocBase;
