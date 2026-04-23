@@ -35,10 +35,11 @@
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/Transforms/Utils/CallGraphUpdater.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   void initializeModuleNDMPass(PassRegistry&);
   void initializeFPassPass(PassRegistry&);
   void initializeCGPassPass(PassRegistry&);
@@ -649,7 +650,7 @@ namespace llvm {
       Passes.run(*M);
     }
   }
-}
+LLVM_NAMESPACE_END
 
 INITIALIZE_PASS(ModuleNDM, "mndm", "mndm", false, false)
 INITIALIZE_PASS_BEGIN(CGPass, "cgp","cgp", false, false)

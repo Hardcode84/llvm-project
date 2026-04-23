@@ -18,8 +18,9 @@
 #include "llvm/ADT/SmallPtrSet.h"
 #include "llvm/Support/SMLoc.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class CodeGenTarget;
 class DagInit;
 class Init;
@@ -113,6 +114,6 @@ private:
 };
 
 } // namespace gi
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_COMMON_GLOBALISEL_PATTERNPARSER_H

@@ -13,8 +13,9 @@
 #include "llvm/ADT/PagedVector.h"
 #include "gtest/gtest.h"
 #include <iterator>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 TEST(PagedVectorTest, EmptyTest) {
   PagedVector<int, 10> V;
   EXPECT_EQ(V.empty(), true);
@@ -318,4 +319,4 @@ TEST(PagedVectorTest, FunctionalityTest) {
   EXPECT_EQ(V.size(), 0ULL);
   EXPECT_EQ(V.capacity(), 0ULL);
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

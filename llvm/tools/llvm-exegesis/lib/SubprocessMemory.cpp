@@ -18,9 +18,10 @@
 #include <sys/mman.h>
 #include <sys/syscall.h>
 #include <unistd.h>
+#include "llvm/Support/Compiler.h"
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 #if defined(__linux__)
@@ -177,4 +178,4 @@ SubprocessMemory::~SubprocessMemory() {}
 #endif // defined(__linux__)
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

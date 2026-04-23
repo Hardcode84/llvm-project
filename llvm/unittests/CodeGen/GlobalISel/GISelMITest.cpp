@@ -7,8 +7,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "GISelMITest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 std::ostream &
 operator<<(std::ostream &OS, const LLT Ty) {
   std::string Repr;
@@ -27,7 +28,7 @@ operator<<(std::ostream &OS, const MachineFunction &MF) {
   return OS;
 }
 
-}
+LLVM_NAMESPACE_END
 
 std::unique_ptr<TargetMachine> AArch64GISelMITest::createTargetMachine() const {
   Triple TargetTriple("aarch64--");

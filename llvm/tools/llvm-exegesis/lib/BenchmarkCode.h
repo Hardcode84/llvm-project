@@ -13,8 +13,9 @@
 #include "llvm/MC/MCInst.h"
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 // A collection of instructions that are to be assembled, executed and measured.
@@ -30,6 +31,6 @@ struct BenchmarkCode {
 };
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_EXEGESIS_BENCHMARKCODE_H

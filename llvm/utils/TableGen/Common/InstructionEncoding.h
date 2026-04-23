@@ -16,8 +16,9 @@
 #include <optional>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class BitsInit;
 class CodeGenInstruction;
@@ -153,6 +154,6 @@ private:
   void parseFixedLenOperands(const BitsInit &Bits);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_COMMON_INSTRUCTIONENCODING_H

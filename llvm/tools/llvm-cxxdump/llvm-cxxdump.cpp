@@ -27,6 +27,7 @@
 #include <map>
 #include <string>
 #include <system_error>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::object;
@@ -39,7 +40,7 @@ cl::list<std::string> InputFilenames(cl::Positional,
                                      cl::cat(CXXDumpCategory));
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static void error(std::error_code EC) {
   if (!EC)
@@ -63,7 +64,7 @@ T unwrapOrError(Expected<T> EO) {
   return std::move(*EO);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static void reportError(StringRef Input, StringRef Message) {
   if (Input == "-")

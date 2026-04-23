@@ -23,8 +23,9 @@
 #include "llvm/MC/MCTargetOptions.h"
 
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 // A helper class for decoding and printing machine instructions.
@@ -51,6 +52,6 @@ private:
 };
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_EXEGESIS_DISASSEMBLER_HELPER_H

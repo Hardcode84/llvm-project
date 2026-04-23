@@ -14,8 +14,9 @@
 #define LLVM_COV_SOURCECOVERAGEVIEWTEXT_H
 
 #include "SourceCoverageView.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using namespace coverage;
 
@@ -103,6 +104,6 @@ public:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_COV_SOURCECOVERAGEVIEWTEXT_H

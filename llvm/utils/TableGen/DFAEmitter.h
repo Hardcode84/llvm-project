@@ -23,8 +23,9 @@
 #include <set>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 class StringRef;
@@ -104,6 +105,6 @@ private:
   void visitDfaState(const DfaState &DS);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

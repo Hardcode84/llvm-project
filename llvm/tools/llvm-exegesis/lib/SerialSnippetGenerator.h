@@ -17,8 +17,9 @@
 #include "Error.h"
 #include "MCInstrDescView.h"
 #include "SnippetGenerator.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 class SerialSnippetGenerator : public SnippetGenerator {
@@ -32,6 +33,6 @@ public:
 };
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_EXEGESIS_SERIALSNIPPETGENERATOR_H

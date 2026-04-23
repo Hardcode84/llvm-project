@@ -19,6 +19,7 @@
 #include <map>
 #include <ostream>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace coverage;
@@ -39,7 +40,7 @@ ErrorEquals(Error E, coveragemap_error Expected_Err,
   return ::testing::AssertionFailure() << "error: " << FoundMsg << "\n";
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace coverage {
 void PrintTo(const Counter &C, ::std::ostream *os) {
   if (C.isZero())
@@ -57,7 +58,7 @@ void PrintTo(const CoverageSegment &S, ::std::ostream *os) {
   *os << (S.IsRegionEntry ? "true" : "false") << ")";
 }
 }
-}
+LLVM_NAMESPACE_END
 
 namespace {
 

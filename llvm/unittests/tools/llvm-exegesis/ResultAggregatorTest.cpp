@@ -8,8 +8,9 @@
 
 #include "ResultAggregator.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 namespace {
@@ -75,4 +76,4 @@ TEST(ResultAggregatorTest, MiddleHalfAggregator) {
 } // namespace
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

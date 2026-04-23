@@ -19,8 +19,9 @@
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Record;
 
@@ -125,6 +126,6 @@ public:
   void expandSTIPredicate(raw_ostream &OS, const STIPredicateFunction &Fn);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_COMMON_PREDICATEEXPANDER_H

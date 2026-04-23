@@ -9,7 +9,9 @@
 #ifndef LLVM_UNITTESTS_ADT_COUNTCOPYANDMOVE_H
 #define LLVM_UNITTESTS_ADT_COUNTCOPYANDMOVE_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 struct CountCopyAndMove {
   static int DefaultConstructions;
@@ -61,6 +63,6 @@ struct CountCopyAndMove {
   static int TotalMoves() { return MoveConstructions + MoveAssignments; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_UNITTESTS_ADT_COUNTCOPYANDMOVE_H

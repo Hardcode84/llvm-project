@@ -41,10 +41,11 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "ir2vec"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Tool name for error reporting
 static const char *ToolName = "llvm-ir2vec";
@@ -227,6 +228,6 @@ struct MIRContext {
 
 } // namespace mir2vec
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_IR2VEC_UTILS_UTILS_H

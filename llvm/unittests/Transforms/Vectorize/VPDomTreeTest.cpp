@@ -11,8 +11,9 @@
 #include "../lib/Transforms/Vectorize/VPlanDominatorTree.h"
 #include "VPlanTestBase.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace {
 
 using VPDominatorTreeTest = VPlanTestBase;
@@ -291,4 +292,4 @@ TEST_F(VPDominatorTreeTest, DominanceRegionsTest) {
 }
 
 } // namespace
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

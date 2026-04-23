@@ -24,8 +24,9 @@
 #include "llvm/Transforms/Utils/CallGraphUpdater.h"
 #include "gtest/gtest.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Helper class to create a module from assembly string and an Attributor
 class AttributorTestBase : public testing::Test {
@@ -43,6 +44,6 @@ protected:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

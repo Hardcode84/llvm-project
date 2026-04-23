@@ -23,8 +23,9 @@
 #include "llvm/Support/ScopedPrinter.h"
 #include "llvm/Support/raw_ostream.h"
 #include <map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static inline Error createError(const Twine &Msg) {
   return createStringError(object::object_error::parse_failed, Msg);
@@ -241,4 +242,4 @@ void ObjDumper::printOffloading(const object::ObjectFile &Obj) {
     Bundle.printEntriesAsURI();
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -19,8 +19,9 @@
 #include "llvm/Support/Format.h"
 #include "llvm/Support/ScopedPrinter.h"
 #include "llvm/Support/type_traits.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace ARM {
 namespace EHABI {
 
@@ -642,6 +643,6 @@ void PrinterContext<ET>::PrintUnwindInformation() const {
 }
 }
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

@@ -16,8 +16,9 @@
 #include "llvm/Support/TargetSelect.h"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 void InitializeAArch64ExegesisTarget();
@@ -75,4 +76,4 @@ TEST_F(AArch64TargetTest, DefaultPfmCounters) {
 
 } // namespace
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

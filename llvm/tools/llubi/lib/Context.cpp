@@ -12,8 +12,10 @@
 
 #include "Context.h"
 #include "llvm/Support/MathExtras.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::ubi {
+LLVM_NAMESPACE_BEGIN
+namespace ubi {
 
 Context::Context(Module &M)
     : Ctx(M.getContext()), M(M), DL(M.getDataLayout()),
@@ -530,4 +532,5 @@ bool MemoryObject::isHeapAllocated() const {
   llvm_unreachable("Unknown MemAllocKind");
 }
 
-} // namespace llvm::ubi
+}
+LLVM_NAMESPACE_END // namespace llvm::ubi

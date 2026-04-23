@@ -25,8 +25,9 @@
 #include "llvm/IR/Module.h"
 #include "llvm/IR/Type.h"
 #include "llvm/Support/CodeGen.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Helper class that can build very simple Modules
 class TrivialModuleBuilder {
@@ -325,6 +326,6 @@ protected:
   std::unique_ptr<Module> M;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_UNITTESTS_EXECUTIONENGINE_MCJIT_MCJITTESTBASE_H

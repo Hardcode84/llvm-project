@@ -13,13 +13,14 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using ::testing::Each;
 using ::testing::ElementsAre;
 using ::testing::IsEmpty;
 using ::testing::SizeIs;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace {
 
 TEST(RepeatedTest, Construction) {
@@ -97,4 +98,4 @@ TEST(RepeatedTest, IteratorTraits) {
 }
 
 } // anonymous namespace
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

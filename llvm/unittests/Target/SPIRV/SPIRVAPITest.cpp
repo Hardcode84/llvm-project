@@ -20,8 +20,9 @@
 #include "gtest/gtest.h"
 #include <gmock/gmock.h>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 extern "C" LLVM_EXTERNAL_VISIBILITY bool
 SPIRVTranslate(Module *M, std::string &SpirvObj, std::string &ErrMsg,
@@ -272,4 +273,4 @@ TEST_F(SPIRVAPITest, checkTranslateStringOptsWrongExtensionByArg) {
 }
 #endif
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

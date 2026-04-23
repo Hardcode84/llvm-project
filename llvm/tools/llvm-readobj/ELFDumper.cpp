@@ -848,7 +848,7 @@ private:
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <class ELFT>
 static std::unique_ptr<ObjDumper>
@@ -878,7 +878,7 @@ std::unique_ptr<ObjDumper> createELFDumper(const object::ELFObjectFileBase &Obj,
   return createELFDumper(*cast<ELF64BEObjectFile>(&Obj), Writer);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 template <class ELFT>
 Expected<SmallVector<std::optional<VersionEntry>, 0> *>

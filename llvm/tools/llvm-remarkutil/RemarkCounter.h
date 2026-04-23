@@ -15,8 +15,9 @@
 #include "llvm/ADT/MapVector.h"
 #include "llvm/Support/Regex.h"
 #include <map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace remarks {
 
 /// Collect remarks by counting the existance of a remark or by looking through
@@ -146,5 +147,5 @@ struct RemarkCounter : Counter {
 };
 } // namespace remarks
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // TOOLS_LLVM_REMARKCOUNTER_H

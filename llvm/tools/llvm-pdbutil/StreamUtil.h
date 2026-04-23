@@ -14,8 +14,9 @@
 
 #include <string>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 class PDBFile;
 enum class StreamPurpose {
@@ -58,6 +59,6 @@ private:
 void discoverStreamPurposes(PDBFile &File,
                             SmallVectorImpl<StreamInfo> &Streams);
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

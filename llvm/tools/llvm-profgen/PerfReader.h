@@ -17,8 +17,9 @@
 #include <cstdint>
 #include <fstream>
 #include <map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CleanupInstaller;
 
@@ -751,6 +752,6 @@ private:
 };
 
 } // end namespace sampleprof
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

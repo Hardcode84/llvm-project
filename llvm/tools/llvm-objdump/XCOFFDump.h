@@ -10,8 +10,9 @@
 #define LLVM_TOOLS_LLVM_OBJDUMP_XCOFFDUMP_H
 
 #include "llvm/Object/XCOFFObjectFile.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class formatted_raw_ostream;
 class MCSubtargetInfo;
@@ -41,5 +42,5 @@ void dumpTracebackTable(ArrayRef<uint8_t> Bytes, uint64_t Address,
                         const MCSubtargetInfo &STI,
                         const object::XCOFFObjectFile *Obj);
 } // namespace objdump
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

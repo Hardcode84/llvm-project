@@ -37,10 +37,11 @@
 #include "llvm/Support/raw_ostream.h"
 
 #include <functional>
+#include "llvm/Support/Compiler.h"
 
 using Instr = llvm::cfi_verify::FileAnalysis::Instr;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace cfi_verify {
 
 extern uint64_t SearchLengthForUndef;
@@ -128,6 +129,6 @@ private:
 };
 
 } // end namespace cfi_verify
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_CFI_VERIFY_GRAPH_BUILDER_H

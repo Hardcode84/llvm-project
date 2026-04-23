@@ -14,8 +14,10 @@
 #include "llvm/ADT/IntrusiveRefCntPtr.h"
 #include "llvm/IR/Type.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::ubi {
+LLVM_NAMESPACE_BEGIN
+namespace ubi {
 
 class MemoryObject;
 class Context;
@@ -198,6 +200,7 @@ inline raw_ostream &operator<<(raw_ostream &OS, const AnyValue &V) {
   return OS;
 }
 
-} // namespace llvm::ubi
+}
+LLVM_NAMESPACE_END // namespace llvm::ubi
 
 #endif

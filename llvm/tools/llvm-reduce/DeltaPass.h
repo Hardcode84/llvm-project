@@ -12,13 +12,14 @@
 #include "ReducerWorkItem.h"
 #include "deltas/Delta.h"
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct DeltaPass {
   StringRef Name;                            // e.g., "strip-debug-info"
   void (*Func)(Oracle &, ReducerWorkItem &); // e.g., stripDebugInfoDeltaPass
   StringRef Desc;                            // e.g., "Stripping Debug Info"
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

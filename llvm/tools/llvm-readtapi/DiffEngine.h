@@ -17,8 +17,9 @@
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/TextAPI/Symbol.h"
 #include "llvm/TextAPI/Target.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// InterfaceInputOrder determines from which file the diff attribute belongs
 /// to.
@@ -161,6 +162,6 @@ private:
                                           const MachO::InterfaceFile *);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

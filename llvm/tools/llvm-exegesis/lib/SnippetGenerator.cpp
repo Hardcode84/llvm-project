@@ -20,10 +20,11 @@
 #include "llvm/Support/FileSystem.h"
 #include "llvm/Support/FormatVariadic.h"
 #include "llvm/Support/Program.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "snippet-generator"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 static cl::opt<unsigned>
@@ -328,4 +329,4 @@ Error validateGeneratedInstruction(const LLVMState &State, const MCInst &Inst) {
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

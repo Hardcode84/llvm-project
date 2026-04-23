@@ -14,6 +14,7 @@
 #include "llvm/Support/SourceMgr.h"
 #include "llvm/Transforms/Utils/Debugify.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -25,7 +26,7 @@ static std::unique_ptr<Module> parseIR(LLVMContext &C, const char *IR) {
   return Mod;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 void initializeDebugInfoDropPass(PassRegistry &);
 void initializeDebugInfoDummyAnalysisPass(PassRegistry &);
 
@@ -246,7 +247,7 @@ TEST(DebugInfoDummyAnalysis, PreserveOriginalDebugInfo) {
   EXPECT_TRUE(StdOut.find(FinalResult) != std::string::npos);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 INITIALIZE_PASS_BEGIN(DebugInfoDrop, "debuginfodroppass", "debuginfodroppass",
                       false, false)

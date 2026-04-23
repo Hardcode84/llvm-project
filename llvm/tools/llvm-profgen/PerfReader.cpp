@@ -16,10 +16,11 @@
 #include "llvm/Support/MemoryBuffer.h"
 #include "llvm/Support/Process.h"
 #include "llvm/Support/ToolOutputFile.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "perf-reader"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 cl::opt<bool> SkipSymbolization("skip-symbolization",
                                 cl::desc("Dump the unsymbolized profile to the "
@@ -1413,4 +1414,4 @@ void PerfScriptReader::parsePerfTraces() {
 SmallVector<CleanupInstaller, 2> PerfScriptReader::TempFileCleanups;
 
 } // end namespace sampleprof
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

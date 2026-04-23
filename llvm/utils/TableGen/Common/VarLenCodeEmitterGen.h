@@ -15,8 +15,9 @@
 #define LLVM_UTILS_TABLEGEN_COMMON_VARLENCODEEMITTERGEN_H
 
 #include "llvm/TableGen/Record.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct EncodingSegment {
   unsigned BitWidth;
@@ -55,6 +56,6 @@ public:
 
 void emitVarLenCodeEmitter(const RecordKeeper &R, raw_ostream &OS);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_COMMON_VARLENCODEEMITTERGEN_H

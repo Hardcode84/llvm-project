@@ -27,8 +27,9 @@
 #include <cstdlib>
 #include <memory>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 // Common code for all benchmark modes.
@@ -141,6 +142,6 @@ private:
 };
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_EXEGESIS_BENCHMARKRUNNER_H

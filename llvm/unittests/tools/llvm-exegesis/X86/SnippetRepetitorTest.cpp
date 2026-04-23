@@ -13,8 +13,9 @@
 #include "TestBase.h"
 #include "X86InstrInfo.h"
 #include "llvm/CodeGen/MachineBasicBlock.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 namespace {
 
@@ -110,4 +111,4 @@ TEST_F(X86SnippetRepetitorTest, Loop) {
 
 } // namespace
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

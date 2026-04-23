@@ -10,8 +10,9 @@
 //
 //===----------------------------------------------------------------------===//
 #include "RemarkUtilHelpers.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace remarks {
 /// \returns A MemoryBuffer for the input file on success, and an Error
 /// otherwise.
@@ -124,4 +125,4 @@ bool Filters::filterRemark(const Remark &Remark) {
 }
 
 } // namespace remarks
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

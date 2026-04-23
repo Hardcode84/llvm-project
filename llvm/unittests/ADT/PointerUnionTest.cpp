@@ -9,6 +9,7 @@
 #include "llvm/ADT/PointerUnion.h"
 #include "llvm/ADT/DenseMap.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 using namespace llvm;
 
 namespace {
@@ -325,7 +326,7 @@ struct OverClaimWrapper {
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct PointerLikeTypeTraits<OverClaimWrapper> {
   static void *getAsVoidPointer(OverClaimWrapper W) {
     return W.getOpaqueValue();
@@ -337,7 +338,7 @@ template <> struct PointerLikeTypeTraits<OverClaimWrapper> {
   // 1 spare bit. Claiming 2 bits mimics the LGUP over-claim on 32-bit.
   static constexpr int NumLowBitsAvailable = 2;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 

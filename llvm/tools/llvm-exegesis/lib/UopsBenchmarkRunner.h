@@ -16,8 +16,9 @@
 
 #include "BenchmarkRunner.h"
 #include "Target.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 class UopsBenchmarkRunner : public BenchmarkRunner {
@@ -38,6 +39,6 @@ private:
 };
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_EXEGESIS_UOPSBENCHMARKRUNNER_H

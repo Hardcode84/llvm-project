@@ -29,8 +29,9 @@
 #include "llvm/TargetParser/Triple.h"
 
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace json {
 class Object;
 } // end namespace json
@@ -82,5 +83,5 @@ protected:
 };
 
 } // end namespace mca
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif

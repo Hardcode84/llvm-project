@@ -13,8 +13,9 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace json {
 
 namespace {
@@ -678,4 +679,4 @@ TEST(JSONTest, Path) {
 
 } // namespace
 } // namespace json
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

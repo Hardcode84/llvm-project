@@ -21,8 +21,9 @@
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/Target/TargetMachine.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class RISCVSelectionDAGTest : public testing::Test {
 
@@ -134,4 +135,4 @@ TEST_F(RISCVSelectionDAGTest, computeKnownBits_SRLW) {
   EXPECT_EQ(Known.One, APInt(64, 0));
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

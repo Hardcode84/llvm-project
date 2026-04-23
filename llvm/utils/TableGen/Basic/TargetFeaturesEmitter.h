@@ -16,8 +16,9 @@
 
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/TableGen/Record.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Sorting predicate to sort record pointers by their
 /// FieldName field.
 struct LessRecordFieldFieldName {
@@ -45,5 +46,5 @@ public:
   virtual void run(raw_ostream &O);
   virtual ~TargetFeaturesEmitter() = default;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

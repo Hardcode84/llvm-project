@@ -23,8 +23,9 @@
 #include "llvm/Target/TargetLoweringObjectFile.h"
 #include "llvm/Target/TargetMachine.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class X86MCInstLowerTest : public testing::Test {
 protected:
@@ -172,4 +173,4 @@ TEST_F(X86MCInstLowerTest, moExternalSymbol_MCSYMBOL) {
   EXPECT_EQ(GOTMFCtxPtr, nullptr);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

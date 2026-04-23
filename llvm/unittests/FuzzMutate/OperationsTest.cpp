@@ -17,9 +17,10 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 #include <iostream>
+#include "llvm/Support/Compiler.h"
 
 // Define some pretty printers to help with debugging failures.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 void PrintTo(Type *T, ::std::ostream *OS) {
   raw_os_ostream ROS(*OS);
   T->print(ROS);
@@ -38,7 +39,7 @@ void PrintTo(Value *V, ::std::ostream *OS) {
 }
 void PrintTo(Constant *C, ::std::ostream *OS) { PrintTo(cast<Value>(C), OS); }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using namespace llvm;
 

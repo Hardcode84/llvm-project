@@ -14,8 +14,9 @@
 
 #include "llvm/Support/ScopedPrinter.h"
 #include "llvm/Support/YAMLTraits.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 class YAMLOutputStyle : public OutputStyle {
@@ -43,6 +44,6 @@ private:
   yaml::PdbObject Obj;
 };
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVMPDBDUMP_YAMLOUTPUTSTYLE_H

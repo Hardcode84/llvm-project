@@ -13,6 +13,7 @@
 #include "gtest/gtest.h"
 #include <memory>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -33,14 +34,14 @@ struct A : CountCopyAndMove {
 };
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct DenseMapInfo<A> {
   static inline A getEmptyKey() { return 0x7fffffff; }
   static inline A getTombstoneKey() { return -0x7fffffff - 1; }
   static unsigned getHashValue(const A &Val) { return (unsigned)(Val.v * 37U); }
   static bool isEqual(const A &LHS, const A &RHS) { return LHS.v == RHS.v; }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 TEST(MapVectorTest, swap) {

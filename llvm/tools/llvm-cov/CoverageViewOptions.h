@@ -12,8 +12,9 @@
 #include "RenderingSupport.h"
 #include "llvm/Config/llvm-config.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// The options for displaying the code coverage information.
 struct CoverageViewOptions {
@@ -86,6 +87,6 @@ struct CoverageViewOptions {
     return VersionString;
   }
 };
-}
+LLVM_NAMESPACE_END
 
 #endif // LLVM_COV_COVERAGEVIEWOPTIONS_H

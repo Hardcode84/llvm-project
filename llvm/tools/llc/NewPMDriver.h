@@ -22,8 +22,9 @@
 #include "llvm/IR/DiagnosticHandler.h"
 #include "llvm/Support/CodeGen.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
 class TargetLibraryInfoImpl;
 class TargetMachine;
@@ -45,6 +46,6 @@ int compileModuleWithNewPM(StringRef Arg0, std::unique_ptr<Module> M,
                            LLVMContext &Context,
                            const TargetLibraryInfoImpl &TLII, VerifierKind VK,
                            StringRef PassPipeline, CodeGenFileType FileType);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

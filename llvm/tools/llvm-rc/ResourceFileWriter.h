@@ -20,8 +20,9 @@
 #include "llvm/Support/Endian.h"
 
 #include <map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MemoryBuffer;
 
@@ -222,6 +223,6 @@ private:
 };
 
 } // namespace rc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

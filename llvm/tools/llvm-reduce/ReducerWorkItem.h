@@ -11,8 +11,9 @@
 
 #include "llvm/IR/Module.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LLVMContext;
 class MachineModuleInfo;
 class MemoryBufferRef;
@@ -65,6 +66,6 @@ private:
 std::pair<std::unique_ptr<ReducerWorkItem>, bool>
 parseReducerWorkItem(StringRef ToolName, StringRef Filename, LLVMContext &Ctxt,
                      std::unique_ptr<TargetMachine> &TM, bool IsMIR);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

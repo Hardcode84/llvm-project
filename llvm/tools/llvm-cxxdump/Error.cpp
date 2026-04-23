@@ -13,6 +13,7 @@
 #include "Error.h"
 #include "llvm/Support/ErrorHandling.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -38,9 +39,9 @@ public:
 };
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 const std::error_category &cxxdump_category() {
   static cxxdump_error_category o;
   return o;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -21,6 +21,7 @@
 #include <string>
 #include <tuple>
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -49,7 +50,7 @@ static std::string convertToString(double d, unsigned Prec, unsigned Pad,
   return std::string(Buffer.data(), Buffer.size());
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace detail {
 class IEEEFloatUnitTestHelper {
 public:
@@ -78,7 +79,7 @@ public:
   }
 };
 } // namespace detail
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 

@@ -21,8 +21,9 @@
 #define LLVM_TOOLS_OPT_NEWPMDRIVER_H
 
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class PassBuilder;
 class StringRef;
 class Module;
@@ -76,6 +77,6 @@ bool runPassPipeline(
     bool ShouldPreserveBitcodeUseListOrder, bool EmitSummaryIndex,
     bool EmitModuleHash, bool EnableDebugify, bool VerifyDIPreserve,
     bool EnableProfcheck, bool UnifiedLTO = false);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

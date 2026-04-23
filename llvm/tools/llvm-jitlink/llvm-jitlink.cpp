@@ -77,6 +77,7 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <unistd.h>
+#include "llvm/Support/Compiler.h"
 #endif // LLVM_ON_UNIX
 
 #define DEBUG_TYPE "llvm_jitlink"
@@ -424,7 +425,7 @@ void reportLLVMJITLinkError(Error Err) {
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static raw_ostream &
 operator<<(raw_ostream &OS, const Session::MemoryRegionInfo &MRI) {
@@ -1728,7 +1729,7 @@ Session::findSymbolInfo(const orc::SymbolStringPtr &SymbolName,
   return SymInfoItr->second;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 static std::pair<Triple, SubtargetFeatures> getFirstFileTripleAndFeatures() {
 

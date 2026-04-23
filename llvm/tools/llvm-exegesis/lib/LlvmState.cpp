@@ -17,8 +17,9 @@
 #include "llvm/Target/TargetMachine.h"
 #include "llvm/Target/TargetOptions.h"
 #include "llvm/TargetParser/Host.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 Expected<LLVMState> LLVMState::Create(std::string TripleName,
@@ -162,4 +163,4 @@ bool LLVMState::canAssemble(const MCInst &Inst) const {
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

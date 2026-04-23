@@ -19,12 +19,13 @@
 #include "llvm/Testing/Support/SupportHelpers.h"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
 using ::testing::Pointwise;
 
 using llvm::unittest::TempDir;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 static std::string Dump(const MCInst &McInst) {
@@ -134,4 +135,4 @@ TEST_F(MipsBenchmarkResultTest, PerInstructionStats) {
 }
 } // namespace
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

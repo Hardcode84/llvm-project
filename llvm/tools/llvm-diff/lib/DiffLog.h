@@ -15,8 +15,9 @@
 
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class Instruction;
   class Value;
   class Consumer;
@@ -78,6 +79,6 @@ namespace llvm {
     const Instruction *getRight(unsigned I) const;
   };
 
-}
+LLVM_NAMESPACE_END
 
 #endif

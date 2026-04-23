@@ -15,10 +15,11 @@
 #include <type_traits>
 
 #include <cstddef>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T> struct CountedSet {
   using iterator = typename SmallPtrSet<T, 4>::iterator;
@@ -90,4 +91,4 @@ TEST(DepthFirstIteratorTest, MultiPassSafeWithInternalSet) {
 
   EXPECT_EQ(NodesFirstPass, NodesSecondPass);
 }
-}
+LLVM_NAMESPACE_END

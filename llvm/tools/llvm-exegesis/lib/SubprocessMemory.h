@@ -24,10 +24,11 @@
 typedef int pid_t;
 #else
 #include <sys/types.h>
+#include "llvm/Support/Compiler.h"
 #endif // _MSC_VER
 
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 class SubprocessMemory {
@@ -66,6 +67,6 @@ private:
 };
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

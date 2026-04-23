@@ -98,7 +98,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static mc::RegisterMCTargetOptionsFlags MOF;
 
@@ -1317,4 +1317,4 @@ void DwarfLinkerForBinaryRelocationMap::updateAndSaveValidRelocs(
 }
 
 } // namespace dsymutil
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

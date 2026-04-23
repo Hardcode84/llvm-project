@@ -25,8 +25,9 @@
 #include "llvm/Support/Format.h"
 #include "llvm/Support/ScopedPrinter.h"
 #include "llvm/Support/type_traits.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace DwarfCFIEH {
 
 template <typename ELFT> class PrinterContext {
@@ -252,6 +253,6 @@ void PrinterContext<ELFT>::printEHFrame(const Elf_Shdr *EHFrameShdr) const {
   W.unindent();
 }
 } // namespace DwarfCFIEH
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

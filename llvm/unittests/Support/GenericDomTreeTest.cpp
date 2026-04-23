@@ -10,6 +10,7 @@
 #include "llvm/ADT/GraphTraits.h"
 #include "llvm/Support/DataTypes.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 using namespace llvm;
 
 namespace {
@@ -38,7 +39,7 @@ struct NumberedGraph {
 };
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct GraphTraits<NumberedNode *> {
   using NodeRef = NumberedNode *;
   static unsigned getNumber(NumberedNode *Node) { return Node->Number; }
@@ -60,7 +61,7 @@ namespace DomTreeBuilder {
 // sets DT.Parent -- but we can't access DT.Parent here.
 template <> void Calculate(DomTreeBase<NumberedNode> &DT) {}
 } // end namespace DomTreeBuilder
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace {
 

@@ -8,8 +8,9 @@
 
 #include "llvm/ADT/IntrusiveRefCntPtr.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace {
 int NumInstances = 0;
@@ -153,4 +154,4 @@ TEST(IntrusiveRefCntPtrTest, Unique) {
   EXPECT_EQ(X1.useCount(), 1u);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

@@ -16,8 +16,10 @@
 #include "Context.h"
 #include "Value.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::ubi {
+LLVM_NAMESPACE_BEGIN
+namespace ubi {
 
 enum class FrameState {
   // It is about to enter the function.
@@ -104,6 +106,7 @@ public:
   unsigned getIntSize() const;
 };
 
-} // namespace llvm::ubi
+}
+LLVM_NAMESPACE_END // namespace llvm::ubi
 
 #endif // LLVM_TOOLS_LLUBI_EXECUTORBASE_H

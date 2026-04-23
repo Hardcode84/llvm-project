@@ -16,8 +16,9 @@
 #include "llvm/Support/Path.h"
 #include "llvm/Support/Program.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // This class contains all the info necessary for running the provided
 // interesting-ness test, as well as the most reduced module and its
@@ -62,6 +63,6 @@ private:
   bool EmitBitcode;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

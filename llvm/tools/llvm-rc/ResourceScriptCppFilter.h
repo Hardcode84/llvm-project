@@ -24,11 +24,12 @@
 #include "llvm/ADT/StringRef.h"
 
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 std::string filterCppOutput(StringRef Input);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -16,8 +16,9 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/DebugInfo/PDB/Native/LinePrinter.h"
 #include "llvm/DebugInfo/PDB/Native/RawConstants.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 class COFFObjectFile;
 }
@@ -108,6 +109,6 @@ private:
   SmallVector<StreamInfo, 32> StreamPurposes;
 };
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

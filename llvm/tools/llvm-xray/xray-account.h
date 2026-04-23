@@ -20,8 +20,10 @@
 #include "llvm/Support/Program.h"
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/XRay/XRayRecord.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::xray {
+LLVM_NAMESPACE_BEGIN
+namespace xray {
 
 class LatencyAccountant {
 public:
@@ -106,6 +108,7 @@ private:
   template <class F> void exportStats(const XRayFileHeader &Header, F fn) const;
 };
 
-} // namespace llvm::xray
+}
+LLVM_NAMESPACE_END // namespace llvm::xray
 
 #endif // LLVM_TOOLS_LLVM_XRAY_XRAY_ACCOUNT_H

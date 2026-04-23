@@ -15,8 +15,9 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct SubtargetFeatureInfo;
 using SubtargetFeatureInfoMap =
     std::map<const Record *, SubtargetFeatureInfo, LessRecordByID>;
@@ -108,6 +109,6 @@ struct SubtargetFeatureInfo {
   static void emitMCPredicateCheck(raw_ostream &OS, StringRef TargetName,
                                    ArrayRef<const Record *> Predicates);
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_UTIL_TABLEGEN_COMMON_SUBTARGETFEATUREINFO_H

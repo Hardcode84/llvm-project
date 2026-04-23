@@ -14,8 +14,9 @@
 #include "llvm/DebugInfo/PDB/PDBSymDumper.h"
 #include "llvm/DebugInfo/PDB/PDBSymbolData.h"
 #include "llvm/DebugInfo/PDB/PDBSymbolFunc.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BitVector;
 
 namespace pdb {
@@ -38,5 +39,5 @@ private:
   bool DumpedAnything = false;
 };
 }
-}
+LLVM_NAMESPACE_END
 #endif

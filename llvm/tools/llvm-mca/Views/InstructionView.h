@@ -17,8 +17,9 @@
 
 #include "llvm/MCA/View.h"
 #include "llvm/Support/JSON.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCInstPrinter;
 
 namespace mca {
@@ -55,6 +56,6 @@ public:
 };
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

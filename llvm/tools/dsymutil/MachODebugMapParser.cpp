@@ -21,6 +21,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <optional>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 namespace {
 using namespace llvm;
@@ -876,7 +877,7 @@ void MachODebugMapParser::loadMainBinarySymbols(
   }
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dsymutil {
 llvm::ErrorOr<std::vector<std::unique_ptr<DebugMap>>>
 parseDebugMap(BinaryHolder &BinHolder, StringRef InputFile,
@@ -905,4 +906,4 @@ bool dumpStab(BinaryHolder &BinHolder, StringRef InputFile,
   return Parser.dumpStab();
 }
 } // namespace dsymutil
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

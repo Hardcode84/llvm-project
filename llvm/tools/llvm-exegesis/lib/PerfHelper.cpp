@@ -22,8 +22,9 @@
 #include <cstddef>
 #include <errno.h>  // for erno
 #include <string.h> // for strerror()
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 namespace pfm {
 
@@ -252,4 +253,4 @@ int CounterGroup::numValues() const { return 1; }
 
 } // namespace pfm
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

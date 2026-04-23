@@ -17,8 +17,9 @@
 #include "llvm/IR/Module.h"
 #include "llvm/Support/SourceMgr.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace {
 
 // Check that use count checks treat ConstantData like they have no uses.
@@ -869,4 +870,4 @@ TEST(ConstantsTest, Float128Test) {
 }
 
 } // end anonymous namespace
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

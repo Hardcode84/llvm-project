@@ -11,8 +11,9 @@
 
 #include "DecoderTree.h"
 #include "llvm/Support/FormattedStream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 struct DecoderTableInfo {
   bool HasCheckPredicate = false;
@@ -64,6 +65,6 @@ private:
   void emitNode(const DecoderTreeNode *N, indent Indent);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_DECODERTABLEEMITTER_H

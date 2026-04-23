@@ -24,8 +24,9 @@
 #include "llvm/IR/Verifier.h"
 #include "llvm/Support/SourceMgr.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using namespace SCEVPatternMatch;
 
@@ -1903,4 +1904,4 @@ TEST_F(ScalarEvolutionsTest, SimplifyICmpOperands) {
   });
 }
 
-}  // end namespace llvm
+LLVM_NAMESPACE_END  // end namespace llvm

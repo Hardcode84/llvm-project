@@ -11,8 +11,9 @@
 
 #include "llvm/Support/raw_ostream.h"
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A helper class that resets the output stream's color if needed
 /// when destroyed.
@@ -55,6 +56,6 @@ inline ColoredRawOstream colored_ostream(raw_ostream &OS,
   return ColoredRawOstream(OS, IsColorUsed);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_COV_RENDERINGSUPPORT_H

@@ -13,8 +13,9 @@
 
 #define GET_AVAILABLE_OPCODE_CHECKER
 #include "MipsGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 #ifndef NDEBUG
@@ -170,4 +171,4 @@ void InitializeMipsExegesisTarget() {
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

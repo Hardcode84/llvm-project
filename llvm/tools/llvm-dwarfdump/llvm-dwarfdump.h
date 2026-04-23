@@ -15,8 +15,9 @@
 #include "llvm/DebugInfo/DWARF/DWARFContext.h"
 #include "llvm/Object/ObjectFile.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dwarfdump {
 
 /// Holds cumulative section sizes for an object file.
@@ -44,6 +45,6 @@ bool showVariableCoverage(object::ObjectFile &Obj, DWARFContext &DICtx,
                           DWARFContext *BaselineCtx, bool CombineInstances,
                           raw_ostream &OS);
 } // namespace dwarfdump
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

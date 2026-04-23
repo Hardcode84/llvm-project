@@ -20,8 +20,9 @@
 #include "llvm/ADT/BitVector.h"
 #include "llvm/ADT/PackedVector.h"
 #include "llvm/MC/MCRegisterInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 // Returns the registers that are aliased by the ones set in SourceBits.
@@ -114,6 +115,6 @@ inline void remove(BitVector &A, const BitVector &B) {
 std::string debugString(const MCRegisterInfo &RegInfo, const BitVector &Regs);
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_EXEGESIS_ALIASINGTRACKER_H

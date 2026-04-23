@@ -14,8 +14,9 @@
 #define LLVM_TOOLS_LLVM_CXXDUMP_ERROR_H
 
 #include <system_error>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 const std::error_category &cxxdump_category();
 
 enum class cxxdump_error {
@@ -28,7 +29,7 @@ inline std::error_code make_error_code(cxxdump_error e) {
   return std::error_code(static_cast<int>(e), cxxdump_category());
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace std {
 template <>

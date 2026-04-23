@@ -14,8 +14,9 @@
 #include "PipelinePrinter.h"
 #include "CodeRegion.h"
 #include "Views/InstructionView.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 void PipelinePrinter::printRegionHeader(llvm::raw_ostream &OS) const {
@@ -126,4 +127,4 @@ void PipelinePrinter::printReport(llvm::raw_ostream &OS) const {
 }
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

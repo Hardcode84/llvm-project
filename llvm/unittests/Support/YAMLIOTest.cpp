@@ -17,6 +17,7 @@
 #include "llvm/Support/YAMLTraits.h"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
 using llvm::yaml::Hex16;
 using llvm::yaml::Hex32;
@@ -53,7 +54,7 @@ struct FooBarContainer {
   FooBarSequence fbs;
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
   template <>
   struct MappingTraits<FooBar> {
@@ -69,7 +70,7 @@ namespace yaml {
     }
   };
 }
-}
+LLVM_NAMESPACE_END
 
 
 //
@@ -267,7 +268,7 @@ struct FooBarEnum {
   }
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct MappingTraits<FooBarEnum> {
   static void enumInput(IO &io, FooBarEnum &Val) {
@@ -280,7 +281,7 @@ template <> struct MappingTraits<FooBarEnum> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 TEST(YAMLIO, TestMapEnumRead) {
   FooBarEnum Doc;
@@ -329,7 +330,7 @@ struct WithStringField {
   std::string str3;
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct MappingTraits<WithStringField> {
   static void mapping(IO &io, WithStringField &fb) {
@@ -339,7 +340,7 @@ template <> struct MappingTraits<WithStringField> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 TEST(YAMLIO, MultilineStrings) {
   WithStringField Original;
@@ -412,7 +413,7 @@ struct BuiltInTypes {
   Hex64           h64;
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
   template <>
   struct MappingTraits<BuiltInTypes> {
@@ -437,7 +438,7 @@ namespace yaml {
     }
   };
 }
-}
+LLVM_NAMESPACE_END
 
 
 //
@@ -565,7 +566,7 @@ struct EndianTypes {
   ulittle_double d;
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct MappingTraits<EndianTypes> {
   static void mapping(IO &io, EndianTypes &et) {
@@ -580,7 +581,7 @@ template <> struct MappingTraits<EndianTypes> {
   }
 };
 }
-}
+LLVM_NAMESPACE_END
 
 //
 // Test the reading of all endian scalar conversions
@@ -661,7 +662,7 @@ struct EndianEnums {
   llvm::support::little_t<BitsetEnum> LittleBitset;
   llvm::support::big_t<BitsetEnum> BigBitset;
 };
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct ScalarEnumerationTraits<Enum> {
   static void enumeration(IO &io, Enum &E) {
@@ -686,7 +687,7 @@ template <> struct MappingTraits<EndianEnums> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 TEST(YAMLIO, TestReadEndianEnums) {
   EndianEnums map;
@@ -759,7 +760,7 @@ struct StringTypes {
   std::string stdstr13;
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
   template <>
   struct MappingTraits<StringTypes> {
@@ -791,7 +792,7 @@ namespace yaml {
     }
   };
 }
-}
+LLVM_NAMESPACE_END
 
 TEST(YAMLIO, TestReadWriteStringTypes) {
   std::string intermediate;
@@ -890,7 +891,7 @@ struct ColorMap {
   Colors      c6;
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
   template <>
   struct ScalarEnumerationTraits<Colors> {
@@ -913,7 +914,7 @@ namespace yaml {
     }
   };
 }
-}
+LLVM_NAMESPACE_END
 
 
 //
@@ -964,7 +965,7 @@ struct FlagsMap {
 };
 
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
   template <>
   struct ScalarBitSetTraits<MyFlags> {
@@ -985,7 +986,7 @@ namespace yaml {
      }
   };
 }
-}
+LLVM_NAMESPACE_END
 
 
 //
@@ -1056,7 +1057,7 @@ struct MyCustomTypeMap {
 };
 
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
   template <>
   struct MappingTraits<MyCustomTypeMap> {
@@ -1095,7 +1096,7 @@ namespace yaml {
     static QuotingType mustQuote(StringRef) { return QuotingType::Single; }
   };
 }
-}
+LLVM_NAMESPACE_END
 
 
 //
@@ -1149,7 +1150,7 @@ struct MultilineStringTypeMap {
   int price;
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
   template <>
   struct MappingTraits<MultilineStringTypeMap> {
@@ -1182,7 +1183,7 @@ namespace yaml {
     }
   };
 }
-}
+LLVM_NAMESPACE_END
 
 LLVM_YAML_IS_DOCUMENT_LIST_VECTOR(MultilineStringType)
 
@@ -1311,7 +1312,7 @@ LLVM_YAML_IS_FLOW_SEQUENCE_VECTOR(MyNumber)
 LLVM_YAML_STRONG_TYPEDEF(llvm::StringRef, MyString)
 LLVM_YAML_IS_FLOW_SEQUENCE_VECTOR(MyString)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
   template<>
   struct ScalarTraits<MyNumber> {
@@ -1343,7 +1344,7 @@ namespace yaml {
     }
   };
 }
-}
+LLVM_NAMESPACE_END
 
 struct NameAndNumbers {
   llvm::StringRef               name;
@@ -1352,7 +1353,7 @@ struct NameAndNumbers {
   std::vector<MyNumber>         numbers;
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
   template <>
   struct MappingTraits<NameAndNumbers> {
@@ -1364,7 +1365,7 @@ namespace yaml {
     }
   };
 }
-}
+LLVM_NAMESPACE_END
 
 typedef std::vector<MyNumber> MyNumberFlowSequence;
 
@@ -1375,7 +1376,7 @@ struct NameAndNumbersFlow {
   std::vector<MyNumberFlowSequence>  sequenceOfNumbers;
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
   template <>
   struct MappingTraits<NameAndNumbersFlow> {
@@ -1385,7 +1386,7 @@ namespace yaml {
     }
   };
 }
-}
+LLVM_NAMESPACE_END
 
 //
 // Test writing then reading back custom values
@@ -1487,7 +1488,7 @@ typedef std::vector<TotalSeconds> SecondsSequence;
 LLVM_YAML_IS_SEQUENCE_VECTOR(TotalSeconds)
 
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
   template <>
   struct MappingTraits<TotalSeconds> {
@@ -1520,7 +1521,7 @@ namespace yaml {
     }
   };
 }
-}
+LLVM_NAMESPACE_END
 
 
 //
@@ -1686,7 +1687,7 @@ typedef std::vector<KindAndFlags> KindAndFlagsSequence;
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(KindAndFlags)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
   template <>
   struct ScalarEnumerationTraits<AFlags> {
@@ -1729,7 +1730,7 @@ namespace yaml {
     }
   };
 }
-}
+LLVM_NAMESPACE_END
 
 
 //
@@ -1799,7 +1800,7 @@ typedef std::vector<FooBarMap> FooBarMapDocumentList;
 LLVM_YAML_IS_DOCUMENT_LIST_VECTOR(FooBarMap)
 
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
   template <>
   struct MappingTraits<FooBarMap> {
@@ -1809,7 +1810,7 @@ namespace yaml {
     }
   };
 }
-}
+LLVM_NAMESPACE_END
 
 
 //
@@ -1878,7 +1879,7 @@ struct MyDouble {
 LLVM_YAML_IS_DOCUMENT_LIST_VECTOR(MyDouble)
 
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
   template <>
   struct MappingTraits<MyDouble> {
@@ -1901,7 +1902,7 @@ namespace yaml {
     }
   };
  }
-}
+LLVM_NAMESPACE_END
 
 
 //
@@ -1960,7 +1961,7 @@ struct MyValidation {
 
 LLVM_YAML_IS_DOCUMENT_LIST_VECTOR(MyValidation)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
   template <>
   struct MappingTraits<MyValidation> {
@@ -1974,7 +1975,7 @@ namespace yaml {
     }
   };
  }
-}
+LLVM_NAMESPACE_END
 
 
 //
@@ -2010,7 +2011,7 @@ struct FlowFooBarDoc {
   FlowFooBarSequence seq;
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
   template <>
   struct MappingTraits<FlowFooBar> {
@@ -2030,7 +2031,7 @@ namespace yaml {
     }
   };
 }
-}
+LLVM_NAMESPACE_END
 
 //
 // Test writing then reading back custom mappings
@@ -2514,7 +2515,7 @@ struct OptionalTestSeq {
 };
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(OptionalTest)
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
   template <>
   struct MappingTraits<OptionalTest> {
@@ -2531,7 +2532,7 @@ namespace yaml {
     }
   };
 }
-}
+LLVM_NAMESPACE_END
 
 TEST(YAMLIO, SequenceElideTest) {
   // Test that writing out a purely optional structure with its fields set to
@@ -2606,7 +2607,7 @@ struct FlowSeq {
   FlowSeq() = default;
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
   template <>
   struct MappingTraits<FlowMap> {
@@ -2632,7 +2633,7 @@ struct ScalarTraits<FlowSeq> {
   static QuotingType mustQuote(StringRef S) { return QuotingType::None; }
 };
 }
-}
+LLVM_NAMESPACE_END
 
 LLVM_YAML_IS_FLOW_SEQUENCE_VECTOR(FlowSeq)
 
@@ -2722,7 +2723,7 @@ struct NestedMap {
   MappingContext &Context;
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct MappingContextTraits<SimpleMap, MappingContext> {
   static void mapping(IO &io, SimpleMap &sm, MappingContext &Context) {
@@ -2742,7 +2743,7 @@ template <> struct MappingTraits<NestedMap> {
   }
 };
 }
-}
+LLVM_NAMESPACE_END
 
 TEST(YAMLIO, TestMapWithContext) {
   MappingContext Context;
@@ -2850,7 +2851,7 @@ struct FooBarMapMap {
   std::map<std::string, FooBar> fbm;
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct MappingTraits<FooBarMapMap> {
   static void mapping(IO &io, FooBarMapMap &x) {
@@ -2858,7 +2859,7 @@ template <> struct MappingTraits<FooBarMapMap> {
   }
 };
 }
-}
+LLVM_NAMESPACE_END
 
 TEST(YAMLIO, TestEmptyMapWrite) {
   FooBarMapMap cont;
@@ -3021,7 +3022,7 @@ struct QuotedKeyStruct {
   int unprintable;
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct MappingTraits<QuotedKeyStruct> {
   static void mapping(IO &io, QuotedKeyStruct &map) {
@@ -3036,7 +3037,7 @@ template <> struct MappingTraits<QuotedKeyStruct> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 TEST(YAMLIO, TestQuotedKeyRead) {
   QuotedKeyStruct map = {};
@@ -3138,7 +3139,7 @@ struct Map : Poly, llvm::StringMap<std::unique_ptr<Poly>> {
   static bool classof(const Poly *N) { return N->getKind() == NK_Map; }
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <> struct PolymorphicTraits<std::unique_ptr<Poly>> {
@@ -3241,7 +3242,7 @@ template <> struct SequenceTraits<Seq> {
 };
 
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 TEST(YAMLIO, TestReadWritePolymorphicScalar) {
   std::string intermediate;
@@ -3491,7 +3492,7 @@ struct StdArray {
   std::array<int, 4> values;
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <> struct MappingTraits<FixedArray> {
   static void mapping(IO &io, FixedArray &st) {
@@ -3505,7 +3506,7 @@ template <> struct MappingTraits<StdArray> {
   }
 };
 } // namespace yaml
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using TestTypes = ::testing::Types<FixedArray, StdArray>;
 

@@ -10,12 +10,13 @@
 #define LLVM_UTILS_TABLEGEN_COMMON_TYPES_H
 
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Returns the smallest unsigned integer type that can hold the given range.
 /// MaxSize indicates the largest size of integer to consider (in bits) and only
 /// supports values of at least 32.
 const char *getMinimalTypeForRange(uint64_t Range, unsigned MaxSize = 64);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_COMMON_TYPES_H

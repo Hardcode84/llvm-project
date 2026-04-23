@@ -20,8 +20,9 @@
 #include "llvm/Support/SourceMgr.h"
 #include "llvm/Support/raw_ostream.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace {
 
 struct BranchProbabilityInfoTest : public testing::Test {
@@ -123,4 +124,4 @@ TEST_F(BranchProbabilityInfoTest, SwapProbabilities) {
 }
 
 } // end anonymous namespace
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

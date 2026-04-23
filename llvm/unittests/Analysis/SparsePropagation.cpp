@@ -11,6 +11,7 @@
 #include "llvm/IR/IRBuilder.h"
 #include "llvm/IR/Module.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 using namespace llvm;
 
 namespace {
@@ -28,7 +29,7 @@ enum class IPOGrouping { Register, Return, Memory };
 using TestLatticeKey = PointerIntPair<Value *, 2, IPOGrouping>;
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// A specialization of LatticeKeyInfo for TestLatticeKeys. The generic solver
 /// must translate between LatticeKeys and LLVM Values when adding Values to
 /// its work list and inspecting the state of control-flow related values.
@@ -40,7 +41,7 @@ template <> struct LatticeKeyInfo<TestLatticeKey> {
     return TestLatticeKey(V, IPOGrouping::Register);
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 /// This class defines a simple test lattice value that could be used for

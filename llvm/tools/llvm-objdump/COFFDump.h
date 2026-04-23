@@ -10,8 +10,9 @@
 #define LLVM_TOOLS_LLVM_OBJDUMP_COFFDUMP_H
 
 #include "llvm/ADT/SmallVector.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Error;
 
@@ -31,6 +32,6 @@ void printCOFFFileHeader(const object::COFFObjectFile &Obj);
 void printCOFFSymbolTable(const object::COFFImportFile &I);
 void printCOFFSymbolTable(const object::COFFObjectFile &O);
 } // namespace objdump
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

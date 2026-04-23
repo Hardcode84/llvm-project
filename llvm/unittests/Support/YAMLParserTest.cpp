@@ -12,8 +12,9 @@
 #include "llvm/Support/MemoryBuffer.h"
 #include "llvm/Support/SourceMgr.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static void SuppressDiagnosticsOutput(const SMDiagnostic &, void *) {
   // Prevent SourceMgr from writing errors to stderr
@@ -543,4 +544,4 @@ TEST(YAMLParser, UnfoldsScalarValue) {
   expectCanParseScalar("A \t \t \n\t \t \t\r\n \t \r  \t B", "A\n\nB");
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

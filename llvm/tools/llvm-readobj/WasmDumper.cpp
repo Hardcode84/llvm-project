@@ -14,6 +14,7 @@
 #include "llvm-readobj.h"
 #include "llvm/Object/Wasm.h"
 #include "llvm/Support/ScopedPrinter.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace object;
@@ -243,11 +244,11 @@ void WasmDumper::printSymbol(const SymbolRef &Sym) {
 
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 std::unique_ptr<ObjDumper> createWasmDumper(const object::WasmObjectFile &Obj,
                                             ScopedPrinter &Writer) {
   return std::make_unique<WasmDumper>(&Obj, Writer);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

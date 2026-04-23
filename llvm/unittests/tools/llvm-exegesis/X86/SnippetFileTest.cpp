@@ -20,8 +20,9 @@
 #include "llvm/Testing/Support/SupportHelpers.h"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 namespace {
 
@@ -238,4 +239,4 @@ TEST_F(X86SnippetFileTest, LoopRegisterInvalidRegister) {
 
 } // namespace
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

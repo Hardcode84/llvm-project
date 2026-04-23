@@ -18,6 +18,7 @@
 #include "llvm/Support/ScopedPrinter.h"
 
 #include <ctime>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace object;
@@ -1243,9 +1244,9 @@ void XCOFFDumper::printSectionHeaders(ArrayRef<T> Sections) {
     report_fatal_error("Dumping section data is unimplemented");
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 std::unique_ptr<ObjDumper>
 createXCOFFDumper(const object::XCOFFObjectFile &XObj, ScopedPrinter &Writer) {
   return std::make_unique<XCOFFDumper>(XObj, Writer);
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -18,8 +18,9 @@
 
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class CodeGenInstruction;
 
 struct AsmWriterOperand {
@@ -102,6 +103,6 @@ private:
       Operands.push_back(AsmWriterOperand(Str));
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_COMMON_ASMWRITERINST_H

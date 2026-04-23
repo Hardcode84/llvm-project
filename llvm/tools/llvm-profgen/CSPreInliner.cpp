@@ -14,6 +14,7 @@
 #include "llvm/Transforms/IPO/SampleProfile.h"
 #include <cstdint>
 #include <queue>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "cs-preinliner"
 
@@ -35,7 +36,7 @@ STATISTIC(
 // The switches specify inline thresholds used in SampleProfileLoader inlining.
 // TODO: the actual threshold to be tuned here because the size here is based
 // on machine code not LLVM IR.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 cl::opt<bool> EnableCSPreInliner(
     "csspgo-preinliner", cl::Hidden, cl::init(true),
     cl::desc("Run a global pre-inliner to merge context profile based on "
@@ -44,7 +45,7 @@ cl::opt<bool> EnableCSPreInliner(
 cl::opt<bool> UseContextCostForPreInliner(
     "use-context-cost-for-preinliner", cl::Hidden, cl::init(true),
     cl::desc("Use context-sensitive byte size cost for preinliner decisions"));
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static cl::opt<bool> SamplePreInlineReplay(
     "csspgo-replay-preinline", cl::Hidden, cl::init(false),

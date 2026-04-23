@@ -13,8 +13,9 @@
 
 #include "Views/DispatchStatistics.h"
 #include "llvm/Support/Format.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 void DispatchStatistics::onEvent(const HWStallEvent &Event) {
@@ -93,4 +94,4 @@ json::Value DispatchStatistics::toJSON() const {
 }
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

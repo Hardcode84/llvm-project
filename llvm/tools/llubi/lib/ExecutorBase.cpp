@@ -11,8 +11,10 @@
 //===----------------------------------------------------------------------===//
 
 #include "ExecutorBase.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::ubi {
+LLVM_NAMESPACE_BEGIN
+namespace ubi {
 Frame::Frame(Function &F, CallBase *CallSite, Frame *LastFrame,
              ArrayRef<AnyValue> Args, AnyValue &RetVal,
              const TargetLibraryInfoImpl &TLIImpl)
@@ -144,4 +146,5 @@ std::optional<ProgramExitInfo> ExecutorBase::getExitInfo() const {
 unsigned ExecutorBase::getIntSize() const {
   return CurrentFrame->TLI.getIntSize();
 }
-} // namespace llvm::ubi
+}
+LLVM_NAMESPACE_END // namespace llvm::ubi

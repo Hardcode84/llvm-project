@@ -15,8 +15,9 @@
 #include "llvm/IR/Instruction.h"
 #include "llvm/IR/Instructions.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace {
 using VPPatternMatchTest = VPlanTestBase;
@@ -75,4 +76,4 @@ TEST_F(VPPatternMatchTest, GetElementPtr) {
       match(WidePtrAdd, m_GetElementPtr(m_Specific(Ptr), m_SpecificInt(1))));
 }
 } // namespace
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

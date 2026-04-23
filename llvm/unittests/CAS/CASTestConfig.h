@@ -18,14 +18,18 @@
 #ifdef _WIN32
 #include "llvm/Support/VersionTuple.h"
 #include "llvm/Support/Windows/WindowsSupport.h"
+#include "llvm/Support/Compiler.h"
 #endif
 
-namespace llvm::cas::ondisk {
+LLVM_NAMESPACE_BEGIN
+namespace cas::ondisk {
 class ObjectID;
 class OnDiskGraphDB;
-} // namespace llvm::cas::ondisk
+}
+LLVM_NAMESPACE_END // namespace llvm::cas::ondisk
 
-namespace llvm::unittest::cas {
+LLVM_NAMESPACE_BEGIN
+namespace unittest::cas {
 
 using namespace llvm::cas::ondisk;
 
@@ -126,6 +130,7 @@ protected:
   }
 };
 
-} // namespace llvm::unittest::cas
+}
+LLVM_NAMESPACE_END // namespace llvm::unittest::cas
 
 #endif

@@ -16,8 +16,9 @@
 #include "llvm/ADT/StringRef.h"
 #include <map>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class InstructionEncoding;
 
@@ -220,6 +221,6 @@ public:
   unsigned getDecoderIndex() const { return DecoderIndex; }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_DECODERTREE_H

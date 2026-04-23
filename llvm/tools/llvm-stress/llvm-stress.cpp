@@ -47,8 +47,9 @@
 #include <string>
 #include <system_error>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static cl::OptionCategory StressCategory("Stress Options");
 
@@ -716,7 +717,7 @@ static void IntroduceControlFlow(Function *F, Random &R) {
   }
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 int main(int argc, char **argv) {
   using namespace llvm;

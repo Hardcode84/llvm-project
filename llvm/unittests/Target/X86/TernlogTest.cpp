@@ -18,8 +18,9 @@
 #include "gtest/gtest.h"
 
 #include <random>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 static std::unique_ptr<TargetMachine> initTM() {
   LLVMInitializeX86TargetInfo();
   LLVMInitializeX86Target();
@@ -200,4 +201,4 @@ TEST(TernlogTest, TestConstantFolding) {
     }
   }
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

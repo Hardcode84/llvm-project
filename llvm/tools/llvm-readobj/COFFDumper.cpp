@@ -246,14 +246,14 @@ private:
 
 } // end namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 std::unique_ptr<ObjDumper> createCOFFDumper(const object::COFFObjectFile &Obj,
                                             ScopedPrinter &Writer) {
   return std::make_unique<COFFDumper>(&Obj, Writer);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Given a section and an offset into this section the function returns the
 // symbol used for the relocation at the offset.

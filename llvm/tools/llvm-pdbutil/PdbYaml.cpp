@@ -16,6 +16,7 @@
 #include "llvm/DebugInfo/PDB/PDBTypes.h"
 #include "llvm/ObjectYAML/CodeViewYAMLDebugSections.h"
 #include "llvm/ObjectYAML/CodeViewYAMLTypes.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::pdb;
@@ -28,7 +29,7 @@ LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::pdb::yaml::PdbDbiModuleInfo)
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::pdb::yaml::StreamBlockList)
 LLVM_YAML_IS_FLOW_SEQUENCE_VECTOR(llvm::pdb::PdbRaw_FeatureSig)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 template <> struct ScalarEnumerationTraits<llvm::pdb::PDB_Machine> {
@@ -100,7 +101,7 @@ template <> struct ScalarEnumerationTraits<llvm::pdb::PdbRaw_FeatureSig> {
   }
 };
 }
-}
+LLVM_NAMESPACE_END
 
 void MappingTraits<PdbObject>::mapping(IO &IO, PdbObject &Obj) {
   IO.mapOptional("MSF", Obj.Headers);

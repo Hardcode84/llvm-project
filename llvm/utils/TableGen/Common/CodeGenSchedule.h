@@ -27,8 +27,9 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CodeGenTarget;
 class CodeGenSchedModels;
@@ -638,6 +639,6 @@ private:
   void addReadAdvance(const Record *ProcReadAdvanceDef, CodeGenProcModel &PM);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_COMMON_CODEGENSCHEDULE_H

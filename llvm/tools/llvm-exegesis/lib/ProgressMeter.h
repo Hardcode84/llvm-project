@@ -16,8 +16,9 @@
 #include <cmath>
 #include <optional>
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 /// Represents `\sum_{i=1..accumulated}{step_i} / accumulated`,
@@ -140,6 +141,6 @@ private:
 };
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -36,10 +36,11 @@
 #include "llvm/CodeGen/TargetInstrInfo.h"
 #include "llvm/CodeGen/TargetRegisterInfo.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "ir2vec"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace ir2vec {
 
@@ -491,4 +492,4 @@ void MIR2VecTool::writeEmbeddingsToStream(MachineFunction &MF, raw_ostream &OS,
 
 } // namespace mir2vec
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

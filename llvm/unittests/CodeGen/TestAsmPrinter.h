@@ -14,8 +14,9 @@
 #include "gmock/gmock.h"
 
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AsmPrinter;
 class MCContext;
 class Target;
@@ -79,6 +80,6 @@ public:
   MockMCStreamer &getMS() const { return *MS; }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_UNITTESTS_CODEGEN_TESTASMPRINTER_H

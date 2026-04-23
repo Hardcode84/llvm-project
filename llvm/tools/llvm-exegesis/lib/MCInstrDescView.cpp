@@ -12,8 +12,9 @@
 
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/Support/InterleavedRange.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 unsigned Variable::getIndex() const { return *Index; }
@@ -405,4 +406,4 @@ void DumpMCInst(const MCRegisterInfo &MCRegisterInfo,
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -30,8 +30,9 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace dsymutil {
 
@@ -354,4 +355,4 @@ MappingTraits<dsymutil::DebugMapObject>::YamlDMO::denormalize(IO &IO) {
 }
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

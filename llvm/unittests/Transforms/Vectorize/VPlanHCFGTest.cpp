@@ -13,8 +13,9 @@
 #include "llvm/TargetParser/Triple.h"
 #include "gtest/gtest.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace {
 
 class VPlanHCFGTest : public VPlanTestIRBase {};
@@ -347,4 +348,4 @@ compound=true
 }
 
 } // namespace
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

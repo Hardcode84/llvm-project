@@ -52,8 +52,9 @@
 
 #define GET_AVAILABLE_OPCODE_CHECKER
 #include "X86GenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 // If a positive value is specified, we are going to use the LBR in
@@ -1377,4 +1378,4 @@ void InitializeX86ExegesisTarget() {
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

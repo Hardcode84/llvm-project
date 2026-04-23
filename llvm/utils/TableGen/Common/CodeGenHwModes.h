@@ -17,10 +17,11 @@
 #include <map>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 // HwModeId -> list of predicates (definition)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Record;
 class RecordKeeper;
 
@@ -68,6 +69,6 @@ private:
   std::vector<HwMode> Modes;
   std::map<const Record *, HwModeSelect> ModeSelects;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_COMMON_CODEGENHWMODES_H

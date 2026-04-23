@@ -13,12 +13,13 @@
 
 #include "llvm/ADT/ArrayRef.h"
 #include <functional>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class PassBuilder;
-}
+LLVM_NAMESPACE_END
 
 extern "C" int
 optMain(int argc, char **argv,

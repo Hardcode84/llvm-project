@@ -38,8 +38,9 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/MC/MCSubtargetInfo.h"
 #include "llvm/MCA/View.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 class RegisterFileStatistics : public View {
@@ -79,6 +80,6 @@ public:
   bool isSerializable() const override { return false; }
 };
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -15,8 +15,10 @@
 #include "llvm/IR/Module.h"
 #include <map>
 #include <random>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::ubi {
+LLVM_NAMESPACE_BEGIN
+namespace ubi {
 
 enum class MemInitKind {
   Zeroed,
@@ -313,6 +315,7 @@ public:
                               AnyValue &RetVal, EventHandler &Handler);
 };
 
-} // namespace llvm::ubi
+}
+LLVM_NAMESPACE_END // namespace llvm::ubi
 
 #endif

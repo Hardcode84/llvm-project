@@ -11,8 +11,9 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/FormatProviders.h"
 #include "llvm/Support/FormatVariadic.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 namespace {
 
@@ -38,4 +39,4 @@ TEST(UTCTime, convertutc) {
 }
 } // namespace
 } // namespace sys
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

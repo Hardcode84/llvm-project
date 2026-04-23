@@ -18,8 +18,10 @@
 #include "Value.h"
 #include <optional>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::ubi {
+LLVM_NAMESPACE_BEGIN
+namespace ubi {
 
 class Library {
   Context &Ctx;
@@ -51,6 +53,7 @@ public:
                                          ArrayRef<AnyValue> Args);
 };
 
-} // namespace llvm::ubi
+}
+LLVM_NAMESPACE_END // namespace llvm::ubi
 
 #endif // LLVM_TOOLS_LLUBI_LIBRARY_H

@@ -17,8 +17,9 @@
 #include "llvm-c/TargetMachine.h"
 #include "llvm/Config/llvm-config.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 TEST(TargetMachineCTest, TargetMachineOptions) {
   auto *Options = LLVMCreateTargetMachineOptions();
@@ -70,4 +71,4 @@ TEST(TargetMachineCTest, TargetMachineCreation) {
   LLVMDisposeTargetMachine(TM);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

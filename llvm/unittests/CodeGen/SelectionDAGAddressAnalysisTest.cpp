@@ -9,8 +9,9 @@
 #include "llvm/CodeGen/SelectionDAGAddressAnalysis.h"
 #include "SelectionDAGTestBase.h"
 #include "llvm/Analysis/MemoryLocation.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class SelectionDAGAddressAnalysisTest : public SelectionDAGTestBase {};
 
@@ -283,4 +284,4 @@ TEST_F(SelectionDAGAddressAnalysisTest, twoFixedStackObjects) {
   EXPECT_FALSE(IsAlias);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

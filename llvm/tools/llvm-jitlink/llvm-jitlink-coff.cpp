@@ -14,6 +14,7 @@
 
 #include "llvm/Support/Error.h"
 #include "llvm/Support/Path.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "llvm_jitlink"
 
@@ -64,7 +65,7 @@ static Expected<Symbol &> getCOFFStubTarget(LinkGraph &G, Block &B) {
   return getCOFFGOTTarget(G, GOTSym.getBlock());
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 Error registerCOFFGraphInfo(Session &S, LinkGraph &G) {
   std::lock_guard<std::mutex> Lock(S.M);
 
@@ -159,4 +160,4 @@ Error registerCOFFGraphInfo(Session &S, LinkGraph &G) {
   return Error::success();
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

@@ -85,10 +85,11 @@
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/Target/TargetMachine.h"
 #include "llvm/TargetParser/Host.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "ir2vec"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Common option category for options shared between IR2Vec and MIR2Vec
 static cl::OptionCategory CommonCategory("Common Options",
@@ -337,7 +338,7 @@ static Error processModule(const std::string &InputFile, raw_ostream &OS) {
 
 } // namespace mir2vec
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 int main(int argc, char **argv) {
   using namespace llvm;

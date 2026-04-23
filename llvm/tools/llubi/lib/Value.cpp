@@ -13,8 +13,10 @@
 #include "Value.h"
 #include "Context.h"
 #include "llvm/ADT/SmallString.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::ubi {
+LLVM_NAMESPACE_BEGIN
+namespace ubi {
 
 void Pointer::print(raw_ostream &OS) const {
   SmallString<32> AddrStr;
@@ -277,4 +279,5 @@ AnyValue AnyValue::getVectorSplat(const AnyValue &Scalar, size_t NumElements) {
   return AnyValue(std::vector<AnyValue>(NumElements, Scalar));
 }
 
-} // namespace llvm::ubi
+}
+LLVM_NAMESPACE_END // namespace llvm::ubi

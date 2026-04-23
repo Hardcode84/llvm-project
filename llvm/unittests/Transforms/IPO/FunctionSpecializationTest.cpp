@@ -21,8 +21,9 @@
 #include "llvm/Transforms/Utils/SCCPSolver.h"
 #include "gtest/gtest.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 static void removeSSACopy(Function &F) {
   for (BasicBlock &BB : F) {
@@ -123,7 +124,7 @@ protected:
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using namespace llvm;
 

@@ -17,6 +17,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include "gtest/gtest.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 #define ASSERT_NO_ERROR(x)                                                     \
   if (std::error_code ASSERT_NO_ERROR_ec = x) {                                \
@@ -29,7 +30,7 @@
   } else {                                                                     \
   }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace {
 
 class GraphWriterTest : public testing::Test {
@@ -78,4 +79,4 @@ TEST_F(GraphWriterTest, WriteCFGDotFileTest) {
 }
 
 } // end anonymous namespace
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

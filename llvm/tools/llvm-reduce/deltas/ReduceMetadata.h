@@ -15,10 +15,11 @@
 #define LLVM_TOOLS_LLVM_REDUCE_DELTAS_REDUCEMETADATA_H
 
 #include "Delta.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 void reduceMetadataDeltaPass(Oracle &O, ReducerWorkItem &WorkItem);
 void reduceNamedMetadataDeltaPass(Oracle &O, ReducerWorkItem &WorkItem);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

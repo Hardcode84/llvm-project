@@ -22,6 +22,7 @@
 #include "llvm/Support/Regex.h"
 #include "llvm/Support/StringSaver.h"
 #include "llvm/Support/ToolOutputFile.h"
+#include "llvm/Support/Compiler.h"
 
 // Keep input + output help + names consistent across the various modes via a
 // hideous macro.
@@ -147,7 +148,7 @@
                    std::move(*MaybeRemarkArgFilter), TypeFilter};              \
   }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace remarks {
 Expected<std::unique_ptr<MemoryBuffer>>
 getInputMemoryBuffer(StringRef InputFileName);
@@ -259,4 +260,4 @@ public:
 using NV = RemarkBuilder::Argument;
 
 } // namespace remarks
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -32,13 +32,13 @@
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 LLVM_ABI extern cl::opt<double> CopyWeight;
 LLVM_ABI extern cl::opt<double> LoadWeight;
 LLVM_ABI extern cl::opt<double> StoreWeight;
 LLVM_ABI extern cl::opt<double> CheapRematWeight;
 LLVM_ABI extern cl::opt<double> ExpensiveRematWeight;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 // Include helper functions to ease the manipulation of MachineFunctions.

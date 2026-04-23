@@ -19,8 +19,9 @@
 #include "llvm/DebugInfo/LogicalView/Core/LVSymbol.h"
 #include "llvm/DebugInfo/LogicalView/Core/LVType.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace logicalview {
 namespace cmdline {
 
@@ -76,6 +77,6 @@ void propagateOptions();
 
 } // namespace cmdline
 } // namespace logicalview
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // OPTIONS_H

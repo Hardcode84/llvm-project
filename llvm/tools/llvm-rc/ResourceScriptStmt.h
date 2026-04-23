@@ -18,8 +18,9 @@
 
 #include "llvm/ADT/BitVector.h"
 #include "llvm/ADT/StringMap.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace rc {
 
 // Integer wrapper that also holds information whether the user declared
@@ -1044,6 +1045,6 @@ public:
 };
 
 } // namespace rc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

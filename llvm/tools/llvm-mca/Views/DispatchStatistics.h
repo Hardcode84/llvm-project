@@ -37,8 +37,9 @@
 #include "llvm/MC/MCSubtargetInfo.h"
 #include "llvm/MCA/View.h"
 #include <map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 class DispatchStatistics : public View {
@@ -82,6 +83,6 @@ public:
   json::Value toJSON() const override;
 };
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

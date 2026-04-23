@@ -11,8 +11,9 @@
 
 #include "llvm/Object/StackMapParser.h"
 #include "llvm/Support/ScopedPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Pretty print a stackmap to the given ostream.
 template <typename StackMapParserT>
@@ -76,6 +77,6 @@ void prettyPrintStackMap(ScopedPrinter &W, const StackMapParserT &SMP) {
   }
 }
 
-}
+LLVM_NAMESPACE_END
 
 #endif

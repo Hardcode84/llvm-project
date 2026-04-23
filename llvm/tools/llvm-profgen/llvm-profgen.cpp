@@ -21,11 +21,12 @@
 #include "llvm/Support/InitLLVM.h"
 #include "llvm/Support/TargetSelect.h"
 #include "llvm/Support/VirtualFileSystem.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace sampleprof;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 cl::OptionCategory ProfGenCategory("ProfGen Options");
 
@@ -150,7 +151,7 @@ static PerfInputFile getPerfInputFile() {
   return File;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 int main(int argc, const char *argv[]) {
   InitLLVM X(argc, argv);

@@ -11,8 +11,9 @@
 
 #include "llvm/ADT/StringRef.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dsymutil {
 
 struct CFBundleInfo {
@@ -25,6 +26,6 @@ struct CFBundleInfo {
 CFBundleInfo getBundleInfo(llvm::StringRef ExePath);
 
 } // end namespace dsymutil
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

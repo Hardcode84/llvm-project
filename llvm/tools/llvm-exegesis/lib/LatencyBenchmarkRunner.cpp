@@ -14,10 +14,11 @@
 #include "llvm/Support/Error.h"
 #include <algorithm>
 #include <cmath>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "exegesis-latency-benchmarkrunner"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 LatencyBenchmarkRunner::LatencyBenchmarkRunner(
@@ -167,4 +168,4 @@ Expected<std::vector<BenchmarkMeasure>> LatencyBenchmarkRunner::runMeasurements(
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

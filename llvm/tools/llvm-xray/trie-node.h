@@ -19,8 +19,9 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/SmallVector.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// A type to represent a trie of invocations. It is useful to construct a
 /// graph of these nodes from reading an XRay trace, such that each function
 /// call can be placed in a larger context.
@@ -87,6 +88,6 @@ mergeTrieNodes(const TrieNode<T> &Left, const TrieNode<T> &Right,
 
   return Node;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_XRAY_STACK_TRIE_H

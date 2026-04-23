@@ -11,8 +11,9 @@
 
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Error;
 class StringRef;
@@ -86,6 +87,6 @@ void printLazyBindTable(object::ObjectFile *O);
 void printWeakBindTable(object::ObjectFile *O);
 
 } // namespace objdump
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -23,10 +23,11 @@
 #include "gtest/gtest.h"
 #include <atomic>
 #include <thread>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // This is a mock of the kind of AOT-generated model evaluator. It has 2 tensors
 // of shape {1}, and 'evaluation' adds them.
 // The interface is the one expected by ReleaseModelRunner.
@@ -123,7 +124,7 @@ static EmbeddedModelRunnerOptions makeOptions() {
   Opts.setFeedPrefix("prefix_");
   return Opts;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 TEST(NoInferenceModelRunner, AccessTensors) {
   const std::vector<TensorSpec> Inputs{

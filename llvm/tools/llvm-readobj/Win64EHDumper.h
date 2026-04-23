@@ -11,8 +11,9 @@
 
 #include "llvm/Support/ScopedPrinter.h"
 #include "llvm/Support/Win64EH.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 class COFFObjectFile;
 class SymbolRef;
@@ -58,6 +59,6 @@ public:
   void printData(const Context &Ctx);
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

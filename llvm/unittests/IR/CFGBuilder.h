@@ -23,8 +23,9 @@
 #include <set>
 #include <tuple>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class LLVMContext;
 class Module;
@@ -87,6 +88,6 @@ private:
   std::vector<Update> Updates;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

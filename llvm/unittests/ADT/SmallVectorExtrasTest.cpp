@@ -16,10 +16,11 @@
 
 #include <type_traits>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using testing::ElementsAre;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace {
 
 TEST(SmallVectorExtrasTest, MapToVector) {
@@ -53,4 +54,4 @@ TEST(SmallVectorExtrasTest, FilterToVector) {
 }
 
 } // end namespace
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

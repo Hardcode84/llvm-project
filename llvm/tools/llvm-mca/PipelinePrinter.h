@@ -22,10 +22,11 @@
 #include "llvm/MCA/Pipeline.h"
 #include "llvm/MCA/View.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "llvm-mca"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 class CodeRegion;
@@ -64,6 +65,6 @@ public:
   void printReport(json::Object &JO) const;
 };
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_MCA_PIPELINEPRINTER_H

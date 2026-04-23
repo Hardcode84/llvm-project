@@ -9,8 +9,9 @@
 #define LLVM_TOOLS_LLVM_PROFGEN_OPTIONS_H
 
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 extern cl::OptionCategory ProfGenCategory;
 
@@ -24,6 +25,6 @@ extern cl::opt<bool> EnableCSPreInliner;
 extern cl::opt<bool> UseContextCostForPreInliner;
 extern cl::opt<bool> LoadFunctionFromSymbol;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

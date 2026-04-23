@@ -13,8 +13,10 @@
 #include <string>
 
 #include "llvm/Support/X86DisassemblerDecoderCommon.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::X86Disassembler {
+LLVM_NAMESPACE_BEGIN
+namespace X86Disassembler {
 
 struct InstructionSpecifier {
   llvm::X86Disassembler::OperandSpecifier
@@ -54,6 +56,7 @@ struct ContextDecision {
   ContextDecision() { memset(opcodeDecisions, 0, sizeof(opcodeDecisions)); }
 };
 
-} // namespace llvm::X86Disassembler
+}
+LLVM_NAMESPACE_END // namespace llvm::X86Disassembler
 
 #endif

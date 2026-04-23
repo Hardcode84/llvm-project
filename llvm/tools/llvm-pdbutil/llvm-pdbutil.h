@@ -16,8 +16,9 @@
 
 #include <memory>
 #include <stdint.h>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 class COFFObjectFile;
 }
@@ -29,7 +30,7 @@ uint32_t getTypeLength(const PDBSymbolData &Symbol);
 }
 typedef llvm::PointerUnion<object::COFFObjectFile *, pdb::PDBFile *>
     PdbOrCoffObj;
-}
+LLVM_NAMESPACE_END
 
 namespace opts {
 

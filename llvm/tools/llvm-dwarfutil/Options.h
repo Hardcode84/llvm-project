@@ -11,8 +11,9 @@
 
 #include <cstdint>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dwarfutil {
 
 /// The kind of tombstone value.
@@ -49,6 +50,6 @@ struct Options {
 };
 
 } // namespace dwarfutil
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_DWARFUTIL_OPTIONS_H

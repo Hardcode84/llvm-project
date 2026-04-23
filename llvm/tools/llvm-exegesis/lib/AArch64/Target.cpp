@@ -28,8 +28,9 @@
 
 #define GET_AVAILABLE_OPCODE_CHECKER
 #include "AArch64GenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 static unsigned getLoadImmediateOpcode(unsigned RegBitWidth) {
@@ -375,4 +376,4 @@ void InitializeAArch64ExegesisTarget() {
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -13,8 +13,9 @@
 
 #include "Views/RetireControlUnitStatistics.h"
 #include "llvm/Support/Format.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 RetireControlUnitStatistics::RetireControlUnitStatistics(const MCSchedModel &SM)
@@ -87,4 +88,4 @@ void RetireControlUnitStatistics::printView(raw_ostream &OS) const {
 }
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

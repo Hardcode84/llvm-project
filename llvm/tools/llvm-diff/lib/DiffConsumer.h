@@ -19,8 +19,9 @@
 #include "llvm/IR/Value.h"
 #include "llvm/Support/Casting.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
   class Module;
   class Value;
@@ -86,6 +87,6 @@ class StringRef;
     void logf(const LogBuilder &Log) override;
     void logd(const DiffLogBuilder &Log) override;
   };
-}
+LLVM_NAMESPACE_END
 
 #endif

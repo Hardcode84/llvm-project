@@ -44,10 +44,11 @@
 #include "llvm/MCA/CodeEmitter.h"
 #include "llvm/MCA/CustomBehaviour.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "llvm-mca"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 /// A view that prints out generic instruction information.
@@ -107,6 +108,6 @@ public:
   json::Object toJSON(const InstructionInfoViewData &IIVD) const;
 };
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

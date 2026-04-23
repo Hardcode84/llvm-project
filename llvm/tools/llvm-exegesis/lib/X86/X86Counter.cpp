@@ -31,8 +31,9 @@
 #include <poll.h>
 #include <sys/mman.h>
 #include <unistd.h>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 // Number of entries in the LBR.
@@ -252,7 +253,7 @@ X86LbrCounter::doReadCounter(const void *From, const void *To) const {
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // defined(__linux__) && defined(HAVE_LIBPFM) &&
        // defined(LIBPFM_HAS_FIELD_CYCLES)

@@ -16,8 +16,9 @@
 #include "llvm/MC/MCInst.h"
 #include "llvm/MCA/Support.h"
 #include "llvm/Support/Format.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 #define DEBUG_TYPE "llvm-mca"
@@ -686,4 +687,4 @@ json::Value BottleneckAnalysis::toJSON() const {
 }
 
 } // namespace mca.
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

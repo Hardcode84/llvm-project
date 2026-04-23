@@ -22,10 +22,11 @@
 #include "llvm/Target/TargetMachine.h"
 
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class CGPluginTests : public testing::Test {
 protected:
   static void SetUpTestCase() {
@@ -34,7 +35,7 @@ protected:
     InitializeAllTargets();
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 TEST_F(CGPluginTests, LoadPlugin) {
 #if !defined(LLVM_ENABLE_PLUGINS)

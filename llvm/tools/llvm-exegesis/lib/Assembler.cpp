@@ -39,9 +39,10 @@
 
 #ifdef __linux__
 #include <unistd.h>
+#include "llvm/Support/Compiler.h"
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 static constexpr char ModuleID[] = "ExegesisInfoTest";
@@ -445,4 +446,4 @@ Error getBenchmarkFunctionBytes(const StringRef InputData,
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

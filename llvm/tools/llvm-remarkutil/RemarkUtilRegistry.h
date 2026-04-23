@@ -14,8 +14,9 @@
 
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace remarkutil {
 
 // Use |CommandRegistration| as a global initialiser that registers a function
@@ -35,6 +36,6 @@ struct CommandRegistration {
 std::function<Error()> dispatch(cl::SubCommand *SC);
 
 } // namespace remarkutil
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // TOOLS_LLVM_REMARKUTIL_REGISTRY_H

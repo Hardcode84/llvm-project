@@ -10,8 +10,9 @@
 #define LLVM_TOOLS_LLVMPDBDUMP_PRETTYCLASSLAYOUTGRAPHICALDUMPER_H
 
 #include "llvm/DebugInfo/PDB/PDBSymDumper.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace pdb {
 
@@ -51,5 +52,5 @@ private:
   bool DumpedAnything = false;
 };
 }
-}
+LLVM_NAMESPACE_END
 #endif

@@ -19,6 +19,7 @@
 #include "llvm/Support/BinaryStreamReader.h"
 #include "llvm/Support/Casting.h"
 #include "llvm/Support/ScopedPrinter.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace object;
@@ -78,14 +79,14 @@ private:
 } // namespace
 
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 std::unique_ptr<ObjDumper> createMachODumper(const object::MachOObjectFile &Obj,
                                              ScopedPrinter &Writer) {
   return std::make_unique<MachODumper>(&Obj, Writer);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 const EnumEntry<uint32_t> MachOMagics[] = {
   { "Magic",      MachO::MH_MAGIC    },

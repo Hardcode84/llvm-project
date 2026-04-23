@@ -31,8 +31,9 @@
 #include "llvm/Object/ObjectFile.h"
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/Target/TargetMachine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 class ExegesisTarget;
@@ -138,6 +139,6 @@ MachineFunction &createVoidVoidPtrMachineFunction(StringRef FunctionID,
                                                   MachineModuleInfo *MMI);
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_EXEGESIS_ASSEMBLER_H

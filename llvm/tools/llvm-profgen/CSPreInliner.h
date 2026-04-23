@@ -15,8 +15,9 @@
 #include "llvm/ProfileData/SampleProf.h"
 #include "llvm/Transforms/IPO/ProfiledCallGraph.h"
 #include "llvm/Transforms/IPO/SampleContextTracker.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sampleprof {
 
 // Inline candidate seen from profile
@@ -88,6 +89,6 @@ private:
 };
 
 } // end namespace sampleprof
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

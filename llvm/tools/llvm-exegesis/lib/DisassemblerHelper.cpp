@@ -9,8 +9,9 @@
 #include "DisassemblerHelper.h"
 
 #include "llvm/MC/TargetRegistry.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 DisassemblerHelper::DisassemblerHelper(const LLVMState &State) : State_(State) {
@@ -31,4 +32,4 @@ DisassemblerHelper::DisassemblerHelper(const LLVMState &State) : State_(State) {
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

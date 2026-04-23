@@ -9,8 +9,9 @@
 #include "ProgressMeter.h"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 namespace {
@@ -57,4 +58,4 @@ TEST(ProgressMeterTest, Integration) {
 
 } // namespace
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

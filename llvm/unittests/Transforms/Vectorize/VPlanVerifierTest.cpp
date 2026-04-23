@@ -13,12 +13,13 @@
 #include "llvm/IR/Instruction.h"
 #include "llvm/IR/Instructions.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 LLVM_ABI extern cl::opt<bool> VerifyEachVPlan;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using VPVerifierTest = VPlanTestBase;
 

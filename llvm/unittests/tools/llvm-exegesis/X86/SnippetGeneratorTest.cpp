@@ -15,8 +15,9 @@
 #include "TestBase.h"
 #include "X86InstrInfo.h"
 #include "llvm/ADT/SetOperations.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 namespace {
 
@@ -543,4 +544,4 @@ TEST_F(X86FakeSnippetGeneratorTest, ComputeRegisterInitialValuesAdd64rr) {
 
 } // namespace
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

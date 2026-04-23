@@ -16,8 +16,9 @@
 #include "llvm/Support/FormattedStream.h"
 #include "llvm/Support/JSON.h"
 #include "llvm/Support/WithColor.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 void InstructionInfoView::getComment(raw_ostream &OS, const MCInst &MCI) const {
@@ -282,4 +283,4 @@ json::Value InstructionInfoView::toJSON() const {
   return json::Object({{"InstructionList", json::Value(std::move(InstInfo))}});
 }
 } // namespace mca.
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

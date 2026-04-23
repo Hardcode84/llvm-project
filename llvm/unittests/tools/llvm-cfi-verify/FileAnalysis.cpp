@@ -37,12 +37,13 @@
 #include "llvm/Support/raw_ostream.h"
 
 #include <cstdlib>
+#include "llvm/Support/Compiler.h"
 
 using Instr = ::llvm::cfi_verify::FileAnalysis::Instr;
 using ::testing::Eq;
 using ::testing::Field;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace cfi_verify {
 namespace {
 class ELFTestFileAnalysis : public FileAnalysis {
@@ -1091,7 +1092,7 @@ TEST_F(BasicAArch64FileAnalysisTest, AArch64TwoPathsBadLoad2) {
 
 } // anonymous namespace
 } // end namespace cfi_verify
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);

@@ -14,6 +14,7 @@
 #include "llvm/ADT/StringExtras.h"
 
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -104,8 +105,8 @@ bool Filter::streamEof() const { return Pos == DataLength; }
 
 } // anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 std::string filterCppOutput(StringRef Input) { return Filter(Input).run(); }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

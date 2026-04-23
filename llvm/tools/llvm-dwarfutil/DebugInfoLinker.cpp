@@ -17,8 +17,9 @@
 #include "llvm/Object/ObjectFile.h"
 #include <memory>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 using namespace dwarf_linker;
 
 namespace dwarfutil {
@@ -475,4 +476,4 @@ Error linkDebugInfo(object::ObjectFile &File, const Options &Options,
 }
 
 } // end of namespace dwarfutil
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm

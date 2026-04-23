@@ -10,6 +10,7 @@
 #include "llvm/Testing/Support/SupportHelpers.h"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
 using testing::Each;
 using testing::Field;
@@ -17,7 +18,7 @@ using testing::Not;
 using testing::UnorderedElementsAre;
 using testing::UnorderedElementsAreArray;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 void PrintTo(const BPFunctionNode &Node, std::ostream *OS) {
   raw_os_ostream ROS(*OS);
@@ -97,4 +98,4 @@ TEST_F(BalancedPartitioningTest, MoveGain) {
                   30.f);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

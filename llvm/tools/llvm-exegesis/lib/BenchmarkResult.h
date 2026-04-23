@@ -27,8 +27,9 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Error;
 
 namespace exegesis {
@@ -188,6 +189,6 @@ private:
 };
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_EXEGESIS_BENCHMARKRESULT_H

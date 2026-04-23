@@ -17,8 +17,9 @@
 
 #include "MCInstrDescView.h"
 #include "llvm/ADT/BitmaskEnum.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 // A template for an Instruction holding values for each of its Variables.
@@ -142,6 +143,6 @@ private:
 };
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_EXEGESIS_CODETEMPLATE_H

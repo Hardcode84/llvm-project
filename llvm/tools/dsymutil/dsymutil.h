@@ -29,7 +29,7 @@
 #include <string>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dsymutil {
 
 enum ObjectFilterType { Allow, Disallow };
@@ -52,6 +52,6 @@ bool dumpStab(BinaryHolder &BinHolder, StringRef InputFile,
               StringRef VariantSuffix = "");
 
 } // end namespace dsymutil
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TOOLS_DSYMUTIL_DSYMUTIL_H

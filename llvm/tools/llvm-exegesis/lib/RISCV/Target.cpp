@@ -28,8 +28,9 @@
 #include "llvm/CodeGen/MachineInstrBuilder.h"
 
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 static cl::opt<bool>
@@ -902,4 +903,4 @@ void InitializeRISCVExegesisTarget() {
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

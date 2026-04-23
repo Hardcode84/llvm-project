@@ -9,10 +9,11 @@
 #include "llvm/ADT/EquivalenceClasses.h"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 TEST(EquivalenceClassesTest, CopyAssignemnt) {
   EquivalenceClasses<int> EC, Copy;
@@ -181,4 +182,4 @@ TYPED_TEST_P(ParameterizedTest, MultipleSets) {
         EXPECT_FALSE(EqClasses.isEquivalent(i, j));
 }
 
-} // llvm
+LLVM_NAMESPACE_END // llvm

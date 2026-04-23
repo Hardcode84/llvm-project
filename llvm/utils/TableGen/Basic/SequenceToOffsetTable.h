@@ -21,8 +21,9 @@
 #include <cassert>
 #include <functional>
 #include <map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 inline void printChar(raw_ostream &OS, char C) {
   unsigned char UC(C);
@@ -186,6 +187,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_BASIC_SEQUENCETOOFFSETTABLE_H

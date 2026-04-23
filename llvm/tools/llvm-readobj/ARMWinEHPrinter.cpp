@@ -66,12 +66,13 @@
 #include "llvm/ADT/StringExtras.h"
 #include "llvm/Support/ARMWinEH.h"
 #include "llvm/Support/Format.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::object;
 using namespace llvm::support;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 raw_ostream &operator<<(raw_ostream &OS, const ARM::WinEH::ReturnType &RT) {
   switch (RT) {
   case ARM::WinEH::ReturnType::RT_POP:
@@ -89,7 +90,7 @@ raw_ostream &operator<<(raw_ostream &OS, const ARM::WinEH::ReturnType &RT) {
   }
   return OS;
 }
-}
+LLVM_NAMESPACE_END
 
 static std::string formatSymbol(StringRef Name, uint64_t Address,
                                 uint64_t Offset = 0) {
@@ -109,7 +110,7 @@ static std::string formatSymbol(StringRef Name, uint64_t Address,
   return Buffer;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace ARM {
 namespace WinEH {
 const size_t Decoder::PDataEntrySize = sizeof(RuntimeFunction);
@@ -1536,4 +1537,4 @@ Error Decoder::dumpProcedureData(const COFFObjectFile &COFF) {
 }
 }
 }
-}
+LLVM_NAMESPACE_END

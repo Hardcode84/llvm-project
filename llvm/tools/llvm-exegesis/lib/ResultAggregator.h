@@ -13,8 +13,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "BenchmarkResult.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 class ResultAggregator {
@@ -32,4 +33,4 @@ public:
 };
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

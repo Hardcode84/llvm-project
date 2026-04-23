@@ -27,8 +27,9 @@
 #include "llvm/Support/Error.h"
 #include "llvm/Support/SourceMgr.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 class MCACommentConsumer : public AsmCommentConsumer {
@@ -279,6 +280,6 @@ public:
 };
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_MCA_CODEREGION_GENERATOR_H

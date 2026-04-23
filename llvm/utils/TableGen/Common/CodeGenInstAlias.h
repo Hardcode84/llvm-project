@@ -19,8 +19,9 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CodeGenInstruction;
 class CodeGenTarget;
@@ -103,6 +104,6 @@ public:
   CodeGenInstAlias(const Record *R, const CodeGenTarget &T);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_COMMON_CODEGENINSTALIAS_H

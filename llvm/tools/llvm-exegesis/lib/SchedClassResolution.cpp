@@ -14,10 +14,11 @@
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/FormatVariadic.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "exegesis-sched-class-resolution"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 // Return the non-redundant list of WriteProcRes used by the given sched class.
@@ -345,4 +346,4 @@ std::vector<BenchmarkMeasure> ResolvedSchedClass::getAsPoint(
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

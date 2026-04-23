@@ -14,8 +14,10 @@
 
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::xray {
+LLVM_NAMESPACE_BEGIN
+namespace xray {
 
 // Use |CommandRegistration| as a global initialiser that registers a function
 // and associates it with |SC|. This requires that a command has not been
@@ -33,6 +35,7 @@ struct CommandRegistration {
 // Requires that |SC| is not null and has an associated function to it.
 std::function<Error()> dispatch(cl::SubCommand *SC);
 
-} // namespace llvm::xray
+}
+LLVM_NAMESPACE_END // namespace llvm::xray
 
 #endif // TOOLS_LLVM_XRAY_XRAY_REGISTRY_H

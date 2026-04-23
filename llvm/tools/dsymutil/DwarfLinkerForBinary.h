@@ -19,8 +19,9 @@
 #include "llvm/Remarks/RemarkLinker.h"
 #include <mutex>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 using namespace dwarf_linker;
 
 namespace dsymutil {
@@ -310,6 +311,6 @@ private:
 };
 
 } // end namespace dsymutil
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TOOLS_DSYMUTIL_DWARFLINKER_H

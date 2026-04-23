@@ -17,13 +17,14 @@
 
 #include "../PerfHelper.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
 // FIXME: Use appropriate wrappers for poll.h and mman.h
 // to support Windows and remove this linux-only guard.
 #if defined(__linux__) && defined(HAVE_LIBPFM) &&                              \
     defined(LIBPFM_HAS_FIELD_CYCLES)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 class X86LbrPerfEvent : public pfm::PerfEvent {
@@ -52,7 +53,7 @@ private:
 };
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // defined(__linux__) && defined(HAVE_LIBPFM) &&
        // defined(LIBPFM_HAS_FIELD_CYCLES)

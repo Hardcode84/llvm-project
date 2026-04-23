@@ -11,6 +11,7 @@
 #include "BenchmarkRunner.h"
 #include "MCInstrDescView.h"
 #include "Target.h"
+#include "llvm/Support/Compiler.h"
 
 // FIXME: Load constants into registers (e.g. with fld1) to not break
 // instructions like x87.
@@ -76,7 +77,7 @@
 // In that case we just use a greedy register assignment and hope for the
 // best.
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 static bool hasVariablesWithTiedOperands(const Instruction &Instr) {
@@ -351,4 +352,4 @@ ParallelSnippetGenerator::generateCodeTemplates(
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

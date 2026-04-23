@@ -10,9 +10,10 @@
 #define LLVM_TOOLS_LLVM_REDUCE_DELTAS_REDUCEINLINECALLSITES_H
 
 #include "Delta.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 void reduceInlineCallSitesDeltaPass(Oracle &O, ReducerWorkItem &Program);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

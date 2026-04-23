@@ -20,8 +20,9 @@
 #include "llvm/Support/TargetSelect.h"
 #include "llvm/Target/TargetMachine.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ARMSelectionDAGTest : public testing::Test {
 protected:
@@ -195,4 +196,4 @@ TEST_F(ARMSelectionDAGTest, computeKnownBits_VBICIMM_cmode2_lhs_ones) {
   EXPECT_EQ(Known.Zero, APInt(32, 0x0000AA00));
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

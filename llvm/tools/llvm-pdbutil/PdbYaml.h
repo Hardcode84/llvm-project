@@ -27,8 +27,9 @@
 
 #include <optional>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 namespace yaml {
@@ -131,7 +132,7 @@ struct PdbObject {
 };
 }
 }
-}
+LLVM_NAMESPACE_END
 
 LLVM_YAML_DECLARE_MAPPING_TRAITS_PRIVATE(pdb::yaml::CoffSectionHeader)
 LLVM_YAML_DECLARE_MAPPING_TRAITS_PRIVATE(pdb::yaml::PdbObject)

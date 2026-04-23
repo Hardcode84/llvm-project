@@ -20,10 +20,11 @@
 #include "llvm/IR/InstrTypes.h"
 #include <iterator>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Module;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using namespace llvm;
 

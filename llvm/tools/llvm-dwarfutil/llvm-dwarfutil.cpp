@@ -50,6 +50,7 @@ using namespace llvm::opt;
 static constexpr opt::OptTable::Info InfoTable[] = {
 #define OPTION(...) LLVM_CONSTRUCT_OPT_INFO(__VA_ARGS__),
 #include "Options.inc"
+#include "llvm/Support/Compiler.h"
 #undef OPTION
 };
 
@@ -60,7 +61,7 @@ public:
 };
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dwarfutil {
 
 std::string ToolName;
@@ -470,7 +471,7 @@ static Error applyCLOptions(const struct Options &Opts, ObjectFile &InputFile) {
 }
 
 } // end of namespace dwarfutil
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm
 
 int main(int Argc, char const *Argv[]) {
   using namespace dwarfutil;

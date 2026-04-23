@@ -17,8 +17,9 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace xray {
 namespace {
 
@@ -175,4 +176,4 @@ TEST(FDRTraceWriterTest, WriteToStringBufferVersion1) {
 
 } // namespace
 } // namespace xray
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

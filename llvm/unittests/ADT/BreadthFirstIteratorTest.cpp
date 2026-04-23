@@ -15,10 +15,11 @@
 #include <type_traits>
 
 #include <cstddef>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 TEST(BreadthFristIteratorTest, Basic) {
   using BFIter = bf_iterator<Graph<4>>;
@@ -105,4 +106,4 @@ TEST(BreadthFristIteratorTest, MultiPassSafeWithInternalSet) {
   EXPECT_EQ(NodesFirstPass, NodesSecondPass);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

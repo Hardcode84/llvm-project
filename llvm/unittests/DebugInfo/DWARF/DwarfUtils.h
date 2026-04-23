@@ -10,8 +10,9 @@
 #define LLVM_UNITTESTS_DEBUG_INFO_DWARF_DWARFUTILS_H
 
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Triple;
 
@@ -24,6 +25,6 @@ bool isConfigurationSupported(Triple &T);
 
 } // end namespace utils
 } // end namespace dwarf
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_UNITTESTS_DEBUG_INFO_DWARF_DWARFUTILS_H

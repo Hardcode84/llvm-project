@@ -41,6 +41,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/TargetParser/Triple.h"
 #include <cstdlib>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::dwarfdump;
@@ -57,7 +58,7 @@ struct OffsetOption {
 struct BoolOption : public OffsetOption {};
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace cl {
 template <>
 class parser<OffsetOption> final : public basic_parser<OffsetOption> {
@@ -118,7 +119,7 @@ public:
   }
 };
 } // namespace cl
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 /// @}
 /// Command line options.

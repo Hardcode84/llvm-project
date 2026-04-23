@@ -18,8 +18,10 @@
 #define LLVM_UTILS_TABLEGEN_X86MODRMFILTERS_H
 
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::X86Disassembler {
+LLVM_NAMESPACE_BEGIN
+namespace X86Disassembler {
 
 /// ModRMFilter - Abstract base class for clases that recognize patterns in
 ///   ModR/M bytes.
@@ -133,6 +135,7 @@ public:
   bool accepts(uint8_t modRM) const override { return (ModRM == modRM); }
 };
 
-} // namespace llvm::X86Disassembler
+}
+LLVM_NAMESPACE_END // namespace llvm::X86Disassembler
 
 #endif

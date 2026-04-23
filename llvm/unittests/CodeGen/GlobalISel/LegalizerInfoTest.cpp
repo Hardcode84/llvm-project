@@ -10,6 +10,7 @@
 #include "llvm/CodeGen/TargetOpcodes.h"
 #include "GISelMITest.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace LegalizeActions;
@@ -17,7 +18,7 @@ using namespace LegalityPredicates;
 using namespace LegalizeMutations;
 
 // Define a couple of pretty printers to help debugging when things go wrong.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 std::ostream &
 operator<<(std::ostream &OS, const LegalizeAction Act) {
   switch (Act) {
@@ -42,7 +43,7 @@ std::ostream &operator<<(std::ostream &OS, const llvm::LegalizeActionStep Ty) {
      << Ty.NewType << ')';
   return OS;
 }
-}
+LLVM_NAMESPACE_END
 
 namespace {
 

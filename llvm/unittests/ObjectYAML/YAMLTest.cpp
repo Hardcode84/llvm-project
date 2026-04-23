@@ -9,6 +9,7 @@
 #include "llvm/ObjectYAML/YAML.h"
 #include "llvm/Support/YAMLTraits.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -16,7 +17,7 @@ struct BinaryHolder {
   yaml::BinaryRef Binary;
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 template <>
 struct MappingTraits<BinaryHolder> {
@@ -25,7 +26,7 @@ struct MappingTraits<BinaryHolder> {
   }
 };
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 TEST(ObjectYAML, BinaryRef) {
   BinaryHolder BH;

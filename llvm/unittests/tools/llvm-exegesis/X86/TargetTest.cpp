@@ -24,9 +24,10 @@
 #ifdef __linux__
 #include <sys/mman.h>
 #include <sys/syscall.h>
+#include "llvm/Support/Compiler.h"
 #endif // __linux__
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 bool operator==(const MCOperand &a, const MCOperand &b) {
   if (a.isImm() && b.isImm())
@@ -48,9 +49,9 @@ bool operator==(const MCInst &a, const MCInst &b) {
   return true;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 namespace {
 
@@ -696,4 +697,4 @@ TEST_F(X86Core2TargetTest, MoveArgumentRegistersTest) {
 
 } // namespace
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -10,8 +10,9 @@
 #define LLVM_TOOLS_LLVMPDBDUMP_PRETTYVARIABLEDUMPER_H
 
 #include "llvm/DebugInfo/PDB/PDBSymDumper.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class StringRef;
 
@@ -45,5 +46,5 @@ private:
   LinePrinter &Printer;
 };
 }
-}
+LLVM_NAMESPACE_END
 #endif

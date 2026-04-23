@@ -13,8 +13,9 @@
 #include "llvm/IR/LLVMContext.h"
 #include "llvm/IR/Module.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace {
 
 // We use this fixture to ensure that we clean up ScalarEvolution before
@@ -195,4 +196,4 @@ TEST_F(ValueLatticeTest, getCompareUndef) {
 }
 
 } // end anonymous namespace
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

@@ -9,7 +9,9 @@
 #ifndef LLVM_UTILS_TABLEGEN_BASIC_SDNODEPROPERTIES_H
 #define LLVM_UTILS_TABLEGEN_BASIC_SDNODEPROPERTIES_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class Record;
 
@@ -32,6 +34,6 @@ enum SDNP {
 
 unsigned parseSDPatternOperatorProperties(const Record *R);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_BASIC_SDNODEPROPERTIES_H

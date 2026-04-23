@@ -14,8 +14,9 @@
 #include "VPlanTestBase.h"
 #include "llvm/ADT/SmallVector.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace {
 class VPUncountableExitTest : public VPlanTestIRBase {};
@@ -162,4 +163,4 @@ TEST_F(VPUncountableExitTest, NoUncountableExit) {
 }
 
 } // namespace
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -13,6 +13,7 @@
 
 #include "llvm-jitlink.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "llvm_jitlink"
 
@@ -128,8 +129,8 @@ Error StatsPlugin::recordPostFixupStats(LinkGraph &G) {
   return Error::success();
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 void enableStatistics(Session &S, bool UsingOrcRuntime) {
   StatsPlugin::enableIfNeeded(S, UsingOrcRuntime);
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

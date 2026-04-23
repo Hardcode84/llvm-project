@@ -10,8 +10,9 @@
 #define LLVM_TOOLS_LLVM_OBJDUMP_ELFDUMP_H
 
 #include "llvm/ADT/SmallVector.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Error;
 
@@ -32,6 +33,6 @@ uint64_t getELFSectionLMA(const object::ELFSectionRef &Sec);
 void printELFFileHeader(const object::ObjectFile *O);
 
 } // namespace objdump
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

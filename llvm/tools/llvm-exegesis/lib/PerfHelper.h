@@ -26,11 +26,12 @@
 typedef int pid_t;
 #else
 #include <sys/types.h>
+#include "llvm/Support/Compiler.h"
 #endif // _MSC_VER
 
 struct perf_event_attr;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 namespace pfm {
 
@@ -146,6 +147,6 @@ private:
 
 } // namespace pfm
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_EXEGESIS_PERFHELPER_H

@@ -29,8 +29,9 @@
 
 #include <cstdint>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // A definition of a single resource script token. Each token has its kind
 // (declared in ResourceScriptTokenList) and holds a value - a reference
@@ -77,6 +78,6 @@ private:
 // modified or reallocated.
 Expected<std::vector<RCToken>> tokenizeRC(StringRef Input, bool IsWindres);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

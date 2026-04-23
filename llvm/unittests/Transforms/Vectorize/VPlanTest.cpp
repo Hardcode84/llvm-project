@@ -18,8 +18,9 @@
 #include "llvm/IR/Instructions.h"
 #include "gtest/gtest.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace {
 
@@ -1805,4 +1806,4 @@ TEST_F(VPInstructionTest, VPSymbolicValueAddUserAfterMaterialization) {
 #endif
 
 } // namespace
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

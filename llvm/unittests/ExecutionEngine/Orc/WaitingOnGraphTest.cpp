@@ -10,8 +10,10 @@
 #include "llvm/ExecutionEngine/Orc/WaitingOnGraphOpReplay.h"
 #include "llvm/Testing/Support/Error.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::orc::detail {
+LLVM_NAMESPACE_BEGIN
+namespace orc::detail {
 
 class ElementSetTest : public testing::Test {
 public:
@@ -149,7 +151,8 @@ protected:
   ExternalStateGetter GetExternalState{*this};
 };
 
-} // namespace llvm::orc::detail
+}
+LLVM_NAMESPACE_END // namespace llvm::orc::detail
 
 using namespace llvm;
 using namespace llvm::orc;

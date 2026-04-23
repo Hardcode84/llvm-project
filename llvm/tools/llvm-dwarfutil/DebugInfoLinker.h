@@ -13,8 +13,9 @@
 #include "llvm/Object/Archive.h"
 #include "llvm/Object/ELFObjectFile.h"
 #include "llvm/Object/ObjectFile.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dwarfutil {
 
 inline bool isDebugSection(StringRef SecName) {
@@ -26,6 +27,6 @@ Error linkDebugInfo(object::ObjectFile &file, const Options &Options,
                     raw_pwrite_stream &OutStream);
 
 } // end of namespace dwarfutil
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_DWARFUTIL_DEBUGINFOLINKER_H

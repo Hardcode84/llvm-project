@@ -14,8 +14,9 @@
 #define LLVM_TOOLS_LLVM_REDUCE_DELTAS_UTILS_H
 
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BasicBlock;
 class Function;
 class Type;
@@ -31,6 +32,6 @@ bool hasAliasUse(Function &F);
 void simpleSimplifyCFG(Function &F, ArrayRef<BasicBlock *> BBs,
                        bool FoldBlockIntoPredecessor = true);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

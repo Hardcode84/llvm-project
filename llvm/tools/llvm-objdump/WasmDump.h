@@ -10,8 +10,9 @@
 #define LLVM_TOOLS_LLVM_OBJDUMP_WASMDUMP_H
 
 #include "llvm/ADT/SmallVector.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Error;
 
@@ -30,6 +31,6 @@ Error getWasmRelocationValueString(const object::WasmObjectFile *Obj,
 void printWasmFileHeader(const object::ObjectFile *O);
 
 } // namespace objdump
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

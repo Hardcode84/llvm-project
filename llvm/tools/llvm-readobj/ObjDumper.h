@@ -20,8 +20,9 @@
 #include "llvm/Support/CommandLine.h"
 
 #include <unordered_set>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 class Archive;
 class COFFImportFile;
@@ -232,6 +233,6 @@ void dumpCodeViewMergedTypes(ScopedPrinter &Writer,
                              ArrayRef<ArrayRef<uint8_t>> IpiRecords,
                              ArrayRef<ArrayRef<uint8_t>> TpiRecords);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

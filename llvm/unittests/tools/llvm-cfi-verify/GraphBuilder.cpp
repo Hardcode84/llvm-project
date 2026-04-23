@@ -38,6 +38,7 @@
 
 #include <cstdlib>
 #include <sstream>
+#include "llvm/Support/Compiler.h"
 
 using Instr = ::llvm::cfi_verify::FileAnalysis::Instr;
 using ::testing::AllOf;
@@ -52,7 +53,7 @@ using ::testing::PrintToString;
 using ::testing::SizeIs;
 using ::testing::UnorderedElementsAre;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace cfi_verify {
 // Printing helpers for gtest.
 std::string HexStringifyContainer(const std::vector<uint64_t> &C) {
@@ -594,4 +595,4 @@ TEST_F(BasicGraphBuilderTest, BuildFlowGraphComplexExample) {
 
 } // anonymous namespace
 } // end namespace cfi_verify
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

@@ -22,8 +22,9 @@
 #include "llvm/Support/Error.h"
 
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 // Reads code snippets from file `Filename`.
@@ -31,6 +32,6 @@ Expected<std::vector<BenchmarkCode>> readSnippets(const LLVMState &State,
                                                   StringRef Filename);
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

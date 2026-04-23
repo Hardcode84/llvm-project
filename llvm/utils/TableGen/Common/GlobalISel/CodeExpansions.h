@@ -11,11 +11,12 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/ADT/StringMap.h"
+#include "llvm/Support/Compiler.h"
 
 #ifndef LLVM_UTILS_TABLEGEN_COMMON_GLOBALISEL_CODEEXPANSIONS_H
 #define LLVM_UTILS_TABLEGEN_COMMON_GLOBALISEL_CODEEXPANSIONS_H
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class CodeExpansions {
 public:
   using const_iterator = StringMap<std::string>::const_iterator;
@@ -44,6 +45,6 @@ public:
     return Expansions.find(Variable);
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_COMMON_GLOBALISEL_CODEEXPANSIONS_H

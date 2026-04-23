@@ -15,6 +15,8 @@
 #ifndef LLVM_UTILS_TABLEGEN_TABLEGENBACKENDS_H
 #define LLVM_UTILS_TABLEGEN_TABLEGENBACKENDS_H
 
+
+#include "llvm/Support/Compiler.h"
 // A TableGen backend is a function that looks like
 //
 //    EmitFoo(RecordKeeper &RK, raw_ostream &OS /*, anything else you need */ )
@@ -54,7 +56,7 @@
 // TableGen binary with as few dependencies as possible on the rest of
 // LLVM.
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 class RecordKeeper;
@@ -64,6 +66,6 @@ void EmitMapTable(const RecordKeeper &RK, raw_ostream &OS);
 // Defined in DecoderEmitter.cpp
 void EmitDecoder(const RecordKeeper &RK, raw_ostream &OS);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

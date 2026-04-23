@@ -19,6 +19,7 @@
 #include "llvm/Support/MemoryBuffer.h"
 #include "llvm/Support/Path.h"
 #include "llvm/Support/Process.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm::support;
 
@@ -27,7 +28,7 @@ using namespace llvm::support;
   if (auto Err = (Expr))                                                       \
     return Err;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace rc {
 
 // Class that employs RAII to save the current FileWriter object state
@@ -1624,4 +1625,4 @@ ResourceFileWriter::loadFile(StringRef File) const {
 }
 
 } // namespace rc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

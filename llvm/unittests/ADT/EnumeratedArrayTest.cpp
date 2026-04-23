@@ -15,8 +15,9 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===--------------------------------------------------------------------===//
 // Test initialization and use of operator[] for both read and write.
@@ -118,4 +119,4 @@ static_assert(std::is_same_v<Array::const_pointer, const float *>,
               "Incorrect const_pointer type!");
 } // namespace
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

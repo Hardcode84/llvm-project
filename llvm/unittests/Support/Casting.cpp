@@ -12,8 +12,9 @@
 #include "llvm/Support/raw_ostream.h"
 #include "gtest/gtest.h"
 #include <cstdlib>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Used to test illegal cast. If a cast doesn't match any of the "real" ones,
 // it will match this one.
 struct IllegalCast;
@@ -119,7 +120,7 @@ template <> struct CastInfo<T4, T3> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using namespace llvm;
 
@@ -436,7 +437,7 @@ public:
 } // end namespace pointer_wrappers
 } // end namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <> struct ValueIsPresent<pointer_wrappers::PTy> {
   using UnwrappedType = pointer_wrappers::PTy;
@@ -470,7 +471,7 @@ template <> struct simplify_type<const pointer_wrappers::PTy> {
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace {
 namespace pointer_wrappers {

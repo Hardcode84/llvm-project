@@ -21,8 +21,9 @@
 #include <set>
 #include <unordered_map>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objdump {
 
 /// Base class for representing the location of a source-level variable or
@@ -250,6 +251,6 @@ public:
 };
 
 } // namespace objdump
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

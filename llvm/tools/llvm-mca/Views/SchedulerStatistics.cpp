@@ -14,8 +14,9 @@
 #include "Views/SchedulerStatistics.h"
 #include "llvm/Support/Format.h"
 #include "llvm/Support/FormattedStream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 SchedulerStatistics::SchedulerStatistics(const llvm::MCSubtargetInfo &STI)
@@ -174,4 +175,4 @@ void SchedulerStatistics::printView(raw_ostream &OS) const {
 }
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

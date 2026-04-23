@@ -14,6 +14,7 @@
 
 #include "llvm/Support/Error.h"
 #include "llvm/Support/Path.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "llvm_jitlink"
 
@@ -98,7 +99,7 @@ static Error registerSymbol(LinkGraph &G, Symbol &Sym, Session::FileInfo &FI,
   llvm_unreachable("Unhandled SectionType enum");
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 Error registerELFGraphInfo(Session &S, LinkGraph &G) {
   std::lock_guard<std::mutex> Lock(S.M);
@@ -202,4 +203,4 @@ Error registerELFGraphInfo(Session &S, LinkGraph &G) {
   return Error::success();
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

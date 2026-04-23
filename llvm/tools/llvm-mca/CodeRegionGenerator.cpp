@@ -21,8 +21,9 @@
 #include "llvm/Support/Error.h"
 #include "llvm/Support/SMLoc.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 // This virtual dtor serves as the anchor for the CodeRegionGenerator class.
@@ -179,4 +180,4 @@ void InstrumentRegionCommentConsumer::HandleComment(SMLoc Loc,
 }
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

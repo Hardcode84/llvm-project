@@ -10,8 +10,9 @@
 #include "gtest/gtest.h"
 
 #include <numeric>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace xray {
 namespace {
 
@@ -263,4 +264,4 @@ TEST(ProfileTest, MergeProfilesByThreadAccumulate) {
 
 } // namespace
 } // namespace xray
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

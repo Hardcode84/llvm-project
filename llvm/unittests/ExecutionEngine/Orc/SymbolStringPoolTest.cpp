@@ -9,11 +9,13 @@
 #include "llvm/ExecutionEngine/Orc/SymbolStringPool.h"
 #include "llvm/ExecutionEngine/Orc/DebugUtils.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::orc;
 
-namespace llvm::orc {
+LLVM_NAMESPACE_BEGIN
+namespace orc {
 
 class SymbolStringPoolTest : public testing::Test {
 public:
@@ -24,7 +26,8 @@ public:
 protected:
   SymbolStringPool SP;
 };
-} // namespace llvm::orc
+}
+LLVM_NAMESPACE_END // namespace llvm::orc
 
 namespace {
 

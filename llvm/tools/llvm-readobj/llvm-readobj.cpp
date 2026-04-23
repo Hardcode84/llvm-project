@@ -70,6 +70,7 @@ enum ID {
 static constexpr opt::OptTable::Info InfoTable[] = {
 #define OPTION(...) LLVM_CONSTRUCT_OPT_INFO(__VA_ARGS__),
 #include "Opts.inc"
+#include "llvm/Support/Compiler.h"
 #undef OPTION
 };
 
@@ -178,7 +179,7 @@ static std::vector<std::string> InputFilenames;
 
 static StringRef ToolName;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 [[noreturn]] static void error(Twine Msg) {
   // Flush the standard output to print the error at a
@@ -211,7 +212,7 @@ void reportWarning(Error Err, StringRef Input) {
       });
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 static void parseOptions(const opt::InputArgList &Args) {
   opts::Addrsig = Args.hasArg(OPT_addrsig);

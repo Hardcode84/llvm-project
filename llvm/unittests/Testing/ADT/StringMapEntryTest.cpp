@@ -11,8 +11,9 @@
 
 #include "gtest/gtest.h"
 #include <sstream>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace {
 
 using testing::Gt;
@@ -85,4 +86,4 @@ TEST(IsStringMapEntryTest, ExplainSelfMatchFailsOnValue) {
 }
 
 } // namespace
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

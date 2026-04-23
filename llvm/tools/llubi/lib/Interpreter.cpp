@@ -20,8 +20,10 @@
 #include "llvm/IR/Operator.h"
 #include "llvm/IR/PatternMatch.h"
 #include "llvm/Support/Allocator.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::ubi {
+LLVM_NAMESPACE_BEGIN
+namespace ubi {
 
 using namespace PatternMatch;
 
@@ -1350,4 +1352,5 @@ ProgramExitInfo Context::runFunction(Function &F, ArrayRef<AnyValue> Args,
   return Executor.runMainLoop();
 }
 
-} // namespace llvm::ubi
+}
+LLVM_NAMESPACE_END // namespace llvm::ubi

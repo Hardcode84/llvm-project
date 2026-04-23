@@ -15,10 +15,11 @@
 #include "llvm/Object/COFF.h"
 #include "llvm/Object/COFFImportFile.h"
 #include "llvm/Support/ScopedPrinter.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm::object;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 void dumpCOFFImportFile(const COFFImportFile *File, ScopedPrinter &Writer) {
   Writer.startLine() << '\n';
@@ -61,4 +62,4 @@ void dumpCOFFImportFile(const COFFImportFile *File, ScopedPrinter &Writer) {
   }
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

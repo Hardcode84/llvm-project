@@ -23,8 +23,9 @@
 #include "llvm/Support/Program.h"
 #include "llvm/Support/WithColor.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dsymutil {
 namespace MachOUtils {
 
@@ -724,4 +725,4 @@ bool generateDsymCompanion(
 }
 } // namespace MachOUtils
 } // namespace dsymutil
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

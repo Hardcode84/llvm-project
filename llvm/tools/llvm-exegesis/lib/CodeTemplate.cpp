@@ -7,8 +7,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "CodeTemplate.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 CodeTemplate::CodeTemplate(const CodeTemplate &) = default;
@@ -121,4 +122,4 @@ SmallVector<ExecutionMode, 4> getExecutionModeBits(ExecutionMode Execution) {
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

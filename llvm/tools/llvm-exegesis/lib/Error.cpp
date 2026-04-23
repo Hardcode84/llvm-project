@@ -11,9 +11,10 @@
 
 #ifdef LLVM_ON_UNIX
 #include <string.h>
+#include "llvm/Support/Compiler.h"
 #endif // LLVM_ON_UNIX
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 char ClusteringError::ID;
@@ -59,4 +60,4 @@ void PerfCounterNotFullyEnabled::log(raw_ostream &OS) const {
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

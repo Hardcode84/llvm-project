@@ -28,9 +28,10 @@
 
 #ifdef __linux__
 #include <unistd.h>
+#include "llvm/Support/Compiler.h"
 #endif // __linux__
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 namespace {
 
@@ -289,4 +290,4 @@ Expected<std::vector<BenchmarkCode>> readSnippets(const LLVMState &State,
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -14,8 +14,9 @@
 #include "llvm/Testing/Support/Error.h"
 #include "llvm/Transforms/Scalar/LICM.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 TEST(LICMTest, TestSCEVInvalidationOnHoisting) {
   LLVMContext Ctx;
@@ -90,4 +91,4 @@ TEST(LICMTest, TestSCEVInvalidationOnHoisting) {
             ScalarEvolution::BlockDisposition::ProperlyDominatesBlock);
   EXPECT_EQ(DispositionBeforeInvalidation, DispositionAfterInvalidation);
 }
-}
+LLVM_NAMESPACE_END

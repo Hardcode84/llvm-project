@@ -14,8 +14,9 @@
 #define LLVM_COV_COVERAGEEXPORTERLCOV_H
 
 #include "CoverageExporter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CoverageExporterLcov : public CoverageExporter {
 public:
@@ -30,6 +31,6 @@ public:
   void renderRoot(ArrayRef<std::string> SourceFiles) override;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_COV_COVERAGEEXPORTERLCOV_H

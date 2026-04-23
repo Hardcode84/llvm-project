@@ -7,8 +7,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "ResultAggregator.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 class DefaultResultAggregator : public ResultAggregator {
@@ -93,4 +94,4 @@ ResultAggregator::CreateAggregator(Benchmark::RepetitionModeE RepetitionMode) {
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

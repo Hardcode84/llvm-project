@@ -20,8 +20,9 @@
 #include "llvm/Support/SourceMgr.h"
 #include "llvm/Support/raw_ostream.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace {
 
 class BlockFrequencyInfoTest : public testing::Test {
@@ -95,4 +96,4 @@ static_assert(std::is_trivially_copyable_v<bfi_detail::BlockMass>,
               "trivially copyable");
 
 } // end anonymous namespace
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

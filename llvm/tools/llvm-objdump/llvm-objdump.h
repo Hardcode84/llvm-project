@@ -18,8 +18,9 @@
 #include "llvm/Support/FormattedStream.h"
 #include <functional>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 class Twine;
 
@@ -157,6 +158,6 @@ void printRawData(llvm::ArrayRef<uint8_t> Bytes, uint64_t Address,
                   llvm::MCSubtargetInfo const &STI);
 
 } // namespace objdump
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

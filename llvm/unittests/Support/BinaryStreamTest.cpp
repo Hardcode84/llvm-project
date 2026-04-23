@@ -16,6 +16,7 @@
 #include "llvm/Testing/Support/Error.h"
 
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
 
 using namespace llvm;
@@ -899,7 +900,7 @@ struct BinaryItemStreamObject {
 };
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct BinaryItemTraits<BinaryItemStreamObject> {
   static size_t length(const BinaryItemStreamObject &Item) {
     return Item.Bytes.size();
@@ -909,7 +910,7 @@ template <> struct BinaryItemTraits<BinaryItemStreamObject> {
     return Item.Bytes;
   }
 };
-}
+LLVM_NAMESPACE_END
 
 namespace {
 

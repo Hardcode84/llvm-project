@@ -16,8 +16,9 @@
 #include "llvm/ADT/StringRef.h"
 #include <memory>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SpecialCaseList;
 
 namespace coverage {
@@ -166,6 +167,6 @@ public:
                const coverage::FunctionRecord &Function) const override;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_COV_COVERAGEFILTERS_H

@@ -11,6 +11,7 @@
 #include "llvm/Support/FormatAdapters.h"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -840,13 +841,13 @@ struct Recorder {
       : Copied(Move.Copied), Moved(1 + Move.Moved) {}
 };
 } // namespace
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct format_provider<Recorder> {
   static void format(const Recorder &R, raw_ostream &OS, StringRef style) {
     OS << R.Copied << "C " << R.Moved << "M";
   }
 };
-} // namespace
+LLVM_NAMESPACE_END // namespace
 
 TEST(FormatVariadicTest, CopiesAndMoves) {
   Recorder R;

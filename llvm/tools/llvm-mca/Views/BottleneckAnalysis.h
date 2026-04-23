@@ -89,8 +89,9 @@
 #include "llvm/MC/MCSubtargetInfo.h"
 #include "llvm/Support/FormattedStream.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 class PressureTracker {
@@ -347,6 +348,6 @@ public:
 };
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

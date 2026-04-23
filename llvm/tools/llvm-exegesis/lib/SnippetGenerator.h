@@ -26,8 +26,9 @@
 #include "llvm/Support/Error.h"
 #include <cstdlib>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 std::vector<CodeTemplate> getSingleton(CodeTemplate &&CT);
@@ -110,6 +111,6 @@ Error randomizeUnsetVariables(const LLVMState &State,
 Error validateGeneratedInstruction(const LLVMState &State, const MCInst &Inst);
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_EXEGESIS_SNIPPETGENERATOR_H

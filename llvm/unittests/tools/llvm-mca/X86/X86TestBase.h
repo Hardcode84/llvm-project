@@ -13,8 +13,9 @@
 
 #include "MCATestBase.h"
 #include "llvm/ADT/SmallVector.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 class X86TestBase : public MCATestBase {
@@ -25,6 +26,6 @@ protected:
 };
 
 } // end namespace mca
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

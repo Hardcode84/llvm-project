@@ -23,8 +23,9 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AsmPrinter;
 class DIE;
@@ -338,6 +339,6 @@ public:
 
 } // end namespace dwarfgen
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_UNITTESTS_DEBUG_INFO_DWARF_DWARFGENERATOR_H

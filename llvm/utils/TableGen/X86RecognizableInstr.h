@@ -21,8 +21,9 @@
 #include <cstdint>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Record;
 #define X86_INSTR_MRM_MAPPING                                                  \
   MAP(C0, 64)                                                                  \
@@ -396,5 +397,5 @@ inline uint8_t byteFromBitsInit(const BitsInit *B) {
 }
 
 } // namespace X86Disassembler
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

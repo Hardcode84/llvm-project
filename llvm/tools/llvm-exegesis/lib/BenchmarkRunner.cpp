@@ -45,13 +45,14 @@
 
 #if defined(__GLIBC__) && __has_include(<sys/rseq.h>) && defined(HAVE_BUILTIN_THREAD_POINTER)
 #include <sys/rseq.h>
+#include "llvm/Support/Compiler.h"
 #if defined(RSEQ_SIG) && defined(SYS_rseq)
 #define GLIBC_INITS_RSEQ
 #endif
 #endif
 #endif // __linux__
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 BenchmarkRunner::BenchmarkRunner(const LLVMState &State, Benchmark::ModeE Mode,
@@ -879,4 +880,4 @@ Error BenchmarkRunner::getValidationCountersToRun(
 BenchmarkRunner::FunctionExecutor::~FunctionExecutor() = default;
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

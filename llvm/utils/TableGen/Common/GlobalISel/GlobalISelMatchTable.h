@@ -34,8 +34,9 @@
 #include <set>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 class Record;
@@ -2611,6 +2612,6 @@ public:
 };
 
 } // namespace gi
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_COMMON_GLOBALISEL_GLOBALISELMATCHTABLE_H

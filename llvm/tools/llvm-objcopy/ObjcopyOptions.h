@@ -11,8 +11,9 @@
 
 #include "llvm/ObjCopy/ConfigManager.h"
 #include "llvm/Support/Allocator.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objcopy {
 
 // Configuration for the overall invocation of this tool. When invoked as
@@ -52,6 +53,6 @@ Expected<DriverConfig>
 parseStripOptions(ArrayRef<const char *> ArgsArr,
                   llvm::function_ref<Error(Error)> ErrorCallback);
 } // namespace objcopy
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_OBJCOPY_OBJCOPYOPTIONS_H

@@ -17,8 +17,9 @@
 #include "CoverageSummaryInfo.h"
 #include "CoverageViewOptions.h"
 #include "llvm/ProfileData/Coverage/CoverageMapping.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Exports the code coverage information.
 class CoverageExporter {
@@ -46,6 +47,6 @@ public:
   virtual void renderRoot(ArrayRef<std::string> SourceFiles) = 0;
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_COV_COVERAGEEXPORTER_H

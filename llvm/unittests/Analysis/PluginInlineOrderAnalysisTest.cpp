@@ -10,8 +10,9 @@
 #include "gtest/gtest.h"
 
 #include "llvm/Analysis/InlineOrder.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace {
 
@@ -243,4 +244,4 @@ TEST(PluginInlineOrderTest, NoInlineFoo) {
   }
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

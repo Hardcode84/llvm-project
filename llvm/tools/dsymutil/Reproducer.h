@@ -11,8 +11,9 @@
 
 #include "llvm/Support/FileCollector.h"
 #include "llvm/Support/VirtualFileSystem.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dsymutil {
 
 /// The reproducer mode.
@@ -86,6 +87,6 @@ private:
 };
 
 } // end namespace dsymutil
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TOOLS_DSYMUTIL_REPRODUCER_H

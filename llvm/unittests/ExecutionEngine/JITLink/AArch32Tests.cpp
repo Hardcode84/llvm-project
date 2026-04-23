@@ -37,7 +37,7 @@ struct MutableWord {
 
   uint32_t Wd;
 };
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 
 Expected<aarch32::EdgeKind_aarch32>
@@ -45,7 +45,7 @@ getJITLinkEdgeKind(uint32_t ELFType, const aarch32::ArmConfig &Cfg);
 Expected<uint32_t> getELFRelocationType(Edge::Kind Kind);
 
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 TEST(AArch32_ELF, EdgeKinds) {
   // Fails: Invalid ELF type -> JITLink kind
@@ -93,7 +93,7 @@ TEST(AArch32_ELF, DynFixupInfos) {
             nullptr);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace jitlink {
 namespace aarch32 {
 
@@ -115,7 +115,7 @@ LLVM_ABI int64_t decodeRegMovtA1MovwA2(uint64_t Value);
 
 } // namespace aarch32
 } // namespace jitlink
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Big-endian for v7 and v8 (and v6 unless in legacy backwards compatible mode
 // be32) have little-endian instructions and big-endian data. In ELF relocatable

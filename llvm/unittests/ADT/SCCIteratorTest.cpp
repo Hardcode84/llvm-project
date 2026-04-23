@@ -10,10 +10,11 @@
 #include "TestGraph.h"
 #include "gtest/gtest.h"
 #include <limits.h>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 TEST(SCCIteratorTest, AllSmallGraphs) {
   // Test SCC computation against every graph with NUM_NODES nodes or less.
@@ -117,4 +118,4 @@ TEST(SCCIteratorTest, AllSmallGraphs) {
   }
 }
 
-}
+LLVM_NAMESPACE_END

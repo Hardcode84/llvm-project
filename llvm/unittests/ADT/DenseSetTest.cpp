@@ -10,6 +10,7 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -211,7 +212,7 @@ int CountCopyAndMove::Copy = 0;
 int CountCopyAndMove::Move = 0;
 } // anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Specialization required to insert a CountCopyAndMove into a DenseSet.
 template <> struct DenseMapInfo<CountCopyAndMove> {
   static inline CountCopyAndMove getEmptyKey() { return CountCopyAndMove(-1); };
@@ -226,7 +227,7 @@ template <> struct DenseMapInfo<CountCopyAndMove> {
     return LHS.Value == RHS.Value;
   }
 };
-}
+LLVM_NAMESPACE_END
 
 namespace {
 // Make sure reserve actually gives us enough buckets to insert N items

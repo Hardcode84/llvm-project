@@ -16,8 +16,9 @@
 #define LLVM_TOOLS_LLVM_EXEGESIS_TARGET_SELECT_H
 
 #include "llvm/Config/llvm-config.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 // Forward declare all of the initialize methods for targets compiled in
@@ -31,6 +32,6 @@ inline void InitializeAllExegesisTargets() {
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_EXEGESIS_TARGET_SELECT_H

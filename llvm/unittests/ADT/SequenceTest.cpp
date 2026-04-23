@@ -14,6 +14,7 @@
 #include <iterator>
 #include <limits>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -230,7 +231,7 @@ public:
 
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <> struct enum_iteration_traits<UntypedEnum> {
   static constexpr bool is_iterable = true;
@@ -252,7 +253,7 @@ template <> struct enum_iteration_traits<S::NestedEnum3> {
   static constexpr bool is_iterable = true;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 

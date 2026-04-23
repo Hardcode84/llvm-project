@@ -25,7 +25,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include "gtest/gtest.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 LLVM_ABI extern cl::opt<bool> ScalePartialSampleProfileWorkingSetSize;
 
@@ -432,4 +432,4 @@ TEST_F(ProfileSummaryInfoTest, PartialSampleProfWorkingSetSize) {
 }
 
 } // end anonymous namespace
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

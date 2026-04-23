@@ -27,9 +27,9 @@
 #include <optional>
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 LLVM_ABI extern cl::opt<bool> PickMergedSourceLocations;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 

@@ -18,13 +18,14 @@
 #include <llvm/IR/PassManager.h>
 #include <llvm/IR/PassTimingInfo.h>
 #include <llvm/Support/raw_ostream.h>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
 //===----------------------------------------------------------------------===//
 // Define dummy passes for legacy pass manager run.
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 void initializePass1Pass(PassRegistry &);
 void initializePass2Pass(PassRegistry &);
@@ -56,7 +57,7 @@ public:
 };
 char Pass2::ID;
 } // namespace
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 INITIALIZE_PASS(Pass1, "Pass1", "Pass1", false, false)
 INITIALIZE_PASS(Pass2, "Pass2", "Pass2", false, false)

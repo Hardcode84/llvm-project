@@ -9,10 +9,12 @@
 #ifndef LLVM_UTILS_TABLEGEN_COMMON_OPTEMITTER_H
 #define LLVM_UTILS_TABLEGEN_COMMON_OPTEMITTER_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class Record;
 /// Return true of Option record \p A is ordered before \p B.
 bool IsOptionRecordsLess(const Record *A, const Record *B);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_COMMON_OPTEMITTER_H

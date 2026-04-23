@@ -24,7 +24,7 @@
 #include <system_error>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace rc {
 
 class RCParser {
@@ -194,6 +194,6 @@ private:
 };
 
 } // namespace rc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

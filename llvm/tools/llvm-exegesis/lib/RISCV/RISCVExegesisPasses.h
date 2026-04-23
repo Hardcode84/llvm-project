@@ -8,12 +8,14 @@
 
 #ifndef LLVM_TOOLS_EXEGESIS_LIB_RISCV_RISCVEXEGESISPASSES_H
 #define LLVM_TOOLS_EXEGESIS_LIB_RISCV_RISCVEXEGESISPASSES_H
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class FunctionPass;
 
 namespace exegesis {
 FunctionPass *createRISCVPreprocessingPass();
 FunctionPass *createRISCVPostprocessingPass();
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

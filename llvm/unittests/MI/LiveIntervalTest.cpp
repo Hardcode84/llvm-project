@@ -18,12 +18,13 @@
 #include "gtest/gtest.h"
 
 #include "../lib/CodeGen/RegisterCoalescer.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   void initializeTestPassPass(PassRegistry &);
-}
+LLVM_NAMESPACE_END
 
 namespace {
 

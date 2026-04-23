@@ -13,8 +13,9 @@
 #include "gtest/gtest.h"
 #include <optional>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace telemetry {
 // Testing parameters.
 //
@@ -262,4 +263,4 @@ TELEMETRY_TEST(TelemetryTest, TelemetryEnabled) {
 }
 
 } // namespace telemetry
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

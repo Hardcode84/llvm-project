@@ -14,8 +14,9 @@
 #include "llvm/Object/WindowsResource.h"
 #include "llvm/Support/ConvertUTF.h"
 #include "llvm/Support/ScopedPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 namespace WindowsRes {
 
@@ -81,4 +82,4 @@ void Dumper::printEntry(const ResourceEntryRef &Ref) {
 
 } // namespace WindowsRes
 } // namespace object
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

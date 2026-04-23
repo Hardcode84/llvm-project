@@ -15,8 +15,9 @@
 #define LLVM_UTILS_TABLEGEN_WEBASSEMBLYDISASSEMBLEREMITTER_H
 
 #include "llvm/ADT/ArrayRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CodeGenInstruction;
 class raw_ostream;
@@ -24,6 +25,6 @@ class raw_ostream;
 void emitWebAssemblyDisassemblerTables(
     raw_ostream &OS, ArrayRef<const CodeGenInstruction *> NumberedInstructions);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

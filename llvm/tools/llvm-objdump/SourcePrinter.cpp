@@ -19,10 +19,11 @@
 #include "llvm/DebugInfo/DWARF/LowLevel/DWARFExpression.h"
 #include "llvm/Demangle/Demangle.h"
 #include "llvm/Support/FormatVariadic.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "objdump"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace objdump {
 
 bool InlinedFunction::liveAtAddress(object::SectionedAddress Addr) const {
@@ -769,4 +770,4 @@ SourcePrinter::SourcePrinter(const object::ObjectFile *Obj,
 }
 
 } // namespace objdump
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

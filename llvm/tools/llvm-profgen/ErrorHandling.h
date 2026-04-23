@@ -15,8 +15,9 @@
 #include "llvm/Support/ErrorOr.h"
 #include "llvm/Support/WithColor.h"
 #include <system_error>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 [[noreturn]] inline void exitWithError(const Twine &Message,
                                        StringRef Whence = StringRef(),
@@ -53,6 +54,6 @@ inline void emitWarningSummary(uint64_t Num, uint64_t Total, StringRef Msg) {
                        << "%(" << Num << "/" << Total << ") " << Msg << "\n";
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

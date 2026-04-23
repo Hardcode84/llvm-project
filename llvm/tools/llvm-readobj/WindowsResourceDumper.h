@@ -11,8 +11,9 @@
 
 #include "llvm/Object/WindowsResource.h"
 #include "llvm/Support/ScopedPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace object {
 namespace WindowsRes {
 
@@ -31,6 +32,6 @@ private:
 
 } // namespace WindowsRes
 } // namespace object
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

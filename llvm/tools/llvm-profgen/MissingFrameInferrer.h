@@ -15,8 +15,9 @@
 #include "llvm/ADT/Statistic.h"
 #include <unordered_map>
 #include <unordered_set>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sampleprof {
 
 class ProfiledBinary;
@@ -111,6 +112,6 @@ private:
 #endif
 };
 } // end namespace sampleprof
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

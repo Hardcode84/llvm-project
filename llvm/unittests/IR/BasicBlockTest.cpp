@@ -20,8 +20,9 @@
 #include "gmock/gmock-matchers.h"
 #include "gtest/gtest.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace {
 
 TEST(BasicBlockTest, PhiRange) {
@@ -546,4 +547,4 @@ TEST(BasicBlockTest, DiscardValueNames2) {
 }
 
 } // End anonymous namespace.
-} // End llvm namespace.
+LLVM_NAMESPACE_END // End llvm namespace.

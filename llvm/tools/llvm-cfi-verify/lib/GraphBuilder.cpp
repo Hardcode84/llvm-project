@@ -32,10 +32,11 @@
 #include "llvm/Support/MemoryBuffer.h"
 #include "llvm/Support/TargetSelect.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 using Instr = llvm::cfi_verify::FileAnalysis::Instr;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace cfi_verify {
 
 uint64_t SearchLengthForUndef;
@@ -337,4 +338,4 @@ void GraphBuilder::buildFlowGraphImpl(const FileAnalysis &Analysis,
 }
 
 } // namespace cfi_verify
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

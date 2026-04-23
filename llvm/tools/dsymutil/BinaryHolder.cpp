@@ -15,8 +15,9 @@
 #include "llvm/Object/MachO.h"
 #include "llvm/Support/WithColor.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dsymutil {
 
 static std::pair<StringRef, StringRef>
@@ -311,4 +312,4 @@ void BinaryHolder::eraseObjectEntry(StringRef Filename) {
 }
 
 } // namespace dsymutil
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

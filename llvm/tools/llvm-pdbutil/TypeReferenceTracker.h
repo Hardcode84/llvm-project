@@ -16,8 +16,9 @@
 #include "llvm/DebugInfo/CodeView/TypeIndexDiscovery.h"
 #include "llvm/DebugInfo/PDB/Native/InputFile.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 class TpiStream;
@@ -62,6 +63,6 @@ private:
 };
 
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVMPDBDUMP_TYPEREFERENCETRACKER_H

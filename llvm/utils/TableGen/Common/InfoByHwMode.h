@@ -25,7 +25,7 @@
 #include <string>
 #include <tuple>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class CodeGenRegBank;
 class CodeGenRegister;
@@ -269,6 +269,6 @@ private:
   StringRef Namespace;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_COMMON_INFOBYHWMODE_H

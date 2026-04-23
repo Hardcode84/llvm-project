@@ -11,8 +11,9 @@
 
 #include "llvm/DebugInfo/CodeView/TypeVisitorCallbacks.h"
 #include "llvm/Support/BinaryStreamArray.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 class LazyRandomTypeCollection;
 }
@@ -68,6 +69,6 @@ private:
   pdb::TpiStream *Stream = nullptr;
 };
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

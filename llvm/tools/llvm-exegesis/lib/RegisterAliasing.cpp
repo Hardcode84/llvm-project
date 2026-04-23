@@ -7,8 +7,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "RegisterAliasing.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 BitVector getAliasedBits(const MCRegisterInfo &RegInfo,
@@ -89,4 +90,4 @@ std::string debugString(const MCRegisterInfo &RegInfo, const BitVector &Regs) {
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -17,7 +17,7 @@
 #include "llvm/Support/Error.h"
 #include "llvm/Support/ErrorOr.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   namespace object {
     class RelocationRef;
   }
@@ -31,7 +31,7 @@ namespace llvm {
       return *EO;
     reportError(EO.takeError(), Input);
   }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace opts {
 extern bool SectionRelocations;

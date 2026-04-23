@@ -14,8 +14,9 @@
 #include "llvm/XRay/FDRLogBuilder.h"
 #include "llvm/XRay/FDRRecords.h"
 #include "llvm/XRay/RecordPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace xray {
 namespace {
 
@@ -163,4 +164,4 @@ TEST(XRayFDRTest, IndexAndVerifyBlocks) {
 
 } // namespace
 } // namespace xray
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -12,8 +12,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "CodeRegion.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 bool CodeRegion::isLocInRange(SMLoc Loc) const {
@@ -171,4 +172,4 @@ InstrumentRegions::getActiveInstruments(SMLoc Loc) const {
 }
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

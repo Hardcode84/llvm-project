@@ -27,10 +27,11 @@
 #include "llvm/Support/TargetSelect.h"
 #include "llvm/TargetParser/Triple.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "load-binary"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using namespace object;
 
@@ -1318,4 +1319,4 @@ void InstructionPointer::update(uint64_t Addr) {
 }
 
 } // end namespace sampleprof
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

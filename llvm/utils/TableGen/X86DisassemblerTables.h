@@ -21,8 +21,9 @@
 #include <map>
 #include <memory>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 
 namespace X86Disassembler {
@@ -281,6 +282,6 @@ public:
 
 } // namespace X86Disassembler
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

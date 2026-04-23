@@ -13,8 +13,9 @@
 
 #include "Views/RegisterFileStatistics.h"
 #include "llvm/Support/Format.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 RegisterFileStatistics::RegisterFileStatistics(const MCSubtargetInfo &sti)
@@ -166,4 +167,4 @@ void RegisterFileStatistics::printView(raw_ostream &OS) const {
 }
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

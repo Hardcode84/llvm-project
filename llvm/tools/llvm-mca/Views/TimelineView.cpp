@@ -13,8 +13,9 @@
 
 #include "Views/TimelineView.h"
 #include <numeric>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 TimelineView::TimelineView(const MCSubtargetInfo &sti, MCInstPrinter &Printer,
@@ -329,4 +330,4 @@ json::Value TimelineView::toJSON() const {
   return json::Object({{"TimelineInfo", std::move(TimelineInfo)}});
 }
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

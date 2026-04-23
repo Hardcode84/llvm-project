@@ -16,9 +16,10 @@
 #include <assert.h>
 #include <glob.h>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dsymutil {
 
 #ifdef __APPLE__
@@ -182,4 +183,4 @@ CFBundleInfo getBundleInfo(StringRef ExePath) {
 }
 
 } // end namespace dsymutil
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

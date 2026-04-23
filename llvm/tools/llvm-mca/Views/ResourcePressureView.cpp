@@ -14,8 +14,9 @@
 #include "Views/ResourcePressureView.h"
 #include "llvm/Support/FormattedStream.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 ResourcePressureView::ResourcePressureView(const llvm::MCSubtargetInfo &sti,
@@ -234,4 +235,4 @@ json::Value ResourcePressureView::toJSON() const {
   return JO;
 }
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

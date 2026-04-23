@@ -29,8 +29,9 @@
 #include "gtest/gtest.h"
 
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace orc {
 // CoreAPIsStandardTest that saves a bunch of boilerplate by providing the
@@ -218,6 +219,6 @@ inline StructType *getDummyStructTy(LLVMContext &Context) {
   return StructType::get(ArrayType::get(Type::getInt32Ty(Context), 256));
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -25,6 +25,7 @@
 #include <cstdarg>
 #include <initializer_list>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using ::llvm::memprof::LineLocation;
@@ -48,13 +49,13 @@ ErrorEquals(instrprof_error Expected, Error E) {
   return ::testing::AssertionFailure() << "error: " << FoundMsg << "\n";
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 bool operator==(const TemporalProfTraceTy &lhs,
                 const TemporalProfTraceTy &rhs) {
   return lhs.Weight == rhs.Weight &&
          lhs.FunctionNameRefs == rhs.FunctionNameRefs;
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace {
 

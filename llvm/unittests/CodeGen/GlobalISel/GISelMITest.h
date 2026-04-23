@@ -29,6 +29,7 @@
 #include "llvm/Target/TargetMachine.h"
 #include "llvm/Target/TargetOptions.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace MIPatternMatch;
@@ -45,13 +46,13 @@ static inline void initLLVM() {
 }
 
 // Define a printers to help debugging when things go wrong.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 std::ostream &
 operator<<(std::ostream &OS, const LLT Ty);
 
 std::ostream &
 operator<<(std::ostream &OS, const MachineFunction &MF);
-}
+LLVM_NAMESPACE_END
 
 static std::unique_ptr<Module>
 parseMIR(LLVMContext &Context, std::unique_ptr<MIRParser> &MIR,

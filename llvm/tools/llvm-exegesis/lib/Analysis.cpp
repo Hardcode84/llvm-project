@@ -14,8 +14,9 @@
 #include "llvm/Support/FormatVariadic.h"
 #include <limits>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 static const char kCsvSep = ',';
@@ -581,4 +582,4 @@ Error Analysis::run<Analysis::PrintSchedClassInconsistencies>(
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

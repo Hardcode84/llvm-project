@@ -11,10 +11,11 @@
 #include "llvm/Support/Endian.h"
 #include "llvm/Support/SHA1.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class TrieRawHashMapTestHelper {
 public:
   TrieRawHashMapTestHelper() = default;
@@ -46,7 +47,7 @@ public:
 private:
   ThreadSafeTrieRawHashMapBase *Trie = nullptr;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 template <typename DataType, size_t HashSize = sizeof(uint64_t)>

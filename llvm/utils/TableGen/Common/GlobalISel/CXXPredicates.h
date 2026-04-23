@@ -21,8 +21,10 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::gi {
+LLVM_NAMESPACE_BEGIN
+namespace gi {
 
 /// Entry into the static pool of all CXX Predicate code. This contains
 /// fully expanded C++ code.
@@ -79,6 +81,7 @@ public:
   }
 };
 
-} // namespace llvm::gi
+}
+LLVM_NAMESPACE_END // namespace llvm::gi
 
 #endif // LLVM_UTILS_TABLEGEN_COMMON_GLOBALISEL_CXXPREDICATES_H

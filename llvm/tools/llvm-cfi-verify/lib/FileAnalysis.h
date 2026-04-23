@@ -39,8 +39,9 @@
 #include <functional>
 #include <set>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace cfi_verify {
 
 struct GraphResult;
@@ -242,6 +243,6 @@ public:
 };
 
 } // namespace cfi_verify
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_CFI_VERIFY_FILE_ANALYSIS_H

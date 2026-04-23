@@ -16,8 +16,10 @@
 #include "func-id-helper.h"
 #include "llvm/XRay/Trace.h"
 #include "llvm/XRay/XRayRecord.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::xray {
+LLVM_NAMESPACE_BEGIN
+namespace xray {
 
 class TraceConverter {
   FuncIdConversionHelper &FuncIdHelper;
@@ -36,6 +38,7 @@ public:
   void exportAsChromeTraceEventFormat(const Trace &Records, raw_ostream &OS);
 };
 
-} // namespace llvm::xray
+}
+LLVM_NAMESPACE_END // namespace llvm::xray
 
 #endif // LLVM_TOOLS_LLVM_XRAY_XRAY_CONVERTER_H

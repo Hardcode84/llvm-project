@@ -9,11 +9,12 @@
 #include "llvm/Support/MemoryBuffer.h"
 #include "llvm/TextAPI/InterfaceFile.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 #ifndef TEXT_STUB_HELPERS_H
 #define TEXT_STUB_HELPERS_H
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 struct ExportedSymbol {
   MachO::EncodeKind Kind = MachO::EncodeKind::GlobalSymbol;
   std::string Name = {};
@@ -60,5 +61,5 @@ checkEqualityOnTransform(MachO::InterfaceFile &FileA,
   return true;
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

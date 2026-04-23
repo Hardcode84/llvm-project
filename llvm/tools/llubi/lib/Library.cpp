@@ -16,8 +16,10 @@
 #include "llvm/IR/InstrTypes.h"
 #include "llvm/Support/Format.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::ubi {
+LLVM_NAMESPACE_BEGIN
+namespace ubi {
 
 static uint64_t getMaxAlign(const DataLayout &DL) {
   // Return an alignment of 16 for 64-bit platforms, and 8 for 32-bit ones.
@@ -364,4 +366,5 @@ std::optional<AnyValue> Library::executeLibcall(LibFunc LF, StringRef Name,
     return std::nullopt;
   }
 }
-} // namespace llvm::ubi
+}
+LLVM_NAMESPACE_END // namespace llvm::ubi

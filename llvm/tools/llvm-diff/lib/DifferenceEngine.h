@@ -17,8 +17,9 @@
 #include "DiffConsumer.h"
 #include "DiffLog.h"
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
   class Function;
   class GlobalValue;
   class Instruction;
@@ -84,6 +85,6 @@ namespace llvm {
     Consumer &consumer;
     Oracle *globalValueOracle;
   };
-}
+LLVM_NAMESPACE_END
 
 #endif

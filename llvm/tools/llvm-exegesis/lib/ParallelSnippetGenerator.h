@@ -15,8 +15,9 @@
 #define LLVM_TOOLS_LLVM_EXEGESIS_PARALLELSNIPPETGENERATOR_H
 
 #include "SnippetGenerator.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 class ParallelSnippetGenerator : public SnippetGenerator {
@@ -60,6 +61,6 @@ private:
 };
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_EXEGESIS_PARALLELSNIPPETGENERATOR_H

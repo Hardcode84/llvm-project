@@ -27,8 +27,10 @@
 #include "llvm/XRay/Graph.h"
 #include "llvm/XRay/Trace.h"
 #include "llvm/XRay/XRayRecord.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::xray {
+LLVM_NAMESPACE_BEGIN
+namespace xray {
 
 /// A class encapsulating the logic related to analyzing XRay traces, producting
 /// Graphs from them and then exporting those graphs for review.
@@ -224,6 +226,7 @@ inline GraphRenderer::TimeStat operator/(const GraphRenderer::TimeStat &A,
           A.Pct90 / B.Pct90, A.Pct99 / B.Pct99, A.Max / B.Max,
           A.Sum / B.Sum};
 }
-} // namespace llvm::xray
+}
+LLVM_NAMESPACE_END // namespace llvm::xray
 
 #endif // XRAY_GRAPH_H

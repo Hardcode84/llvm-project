@@ -12,8 +12,9 @@
 
 #define GET_AVAILABLE_OPCODE_CHECKER
 #include "PPCGenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 // Helper to fill a memory operand with a value.
@@ -141,4 +142,4 @@ void InitializePowerPCExegesisTarget() {
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -20,6 +20,7 @@
 #include <set>
 #include <utility>
 #include <variant>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -912,7 +913,7 @@ struct AlwaysEqType {
 };
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T>
 struct DenseMapInfo<T, std::enable_if_t<std::is_base_of_v<A, T>>> {
   static inline T getEmptyKey() { return {static_cast<int>(~0)}; }
@@ -932,7 +933,7 @@ template <> struct DenseMapInfo<AlwaysEqType> {
     return false;
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 TEST(DenseMapCustomTest, SFINAEMapInfo) {

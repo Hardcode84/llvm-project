@@ -16,8 +16,10 @@
 
 #include "xray-graph.h"
 #include "llvm/XRay/Graph.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::xray {
+LLVM_NAMESPACE_BEGIN
+namespace xray {
 
 // This class creates a graph representing the difference between two
 // xray-graphs And allows you to print it to a dot file, with optional color
@@ -65,6 +67,7 @@ public:
 
   const GraphT &getGraph() { return G; }
 };
-} // namespace llvm::xray
+}
+LLVM_NAMESPACE_END // namespace llvm::xray
 
 #endif

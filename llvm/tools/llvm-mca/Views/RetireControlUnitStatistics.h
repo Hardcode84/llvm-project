@@ -31,8 +31,9 @@
 #include "llvm/MC/MCSchedule.h"
 #include "llvm/MCA/View.h"
 #include <map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 class RetireControlUnitStatistics : public View {
@@ -59,6 +60,6 @@ public:
 };
 
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

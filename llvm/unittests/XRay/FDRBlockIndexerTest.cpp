@@ -10,8 +10,9 @@
 #include "llvm/XRay/FDRRecords.h"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace xray {
 namespace {
 
@@ -79,4 +80,4 @@ TEST(FDRBlockIndexerTest, IndexBlocksV3) {
 
 } // namespace
 } // namespace xray
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

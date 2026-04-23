@@ -14,8 +14,9 @@
 #include "RegisterAliasing.h"
 #include "SerialSnippetGenerator.h"
 #include "TestBase.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 namespace {
 
@@ -119,4 +120,4 @@ TEST_F(RISCVParallelSnippetGeneratorTest, MemoryUse) {
 
 } // namespace
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

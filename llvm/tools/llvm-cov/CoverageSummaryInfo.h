@@ -16,8 +16,9 @@
 
 #include "llvm/ProfileData/Coverage/CoverageMapping.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Provides information about region coverage for a function/file.
 class RegionCoverageInfo {
@@ -304,6 +305,6 @@ struct DemangleCache {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_COV_COVERAGESUMMARYINFO_H

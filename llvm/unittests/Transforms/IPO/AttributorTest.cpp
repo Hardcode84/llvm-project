@@ -17,8 +17,9 @@
 #include "llvm/Testing/Support/Error.h"
 #include "llvm/Transforms/Utils/CallGraphUpdater.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 TEST_F(AttributorTestBase, IRPPositionCallBaseContext) {
   const char *ModuleString = R"(
@@ -212,4 +213,4 @@ TEST_F(AttributorTestBase, AAReachabilityTest) {
   ASSERT_FALSE(F9AA.instructionCanReach(A, F9FirstInst, F4));
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

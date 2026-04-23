@@ -11,6 +11,7 @@
 #include "llvm/ADT/ilist_node.h"
 #include "gtest/gtest.h"
 #include <ostream>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -170,7 +171,7 @@ struct NodeWithCallback : ilist_node<NodeWithCallback> {
 
 } // end namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // These nodes are stack-allocated for testing purposes, so don't let the ilist
 // own or delete them.
 template <> struct ilist_alloc_traits<NodeWithCallback> {
@@ -190,7 +191,7 @@ template <> struct ilist_callback_traits<NodeWithCallback> {
     }
   }
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace {
 

@@ -20,8 +20,9 @@
 #include "llvm/Support/raw_ostream.h"
 #include <functional>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class TestRunner;
 struct DeltaPass;
@@ -136,6 +137,6 @@ using ReductionFunc = function_ref<void(Oracle &, ReducerWorkItem &)>;
 /// Other implementations of the Delta Debugging algorithm can also be found in
 /// the CReduce, Delta, and Lithium projects.
 void runDeltaPass(TestRunner &Test, const DeltaPass &Pass);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

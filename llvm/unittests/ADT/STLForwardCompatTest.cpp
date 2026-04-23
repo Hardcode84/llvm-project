@@ -14,8 +14,9 @@
 #include <optional>
 #include <type_traits>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace {
 
 template <typename T>
@@ -698,4 +699,4 @@ static_assert(llvm::is_sorted_constexpr(std::rbegin(CDesc), std::rend(CDesc)),
               "Reverse iterators should be supported.");
 
 } // namespace
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -18,8 +18,9 @@
 #include "llvm/DWARFLinker/Classic/DWARFLinker.h"
 #include "llvm/DWARFLinker/Classic/DWARFStreamer.h"
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dsymutil {
 
 enum class DsymutilAccelTableKind : uint8_t {
@@ -148,6 +149,6 @@ inline bool error(Twine Error, Twine Context = {}) {
 }
 
 } // end namespace dsymutil
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TOOLS_DSYMUTIL_LINKOPTIONS_H

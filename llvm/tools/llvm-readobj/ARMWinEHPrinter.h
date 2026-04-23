@@ -12,8 +12,9 @@
 #include "llvm/Object/COFF.h"
 #include "llvm/Support/ErrorOr.h"
 #include "llvm/Support/ScopedPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace ARM {
 namespace WinEH {
 class RuntimeFunction;
@@ -198,6 +199,6 @@ public:
 };
 }
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

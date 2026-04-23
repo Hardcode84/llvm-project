@@ -20,8 +20,9 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/ADT/Twine.h"
 #include <functional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class CodeGenTarget;
 
 namespace gi {
@@ -245,6 +246,6 @@ public:
 
   std::map<std::string, unsigned> HwModes;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_COMMON_GLOBALISEL_GLOBALISELMATCHTABLEEXECUTOREMITTER_H

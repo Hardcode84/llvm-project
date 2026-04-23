@@ -15,8 +15,9 @@
 
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class CodeExpansions;
 class SMLoc;
 class raw_ostream;
@@ -50,6 +51,6 @@ inline raw_ostream &operator<<(raw_ostream &OS, const CodeExpander &Expander) {
   Expander.emit(OS);
   return OS;
 }
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_COMMON_GLOBALISEL_CODEEXPANDER_H

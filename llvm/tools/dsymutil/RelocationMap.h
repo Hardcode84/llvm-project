@@ -26,8 +26,9 @@
 #include <optional>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -125,11 +126,11 @@ public:
 };
 
 } // end namespace dsymutil
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(dsymutil::ValidReloc)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 using namespace llvm::dsymutil;
@@ -156,6 +157,6 @@ template <> struct ScalarTraits<Triple> {
 };
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TOOLS_DSYMUTIL_RELOCATIONMAP_H

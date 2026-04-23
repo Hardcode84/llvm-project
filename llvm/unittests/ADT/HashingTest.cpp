@@ -19,8 +19,9 @@
 #include <map>
 #include <optional>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Helper for test code to print hash codes.
 void PrintTo(const hash_code &code, std::ostream *os) {
@@ -45,7 +46,7 @@ template <> struct is_hashable_data<LargeTestInteger> : std::true_type {};
 } // namespace detail
 } // namespace hashing
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using namespace llvm;
 

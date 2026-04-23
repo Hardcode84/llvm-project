@@ -18,6 +18,7 @@
 #include "llvm/TextAPI/Symbol.h"
 #include "llvm/TextAPI/Target.h"
 #include <iterator>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace MachO;
@@ -30,7 +31,7 @@ StringRef setOrderIndicator(InterfaceInputOrder Order) {
 // The following template specialization implementations
 // need to be explicitly placed into the llvm namespace
 // to work around a GCC 4.8 bug.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <typename T, DiffAttrKind U>
 inline void DiffScalarVal<T, U>::print(raw_ostream &OS, std::string Indent) {
@@ -60,7 +61,7 @@ DiffScalarVal<bool, AD_Diff_Scalar_Bool>::print(raw_ostream &OS,
      << ((Val == true) ? "true" : "false") << "\n";
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 StringLiteral SymScalar::getSymbolNamePrefix(MachO::EncodeKind Kind) {
   switch (Kind) {

@@ -11,8 +11,9 @@
 
 #include "llvm/ADT/StringRef.h"
 #include "llvm/DebugInfo/PDB/PDBSymDumper.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 
 class LinePrinter;
@@ -29,6 +30,6 @@ private:
   LinePrinter &Printer;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

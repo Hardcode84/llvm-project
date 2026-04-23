@@ -15,8 +15,9 @@
 #include "llvm/ADT/Twine.h"
 #include "llvm/Support/Error.h"
 #include "llvm/TargetParser/SubtargetFeature.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 cl::OptionCategory Options("llvm-exegesis options");
@@ -246,4 +247,4 @@ const ExegesisTarget &ExegesisTarget::getDefault() {
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

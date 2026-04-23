@@ -18,6 +18,7 @@
 #include "llvm/Support/ThreadPool.h"
 #include "llvm/Support/Threading.h"
 #include <numeric>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -213,7 +214,7 @@ unsigned getRedundantPrefixLen(ArrayRef<StringRef> Paths, unsigned LCP) {
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 void CoverageReport::render(const FileCoverageSummary &File,
                             raw_ostream &OS) const {
@@ -681,4 +682,4 @@ Error DirectoryCoverageReport::prepareSubDirectoryReports(
   return Error::success();
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

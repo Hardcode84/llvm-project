@@ -15,8 +15,9 @@
 #define LLVM_TOOLS_LLVM_MC_DISASSEMBLER_H
 
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MemoryBuffer;
 class Target;
@@ -32,6 +33,6 @@ public:
                          MemoryBuffer &Buffer, SourceMgr &SM, raw_ostream &Out);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

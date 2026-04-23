@@ -10,8 +10,9 @@
 #define LLVM_TOOLS_LLVMPDBUTIL_MINIMAL_SYMBOL_DUMPER_H
 
 #include "llvm/DebugInfo/CodeView/SymbolVisitorCallbacks.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 class LazyRandomTypeCollection;
 }
@@ -66,6 +67,6 @@ private:
   codeview::LazyRandomTypeCollection &Types;
 };
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

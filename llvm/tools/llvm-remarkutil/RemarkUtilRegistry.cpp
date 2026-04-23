@@ -11,8 +11,9 @@
 //===----------------------------------------------------------------------===//
 #include "RemarkUtilRegistry.h"
 #include <unordered_map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace remarkutil {
 
 using HandlerType = std::function<Error()>;
@@ -38,4 +39,4 @@ HandlerType dispatch(cl::SubCommand *SC) {
 }
 
 } // namespace remarkutil
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

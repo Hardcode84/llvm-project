@@ -21,8 +21,9 @@
 #include <string>
 #include <tuple>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Record;
 class RecordKeeper;
 
@@ -235,6 +236,6 @@ public:
   const CodeGenIntrinsic &operator[](const Record *Def);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_BASIC_CODEGENINTRINSICS_H

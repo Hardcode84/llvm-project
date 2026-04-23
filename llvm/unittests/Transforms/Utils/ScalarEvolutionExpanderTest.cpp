@@ -24,8 +24,9 @@
 #include "llvm/IR/Verifier.h"
 #include "llvm/Support/SourceMgr.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using namespace PatternMatch;
 
@@ -1036,4 +1037,4 @@ TEST_F(ScalarEvolutionExpanderTest, InsertBinopReuseShlWithMatchingFlags) {
   EXPECT_TRUE(ShlInst->hasNoSignedWrap());
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

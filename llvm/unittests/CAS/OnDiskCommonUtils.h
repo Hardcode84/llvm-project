@@ -16,8 +16,10 @@
 #include "llvm/CAS/UnifiedOnDiskCache.h"
 #include "llvm/Support/BLAKE3.h"
 #include "llvm/Testing/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::unittest::cas {
+LLVM_NAMESPACE_BEGIN
+namespace unittest::cas {
 
 using namespace llvm::cas;
 using namespace llvm::cas::ondisk;
@@ -113,4 +115,5 @@ std::unique_ptr<unittest::TempFile> createSmallFile(char initChar);
 std::unique_ptr<unittest::TempFile> createLargeFile(char initChar);
 std::unique_ptr<unittest::TempFile> createLargePageAlignedFile(char initChar);
 
-} // namespace llvm::unittest::cas
+}
+LLVM_NAMESPACE_END // namespace llvm::unittest::cas

@@ -16,8 +16,9 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/MCA/Support.h"
 #include "llvm/Support/Format.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 #define DEBUG_TYPE "llvm-mca"
@@ -109,4 +110,4 @@ json::Value SummaryView::toJSON() const {
   return JO;
 }
 } // namespace mca.
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

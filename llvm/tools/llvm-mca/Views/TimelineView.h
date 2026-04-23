@@ -108,8 +108,9 @@
 #include "llvm/Support/FormattedStream.h"
 #include "llvm/Support/JSON.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 /// This class listens to instruction state transition events
@@ -183,6 +184,6 @@ public:
   json::Value toJSON() const override;
 };
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

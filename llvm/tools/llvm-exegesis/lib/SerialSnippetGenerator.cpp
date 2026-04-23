@@ -14,8 +14,9 @@
 #include <algorithm>
 #include <numeric>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 struct ExecutionClass {
@@ -228,4 +229,4 @@ SerialSnippetGenerator::generateCodeTemplates(
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -10,12 +10,13 @@
 #define CODEGEN_TEST_PASS
 
 #include <llvm/CodeGen/MachineFunctionPass.h>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 void initializeCodeGenTestPass(PassRegistry &);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 class CodeGenTest : public MachineFunctionPass {
 public:

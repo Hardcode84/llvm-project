@@ -20,8 +20,9 @@
 #include <memory>
 #include <string>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class CodeGenRegister;
 class CodeGenDAGPatterns;
 class CodeGenInstruction;
@@ -1316,6 +1317,6 @@ private:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_COMMON_DAGISELMATCHER_H

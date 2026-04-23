@@ -24,8 +24,9 @@
 #include "llvm/Support/Error.h"
 #include "llvm/Support/raw_ostream.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace ifs {
 
@@ -71,6 +72,6 @@ private:
 };
 
 } // end namespace ifs
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_IFS_ERRORCOLLECTOR_H

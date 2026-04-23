@@ -9,7 +9,9 @@
 #ifndef LLVM_TOOLS_LLVMPDBDUMP_OUTPUTSTYLE_H
 #define LLVM_TOOLS_LLVMPDBDUMP_OUTPUTSTYLE_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class Error;
 
@@ -22,6 +24,6 @@ public:
   virtual Error dump() = 0;
 };
 }
-}
+LLVM_NAMESPACE_END
 
 #endif

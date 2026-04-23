@@ -10,11 +10,12 @@
 #define LLVM_TOOLS_LLVM_REDUCE_DELTAS_REDUCEMEMORYOPERATIONS_H
 
 #include "Delta.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 void reduceVolatileInstructionsDeltaPass(Oracle &O, ReducerWorkItem &WorkItem);
 void reduceAtomicSyncScopesDeltaPass(Oracle &O, ReducerWorkItem &WorkItem);
 void reduceAtomicOrderingDeltaPass(Oracle &O, ReducerWorkItem &WorkItem);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

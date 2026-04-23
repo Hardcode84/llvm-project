@@ -46,8 +46,9 @@
 #include "llvm/TargetParser/Host.h"
 #include <algorithm>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 static cl::opt<int> OpcodeIndex(
@@ -696,7 +697,7 @@ static void analysisMain() {
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 int main(int Argc, char **Argv) {
   using namespace llvm;

@@ -12,8 +12,9 @@
 //===---------------------------------------------------------------------===//
 
 #include "ResourceScriptStmt.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace rc {
 
 raw_ostream &operator<<(raw_ostream &OS, const IntOrString &Item) {
@@ -314,4 +315,4 @@ raw_ostream &MenuStmt::log(raw_ostream &OS) const {
 }
 
 } // namespace rc
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -26,8 +26,9 @@
 #include <memory>
 #include <optional>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Record;
 class SMLoc;
@@ -729,6 +730,6 @@ private:
 };
 
 } // namespace gi
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_COMMON_GLOBALISEL_PATTERNS_H

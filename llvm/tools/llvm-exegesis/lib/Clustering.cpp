@@ -17,8 +17,9 @@
 #include <deque>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 // The clustering problem has the following characteristics:
@@ -402,4 +403,4 @@ bool SchedClassClusterCentroid::validate(
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

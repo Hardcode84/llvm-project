@@ -25,10 +25,11 @@
 #include "llvm/Target/TargetMachine.h"
 #include <memory>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 static constexpr llvm::StringLiteral kNoRegister("%noreg");
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 class ExegesisTarget;
@@ -100,6 +101,6 @@ private:
 };
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_EXEGESIS_LLVMSTATE_H

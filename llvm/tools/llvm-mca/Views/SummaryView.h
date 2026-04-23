@@ -31,8 +31,9 @@
 #include "llvm/MC/MCSchedule.h"
 #include "llvm/MCA/View.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace mca {
 
 /// A view that collects and prints a few performance numbers.
@@ -84,6 +85,6 @@ public:
   json::Value toJSON() const override;
 };
 } // namespace mca
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

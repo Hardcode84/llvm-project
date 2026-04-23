@@ -14,8 +14,9 @@
 #include "llvm/IR/Verifier.h"
 #include "llvm/Support/CommandLine.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace {
 
 class TBAATest : public testing::Test {
@@ -84,4 +85,4 @@ TEST_F(TBAATest, checkTBAAMerging) {
 }
 
 } // end anonymous namspace
-} // end llvm namespace
+LLVM_NAMESPACE_END // end llvm namespace

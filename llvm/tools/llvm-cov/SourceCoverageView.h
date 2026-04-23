@@ -18,8 +18,9 @@
 #include "llvm/ProfileData/Coverage/CoverageMapping.h"
 #include "llvm/Support/MemoryBuffer.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 using namespace coverage;
 
@@ -315,6 +316,6 @@ public:
              bool ShowTitle, unsigned ViewDepth = 0);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_COV_SOURCECOVERAGEVIEW_H

@@ -13,8 +13,9 @@
 #include "llvm/Support/VirtualFileSystem.h"
 
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCStreamer;
 class raw_fd_ostream;
 namespace dsymutil {
@@ -65,5 +66,5 @@ bool generateDsymCompanion(
 std::string getArchName(StringRef Arch);
 } // namespace MachOUtils
 } // namespace dsymutil
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif // LLVM_TOOLS_DSYMUTIL_MACHOUTILS_H

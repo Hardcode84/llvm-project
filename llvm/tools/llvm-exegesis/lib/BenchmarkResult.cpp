@@ -20,12 +20,13 @@
 #include "llvm/Support/FileSystem.h"
 #include "llvm/Support/Format.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 static constexpr char kIntegerPrefix[] = "i_0x";
 static constexpr char kDoublePrefix[] = "f_";
 static constexpr char kInvalidOperand[] = "INVALID";
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace {
 
@@ -430,4 +431,4 @@ bool operator==(const BenchmarkMeasure &A, const BenchmarkMeasure &B) {
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -20,8 +20,9 @@
 #include "llvm/Support/TargetSelect.h"
 #include "llvm/Target/TargetMachine.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class X86SelectionDAGTest : public testing::Test {
 protected:
@@ -153,4 +154,4 @@ TEST_F(X86SelectionDAGTest, computeKnownBits_FXOR) {
   EXPECT_FALSE(KnownHi2xF64.isNonNegative());
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

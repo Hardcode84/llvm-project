@@ -24,8 +24,9 @@
 #include "llvm/MC/TargetRegistry.h"
 #include "llvm/Support/Error.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 // Computes the idealized ProcRes Unit pressure. This is the expected
@@ -56,6 +57,6 @@ struct ResolvedSchedClass {
 };
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_EXEGESIS_SCHEDCLASSRESOLUTION_H

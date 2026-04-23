@@ -19,8 +19,9 @@
 #include <llvm/ADT/APFloat.h>
 #include <llvm/ADT/APInt.h>
 #include <llvm/MC/MCRegister.h>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 // A simple object storing the value for a particular register.
@@ -48,6 +49,6 @@ APInt bitcastFloatValue(const fltSemantics &FltSemantics,
                         PredefinedValues Value);
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_EXEGESIS_REGISTERVALUE_H

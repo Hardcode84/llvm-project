@@ -15,8 +15,9 @@
 
 #include "llvm/ADT/StringRef.h"
 #include "llvm/TableGen/Record.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// A convenience function to check that an Init refers to a specific def. This
 /// is primarily useful for testing for defs and similar in DagInit's since
@@ -70,6 +71,6 @@ inline const DagInit *getDagWithOperatorOfSubClass(const Init &N,
 // FIXME: Use UniqueStringSaver instead.
 StringRef insertStrRef(StringRef S);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_UTILS_TABLEGEN_COMMON_GLOBALISEL_COMBINERUTILS_H

@@ -19,11 +19,12 @@
 #include "llvm/Testing/Support/Error.h"
 
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::codeview;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 inline bool operator==(const ArrayRecord &R1, const ArrayRecord &R2) {
   if (R1.ElementType != R2.ElementType)
@@ -49,14 +50,14 @@ inline bool operator!=(const CVType &R1, const CVType &R2) {
   return !(R1 == R2);
 }
 }
-}
+LLVM_NAMESPACE_END
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct BinaryItemTraits<CVType> {
   static size_t length(const CVType &Item) { return Item.length(); }
   static ArrayRef<uint8_t> bytes(const CVType &Item) { return Item.data(); }
 };
-}
+LLVM_NAMESPACE_END
 
 namespace {
 

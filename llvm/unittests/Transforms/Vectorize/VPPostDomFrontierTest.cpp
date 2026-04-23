@@ -13,8 +13,9 @@
 #include "llvm/Analysis/DominanceFrontier.h"
 #include "llvm/Analysis/DominanceFrontierImpl.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace {
 
 using VPPostDomFrontierTest = VPlanTestBase;
@@ -154,4 +155,4 @@ TEST_F(VPPostDomFrontierTest, MultipleExitsTest) {
 }
 
 } // namespace
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

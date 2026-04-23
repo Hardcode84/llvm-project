@@ -26,8 +26,9 @@
 #include "llvm/TargetParser/Triple.h"
 
 #include <mutex>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dsymutil {
 
 /// The BinaryHolder class is responsible for creating and owning
@@ -178,5 +179,5 @@ template <> struct DenseMapInfo<dsymutil::BinaryHolder::ArchiveEntry::KeyTy> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

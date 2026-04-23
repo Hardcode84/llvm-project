@@ -23,6 +23,7 @@
 #include "llvm/Support/TargetSelect.h"
 #include "llvm/TargetParser/Host.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
 // Used to skip tests on unsupported architectures and operating systems.
 // To skip a test, add this macro at the top of a test-case in a suite that
@@ -33,7 +34,7 @@
       GTEST_SKIP(); \
   while(0)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCJITTestAPICommon {
 protected:
@@ -99,7 +100,7 @@ protected:
   SmallVector<Triple::EnvironmentType, 1> UnsupportedEnvironments;
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif
 

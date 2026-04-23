@@ -9,8 +9,9 @@
 #include "UopsBenchmarkRunner.h"
 
 #include "Target.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 UopsBenchmarkRunner::~UopsBenchmarkRunner() = default;
@@ -63,4 +64,4 @@ UopsBenchmarkRunner::runMeasurements(const FunctionExecutor &Executor) const {
 }
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

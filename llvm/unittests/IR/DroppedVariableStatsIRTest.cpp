@@ -22,9 +22,10 @@
 #include <llvm/IR/PassManager.h>
 #include <llvm/IR/PassTimingInfo.h>
 #include <llvm/Support/raw_ostream.h>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 void initializePassTest1Pass(PassRegistry &);
 
 static std::unique_ptr<Module> parseIR(LLVMContext &C, const char *IR) {
@@ -34,7 +35,7 @@ static std::unique_ptr<Module> parseIR(LLVMContext &C, const char *IR) {
     Err.print("AbstractCallSiteTests", errs());
   return Mod;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 

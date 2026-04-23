@@ -17,8 +17,9 @@
 #include <float.h>
 #include <unordered_set>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 cl::opt<std::string> OutputFilename("output", cl::value_desc("output"),
                                     cl::Required,
@@ -1421,4 +1422,4 @@ FunctionSamples &CSProfileGenerator::getFunctionProfileForLeafProbe(
 }
 
 } // end namespace sampleprof
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

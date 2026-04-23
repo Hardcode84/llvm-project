@@ -12,8 +12,9 @@
 #include "llvm/Analysis/TargetLibraryInfo.h"
 #include "llvm/Analysis/VectorUtils.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace {
 
 class VPlanSlpTest : public VPlanTestIRBase {
@@ -893,4 +894,4 @@ TEST_F(VPlanSlpTest, testSlpAtomicStore) {
 }
 
 } // namespace
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

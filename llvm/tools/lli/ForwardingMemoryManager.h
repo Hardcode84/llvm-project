@@ -15,8 +15,9 @@
 
 #include "llvm/ExecutionEngine/Orc/EPCGenericDylibManager.h"
 #include "llvm/ExecutionEngine/RTDyldMemoryManager.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // ForwardingMM - Adapter to connect MCJIT to Orc's Remote
 // memory manager.
@@ -130,6 +131,6 @@ public:
   orc::EPCGenericDylibManager DylibMgr;
   orc::tpctypes::DylibHandle H;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_TOOLS_LLI_FORWARDINGMEMORYMANAGER_H

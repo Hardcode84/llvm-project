@@ -358,6 +358,7 @@ Kind Tokenizer::classifyCurrentToken() const {
   case Ch:                                                                     \
     return Kind::Name;
 #include "ResourceScriptTokenList.def"
+#include "llvm/Support/Compiler.h"
 
   default:
     return Kind::Invalid;
@@ -394,10 +395,10 @@ void Tokenizer::trimIntString(StringRef &Str) const {
 
 } // anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 Expected<std::vector<RCToken>> tokenizeRC(StringRef Input, bool IsWindres) {
   return Tokenizer(Input, IsWindres).run();
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

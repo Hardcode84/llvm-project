@@ -17,8 +17,9 @@
 #include <cassert>
 #include <climits>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Graph<N> - A graph with N nodes.  Note that N can be at most 8.
 template <unsigned N>
@@ -245,6 +246,6 @@ struct GraphTraits<Graph<N> > {
   }
 };
 
-} // End namespace llvm
+LLVM_NAMESPACE_END // End namespace llvm
 
 #endif

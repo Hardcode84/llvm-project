@@ -13,6 +13,7 @@
 #include "llvm/Testing/Support/Error.h"
 #include "gtest/gtest.h"
 #include <mutex>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::cas;
@@ -61,9 +62,11 @@ INSTANTIATE_TEST_SUITE_P(InMemoryCAS, CASTest,
                          ::testing::Values(createInMemory));
 
 #if LLVM_ENABLE_ONDISK_CAS
-namespace llvm::cas::ondisk {
+LLVM_NAMESPACE_BEGIN
+namespace cas::ondisk {
 void setMaxMappingSize(uint64_t Size);
-} // namespace llvm::cas::ondisk
+}
+LLVM_NAMESPACE_END // namespace llvm::cas::ondisk
 
 void unittest::cas::setMaxOnDiskCASMappingSize() {
   static std::once_flag Flag;

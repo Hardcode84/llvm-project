@@ -19,6 +19,7 @@
 #include "llvm/Support/MemoryBufferRef.h"
 #include "llvm/Support/raw_ostream.h"
 #include <system_error>
+#include "llvm/Support/Compiler.h"
 
 enum RawSegments : unsigned { none = 0, data = 1, linkedit = 1 << 1 };
 std::error_code coff2yaml(llvm::raw_ostream &Out,
@@ -39,12 +40,12 @@ llvm::Error dxcontainer2yaml(llvm::raw_ostream &Out,
                              llvm::MemoryBufferRef Source);
 
 // Forward decls for dwarf2yaml
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DWARFContext;
 namespace DWARFYAML {
 struct Data;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 llvm::Error dumpDebugAbbrev(llvm::DWARFContext &DCtx, llvm::DWARFYAML::Data &Y);
 llvm::Error dumpDebugAddr(llvm::DWARFContext &DCtx, llvm::DWARFYAML::Data &Y);

@@ -11,6 +11,7 @@
 #include "llvm/Object/COFF.h"
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/Format.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::object;
@@ -239,7 +240,7 @@ getSectionContaining(const COFFObjectFile &COFF, uint64_t VA) {
   return nullptr;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace Win64EH {
 void Dumper::printRuntimeFunctionEntry(const Context &Ctx,
                                        const coff_section *Section,
@@ -444,5 +445,5 @@ void Dumper::printData(const Context &Ctx) {
   }
 }
 }
-}
+LLVM_NAMESPACE_END
 

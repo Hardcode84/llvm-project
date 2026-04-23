@@ -35,11 +35,12 @@
 #include "llvm/Support/MemoryBuffer.h"
 #include "llvm/Support/TargetSelect.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 using Instr = llvm::cfi_verify::FileAnalysis::Instr;
 using LLVMSymbolizer = llvm::symbolize::LLVMSymbolizer;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace cfi_verify {
 
 bool IgnoreDWARFFlag;
@@ -601,4 +602,4 @@ std::error_code UnsupportedDisassembly::convertToErrorCode() const {
 }
 
 } // namespace cfi_verify
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

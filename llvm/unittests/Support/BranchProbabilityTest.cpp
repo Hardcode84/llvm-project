@@ -9,14 +9,15 @@
 #include "llvm/Support/BranchProbability.h"
 #include "llvm/Support/raw_ostream.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 void PrintTo(BranchProbability P, ::std::ostream *os) {
   *os << P.getNumerator() << "/" << P.getDenominator();
 }
-}
+LLVM_NAMESPACE_END
 namespace {
 
 typedef BranchProbability BP;

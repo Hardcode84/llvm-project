@@ -12,20 +12,21 @@
 #include "llvm/Support/FileCollector.h"
 #include "llvm/Support/FileSystem.h"
 #include "llvm/Testing/Support/SupportHelpers.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using llvm::unittest::TempDir;
 using llvm::unittest::TempFile;
 using llvm::unittest::TempLink;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace vfs {
 inline bool operator==(const llvm::vfs::YAMLVFSEntry &LHS,
                        const llvm::vfs::YAMLVFSEntry &RHS) {
   return LHS.VPath == RHS.VPath && LHS.RPath == RHS.RPath;
 }
 } // namespace vfs
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 class TestingFileCollector : public FileCollector {

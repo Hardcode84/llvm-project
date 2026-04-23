@@ -19,8 +19,9 @@
 #include "llvm/Support/TargetSelect.h"
 #include "llvm/Target/TargetMachine.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace {
 // Pass that adds global metadata
@@ -93,4 +94,4 @@ TEST_F(AMDGPUSelectionDAGTest, checkMetadata) {
   EXPECT_NE(Elf.find("Vulkan"), std::string::npos);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

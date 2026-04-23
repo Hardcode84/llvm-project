@@ -16,8 +16,9 @@
 #include "llvm/ADT/SCCIterator.h"
 #include "llvm/ADT/SmallPtrSet.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 //===--------------------------------------------------------------------===//
 // Derived nodes, edges and graph types based on DirectedGraph.
@@ -292,4 +293,4 @@ TEST(DirectedGraphTest, SCC) {
   }
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

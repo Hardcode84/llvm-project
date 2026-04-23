@@ -14,7 +14,9 @@
 #ifndef LLVM_TOOLS_LLVM_MC_DISASSEMBLER_H
 #define LLVM_TOOLS_LLVM_MC_DISASSEMBLER_H
 
-namespace llvm {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 
 class MemoryBuffer;
 class Target;
@@ -34,6 +36,6 @@ public:
                          unsigned NumBenchmarkRuns);
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

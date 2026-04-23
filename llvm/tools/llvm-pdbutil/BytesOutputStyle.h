@@ -14,8 +14,9 @@
 
 #include "llvm/DebugInfo/PDB/Native/LinePrinter.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace codeview {
 class LazyRandomTypeCollection;
@@ -63,6 +64,6 @@ private:
   SmallVector<StreamInfo, 8> StreamPurposes;
 };
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -15,12 +15,13 @@
 #define LLVM_TOOLS_LLVM_REDUCE_DELTAS_SIMPLIFYCFG_H
 
 #include "Delta.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 void reduceUsingSimplifyCFGDeltaPass(Oracle &O, ReducerWorkItem &WorkItem);
 void reduceConditionalsTrueDeltaPass(Oracle &O, ReducerWorkItem &WorkItem);
 void reduceConditionalsFalseDeltaPass(Oracle &O, ReducerWorkItem &WorkItem);
 void reduceUnconditionalBranchDeltaPass(Oracle &O, ReducerWorkItem &WorkItem);
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

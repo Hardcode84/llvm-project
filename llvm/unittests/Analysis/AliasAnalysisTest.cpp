@@ -21,14 +21,15 @@
 #include "llvm/InitializePasses.h"
 #include "llvm/Support/SourceMgr.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
 // Set up some test passes.
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 void initializeAATestPassPass(PassRegistry&);
 void initializeTestCustomAAWrapperPassPass(PassRegistry&);
-}
+LLVM_NAMESPACE_END
 
 namespace {
 struct AATestPass : FunctionPass {

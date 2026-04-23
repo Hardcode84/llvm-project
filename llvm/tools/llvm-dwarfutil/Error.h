@@ -17,8 +17,9 @@
 #include "llvm/Support/WithColor.h"
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace dwarfutil {
 
 inline void error(Error Err, StringRef Prefix = "") {
@@ -38,6 +39,6 @@ inline void verbose(const Twine &Message, bool Verbose) {
 }
 
 } // end of namespace dwarfutil
-} // end of namespace llvm
+LLVM_NAMESPACE_END // end of namespace llvm
 
 #endif // LLVM_TOOLS_LLVM_DWARFUTIL_ERROR_H
