@@ -42,12 +42,14 @@
 #include <vector>
 
 LLVM_NAMESPACE_BEGIN
-
-class InstrProfReader;
-
 namespace vfs {
 class FileSystem;
 } // namespace vfs
+LLVM_NAMESPACE_END
+
+namespace llvm {
+
+class InstrProfReader;
 
 /// A file format agnostic iterator over profiling data.
 template <class record_type = NamedInstrProfRecord,
@@ -915,6 +917,6 @@ public:
   Error printBinaryIds(raw_ostream &OS) override;
 };
 
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm
 
 #endif // LLVM_PROFILEDATA_INSTRPROFREADER_H

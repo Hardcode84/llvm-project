@@ -30,6 +30,9 @@ class DWARFDie;
 namespace object {
 class ObjectFile;
 }
+LLVM_NAMESPACE_END
+
+namespace llvm {
 
 /// InstrProfCorrelator - A base class used to create raw instrumentation data
 /// to their functions.
@@ -255,6 +258,6 @@ private:
   Error correlateProfileNameImpl() override;
 };
 
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm
 
 #endif // LLVM_PROFILEDATA_INSTRPROFCORRELATOR_H

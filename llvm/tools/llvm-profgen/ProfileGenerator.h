@@ -18,7 +18,7 @@
 #include <unordered_set>
 #include "llvm/Support/Compiler.h"
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace sampleprof {
 
 using ProbeCounterMap =
@@ -397,6 +397,6 @@ public:
 };
 
 } // end namespace sampleprof
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm
 
 #endif

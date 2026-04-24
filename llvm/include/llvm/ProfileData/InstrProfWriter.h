@@ -30,12 +30,15 @@
 #include <random>
 
 LLVM_NAMESPACE_BEGIN
+class MemoryBuffer;
+class raw_fd_ostream;
+LLVM_NAMESPACE_END
+
+namespace llvm {
 
 /// Writer for instrumentation based profile data.
 class InstrProfRecordWriterTrait;
 class ProfOStream;
-class MemoryBuffer;
-class raw_fd_ostream;
 
 class InstrProfWriter {
 public:
@@ -257,6 +260,6 @@ private:
   Error writeVTableNames(ProfOStream &OS);
 };
 
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm
 
 #endif // LLVM_PROFILEDATA_INSTRPROFWRITER_H

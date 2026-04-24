@@ -20,9 +20,10 @@
 #include "llvm/Support/Compiler.h"
 
 LLVM_NAMESPACE_BEGIN
-
 class raw_ostream;
+LLVM_NAMESPACE_END
 
+namespace llvm {
 namespace coverage {
 
 /// Writer of the filenames section for the instrumentation
@@ -78,6 +79,6 @@ public:
 
 } // end namespace coverage
 
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm
 
 #endif // LLVM_PROFILEDATA_COVERAGE_COVERAGEMAPPINGWRITER_H

@@ -65,8 +65,10 @@
 #include "llvm/Support/Error.h"
 
 LLVM_NAMESPACE_BEGIN
-
 class MemoryBuffer;
+LLVM_NAMESPACE_END
+
+namespace llvm {
 
 class SymbolRemappingParseError : public ErrorInfo<SymbolRemappingParseError> {
 public:
@@ -129,6 +131,6 @@ private:
   ItaniumManglingCanonicalizer Canonicalizer;
 };
 
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm
 
 #endif // LLVM_PROFILEDATA_SYMBOLREMAPPINGREADER_H

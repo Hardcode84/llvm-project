@@ -41,11 +41,10 @@
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/MemoryBuffer.h"
 #include "llvm/Support/Path.h"
-#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "memprof"
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace memprof {
 namespace {
 template <class T = uint64_t> inline T alignedRead(const char *Ptr) {
@@ -910,4 +909,4 @@ void YAMLMemProfReader::parse(StringRef YAMLData) {
   setDataAccessProfileData(std::move(DataAccessProfileData));
 }
 } // namespace memprof
-LLVM_NAMESPACE_END // namespace llvm
+} // namespace llvm

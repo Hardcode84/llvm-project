@@ -29,7 +29,7 @@
 #include <bitset>
 #include <cstdint>
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace yaml {
 template <typename T> struct CustomMappingTraits;
 } // namespace yaml
@@ -853,5 +853,5 @@ struct LineLocation {
 // A pair of a call site location and its corresponding callee GUID.
 using CallEdgeTy = std::pair<LineLocation, uint64_t>;
 } // namespace memprof
-LLVM_NAMESPACE_END // namespace llvm
+} // namespace llvm
 #endif // LLVM_PROFILEDATA_MEMPROF_H

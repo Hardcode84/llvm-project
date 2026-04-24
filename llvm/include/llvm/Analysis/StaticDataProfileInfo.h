@@ -8,8 +8,7 @@
 #include "llvm/Pass.h"
 #include "llvm/Support/Compiler.h"
 
-LLVM_NAMESPACE_BEGIN
-
+namespace llvm {
 namespace memprof {
 // Represents the eligibility status of a global variable for section prefix
 // annotation. Other than AnnotationOk, each enum value indicates a specific
@@ -27,6 +26,9 @@ AnnotationKind getAnnotationKind(const GlobalVariable &GV);
 /// AnnotationOK.
 bool IsAnnotationOK(const GlobalVariable &GV);
 } // namespace memprof
+} // namespace llvm
+
+LLVM_NAMESPACE_BEGIN
 
 /// A class that holds the constants that represent static data and their
 /// profile information and provides methods to operate on them.

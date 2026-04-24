@@ -6,9 +6,8 @@
 #include "llvm/ProfileData/MemProf.h"
 #include "llvm/Support/Format.h"
 #include "llvm/Support/YAMLTraits.h"
-#include "llvm/Support/Compiler.h"
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace memprof {
 // A "typedef" for GUID.  See ScalarTraits<memprof::GUIDHex64> for how a GUID is
 // serialized and deserialized in YAML.
@@ -287,7 +286,7 @@ template <> struct SequenceTraits<SmallVector<memprof::GUIDHex64>> {
 };
 
 } // namespace yaml
-LLVM_NAMESPACE_END // namespace llvm
+} // namespace llvm
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(memprof::Frame)
 LLVM_YAML_IS_SEQUENCE_VECTOR(std::vector<memprof::Frame>)

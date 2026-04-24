@@ -22,6 +22,9 @@ LLVM_NAMESPACE_BEGIN
 
 class OptimizationRemarkEmitter;
 
+LLVM_NAMESPACE_END
+
+namespace llvm {
 namespace memprof {
 
 /// Whether the alloc memeprof metadata will include context size info for all
@@ -268,6 +271,6 @@ template <>
 LLVM_ABI uint64_t CallStack<MDNode, MDNode::op_iterator>::back() const;
 
 } // end namespace memprof
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm
 
 #endif

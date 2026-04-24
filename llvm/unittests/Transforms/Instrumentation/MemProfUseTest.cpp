@@ -23,7 +23,7 @@
 #include "gtest/gtest.h"
 #include "llvm/Support/Compiler.h"
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace memprof {
 namespace {
 using testing::Contains;
@@ -478,4 +478,4 @@ attributes #1 = { "no-trapping-math"="true" "stack-protector-buffer-size"="8" "t
 }
 } // namespace
 } // namespace memprof
-LLVM_NAMESPACE_END // namespace llvm
+} // namespace llvm

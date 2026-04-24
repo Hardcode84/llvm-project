@@ -53,7 +53,7 @@ static inline unsigned encodingBits(unsigned C) {
 
 // Some constants used in FS Discriminators.
 //
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace sampleprof {
 enum FSDiscriminatorPass {
   Base = 0,
@@ -65,6 +65,9 @@ enum FSDiscriminatorPass {
   PassLast = 4,
 };
 } // namespace sampleprof
+} // namespace llvm
+
+LLVM_NAMESPACE_BEGIN
 
 // The number of bits reserved for the base discrimininator. The base
 // discriminaitor starts from bit 0.

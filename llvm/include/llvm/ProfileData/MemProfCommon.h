@@ -16,7 +16,7 @@
 #include "llvm/IR/ModuleSummaryIndex.h"
 #include "llvm/Support/Compiler.h"
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace memprof {
 
 struct Frame;
@@ -32,6 +32,6 @@ LLVM_ABI AllocationType getAllocType(uint64_t TotalLifetimeAccessDensity,
 LLVM_ABI uint64_t computeFullStackId(ArrayRef<Frame> CallStack);
 
 } // namespace memprof
-LLVM_NAMESPACE_END // namespace llvm
+} // namespace llvm
 
 #endif // LLVM_PROFILEDATA_MEMPROFCOMMON_H

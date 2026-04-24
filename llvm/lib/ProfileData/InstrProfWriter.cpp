@@ -32,11 +32,10 @@
 #include <tuple>
 #include <utility>
 #include <vector>
-#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 
 class InstrProfRecordWriterTrait {
 public:
@@ -119,7 +118,7 @@ public:
   }
 };
 
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm
 
 InstrProfWriter::InstrProfWriter(
     bool Sparse, uint64_t TemporalProfTraceReservoirSize,

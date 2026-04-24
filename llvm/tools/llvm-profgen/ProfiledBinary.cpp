@@ -82,6 +82,9 @@ static cl::opt<bool>
                  cl::desc("Generate the profile for Linux kernel binary."),
                  cl::cat(ProfGenCategory));
 
+LLVM_NAMESPACE_END
+
+namespace llvm {
 namespace sampleprof {
 
 static const Target *getTarget(const ObjectFile *Obj) {
@@ -1319,4 +1322,4 @@ void InstructionPointer::update(uint64_t Addr) {
 }
 
 } // end namespace sampleprof
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm

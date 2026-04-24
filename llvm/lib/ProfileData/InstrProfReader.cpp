@@ -37,7 +37,6 @@
 #include <system_error>
 #include <utility>
 #include <vector>
-#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -906,12 +905,12 @@ Error RawInstrProfReader<IntPtrT>::printBinaryIds(raw_ostream &OS) {
   return Error::success();
 }
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 
 template class RawInstrProfReader<uint32_t>;
 template class RawInstrProfReader<uint64_t>;
 
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm
 
 InstrProfLookupTrait::hash_value_type
 InstrProfLookupTrait::ComputeHash(StringRef K) {
@@ -1066,7 +1065,7 @@ public:
 
 /// A remapper that applies remappings based on a symbol remapping file.
 template <typename HashTableImpl>
-class LLVM_ABI_NS::InstrProfReaderItaniumRemapper
+class llvm::InstrProfReaderItaniumRemapper
     : public InstrProfReaderRemapper {
 public:
   InstrProfReaderItaniumRemapper(

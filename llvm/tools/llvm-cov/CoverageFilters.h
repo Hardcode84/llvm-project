@@ -20,11 +20,16 @@
 
 LLVM_NAMESPACE_BEGIN
 class SpecialCaseList;
+LLVM_NAMESPACE_END
 
+namespace llvm {
 namespace coverage {
 class CoverageMapping;
 struct FunctionRecord;
 } // namespace coverage
+} // namespace llvm
+
+LLVM_NAMESPACE_BEGIN
 
 /// Matches specific functions that pass the requirement of this filter.
 class CoverageFilter {

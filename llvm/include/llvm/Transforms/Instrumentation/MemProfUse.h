@@ -21,7 +21,6 @@
 #include <unordered_map>
 
 LLVM_NAMESPACE_BEGIN
-class IndexedInstrProfReader;
 class Module;
 class TargetLibraryInfo;
 
@@ -45,6 +44,10 @@ private:
   std::string MemoryProfileFileName;
   IntrusiveRefCntPtr<vfs::FileSystem> FS;
 };
+LLVM_NAMESPACE_END
+
+namespace llvm {
+class IndexedInstrProfReader;
 
 namespace memprof {
 
@@ -72,6 +75,6 @@ computeUndriftMap(Module &M, IndexedInstrProfReader *MemProfReader,
                   const TargetLibraryInfo &TLI);
 
 } // namespace memprof
-LLVM_NAMESPACE_END // namespace llvm
+} // namespace llvm
 
 #endif

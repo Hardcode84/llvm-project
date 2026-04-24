@@ -20,7 +20,7 @@
 
 #include <optional>
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace memprof {
 namespace detail {
 // "Dereference" the iterator from DenseMap or OnDiskChainedHashTable.  We have
@@ -364,5 +364,5 @@ extern template class LLVM_TEMPLATE_ABI
     CallStackRadixTreeBuilder<LinearFrameId>;
 
 } // namespace memprof
-LLVM_NAMESPACE_END // namespace llvm
+} // namespace llvm
 #endif // LLVM_PROFILEDATA_MEMPROFRADIXTREE_H

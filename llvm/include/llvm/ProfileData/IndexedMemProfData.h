@@ -22,7 +22,7 @@
 #include "llvm/Support/Compiler.h"
 #include "llvm/Support/HashBuilder.h"
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace memprof {
 class MemProfSummary;
 struct IndexedMemProfData {
@@ -92,5 +92,5 @@ LLVM_ABI Error writeMemProf(
     memprof::IndexedVersion MemProfVersionRequested, bool MemProfFullSchema,
     std::unique_ptr<memprof::DataAccessProfData> DataAccessProfileData,
     std::unique_ptr<memprof::MemProfSummary> MemProfSum);
-LLVM_NAMESPACE_END // namespace llvm
+} // namespace llvm
 #endif

@@ -23,6 +23,9 @@ LLVM_NAMESPACE_BEGIN
 
 class CleanupInstaller;
 
+LLVM_NAMESPACE_END
+
+namespace llvm {
 namespace sampleprof {
 
 // Stream based trace line iterator
@@ -752,6 +755,6 @@ private:
 };
 
 } // end namespace sampleprof
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm
 
 #endif

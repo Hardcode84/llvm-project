@@ -46,14 +46,14 @@ static llvm::cl::opt<bool> EmptyLineCommentCoverage(
                    "disable it on test)"),
     llvm::cl::init(true), llvm::cl::Hidden);
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace coverage {
 cl::opt<bool> SystemHeadersCoverage(
     "system-headers-coverage",
     cl::desc("Enable collecting coverage from system headers"), cl::init(false),
     cl::Hidden);
 }
-LLVM_NAMESPACE_END
+} // namespace llvm
 
 using namespace clang;
 using namespace CodeGen;

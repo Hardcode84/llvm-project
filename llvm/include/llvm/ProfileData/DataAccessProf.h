@@ -32,7 +32,7 @@
 #include <optional>
 #include <variant>
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 
 namespace memprof {
 
@@ -222,6 +222,6 @@ private:
 };
 
 } // namespace memprof
-LLVM_NAMESPACE_END // namespace llvm
+} // namespace llvm
 
 #endif // LLVM_PROFILEDATA_DATAACCESSPROF_H_

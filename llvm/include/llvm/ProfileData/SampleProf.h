@@ -40,9 +40,11 @@
 #include <utility>
 
 LLVM_NAMESPACE_BEGIN
-
 class DILocation;
 class raw_ostream;
+LLVM_NAMESPACE_END
+
+namespace llvm {
 
 LLVM_ABI const std::error_category &sampleprof_category();
 
@@ -79,7 +81,7 @@ inline sampleprof_error mergeSampleProfErrors(sampleprof_error &Accumulator,
   return Accumulator;
 }
 
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm
 
 namespace std {
 
@@ -88,7 +90,7 @@ struct is_error_code_enum<llvm::sampleprof_error> : std::true_type {};
 
 } // end namespace std
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace sampleprof {
 
 constexpr char kVTableProfPrefix[] = "vtables ";
@@ -1738,6 +1740,6 @@ inline std::string getUniqueInternalLinkagePostfix(const StringRef &FName) {
       .insert(0, FunctionSamples::UniqSuffix);
 }
 
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm
 
 #endif // LLVM_PROFILEDATA_SAMPLEPROF_H

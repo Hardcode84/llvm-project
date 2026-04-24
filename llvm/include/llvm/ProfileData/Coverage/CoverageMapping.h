@@ -45,9 +45,6 @@
 #include <vector>
 
 LLVM_NAMESPACE_BEGIN
-
-class IndexedInstrProfReader;
-
 namespace object {
 class BuildIDFetcher;
 } // namespace object
@@ -55,6 +52,11 @@ class BuildIDFetcher;
 namespace vfs {
 class FileSystem;
 } // namespace vfs
+LLVM_NAMESPACE_END
+
+namespace llvm {
+
+class IndexedInstrProfReader;
 
 namespace coverage {
 
@@ -1554,6 +1556,6 @@ template<> struct DenseMapInfo<coverage::CounterExpression> {
   }
 };
 
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm
 
 #endif // LLVM_PROFILEDATA_COVERAGE_COVERAGEMAPPING_H

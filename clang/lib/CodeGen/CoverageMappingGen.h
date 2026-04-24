@@ -23,11 +23,11 @@
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/Support/Compiler.h"
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace coverage {
 extern cl::opt<bool> SystemHeadersCoverage;
 }
-LLVM_NAMESPACE_END
+} // namespace llvm
 
 namespace clang {
 

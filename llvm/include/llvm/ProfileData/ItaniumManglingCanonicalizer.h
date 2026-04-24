@@ -18,8 +18,10 @@
 #include <cstdint>
 
 LLVM_NAMESPACE_BEGIN
-
 class StringRef;
+LLVM_NAMESPACE_END
+
+namespace llvm {
 
 /// Canonicalizer for mangled names.
 ///
@@ -89,6 +91,6 @@ private:
   struct Impl;
   Impl *P;
 };
-LLVM_NAMESPACE_END // namespace llvm
+} // namespace llvm
 
 #endif // LLVM_PROFILEDATA_ITANIUMMANGLINGCANONICALIZER_H

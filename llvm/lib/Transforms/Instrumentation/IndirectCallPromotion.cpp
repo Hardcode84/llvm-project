@@ -58,9 +58,11 @@ STATISTIC(NumOfPGOICallsites, "Number of indirect call candidate sites.");
 
 LLVM_NAMESPACE_BEGIN
 extern cl::opt<unsigned> MaxNumVTableAnnotations;
-
-extern cl::opt<bool> EnableVTableProfileUse;
 LLVM_NAMESPACE_END // namespace llvm
+
+namespace llvm {
+extern cl::opt<bool> EnableVTableProfileUse;
+} // namespace llvm
 
 // Command line option to disable indirect-call promotion with the default as
 // false. This is for debug purpose.

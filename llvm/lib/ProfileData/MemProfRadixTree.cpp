@@ -11,9 +11,8 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/ProfileData/MemProfRadixTree.h"
-#include "llvm/Support/Compiler.h"
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace memprof {
 // Encode a call stack into RadixArray.  Return the starting index within
 // RadixArray.  For each call stack we encode, we emit two or three components
@@ -251,4 +250,4 @@ computeFrameHistogram<LinearFrameId>(
     llvm::MapVector<CallStackId, llvm::SmallVector<LinearFrameId>>
         &MemProfCallStackData);
 } // namespace memprof
-LLVM_NAMESPACE_END // namespace llvm
+} // namespace llvm

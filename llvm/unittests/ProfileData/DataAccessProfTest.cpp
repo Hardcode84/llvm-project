@@ -14,7 +14,7 @@
 #include "gtest/gtest.h"
 #include "llvm/Support/Compiler.h"
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace memprof {
 namespace {
 
@@ -178,4 +178,4 @@ TEST(MemProf, DataAccessProfile) {
 }
 } // namespace
 } // namespace memprof
-LLVM_NAMESPACE_END // namespace llvm
+} // namespace llvm

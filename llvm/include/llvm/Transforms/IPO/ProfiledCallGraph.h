@@ -17,7 +17,7 @@
 #include <set>
 #include "llvm/Support/Compiler.h"
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace sampleprof {
 
 struct ProfiledCallGraphNode;
@@ -241,6 +241,6 @@ struct GraphTraits<ProfiledCallGraph *>
   }
 };
 
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm
 
 #endif

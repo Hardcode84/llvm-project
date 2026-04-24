@@ -21,9 +21,8 @@
 #include "llvm/Support/MD5.h"
 #include "llvm/Support/raw_ostream.h"
 #include <cstdint>
-#include "llvm/Support/Compiler.h"
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace sampleprof {
 
 /// This class represents a function that is read from a sample profile. It
@@ -197,7 +196,7 @@ template <> struct DenseMapInfo<sampleprof::FunctionId, void> {
   }
 };
 
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm
 
 namespace std {
 

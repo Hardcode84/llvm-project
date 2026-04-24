@@ -20,7 +20,7 @@
 using namespace llvm;
 using namespace llvm::memprof;
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 
 // Upper bound on lifetime access density (accesses per byte per lifetime sec)
 // for marking an allocation cold.
@@ -50,7 +50,7 @@ LLVM_ABI cl::opt<bool>
                        cl::desc("Enable use of hot hints (only supported for "
                                 "unambigously hot allocations)"));
 
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm
 
 AllocationType llvm::memprof::getAllocType(uint64_t TotalLifetimeAccessDensity,
                                            uint64_t AllocCount,

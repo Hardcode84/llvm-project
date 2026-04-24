@@ -21,6 +21,9 @@ cl::opt<bool> AnnotateStringLiteralSectionPrefix(
     "memprof-annotate-string-literal-section-prefix", cl::init(false),
     cl::Hidden,
     cl::desc("If true, annotate the string literal data section prefix"));
+LLVM_NAMESPACE_END
+
+namespace llvm {
 namespace memprof {
 // Returns true iff the global variable has custom section either by
 // __attribute__((section("name")))
@@ -57,7 +60,7 @@ bool IsAnnotationOK(const GlobalVariable &GV) {
   return getAnnotationKind(GV) == AnnotationKind::AnnotationOK;
 }
 } // namespace memprof
-LLVM_NAMESPACE_END // namespace llvm
+} // namespace llvm
 
 void StaticDataProfileInfo::addConstantProfileCount(
     const Constant *C, std::optional<uint64_t> Count) {

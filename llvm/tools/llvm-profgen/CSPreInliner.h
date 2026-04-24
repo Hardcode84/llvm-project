@@ -17,7 +17,7 @@
 #include "llvm/Transforms/IPO/SampleContextTracker.h"
 #include "llvm/Support/Compiler.h"
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace sampleprof {
 
 // Inline candidate seen from profile
@@ -89,6 +89,6 @@ private:
 };
 
 } // end namespace sampleprof
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm
 
 #endif

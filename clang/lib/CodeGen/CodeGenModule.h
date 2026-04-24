@@ -51,12 +51,15 @@ class GlobalValue;
 class DataLayout;
 class FunctionType;
 class LLVMContext;
-class IndexedInstrProfReader;
 
 namespace vfs {
 class FileSystem;
 }
 LLVM_NAMESPACE_END
+
+namespace llvm {
+class IndexedInstrProfReader;
+} // namespace llvm
 
 namespace clang {
 class ASTContext;

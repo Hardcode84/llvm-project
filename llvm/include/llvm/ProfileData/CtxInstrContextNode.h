@@ -60,9 +60,8 @@
 
 #include <stdint.h>
 #include <stdlib.h>
-#include "llvm/Support/Compiler.h"
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace ctx_profile {
 using GUID = uint64_t;
 
@@ -154,5 +153,5 @@ public:
   virtual ~ProfileWriter() = default;
 };
 } // namespace ctx_profile
-LLVM_NAMESPACE_END // namespace llvm
+} // namespace llvm
 #endif

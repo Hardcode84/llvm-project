@@ -19,7 +19,7 @@
 #include "llvm/ProfileData/CtxInstrContextNode.h"
 #include "llvm/Support/Compiler.h"
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 enum PGOCtxProfileRecords {
   Invalid = 0,
   Version,
@@ -113,5 +113,5 @@ public:
 };
 
 LLVM_ABI Error createCtxProfFromYAML(StringRef Profile, raw_ostream &Out);
-LLVM_NAMESPACE_END // namespace llvm
+} // namespace llvm
 #endif

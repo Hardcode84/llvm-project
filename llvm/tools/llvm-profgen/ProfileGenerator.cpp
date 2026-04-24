@@ -120,6 +120,9 @@ cl::opt<bool> InferMissingFrames(
         "Infer missing call frames due to compiler tail call elimination."),
     cl::Optional, cl::cat(ProfGenCategory));
 
+LLVM_NAMESPACE_END
+
+namespace llvm {
 namespace sampleprof {
 
 // Initialize the MaxCompressionSize to -1 which means no size limit
@@ -1422,4 +1425,4 @@ FunctionSamples &CSProfileGenerator::getFunctionProfileForLeafProbe(
 }
 
 } // end namespace sampleprof
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm

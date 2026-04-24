@@ -43,7 +43,7 @@
 #include <vector>
 #include "llvm/Support/Compiler.h"
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace sampleprof {
 
 class ProfiledBinary;
@@ -737,6 +737,6 @@ public:
 };
 
 } // end namespace sampleprof
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm
 
 #endif

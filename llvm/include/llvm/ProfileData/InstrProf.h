@@ -48,14 +48,20 @@
 #include <vector>
 
 LLVM_NAMESPACE_BEGIN
-
 class Function;
 class GlobalVariable;
-struct InstrProfRecord;
-class InstrProfSymtab;
 class Instruction;
 class MDNode;
 class Module;
+namespace object {
+class SectionRef;
+} // namespace object
+LLVM_NAMESPACE_END
+
+namespace llvm {
+
+struct InstrProfRecord;
+class InstrProfSymtab;
 
 // A struct to define how the data stream should be patched. For Indexed
 // profiling, only uint64_t data type is needed.
@@ -485,11 +491,6 @@ private:
   std::string Msg;
 };
 
-namespace object {
-
-class SectionRef;
-
-} // end namespace object
 
 namespace IndexedInstrProf {
 
@@ -1370,5 +1371,5 @@ LLVM_ABI void createProfileFileNameVar(Module &M, StringRef InstrProfileOutput);
 // code coverage mappings. Used by the Instrumentation library and unit tests.
 LLVM_ABI extern cl::opt<bool> DoInstrProfNameCompression;
 
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm
 #endif // LLVM_PROFILEDATA_INSTRPROF_H

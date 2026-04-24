@@ -24,6 +24,9 @@
 
 LLVM_NAMESPACE_BEGIN
 class PGOContextualProfile;
+LLVM_NAMESPACE_END
+
+namespace llvm {
 class PGOCtxProfContext;
 
 namespace internal {
@@ -42,7 +45,7 @@ class IndexNode {
   // This class' members are intentionally private - it's a convenience
   // implementation detail.
   friend class ::llvm::PGOCtxProfContext;
-  friend class ::llvm::PGOContextualProfile;
+  friend class ::llvm::LLVM_ABI_NAMESPACE::PGOContextualProfile;
 
   IndexNode *Previous = nullptr;
   IndexNode *Next = nullptr;
@@ -95,7 +98,7 @@ public:
 
 private:
   friend class PGOCtxProfileReader;
-  friend class PGOContextualProfile;
+  friend class ::llvm::LLVM_ABI_NAMESPACE::PGOContextualProfile;
 
   GlobalValue::GUID GUID = 0;
   SmallVector<uint64_t, 16> Counters;
@@ -225,5 +228,5 @@ public:
 
 LLVM_ABI void convertCtxProfToYaml(raw_ostream &OS,
                                    const PGOCtxProfile &Profile);
-LLVM_NAMESPACE_END // namespace llvm
+} // namespace llvm
 #endif

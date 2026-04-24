@@ -218,7 +218,7 @@ const char *InstrProfSectNamePrefix[] = {
 
 } // namespace
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 
 cl::opt<bool> DoInstrProfNameCompression(
     "enable-name-compression",
@@ -1740,4 +1740,4 @@ size_t Header::size() const {
 
 } // namespace IndexedInstrProf
 
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm

@@ -247,14 +247,15 @@
 #include <vector>
 
 LLVM_NAMESPACE_BEGIN
-
 class raw_ostream;
 class Twine;
 
 namespace vfs {
 class FileSystem;
 } // namespace vfs
+LLVM_NAMESPACE_END
 
+namespace llvm {
 namespace sampleprof {
 
 class SampleProfileReader;
@@ -933,6 +934,6 @@ protected:
 
 } // end namespace sampleprof
 
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm
 
 #endif // LLVM_PROFILEDATA_SAMPLEPROFREADER_H

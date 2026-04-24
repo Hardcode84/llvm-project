@@ -26,7 +26,7 @@
 
 #include <initializer_list>
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 
 LLVM_ABI extern cl::opt<float> MemProfLifetimeAccessDensityColdThreshold;
 LLVM_ABI extern cl::opt<unsigned> MemProfAveLifetimeColdThreshold;
@@ -34,6 +34,9 @@ LLVM_ABI extern cl::opt<unsigned>
     MemProfMinAveLifetimeAccessDensityHotThreshold;
 LLVM_ABI extern cl::opt<bool> MemProfUseHotHints;
 
+} // namespace llvm
+
+namespace llvm {
 namespace memprof {
 
 namespace {
@@ -1008,4 +1011,4 @@ TEST(MemProf, GetAllocType) {
 
 } // namespace
 } // namespace memprof
-LLVM_NAMESPACE_END // namespace llvm
+} // namespace llvm

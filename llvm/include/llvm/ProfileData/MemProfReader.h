@@ -31,7 +31,7 @@
 
 #include <functional>
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace memprof {
 // A class for memprof profile data populated directly from external
 // sources.
@@ -246,6 +246,6 @@ private:
   std::unique_ptr<memprof::DataAccessProfData> DataAccessProfileData;
 };
 } // namespace memprof
-LLVM_NAMESPACE_END // namespace llvm
+} // namespace llvm
 
 #endif // LLVM_PROFILEDATA_MEMPROFREADER_H_

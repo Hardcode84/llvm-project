@@ -61,6 +61,9 @@ static cl::opt<int> CSProfMaxUnsymbolizedCtxDepth(
              "means no depth limit."),
     cl::cat(ProfGenCategory));
 
+LLVM_NAMESPACE_END
+
+namespace llvm {
 namespace sampleprof {
 
 void VirtualUnwinder::unwindCall(UnwindState &State) {
@@ -1414,4 +1417,4 @@ void PerfScriptReader::parsePerfTraces() {
 SmallVector<CleanupInstaller, 2> PerfScriptReader::TempFileCleanups;
 
 } // end namespace sampleprof
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm

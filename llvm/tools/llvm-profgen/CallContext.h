@@ -14,7 +14,7 @@
 #include <string>
 #include "llvm/Support/Compiler.h"
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace sampleprof {
 
 inline std::string getCallSite(const SampleContextFrame &Callsite) {
@@ -54,6 +54,6 @@ getReversedLocWithContext(const SampleContextFrameVector &Context) {
 }
 
 } // end namespace sampleprof
-LLVM_NAMESPACE_END // end namespace llvm
+} // end namespace llvm
 
 #endif

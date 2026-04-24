@@ -65,10 +65,13 @@ using namespace llvm;
 
 #define DEBUG_TYPE "instrprof"
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 // Command line option to enable vtable value profiling. Defined in
 // ProfileData/InstrProf.cpp: -enable-vtable-value-profiling=
 extern cl::opt<bool> EnableVTableValueProfiling;
+} // namespace llvm
+
+LLVM_NAMESPACE_BEGIN
 LLVM_ABI cl::opt<InstrProfCorrelator::ProfCorrelatorKind> ProfileCorrelate(
     "profile-correlate",
     cl::desc("Use debug info or binary file to correlate profiles."),

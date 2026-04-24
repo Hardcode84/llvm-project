@@ -18,17 +18,16 @@
 #include <cstdint>
 #include <string>
 #include <string_view>
-#include "llvm/Support/Compiler.h"
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace itanium_demangle {
 class OutputBuffer;
 }
-LLVM_NAMESPACE_END
+}
 
 using llvm::itanium_demangle::OutputBuffer;
 
-LLVM_NAMESPACE_BEGIN
+namespace llvm {
 namespace ms_demangle {
 
 // Storage classes
@@ -786,6 +785,6 @@ struct DEMANGLE_ABI PointerAuthQualifierNode : public Node {
 };
 
 } // namespace ms_demangle
-LLVM_NAMESPACE_END // namespace llvm
+} // namespace llvm
 
 #endif
