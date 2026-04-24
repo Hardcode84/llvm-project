@@ -49,9 +49,23 @@
 #define LLVM_NAMESPACE_END                                                     \
   }                                                                            \
   }
+/// Nested-name-specifier that resolves to \c llvm::vX_Y when the ABI tag is
+/// active and plain \c llvm otherwise. Use this at the *start* of any
+/// out-of-class member/struct/enum definition that would otherwise spell
+/// \c llvm::Foo\ { … } at file scope. Example:
+/// \code
+///   struct LLVM_ABI_NS::Foo { int x; };        // was: struct llvm::Foo
+///   void LLVM_ABI_NS::Foo::bar() {}            // was: void llvm::Foo::bar()
+/// \endcode
+/// This is required because Itanium name mangling for out-of-class definitions
+/// does not honor the \c inline keyword on the enclosing namespace — the
+/// spelled-out qualifier wins, so the definition would be mangled into
+/// \c llvm:: rather than \c llvm::vX_Y:: and fail to match its declaration.
+#define LLVM_ABI_NS llvm::LLVM_ABI_NAMESPACE
 #else
 #define LLVM_NAMESPACE_BEGIN namespace llvm {
 #define LLVM_NAMESPACE_END }
+#define LLVM_ABI_NS llvm
 #endif
 
 #endif // LLVM_SUPPORT_ABINAMESPACE_H

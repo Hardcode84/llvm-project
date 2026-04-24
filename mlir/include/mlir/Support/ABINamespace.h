@@ -33,9 +33,15 @@
 #define MLIR_NAMESPACE_END                                                     \
   }                                                                            \
   }
+/// Nested-name-specifier that resolves to \c mlir::vX_Y when the ABI tag is
+/// active and plain \c mlir otherwise. Use for out-of-class struct/class/enum
+/// or member-function definitions that would otherwise spell \c mlir::Foo at
+/// file scope. See llvm/Support/ABINamespace.h for the mangling rationale.
+#define MLIR_ABI_NS mlir::MLIR_ABI_NAMESPACE
 #else
 #define MLIR_NAMESPACE_BEGIN namespace mlir {
 #define MLIR_NAMESPACE_END }
+#define MLIR_ABI_NS mlir
 #endif
 
 #endif // MLIR_SUPPORT_ABINAMESPACE_H

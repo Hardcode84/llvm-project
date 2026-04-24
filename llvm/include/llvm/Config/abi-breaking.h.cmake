@@ -70,7 +70,11 @@
 // exported by default on AIX.
 #define LLVM_HIDDEN_VISIBILITY
 #endif
-namespace llvm {
+// Use the ABI namespace transport so the extern declaration here
+// matches the definition in ``llvm/lib/Support/ABIBreak.cpp`` under
+// the inline-versioned namespace.
+#include "llvm/Support/ABINamespace.h"
+LLVM_NAMESPACE_BEGIN
 #if LLVM_ENABLE_ABI_BREAKING_CHECKS
 ABI_BREAKING_EXPORT_ABI extern int EnableABIBreakingChecks;
 LLVM_HIDDEN_VISIBILITY
@@ -82,7 +86,7 @@ LLVM_HIDDEN_VISIBILITY
 __attribute__((weak)) int *VerifyDisableABIBreakingChecks =
     &DisableABIBreakingChecks;
 #endif
-}
+LLVM_NAMESPACE_END
 #undef LLVM_HIDDEN_VISIBILITY
 #endif // _MSC_VER
 
