@@ -886,10 +886,10 @@ struct TypeDefGenerator : public DefGenerator {
 /// Print this above all the other declarations. Contains type declarations used
 /// later on.
 static const char *const typeDefDeclHeader = R"(
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 class AsmParser;
 class AsmPrinter;
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 )";
 
 bool DefGenerator::emitDecls(StringRef selectedDialect) {

@@ -102,7 +102,7 @@ static void emitParserPrinter(const EnumInfo &enumInfo, StringRef qualName,
   // Generate the parser and the start of the printer for the enum, excluding
   // non-quoted bit enums.
   const char *parsedAndPrinterStart = R"(
-namespace mlir {
+MLIR_NAMESPACE_BEGIN
 template <typename T, typename>
 struct FieldParser;
 
@@ -143,15 +143,15 @@ struct FieldParser<std::optional<{0}>, std::optional<{0}>> {{
     return parser.emitError(loc, "expected one of {3} for {2}, got: ") << enumKeyword;
   }
 };
-} // namespace mlir
+MLIR_NAMESPACE_END // namespace mlir
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 inline ::llvm::raw_ostream &operator<<(::llvm::raw_ostream &p, {0} value) {{
   auto valueStr = stringifyEnum(value);
 )";
 
   const char *parsedAndPrinterStartUnquotedBitEnum = R"(
-  namespace mlir {
+  MLIR_NAMESPACE_BEGIN
   template <typename T, typename>
   struct FieldParser;
 
@@ -210,9 +210,9 @@ inline ::llvm::raw_ostream &operator<<(::llvm::raw_ostream &p, {0} value) {{
       return std::optional<{0}>{{flags};
     }
   };
-  } // namespace mlir
+  MLIR_NAMESPACE_END // namespace mlir
 
-  namespace llvm {
+  LLVM_NAMESPACE_BEGIN
   inline ::llvm::raw_ostream &operator<<(::llvm::raw_ostream &p, {0} value) {{
     auto valueStr = stringifyEnum(value);
   )";
@@ -243,7 +243,7 @@ inline ::llvm::raw_ostream &operator<<(::llvm::raw_ostream &p, {0} value) {{
   if (nonKeywordCases.all()) {
     os << "  return p << '\"' << valueStr << '\"';\n"
           "}\n"
-          "} // namespace llvm\n";
+          "LLVM_NAMESPACE_END // namespace llvm\n";
     return;
   }
 
@@ -299,7 +299,7 @@ inline ::llvm::raw_ostream &operator<<(::llvm::raw_ostream &p, {0} value) {{
   }
   os << "  return p << valueStr;\n"
         "}\n"
-        "} // namespace llvm\n";
+        "LLVM_NAMESPACE_END // namespace llvm\n";
 }
 
 static void emitDenseMapInfo(StringRef qualName, std::string underlyingType,
@@ -309,7 +309,7 @@ static void emitDenseMapInfo(StringRef qualName, std::string underlyingType,
         std::string(formatv("std::underlying_type_t<{0}>", qualName));
 
   const char *const mapInfo = R"(
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template<> struct DenseMapInfo<{0}> {{
   using StorageInfo = ::llvm::DenseMapInfo<{1}>;
 
@@ -329,7 +329,7 @@ template<> struct DenseMapInfo<{0}> {{
     return lhs == rhs;
   }
 };
-})";
+LLVM_NAMESPACE_END)";
   os << formatv(mapInfo, qualName, underlyingType);
   os << "\n\n";
 }

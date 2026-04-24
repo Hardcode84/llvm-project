@@ -118,20 +118,59 @@ private:
 // Simple RAII helper for emitting namespace scope. Name can be a single
 // namespace or nested namespace. If the name is empty, will not generate any
 // namespace scope.
+//
+// Names that start with ``llvm`` (standalone or as a nested prefix like
+// ``llvm::foo``) or ``mlir`` are emitted via the ``LLVM_NAMESPACE_BEGIN``
+// or ``MLIR_NAMESPACE_BEGIN`` transport macros so the inline ABI
+// namespace tag applies uniformly to TableGen-generated ``.inc`` files.
+// Any inner nested namespace (e.g. ``foo`` in ``llvm::foo``) is emitted
+// as a plain ``namespace foo { ... }`` inside the macro expansion.
 class NamespaceEmitter {
 public:
   NamespaceEmitter(raw_ostream &OS, const Twine &NameUntrimmed)
       : Name(trim(NameUntrimmed.str()).str()), OS(OS) {
-    if (!Name.empty())
+    if (Name.empty())
+      return;
+    StringRef First, Rest;
+    std::tie(First, Rest) = StringRef(Name).split("::");
+    if (First == "llvm") {
+      OS << "LLVM_NAMESPACE_BEGIN\n";
+      MacroKind = Kind::LLVM;
+      if (!Rest.empty())
+        OS << "namespace " << Rest << " {\n";
+    } else if (First == "mlir") {
+      OS << "MLIR_NAMESPACE_BEGIN\n";
+      MacroKind = Kind::MLIR;
+      if (!Rest.empty())
+        OS << "namespace " << Rest << " {\n";
+    } else {
       OS << "namespace " << Name << " {\n\n";
+    }
   }
 
   NamespaceEmitter(const NamespaceEmitter &) = delete;
   NamespaceEmitter &operator=(const NamespaceEmitter &) = delete;
 
   ~NamespaceEmitter() {
-    if (!Name.empty())
+    if (Name.empty())
+      return;
+    StringRef First, Rest;
+    std::tie(First, Rest) = StringRef(Name).split("::");
+    switch (MacroKind) {
+    case Kind::LLVM:
+      if (!Rest.empty())
+        OS << "\n} // namespace " << Rest << "\n";
+      OS << "LLVM_NAMESPACE_END // namespace llvm\n";
+      break;
+    case Kind::MLIR:
+      if (!Rest.empty())
+        OS << "\n} // namespace " << Rest << "\n";
+      OS << "MLIR_NAMESPACE_END // namespace mlir\n";
+      break;
+    case Kind::Plain:
       OS << "\n} // namespace " << Name << "\n";
+      break;
+    }
   }
 
 private:
@@ -147,6 +186,8 @@ private:
     return Name;
   }
 
+  enum class Kind { Plain, LLVM, MLIR };
+  Kind MacroKind = Kind::Plain;
   std::string Name;
   raw_ostream &OS;
 };
