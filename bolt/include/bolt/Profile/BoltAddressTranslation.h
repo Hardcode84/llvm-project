@@ -17,8 +17,9 @@
 #include <optional>
 #include <system_error>
 #include <unordered_map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCSymbol;
 class raw_ostream;
 
@@ -286,6 +287,6 @@ private:
 };
 } // namespace bolt
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

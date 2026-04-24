@@ -39,8 +39,9 @@
 #define BOLT_PASSES_TAILDUPLICATION_H
 
 #include "bolt/Passes/BinaryPasses.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 /// Pass for duplicating blocks that would require a jump.
@@ -149,6 +150,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

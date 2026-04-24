@@ -18,10 +18,11 @@
 
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/MC/MCRegisterInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Type;
-}
+LLVM_NAMESPACE_END
 
 namespace lldb_private {
 

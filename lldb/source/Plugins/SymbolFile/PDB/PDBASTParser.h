@@ -12,6 +12,7 @@
 #include "lldb/lldb-forward.h"
 
 #include "Plugins/ExpressionParser/Clang/ClangASTImporter.h"
+#include "llvm/Support/Compiler.h"
 
 class SymbolFilePDB;
 
@@ -27,7 +28,7 @@ class TypeSystemClang;
 class CompilerType;
 } // namespace lldb_private
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 template <typename ChildType> class ConcreteSymbolEnumerator;
 
@@ -38,7 +39,7 @@ class PDBSymbolTypeBaseClass;
 class PDBSymbolTypeBuiltin;
 class PDBSymbolTypeUDT;
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 class PDBASTParser {
 public:

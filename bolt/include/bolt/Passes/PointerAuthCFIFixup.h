@@ -13,8 +13,9 @@
 #define BOLT_PASSES_POINTER_AUTH_CFI_FIXUP
 
 #include "bolt/Passes/BinaryPasses.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class PointerAuthCFIFixup : public BinaryFunctionPass {
@@ -64,5 +65,5 @@ private:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

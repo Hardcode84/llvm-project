@@ -17,12 +17,13 @@
 #define LLDB_UTILS_TABLEGEN_LLDBTABLEGENBACKENDS_H
 
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
 class RecordKeeper;
 class Record;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using llvm::raw_ostream;
 using llvm::RecordKeeper;

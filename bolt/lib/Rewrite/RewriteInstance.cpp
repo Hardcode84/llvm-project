@@ -64,6 +64,7 @@
 #include <memory>
 #include <optional>
 #include <system_error>
+#include "llvm/Support/Compiler.h"
 
 #undef  DEBUG_TYPE
 #define DEBUG_TYPE "bolt"
@@ -340,7 +341,7 @@ std::vector<std::string> RewriteInstance::DebugSectionsToOverwrite = {
 const char RewriteInstance::TimerGroupName[] = "rewrite";
 const char RewriteInstance::TimerGroupDesc[] = "Rewrite passes";
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 extern const char *BoltRevision;
@@ -373,7 +374,7 @@ MCPlusBuilder *createMCPlusBuilder(const Triple::ArchType Arch,
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace {
 

@@ -39,6 +39,7 @@
 #include <functional>
 #include <iterator>
 #include <unordered_set>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -91,7 +92,7 @@ static cl::opt<bool>
                          cl::ZeroOrMore, cl::cat(BoltCategory));
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 char BOLTError::ID = 0;
@@ -2818,4 +2819,4 @@ DebugAddressRangesVector BinaryContext::translateModuleAddressRanges(
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

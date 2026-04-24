@@ -157,7 +157,7 @@ bool GenericUniformityAnalysisImpl<SSAContext>::isCustomUniform(
 
 // This ensures explicit instantiation of
 // GenericUniformityAnalysisImpl::ImplDeleter::operator()
-template class llvm::GenericUniformityInfo<SSAContext>;
+template class LLVM_ABI_NS::GenericUniformityInfo<SSAContext>;
 template struct llvm::GenericUniformityAnalysisImplDeleter<
     llvm::GenericUniformityAnalysisImpl<SSAContext>>;
 

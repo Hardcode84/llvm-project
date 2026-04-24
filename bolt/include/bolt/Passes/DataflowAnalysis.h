@@ -15,8 +15,9 @@
 #include "llvm/Support/Errc.h"
 #include <optional>
 #include <queue>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 /// Represents a given program point as viewed by a dataflow analysis. This
@@ -587,6 +588,6 @@ template <> struct DenseMapInfo<bolt::ProgramPoint> {
 
 raw_ostream &operator<<(raw_ostream &OS, const BitVector &Val);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

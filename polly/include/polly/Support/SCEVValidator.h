@@ -12,10 +12,11 @@
 #define POLLY_SCEV_VALIDATOR_H
 
 #include "polly/Support/ScopHelper.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class SCEVConstant;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace polly {
 class ScopDetection;

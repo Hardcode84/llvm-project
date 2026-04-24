@@ -26,6 +26,7 @@
 #include "llvm/Support/MathExtras.h"
 #include "llvm/Support/raw_ostream.h"
 #include <map>
+#include "llvm/Support/Compiler.h"
 
 #undef  DEBUG_TYPE
 #define DEBUG_TYPE "bolt-exceptions"
@@ -45,7 +46,7 @@ static llvm::cl::opt<bool>
 
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 // Read and dump the .gcc_exception_table section entry.
@@ -918,4 +919,4 @@ Error EHFrameParser::parse(DWARFDataExtractor Data, uint64_t EHFrameAddress,
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -33,6 +33,7 @@
 #include "llvm/Support/FileOutputBuffer.h"
 #include "llvm/Support/FileSystem.h"
 #include "llvm/Support/Program.h"
+#include "llvm/Support/Compiler.h"
 
 // This macro should be defined by the build system.
 #ifndef OFFLOAD_MIN_CUDA_VERSION
@@ -42,7 +43,7 @@
 using namespace llvm::offload::debug;
 using namespace error;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace omp {
 namespace target {
 namespace plugin {
@@ -1733,7 +1734,7 @@ static Error Plugin::check(int32_t Code, const char *ErrFmt, ArgsTy... Args) {
 } // namespace plugin
 } // namespace target
 } // namespace omp
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 extern "C" {
 llvm::omp::target::plugin::GenericPluginTy *createPlugin_cuda() {

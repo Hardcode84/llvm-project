@@ -38,12 +38,13 @@
 #include "DWARFDefines.h"
 #include "DWARFIndex.h"
 #include "UniqueDWARFASTType.h"
+#include "llvm/Support/Compiler.h"
 
 class DWARFASTParserClang;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DWARFDebugAbbrev;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace lldb_private::plugin {
 namespace dwarf {

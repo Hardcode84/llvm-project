@@ -15,8 +15,9 @@
 #include <cstdint>
 #include <unordered_set>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 // TODO: find better place for this
@@ -190,6 +191,6 @@ void CallGraph::printDot(StringRef FileName, L GetLabel) const {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

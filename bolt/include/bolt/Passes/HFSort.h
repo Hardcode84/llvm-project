@@ -23,8 +23,9 @@
 
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class Cluster {
@@ -91,6 +92,6 @@ std::vector<Cluster> pettisAndHansen(const CallGraph &Cg);
 std::vector<Cluster> randomClusters(const CallGraph &Cg);
 
 } // end namespace bolt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // BOLT_PASSES_HFSORT_H

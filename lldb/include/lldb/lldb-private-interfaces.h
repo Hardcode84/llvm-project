@@ -16,13 +16,14 @@
 #include <memory>
 #include <set>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace json {
 class Object;
 class Value;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace lldb_private {
 class ScriptedInterfaceUsages;

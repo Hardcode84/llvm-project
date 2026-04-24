@@ -14,8 +14,9 @@
 
 #include "bolt/Passes/BinaryPasses.h"
 #include <mutex>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class PointerAuthCFIAnalyzer : public BinaryFunctionPass {
@@ -35,5 +36,5 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

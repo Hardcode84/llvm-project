@@ -36,6 +36,7 @@
 #include "llvm/Transforms/Utils/SampleProfileInference.h"
 
 #include <queue>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -124,7 +125,7 @@ cl::opt<bool> StaleMatchingWithPseudoProbes(
 
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 /// An object wrapping several components of a basic block hash. The combined
@@ -1090,4 +1091,4 @@ bool YAMLProfileReader::inferStaleProfile(
 }
 
 } // end namespace bolt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

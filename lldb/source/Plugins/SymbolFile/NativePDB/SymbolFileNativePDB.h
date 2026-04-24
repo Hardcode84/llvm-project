@@ -21,12 +21,13 @@
 #include "PdbIndex.h"
 #include "PdbAstBuilder.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 class TagDecl;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 class ClassRecord;
 class EnumRecord;
@@ -34,7 +35,7 @@ class ModifierRecord;
 class PointerRecord;
 struct UnionRecord;
 } // namespace codeview
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace lldb_private {
 

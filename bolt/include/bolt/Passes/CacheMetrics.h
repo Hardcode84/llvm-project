@@ -15,8 +15,9 @@
 
 #include "bolt/Core/BinaryContext.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -28,6 +29,6 @@ void printAll(raw_ostream &OS, const BinaryFunctionListType &BinaryFunctions);
 
 } // namespace CacheMetrics
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // BOLT_PASSES_CACHEMETRICS_H

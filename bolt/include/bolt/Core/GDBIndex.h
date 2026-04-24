@@ -16,8 +16,9 @@
 
 #include "bolt/Core/BinaryContext.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class GDBIndex {
@@ -64,6 +65,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -21,6 +21,7 @@
 #include <mutex>
 #include <numeric>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "bolt-opts"
 
@@ -243,7 +244,7 @@ static cl::opt<double> ProfileDensityThreshold(
 
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 bool BinaryFunctionPass::shouldOptimize(const BinaryFunction &BF) const {
@@ -2081,4 +2082,4 @@ Error RemoveNops::runOnFunctions(BinaryContext &BC) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

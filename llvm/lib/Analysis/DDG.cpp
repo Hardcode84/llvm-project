@@ -26,9 +26,9 @@ static cl::opt<bool> CreatePiBlocks("ddg-pi-blocks", cl::init(true), cl::Hidden,
 
 #define DEBUG_TYPE "ddg"
 
-template class llvm::DGEdge<DDGNode, DDGEdge>;
-template class llvm::DGNode<DDGNode, DDGEdge>;
-template class llvm::DirectedGraph<DDGNode, DDGEdge>;
+template class LLVM_ABI_NS::DGEdge<DDGNode, DDGEdge>;
+template class LLVM_ABI_NS::DGNode<DDGNode, DDGEdge>;
+template class LLVM_ABI_NS::DirectedGraph<DDGNode, DDGEdge>;
 
 //===--------------------------------------------------------------------===//
 // DDGNode implementation

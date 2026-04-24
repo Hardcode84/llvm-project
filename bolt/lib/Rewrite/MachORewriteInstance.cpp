@@ -28,6 +28,7 @@
 #include "llvm/Support/ToolOutputFile.h"
 #include <memory>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 namespace opts {
 
@@ -52,7 +53,7 @@ extern cl::opt<std::string> RuntimeInstrumentationLib;
 extern cl::opt<unsigned> Verbosity;
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 #define DEBUG_TYPE "bolt"
@@ -588,4 +589,4 @@ void MachORewriteInstance::run() {
 MachORewriteInstance::~MachORewriteInstance() {}
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -15,8 +15,9 @@
 #include <cassert>
 #include <limits>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace omp {
 namespace target {
 
@@ -51,6 +52,6 @@ private:
 };
 } // namespace target
 } // namespace omp
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

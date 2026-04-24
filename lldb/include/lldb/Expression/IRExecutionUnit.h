@@ -24,14 +24,15 @@
 #include "lldb/Utility/DataBufferHeap.h"
 #include "lldb/lldb-forward.h"
 #include "lldb/lldb-private.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Module;
 class ExecutionEngine;
 class ObjectCache;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace lldb_private {
 

@@ -15,6 +15,7 @@
 #define POLLY_SUPPORT_VIRTUALINSTRUCTION_H
 
 #include "polly/ScopInfo.h"
+#include "llvm/Support/Compiler.h"
 
 namespace polly {
 using llvm::User;
@@ -310,7 +311,7 @@ void markReachable(Scop *S, LoopInfo *LI,
                    ScopStmt *OnlyLocal = nullptr);
 } // namespace polly
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Support VirtualInstructions in llvm::DenseMaps.
 template <> struct DenseMapInfo<polly::VirtualInstruction> {
 public:
@@ -341,6 +342,6 @@ public:
         getHashValue(std::make_pair(Val.getStmt(), Val.getInstruction()));
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif /* POLLY_SUPPORT_VIRTUALINSTRUCTION_H */

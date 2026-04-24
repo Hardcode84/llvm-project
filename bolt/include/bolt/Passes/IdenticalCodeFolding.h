@@ -12,8 +12,9 @@
 #include "bolt/Core/BinaryFunction.h"
 #include "bolt/Passes/BinaryPasses.h"
 #include "llvm/ADT/SparseBitVector.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 /// An optimization that replaces references to identical functions with
@@ -92,6 +93,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -19,8 +19,9 @@
 #include <cstdint>
 #include <functional>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class BinarySection;
@@ -49,6 +50,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // BOLT_CORE_LINKER_H

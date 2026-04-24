@@ -12,8 +12,9 @@
 #include "bolt/Passes/FrameAnalysis.h"
 #include "llvm/MC/MCRegisterInfo.h"
 #include <atomic>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 class DataflowInfoManager;
 
@@ -527,6 +528,6 @@ public:
 };
 
 } // end namespace bolt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

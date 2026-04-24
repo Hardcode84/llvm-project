@@ -11,8 +11,9 @@
 
 #include "bolt/Passes/BinaryPasses.h"
 #include <unordered_map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class ReorderData : public BinaryFunctionPass {
@@ -56,6 +57,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

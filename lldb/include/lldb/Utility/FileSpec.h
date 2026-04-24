@@ -23,19 +23,20 @@
 
 #include <cstddef>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
 namespace lldb_private {
 class Stream;
 }
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Triple;
-}
-namespace llvm {
+LLVM_NAMESPACE_END
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-}
-namespace llvm {
+LLVM_NAMESPACE_END
+LLVM_NAMESPACE_BEGIN
 template <typename T> class SmallVectorImpl;
-}
+LLVM_NAMESPACE_END
 
 namespace lldb_private {
 
@@ -442,7 +443,7 @@ protected:
 Stream &operator<<(Stream &s, const FileSpec &f);
 } // namespace lldb_private
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Implementation of format_provider<T> for FileSpec.
 ///
@@ -491,6 +492,6 @@ template <> struct DenseMapInfo<lldb_private::FileSpec> {
 };
 /// \}
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLDB_UTILITY_FILESPEC_H

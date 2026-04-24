@@ -26,10 +26,11 @@
 #include "omptarget.h"
 
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm::offload::debug;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// Base class of per-device allocator.
 class DeviceAllocatorTy {
@@ -370,6 +371,6 @@ public:
 constexpr const size_t MemoryManagerTy::BucketSize[];
 constexpr const int MemoryManagerTy::NumBuckets;
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_OPENMP_LIBOMPTARGET_PLUGINS_COMMON_MEMORYMANAGER_H

@@ -14,12 +14,13 @@
 
 #include <cstdint>
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class WritableMemoryBuffer;
 class MemoryBuffer;
 class Twine;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace lldb_private {
 class FileSystem;

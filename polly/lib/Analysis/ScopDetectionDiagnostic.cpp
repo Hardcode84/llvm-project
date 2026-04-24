@@ -34,6 +34,7 @@
 #include "llvm/IR/DiagnosticInfo.h"
 #include "llvm/IR/Instruction.h"
 #include "llvm/IR/Value.h"
+#include "llvm/Support/Compiler.h"
 #include "llvm/Support/raw_ostream.h"
 #include <algorithm>
 #include <cassert>
@@ -95,14 +96,14 @@ template <typename T> std::string operator+(Twine LHS, const T &RHS) {
 }
 } // namespace polly
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 // Lexicographic order on (line, col) of our debug locations.
 static bool operator<(const DebugLoc &LHS, const DebugLoc &RHS) {
   return LHS.getLine() < RHS.getLine() ||
          (LHS.getLine() == RHS.getLine() && LHS.getCol() < RHS.getCol());
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace polly {
 

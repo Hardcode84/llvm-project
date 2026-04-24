@@ -72,8 +72,9 @@
 
 #include "bolt/Passes/BinaryPasses.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -93,6 +94,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // BOLT_PASSES_PROFILEQUALITYSTATS_H

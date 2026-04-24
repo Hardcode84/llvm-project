@@ -12,8 +12,9 @@
 #include <deque>
 #include <functional>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 class BinaryFunction;
 class BinaryFunctionCallGraph;
@@ -51,6 +52,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

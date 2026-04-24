@@ -12,10 +12,11 @@
 
 #include "bolt/Passes/StackReachingUses.h"
 #include "bolt/Passes/FrameAnalysis.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "sru"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 bool StackReachingUses::isLoadedInDifferentReg(const FrameIndexEntry &StoreFIE,
@@ -124,4 +125,4 @@ BitVector StackReachingUses::computeNext(const MCInst &Point,
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

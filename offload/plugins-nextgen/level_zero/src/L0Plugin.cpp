@@ -19,8 +19,10 @@
 #include "L0Trace.h"
 
 #include "llvm/Object/OffloadBinary.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::omp::target::plugin {
+LLVM_NAMESPACE_BEGIN
+namespace omp::target::plugin {
 
 using namespace llvm::omp::target;
 using namespace error;
@@ -274,7 +276,8 @@ Error LevelZeroPluginTy::asyncBarrierImpl(omp_interop_val_t *Interop) {
   return Plugin::success();
 }
 
-} // namespace llvm::omp::target::plugin
+}
+LLVM_NAMESPACE_END // namespace llvm::omp::target::plugin
 
 extern "C" {
 llvm::omp::target::plugin::GenericPluginTy *createPlugin_level_zero() {

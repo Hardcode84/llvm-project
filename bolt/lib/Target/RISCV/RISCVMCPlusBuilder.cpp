@@ -19,6 +19,7 @@
 #include "llvm/MC/MCInstBuilder.h"
 #include "llvm/MC/MCSubtargetInfo.h"
 #include "llvm/Support/ErrorHandling.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "mcplus"
 
@@ -863,7 +864,7 @@ public:
 
 } // end anonymous namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 MCPlusBuilder *createRISCVMCPlusBuilder(const MCInstrAnalysis *Analysis,
@@ -874,4 +875,4 @@ MCPlusBuilder *createRISCVMCPlusBuilder(const MCInstrAnalysis *Analysis,
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

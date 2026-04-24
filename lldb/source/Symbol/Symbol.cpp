@@ -22,6 +22,7 @@
 #include "lldb/Utility/DataEncoder.h"
 #include "lldb/Utility/Stream.h"
 #include "llvm/ADT/StringSwitch.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace lldb;
 using namespace lldb_private;
@@ -810,7 +811,7 @@ lldb::SymbolType Symbol::GetTypeFromString(const char *str) {
       .Default(eSymbolTypeInvalid);
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace json {
 
 bool fromJSON(const llvm::json::Value &value, lldb_private::JSONSymbol &symbol,
@@ -854,4 +855,4 @@ bool fromJSON(const llvm::json::Value &value, lldb::SymbolType &type,
   return false;
 }
 } // namespace json
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

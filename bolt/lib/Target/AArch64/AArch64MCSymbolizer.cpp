@@ -13,10 +13,11 @@
 #include "bolt/Core/Relocation.h"
 #include "llvm/MC/MCInst.h"
 #include "llvm/Support/Debug.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "bolt-symbolizer"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 AArch64MCSymbolizer::~AArch64MCSymbolizer() {}
@@ -177,4 +178,4 @@ void AArch64MCSymbolizer::tryAddingPcLoadReferenceComment(raw_ostream &CStream,
                                                           uint64_t Address) {}
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

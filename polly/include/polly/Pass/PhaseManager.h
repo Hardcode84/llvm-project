@@ -18,11 +18,12 @@
 #include "polly/DependenceInfo.h"
 #include "llvm/ADT/Bitset.h"
 #include "llvm/IR/PassManager.h"
+#include "llvm/Support/Compiler.h"
 #include <stddef.h>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename EnumT> struct enum_iteration_traits;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace polly {
 using llvm::Function;

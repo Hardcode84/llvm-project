@@ -17,6 +17,7 @@
 #ifdef OMPT_SUPPORT
 
 #include "omp-tools.h"
+#include "llvm/Support/Compiler.h"
 
 #pragma push_macro("DEBUG_PREFIX")
 #undef DEBUG_PREFIX
@@ -44,7 +45,7 @@
 /// operations ids
 typedef uint64_t (*IdInterfaceTy)();
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace omp {
 namespace target {
 namespace ompt {
@@ -94,7 +95,7 @@ extern bool Initialized;
 } // namespace ompt
 } // namespace target
 } // namespace omp
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #pragma pop_macro("DEBUG_PREFIX")
 

@@ -12,8 +12,9 @@
 #include "bolt/Core/BinaryFunctionCallGraph.h"
 #include "bolt/Passes/BinaryPasses.h"
 #include "llvm/ADT/DenseSet.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 class Cluster;
 
@@ -60,6 +61,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // BOLT_PASSES_REORDER_FUNCTIONS_H

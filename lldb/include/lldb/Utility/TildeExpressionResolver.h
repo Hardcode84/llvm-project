@@ -11,10 +11,11 @@
 
 #include "llvm/ADT/StringRef.h"
 #include "llvm/ADT/StringSet.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T> class SmallVectorImpl;
-}
+LLVM_NAMESPACE_END
 
 namespace lldb_private {
 class TildeExpressionResolver {

@@ -12,6 +12,7 @@
 
 #include "bolt/Passes/LoopInversionPass.h"
 #include "bolt/Core/ParallelUtilities.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -26,7 +27,7 @@ static cl::opt<bool> LoopReorder(
     cl::init(true), cl::cat(BoltCategory), cl::ReallyHidden);
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 bool LoopInversionPass::runOnFunction(BinaryFunction &BF) {
@@ -109,4 +110,4 @@ Error LoopInversionPass::runOnFunctions(BinaryContext &BC) {
 }
 
 } // end namespace bolt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

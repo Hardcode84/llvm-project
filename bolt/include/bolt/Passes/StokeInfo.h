@@ -29,8 +29,9 @@
 
 #include "bolt/Passes/BinaryPasses.h"
 #include <fstream>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 class DataflowInfoManager;
 class RegAnalysis;
@@ -124,6 +125,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

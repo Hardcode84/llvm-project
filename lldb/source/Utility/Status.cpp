@@ -31,10 +31,11 @@
 #include <windows.h>
 #endif
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-}
+LLVM_NAMESPACE_END
 
 using namespace lldb;
 using namespace lldb_private;

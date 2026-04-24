@@ -12,6 +12,7 @@
 
 #include "bolt/Passes/Aligner.h"
 #include "bolt/Core/ParallelUtilities.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "bolt-aligner"
 
@@ -56,7 +57,7 @@ static cl::opt<bool>
 
 } // end namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 // Align function to the specified byte-boundary (typically, 64) offsetting
@@ -185,4 +186,4 @@ Error AlignerPass::runOnFunctions(BinaryContext &BC) {
 }
 
 } // end namespace bolt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

@@ -17,6 +17,7 @@
 #include "lldb/Utility/Stream.h"
 #include "lldb/lldb-enumerations.h"
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
 namespace lldb_private {
 
@@ -151,7 +152,7 @@ private:
 
 } // namespace lldb_private
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// DenseMapInfo implementation.
 /// \{
@@ -171,6 +172,6 @@ template <> struct DenseMapInfo<lldb::LanguageType> {
 };
 /// \}
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLDB_CORE_HIGHLIGHTER_H

@@ -12,8 +12,10 @@
 
 #include "L0Context.h"
 #include "L0Plugin.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::omp::target::plugin {
+LLVM_NAMESPACE_BEGIN
+namespace omp::target::plugin {
 
 Error L0ContextTy::init() {
   auto cleanupOnError = [&]() {
@@ -68,4 +70,5 @@ StagingBufferTy &L0ContextTy::getStagingBuffer() {
   return Buffer;
 }
 
-} // namespace llvm::omp::target::plugin
+}
+LLVM_NAMESPACE_END // namespace llvm::omp::target::plugin

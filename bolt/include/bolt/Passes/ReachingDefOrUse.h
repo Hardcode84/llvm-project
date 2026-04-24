@@ -13,12 +13,13 @@
 #include "bolt/Passes/RegAnalysis.h"
 #include "llvm/Support/CommandLine.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 namespace opts {
 extern llvm::cl::opt<bool> TimeOpts;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 /// If \p Def is true, this computes a forward dataflow equation to
@@ -148,6 +149,6 @@ protected:
 };
 
 } // end namespace bolt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

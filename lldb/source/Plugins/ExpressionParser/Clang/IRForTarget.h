@@ -21,8 +21,9 @@
 
 #include <functional>
 #include <map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BasicBlock;
 class CallInst;
 class Constant;
@@ -35,7 +36,7 @@ class Module;
 class StoreInst;
 class DataLayout;
 class Value;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 class NamedDecl;

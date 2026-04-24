@@ -29,10 +29,11 @@
 #include <unordered_map>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 #define DWARF2_FLAG_END_SEQUENCE (1 << 4)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace bolt {
 
@@ -936,6 +937,6 @@ private:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -18,6 +18,7 @@
 #include "lldb/Expression/ExpressionTypeSystemHelper.h"
 #include "lldb/lldb-forward.h"
 #include "lldb/lldb-private.h"
+#include "llvm/Support/Compiler.h"
 
 namespace lldb_private {
 
@@ -152,11 +153,11 @@ inline constexpr llvm::StringRef FunctionCallLabelPrefix = "$__lldb_func";
 
 } // namespace lldb_private
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct format_provider<lldb_private::FunctionCallLabel> {
   static void format(const lldb_private::FunctionCallLabel &label,
                      raw_ostream &OS, StringRef Style);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLDB_EXPRESSION_EXPRESSION_H

@@ -11,8 +11,9 @@
 
 #include "bolt/Passes/StackPointerTracking.h"
 #include <tuple>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 class BinaryFunctionCallGraph;
 
@@ -227,6 +228,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

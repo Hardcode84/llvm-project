@@ -12,8 +12,9 @@
 #include "bolt/Core/BinarySection.h"
 #include "llvm/MC/MCStreamer.h"
 #include "llvm/Support/DataExtractor.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 const char *const AddressMap::AddressSectionName = ".bolt.addr2addr_map";
@@ -115,4 +116,4 @@ std::optional<AddressMap> AddressMap::parse(BinaryContext &BC) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -10,6 +10,7 @@
 #define BOLT_PASSES_LOOPINVERSION_H
 
 #include "bolt/Passes/BinaryPasses.h"
+#include "llvm/Support/Compiler.h"
 
 // This pass founds cases when BBs have layout:
 // #BB0:
@@ -39,7 +40,7 @@
 // The advantage is that the loop uses only one conditional jump,
 // the unconditional jump is only used once on the loop start.
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class LoopInversionPass : public BinaryFunctionPass {
@@ -54,6 +55,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

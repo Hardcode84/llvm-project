@@ -12,10 +12,11 @@
 #include "llvm/Support/Errc.h"
 #include "llvm/Support/Error.h"
 #include "llvm/Support/LEB128.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "bolt-bat"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 const char *BoltAddressTranslation::SECTION_NAME = ".note.bolt_bat";
@@ -638,4 +639,4 @@ BoltAddressTranslation::translateSymbol(const BinaryContext &BC,
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

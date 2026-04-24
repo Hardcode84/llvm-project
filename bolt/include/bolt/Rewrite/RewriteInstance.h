@@ -25,8 +25,9 @@
 #include <map>
 #include <set>
 #include <unordered_map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class ToolOutputFile;
 
@@ -613,6 +614,6 @@ MCPlusBuilder *createMCPlusBuilder(const Triple::ArchType Arch,
                                    const MCSubtargetInfo *STI);
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

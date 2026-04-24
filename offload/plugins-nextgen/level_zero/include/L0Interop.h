@@ -13,7 +13,10 @@
 #ifndef OPENMP_LIBOMPTARGET_PLUGINS_NEXTGEN_LEVEL_ZERO_L0INTEROP_H
 #define OPENMP_LIBOMPTARGET_PLUGINS_NEXTGEN_LEVEL_ZERO_L0INTEROP_H
 
-namespace llvm::omp::target::plugin::L0Interop {
+
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
+namespace omp::target::plugin::L0Interop {
 
 /// Level Zero interop property.
 struct Property {
@@ -23,6 +26,7 @@ struct Property {
   ze_command_list_handle_t ImmCmdList;
 };
 
-} // namespace llvm::omp::target::plugin::L0Interop
+}
+LLVM_NAMESPACE_END // namespace llvm::omp::target::plugin::L0Interop
 
 #endif // OPENMP_LIBOMPTARGET_PLUGINS_NEXTGEN_LEVEL_ZERO_L0INTEROP_H

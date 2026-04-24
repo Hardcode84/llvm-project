@@ -42,14 +42,15 @@
 #include <vector>
 
 #include "polly/Support/PollyDebug.h"
+#include "llvm/Support/Compiler.h"
 #define DEBUG_TYPE "polly-opt-isl"
 
 using namespace llvm;
 using namespace polly;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Value;
-}
+LLVM_NAMESPACE_END
 
 static cl::opt<int> LatencyVectorFma(
     "polly-target-latency-vector-fma",

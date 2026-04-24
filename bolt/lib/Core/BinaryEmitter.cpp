@@ -24,6 +24,7 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/LEB128.h"
 #include "llvm/Support/SMLoc.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "bolt"
 
@@ -1231,7 +1232,7 @@ void BinaryEmitter::emitDataSections(StringRef OrgSecPrefix) {
   }
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 void emitBinaryContext(MCStreamer &Streamer, BinaryContext &BC,
@@ -1246,4 +1247,4 @@ void emitFunctionBody(MCStreamer &Streamer, BinaryFunction &BF,
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

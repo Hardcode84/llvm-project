@@ -21,8 +21,9 @@
 #include "llvm/Support/Program.h"
 #include <limits>
 #include <unordered_map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class BinaryFunction;
@@ -672,6 +673,6 @@ inline raw_ostream &operator<<(raw_ostream &OS,
   return OS;
 }
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -23,6 +23,7 @@
 #include <map>
 #include <set>
 #include <unordered_map>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "bolt-icf"
 
@@ -379,7 +380,7 @@ typedef std::unordered_map<BinaryFunction *, BinaryFunctionListType, KeyHash,
                            KeyEqual>
     IdenticalBucketsMap;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 void IdenticalCodeFolding::initVTableReferences(const BinaryContext &BC) {
   for (const auto &[Address, Data] : BC.getBinaryData()) {
@@ -650,4 +651,4 @@ Error IdenticalCodeFolding::runOnFunctions(BinaryContext &BC) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

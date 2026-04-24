@@ -15,8 +15,9 @@
 #include "llvm/MC/MCDwarf.h"
 #include "llvm/Support/LEB128.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 void report_error(StringRef Message, std::error_code EC) {
@@ -129,4 +130,4 @@ bool operator==(const llvm::MCCFIInstruction &L,
   }
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

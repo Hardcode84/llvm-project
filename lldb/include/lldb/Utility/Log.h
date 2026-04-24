@@ -28,10 +28,11 @@
 #include <mutex>
 #include <string>
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-}
+LLVM_NAMESPACE_END
 // Logging Options
 #define LLDB_LOG_OPTION_VERBOSE (1u << 1)
 #define LLDB_LOG_OPTION_PREPEND_SEQUENCE (1u << 3)

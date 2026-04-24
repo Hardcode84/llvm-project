@@ -20,8 +20,10 @@
 #include "L0Options.h"
 #include "L0Program.h"
 #include "TLS.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::omp::target::plugin {
+LLVM_NAMESPACE_BEGIN
+namespace omp::target::plugin {
 
 /// Class implementing the LevelZero specific functionalities of the plugin.
 class LevelZeroPluginTy final : public GenericPluginTy {
@@ -111,6 +113,7 @@ public:
   Expected<bool> isImageCompatible(StringRef Image) const override;
 };
 
-} // namespace llvm::omp::target::plugin
+}
+LLVM_NAMESPACE_END // namespace llvm::omp::target::plugin
 
 #endif // OPENMP_LIBOMPTARGET_PLUGINS_NEXTGEN_LEVEL_ZERO_L0PLUGIN_H

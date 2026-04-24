@@ -13,16 +13,17 @@
 #include "lldb/Symbol/CallFrameInfo.h"
 #include "lldb/Symbol/UnwindPlan.h"
 #include "lldb/Utility/DataExtractor.h"
+#include "llvm/Support/Compiler.h"
 
 class ObjectFilePECOFF;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace Win64EH {
 
 struct RuntimeFunction;
 
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 class PECallFrameInfo : public virtual lldb_private::CallFrameInfo {
 public:

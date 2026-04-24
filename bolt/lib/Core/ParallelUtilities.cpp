@@ -17,6 +17,7 @@
 #include "llvm/Support/ThreadPool.h"
 #include "llvm/Support/Timer.h"
 #include <mutex>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "par-utils"
 
@@ -43,7 +44,7 @@ TaskCount("tasks-per-thread",
 
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 namespace ParallelUtilities {
 
@@ -243,4 +244,4 @@ void runOnEachFunctionWithUniqueAllocId(
 
 } // namespace ParallelUtilities
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

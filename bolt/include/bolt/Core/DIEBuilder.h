@@ -30,8 +30,9 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace bolt {
 
@@ -401,6 +402,6 @@ public:
                                     const StringRef DWOName);
 };
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

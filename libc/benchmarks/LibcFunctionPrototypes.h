@@ -2,8 +2,9 @@
 #define LLVM_LIBC_BENCHMARKS_LIBC_FUNCTION_PROTOTYPES_H
 
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace libc_benchmarks {
 
 /// Memory function prototype and configuration.
@@ -39,6 +40,6 @@ struct MemcmpOrBcmpConfiguration {
 };
 
 } // namespace libc_benchmarks
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif /* LLVM_LIBC_BENCHMARKS_LIBC_FUNCTION_PROTOTYPES_H */

@@ -17,8 +17,9 @@
 #include "bolt/Core/BinaryData.h"
 #include <map>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCSymbol;
 class raw_ostream;
 
@@ -127,6 +128,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

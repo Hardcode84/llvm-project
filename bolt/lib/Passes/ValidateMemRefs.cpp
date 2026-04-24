@@ -8,6 +8,7 @@
 
 #include "bolt/Passes/ValidateMemRefs.h"
 #include "bolt/Core/ParallelUtilities.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "bolt-memrefs"
 
@@ -15,7 +16,8 @@ namespace opts {
 extern llvm::cl::opt<llvm::bolt::JumpTableSupportLevel> JumpTables;
 }
 
-namespace llvm::bolt {
+LLVM_NAMESPACE_BEGIN
+namespace bolt {
 
 std::atomic<std::uint64_t> ValidateMemRefs::ReplacedReferences{0};
 
@@ -101,4 +103,5 @@ Error ValidateMemRefs::runOnFunctions(BinaryContext &BC) {
   return Error::success();
 }
 
-} // namespace llvm::bolt
+}
+LLVM_NAMESPACE_END // namespace llvm::bolt

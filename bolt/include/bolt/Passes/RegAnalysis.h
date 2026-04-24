@@ -12,8 +12,9 @@
 #include "llvm/ADT/BitVector.h"
 #include <cstdint>
 #include <map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCInst;
 
 namespace bolt {
@@ -84,6 +85,6 @@ private:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

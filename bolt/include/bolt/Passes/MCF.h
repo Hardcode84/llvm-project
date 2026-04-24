@@ -11,8 +11,9 @@
 
 #include "bolt/Passes/BinaryPasses.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class DataflowInfoManager;
@@ -39,6 +40,6 @@ public:
 };
 
 } // end namespace bolt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // BOLT_PASSES_MCF_H

@@ -10,8 +10,9 @@
 #define BOLT_PASSES_FRAMEDEFRAG_H
 
 #include "bolt/Passes/BinaryPasses.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class AllocCombinerPass : public BinaryFunctionPass {
@@ -37,6 +38,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

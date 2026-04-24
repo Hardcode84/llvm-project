@@ -126,5 +126,5 @@ PreservedAnalyses TailDuplicatePassBase<DerivedT, PreRegAlloc>::run(
   return getMachineFunctionPassPreservedAnalyses();
 }
 
-template class llvm::TailDuplicatePassBase<TailDuplicatePass, false>;
-template class llvm::TailDuplicatePassBase<EarlyTailDuplicatePass, true>;
+template class LLVM_ABI_NS::TailDuplicatePassBase<TailDuplicatePass, false>;
+template class LLVM_ABI_NS::TailDuplicatePassBase<EarlyTailDuplicatePass, true>;

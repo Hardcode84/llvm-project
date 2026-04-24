@@ -13,12 +13,13 @@
 #include "bolt/Core/MCPlus.h"
 #include <map>
 #include <variant>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCCodeEmitter;
-}
+LLVM_NAMESPACE_END
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class BinaryFunction;
@@ -342,6 +343,6 @@ bool matchInst(const MCInst &Inst, unsigned Opcode, const OpMatchers &...Ops) {
 } // namespace LowLevelInstMatcherDSL
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

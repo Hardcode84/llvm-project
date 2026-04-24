@@ -16,8 +16,9 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/ADT/Twine.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCCFIInstruction;
 namespace bolt {
 
@@ -81,6 +82,6 @@ std::optional<uint8_t> readDWARFExpressionTargetReg(StringRef ExprBytes);
 bool operator==(const llvm::MCCFIInstruction &L,
                 const llvm::MCCFIInstruction &R);
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

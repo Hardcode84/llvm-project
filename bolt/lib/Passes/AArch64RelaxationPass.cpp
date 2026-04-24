@@ -14,6 +14,7 @@
 #include "bolt/Core/ParallelUtilities.h"
 #include "bolt/Utils/CommandLineOpts.h"
 #include <iterator>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -26,7 +27,7 @@ static cl::opt<bool> AArch64PassOpt(
     cl::init(true), cl::cat(BoltCategory), cl::ReallyHidden);
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 // We don't exit directly from runOnFunction since it would call ThreadPool
@@ -121,4 +122,4 @@ Error AArch64RelaxationPass::runOnFunctions(BinaryContext &BC) {
 }
 
 } // end namespace bolt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

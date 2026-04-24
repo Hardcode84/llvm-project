@@ -12,11 +12,12 @@
 #include "lldb/Expression/DynamicCheckerFunctions.h"
 #include "lldb/lldb-types.h"
 #include "llvm/Pass.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class BasicBlock;
 class Module;
-}
+LLVM_NAMESPACE_END
 
 namespace lldb_private {
 

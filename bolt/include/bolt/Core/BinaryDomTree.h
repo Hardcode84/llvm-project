@@ -16,8 +16,9 @@
 
 #include "bolt/Core/BinaryBasicBlock.h"
 #include "llvm/IR/Dominators.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 using BinaryDomTreeNode = DomTreeNodeBase<BinaryBasicBlock>;
@@ -52,6 +53,6 @@ struct GraphTraits<bolt::BinaryDominatorTree *>
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

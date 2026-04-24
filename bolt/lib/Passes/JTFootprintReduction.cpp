@@ -14,6 +14,7 @@
 #include "bolt/Core/BinaryFunctionCallGraph.h"
 #include "bolt/Passes/DataflowInfoManager.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "JT"
 
@@ -36,7 +37,7 @@ static cl::opt<bool> JTFootprintOnlyPIC(
 
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 void JTFootprintReduction::checkOpportunities(BinaryFunction &Function,
@@ -293,4 +294,4 @@ Error JTFootprintReduction::runOnFunctions(BinaryContext &BC) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -24,6 +24,7 @@
 
 #include <cstddef>
 #include <cstdint>
+#include "llvm/Support/Compiler.h"
 
 namespace lldb_private {
 class Address;
@@ -319,7 +320,7 @@ private:
 
 } // namespace lldb_private
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace json {
 
 bool fromJSON(const llvm::json::Value &value,
@@ -329,6 +330,6 @@ bool fromJSON(const llvm::json::Value &value, lldb::SectionType &type,
               llvm::json::Path path);
 
 } // namespace json
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLDB_CORE_SECTION_H

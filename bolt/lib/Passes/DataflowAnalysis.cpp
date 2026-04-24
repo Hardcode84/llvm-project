@@ -12,10 +12,11 @@
 
 #include "bolt/Passes/DataflowAnalysis.h"
 #include "llvm/MC/MCRegisterInfo.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "dataflow"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 raw_ostream &operator<<(raw_ostream &OS, const BitVector &State) {
   LLVM_DEBUG({
@@ -92,4 +93,4 @@ void RegStatePrinter::print(raw_ostream &OS, const BitVector &State) const {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

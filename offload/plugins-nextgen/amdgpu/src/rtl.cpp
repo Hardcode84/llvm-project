@@ -73,12 +73,13 @@
 #else
 #include "hsa/hsa.h"
 #include "hsa/hsa_ext_amd.h"
+#include "llvm/Support/Compiler.h"
 #endif
 
 using namespace llvm::offload::debug;
 using namespace error;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace omp {
 namespace target {
 namespace plugin {
@@ -4357,7 +4358,7 @@ void AMDGPUQueueTy::callbackError(hsa_status_t Status, hsa_queue_t *Source,
 } // namespace plugin
 } // namespace target
 } // namespace omp
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 extern "C" {
 llvm::omp::target::plugin::GenericPluginTy *createPlugin_amdgpu() {

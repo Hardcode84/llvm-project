@@ -16,6 +16,7 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Timer.h"
 #include <stack>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "callgraph"
 
@@ -33,7 +34,7 @@ static cl::opt<std::string>
 
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 CallGraph::NodeId BinaryFunctionCallGraph::addNode(BinaryFunction *BF,
@@ -299,4 +300,4 @@ buildCallGraph(BinaryContext &BC, CgFilterFunction Filter, bool CgFromPerfData,
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -12,8 +12,9 @@
 #include "bolt/Core/BinaryFunctionCallGraph.h"
 #include "bolt/Passes/BinaryPasses.h"
 #include "bolt/Passes/RegAnalysis.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class RegReAssign : public BinaryFunctionPass {
@@ -58,6 +59,6 @@ public:
   Error runOnFunctions(BinaryContext &BC) override;
 };
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

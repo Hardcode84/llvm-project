@@ -19,8 +19,9 @@
 #include "llvm/Support/raw_ostream.h"
 #include <map>
 #include <unordered_map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace bolt {
 class BinaryFunction;
@@ -181,6 +182,6 @@ inline void callWithDynoStats(raw_ostream &OS, FnType &&Func, FuncsType &Funcs,
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

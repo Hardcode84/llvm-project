@@ -132,13 +132,13 @@ LLVMContext &BasicBlock::getContext() const {
   return getType()->getContext();
 }
 
-template <> void llvm::invalidateParentIListOrdering(BasicBlock *BB) {
+template <> void LLVM_ABI_NS::invalidateParentIListOrdering(BasicBlock *BB) {
   BB->invalidateOrders();
 }
 
 // Explicit instantiation of SymbolTableListTraits since some of the methods
 // are not in the public header file...
-template class llvm::SymbolTableListTraits<
+template class LLVM_ABI_NS::SymbolTableListTraits<
     Instruction, ilist_iterator_bits<true>, ilist_parent<BasicBlock>>;
 
 BasicBlock::BasicBlock(LLVMContext &C, const Twine &Name, Function *NewParent,

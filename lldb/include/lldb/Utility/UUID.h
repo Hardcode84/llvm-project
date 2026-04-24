@@ -16,6 +16,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 namespace lldb_private {
 
@@ -116,7 +117,7 @@ private:
 };
 } // namespace lldb_private
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// DenseMapInfo implementation.
 /// \{
@@ -138,6 +139,6 @@ template <> struct DenseMapInfo<lldb_private::UUID> {
 };
 /// \}
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLDB_UTILITY_UUID_H

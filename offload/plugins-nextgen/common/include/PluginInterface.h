@@ -54,10 +54,11 @@
 #include "llvm/Support/MemoryBufferRef.h"
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/TargetParser/Triple.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm::offload::debug;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace omp {
 namespace target {
 
@@ -1942,6 +1943,6 @@ protected:
 } // namespace plugin
 } // namespace target
 } // namespace omp
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // OPENMP_LIBOMPTARGET_PLUGINS_COMMON_PLUGININTERFACE_H

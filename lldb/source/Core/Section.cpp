@@ -16,6 +16,7 @@
 #include <cinttypes>
 #include <limits>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
 namespace lldb_private {
 class DataExtractor;
@@ -708,7 +709,7 @@ SectionList SectionList::Merge(SectionList &lhs, SectionList &rhs,
   return output_list;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace json {
 
 bool fromJSON(const llvm::json::Value &value,
@@ -749,4 +750,4 @@ bool fromJSON(const llvm::json::Value &value, lldb::SectionType &type,
   return false;
 }
 } // namespace json
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

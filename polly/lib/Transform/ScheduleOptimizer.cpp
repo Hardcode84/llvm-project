@@ -59,15 +59,16 @@
 #include "llvm/ADT/Statistic.h"
 #include "llvm/Analysis/OptimizationRemarkEmitter.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 #include "isl/options.h"
 
 using namespace llvm;
 using namespace polly;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Loop;
 class Module;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #include "polly/Support/PollyDebug.h"
 #define DEBUG_TYPE "polly-opt-isl"

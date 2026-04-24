@@ -17,11 +17,12 @@
 #ifndef POLLY_DELICM_H
 #define POLLY_DELICM_H
 
+#include "llvm/Support/Compiler.h"
 #include "isl/isl-noexceptions.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace polly {
 class Scop;

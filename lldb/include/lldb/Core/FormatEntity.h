@@ -18,6 +18,7 @@
 #include <cstdint>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 namespace lldb_private {
 class Address;
@@ -31,9 +32,9 @@ class SymbolContext;
 class ValueObject;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
-}
+LLVM_NAMESPACE_END
 
 namespace lldb_private {
 namespace FormatEntity {

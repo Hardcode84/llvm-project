@@ -34,6 +34,7 @@
 #include <optional>
 #include <unordered_map>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "bolt-debug-info"
 
@@ -41,7 +42,7 @@ namespace opts {
 extern llvm::cl::opt<unsigned> Verbosity;
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCSymbol;
 
 namespace bolt {
@@ -1237,4 +1238,4 @@ void DwarfLineTable::emit(BinaryContext &BC, MCStreamer &Streamer) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

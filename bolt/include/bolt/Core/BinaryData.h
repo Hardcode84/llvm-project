@@ -20,8 +20,9 @@
 #include "llvm/Support/raw_ostream.h"
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class BinarySection;
@@ -237,6 +238,6 @@ inline raw_ostream &operator<<(raw_ostream &OS,
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

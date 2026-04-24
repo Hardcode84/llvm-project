@@ -18,6 +18,7 @@
 #include "llvm/Demangle/Demangle.h"
 #include "llvm/MC/MCPseudoProbe.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -54,7 +55,7 @@ llvm::cl::opt<bool> ProfileUseDFS("profile-use-dfs",
 extern llvm::cl::opt<bool> StaleMatchingWithPseudoProbes;
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 YAMLProfileReader::CallGraphMatcher::CallGraphMatcher(
@@ -889,4 +890,4 @@ bool YAMLProfileReader::usesEvent(StringRef Name) const {
 }
 
 } // end namespace bolt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

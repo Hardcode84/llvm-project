@@ -14,8 +14,9 @@
 #define BOLT_RUNTIMELIBS_HUGIFY_RUNTIME_LIBRARY_H
 
 #include "bolt/RuntimeLibs/RuntimeLibrary.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class HugifyRuntimeLibrary : public RuntimeLibrary {
@@ -33,6 +34,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

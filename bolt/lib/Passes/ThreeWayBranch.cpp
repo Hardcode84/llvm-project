@@ -11,10 +11,11 @@
 //===----------------------------------------------------------------------===//
 
 #include "bolt/Passes/ThreeWayBranch.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 bool ThreeWayBranch::shouldRunOnFunction(BinaryFunction &Function) {
@@ -166,4 +167,4 @@ Error ThreeWayBranch::runOnFunctions(BinaryContext &BC) {
 }
 
 } // end namespace bolt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

@@ -19,9 +19,9 @@
 using namespace mlir;
 using namespace mlir::detail;
 
-template class llvm::DominatorTreeBase<Block, /*IsPostDom=*/false>;
-template class llvm::DominatorTreeBase<Block, /*IsPostDom=*/true>;
-template class llvm::DomTreeNodeBase<Block>;
+template class LLVM_ABI_NS::DominatorTreeBase<Block, /*IsPostDom=*/false>;
+template class LLVM_ABI_NS::DominatorTreeBase<Block, /*IsPostDom=*/true>;
+template class LLVM_ABI_NS::DomTreeNodeBase<Block>;
 
 //===----------------------------------------------------------------------===//
 // DominanceInfoBase

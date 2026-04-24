@@ -25,6 +25,7 @@
 #include <cstdlib>
 #include <optional>
 #include <stack>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -32,7 +33,7 @@ namespace opts {
 extern llvm::cl::opt<unsigned> Verbosity;
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 bool PointerAuthCFIAnalyzer::runOnFunction(BinaryFunction &BF) {
@@ -170,4 +171,4 @@ Error PointerAuthCFIAnalyzer::runOnFunctions(BinaryContext &BC) {
 }
 
 } // end namespace bolt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

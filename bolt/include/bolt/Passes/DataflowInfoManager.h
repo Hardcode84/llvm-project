@@ -16,8 +16,9 @@
 #include "bolt/Passes/StackAllocationAnalysis.h"
 #include "bolt/Passes/StackPointerTracking.h"
 #include "bolt/Passes/StackReachingUses.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 class FrameAnalysis;
 class RegAnalysis;
@@ -87,6 +88,6 @@ public:
 };
 
 } // end namespace bolt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

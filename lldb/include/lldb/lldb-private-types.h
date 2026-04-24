@@ -13,12 +13,13 @@
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/SmallString.h"
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 class DynamicLibrary;
 }
-}
+LLVM_NAMESPACE_END
 
 namespace lldb_private {
 class Platform;

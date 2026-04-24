@@ -11,10 +11,11 @@
 
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Error;
-} // End of namespace llvm
+LLVM_NAMESPACE_END // End of namespace llvm
 
 namespace lldb_private {
 

@@ -20,6 +20,7 @@
 #include "llvm/Support/CommandLine.h"
 #include <algorithm>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 #undef  DEBUG_TYPE
 #define DEBUG_TYPE "mcf"
@@ -37,7 +38,7 @@ static cl::opt<bool> IterativeGuess(
     cl::Hidden, cl::cat(BoltOptCategory));
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 namespace {
@@ -476,4 +477,4 @@ Error EstimateEdgeCounts::runOnFunctions(BinaryContext &BC) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

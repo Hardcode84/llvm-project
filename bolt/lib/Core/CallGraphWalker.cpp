@@ -16,12 +16,13 @@
 #include "llvm/Support/Timer.h"
 #include <queue>
 #include <set>
+#include "llvm/Support/Compiler.h"
 
 namespace opts {
 extern llvm::cl::opt<bool> TimeOpts;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 void CallGraphWalker::traverseCG() {
@@ -64,4 +65,4 @@ void CallGraphWalker::walk() {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

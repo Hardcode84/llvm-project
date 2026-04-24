@@ -25,6 +25,7 @@
 #include "lldb/lldb-private.h"
 
 #include "llvm/Support/DJB.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace lldb;
 using namespace lldb_private;
@@ -820,7 +821,7 @@ std::string ObjectFile::GetObjectName() const {
   return GetFileSpec().GetFilename().GetString();
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace json {
 
 bool fromJSON(const llvm::json::Value &value,
@@ -849,4 +850,4 @@ bool fromJSON(const llvm::json::Value &value,
   return false;
 }
 } // namespace json
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

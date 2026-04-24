@@ -12,6 +12,7 @@
 #include "llvm/ADT/StringMap.h"
 #include "llvm/Support/Allocator.h"
 #include "llvm/Support/FormatProviders.h"
+#include "llvm/Support/Compiler.h"
 
 namespace lldb_private {
 
@@ -84,7 +85,7 @@ public:
 
 } // namespace lldb_private
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct format_provider<lldb_private::Environment> {
   static void format(const lldb_private::Environment &Env, raw_ostream &Stream,
                      StringRef Style) {
@@ -92,6 +93,6 @@ template <> struct format_provider<lldb_private::Environment> {
       Stream << "env[" << KV.first() << "] = " << KV.second << "\n";
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLDB_UTILITY_ENVIRONMENT_H

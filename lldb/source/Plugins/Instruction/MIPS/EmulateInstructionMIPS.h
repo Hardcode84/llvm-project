@@ -11,8 +11,9 @@
 #define LLDB_SOURCE_PLUGINS_INSTRUCTION_MIPS_EMULATEINSTRUCTIONMIPS_H
 
 #include "llvm/MC/MCTargetOptions.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCDisassembler;
 class MCSubtargetInfo;
 class MCRegisterInfo;
@@ -20,7 +21,7 @@ class MCAsmInfo;
 class MCContext;
 class MCInstrInfo;
 class MCInst;
-}
+LLVM_NAMESPACE_END
 
 namespace lldb_private {
   class OptionValueDictionary;

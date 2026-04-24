@@ -15,8 +15,9 @@
 #define BOLT_CORE_BINARY_EMITTER_H
 
 #include "llvm/ADT/StringRef.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCStreamer;
 
 namespace bolt {
@@ -38,6 +39,6 @@ void emitFunctionBody(MCStreamer &Streamer, BinaryFunction &BF,
                       FunctionFragment &FF, bool EmitCodeOnly);
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

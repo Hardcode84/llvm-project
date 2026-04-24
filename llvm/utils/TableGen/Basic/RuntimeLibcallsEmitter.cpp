@@ -45,7 +45,7 @@ inline bool operator==(PredicateWithCC LHS, PredicateWithCC RHS) {
 }
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct DenseMapInfo<PredicateWithCC, void> {
   static inline PredicateWithCC getEmptyKey() {
     return DenseMapInfo<
@@ -88,7 +88,7 @@ public:
   void run(raw_ostream &OS);
 };
 
-} // End anonymous namespace.
+LLVM_NAMESPACE_END // namespace llvm
 
 void RuntimeLibcallEmitter::emitGetRuntimeLibcallEnum(raw_ostream &OS) const {
   IfDefEmitter IfDef(OS, "GET_RUNTIME_LIBCALL_ENUM");

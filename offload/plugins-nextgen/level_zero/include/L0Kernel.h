@@ -17,8 +17,10 @@
 #include "L0Defs.h"
 #include "L0Trace.h"
 #include "PluginInterface.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::omp::target::plugin {
+LLVM_NAMESPACE_BEGIN
+namespace omp::target::plugin {
 
 class L0DeviceTy;
 class L0ProgramTy;
@@ -149,6 +151,7 @@ public:
                        L0LaunchEnvTy &KEnv) const;
 };
 
-} // namespace llvm::omp::target::plugin
+}
+LLVM_NAMESPACE_END // namespace llvm::omp::target::plugin
 
 #endif // OPENMP_LIBOMPTARGET_PLUGINS_NEXTGEN_LEVEL_ZERO_L0KERNEL_H

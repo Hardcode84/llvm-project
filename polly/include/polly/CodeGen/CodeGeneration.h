@@ -10,10 +10,11 @@
 #define POLLY_CODEGENERATION_H
 
 #include "polly/CodeGen/IRBuilder.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class RegionInfo;
-}
+LLVM_NAMESPACE_END
 
 namespace polly {
 class IslAstInfo;

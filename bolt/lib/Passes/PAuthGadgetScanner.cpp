@@ -88,10 +88,11 @@
 #include "llvm/MC/MCInst.h"
 #include "llvm/Support/Format.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "bolt-pauth-scanner"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 namespace PAuthGadgetScanner {
 
@@ -1902,4 +1903,4 @@ Error Analysis::runOnFunctions(BinaryContext &BC) {
 
 } // namespace PAuthGadgetScanner
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

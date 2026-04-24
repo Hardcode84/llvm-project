@@ -11,16 +11,17 @@
 
 #include "lldb/Core/Module.h"
 #include "lldb/Symbol/Variable.h"
+#include "llvm/Support/Compiler.h"
 
 namespace lldb_private {
 class DWARFExpression;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 class PDBSymbolData;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 /// Converts a location information from a PDB symbol to a DWARF expression
 ///

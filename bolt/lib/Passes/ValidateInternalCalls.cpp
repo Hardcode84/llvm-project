@@ -17,10 +17,11 @@
 #include "llvm/MC/MCInstPrinter.h"
 #include <optional>
 #include <queue>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "bolt-internalcalls"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 namespace {
@@ -353,4 +354,4 @@ Error ValidateInternalCalls::runOnFunctions(BinaryContext &BC) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

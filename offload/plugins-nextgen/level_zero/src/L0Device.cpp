@@ -20,8 +20,10 @@
 #include "GlobalHandler.h"
 #include "llvm/ADT/ScopeExit.h"
 #include "llvm/Object/ELF.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::omp::target::plugin {
+LLVM_NAMESPACE_BEGIN
+namespace omp::target::plugin {
 
 L0DeviceTLSTy &L0DeviceTy::getTLS() {
   return getPlugin().getDeviceTLS(getDeviceId());
@@ -1311,4 +1313,5 @@ Error L0DeviceTy::callGlobalCtorDtorCommon(GenericPluginTy &Plugin,
   return CleanupBufferAndErr(Plugin::success());
 }
 
-} // namespace llvm::omp::target::plugin
+}
+LLVM_NAMESPACE_END // namespace llvm::omp::target::plugin

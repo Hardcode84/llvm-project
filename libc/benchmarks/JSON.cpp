@@ -24,8 +24,9 @@
 #include <optional>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace libc_benchmarks {
 
 template <typename T>
@@ -323,4 +324,4 @@ void serializeToJson(const Study &S, json::OStream &JOS) {
 }
 
 } // namespace libc_benchmarks
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

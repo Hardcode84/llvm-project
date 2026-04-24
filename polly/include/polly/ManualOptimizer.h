@@ -13,11 +13,12 @@
 #ifndef POLLY_MANUALOPTIMIZER_H
 #define POLLY_MANUALOPTIMIZER_H
 
+#include "llvm/Support/Compiler.h"
 #include "isl/isl-noexceptions.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class OptimizationRemarkEmitter;
-}
+LLVM_NAMESPACE_END
 
 namespace polly {
 class Scop;

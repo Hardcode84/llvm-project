@@ -16,10 +16,11 @@
 #include "bolt/Core/BinaryFunction.h"
 #include "llvm/Support/YAMLTraits.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using llvm::bolt::BinaryFunction;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 namespace bolt {
@@ -121,13 +122,13 @@ template <> struct MappingTraits<bolt::PseudoProbeInfo> {
   static const bool flow = true;
 };
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 LLVM_YAML_IS_FLOW_SEQUENCE_VECTOR(llvm::yaml::bolt::CallSiteInfo)
 LLVM_YAML_IS_FLOW_SEQUENCE_VECTOR(llvm::yaml::bolt::SuccessorInfo)
 LLVM_YAML_IS_FLOW_SEQUENCE_VECTOR(llvm::yaml::bolt::PseudoProbeInfo)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 namespace bolt {
@@ -189,12 +190,12 @@ template <> struct MappingTraits<bolt::InlineTreeNode> {
   static const bool flow = true;
 };
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::yaml::bolt::BinaryBasicBlockProfile)
 LLVM_YAML_IS_FLOW_SEQUENCE_VECTOR(llvm::yaml::bolt::InlineTreeNode)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 namespace bolt {
@@ -295,12 +296,12 @@ template <> struct MappingTraits<bolt::ProfilePseudoProbeDesc> {
   }
 };
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::yaml::bolt::BinaryFunctionProfile)
 LLVM_YAML_IS_SEQUENCE_VECTOR(llvm::yaml::bolt::ProfilePseudoProbeDesc)
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace yaml {
 
 namespace bolt {
@@ -321,6 +322,6 @@ template <> struct MappingTraits<bolt::BinaryProfile> {
 };
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

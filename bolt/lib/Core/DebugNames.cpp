@@ -14,8 +14,9 @@
 #include "llvm/Support/LEB128.h"
 #include <cstdint>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 DWARF5AcceleratorTable::DWARF5AcceleratorTable(
     const bool CreateDebugNames, BinaryContext &BC,
@@ -806,4 +807,4 @@ void DWARF5AcceleratorTable::emitAccelTable() {
   emitHeader();
 }
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -21,10 +21,11 @@
 #include <string>
 #include <system_error>
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-}
+LLVM_NAMESPACE_END
 
 namespace lldb_private {
 
@@ -241,12 +242,12 @@ protected:
 
 } // namespace lldb_private
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct format_provider<lldb_private::Status> {
   static void format(const lldb_private::Status &error, llvm::raw_ostream &OS,
                      llvm::StringRef Options);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #define LLDB_ERRORF(status, fmt, ...)                                          \
   do {                                                                         \

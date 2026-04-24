@@ -19,6 +19,7 @@
 #include "llvm/Support/RWMutex.h"
 #include <queue>
 #include <stack>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "bolt-instrumentation"
 
@@ -90,7 +91,7 @@ cl::opt<bool> InstrumentCalls("instrument-calls",
                               cl::cat(BoltInstrCategory));
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 static bool
@@ -822,4 +823,4 @@ void Instrumentation::setupRuntimeLibrary(BinaryContext &BC) {
   RtLibrary->setSummary(std::move(Summary));
 }
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -55,10 +55,11 @@
 #include <unordered_map>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm::object;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class DWARFUnit;
 
@@ -2673,6 +2674,6 @@ struct GraphTraits<Inverse<const bolt::BinaryFunction *>>
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

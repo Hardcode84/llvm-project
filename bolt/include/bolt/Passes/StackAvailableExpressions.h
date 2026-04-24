@@ -11,12 +11,13 @@
 
 #include "bolt/Passes/DataflowAnalysis.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
 namespace opts {
 extern llvm::cl::opt<bool> TimeOpts;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class FrameAnalysis;
@@ -52,6 +53,6 @@ protected:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

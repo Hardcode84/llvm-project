@@ -16,6 +16,7 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/DebugInfo/CodeView/CVRecord.h"
 #include "llvm/Support/Threading.h"
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 class TagDecl;
@@ -28,7 +29,7 @@ class BlockDecl;
 class VarDecl;
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace codeview {
 class PointerRecord;
 class ModifierRecord;
@@ -37,7 +38,7 @@ class TagRecord;
 class EnumRecord;
 enum class CallingConvention : uint8_t;
 } // namespace codeview
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace lldb_private {
 namespace npdb {

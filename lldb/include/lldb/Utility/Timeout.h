@@ -12,6 +12,7 @@
 #include "llvm/Support/Chrono.h"
 #include "llvm/Support/FormatProviders.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 namespace lldb_private {
 
@@ -51,7 +52,7 @@ public:
 
 } // namespace lldb_private
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template<typename Ratio>
 struct format_provider<lldb_private::Timeout<Ratio>, void> {
   static void format(const lldb_private::Timeout<Ratio> &timeout,
@@ -64,6 +65,6 @@ struct format_provider<lldb_private::Timeout<Ratio>, void> {
       format_provider<Dur>::format(*timeout, OS, Options);
   }
 };
-}
+LLVM_NAMESPACE_END
 
 #endif // LLDB_UTILITY_TIMEOUT_H

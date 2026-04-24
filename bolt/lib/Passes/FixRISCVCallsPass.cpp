@@ -10,10 +10,11 @@
 #include "bolt/Core/ParallelUtilities.h"
 
 #include <iterator>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 void FixRISCVCallsPass::runOnFunction(BinaryFunction &BF) {
@@ -86,4 +87,4 @@ Error FixRISCVCallsPass::runOnFunctions(BinaryContext &BC) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -24,6 +24,7 @@
 #include "bolt/Passes/RetpolineInsertion.h"
 #include "llvm/MC/MCInstPrinter.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "bolt-retpoline"
 
@@ -57,7 +58,7 @@ static cl::opt<RetpolineInsertion::AvailabilityOptions> R11Availability(
 
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 // Retpoline function structure:
@@ -331,4 +332,4 @@ Error RetpolineInsertion::runOnFunctions(BinaryContext &BC) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

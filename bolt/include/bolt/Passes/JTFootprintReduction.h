@@ -14,8 +14,9 @@
 #define BOLT_PASSES_JT_FOOTPRINT_REDUCTION_H
 
 #include "bolt/Passes/BinaryPasses.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 class DataflowInfoManager;
 
@@ -72,6 +73,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

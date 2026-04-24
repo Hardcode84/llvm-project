@@ -23,13 +23,14 @@
 #include "bolt/Utils/NameResolver.h"
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
 namespace opts {
 extern llvm::cl::OptionCategory BoltCategory;
 extern llvm::cl::opt<unsigned> Verbosity;
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 Error PatchEntries::runOnFunctions(BinaryContext &BC) {
@@ -135,4 +136,4 @@ Error PatchEntries::runOnFunctions(BinaryContext &BC) {
 }
 
 } // end namespace bolt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

@@ -21,10 +21,11 @@
 #include "lldb/Core/FormatEntity.h"
 #include "lldb/Utility/Status.h"
 #include "lldb/Utility/StructuredData.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MemoryBuffer;
-}
+LLVM_NAMESPACE_END
 
 namespace lldb_private {
 class TypeSummaryOptions {

@@ -29,8 +29,9 @@
 #include <optional>
 #include <string>
 #include <unistd.h>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace omp {
 namespace target {
 namespace plugin {
@@ -373,6 +374,6 @@ public:
 } // namespace plugin
 } // namespace target
 } // namespace omp
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // OFFLOAD_PLUGINS_NEXTGEN_COMMON_ERROR_REPORTING_H

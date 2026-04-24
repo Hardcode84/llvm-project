@@ -14,6 +14,7 @@
 #include "bolt/Core/ParallelUtilities.h"
 #include "bolt/Utils/CommandLineOpts.h"
 #include "llvm/Support/MathExtras.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "longjmp"
 
@@ -32,7 +33,7 @@ static cl::opt<bool> GroupStubs("group-stubs",
                                 cl::init(true), cl::cat(BoltOptCategory));
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 constexpr unsigned ColdFragAlign = 16;
@@ -969,4 +970,4 @@ Error LongJmpPass::runOnFunctions(BinaryContext &BC) {
   return Error::success();
 }
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

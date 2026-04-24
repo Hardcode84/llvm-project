@@ -18,8 +18,9 @@
 #include "bolt/Core/Linker.h"
 #include "llvm/ADT/StringRef.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class MCStreamer;
 
@@ -76,6 +77,6 @@ protected:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // BOLT_RUNTIMELIBS_RUNTIME_LIBRARY_H

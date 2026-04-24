@@ -14,8 +14,9 @@
 #include <deque>
 #include <functional>
 #include <unordered_map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class BinaryFunction;
@@ -68,6 +69,6 @@ buildCallGraph(BinaryContext &BC, CgFilterFunction Filter = NoFilter,
                bool UseEdgeCounts = false, bool IgnoreRecursiveCalls = false);
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

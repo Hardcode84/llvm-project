@@ -268,7 +268,7 @@ class DataFlowAnalysis;
 MLIR_NAMESPACE_END // namespace mlir
 
 template <>
-struct llvm::DenseMapInfo<mlir::LatticeAnchor>
+struct LLVM_ABI_NS::DenseMapInfo<mlir::LatticeAnchor>
     : public llvm::DenseMapInfo<mlir::LatticeAnchor::ParentTy> {};
 
 MLIR_NAMESPACE_BEGIN

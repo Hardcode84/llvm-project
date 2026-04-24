@@ -26,11 +26,12 @@
 #include "lldb/Host/windows/windows.h"
 #include <winsock2.h>
 #include <ws2tcpip.h>
+#include "llvm/Support/Compiler.h"
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
-}
+LLVM_NAMESPACE_END
 
 namespace lldb_private {
 

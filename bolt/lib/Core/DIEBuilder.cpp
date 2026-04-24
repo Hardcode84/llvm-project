@@ -33,13 +33,14 @@
 #include <unordered_map>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 #undef DEBUG_TYPE
 #define DEBUG_TYPE "bolt"
 namespace opts {
 extern cl::opt<unsigned> Verbosity;
 }
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 /// Returns DWO Name to be used to update DW_AT_dwo_name/DW_AT_GNU_dwo_name
@@ -1044,4 +1045,4 @@ std::optional<uint32_t> DIEBuilder::getUnitId(const DWARFUnit &DU) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

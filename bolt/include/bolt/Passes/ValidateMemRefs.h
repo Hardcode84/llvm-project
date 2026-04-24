@@ -10,8 +10,10 @@
 #define BOLT_PASSES_VALIDATEMEMREFS_H
 
 #include "bolt/Passes/BinaryPasses.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::bolt {
+LLVM_NAMESPACE_BEGIN
+namespace bolt {
 
 /// Post processing to check for memory references that cause a symbol
 /// in data section to be ambiguous, requiring us to avoid moving that
@@ -36,6 +38,7 @@ private:
   static std::atomic<std::uint64_t> ReplacedReferences;
 };
 
-} // namespace llvm::bolt
+}
+LLVM_NAMESPACE_END // namespace llvm::bolt
 
 #endif

@@ -17,8 +17,9 @@
 #include "llvm/MC/MCExpr.h"
 #include "llvm/MC/MCInst.h"
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 // NOTE: using SmallVector for instruction list results in a memory regression.
@@ -148,6 +149,6 @@ primeOperands(const MCInst &Inst) {
 } // namespace MCPlus
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -14,8 +14,9 @@
 #include "bolt/Core/BinaryContext.h"
 #include "bolt/Utils/NameResolver.h"
 #include "llvm/MC/MCInstPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 std::string hashInteger(uint64_t Value) {
@@ -207,4 +208,4 @@ hashBlockCalls(const DenseMap<uint32_t, yaml::bolt::BinaryFunctionProfile *>
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

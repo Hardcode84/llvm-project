@@ -23,14 +23,15 @@
 #include <cassert>
 #include <cstdint>
 #include <cstring>
+#include "llvm/Support/Compiler.h"
 
 namespace lldb_private {
 class Log;
 class Stream;
 }
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <typename T> class SmallVectorImpl;
-}
+LLVM_NAMESPACE_END
 
 
 namespace lldb_private {

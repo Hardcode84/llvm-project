@@ -12,5 +12,5 @@
 
 using namespace llvm;
 
-template class llvm::GenericCycleInfo<SSAContext>;
-template class llvm::GenericCycle<SSAContext>;
+template class LLVM_ABI_NS::GenericCycleInfo<SSAContext>;
+template class LLVM_ABI_NS::GenericCycle<SSAContext>;

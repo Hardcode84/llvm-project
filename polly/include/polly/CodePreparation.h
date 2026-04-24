@@ -13,12 +13,13 @@
 #ifndef POLLY_CODEPREPARATION_H
 #define POLLY_CODEPREPARATION_H
 
-namespace llvm {
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class DominatorTree;
 class Function;
 class LoopInfo;
 class RegionInfo;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace polly {
 bool runCodePreparation(llvm::Function &F, llvm::DominatorTree *DT,

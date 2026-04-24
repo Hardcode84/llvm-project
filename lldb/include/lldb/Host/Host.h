@@ -22,6 +22,7 @@
 #include <map>
 #include <string>
 #include <type_traits>
+#include "llvm/Support/Compiler.h"
 
 namespace lldb_private {
 
@@ -345,13 +346,13 @@ private:
 
 } // namespace lldb_private
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct format_provider<lldb_private::WaitStatus> {
   /// Options = "" gives a human readable description of the status Options =
   /// "g" gives a gdb-remote protocol status (e.g., X09)
   static void format(const lldb_private::WaitStatus &WS, raw_ostream &OS,
                      llvm::StringRef Options);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLDB_HOST_HOST_H

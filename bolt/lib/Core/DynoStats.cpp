@@ -19,6 +19,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <algorithm>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 #undef  DEBUG_TYPE
 #define DEBUG_TYPE "bolt"
@@ -48,7 +49,7 @@ PrintDynoOpcodeStat("print-dyno-opcode-stats",
 
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 bool DynoStats::operator<(const DynoStats &Other) const {
@@ -324,4 +325,4 @@ DynoStats getDynoStats(BinaryFunction &BF) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -13,11 +13,12 @@
 #ifndef POLLY_SCOP_LOCATION_H
 #define POLLY_SCOP_LOCATION_H
 
+#include "llvm/Support/Compiler.h"
 #include <string>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Region;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace polly {
 

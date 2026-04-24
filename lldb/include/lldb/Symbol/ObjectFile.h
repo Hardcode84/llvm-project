@@ -25,6 +25,7 @@
 #include "llvm/Support/Threading.h"
 #include "llvm/Support/VersionTuple.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 namespace lldb_private {
 
@@ -803,7 +804,7 @@ private:
 
 } // namespace lldb_private
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct format_provider<lldb_private::ObjectFile::Type> {
   static void format(const lldb_private::ObjectFile::Type &type,
                      raw_ostream &OS, StringRef Style);
@@ -818,6 +819,6 @@ namespace json {
 bool fromJSON(const llvm::json::Value &value, lldb_private::ObjectFile::Type &,
               llvm::json::Path path);
 } // namespace json
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLDB_SYMBOL_OBJECTFILE_H

@@ -11,12 +11,13 @@
 
 #include "bolt/Passes/DataflowAnalysis.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
 namespace opts {
 extern llvm::cl::opt<bool> TimeOpts;
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 /// Perform a dataflow analysis to track the value of SP as an offset relative
@@ -204,6 +205,6 @@ public:
 llvm::raw_ostream &operator<<(llvm::raw_ostream &OS,
                               const std::pair<int, int> &Val);
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

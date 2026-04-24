@@ -14,6 +14,7 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/FormatProviders.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 namespace lldb_private {
 
@@ -291,7 +292,7 @@ inline std::string GetStatDescription(lldb_private::StatisticKind K) {
 
 } // namespace lldb_private
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct format_provider<lldb_private::Vote> {
   static void format(const lldb_private::Vote &V, llvm::raw_ostream &Stream,
                      StringRef Style) {
@@ -309,7 +310,7 @@ template <> struct format_provider<lldb_private::Vote> {
     Stream << "invalid";
   }
 };
-}
+LLVM_NAMESPACE_END
 
 enum SelectMostRelevant : bool {
   SelectMostRelevantFrame = true,

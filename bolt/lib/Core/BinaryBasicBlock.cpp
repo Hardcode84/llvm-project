@@ -16,10 +16,11 @@
 #include "llvm/ADT/SmallPtrSet.h"
 #include "llvm/MC/MCInst.h"
 #include "llvm/Support/Errc.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "bolt"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 bool operator<(const BinaryBasicBlock &LHS, const BinaryBasicBlock &RHS) {
@@ -583,4 +584,4 @@ BinaryBasicBlock *BinaryBasicBlock::splitAt(iterator II) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

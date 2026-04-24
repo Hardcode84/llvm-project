@@ -494,7 +494,7 @@ bool isOpenMPOrderConcurrentNestableDirective(OpenMPDirectiveKind DKind,
 }
 
 template <>
-struct llvm::enum_iteration_traits<clang::OpenMPDefaultmapClauseKind> {
+struct LLVM_ABI_NS::enum_iteration_traits<clang::OpenMPDefaultmapClauseKind> {
   static constexpr bool is_iterable = true;
 };
 #endif

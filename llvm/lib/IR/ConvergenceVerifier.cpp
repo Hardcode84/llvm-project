@@ -87,4 +87,4 @@ bool GenericConvergenceVerifier<SSAContext>::isConvergent(
   return false;
 }
 
-template class llvm::GenericConvergenceVerifier<SSAContext>;
+template class LLVM_ABI_NS::GenericConvergenceVerifier<SSAContext>;

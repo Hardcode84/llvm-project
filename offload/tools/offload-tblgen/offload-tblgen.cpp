@@ -17,8 +17,9 @@
 #include "llvm/TableGen/Record.h"
 
 #include "Generators.hpp"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace offload {
 namespace tblgen {
 
@@ -110,7 +111,7 @@ int OffloadTblgenMain(int argc, char **argv) {
 }
 } // namespace tblgen
 } // namespace offload
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using namespace llvm;
 using namespace offload::tblgen;

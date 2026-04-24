@@ -14,6 +14,7 @@
 #include "bolt/Core/BinaryFunctionCallGraph.h"
 #include "bolt/Passes/DataflowInfoManager.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "stoke"
 
@@ -30,7 +31,7 @@ StokeOutputDataFilename("stoke-out",
   cl::cat(StokeOptCategory));
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 void getRegNameFromBitVec(const BinaryContext &BC, const BitVector &RegV,
@@ -191,4 +192,4 @@ Error StokeInfo::runOnFunctions(BinaryContext &BC) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

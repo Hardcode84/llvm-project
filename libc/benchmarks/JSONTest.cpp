@@ -13,13 +13,14 @@
 #include "llvm/Support/raw_ostream.h"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
 using testing::AllOf;
 using testing::ExplainMatchResult;
 using testing::Field;
 using testing::Pointwise;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace libc_benchmarks {
 namespace {
 
@@ -188,4 +189,4 @@ TEST(JsonTest, InvalidBenchmarkLog) {
 
 } // namespace
 } // namespace libc_benchmarks
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

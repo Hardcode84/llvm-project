@@ -2,8 +2,9 @@
 
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace libc_benchmarks {
 
 static constexpr double MemmoveGoogleA[] = {
@@ -199,4 +200,4 @@ getDistributionOrDie(ArrayRef<MemorySizeDistribution> Distributions,
 }
 
 } // namespace libc_benchmarks
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

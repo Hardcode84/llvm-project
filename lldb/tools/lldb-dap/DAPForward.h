@@ -9,6 +9,8 @@
 #ifndef LLDB_TOOLS_LLDB_DAP_DAPFORWARD_H
 #define LLDB_TOOLS_LLDB_DAP_DAPFORWARD_H
 
+
+#include "llvm/Support/Compiler.h"
 // IWYU pragma: begin_exports
 
 namespace lldb_dap {
@@ -56,11 +58,11 @@ class SBValue;
 class SBWatchpoint;
 } // namespace lldb
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace json {
 class Object;
 } // namespace json
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // IWYU pragma: end_exports
 

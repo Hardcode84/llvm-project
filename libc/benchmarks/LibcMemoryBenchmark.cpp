@@ -12,8 +12,9 @@
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/MathExtras.h"
 #include <algorithm>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace libc_benchmarks {
 
 // Returns a distribution that samples the buffer to satisfy the required
@@ -132,4 +133,4 @@ SetSetup::SetSetup()
     : ParameterBatch(1), DstBuffer(ParameterBatch::BufferSize) {}
 
 } // namespace libc_benchmarks
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

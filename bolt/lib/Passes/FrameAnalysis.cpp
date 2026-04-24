@@ -17,6 +17,7 @@
 #include "llvm/Support/Timer.h"
 #include <fstream>
 #include <stack>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "fa"
 
@@ -64,7 +65,7 @@ bool shouldFrameOptimize(const llvm::bolt::BinaryFunction &Function) {
 }
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 raw_ostream &operator<<(raw_ostream &OS, const FrameIndexEntry &FIE) {
@@ -631,4 +632,4 @@ void FrameAnalysis::preComputeSPT() {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

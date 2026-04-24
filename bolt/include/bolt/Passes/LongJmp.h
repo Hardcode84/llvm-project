@@ -10,8 +10,9 @@
 #define BOLT_PASSES_LONGJMP_H
 
 #include "bolt/Passes/BinaryPasses.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 /// LongJmp is veneer-insertion pass originally written for AArch64 that
@@ -162,6 +163,6 @@ public:
   Error runOnFunctions(BinaryContext &BC) override;
 };
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

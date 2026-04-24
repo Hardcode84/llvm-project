@@ -24,8 +24,9 @@
 #include <map>
 #include <unordered_map>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCSymbol;
 
 namespace bolt {
@@ -508,6 +509,6 @@ template <> struct DenseMapInfo<bolt::Location> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

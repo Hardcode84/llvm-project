@@ -10,10 +10,11 @@
 #define POLLY_SCHEDULEOPTIMIZER_H
 
 #include "polly/DependenceInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class TargetTransformInfo;
-}
+LLVM_NAMESPACE_END
 
 namespace polly {
 

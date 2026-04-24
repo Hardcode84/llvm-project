@@ -16,6 +16,7 @@
 #include "polly/ScopGraphPrinter.h"
 #include "polly/ScopDetection.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace polly;
 using namespace llvm;
@@ -35,7 +36,7 @@ static cl::opt<bool, true>
              cl::desc("Also show functions without any scops"),
              cl::location(ViewAll), cl::Hidden, cl::init(false));
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 std::string DOTGraphTraits<ScopDetection *>::getEdgeAttributes(
     RegionNode *srcNode, GraphTraits<RegionInfo *>::ChildIteratorType CI,
@@ -138,7 +139,7 @@ void DOTGraphTraits<ScopDetection *>::addCustomGraphFeatures(
   printRegionCluster(SD, SD->getRI()->getTopLevelRegion(), O, 4);
 }
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 bool ScopViewer::processFunction(Function &F, const ScopDetection &SD) {
   if (ViewFilter != "" && !F.getName().count(ViewFilter))

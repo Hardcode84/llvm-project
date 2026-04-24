@@ -13,13 +13,14 @@
 #include "bolt/Passes/RegAnalysis.h"
 #include "llvm/MC/MCRegisterInfo.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
 namespace opts {
 extern llvm::cl::opt<bool> AssumeABI;
 extern llvm::cl::opt<bool> TimeOpts;
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class LivenessAnalysis : public DataflowAnalysis<LivenessAnalysis, BitVector,
@@ -169,6 +170,6 @@ protected:
 };
 
 } // end namespace bolt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

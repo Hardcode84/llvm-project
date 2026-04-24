@@ -18,6 +18,7 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Transforms/Utils/CodeLayout.h"
 #include <fstream>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "hfsort"
 
@@ -109,7 +110,7 @@ static cl::opt<bool> CgUseSplitHotSize(
 
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 using NodeId = CallGraph::NodeId;
@@ -598,4 +599,4 @@ Error ReorderFunctions::runOnFunctions(BinaryContext &BC) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

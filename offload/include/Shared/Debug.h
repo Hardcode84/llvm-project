@@ -87,6 +87,7 @@ inline uint32_t getInfoLevel() { return getInfoLevelInternal().load(); }
 #define __STDC_FORMAT_MACROS
 #endif
 #include <inttypes.h>
+#include "llvm/Support/Compiler.h"
 #undef __STDC_FORMAT_MACROS
 
 #define DPxMOD "0x%0*" PRIxPTR
@@ -157,7 +158,8 @@ inline uint32_t getInfoLevel() { return getInfoLevelInternal().load(); }
     }                                                                          \
   } while (false)
 
-namespace llvm::offload::debug {
+LLVM_NAMESPACE_BEGIN
+namespace offload::debug {
 
 /// A raw_ostream that tracks `\n` and print the prefix after each
 /// newline. Based on raw_ldbg_ostream from Support/DebugLog.h
@@ -576,9 +578,11 @@ constexpr const char *OLDT_Alloc = "Alloc";
 constexpr const char *OLDT_Tool = "Tool";
 constexpr const char *OLDT_Module = "Module";
 
-} // namespace llvm::offload::debug
+}
+LLVM_NAMESPACE_END // namespace llvm::offload::debug
 
-namespace llvm::omp::target::debug {
+LLVM_NAMESPACE_BEGIN
+namespace omp::target::debug {
 using namespace llvm::offload::debug;
 
 enum OmpDebugLevel : uint32_t {
@@ -696,6 +700,7 @@ static inline raw_ostream &operator<<(raw_ostream &Os, void *Ptr) {
 // New REPORT macro in the same style as ODBG
 #define REPORT() ::llvm::omp::target::debug::reportErrorStream()
 
-} // namespace llvm::omp::target::debug
+}
+LLVM_NAMESPACE_END // namespace llvm::omp::target::debug
 
 #endif // OMPTARGET_SHARED_DEBUG_H

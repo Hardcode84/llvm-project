@@ -12,8 +12,9 @@
 #include "bolt/Profile/ProfileReaderBase.h"
 #include "bolt/Profile/ProfileYAMLMapping.h"
 #include <unordered_set>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCDecodedPseudoProbeInlineTree;
 
 namespace bolt {
@@ -247,6 +248,6 @@ private:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

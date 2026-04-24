@@ -9,11 +9,12 @@
 #ifndef POLLY_MATMULOPTIMIZER_H
 #define POLLY_MATMULOPTIMIZER_H
 
+#include "llvm/Support/Compiler.h"
 #include "isl/isl-noexceptions.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class TargetTransformInfo;
-}
+LLVM_NAMESPACE_END
 
 namespace polly {
 class Dependences;

@@ -17,6 +17,7 @@
 #include "llvm/Support/Path.h"
 #include "llvm/Target/TargetMachine.h"
 #include <unordered_set>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "asm-dump"
 
@@ -33,7 +34,7 @@ cl::opt<std::string> AsmDump("asm-dump",
                              cl::Hidden, cl::cat(BoltCategory));
 } // end namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 void dumpCFI(const BinaryFunction &BF, const MCInst &Instr, AsmPrinter &MAP) {
@@ -242,4 +243,4 @@ Error AsmDumpPass::runOnFunctions(BinaryContext &BC) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

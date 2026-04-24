@@ -17,6 +17,7 @@
 #include "llvm/Support/Format.h"
 #include "llvm/Support/raw_ostream.h"
 #include <unordered_set>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "hfsort"
 
@@ -24,7 +25,7 @@ namespace opts {
 extern llvm::cl::opt<unsigned> Verbosity;
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 using NodeId = CallGraph::NodeId;
@@ -283,4 +284,4 @@ std::vector<Cluster> randomClusters(const CallGraph &Cg) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

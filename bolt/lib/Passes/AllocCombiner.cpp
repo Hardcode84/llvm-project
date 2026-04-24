@@ -11,6 +11,7 @@
 //===----------------------------------------------------------------------===//
 
 #include "bolt/Passes/AllocCombiner.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "alloccombiner"
 
@@ -22,7 +23,7 @@ extern cl::opt<bolt::FrameOptimizationType> FrameOptimization;
 
 } // end namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 static bool getStackAdjustmentSize(const BinaryContext &BC, const MCInst &Inst,
@@ -121,4 +122,4 @@ Error AllocCombinerPass::runOnFunctions(BinaryContext &BC) {
 }
 
 } // end namespace bolt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

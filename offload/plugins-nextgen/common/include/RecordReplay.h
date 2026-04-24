@@ -31,8 +31,9 @@
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/MemoryBufferRef.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace omp {
 namespace target {
 namespace plugin {
@@ -297,6 +298,6 @@ private:
 } // namespace plugin
 } // namespace target
 } // namespace omp
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // OPENMP_LIBOMPTARGET_PLUGINS_COMMON_RECORDREPLAY_H

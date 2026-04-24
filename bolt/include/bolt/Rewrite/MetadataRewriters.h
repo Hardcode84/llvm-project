@@ -10,8 +10,9 @@
 #define BOLT_REWRITE_METADATA_REWRITERS_H
 
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class MetadataRewriter;
@@ -32,6 +33,6 @@ std::unique_ptr<MetadataRewriter> createSDTRewriter(BinaryContext &);
 std::unique_ptr<MetadataRewriter> createGNUPropertyRewriter(BinaryContext &);
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // BOLT_REWRITE_METADATA_REWRITERS_H

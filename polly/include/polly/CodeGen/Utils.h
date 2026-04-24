@@ -12,9 +12,10 @@
 #ifndef POLLY_CODEGEN_UTILS_H
 #define POLLY_CODEGEN_UTILS_H
 
+#include "llvm/Support/Compiler.h"
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Pass;
 class Value;
 class BasicBlock;
@@ -22,7 +23,7 @@ class DominatorTree;
 class RegionInfo;
 class LoopInfo;
 class CondBrInst;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace polly {
 

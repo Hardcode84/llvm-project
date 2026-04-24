@@ -16,8 +16,9 @@
 #define BOLT_CORE_BINARY_LOOP_H
 
 #include "llvm/Support/GenericLoopInfo.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class BinaryBasicBlock;
@@ -55,6 +56,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -48,6 +48,7 @@
 #include <numeric>
 #include <stack>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "bolt"
 
@@ -170,7 +171,7 @@ bool shouldPrint(const BinaryFunction &Function) {
 
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 template <typename R> static bool emptyRange(const R &Range) {
@@ -4865,4 +4866,4 @@ void BinaryFunction::addRelocation(uint64_t Address, MCSymbol *Symbol,
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

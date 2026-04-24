@@ -93,5 +93,5 @@ void SyntheticCountsUtils<CallGraphType>::propagate(const CallGraphType &CG,
     propagateFromSCC(SCC, GetProfCount, AddCount);
 }
 
-template class llvm::SyntheticCountsUtils<const CallGraph *>;
-template class llvm::SyntheticCountsUtils<ModuleSummaryIndex *>;
+template class LLVM_ABI_NS::SyntheticCountsUtils<const CallGraph *>;
+template class LLVM_ABI_NS::SyntheticCountsUtils<ModuleSummaryIndex *>;

@@ -18,6 +18,7 @@
 #include "lldb/lldb-enumerations.h"
 #include "lldb/lldb-private.h"
 #include "llvm/Support/JSON.h"
+#include "llvm/Support/Compiler.h"
 
 namespace lldb_private {
 
@@ -360,7 +361,7 @@ protected:
 
 } // namespace lldb_private
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace json {
 
 bool fromJSON(const llvm::json::Value &value, lldb_private::JSONSymbol &symbol,
@@ -370,6 +371,6 @@ bool fromJSON(const llvm::json::Value &value, lldb::SymbolType &type,
               llvm::json::Path path);
 
 } // namespace json
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLDB_SYMBOL_SYMBOL_H

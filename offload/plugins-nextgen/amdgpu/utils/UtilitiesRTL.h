@@ -19,8 +19,9 @@
 #include "omptarget.h"
 
 #include "llvm/Frontend/Offloading/Utility.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace omp {
 namespace target {
 namespace plugin {
@@ -77,4 +78,4 @@ void initImplArg(AMDGPUImplicitArgsTy *Base,
 } // namespace plugin
 } // namespace target
 } // namespace omp
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

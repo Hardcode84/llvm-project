@@ -10,8 +10,9 @@
 #define BOLT_PASSES_VENEER_ELIMINATION_H
 
 #include "bolt/Passes/BinaryPasses.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class VeneerElimination : public BinaryFunctionPass {
@@ -26,6 +27,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // BOLT_PASSES_VENEER_ELIMINATION_H

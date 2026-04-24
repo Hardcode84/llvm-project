@@ -21,12 +21,13 @@
 #include <cctype>
 #include <cmath>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "bolt-heatmap"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 void Heatmap::registerAddressRange(uint64_t StartAddress, uint64_t EndAddress,
@@ -375,4 +376,4 @@ void Heatmap::resizeBucket(uint64_t NewSize) {
   BucketSize = NewSize;
 }
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

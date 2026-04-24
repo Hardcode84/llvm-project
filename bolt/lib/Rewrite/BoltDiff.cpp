@@ -17,6 +17,7 @@
 #include "bolt/Utils/Utils.h"
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
 #undef  DEBUG_TYPE
 #define DEBUG_TYPE "boltdiff"
@@ -92,7 +93,7 @@ static cl::opt<bool>
 
 } // end namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 namespace {
@@ -675,7 +676,7 @@ public:
 };
 
 } // end namespace bolt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 void RewriteInstance::compare(RewriteInstance &RI2) {
   outs() << "BOLT-DIFF: ======== Binary1 vs. Binary2 ========\n";

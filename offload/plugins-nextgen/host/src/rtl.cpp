@@ -31,6 +31,7 @@
 #include "llvm/Support/DynamicLibrary.h"
 #include "llvm/Support/FileSystem.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 #if !defined(__BYTE_ORDER__) || !defined(__ORDER_LITTLE_ENDIAN__) ||           \
     !defined(__ORDER_BIG_ENDIAN__)
@@ -48,7 +49,7 @@
 
 using namespace llvm::offload::debug;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace omp {
 namespace target {
 namespace plugin {
@@ -550,7 +551,7 @@ static Error Plugin::check(int32_t Code, const char *ErrMsg, ArgsTy... Args) {
 } // namespace plugin
 } // namespace target
 } // namespace omp
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 extern "C" {
 llvm::omp::target::plugin::GenericPluginTy *createPlugin_host() {

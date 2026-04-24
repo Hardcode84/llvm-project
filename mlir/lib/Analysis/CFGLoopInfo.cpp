@@ -11,8 +11,8 @@
 
 // Explicitly instantiate the LoopBase and LoopInfoBase classes defined in
 // LoopInfoImpl.h for CFGLoops
-template class llvm::LoopBase<mlir::Block, mlir::CFGLoop>;
-template class llvm::LoopInfoBase<mlir::Block, mlir::CFGLoop>;
+template class LLVM_ABI_NS::LoopBase<mlir::Block, mlir::CFGLoop>;
+template class LLVM_ABI_NS::LoopInfoBase<mlir::Block, mlir::CFGLoop>;
 
 using namespace mlir;
 

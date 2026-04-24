@@ -16,6 +16,7 @@
 #include "lldb/Utility/ConstString.h"
 #include "lldb/Utility/RangeMap.h"
 #include "llvm/Support/FormatProviders.h"
+#include "llvm/Support/Compiler.h"
 
 namespace lldb_private {
 class MemoryRegionInfo {
@@ -185,7 +186,7 @@ public:
 
 } // namespace lldb_private
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <>
 /// If Options is empty, prints a textual representation of the value. If
 /// Options is a single character, it uses that character for the "yes" value,
@@ -195,6 +196,6 @@ struct format_provider<lldb_private::LazyBool> {
   static void format(const lldb_private::LazyBool &B, raw_ostream &OS,
                      StringRef Options);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLDB_TARGET_MEMORYREGIONINFO_H

@@ -17,8 +17,9 @@
 
 #include "bolt/Passes/BinaryPasses.h"
 #include "llvm/Support/RWMutex.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class AlignerPass : public BinaryFunctionPass {
@@ -43,6 +44,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

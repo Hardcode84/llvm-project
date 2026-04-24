@@ -22,8 +22,9 @@
 #include <set>
 #include <string>
 #include <unordered_set>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 /// An optimization/analysis pass that runs on functions.
@@ -513,6 +514,6 @@ enum FrameOptimizationType : char {
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

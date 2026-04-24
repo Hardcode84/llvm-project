@@ -21,14 +21,15 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/ADT/StringSet.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace offload {
 bool isTracingEnabled();
 bool isValidationEnabled();
 bool isOffloadInitialized();
 } // namespace offload
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Use the StringSet container to efficiently deduplicate repeated error
 // strings (e.g. if the same error is hit constantly in a long running program)

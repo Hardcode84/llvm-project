@@ -15,8 +15,9 @@
 
 #include "bolt/Core/BinaryContext.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 /// Base class for handling file sections with metadata. In this context,
@@ -65,6 +66,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // BOLT_REWRITE_METADATA_REWRITER_H

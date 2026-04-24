@@ -17,6 +17,7 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/Support/CommandLine.h"
 #include <iterator>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "ICP"
 #define DEBUG_VERBOSE(Level, X)                                                \
@@ -186,7 +187,7 @@ static bool verifyProfile(std::map<uint64_t, BinaryFunction> &BFs) {
 }
 #endif
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 IndirectCallPromotion::Callsite::Callsite(BinaryFunction &BF,
@@ -1478,4 +1479,4 @@ Error IndirectCallPromotion::runOnFunctions(BinaryContext &BC) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

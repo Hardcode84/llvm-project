@@ -18,8 +18,9 @@
 
 #include <llvm/ADT/ArrayRef.h>
 #include <llvm/ADT/StringRef.h>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace libc_benchmarks {
 
 /// A simple POD exposing caracteristics of a memory function size
@@ -48,6 +49,6 @@ getDistributionOrDie(ArrayRef<MemorySizeDistribution> Distributions,
                      StringRef Name);
 
 } // namespace libc_benchmarks
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIBC_BENCHMARKS_MEMORYSIZEDISTRIBUTIONS_H

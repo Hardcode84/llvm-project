@@ -17,6 +17,7 @@
 #include "llvm/DebugInfo/CodeView/TypeRecord.h"
 #include "llvm/DebugInfo/CodeView/TypeVisitorCallbacks.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 namespace clang {
 class CXXBaseSpecifier;
@@ -24,12 +25,12 @@ class QualType;
 class TagDecl;
 } // namespace clang
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 class TpiStream;
 class GlobalsStream;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace lldb_private {
 class Type;

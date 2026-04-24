@@ -26,8 +26,10 @@
 #include <functional>
 #include <mutex>
 #include <thread>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::omp::target {
+LLVM_NAMESPACE_BEGIN
+namespace omp::target {
 namespace plugin {
 struct GenericPluginTy;
 struct GenericDeviceTy;
@@ -166,6 +168,7 @@ public:
   std::unique_ptr<ServerThread> Thread;
 };
 
-} // namespace llvm::omp::target
+}
+LLVM_NAMESPACE_END // namespace llvm::omp::target
 
 #endif

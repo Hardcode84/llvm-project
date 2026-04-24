@@ -17,6 +17,7 @@
 #include "bolt/Passes/DataflowInfoManager.h"
 #include "bolt/Utils/Utils.h"
 #include <numeric>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "regreassign"
 
@@ -33,7 +34,7 @@ static cl::opt<bool> AggressiveReAssign(
     cl::cat(BoltOptCategory));
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 void RegReAssign::swap(BinaryFunction &Function, MCPhysReg A, MCPhysReg B) {
@@ -493,4 +494,4 @@ Error RegReAssign::runOnFunctions(BinaryContext &BC) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

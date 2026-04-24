@@ -22,6 +22,7 @@
 #include "llvm/ADT/DenseMapInfo.h"
 #include "llvm/ADT/Hashing.h"
 #include "llvm/ADT/SetVector.h"
+#include "llvm/Support/Compiler.h"
 
 namespace lldb_private {
 
@@ -512,7 +513,7 @@ bool operator!=(const SymbolContextList &lhs, const SymbolContextList &rhs);
 
 } // namespace lldb_private
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 /// DenseMapInfo implementation.
 /// \{
@@ -564,6 +565,6 @@ template <> struct DenseMapInfo<lldb_private::SymbolContext> {
 };
 /// \}
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLDB_SYMBOL_SYMBOLCONTEXT_H

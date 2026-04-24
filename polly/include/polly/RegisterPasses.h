@@ -13,13 +13,14 @@
 #ifndef POLLY_REGISTER_PASSES_H
 #define POLLY_REGISTER_PASSES_H
 
-namespace llvm {
+#include "llvm/Support/Compiler.h"
+LLVM_NAMESPACE_BEGIN
 class PassBuilder;
 struct PassPluginLibraryInfo;
 namespace legacy {
 class PassManagerBase;
 } // namespace legacy
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace polly {
 void registerPollyPasses(llvm::PassBuilder &PB);

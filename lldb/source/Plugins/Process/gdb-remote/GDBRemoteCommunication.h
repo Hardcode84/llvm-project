@@ -63,6 +63,7 @@ static_assert(sizeof(GDBRemoteFStatData) == 64,
 enum GDBErrno {
 #define HANDLE_ERRNO(name, value) GDB_##name = value,
 #include "Plugins/Process/gdb-remote/GDBRemoteErrno.def"
+#include "llvm/Support/Compiler.h"
   GDB_EUNKNOWN = 9999
 };
 
@@ -203,7 +204,7 @@ private:
 } // namespace process_gdb_remote
 } // namespace lldb_private
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <>
 struct format_provider<
     lldb_private::process_gdb_remote::GDBRemoteCommunication::PacketResult> {
@@ -211,6 +212,6 @@ struct format_provider<
                          GDBRemoteCommunication::PacketResult &state,
                      raw_ostream &Stream, StringRef Style);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLDB_SOURCE_PLUGINS_PROCESS_GDB_REMOTE_GDBREMOTECOMMUNICATION_H

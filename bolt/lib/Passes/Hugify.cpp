@@ -7,12 +7,13 @@
 //===----------------------------------------------------------------------===//
 
 #include "bolt/Passes/Hugify.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "bolt-hugify"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 Error HugePage::runOnFunctions(BinaryContext &BC) {
@@ -50,4 +51,4 @@ Error HugePage::runOnFunctions(BinaryContext &BC) {
   return Error::success();
 }
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

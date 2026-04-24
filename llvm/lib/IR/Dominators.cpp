@@ -65,7 +65,7 @@ template class LLVM_EXPORT_TEMPLATE
 template class LLVM_EXPORT_TEMPLATE
     llvm::DominatorTreeBase<BasicBlock, true>; // PostDomTreeBase
 
-template class llvm::cfg::Update<BasicBlock *>;
+template class LLVM_ABI_NS::cfg::Update<BasicBlock *>;
 
 template LLVM_EXPORT_TEMPLATE void
 llvm::DomTreeBuilder::Calculate<DomTreeBuilder::BBDomTree>(

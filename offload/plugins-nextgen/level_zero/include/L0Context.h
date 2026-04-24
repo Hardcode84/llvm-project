@@ -15,8 +15,10 @@
 
 #include "L0Memory.h"
 #include "PerThreadTable.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::omp::target::plugin {
+LLVM_NAMESPACE_BEGIN
+namespace omp::target::plugin {
 
 class LevelZeroPluginTy;
 
@@ -142,6 +144,7 @@ public:
       uint32_t *pArgSize) = nullptr;
 };
 
-} // namespace llvm::omp::target::plugin
+}
+LLVM_NAMESPACE_END // namespace llvm::omp::target::plugin
 
 #endif // OPENMP_LIBOMPTARGET_PLUGINS_NEXTGEN_LEVEL_ZERO_L0CONTEXT_H

@@ -20,6 +20,7 @@
 #include "lldb/Utility/LLDBLog.h"
 #include "lldb/Utility/Stream.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using namespace lldb;
 using namespace lldb_private;
@@ -32,7 +33,7 @@ struct JSONSimpleTraceBundleDescription {
   std::string type;
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace json {
 
 bool fromJSON(const Value &value, JSONSimpleTraceBundleDescription &bundle,
@@ -42,7 +43,7 @@ bool fromJSON(const Value &value, JSONSimpleTraceBundleDescription &bundle,
 }
 
 } // namespace json
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 /// Helper functions for fetching data in maps and returning Optionals or
 /// pointers instead of iterators for simplicity. It's worth mentioning that the

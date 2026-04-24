@@ -16,8 +16,9 @@
 
 #include "bolt/Core/DebugData.h"
 #include "llvm/CodeGen/AccelTable.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 class BOLTDWARF5AccelTableData : public DWARF5AccelTableData {
 public:
@@ -216,5 +217,5 @@ private:
       const dwarf::Attribute &Attr);
 };
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

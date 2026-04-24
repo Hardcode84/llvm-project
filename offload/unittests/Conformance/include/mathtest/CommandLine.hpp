@@ -23,8 +23,9 @@
 #include "llvm/Support/CommandLine.h"
 
 #include <string>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace cl {
 
 struct TestConfigsArg {
@@ -96,6 +97,6 @@ public:
   }
 };
 } // namespace cl
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // MATHTEST_COMMANDLINE_HPP

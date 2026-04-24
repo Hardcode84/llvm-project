@@ -38,8 +38,9 @@
 #include <cmath>
 #include <cstdint>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace libc_benchmarks {
 
 using Duration = std::chrono::duration<double>;
@@ -324,6 +325,6 @@ CircularArrayRef<T> cycle(const std::array<T, N> &Container, size_t Size) {
 void checkRequirements();
 
 } // namespace libc_benchmarks
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIBC_UTILS_BENCHMARK_BENCHMARK_H

@@ -14,10 +14,11 @@
 #include "llvm/ADT/StringRef.h"
 #include "llvm/Support/VersionTuple.h"
 #include <tuple>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Triple;
-}
+LLVM_NAMESPACE_END
 
 namespace lldb_private {
 

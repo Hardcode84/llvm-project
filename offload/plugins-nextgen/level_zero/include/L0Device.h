@@ -22,8 +22,10 @@
 #include "L0Program.h"
 #include "PluginInterface.h"
 #include "TLS.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::omp::target::plugin {
+LLVM_NAMESPACE_BEGIN
+namespace omp::target::plugin {
 
 using OmpInteropTy = omp_interop_val_t *;
 class LevelZeroPluginTy;
@@ -667,5 +669,6 @@ public:
                                          interop_spec_t *Prefers) override;
 };
 
-} // namespace llvm::omp::target::plugin
+}
+LLVM_NAMESPACE_END // namespace llvm::omp::target::plugin
 #endif // OPENMP_LIBOMPTARGET_PLUGINS_NEXTGEN_LEVEL_ZERO_L0DEVICE_H

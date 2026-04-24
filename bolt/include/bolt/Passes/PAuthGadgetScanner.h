@@ -16,8 +16,9 @@
 #include "bolt/Utils/CommandLineOpts.h"
 #include "llvm/Support/raw_ostream.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 namespace PAuthGadgetScanner {
 
@@ -206,6 +207,6 @@ public:
 
 } // namespace PAuthGadgetScanner
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -1734,5 +1734,5 @@ PreservedAnalyses MachineLICMBasePass<DerivedT, PreRegAlloc>::run(
   return PA;
 }
 
-template class llvm::MachineLICMBasePass<EarlyMachineLICMPass, true>;
-template class llvm::MachineLICMBasePass<MachineLICMPass, false>;
+template class LLVM_ABI_NS::MachineLICMBasePass<EarlyMachineLICMPass, true>;
+template class LLVM_ABI_NS::MachineLICMBasePass<MachineLICMPass, false>;

@@ -20,6 +20,7 @@
 #include "bolt/Utils/CommandLineOpts.h"
 #include "llvm/Support/Timer.h"
 #include <deque>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "fop"
 
@@ -50,7 +51,7 @@ static cl::opt<bool> RemoveStores(
 
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 void FrameOptimizerPass::removeUnnecessaryLoads(const RegAnalysis &RA,
@@ -397,4 +398,4 @@ Error FrameOptimizerPass::performShrinkWrapping(const RegAnalysis &RA,
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

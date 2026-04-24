@@ -14,10 +14,11 @@
 #include "bolt/Passes/FrameAnalysis.h"
 #include "bolt/Passes/RegAnalysis.h"
 #include "llvm/MC/MCRegisterInfo.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "sae"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 StackAvailableExpressions::StackAvailableExpressions(const RegAnalysis &RA,
@@ -129,4 +130,4 @@ BitVector StackAvailableExpressions::computeNext(const MCInst &Point,
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

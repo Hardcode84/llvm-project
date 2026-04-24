@@ -40,8 +40,9 @@
 #include <system_error>
 #include <unordered_map>
 #include <unordered_set>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCContext;
 class MCFixup;
 class MCRegisterInfo;
@@ -2545,6 +2546,6 @@ MCPlusBuilder *createRISCVMCPlusBuilder(const MCInstrAnalysis *,
                                         const MCSubtargetInfo *);
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

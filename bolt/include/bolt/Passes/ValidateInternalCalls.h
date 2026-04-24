@@ -10,8 +10,9 @@
 #define BOLT_PASSES_VALIDATEINTERNALCALLS_H
 
 #include "bolt/Passes/BinaryPasses.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 /// Post-processing for internal calls. What are those? They are call
@@ -91,6 +92,6 @@ private:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

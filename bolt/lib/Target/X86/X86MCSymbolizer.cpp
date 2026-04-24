@@ -14,10 +14,11 @@
 #include "bolt/Core/Relocation.h"
 #include "llvm/MC/MCInst.h"
 #include "llvm/MC/MCRegisterInfo.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "bolt-symbolizer"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 X86MCSymbolizer::~X86MCSymbolizer() {}
@@ -191,4 +192,4 @@ void X86MCSymbolizer::tryAddingPcLoadReferenceComment(raw_ostream &CStream,
                                                       uint64_t Address) {}
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

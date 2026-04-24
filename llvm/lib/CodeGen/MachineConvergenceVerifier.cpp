@@ -95,4 +95,4 @@ bool GenericConvergenceVerifier<MachineSSAContext>::isConvergent(
   return MI.isConvergent();
 }
 
-template class llvm::GenericConvergenceVerifier<MachineSSAContext>;
+template class LLVM_ABI_NS::GenericConvergenceVerifier<MachineSSAContext>;

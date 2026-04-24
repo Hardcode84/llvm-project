@@ -21,8 +21,9 @@
 #include <cstdint>
 #include <optional>
 #include <random>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace libc_benchmarks {
 
 //--------------
@@ -269,6 +270,6 @@ private:
 };
 
 } // namespace libc_benchmarks
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIBC_UTILS_BENCHMARK_MEMORY_BENCHMARK_H

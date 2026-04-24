@@ -13,10 +13,11 @@
 #include "bolt/Utils/CommandLineOpts.h"
 #include "VCSVersion.inc"
 #include "llvm/Support/Regex.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 const char *BoltRevision =
 #ifdef BOLT_REVISION
@@ -25,7 +26,7 @@ const char *BoltRevision =
     "<unknown>";
 #endif
 }
-}
+LLVM_NAMESPACE_END
 
 namespace opts {
 

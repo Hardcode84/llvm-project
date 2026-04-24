@@ -20,6 +20,7 @@
 
 #include <cstdint>
 #include <mutex>
+#include "llvm/Support/Compiler.h"
 
 // TODO: Some plugins expect to be linked into libomptarget which defines these
 // symbols to implement ompt callbacks. The least invasive workaround here is to
@@ -27,13 +28,15 @@
 // it would be better to allow the plugins to implement callbacks without
 // pulling in details from libomptarget.
 #ifdef OMPT_SUPPORT
-namespace llvm::omp::target {
+LLVM_NAMESPACE_BEGIN
+namespace omp::target {
 namespace ompt {
 bool Initialized = false;
 ompt_get_callback_t lookupCallbackByCode = nullptr;
 ompt_function_lookup_t lookupCallbackByName = nullptr;
 } // namespace ompt
-} // namespace llvm::omp::target
+}
+LLVM_NAMESPACE_END // namespace llvm::omp::target
 #endif
 
 using namespace llvm::omp::target;
@@ -207,7 +210,7 @@ struct ol_symbol_impl_t {
   llvm::StringRef Name;
 };
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace offload {
 
 struct AllocInfo {
@@ -1227,4 +1230,4 @@ Error olQueryQueue_impl(ol_queue_handle_t Queue, bool *IsQueueWorkCompleted) {
 }
 
 } // namespace offload
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

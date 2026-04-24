@@ -24,10 +24,11 @@
 #include "lldb/Symbol/TaggedASTType.h"
 #include "lldb/Utility/ConstString.h"
 #include "lldb/lldb-public.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Value;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 class NamedDecl;

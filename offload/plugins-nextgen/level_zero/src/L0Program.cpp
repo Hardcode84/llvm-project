@@ -22,8 +22,10 @@
 
 #include "L0Plugin.h"
 #include "L0Program.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::omp::target::plugin {
+LLVM_NAMESPACE_BEGIN
+namespace omp::target::plugin {
 
 Error L0GlobalHandlerTy::getGlobalMetadataFromDevice(GenericDeviceTy &Device,
                                                      DeviceImageTy &Image,
@@ -609,4 +611,5 @@ Error L0ProgramTy::loadModuleKernels() {
   return Plugin::success();
 }
 
-} // namespace llvm::omp::target::plugin
+}
+LLVM_NAMESPACE_END // namespace llvm::omp::target::plugin

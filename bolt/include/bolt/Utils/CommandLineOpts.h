@@ -14,12 +14,13 @@
 #define BOLT_UTILS_COMMAND_LINE_OPTS_H
 
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 class BinaryFunction;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace opts {
 
@@ -154,10 +155,10 @@ enum GadgetKindBitmask : unsigned {
 
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 extern const char *BoltRevision;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

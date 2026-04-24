@@ -16,8 +16,10 @@
 #include "L0Program.h"
 
 #include "llvm/ADT/ScopeExit.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::omp::target::plugin {
+LLVM_NAMESPACE_BEGIN
+namespace omp::target::plugin {
 
 bool KernelPropertiesTy::reuseGroupParams(const int32_t NumTeamsIn,
                                           const int32_t ThreadLimitIn,
@@ -521,4 +523,5 @@ Error L0KernelTy::launchImpl(GenericDeviceTy &GenericDevice,
   return launchKernelWithCmdQueue(l0Device, zeKernel, KEnv);
 }
 
-} // namespace llvm::omp::target::plugin
+}
+LLVM_NAMESPACE_END // namespace llvm::omp::target::plugin

@@ -53,6 +53,7 @@
 #include <unordered_map>
 #include <utility>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 #undef DEBUG_TYPE
 #define DEBUG_TYPE "bolt"
@@ -182,7 +183,7 @@ translateInputToOutputLocationList(const BinaryFunction &BF,
 using namespace dwarf_linker;
 using namespace dwarf_linker::classic;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 /// Emits debug information into .debug_info or .debug_types section.
 class DIEStreamer : public DwarfStreamer {
@@ -310,7 +311,7 @@ std::optional<AttrInfo> findAttributeInfo(const DWARFDie DIE,
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 using namespace llvm;
 using namespace llvm::support::endian;

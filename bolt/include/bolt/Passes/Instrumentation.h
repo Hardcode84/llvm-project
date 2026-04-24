@@ -20,8 +20,9 @@
 #include "bolt/Passes/BinaryPasses.h"
 #include "bolt/Passes/InstrumentationSummary.h"
 #include "llvm/Support/RWMutex.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class Instrumentation : public BinaryFunctionPass {
@@ -126,6 +127,6 @@ private:
   BinaryFunction *IndTailCallHandlerExitBBFunction;
 };
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

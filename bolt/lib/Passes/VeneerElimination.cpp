@@ -12,6 +12,7 @@
 //===----------------------------------------------------------------------===//
 
 #include "bolt/Passes/VeneerElimination.h"
+#include "llvm/Support/Compiler.h"
 #define DEBUG_TYPE "veneer-elim"
 
 using namespace llvm;
@@ -26,7 +27,7 @@ static llvm::cl::opt<bool>
                      cl::Hidden, cl::cat(BoltOptCategory));
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 Error VeneerElimination::runOnFunctions(BinaryContext &BC) {
@@ -104,4 +105,4 @@ Error VeneerElimination::runOnFunctions(BinaryContext &BC) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

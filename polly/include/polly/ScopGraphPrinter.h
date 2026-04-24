@@ -22,8 +22,9 @@
 #include "llvm/Analysis/RegionInfo.h"
 #include "llvm/Analysis/RegionIterator.h"
 #include "llvm/Analysis/RegionPrinter.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <>
 struct GraphTraits<polly::ScopDetection *> : GraphTraits<RegionInfo *> {
@@ -65,7 +66,7 @@ struct DOTGraphTraits<polly::ScopDetection *> : DOTGraphTraits<RegionNode *> {
   static void addCustomGraphFeatures(polly::ScopDetection *SD,
                                      GraphWriter<polly::ScopDetection *> &GW);
 };
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 namespace polly {
 

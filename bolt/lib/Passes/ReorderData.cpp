@@ -18,6 +18,7 @@
 #include "bolt/Passes/ReorderData.h"
 #include "llvm/ADT/MapVector.h"
 #include <algorithm>
+#include "llvm/Support/Compiler.h"
 
 #undef  DEBUG_TYPE
 #define DEBUG_TYPE "reorder-data"
@@ -93,7 +94,7 @@ static cl::opt<bool> ReorderInplace("reorder-data-inplace",
                                     cl::cat(BoltOptCategory));
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 namespace {
@@ -529,4 +530,4 @@ Error ReorderData::runOnFunctions(BinaryContext &BC) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

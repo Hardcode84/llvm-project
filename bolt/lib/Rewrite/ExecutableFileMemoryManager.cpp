@@ -11,6 +11,7 @@
 #include "bolt/Rewrite/RewriteInstance.h"
 #include "llvm/ExecutionEngine/JITLink/JITLink.h"
 #include "llvm/Support/MemAlloc.h"
+#include "llvm/Support/Compiler.h"
 
 #undef  DEBUG_TYPE
 #define DEBUG_TYPE "efmm"
@@ -19,7 +20,7 @@ using namespace llvm;
 using namespace object;
 using namespace bolt;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 namespace bolt {
 
@@ -226,4 +227,4 @@ void ExecutableFileMemoryManager::deallocate(
 
 } // namespace bolt
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

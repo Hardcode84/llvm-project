@@ -17,10 +17,11 @@
 
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LLVMContext;
-}
+LLVM_NAMESPACE_END
 
 namespace clang {
 class CodeGenerator;

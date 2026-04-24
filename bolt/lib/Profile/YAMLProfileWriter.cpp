@@ -18,6 +18,7 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/FileSystem.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/Compiler.h"
 
 #undef  DEBUG_TYPE
 #define DEBUG_TYPE "bolt-prof"
@@ -31,7 +32,7 @@ cl::opt<bool> ProfileWritePseudoProbes(
     cl::cat(BoltOptCategory));
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 const BinaryFunction *YAMLProfileWriter::setCSIDestination(
@@ -440,4 +441,4 @@ std::error_code YAMLProfileWriter::writeProfile(const RewriteInstance &RI) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

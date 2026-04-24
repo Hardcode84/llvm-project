@@ -14,8 +14,9 @@
 #define BOLT_UTILS_NAME_SHORTENER_H
 
 #include "llvm/ADT/StringMap.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class NameShortener {
@@ -28,6 +29,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -16,12 +16,13 @@
 
 #include "llvm/ADT/MapVector.h"
 #include "llvm/IR/IRBuilder.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class Loop;
 class SCEV;
 class ScalarEvolution;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace polly {
 class Scop;

@@ -16,8 +16,8 @@
 
 using namespace llvm;
 
-template class llvm::GenericCycleInfo<llvm::MachineSSAContext>;
-template class llvm::GenericCycle<llvm::MachineSSAContext>;
+template class LLVM_ABI_NS::GenericCycleInfo<llvm::MachineSSAContext>;
+template class LLVM_ABI_NS::GenericCycle<llvm::MachineSSAContext>;
 
 char MachineCycleInfoWrapperPass::ID = 0;
 

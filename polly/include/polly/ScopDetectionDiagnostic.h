@@ -23,16 +23,17 @@
 #include "llvm/Analysis/LoopInfo.h"
 #include "llvm/IR/DebugLoc.h"
 #include "llvm/IR/Instruction.h"
+#include "llvm/Support/Compiler.h"
 #include <cstddef>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class AliasSet;
 class BasicBlock;
 class OptimizationRemarkEmitter;
 class Region;
 class SCEV;
 class Type;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace polly {
 using llvm::AliasSet;

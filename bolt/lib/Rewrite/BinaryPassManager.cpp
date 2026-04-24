@@ -46,6 +46,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <memory>
 #include <numeric>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -295,7 +296,7 @@ cl::opt<bool>
                            cl::init(true), cl::Hidden, cl::cat(BoltCategory));
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 using namespace opts;
@@ -580,4 +581,4 @@ Error BinaryFunctionPassManager::runAllPasses(BinaryContext &BC) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

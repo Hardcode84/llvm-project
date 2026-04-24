@@ -21,6 +21,7 @@
 
 #include <cstring>
 #include <unistd.h>
+#include "llvm/Support/Compiler.h"
 
 namespace LIBC_NAMESPACE_DECL {
 
@@ -33,7 +34,7 @@ extern int bcmp(const void *, const void *, size_t);
 
 } // namespace LIBC_NAMESPACE_DECL
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace libc_benchmarks {
 
 static cl::opt<std::string>
@@ -275,7 +276,7 @@ void main() {
 }
 
 } // namespace libc_benchmarks
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #ifndef NDEBUG
 #error For reproducibility benchmarks should not be compiled in DEBUG mode.

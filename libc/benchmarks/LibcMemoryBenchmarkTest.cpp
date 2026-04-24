@@ -11,6 +11,7 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 using testing::AllOf;
 using testing::AnyOf;
@@ -20,7 +21,7 @@ using testing::Gt;
 using testing::Le;
 using testing::Lt;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace libc_benchmarks {
 namespace {
 
@@ -104,4 +105,4 @@ TEST(MismatchOffsetDistribution, MismatchAt2) {
 
 } // namespace
 } // namespace libc_benchmarks
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

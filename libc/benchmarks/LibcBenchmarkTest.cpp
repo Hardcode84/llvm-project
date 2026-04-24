@@ -16,6 +16,7 @@
 #include <optional>
 #include <queue>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using std::chrono::nanoseconds;
 using ::testing::ElementsAre;
@@ -23,7 +24,7 @@ using ::testing::Field;
 using ::testing::IsEmpty;
 using ::testing::SizeIs;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace libc_benchmarks {
 namespace {
 
@@ -173,4 +174,4 @@ TEST(ByteConstrainedArray, Cycle) {
 }
 } // namespace
 } // namespace libc_benchmarks
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

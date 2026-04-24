@@ -27,6 +27,7 @@
 #include "bolt/Passes/Inliner.h"
 #include "bolt/Core/MCPlus.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "bolt-inliner"
 
@@ -127,7 +128,7 @@ void syncOptions() {
 
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 uint64_t Inliner::SizeOfCallInst;
@@ -606,4 +607,4 @@ Error Inliner::runOnFunctions(BinaryContext &BC) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -11,10 +11,11 @@
 
 #include "DWARFUnit.h"
 #include "llvm/Support/Error.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class DWARFAbbreviationDeclarationSet;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace lldb_private::plugin {
 namespace dwarf {

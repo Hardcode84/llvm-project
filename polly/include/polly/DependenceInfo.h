@@ -23,12 +23,13 @@
 #define POLLY_DEPENDENCE_INFO_H
 
 #include "llvm/ADT/DenseMap.h"
+#include "llvm/Support/Compiler.h"
 #include "isl/ctx.h"
 #include "isl/isl-noexceptions.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-}
+LLVM_NAMESPACE_END
 
 namespace polly {
 class MemoryAccess;

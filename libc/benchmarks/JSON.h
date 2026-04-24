@@ -12,8 +12,9 @@
 #include "LibcBenchmark.h"
 #include "LibcMemoryBenchmark.h"
 #include "llvm/Support/JSON.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace libc_benchmarks {
 
 // Parses a Study from a json string.
@@ -23,6 +24,6 @@ Expected<Study> parseJsonStudy(StringRef Content);
 void serializeToJson(const Study &S, llvm::json::OStream &JOS);
 
 } // namespace libc_benchmarks
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_LIBC_UTILS_BENCHMARK_JSON_H

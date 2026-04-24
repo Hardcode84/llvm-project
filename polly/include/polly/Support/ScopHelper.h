@@ -18,10 +18,11 @@
 #include "llvm/IR/Instructions.h"
 #include "llvm/IR/IntrinsicInst.h"
 #include "llvm/IR/ValueHandle.h"
+#include "llvm/Support/Compiler.h"
 #include "isl/isl-noexceptions.h"
 #include <optional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class LoopInfo;
 class Loop;
 class ScalarEvolution;
@@ -31,7 +32,7 @@ class Pass;
 class DominatorTree;
 class RegionInfo;
 class RegionNode;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace polly {
 class Scop;
@@ -332,7 +333,7 @@ public:
 };
 } // namespace polly
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 /// Specialize simplify_type for MemAccInst to enable dyn_cast and cast
 ///        from a MemAccInst object.
 template <> struct simplify_type<polly::MemAccInst> {
@@ -341,7 +342,7 @@ template <> struct simplify_type<polly::MemAccInst> {
     return I.asInstruction();
   }
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace polly {
 

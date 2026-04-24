@@ -15,13 +15,14 @@
 
 #include <cstddef>
 #include <string_view>
+#include "llvm/Support/Compiler.h"
 
 namespace lldb_private {
 class Stream;
 }
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class raw_ostream;
-}
+LLVM_NAMESPACE_END
 
 namespace lldb_private {
 
@@ -418,7 +419,7 @@ Stream &operator<<(Stream &s, ConstString str);
 
 } // namespace lldb_private
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct format_provider<lldb_private::ConstString> {
   static void format(const lldb_private::ConstString &CS, llvm::raw_ostream &OS,
                      llvm::StringRef Options);
@@ -449,6 +450,6 @@ inline raw_ostream &operator<<(raw_ostream &os, lldb_private::ConstString s) {
   os << s.GetStringRef();
   return os;
 }
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLDB_UTILITY_CONSTSTRING_H

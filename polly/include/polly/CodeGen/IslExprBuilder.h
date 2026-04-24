@@ -13,9 +13,10 @@
 
 #include "polly/CodeGen/IRBuilder.h"
 #include "polly/Support/ScopHelper.h"
+#include "llvm/Support/Compiler.h"
 #include "isl/isl-noexceptions.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 // Provide PointerLikeTypeTraits for isl_id.
 template <> struct PointerLikeTypeTraits<isl_id *> {
 
@@ -26,7 +27,7 @@ public:
   }
   static constexpr int NumLowBitsAvailable = 0;
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace polly {
 class ScopArrayInfo;

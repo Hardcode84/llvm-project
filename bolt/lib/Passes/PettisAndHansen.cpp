@@ -16,10 +16,11 @@
 #include "llvm/Support/raw_ostream.h"
 #include <set>
 #include <unordered_map>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "hfsort"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 using NodeId = CallGraph::NodeId;
@@ -212,4 +213,4 @@ std::vector<Cluster> pettisAndHansen(const CallGraph &Cg) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

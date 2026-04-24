@@ -15,6 +15,7 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/TargetSelect.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 using namespace llvm::bolt;
@@ -26,7 +27,7 @@ extern cl::opt<std::string> ReadPerfEvents;
 extern cl::opt<bool> ArmSPE;
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 /// Perform checks on perf SPE branch events.
@@ -120,7 +121,7 @@ protected:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 TEST_F(PerfSpeEventsTestHelper, SpeBranchesWithBrstack) {
   // Check perf input with SPE branch events as brstack format.

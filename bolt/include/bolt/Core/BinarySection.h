@@ -26,8 +26,9 @@
 #include <map>
 #include <memory>
 #include <set>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCStreamer;
 class MCSymbol;
 
@@ -534,6 +535,6 @@ inline raw_ostream &operator<<(raw_ostream &OS, const BinarySection &Section) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

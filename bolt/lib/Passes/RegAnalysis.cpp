@@ -15,6 +15,7 @@
 #include "bolt/Core/CallGraphWalker.h"
 #include "llvm/MC/MCRegisterInfo.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "ra"
 
@@ -29,7 +30,7 @@ cl::opt<bool> AssumeABI("assume-abi",
                         cl::cat(BoltOptCategory));
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 RegAnalysis::RegAnalysis(BinaryContext &BC,
@@ -240,4 +241,4 @@ void RegAnalysis::printStats() {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

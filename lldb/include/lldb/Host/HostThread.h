@@ -15,6 +15,7 @@
 #include "llvm/ADT/DenseMapInfo.h"
 
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
 namespace lldb_private {
 
@@ -52,7 +53,7 @@ private:
 };
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct DenseMapInfo<lldb_private::HostThread> {
   static inline lldb_private::HostThread getEmptyKey() {
     return lldb_private::HostThread(
@@ -66,6 +67,6 @@ template <> struct DenseMapInfo<lldb_private::HostThread> {
   static bool isEqual(const lldb_private::HostThread &lhs,
                       const lldb_private::HostThread &rhs);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

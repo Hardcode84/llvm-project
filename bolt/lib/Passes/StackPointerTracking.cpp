@@ -11,8 +11,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "bolt/Passes/StackPointerTracking.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 StackPointerTracking::StackPointerTracking(
@@ -20,7 +21,7 @@ StackPointerTracking::StackPointerTracking(
     : StackPointerTrackingBase<StackPointerTracking>(BF, AllocatorId) {}
 
 } // end namespace bolt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 llvm::raw_ostream &llvm::operator<<(llvm::raw_ostream &OS,
                                     const std::pair<int, int> &Val) {

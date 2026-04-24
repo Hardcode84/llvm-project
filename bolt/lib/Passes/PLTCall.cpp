@@ -13,6 +13,7 @@
 
 #include "bolt/Passes/PLTCall.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "bolt-plt"
 
@@ -36,7 +37,7 @@ static cl::opt<bolt::PLTCall::OptType>
         cl::ZeroOrMore, cl::cat(BoltOptCategory));
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 Error PLTCall::runOnFunctions(BinaryContext &BC) {
@@ -91,4 +92,4 @@ Error PLTCall::runOnFunctions(BinaryContext &BC) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

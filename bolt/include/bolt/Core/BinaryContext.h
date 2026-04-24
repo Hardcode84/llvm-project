@@ -55,8 +55,9 @@
 #include <type_traits>
 #include <unordered_map>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCDisassembler;
 class MCInstPrinter;
 
@@ -1594,6 +1595,6 @@ inline raw_ostream &operator<<(raw_ostream &OS, const ArrayRef<T> &ByteArray) {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

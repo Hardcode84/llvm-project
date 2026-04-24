@@ -7,11 +7,12 @@
 //===----------------------------------------------------------------------===//
 
 #include "bolt/Passes/LivenessAnalysis.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 LivenessAnalysis::~LivenessAnalysis() {}
 
 } // end namespace bolt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

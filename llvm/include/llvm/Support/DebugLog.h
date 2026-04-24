@@ -13,10 +13,11 @@
 #ifndef LLVM_SUPPORT_DEBUGLOG_H
 #define LLVM_SUPPORT_DEBUGLOG_H
 
+#include "llvm/Support/ABINamespace.h"
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/raw_ostream.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 #ifndef NDEBUG
 
 /// LDBG() is a macro that can be used as a raw_ostream for debugging.
@@ -338,6 +339,6 @@ computePrefix(int Level, const char *File, int Line, StringRef DebugType) {
   ::llvm::nulls()
 #define LDBG_OS(...)
 #endif
-} // end namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLVM_SUPPORT_DEBUGLOG_H

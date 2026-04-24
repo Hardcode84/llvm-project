@@ -15,8 +15,10 @@
 #include "L0Defs.h"
 #include "L0Options.h"
 #include "L0Trace.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm::omp::target::plugin {
+LLVM_NAMESPACE_BEGIN
+namespace omp::target::plugin {
 
 /// Read environment variables.
 void L0OptionsTy::processEnvironmentVars() {
@@ -195,4 +197,5 @@ void L0OptionsTy::processEnvironmentVars() {
   ZeDebugEnabled = BoolEnvar("ZET_ENABLE_PROGRAM_DEBUGGING", false);
 }
 
-} // namespace llvm::omp::target::plugin
+}
+LLVM_NAMESPACE_END // namespace llvm::omp::target::plugin

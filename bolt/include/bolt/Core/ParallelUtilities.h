@@ -19,6 +19,7 @@
 #include "bolt/Core/MCPlusBuilder.h"
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/ThreadPool.h"
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
@@ -28,7 +29,7 @@ extern cl::opt<bool> NoThreads;
 extern cl::opt<unsigned> TaskCount;
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 class BinaryContext;
 class BinaryFunction;
@@ -77,5 +78,5 @@ void runOnEachFunctionWithUniqueAllocId(
 
 } // namespace ParallelUtilities
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 #endif

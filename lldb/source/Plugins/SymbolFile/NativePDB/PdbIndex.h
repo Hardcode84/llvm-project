@@ -20,8 +20,9 @@
 #include <map>
 #include <memory>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace pdb {
 class DbiStream;
 class TpiStream;
@@ -30,7 +31,7 @@ class PublicsStream;
 class GlobalsStream;
 class SymbolStream;
 } // namespace pdb
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 namespace lldb_private {
 namespace npdb {

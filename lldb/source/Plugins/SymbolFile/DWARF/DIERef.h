@@ -14,6 +14,7 @@
 #include "lldb/lldb-types.h"
 #include <cassert>
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
 namespace lldb_private::plugin {
 namespace dwarf {
@@ -137,11 +138,11 @@ typedef std::vector<DIERef> DIEArray;
 } // namespace dwarf
 } // namespace lldb_private::plugin
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 template <> struct format_provider<lldb_private::plugin::dwarf::DIERef> {
   static void format(const lldb_private::plugin::dwarf::DIERef &ref,
                      raw_ostream &OS, StringRef Style);
 };
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLDB_SOURCE_PLUGINS_SYMBOLFILE_DWARF_DIEREF_H

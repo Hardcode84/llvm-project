@@ -17,6 +17,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 namespace lldb_private::dil {
 
@@ -136,7 +137,7 @@ private:
 
 } // namespace lldb_private::dil
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 template <> struct format_provider<lldb_private::dil::Token::Kind> {
   static void format(const lldb_private::dil::Token::Kind &k, raw_ostream &OS,
@@ -154,6 +155,6 @@ template <> struct format_provider<lldb_private::dil::Token> {
   }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // LLDB_VALUEOBJECT_DILLEXER_H

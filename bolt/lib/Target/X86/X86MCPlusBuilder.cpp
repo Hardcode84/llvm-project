@@ -83,6 +83,7 @@ static InstructionListType createIncMemory(const MCSymbol *Target,
 #define GET_INSTRINFO_OPERAND_TYPE
 #define GET_INSTRINFO_MEM_OPERAND_SIZE
 #include "X86GenInstrInfo.inc"
+#include "llvm/Support/Compiler.h"
 
 class X86MCPlusBuilder : public MCPlusBuilder {
 public:
@@ -3607,7 +3608,7 @@ private:
 
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 MCPlusBuilder *createX86MCPlusBuilder(const MCInstrAnalysis *Analysis,
@@ -3618,4 +3619,4 @@ MCPlusBuilder *createX86MCPlusBuilder(const MCInstrAnalysis *Analysis,
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

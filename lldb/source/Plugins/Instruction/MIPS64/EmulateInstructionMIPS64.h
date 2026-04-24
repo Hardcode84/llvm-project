@@ -14,8 +14,9 @@
 #include "lldb/Utility/Status.h"
 #include "llvm/MC/MCTargetOptions.h"
 #include <optional>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCDisassembler;
 class MCSubtargetInfo;
 class MCRegisterInfo;
@@ -23,7 +24,7 @@ class MCAsmInfo;
 class MCContext;
 class MCInstrInfo;
 class MCInst;
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 class EmulateInstructionMIPS64 : public lldb_private::EmulateInstruction {
 public:

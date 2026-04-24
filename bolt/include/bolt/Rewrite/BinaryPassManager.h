@@ -16,8 +16,9 @@
 #include "bolt/Passes/BinaryPasses.h"
 #include <memory>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 class BinaryContext;
 
@@ -53,6 +54,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // BOLT_REWRITE_BINARY_PASS_MANAGER_H

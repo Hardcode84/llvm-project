@@ -11,8 +11,9 @@
 #include <string>
 
 #include "llvm/TableGen/Record.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace offload {
 namespace tblgen {
 
@@ -246,4 +247,4 @@ private:
 
 } // namespace tblgen
 } // namespace offload
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

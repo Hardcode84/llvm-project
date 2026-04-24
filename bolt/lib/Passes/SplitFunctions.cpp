@@ -27,6 +27,7 @@
 #include <numeric>
 #include <random>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "bolt-opts"
 
@@ -677,7 +678,7 @@ struct SplitAll final : public SplitStrategy {
 };
 } // namespace
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 bool SplitFunctions::shouldOptimize(const BinaryFunction &BF) const {
@@ -1052,4 +1053,4 @@ SplitFunctions::BasicBlockOrderType SplitFunctions::mergeEHTrampolines(
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

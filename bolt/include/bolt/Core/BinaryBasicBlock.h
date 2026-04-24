@@ -26,8 +26,9 @@
 #include "llvm/Support/raw_ostream.h"
 #include <limits>
 #include <utility>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MCCodeEmitter;
 
 namespace bolt {
@@ -1017,6 +1018,6 @@ template <> struct GraphTraits<Inverse<const bolt::BinaryBasicBlock *>> {
   static inline ChildIteratorType child_end(NodeRef N) { return N->pred_end(); }
 };
 
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -16,6 +16,7 @@
 
 #include <numeric>
 #include <queue>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "taildup"
 
@@ -77,7 +78,7 @@ static cl::opt<double> TailDuplicationCacheBackwardWeight(
 
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 void TailDuplication::getCallerSavedRegs(const MCInst &Inst, BitVector &Regs,
@@ -673,4 +674,4 @@ Error TailDuplication::runOnFunctions(BinaryContext &BC) {
 }
 
 } // end namespace bolt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

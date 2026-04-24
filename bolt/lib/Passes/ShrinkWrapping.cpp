@@ -17,6 +17,7 @@
 #include <numeric>
 #include <optional>
 #include <stack>
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "shrinkwrapping"
 
@@ -35,7 +36,7 @@ static cl::opt<unsigned> ShrinkWrappingThreshold(
     cl::init(30), cl::ZeroOrMore, cl::cat(BoltOptCategory));
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 void CalleeSavedAnalysis::analyzeSaves() {
@@ -2116,4 +2117,4 @@ bool operator==(const StackLayoutModifier::WorklistItem &A,
 }
 
 } // end namespace bolt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

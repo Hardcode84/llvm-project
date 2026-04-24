@@ -14,8 +14,9 @@
 #include "llvm/ADT/Hashing.h"
 #include "llvm/Support/CommandLine.h"
 #include <atomic>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class SplitStrategy {
@@ -89,6 +90,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

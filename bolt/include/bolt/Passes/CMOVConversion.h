@@ -30,8 +30,9 @@
 #define BOLT_PASSES_CMOVCONVERSION_H
 
 #include "bolt/Passes/BinaryPasses.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 /// Pass for folding eligible hammocks into CMOV's if profitable.
@@ -80,6 +81,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

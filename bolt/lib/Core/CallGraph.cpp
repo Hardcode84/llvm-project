@@ -11,6 +11,7 @@
 //===----------------------------------------------------------------------===//
 
 #include "bolt/Core/CallGraph.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "callgraph"
 
@@ -57,7 +58,7 @@ static inline size_t hash_int64_pair(int64_t k1, int64_t k2) {
 #endif
 }
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 int64_t CallGraph::Arc::Hash::operator()(const Arc &Arc) const {
@@ -119,4 +120,4 @@ void CallGraph::adjustArcWeights() {
 }
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

@@ -12,8 +12,9 @@
 #include "bolt/Passes/BinaryPasses.h"
 #include <string>
 #include <unordered_map>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 struct IndirectBranchInfo {
@@ -66,6 +67,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // BOLT_PASSES_RETPOLINE_INSERTION_H

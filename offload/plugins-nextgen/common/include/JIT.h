@@ -26,10 +26,11 @@
 #include <functional>
 #include <memory>
 #include <string>
+#include "llvm/Support/Compiler.h"
 
 struct __tgt_device_image;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class MemoryBuffer;
 
 namespace omp {
@@ -109,6 +110,6 @@ private:
 
 } // namespace target
 } // namespace omp
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif // OPENMP_LIBOMPTARGET_PLUGINS_NEXTGEN_COMMON_JIT_H

@@ -11,8 +11,9 @@
 
 #include "bolt/Core/BinaryFunction.h"
 #include "llvm/MC/MCDisassembler/MCSymbolizer.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 class X86MCSymbolizer : public MCSymbolizer {
@@ -42,6 +43,6 @@ public:
 };
 
 } // namespace bolt
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -17,6 +17,7 @@
 #include "llvm/ADT/PostOrderIterator.h"
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/ErrorHandling.h"
+#include "llvm/Support/Compiler.h"
 
 #define DEBUG_TYPE "cmov"
 
@@ -51,7 +52,7 @@ static cl::opt<bool> ConvertBasePtrStackMemOperand(
 
 } // namespace opts
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace bolt {
 
 // Return true if the CFG conforms to the following subgraph:
@@ -284,4 +285,4 @@ Error CMOVConversion::runOnFunctions(BinaryContext &BC) {
 }
 
 } // end namespace bolt
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
