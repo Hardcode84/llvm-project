@@ -1290,13 +1290,16 @@ configure_file(
 # independently-built copies of LLVM coexist in one process for consumers
 # that link the C++ API.
 #
-# Empty (the default) disables tagging: macros expand to plain
-# `namespace llvm { ... }` and mangled names are bit-identical to today.
+# Default is `v${LLVM_VERSION_MAJOR}_${LLVM_VERSION_MINOR}` so an upstream
+# build ships a tag that bumps with each release. Set to the empty string
+# explicitly to disable tagging (macros expand to plain
+# `namespace llvm { ... }`, mangled names are identical to pre-tag builds).
 #
 # Must be a valid C++ identifier when set. Downstream vendors are encouraged
-# to use a suffixed tag (e.g. `v${LLVM_VERSION_MAJOR}_${LLVM_VERSION_MINOR}_acme`)
+# to suffix the default (e.g. `v${LLVM_VERSION_MAJOR}_${LLVM_VERSION_MINOR}_acme`)
 # to avoid collisions with other distributors.
-set(LLVM_ABI_NAMESPACE "" CACHE STRING
+set(LLVM_ABI_NAMESPACE "v${LLVM_VERSION_MAJOR}_${LLVM_VERSION_MINOR}"
+    CACHE STRING
     "Inline namespace tag for ABI isolation (e.g. v23_0). Empty = disabled.")
 
 if(LLVM_ABI_NAMESPACE)
