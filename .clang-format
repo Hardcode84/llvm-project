@@ -1,2 +1,7 @@
 BasedOnStyle: LLVM
 LineEnding: LF
+StatementMacros:
+  - LLVM_NAMESPACE_BEGIN
+  - LLVM_NAMESPACE_END
+  - MLIR_NAMESPACE_BEGIN
+  - MLIR_NAMESPACE_END
