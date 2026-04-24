@@ -97,8 +97,8 @@ def EncodingTrait : AttrInterface<"EncodingTrait"> {
   }];
   let methods = [
   ];
-// ATTR-INTERFACE: namespace mlir::a::traits {
-// ATTR-INTERFACE-EMPTY:
+// ATTR-INTERFACE: MLIR_NAMESPACE_BEGIN
+// ATTR-INTERFACE-NEXT: namespace a::traits {
 // ATTR-INTERFACE-NEXT: /// Common trait for all layouts.
 // ATTR-INTERFACE-NEXT: class EncodingTrait;
 }
