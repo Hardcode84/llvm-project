@@ -24,7 +24,7 @@
 #include <memory>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class PassInfo;
 struct PassRegistrationListener;
@@ -82,6 +82,6 @@ public:
   LLVM_ABI void removeRegistrationListener(PassRegistrationListener *L);
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_PASSREGISTRY_H

@@ -33,7 +33,7 @@
 #include "gtest/gtest.h"
 #include <memory>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace {
 
 static std::unique_ptr<Module> parseIR(LLVMContext &C, const char *IR) {
@@ -2011,4 +2011,4 @@ TEST(InstructionsTest, StripAndAccumulateConstantOffset) {
 }
 
 } // end anonymous namespace
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

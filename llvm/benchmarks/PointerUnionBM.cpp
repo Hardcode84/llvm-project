@@ -16,10 +16,11 @@
 #include <cstddef>
 #include <random>
 #include <vector>
+#include "llvm/Support/Compiler.h"
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace {
 
 // Aligned slot types with controlled NumLowBitsAvailable.
@@ -165,7 +166,7 @@ static void BM_IsNull(benchmark::State &State) {
 }
 
 } // namespace
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 // Registration -- N = 2, 4, 8. PtrUnion3T uses N = 3, 4, 8.
 

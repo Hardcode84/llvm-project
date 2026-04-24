@@ -35,7 +35,7 @@
 #include <type_traits>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class VersionTuple;
 
@@ -1931,7 +1931,7 @@ template <typename T> struct StdMapStringCustomMappingTraitsImpl {
 };
 
 } // end namespace yaml
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #define LLVM_YAML_IS_SEQUENCE_VECTOR_IMPL(TYPE, FLOW)                          \
   namespace llvm {                                                             \

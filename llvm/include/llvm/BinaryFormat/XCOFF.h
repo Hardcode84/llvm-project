@@ -17,7 +17,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 class StringRef;
 template <unsigned> class SmallString;
 template <typename T> class Expected;
@@ -504,6 +504,6 @@ struct CsectProperties {
 };
 
 } // end namespace XCOFF
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif

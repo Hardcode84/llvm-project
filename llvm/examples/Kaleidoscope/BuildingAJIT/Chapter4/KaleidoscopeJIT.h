@@ -35,6 +35,7 @@
 #include "llvm/Transforms/Scalar.h"
 #include "llvm/Transforms/Scalar/GVN.h"
 #include <memory>
+#include "llvm/Support/Compiler.h"
 
 class PrototypeAST;
 class ExprAST;
@@ -61,7 +62,7 @@ public:
 llvm::orc::ThreadSafeModule irgenAndTakeOwnership(FunctionAST &FnAST,
                                                   const std::string &Suffix);
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace orc {
 
 class KaleidoscopeASTLayer;
@@ -257,6 +258,6 @@ private:
 };
 
 } // end namespace orc
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_EXECUTIONENGINE_ORC_KALEIDOSCOPEJIT_H

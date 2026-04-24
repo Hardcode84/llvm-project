@@ -30,7 +30,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class Pass;
@@ -272,6 +272,6 @@ AnalysisType &Pass::getAnalysisID(AnalysisID PI, Function &F, bool *Changed) {
   return *(AnalysisType *)ResultPass;
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_PASSANALYSISSUPPORT_H

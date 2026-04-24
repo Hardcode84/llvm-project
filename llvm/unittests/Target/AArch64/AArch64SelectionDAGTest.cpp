@@ -21,8 +21,9 @@
 #include "llvm/Support/TargetSelect.h"
 #include "llvm/Target/TargetMachine.h"
 #include "gtest/gtest.h"
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class AArch64SelectionDAGTest : public testing::Test {
 protected:
@@ -1768,4 +1769,4 @@ TEST_F(AArch64SelectionDAGTest, ComputeKnownFPClass_UndefAndPoison) {
   EXPECT_FALSE(*Known.SignBit);
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

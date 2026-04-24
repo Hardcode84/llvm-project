@@ -104,6 +104,7 @@ typedef uint_t uint;
 #include <sys/vmount.h>
 #else
 #include <sys/mount.h>
+#include "llvm/Support/Compiler.h"
 #endif
 #define STATVFS statfs
 #define FSTATVFS fstatfs
@@ -119,7 +120,7 @@ typedef uint_t uint;
 
 using namespace llvm;
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace sys {
 namespace fs {
 
@@ -1652,4 +1653,4 @@ std::error_code copy_file(const Twine &From, const Twine &To) {
 } // end namespace fs
 
 } // end namespace sys
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm

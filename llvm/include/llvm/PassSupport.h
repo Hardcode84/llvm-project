@@ -32,7 +32,7 @@
 #include "llvm/Support/Threading.h"
 #include <functional>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Pass;
 
@@ -120,6 +120,6 @@ struct PassRegistrationListener {
   virtual void passEnumerate(const PassInfo *) {}
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_PASSSUPPORT_H

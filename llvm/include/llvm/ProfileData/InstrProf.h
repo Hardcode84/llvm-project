@@ -47,7 +47,7 @@
 #include <utility>
 #include <vector>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Function;
 class GlobalVariable;
@@ -1370,5 +1370,5 @@ LLVM_ABI void createProfileFileNameVar(Module &M, StringRef InstrProfileOutput);
 // code coverage mappings. Used by the Instrumentation library and unit tests.
 LLVM_ABI extern cl::opt<bool> DoInstrProfNameCompression;
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 #endif // LLVM_PROFILEDATA_INSTRPROF_H

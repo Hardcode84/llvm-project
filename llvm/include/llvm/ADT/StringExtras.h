@@ -29,7 +29,7 @@
 #include <string>
 #include <utility>
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class raw_ostream;
 
@@ -616,6 +616,6 @@ inline iterator_range<SplittingIterator> split(StringRef Str, char Separator) {
           SplittingIterator(StringRef(), Separator)};
 }
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_ADT_STRINGEXTRAS_H

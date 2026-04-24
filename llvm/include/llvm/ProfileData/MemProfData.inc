@@ -20,6 +20,7 @@
  *
 \*===----------------------------------------------------------------------===*/
 #include <string.h>
+#include "llvm/Support/Compiler.h"
 
 #ifdef _MSC_VER
 #define PACKED(...) __pragma(pack(push,1)) __VA_ARGS__ __pragma(pack(pop))
@@ -42,7 +43,7 @@
 
 #define MEMPROF_BUILDID_MAX_SIZE 32ULL
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace memprof {
 // A struct describing the header used for the raw binary memprof profile format.
 PACKED(struct Header {
@@ -264,6 +265,6 @@ inline uint64_t decodeHistogramCount(uint16_t EncodedValue) {
 }
 
 } // namespace memprof
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm
 
 #endif

@@ -19,9 +19,10 @@
 #include <sys/mman.h>
 #include <sys/syscall.h>
 #include <unistd.h>
+#include "llvm/Support/Compiler.h"
 #endif // __linux__
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 namespace exegesis {
 
 #if defined(__linux__) && !defined(__ANDROID__) &&                             \
@@ -142,4 +143,4 @@ TEST_F(SubprocessMemoryTest, DefinitionEndTruncation) {
 #endif // __linux__ && !__ANDROID__ && !(__powerpc__ || __s390x__ || __sparc__)
 
 } // namespace exegesis
-} // namespace llvm
+LLVM_NAMESPACE_END // namespace llvm

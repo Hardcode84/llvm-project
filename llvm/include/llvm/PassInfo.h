@@ -15,8 +15,9 @@
 
 #include "llvm/ADT/StringRef.h"
 #include <cassert>
+#include "llvm/Support/Compiler.h"
 
-namespace llvm {
+LLVM_NAMESPACE_BEGIN
 
 class Pass;
 
@@ -88,6 +89,6 @@ public:
   }
 };
 
-} // end namespace llvm
+LLVM_NAMESPACE_END // end namespace llvm
 
 #endif // LLVM_PASSINFO_H
