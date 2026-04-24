@@ -324,6 +324,16 @@ def _find_namespace_openings(text: str) -> List[Edit]:
             _skip_string(s)
             continue
         if c == "'":
+            # C++14 digit separators: `1'000`, `0x8000'0000`. When the
+            # preceding character is a digit or identifier continuation
+            # character, the `'` is NOT a char-literal opener — it's a
+            # digit separator inside a numeric literal. Skip the
+            # apostrophe and continue scanning normally (the next
+            # characters are ordinary digits).
+            prev = s.text[s.i - 1] if s.i > 0 else ""
+            if _is_ident_cont(prev):
+                s.i += 1
+                continue
             _skip_char(s)
             continue
 
