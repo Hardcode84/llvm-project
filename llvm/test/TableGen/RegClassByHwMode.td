@@ -9,8 +9,8 @@ include "Common/RegClassByHwModeCommon.td"
 // INSTRINFO:      #ifdef GET_INSTRINFO_ENUM
 // INSTRINFO-NEXT: #undef GET_INSTRINFO_ENUM
 // INSTRINFO-EMPTY:
-// INSTRINFO-NEXT: namespace llvm::MyTarget {
-// INSTRINFO-EMPTY:
+// INSTRINFO-NEXT: LLVM_NAMESPACE_BEGIN
+// INSTRINFO-NEXT: namespace MyTarget {
 // INSTRINFO-NEXT: enum {
 // INSTRINFO-NEXT:   PHI
 // INSTRINFO: LOAD_STACK_GUARD = [[LOAD_STACK_GUARD_OPCODE:[0-9]+]]
@@ -21,7 +21,8 @@ include "Common/RegClassByHwModeCommon.td"
 // INSTRINFO-NEXT:   YRegs_EvenIfRequired,
 // INSTRINFO-NEXT: };
 // INSTRINFO-EMPTY:
-// INSTRINFO-NEXT: } // namespace llvm::MyTarget
+// INSTRINFO-NEXT: } // namespace MyTarget
+// INSTRINFO-NEXT: LLVM_NAMESPACE_END
 
 
 // INSTRINFO: { [[LOAD_STACK_GUARD_OPCODE]],	1,	1,	0,	0,	0,	0,	MyTargetOpInfoBase + [[LOAD_STACK_GUARD_OP_INDEX:[0-9]+]],	0,	0|(1ULL<<MCID::Pseudo)|(1ULL<<MCID::MayLoad)|(1ULL<<MCID::Rematerializable)|(1ULL<<MCID::ExtraSrcRegAllocReq)|(1ULL<<MCID::ExtraDefRegAllocReq), 0x0ULL },  // anonymous_
@@ -69,15 +70,13 @@ include "Common/RegClassByHwModeCommon.td"
 // INSTRINFO: #ifdef GET_INSTRINFO_HEADER
 // INSTRINFO-NEXT: #undef GET_INSTRINFO_HEADER
 // INSTRINFO-EMPTY:
-// INSTRINFO-NEXT: namespace llvm {
-// INSTRINFO-EMPTY:
+// INSTRINFO-NEXT: LLVM_NAMESPACE_BEGIN
 // INSTRINFO-NEXT: struct MyTargetGenInstrInfo : public TargetInstrInfo {
 // INSTRINFO-NEXT:   explicit MyTargetGenInstrInfo(const TargetSubtargetInfo &STI, const TargetRegisterInfo &TRI, unsigned CFSetupOpcode = ~0u, unsigned CFDestroyOpcode = ~0u, unsigned CatchRetOpcode = ~0u, unsigned ReturnOpcode = ~0u);
 // INSTRINFO-NEXT:   ~MyTargetGenInstrInfo() override = default;
 // INSTRINFO-NEXT: };
 // INSTRINFO-NEXT: extern const int16_t MyTargetRegClassByHwModeTables[4][3];
-// INSTRINFO-EMPTY:
-// INSTRINFO-NEXT: } // namespace llvm
+// INSTRINFO-NEXT: LLVM_NAMESPACE_END
 // INSTRINFO: #endif // GET_INSTRINFO_HEADER
 
 

@@ -75,7 +75,7 @@ def BlahLibrary : SystemRuntimeLibrary<isBlahArch, (add calloc, LibraryWithCondi
 // CHECK: #ifdef GET_RUNTIME_LIBCALL_ENUM
 // CHECK-NEXT: #undef GET_RUNTIME_LIBCALL_ENUM
 // CHECK-EMPTY:
-// CHECK-NEXT: namespace llvm {
+// CHECK-NEXT: LLVM_NAMESPACE_BEGIN
 // CHECK-NEXT: namespace RTLIB {
 // CHECK-NEXT: enum Libcall : unsigned short {
 // CHECK-NEXT: BZERO = 0,
@@ -102,7 +102,7 @@ def BlahLibrary : SystemRuntimeLibrary<isBlahArch, (add calloc, LibraryWithCondi
 // CHECK-NEXT: };
 // CHECK-NEXT: constexpr size_t NumLibcallImpls = 9;
 // CHECK-NEXT: } // End namespace RTLIB
-// CHECK-NEXT: } // End namespace llvm
+// CHECK-NEXT: LLVM_NAMESPACE_END
 // CHECK-EMPTY:
 // CHECK-NEXT: #endif // GET_RUNTIME_LIBCALL_ENUM
 

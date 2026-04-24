@@ -21,8 +21,7 @@
 // REGINFO-HEADER-NEXT: LLVM_READONLY MCRegister getPtrRegFor64BitModesOnly(unsigned HwMode);
 // REGINFO-HEADER-EMPTY:
 // REGINFO-HEADER-NEXT: } // namespace MyTarget::RegisterByHwMode
-// REGINFO-HEADER-EMPTY:
-// REGINFO-HEADER-NEXT: } // namespace llvm
+// REGINFO-HEADER-NEXT: LLVM_NAMESPACE_END
 
 // REGINFO-MCDESC-LABEL: // Registers by HwMode
 // REGINFO-MCDESC-NEXT: namespace MyTarget::RegisterByHwMode {
@@ -54,8 +53,7 @@
 // REGINFO-MCDESC-NEXT: }
 // REGINFO-MCDESC-EMPTY:
 // REGINFO-MCDESC-NEXT: } // namespace MyTarget::RegisterByHwMode
-// REGINFO-MCDESC-EMPTY:
-// REGINFO-MCDESC-NEXT: } // namespace llvm
+// REGINFO-MCDESC-NEXT: LLVM_NAMESPACE_END
 
 // SUBTARGET-LABEL:  enum class MyTargetHwModeBits : unsigned {
 // SUBTARGET-NEXT:    DefaultMode = 0,

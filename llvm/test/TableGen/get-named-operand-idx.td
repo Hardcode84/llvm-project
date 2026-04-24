@@ -53,8 +53,8 @@ defm : RemapAllTargetPseudoPointerOperands<RegClass>;
 // CHECK-LABEL: #ifdef GET_INSTRINFO_OPERAND_ENUM
 // CHECK-NEXT:  #undef GET_INSTRINFO_OPERAND_ENUM
 // CHECK-EMPTY:
-// CHECK-NEXT:  namespace llvm::MyNamespace {
-// CHECK-EMPTY:
+// CHECK-NEXT:  LLVM_NAMESPACE_BEGIN
+// CHECK-NEXT:  namespace MyNamespace {
 // CHECK-NEXT:  enum class OpName : uint8_t {
 // CHECK-NEXT:    a = 0,
 // CHECK-NEXT:    b = 1,
@@ -67,15 +67,16 @@ defm : RemapAllTargetPseudoPointerOperands<RegClass>;
 // CHECK-NEXT:  LLVM_READONLY int16_t getNamedOperandIdx(uint32_t Opcode, OpName Name);
 // CHECK-NEXT:  LLVM_READONLY OpName getOperandIdxName(uint32_t Opcode, int16_t Idx);
 // CHECK-EMPTY:
-// CHECK-NEXT:  } // namespace llvm::MyNamespace
+// CHECK-NEXT:  } // namespace MyNamespace
+// CHECK-NEXT:  LLVM_NAMESPACE_END
 // CHECK-EMPTY:
 // CHECK-NEXT:  #endif // GET_INSTRINFO_OPERAND_ENUM
 
 // CHECK-LABEL: #ifdef GET_INSTRINFO_NAMED_OPS
 // CHECK-NEXT:  #undef GET_INSTRINFO_NAMED_OPS
 // CHECK-EMPTY:
-// CHECK-NEXT:  namespace llvm::MyNamespace {
-// CHECK-EMPTY:
+// CHECK-NEXT:  LLVM_NAMESPACE_BEGIN
+// CHECK-NEXT:  namespace MyNamespace {
 // CHECK-NEXT:  LLVM_READONLY static uint8_t getInstructionIndexForOpLookup(uint32_t Opcode) {
 // CHECK-NEXT:    static constexpr uint8_t InstructionIndex[] = {
 // CHECK-NEXT:      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -123,6 +124,7 @@ defm : RemapAllTargetPseudoPointerOperands<RegClass>;
 // CHECK-NEXT:    return OperandMap[InstrIdx][(unsigned)Idx];
 // CHECK-NEXT:  }
 // CHECK-EMPTY:
-// CHECK-NEXT:  } // namespace llvm::MyNamespace
+// CHECK-NEXT:  } // namespace MyNamespace
+// CHECK-NEXT:  LLVM_NAMESPACE_END
 // CHECK-EMPTY:
 // CHECK-NEXT:  #endif // GET_INSTRINFO_NAMED_OPS

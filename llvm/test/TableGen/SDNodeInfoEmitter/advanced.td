@@ -46,8 +46,8 @@ def my_node_3 : SDNode<
      SDNPOutGlue, SDNPInGlue, SDNPOptInGlue]
 >;
 
-// CHECK:       namespace llvm::MyTargetISD {
-// CHECK-EMPTY:
+// CHECK:       LLVM_NAMESPACE_BEGIN
+// CHECK-NEXT:  namespace MyTargetISD {
 // CHECK-NEXT:  enum GenNodeType : unsigned {
 // CHECK-NEXT:    NODE_1 = ISD::BUILTIN_OP_END,
 // CHECK-NEXT:    NODE_2,
@@ -56,7 +56,8 @@ def my_node_3 : SDNode<
 // CHECK-EMPTY:
 // CHECK-NEXT:  static constexpr unsigned GENERATED_OPCODE_END = NODE_3 + 1;
 // CHECK-EMPTY:
-// CHECK-NEXT:  } // namespace llvm::MyTargetISD
+// CHECK-NEXT:  } // namespace MyTargetISD
+// CHECK-NEXT:  LLVM_NAMESPACE_END
 
 // CHECK:       static constexpr char MyTargetSDNodeNamesStorage[] =
 // CHECK-NEXT:    "\0"

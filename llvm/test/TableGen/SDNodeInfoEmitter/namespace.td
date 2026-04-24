@@ -13,11 +13,12 @@ def MyTarget : Target;
 def node_1 : SDNode<"MyTargetISD::NODE", SDTypeProfile<1, 0, [SDTCisVT<0, i1>]>>;
 def node_2 : SDNode<"MyCustomISD::NODE", SDTypeProfile<0, 1, [SDTCisVT<0, i2>]>>;
 
-// EMPTY:        namespace llvm::EmptyISD {
-// EMPTY-EMPTY:
+// EMPTY:        LLVM_NAMESPACE_BEGIN
+// EMPTY-NEXT:   namespace EmptyISD {
 // EMPTY-NEXT:   static constexpr unsigned GENERATED_OPCODE_END = ISD::BUILTIN_OP_END;
 // EMPTY-EMPTY:
-// EMPTY-NEXT:   } // namespace llvm::EmptyISD
+// EMPTY-NEXT:   } // namespace EmptyISD
+// EMPTY-NEXT:   LLVM_NAMESPACE_END
 
 // EMPTY:        static constexpr char MyTargetSDNodeNamesStorage[] =
 // EMPTY-NEXT:     "\0"
@@ -34,15 +35,16 @@ def node_2 : SDNode<"MyCustomISD::NODE", SDTypeProfile<0, 1, [SDTCisVT<0, i2>]>>
 // EMPTY-NEXT:       /*NumOpcodes=*/0, MyTargetSDNodeDescs, MyTargetSDNodeNames,
 // EMPTY-NEXT:       MyTargetVTByHwModeTable, MyTargetSDTypeConstraints);
 
-// COMMON:       namespace llvm::[[NS]] {
-// COMMON-EMPTY:
+// COMMON:       LLVM_NAMESPACE_BEGIN
+// COMMON-NEXT:  namespace [[NS]] {
 // COMMON-NEXT:  enum GenNodeType : unsigned {
 // COMMON-NEXT:    NODE = ISD::BUILTIN_OP_END,
 // COMMON-NEXT:  };
 // COMMON-EMPTY:
 // COMMON-NEXT:  static constexpr unsigned GENERATED_OPCODE_END = NODE + 1;
 // COMMON-EMPTY:
-// COMMON-NEXT:  } // namespace llvm::[[NS]]
+// COMMON-NEXT:  } // namespace [[NS]]
+// COMMON-NEXT:  LLVM_NAMESPACE_END
 
 // COMMON:       static constexpr char MyTargetSDNodeNamesStorage[] =
 // COMMON-NEXT:    "\0"

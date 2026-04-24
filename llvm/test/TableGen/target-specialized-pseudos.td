@@ -7,7 +7,8 @@
 // def PREALLOCATED_ARG : StandardPseudoInstruction {
 
 
-// CHECK: namespace llvm::MyTarget {
+// CHECK: LLVM_NAMESPACE_BEGIN
+// CHECK-NEXT: namespace MyTarget {
 // CHECK: enum {
 // CHECK: LOAD_STACK_GUARD = [[LOAD_STACK_GUARD_OPCODE:[0-9]+]],
 // CHECK: PREALLOCATED_ARG = [[PREALLOCATED_ARG_OPCODE:[0-9]+]],

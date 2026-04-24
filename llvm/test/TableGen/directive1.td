@@ -60,8 +60,7 @@ def TDL_DirA : Directive<[Spelling<"dira">]> {
 // CHECK-NEXT:  #include <cstddef>
 // CHECK-NEXT:  #include <utility>
 // CHECK-EMPTY:
-// CHECK-NEXT:  namespace llvm {
-// CHECK-EMPTY:
+// CHECK-NEXT:  LLVM_NAMESPACE_BEGIN
 // CHECK-NEXT:  namespace tdl {
 // CHECK-EMPTY:
 // CHECK-NEXT:  LLVM_ENABLE_BITMASK_ENUMS_IN_NAMESPACE();
@@ -178,8 +177,7 @@ def TDL_DirA : Directive<[Spelling<"dira">]> {
 // CHECK-NEXT:  template <> struct enum_iteration_traits<tdl::Clause> {
 // CHECK-NEXT:    static constexpr bool is_iterable = true;
 // CHECK-NEXT:  };
-// CHECK-EMPTY:
-// CHECK-NEXT:  } // namespace llvm
+// CHECK-NEXT: LLVM_NAMESPACE_END // namespace llvm
 // CHECK-EMPTY:
 // CHECK-NEXT:  #endif // LLVM_Tdl_INC
 
@@ -187,8 +185,8 @@ def TDL_DirA : Directive<[Spelling<"dira">]> {
 // IMPL:       #ifdef GEN_FLANG_DIRECTIVE_CLAUSE_SETS
 // IMPL-NEXT:  #undef GEN_FLANG_DIRECTIVE_CLAUSE_SETS
 // IMPL-EMPTY:
-// IMPL-NEXT:  namespace llvm::tdl {
-// IMPL-EMPTY:
+// IMPL-NEXT:  LLVM_NAMESPACE_BEGIN
+// IMPL-NEXT:  namespace tdl {
 // IMPL-NEXT:    // Sets for dira
 // IMPL-EMPTY:
 // IMPL-NEXT:    static  allowedClauses_TDLD_dira {
@@ -205,7 +203,8 @@ def TDL_DirA : Directive<[Spelling<"dira">]> {
 // IMPL-NEXT:    static  requiredClauses_TDLD_dira {
 // IMPL-NEXT:    };
 // IMPL-EMPTY:
-// IMPL-NEXT:  } // namespace llvm::tdl
+// IMPL-NEXT:  } // namespace tdl
+// IMPL-NEXT: LLVM_NAMESPACE_END // namespace llvm
 // IMPL-EMPTY:
 // IMPL-NEXT:  #endif // GEN_FLANG_DIRECTIVE_CLAUSE_SETS
 // IMPL-EMPTY:
