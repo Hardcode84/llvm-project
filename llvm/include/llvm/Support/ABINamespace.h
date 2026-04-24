@@ -7,34 +7,43 @@
 //===----------------------------------------------------------------------===//
 ///
 /// \file
-/// Defines the namespace-wrapping macros that implement LLVM's optional
-/// inline versioned namespace. These let two independently-built copies of
-/// LLVM coexist in one process for consumers that link the C++ API, by
-/// embedding a build-specific tag into every mangled name under
-/// \c namespace llvm.
+/// Defines the namespace-wrapping macros that implement LLVM's inline
+/// versioned namespace. They embed a build-specific tag into the mangled
+/// names of symbols under \c namespace\ llvm so two independently-built
+/// copies of the LLVM C++ API can coexist in one process.
 ///
-/// Usage at file scope (coordinator rewriter emits this form):
+/// Usage at file scope (the rewriter emits this form):
 /// \code
 ///   LLVM_NAMESPACE_BEGIN
 ///   // ... declarations or definitions in namespace llvm ...
 ///   LLVM_NAMESPACE_END
 /// \endcode
 ///
-/// When the build's tag is empty (the default), the macros expand to plain
-/// \c namespace\ llvm\ { and \c }. Mangled names are unchanged.
-///
-/// When the tag is set (e.g. \c -DLLVM_ABI_NAMESPACE=v23_0), the macros
-/// expand to:
+/// Upstream's default tag is derived from the LLVM version — for example
+/// \c v23_0 — so a default build expands the macros to:
 /// \code
 ///   namespace llvm { inline namespace v23_0 {
 ///   // ...
 ///   } }
 /// \endcode
-/// so the mangled name becomes \c _ZN4llvm5v23_0... while source-level
+/// and mangled names become \c _ZN4llvm5v23_0... while source-level
 /// \c llvm::Value keeps resolving via the \c inline keyword.
 ///
-/// See llvm/docs/InterfaceExportAnnotations.rst and the migration plan for
-/// design, rationale, and the C API exclusion list.
+/// Setting \c -DLLVM_ABI_NAMESPACE="" at CMake time disables tagging; the
+/// macros then expand to plain \c namespace\ llvm\ {} and mangled names
+/// are identical to pre-tag releases. Never redefine
+/// \c LLVM_ABI_NAMESPACE on the consumer compile line — the value must
+/// match the installed \c ABINamespaceTag.h sitting next to the installed
+/// headers.
+///
+/// Not every \c namespace\ llvm block is tagged: the Demangle library,
+/// the profile/coverage data format libraries, and compiler-rt are
+/// intentionally untagged so they can be shared byte-for-byte with
+/// standalone runtimes and external tools.
+///
+/// See llvm/docs/ABIInlineNamespace.rst for the full design, the list of
+/// untagged ABI-stable zones, and the distribution/ELF requirements
+/// for real dual-LLVM embedding.
 //===----------------------------------------------------------------------===//
 
 #ifndef LLVM_SUPPORT_ABINAMESPACE_H
@@ -61,6 +70,10 @@
 /// does not honor the \c inline keyword on the enclosing namespace — the
 /// spelled-out qualifier wins, so the definition would be mangled into
 /// \c llvm:: rather than \c llvm::vX_Y:: and fail to match its declaration.
+///
+/// \c LLVM_ABI_NS is unrelated to \c LLVM_ABI from Compiler.h; the latter
+/// is a visibility annotation for the public shared-library surface. The
+/// two macros share a prefix for historical reasons only.
 #define LLVM_ABI_NS llvm::LLVM_ABI_NAMESPACE
 #else
 #define LLVM_NAMESPACE_BEGIN namespace llvm {

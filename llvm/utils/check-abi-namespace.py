@@ -68,6 +68,37 @@ EXCLUDE_DIRS: Tuple[str, ...] = (
     # must stay ABI-stable against untagged tools, or sanitizer test
     # helpers that live in-tree but build without LLVM includes.
     "compiler-rt",
+    # Profile and coverage data format libraries: these share
+    # byte-identical `.inc` headers with compiler-rt's profiling runtime
+    # (which cannot depend on LLVMSupport), so they must stay raw to
+    # keep the two halves in sync on disk. See the "Profile and coverage
+    # data format libraries" section in docs/ABIInlineNamespace.rst.
+    "llvm/include/llvm/ProfileData",
+    "llvm/lib/ProfileData",
+    "llvm/tools/llvm-profgen",
+    # File-level exclusions for ProfileData consumers that cross the
+    # tagged/untagged boundary: they forward-declare or `extern` types
+    # whose definitions live in untagged ProfileData.
+    "llvm/tools/llvm-cov/CoverageFilters.h",
+    "llvm/include/llvm/Support/Discriminator.h",
+    "llvm/include/llvm/Analysis/MemoryProfileInfo.h",
+    "llvm/include/llvm/Analysis/StaticDataProfileInfo.h",
+    "llvm/include/llvm/Transforms/Instrumentation/MemProfUse.h",
+    "llvm/include/llvm/Transforms/IPO/ProfiledCallGraph.h",
+    "llvm/lib/Analysis/StaticDataProfileInfo.cpp",
+    "llvm/lib/Transforms/Instrumentation/InstrProfiling.cpp",
+    "llvm/lib/Transforms/Instrumentation/PGOInstrumentation.cpp",
+    "llvm/lib/Transforms/Instrumentation/IndirectCallPromotion.cpp",
+    # Unit tests for ProfileData types: must match the untagged
+    # definitions of the types under test.
+    "llvm/unittests/ProfileData/MemProfTest.cpp",
+    "llvm/unittests/ProfileData/DataAccessProfTest.cpp",
+    "llvm/unittests/Transforms/Instrumentation/MemProfUseTest.cpp",
+    # Clang CodeGen's coverage instrumentation references llvm::coverage
+    # types from ProfileData; it must match their untagged namespace.
+    "clang/lib/CodeGen/CoverageMappingGen.h",
+    "clang/lib/CodeGen/CoverageMappingGen.cpp",
+    "clang/lib/CodeGen/CodeGenModule.h",
     # Vendored third-party code that LLVM does not own.
     "third-party",
     "llvm/utils/gn",
