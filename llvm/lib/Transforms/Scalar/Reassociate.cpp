@@ -99,7 +99,7 @@ static void PrintOps(Instruction *I, const SmallVectorImpl<ValueEntry> &Ops) {
 ///          constant.
 ///    C2.2) Any operand E which doesn't fall into C1 and C2.1, we view this
 ///          operand as "E | 0"
-class llvm::reassociate::XorOpnd {
+class LLVM_ABI_NS::reassociate::XorOpnd {
 public:
   XorOpnd(Value *V);
 

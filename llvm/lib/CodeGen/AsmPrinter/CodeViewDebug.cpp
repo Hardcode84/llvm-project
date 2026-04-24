@@ -2307,7 +2307,7 @@ TypeIndex CodeViewDebug::lowerTypeEnum(const DICompositeType *Ty) {
 // ClassInfo
 //===----------------------------------------------------------------------===//
 
-struct llvm::ClassInfo {
+struct LLVM_ABI_NS::ClassInfo {
   struct MemberInfo {
     const DIDerivedType *MemberTypeNode;
     uint64_t BaseOffset;

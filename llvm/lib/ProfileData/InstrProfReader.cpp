@@ -1066,7 +1066,7 @@ public:
 
 /// A remapper that applies remappings based on a symbol remapping file.
 template <typename HashTableImpl>
-class llvm::InstrProfReaderItaniumRemapper
+class LLVM_ABI_NS::InstrProfReaderItaniumRemapper
     : public InstrProfReaderRemapper {
 public:
   InstrProfReaderItaniumRemapper(

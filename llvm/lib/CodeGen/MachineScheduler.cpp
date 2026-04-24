@@ -4827,11 +4827,11 @@ static MachineSchedRegistry ShufflerRegistry(
 #ifndef NDEBUG
 
 template <>
-struct llvm::GraphTraits<ScheduleDAGMI *> : public GraphTraits<ScheduleDAG *> {
+struct LLVM_ABI_NS::GraphTraits<ScheduleDAGMI *> : public GraphTraits<ScheduleDAG *> {
 };
 
 template <>
-struct llvm::DOTGraphTraits<ScheduleDAGMI *> : public DefaultDOTGraphTraits {
+struct LLVM_ABI_NS::DOTGraphTraits<ScheduleDAGMI *> : public DefaultDOTGraphTraits {
   DOTGraphTraits(bool isSimple = false) : DefaultDOTGraphTraits(isSimple) {}
 
   static std::string getGraphName(const ScheduleDAG *G) {

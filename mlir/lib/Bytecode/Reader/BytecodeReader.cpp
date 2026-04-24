@@ -1583,7 +1583,7 @@ LogicalResult AttrTypeReader::parseAsmEntry(T &result, EncodingReader &reader,
 //===----------------------------------------------------------------------===//
 
 /// This class is used to read a bytecode buffer and translate it into MLIR.
-class mlir::BytecodeReader::Impl {
+class MLIR_ABI_NS::BytecodeReader::Impl {
   struct RegionReadState;
   using LazyLoadableOpsInfo =
       std::list<std::pair<Operation *, RegionReadState>>;

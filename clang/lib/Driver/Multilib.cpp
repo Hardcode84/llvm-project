@@ -393,7 +393,7 @@ template <> struct llvm::yaml::MappingTraits<MultilibSet::FlagMatcher> {
 };
 
 template <>
-struct llvm::yaml::MappingContextTraits<custom_flag::ValueDetail,
+struct LLVM_ABI_NS::yaml::MappingContextTraits<custom_flag::ValueDetail,
                                         llvm::SmallSet<std::string, 32>> {
   static void mapping(llvm::yaml::IO &io, custom_flag::ValueDetail &V,
                       llvm::SmallSet<std::string, 32> &) {
@@ -411,7 +411,7 @@ struct llvm::yaml::MappingContextTraits<custom_flag::ValueDetail,
 };
 
 template <>
-struct llvm::yaml::MappingContextTraits<custom_flag::Declaration,
+struct LLVM_ABI_NS::yaml::MappingContextTraits<custom_flag::Declaration,
                                         llvm::SmallSet<std::string, 32>> {
   static void mapping(llvm::yaml::IO &io, custom_flag::Declaration &V,
                       llvm::SmallSet<std::string, 32> &NameSet) {

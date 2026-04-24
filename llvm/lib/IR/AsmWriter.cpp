@@ -787,7 +787,7 @@ AbstractSlotTrackerStorage::~AbstractSlotTrackerStorage() = default;
 //===----------------------------------------------------------------------===//
 /// This class provides computation of slot numbers for LLVM Assembly writing.
 ///
-class llvm::SlotTracker : public AbstractSlotTrackerStorage {
+class LLVM_ABI_NS::SlotTracker : public AbstractSlotTrackerStorage {
 public:
   /// ValueMap - A mapping of Values to slot numbers.
   using ValueMap = DenseMap<const Value *, unsigned>;

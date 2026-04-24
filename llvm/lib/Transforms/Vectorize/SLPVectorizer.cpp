@@ -6453,7 +6453,7 @@ template <> struct llvm::GraphTraits<BoUpSLP *> {
 };
 
 template <>
-struct llvm::DOTGraphTraits<BoUpSLP *> : public DefaultDOTGraphTraits {
+struct LLVM_ABI_NS::DOTGraphTraits<BoUpSLP *> : public DefaultDOTGraphTraits {
   using TreeEntry = BoUpSLP::TreeEntry;
 
   DOTGraphTraits(bool IsSimple = false) : DefaultDOTGraphTraits(IsSimple) {}

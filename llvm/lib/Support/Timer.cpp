@@ -513,7 +513,7 @@ const char *TimerGroup::printAllJSONValues(raw_ostream &OS, const char *delim) {
 // needed until later during compilation. These are lazily constructed in order
 // to reduce launch time.
 //===----------------------------------------------------------------------===//
-class llvm::TimerGlobals {
+class LLVM_ABI_NS::TimerGlobals {
 public:
   std::string LibSupportInfoOutputFilename;
   cl::opt<std::string, true> InfoOutputFilename{

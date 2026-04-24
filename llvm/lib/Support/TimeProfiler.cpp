@@ -70,7 +70,7 @@ using NameAndCountAndDurationType =
 } // anonymous namespace
 
 /// Represents an open or completed time section entry to be captured.
-struct llvm::TimeTraceProfilerEntry {
+struct LLVM_ABI_NS::TimeTraceProfilerEntry {
   const TimePointType Start;
   TimePointType End;
   const std::string Name;
@@ -124,7 +124,7 @@ struct InProgressEntry {
         InstantEvents() {}
 };
 
-struct llvm::TimeTraceProfiler {
+struct LLVM_ABI_NS::TimeTraceProfiler {
   TimeTraceProfiler(unsigned TimeTraceGranularity = 0, StringRef ProcName = "",
                     bool TimeTraceVerbose = false)
       : BeginningOfTime(system_clock::now()), StartTime(ClockType::now()),

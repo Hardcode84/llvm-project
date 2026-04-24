@@ -119,7 +119,7 @@ public:
 };
 } // namespace
 
-class llvm::WinCOFFWriter {
+class LLVM_ABI_NS::WinCOFFWriter {
   WinCOFFObjectWriter &OWriter;
   support::endian::Writer W;
   MCAssembler *Asm = nullptr;

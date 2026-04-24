@@ -25,7 +25,7 @@
 using namespace llvm;
 using namespace gsym;
 
-struct llvm::gsym::CUInfo {
+struct LLVM_ABI_NS::gsym::CUInfo {
   const DWARFDebugLine::LineTable *LineTable;
   const char *CompDir;
   std::vector<uint32_t> FileCache;

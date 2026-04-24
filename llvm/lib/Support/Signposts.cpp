@@ -92,7 +92,7 @@ public:
 LLVM_NAMESPACE_END // end namespace llvm
 #else
 /// Definition necessary for use of std::unique_ptr in SignpostEmitter::Impl.
-class llvm::SignpostEmitterImpl {};
+class LLVM_ABI_NS::SignpostEmitterImpl {};
 #endif // if LLVM_SUPPORT_XCODE_SIGNPOSTS
 
 #if LLVM_SUPPORT_XCODE_SIGNPOSTS

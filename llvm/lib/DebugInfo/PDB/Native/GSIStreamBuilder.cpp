@@ -38,7 +38,7 @@ using namespace llvm::pdb;
 using namespace llvm::codeview;
 
 // Helper class for building the public and global PDB hash table buckets.
-struct llvm::pdb::GSIHashStreamBuilder {
+struct LLVM_ABI_NS::pdb::GSIHashStreamBuilder {
   // Sum of the size of all public or global records.
   uint64_t RecordByteSize = 0;
 
@@ -67,7 +67,7 @@ struct llvm::pdb::GSIHashStreamBuilder {
 };
 
 // DenseMapInfo implementation for deduplicating symbol records.
-struct llvm::pdb::SymbolDenseMapInfo {
+struct LLVM_ABI_NS::pdb::SymbolDenseMapInfo {
   static inline CVSymbol getEmptyKey() {
     static CVSymbol Empty;
     return Empty;

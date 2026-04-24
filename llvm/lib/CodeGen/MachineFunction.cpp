@@ -753,7 +753,7 @@ MachineFunction::CallSiteInfo::CallSiteInfo(const CallBase &CB) {
 }
 
 template <>
-struct llvm::DOTGraphTraits<const MachineFunction *>
+struct LLVM_ABI_NS::DOTGraphTraits<const MachineFunction *>
     : public DefaultDOTGraphTraits {
   DOTGraphTraits(bool isSimple = false) : DefaultDOTGraphTraits(isSimple) {}
 

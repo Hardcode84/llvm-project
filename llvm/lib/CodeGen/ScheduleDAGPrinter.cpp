@@ -17,7 +17,7 @@
 using namespace llvm;
 
 template <>
-struct llvm::DOTGraphTraits<ScheduleDAG *> : public DefaultDOTGraphTraits {
+struct LLVM_ABI_NS::DOTGraphTraits<ScheduleDAG *> : public DefaultDOTGraphTraits {
 
   DOTGraphTraits(bool isSimple = false) : DefaultDOTGraphTraits(isSimple) {}
 

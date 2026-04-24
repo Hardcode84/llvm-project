@@ -1300,7 +1300,7 @@ RedirectingFileSystem::RedirectingFileSystem(IntrusiveRefCntPtr<FileSystem> FS)
 
 /// Directory iterator implementation for \c RedirectingFileSystem's
 /// directory entries.
-class llvm::vfs::RedirectingFSDirIterImpl
+class LLVM_ABI_NS::vfs::RedirectingFSDirIterImpl
     : public llvm::vfs::detail::DirIterImpl {
   std::string Dir;
   RedirectingFileSystem::DirectoryEntry::iterator Current, End;
@@ -1660,7 +1660,7 @@ void RedirectingFileSystem::visitChildFileSystems(VisitCallbackTy Callback) {
 }
 
 /// A helper class to hold the common YAML parsing state.
-class llvm::vfs::RedirectingFileSystemParser {
+class LLVM_ABI_NS::vfs::RedirectingFileSystemParser {
   yaml::Stream &Stream;
 
   void error(yaml::Node *N, const Twine &Msg) { Stream.printError(N, Msg); }

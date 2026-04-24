@@ -1111,15 +1111,15 @@ private:
 } // namespace
 
 template <>
-struct llvm::DenseMapInfo<CallsiteContextGraph<
+struct LLVM_ABI_NS::DenseMapInfo<CallsiteContextGraph<
     ModuleCallsiteContextGraph, Function, Instruction *>::CallInfo>
     : public DenseMapInfo<std::pair<Instruction *, unsigned>> {};
 template <>
-struct llvm::DenseMapInfo<CallsiteContextGraph<
+struct LLVM_ABI_NS::DenseMapInfo<CallsiteContextGraph<
     IndexCallsiteContextGraph, FunctionSummary, IndexCall>::CallInfo>
     : public DenseMapInfo<std::pair<IndexCall, unsigned>> {};
 template <>
-struct llvm::DenseMapInfo<IndexCall>
+struct LLVM_ABI_NS::DenseMapInfo<IndexCall>
     : public DenseMapInfo<PointerUnion<CallsiteInfo *, AllocInfo *>> {};
 
 namespace {

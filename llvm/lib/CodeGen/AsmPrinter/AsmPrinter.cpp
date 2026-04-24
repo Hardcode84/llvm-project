@@ -224,7 +224,7 @@ public:
 };
 } // namespace
 
-class llvm::AddrLabelMap {
+class LLVM_ABI_NS::AddrLabelMap {
   MCContext &Context;
   struct AddrLabelSymEntry {
     /// The symbols for the label.

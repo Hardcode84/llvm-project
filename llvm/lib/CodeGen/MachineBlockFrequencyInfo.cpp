@@ -115,7 +115,7 @@ using MBFIDOTGraphTraitsBase =
                           MachineBranchProbabilityInfo>;
 
 template <>
-struct llvm::DOTGraphTraits<MachineBlockFrequencyInfo *>
+struct LLVM_ABI_NS::DOTGraphTraits<MachineBlockFrequencyInfo *>
     : public MBFIDOTGraphTraitsBase {
   const MachineFunction *CurFunc = nullptr;
   DenseMap<const MachineBasicBlock *, int> LayoutOrderMap;

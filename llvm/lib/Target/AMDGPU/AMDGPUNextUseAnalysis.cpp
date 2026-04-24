@@ -261,7 +261,7 @@ void printAttr(json::OStream &J, const Printable &P, ValueT V) {
 //==============================================================================
 // AMDGPUNextUseAnalysisImpl
 //==============================================================================
-class llvm::AMDGPUNextUseAnalysisImpl {
+class LLVM_ABI_NS::AMDGPUNextUseAnalysisImpl {
 public:
   struct CacheableNextUseDistance {
     bool IsInstrRelative;
