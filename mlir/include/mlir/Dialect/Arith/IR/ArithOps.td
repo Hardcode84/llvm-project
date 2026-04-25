@@ -338,8 +338,14 @@ def Arith_AddUIExtendedOp : Arith_Op<"addui_extended", [Pure, Commutative,
     ```
   }];
 
-  let arguments = (ins Arith_SignlessIntegerOrIndexLike:$lhs, Arith_SignlessIntegerOrIndexLike:$rhs);
-  let results = (outs Arith_SignlessIntegerOrIndexLike:$sum, BoolLike:$overflow);
+  let arguments = (ins
+    Arith_SignlessIntegerOrIndexLike:$lhs,
+    Arith_SignlessIntegerOrIndexLike:$rhs
+  );
+  let results = (outs
+    Arith_SignlessIntegerOrIndexLike:$sum,
+    BoolLike:$overflow
+  );
   let assemblyFormat = [{
     $lhs `,` $rhs attr-dict `:` type($sum) `,` type($overflow)
   }];
@@ -479,8 +485,14 @@ def Arith_MulSIExtendedOp : Arith_Op<"mulsi_extended", [Pure, Commutative,
     ```
   }];
 
-  let arguments = (ins Arith_SignlessIntegerOrIndexLike:$lhs, Arith_SignlessIntegerOrIndexLike:$rhs);
-  let results = (outs Arith_SignlessIntegerOrIndexLike:$low, Arith_SignlessIntegerOrIndexLike:$high);
+  let arguments = (ins
+    Arith_SignlessIntegerOrIndexLike:$lhs,
+    Arith_SignlessIntegerOrIndexLike:$rhs
+  );
+  let results = (outs
+    Arith_SignlessIntegerOrIndexLike:$low,
+    Arith_SignlessIntegerOrIndexLike:$high
+  );
 
   let assemblyFormat = "$lhs `,` $rhs attr-dict `:` type($lhs)";
 
@@ -522,8 +534,14 @@ def Arith_MulUIExtendedOp : Arith_Op<"mului_extended", [Pure, Commutative,
     ```
   }];
 
-  let arguments = (ins Arith_SignlessIntegerOrIndexLike:$lhs, Arith_SignlessIntegerOrIndexLike:$rhs);
-  let results = (outs Arith_SignlessIntegerOrIndexLike:$low, Arith_SignlessIntegerOrIndexLike:$high);
+  let arguments = (ins
+    Arith_SignlessIntegerOrIndexLike:$lhs,
+    Arith_SignlessIntegerOrIndexLike:$rhs
+  );
+  let results = (outs
+    Arith_SignlessIntegerOrIndexLike:$low,
+    Arith_SignlessIntegerOrIndexLike:$high
+  );
 
   let assemblyFormat = "$lhs `,` $rhs attr-dict `:` type($lhs)";
 

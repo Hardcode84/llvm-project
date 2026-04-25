@@ -72,7 +72,10 @@ class Math_FloatUnaryOp<string mnemonic, list<Trait> traits = []> :
 // type, vector or tensor thereof.
 class Math_IntegerBinaryOp<string mnemonic, list<Trait> traits = []> :
     Math_Op<mnemonic, traits # [SameOperandsAndResultType]> {
-  let arguments = (ins SignlessIntegerOrIndexLike:$lhs, SignlessIntegerOrIndexLike:$rhs);
+  let arguments = (ins
+    SignlessIntegerOrIndexLike:$lhs,
+    SignlessIntegerOrIndexLike:$rhs
+  );
   let results = (outs SignlessIntegerOrIndexLike:$result);
 
   let assemblyFormat = "$lhs `,` $rhs attr-dict `:` type($result)";

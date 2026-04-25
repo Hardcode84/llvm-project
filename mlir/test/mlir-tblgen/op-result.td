@@ -99,7 +99,11 @@ def OpG : NS_Op<"one_normal_and_one_variadic_result_op", []> {
 // CHECK-NEXT:    odsState.addTypes(resultTypes);
 
 def OpI : NS_Op<"mix_variadic_and_normal_results_op", [SameVariadicResultSize]> {
-  let results = (outs Variadic<AnyTensor>:$output1, AnyTensor:$output2, Variadic<AnyTensor>:$output3);
+  let results = (outs
+    Variadic<AnyTensor>:$output1,
+    AnyTensor:$output2,
+    Variadic<AnyTensor>:$output3
+  );
 }
 
 // DECL-LABEL: ::mlir::Operation::result_range getOutput1
@@ -208,7 +212,11 @@ def OpL6 : NS_Op<"op_with_same_and_constraint_results",
 // CHECK: inferredReturnTypes[2] = odsInferredType2;
 
 def OpM : NS_Op<"mix_diff_size_variadic_and_normal_results_op", [AttrSizedResultSegments]> {
-  let results = (outs Variadic<AnyTensor>:$output1, AnyTensor:$output2, Optional<AnyTensor>:$output3);
+  let results = (outs
+    Variadic<AnyTensor>:$output1,
+    AnyTensor:$output2,
+    Optional<AnyTensor>:$output3
+  );
 }
 
 // CHECK-LABEL: OpM::build(::mlir::OpBuilder &odsBuilder, ::mlir::OperationState &odsState, ::mlir::TypeRange output1, ::mlir::Type output2, /*optional*/::mlir::Type output3)

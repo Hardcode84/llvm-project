@@ -783,7 +783,10 @@ def AMDGPU_SwizzleBitModeOp : AMDGPU_Op<"swizzle_bitmode",
   }];
 }
 
-def AMDGPU_PermlaneSwapOp : AMDGPU_Op<"permlane_swap", [Pure, AllTypesMatch<["result", "src"]>]> {
+def AMDGPU_PermlaneSwapOp : AMDGPU_Op<"permlane_swap", [
+  Pure,
+  AllTypesMatch<["result", "src"]>
+]> {
   let summary = "AMDGPU permlane swap op";
   let description = [{
     High-level wrapper on `rocdl.permlane{16,32}.swap` variants for permutations

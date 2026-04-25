@@ -524,7 +524,10 @@ def Bufferization_ToBufferOp : Bufferization_Op<"to_buffer", [
     the returned buffer) will not be written to.
   }];
 
-  let arguments = (ins Bufferization_TensorLikeTypeInterface:$tensor, UnitAttr:$read_only);
+  let arguments = (ins
+    Bufferization_TensorLikeTypeInterface:$tensor,
+    UnitAttr:$read_only
+  );
   let results = (outs Bufferization_BufferLikeTypeInterface:$buffer);
 
   let extraClassDeclaration = [{

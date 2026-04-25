@@ -4981,7 +4981,10 @@ def NVVM_MapaOp: NVVM_Op<"mapa",
     [[LLVM_PointerShared, LLVM_PointerSharedCluster], [LLVM_PointerGeneric, LLVM_PointerGeneric]],
     "Valid address-space check(or mapping) for mapa Op">, NVVMRequiresSM<90>]> {
   let results = (outs AnyTypeOf<[LLVM_PointerGeneric, LLVM_PointerSharedCluster]>:$res);
-  let arguments = (ins AnyTypeOf<[LLVM_PointerGeneric, LLVM_PointerShared]>:$a, I32:$b);
+  let arguments = (ins
+    AnyTypeOf<[LLVM_PointerGeneric, LLVM_PointerShared]>:$a,
+    I32:$b
+  );
 
   string llvmBuilder = [{
     int addrSpace = llvm::cast<LLVMPointerType>(op.getA().getType()).getAddressSpace();
@@ -5046,7 +5049,11 @@ def NVVM_MatchSyncOp : NVVM_Op<"match.sync", [InferTypeOpAdaptor]>,
 //===----------------------------------------------------------------------===//
 
 def NVVM_BulkStoreOp: NVVM_Op<"st.bulk"> {
-  let arguments = (ins AnyTypeOf<[LLVM_PointerGeneric, LLVM_PointerShared]>:$addr, I64:$size, DefaultValuedAttr<I64Attr, "0">:$initVal);
+  let arguments = (ins
+    AnyTypeOf<[LLVM_PointerGeneric, LLVM_PointerShared]>:$addr,
+    I64:$size,
+    DefaultValuedAttr<I64Attr, "0">:$initVal
+  );
 
   let summary = "Bulk Store Op";
   let description = [{

@@ -1212,7 +1212,10 @@ def GPU_AllReduceOp : GPU_Op<"all_reduce",
 def AnyIntegerOrFloatOr1DVector :
   AnyTypeOf<[AnyIntegerOrFloat, FixedVectorOfRankAndType<[1], [AnyIntegerOrFloat]>]>;
 
-def GPU_SubgroupReduceOp : GPU_Op<"subgroup_reduce", [SameOperandsAndResultType, NoMemoryEffect]> {
+def GPU_SubgroupReduceOp : GPU_Op<"subgroup_reduce", [
+  SameOperandsAndResultType,
+  NoMemoryEffect
+]> {
   let summary = "Reduce values among subgroup.";
   let description = [{
     The `subgroup_reduce` op reduces the values of lanes (work items) across a
@@ -2181,7 +2184,10 @@ def GPU_SubgroupMmaElementwiseOp : GPU_Op<"subgroup_mma_elementwise",
 // (currently lowers to cuSparse for CUDA only, no ROCM lowering).
 //
 
-def GPU_CreateDnTensorOp : GPU_Op<"create_dn_tensor", [GPU_AsyncOpInterface, AttrSizedOperandSegments]> {
+def GPU_CreateDnTensorOp : GPU_Op<"create_dn_tensor", [
+  GPU_AsyncOpInterface,
+  AttrSizedOperandSegments
+]> {
   let summary = "Create dense tensor operation";
   let description = [{
     The `gpu.create_dn_tensor` operation initializes a dense tensor from
@@ -2203,7 +2209,10 @@ def GPU_CreateDnTensorOp : GPU_Op<"create_dn_tensor", [GPU_AsyncOpInterface, Att
   let arguments = (ins Variadic<GPU_AsyncToken>:$asyncDependencies,
                        AnyMemRef:$memref,
                        Variadic<Index>:$dims);
-  let results = (outs Res<GPU_SparseDnTensorHandle>:$dnTensor, Optional<GPU_AsyncToken>:$asyncToken);
+  let results = (outs
+    Res<GPU_SparseDnTensorHandle>:$dnTensor,
+    Optional<GPU_AsyncToken>:$asyncToken
+  );
 
   let assemblyFormat = [{
     custom<AsyncDependencies>(type($asyncToken), $asyncDependencies)
@@ -2649,7 +2658,10 @@ def GPU_SpMVOp : GPU_Op<"spmv", [GPU_AsyncOpInterface]> {
   }];
 }
 
-def GPU_SpMMBufferSizeOp : GPU_Op<"spmm_buffer_size", [GPU_AsyncOpInterface, AttrSizedResultSegments]> {
+def GPU_SpMMBufferSizeOp : GPU_Op<"spmm_buffer_size", [
+  GPU_AsyncOpInterface,
+  AttrSizedResultSegments
+]> {
   let summary = "Precompute buffersize for SpMM operation";
   let description = [{
     The `gpu.spmm_buffer_size` operation returns the buffer size required
@@ -2702,7 +2714,10 @@ def GPU_SpMMBufferSizeOp : GPU_Op<"spmm_buffer_size", [GPU_AsyncOpInterface, Att
   }];
 }
 
-def GPU_SpMMOp : GPU_Op<"spmm", [GPU_AsyncOpInterface, AttrSizedOperandSegments]> {
+def GPU_SpMMOp : GPU_Op<"spmm", [
+  GPU_AsyncOpInterface,
+  AttrSizedOperandSegments
+]> {
   let summary = "SpMM operation";
   let description = [{
     The `gpu.spmm` operation performs the SpMM operation on the given sparse and
@@ -2785,7 +2800,10 @@ def GPU_SDDMMBufferSizeOp : GPU_Op<"sddmm_buffer_size", [GPU_AsyncOpInterface]> 
                    GPU_SparseDnTensorHandle:$dnmatB,
                    GPU_SparseSpMatHandle:$spmatC,
                    TypeAttr:$computeType);
-  let results = (outs Res<Index>:$bufferSz, Optional<GPU_AsyncToken>:$asyncToken);
+  let results = (outs
+    Res<Index>:$bufferSz,
+    Optional<GPU_AsyncToken>:$asyncToken
+  );
 
   let builders = [OpBuilder<(ins
       "Type":$bufferSz,

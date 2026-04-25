@@ -482,7 +482,12 @@ def NamespaceOp : NS_Op<"namespace_op", []> {
 // ---
 
 def MixOperandsAndAttrs : NS_Op<"mix_operands_and_attrs", []> {
-  let arguments = (ins F32Attr:$attr, F32:$operand, F32Attr:$otherAttr, F32:$otherArg);
+  let arguments = (ins
+    F32Attr:$attr,
+    F32:$operand,
+    F32Attr:$otherAttr,
+    F32:$otherArg
+  );
 }
 
 // DECL-LABEL: MixOperandsAndAttrs declarations

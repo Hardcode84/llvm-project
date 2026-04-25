@@ -1569,7 +1569,15 @@ def TestCommutativeOp : TEST_Op<"op_commutative", [Commutative]> {
 }
 
 def TestLargeCommutativeOp : TEST_Op<"op_large_commutative", [Commutative]> {
-  let arguments = (ins I32:$op1, I32:$op2, I32:$op3, I32:$op4, I32:$op5, I32:$op6, I32:$op7);
+  let arguments = (ins
+    I32:$op1,
+    I32:$op2,
+    I32:$op3,
+    I32:$op4,
+    I32:$op5,
+    I32:$op6,
+    I32:$op7
+  );
   let results = (outs I32);
 }
 
@@ -3523,7 +3531,11 @@ def TestOpWithPropertiesAndInferredType
   ]> {
   let assemblyFormat = "$lhs prop-dict attr-dict";
 
-  let arguments = (ins I32Attr:$lhs, IntProp<"int64_t">:$rhs, OptionalAttr<UnitAttr>: $packed);
+  let arguments = (ins
+    I32Attr:$lhs,
+    IntProp<"int64_t">:$rhs,
+    OptionalAttr<UnitAttr>: $packed
+  );
   let results = (outs AnyType:$result);
 }
 

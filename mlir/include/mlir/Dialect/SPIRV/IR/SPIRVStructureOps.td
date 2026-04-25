@@ -464,7 +464,10 @@ def SPIRV_FuncOp : SPIRV_Op<"func", [
 
 // -----
 
-def SPIRV_GlobalVariableOp : SPIRV_Op<"GlobalVariable", [InModuleScope, Symbol]> {
+def SPIRV_GlobalVariableOp : SPIRV_Op<"GlobalVariable", [
+  InModuleScope,
+  Symbol
+]> {
   let summary = [{
     Allocate an object in memory at module scope. The object is
     referenced using a symbol name.
@@ -795,7 +798,10 @@ def SPIRV_SpecConstantCompositeOp : SPIRV_Op<"SpecConstantComposite", [
 
 // -----
 
-def SPIRV_EXTSpecConstantCompositeReplicateOp : SPIRV_ExtVendorOp<"SpecConstantCompositeReplicate", [InModuleScope, Symbol]> {
+def SPIRV_EXTSpecConstantCompositeReplicateOp : SPIRV_ExtVendorOp<"SpecConstantCompositeReplicate", [
+  InModuleScope,
+  Symbol
+]> {
   let summary = "Declare a new replicated composite specialization constant op.";
 
   let description = [{

@@ -649,7 +649,10 @@ def Vector_DeinterleaveOp :
       }];
 
       let arguments = (ins AnyVectorOfNonZeroRank:$source);
-      let results = (outs AnyVectorOfNonZeroRank:$res1, AnyVectorOfNonZeroRank:$res2);
+      let results = (outs
+        AnyVectorOfNonZeroRank:$res1,
+        AnyVectorOfNonZeroRank:$res2
+      );
 
       let assemblyFormat = [{
         $source attr-dict `:` type($source) `->` type($res1)

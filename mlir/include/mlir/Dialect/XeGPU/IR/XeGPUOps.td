@@ -61,7 +61,11 @@ class XeGPU_Op<string mnemonic, list<Trait> traits = []>:
 }
 
 
-def XeGPU_CreateNdDescOp: XeGPU_Op<"create_nd_tdesc", [Pure, ViewLikeOpInterface, AttrSizedOperandSegments]> {
+def XeGPU_CreateNdDescOp: XeGPU_Op<"create_nd_tdesc", [
+  Pure,
+  ViewLikeOpInterface,
+  AttrSizedOperandSegments
+]> {
 
   let summary = "Create nd-tensor descriptor operation";
   let description = [{
@@ -771,7 +775,10 @@ def XeGPU_PrefetchOp : XeGPU_Op<"prefetch", [AnchorLayoutInterface]> {
   let hasVerifier = 1;
 }
 
-def XeGPU_LoadGatherOp : XeGPU_Op<"load", [MemoryEffects<[MemRead]>, AnchorLayoutInterface]> {
+def XeGPU_LoadGatherOp : XeGPU_Op<"load", [
+  MemoryEffects<[MemRead]>,
+  AnchorLayoutInterface
+]> {
   let summary = "load a set of scattered data points from memory.";
 
   let description = [{ It (aka. load) load data per each lane. The output
@@ -916,7 +923,10 @@ def XeGPU_LoadGatherOp : XeGPU_Op<"load", [MemoryEffects<[MemRead]>, AnchorLayou
   let hasVerifier = 1;
 }
 
-def XeGPU_StoreScatterOp : XeGPU_Op<"store", [MemoryEffects<[MemWrite]>, AnchorLayoutInterface]> {
+def XeGPU_StoreScatterOp : XeGPU_Op<"store", [
+  MemoryEffects<[MemWrite]>,
+  AnchorLayoutInterface
+]> {
   let summary = "store data to scattered memory locations.";
   let description =
       [{ It (aka. store) stores data to scattered memory locations. The value is
@@ -1061,7 +1071,11 @@ def XeGPU_StoreScatterOp : XeGPU_Op<"store", [MemoryEffects<[MemWrite]>, AnchorL
   let hasVerifier = 1;
 }
 
-def XeGPU_DpasOp : XeGPU_Op<"dpas", [Pure, AllElementTypesMatch<["lhs", "rhs"]>, AnchorLayoutInterface]> {
+def XeGPU_DpasOp : XeGPU_Op<"dpas", [
+  Pure,
+  AllElementTypesMatch<["lhs", "rhs"]>,
+  AnchorLayoutInterface
+]> {
   let summary = "It performs mma computation";
 
   let description = [{DPAS performs matrix multiplication on matrix A of `mxk`

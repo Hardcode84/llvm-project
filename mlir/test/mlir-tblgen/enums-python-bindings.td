@@ -18,7 +18,11 @@ def One : I32EnumAttrCase<"CaseOne", 1, "one">;
 def Two : I32EnumAttrCase<"CaseTwo", 2, "two">;
 def NegOne : I32EnumAttrCase<"CaseNegOne", -1, "negone">;
 
-def MyEnum : I32EnumAttr<"MyEnum", "An example 32-bit enum", [One, Two, NegOne]>;
+def MyEnum : I32EnumAttr<"MyEnum", "An example 32-bit enum", [
+  One,
+  Two,
+  NegOne
+]>;
 // CHECK-LABEL: class MyEnum(IntEnum):
 // CHECK:     """An example 32-bit enum"""
 
@@ -44,7 +48,10 @@ def TestMyEnum_Attr : EnumAttr<Test_Dialect, MyEnum, "enum">;
 def One64 : I64EnumAttrCase<"CaseOne64", 1, "one">;
 def Two64 : I64EnumAttrCase<"CaseTwo64", 2, "two">;
 
-def MyEnum64 : I64EnumAttr<"MyEnum64", "An example 64-bit enum", [One64, Two64]>;
+def MyEnum64 : I64EnumAttr<"MyEnum64", "An example 64-bit enum", [
+  One64,
+  Two64
+]>;
 // CHECK-LABEL: class MyEnum64(IntEnum):
 // CHECK:     """An example 64-bit enum"""
 

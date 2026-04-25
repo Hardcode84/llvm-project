@@ -19,8 +19,14 @@ def AttrInterfaceInNamespace : AttrInterface<"AttrInterfaceInNamespace"> {
 }
 
 def OpUsingAllOfThose : Op<Test_Dialect, "OpUsingAllOfThose"> {
-	let arguments = (ins TopLevelAttrInterface:$attr1, AttrInterfaceInNamespace:$attr2);
-	let results = (outs TopLevelTypeInterface:$res1, TypeInterfaceInNamespace:$res2);
+	let arguments = (ins
+	  TopLevelAttrInterface:$attr1,
+	  AttrInterfaceInNamespace:$attr2
+	);
+	let results = (outs
+	  TopLevelTypeInterface:$res1,
+	  TypeInterfaceInNamespace:$res2
+	);
 }
 
 // CHECK: static ::llvm::LogicalResult {{__mlir_ods_local_type_constraint.*}}(

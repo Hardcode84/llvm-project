@@ -611,7 +611,10 @@ class LLVM_CastOpWithFastMathFlag<string mnemonic, string instName, Type type,
 class LLVM_DereferenceableCastOp<string mnemonic, string instName, Type type,
                   Type resultType, list<Trait> traits = []> :
     LLVM_Op<mnemonic, !listconcat([Pure], [DeclareOpInterfaceMethods<DereferenceableOpInterface>], traits)> {
-  let arguments = (ins type:$arg, OptionalAttr<LLVM_DereferenceableAttr>:$dereferenceable);
+  let arguments = (ins
+    type:$arg,
+    OptionalAttr<LLVM_DereferenceableAttr>:$dereferenceable
+  );
   let results = (outs resultType:$res);
   let builders = [LLVM_OneResultOpBuilder];
   let assemblyFormat = "$arg (`dereferenceable` `` $dereferenceable^)? attr-dict `:` type($arg) `to` type($res)";
@@ -938,7 +941,10 @@ def LLVM_ExtractElementOp : LLVM_Op<"extractelement", [Pure,
 def LLVM_ExtractValueOp : LLVM_Op<"extractvalue", [Pure]> {
   let summary = "Extract a value from an LLVM struct.";
 
-  let arguments = (ins LLVM_AnyAggregate:$container, DenseI64ArrayAttr:$position);
+  let arguments = (ins
+    LLVM_AnyAggregate:$container,
+    DenseI64ArrayAttr:$position
+  );
   let results = (outs LLVM_Type:$res);
 
   let builders = [
@@ -1960,7 +1966,12 @@ def LLVM_ComdatSelectorOp : LLVM_Op<"comdat_selector", [Symbol]> {
   let assemblyFormat = "$sym_name $comdat attr-dict";
 }
 
-def LLVM_ComdatOp : LLVM_Op<"comdat", [NoTerminator, NoRegionArguments, SymbolTable, Symbol]> {
+def LLVM_ComdatOp : LLVM_Op<"comdat", [
+  NoTerminator,
+  NoRegionArguments,
+  SymbolTable,
+  Symbol
+]> {
   let arguments = (ins
     SymbolNameAttr:$sym_name
   );

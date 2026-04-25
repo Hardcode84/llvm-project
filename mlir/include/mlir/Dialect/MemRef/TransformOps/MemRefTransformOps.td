@@ -303,7 +303,10 @@ def MemRefMakeLoopIndependentOp
     This transform op consumes the target handle and produces a result handle.
   }];
 
-  let arguments = (ins TransformHandleTypeInterface:$target, I64Attr:$num_loops);
+  let arguments = (ins
+    TransformHandleTypeInterface:$target,
+    I64Attr:$num_loops
+  );
   let results = (outs TransformHandleTypeInterface:$transformed);
   let assemblyFormat =
       "$target attr-dict `:` functional-type($target, $transformed)";

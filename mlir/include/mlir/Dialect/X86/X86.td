@@ -698,7 +698,10 @@ def AMX_TileTypeElementType : AnyTypeOf<[F32, F16, BF16, I32, I8]> {
   let cppFunctionName = "isValidTileTypeElementType";
 }
 
-def AMX_TileType : AMX_Type<"Tile", "tile", [ShapedTypeInterface, ValueSemantics]> {
+def AMX_TileType : AMX_Type<"Tile", "tile", [
+  ShapedTypeInterface,
+  ValueSemantics
+]> {
   let summary = "AMX 2D tile to be used by AMX opertaions.";
 
   let description = [{

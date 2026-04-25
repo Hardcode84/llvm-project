@@ -355,7 +355,12 @@ def NVGPU_MBarrierInitOp : NVGPU_Op<"mbarrier.init", []> {
       nvgpu.mbarrier.init %barrier, %num_threads : !nvgpu.mbarrier.barrier<memorySpace = #gpu.address_space<workgroup>>
     ```
   }];
-  let arguments = (ins NVGPU_MBarrierGroup:$barriers, Index:$count, Index:$mbarId, Optional<I1>:$predicate);
+  let arguments = (ins
+    NVGPU_MBarrierGroup:$barriers,
+    Index:$count,
+    Index:$mbarId,
+    Optional<I1>:$predicate
+  );
   let assemblyFormat = "$barriers `[` $mbarId `]` `,` $count (`,` `predicate` `=` $predicate^)? attr-dict `:` type($barriers)";
 }
 
@@ -370,7 +375,11 @@ def NVGPU_MBarrierTestWaitOp : NVGPU_Op<"mbarrier.test.wait", []> {
       %isComplete = nvgpu.mbarrier.test.wait %barrier, %token : !nvgpu.mbarrier.barrier<memorySpace = #gpu.address_space<workgroup>>, !nvgpu.mbarrier.token
     ```
   }];
-  let arguments = (ins NVGPU_MBarrierGroup:$barriers, NVGPU_MBarrierToken:$token, Index:$mbarId);
+  let arguments = (ins
+    NVGPU_MBarrierGroup:$barriers,
+    NVGPU_MBarrierToken:$token,
+    Index:$mbarId
+  );
   let results = (outs I1:$waitComplete);
   let assemblyFormat = "$barriers `[` $mbarId `]` `,` $token attr-dict `:` type($barriers) `,` type($token)";
 }
@@ -430,7 +439,12 @@ def NVGPU_MBarrierArriveExpectTxOp : NVGPU_Op<"mbarrier.arrive.expect_tx", []> {
       nvgpu.mbarrier.arrive.expect_tx %barrier, %ic0 : !nvgpu.mbarrier.barrier<memorySpace = #gpu.address_space<workgroup>>
     ```
   }];
-  let arguments = (ins NVGPU_MBarrierGroup:$barriers, Index:$txcount, Index:$mbarId, Optional<I1>:$predicate);
+  let arguments = (ins
+    NVGPU_MBarrierGroup:$barriers,
+    Index:$txcount,
+    Index:$mbarId,
+    Optional<I1>:$predicate
+  );
   let assemblyFormat = "$barriers `[` $mbarId `]` `,` $txcount  (`,` `predicate` `=` $predicate^)? attr-dict `:` type($barriers)";
 }
 
@@ -450,7 +464,12 @@ def NVGPU_MBarrierTryWaitParityOp : NVGPU_Op<"mbarrier.try_wait.parity", []> {
       nvgpu.mbarrier.try_wait.parity %barrier, %phaseParity, %ticks : !nvgpu.mbarrier.barrier<memorySpace = #gpu.address_space<workgroup>>
     ```
   }];
-  let arguments = (ins NVGPU_MBarrierGroup:$barriers, I1:$phaseParity, Index:$ticks, Index:$mbarId);
+  let arguments = (ins
+    NVGPU_MBarrierGroup:$barriers,
+    I1:$phaseParity,
+    Index:$ticks,
+    Index:$mbarId
+  );
   let assemblyFormat = "$barriers `[` $mbarId `]` `,` $phaseParity `,` $ticks attr-dict `:` type($barriers)";  
 }
 
@@ -474,7 +493,10 @@ def NVGPU_TmaPrefetchOp : NVGPU_Op<"tma.prefetch.descriptor", []> {
     The Op brings the cache line containing the given `$tmaDescriptor` for 
     subsequent use by the `tma.async.load` instruction.
   }];
-  let arguments = (ins NVGPU_TensorMapDescriptor:$tensorMapDescriptor, Optional<I1>:$predicate);
+  let arguments = (ins
+    NVGPU_TensorMapDescriptor:$tensorMapDescriptor,
+    Optional<I1>:$predicate
+  );
   let assemblyFormat = [{
     $tensorMapDescriptor (`,` `predicate` `=` $predicate^)? attr-dict `:` type($tensorMapDescriptor)
   }];

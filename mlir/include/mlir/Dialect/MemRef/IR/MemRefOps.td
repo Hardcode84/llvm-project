@@ -1982,7 +1982,10 @@ def MemRef_CollapseShapeOp : MemRef_ReassociativeReshapeOp<"collapse_shape", [
     source/result layout map are the faster-varying ones.
   }];
 
-  let arguments = (ins AnyStridedMemRef:$src, IndexListArrayAttr:$reassociation);
+  let arguments = (ins
+    AnyStridedMemRef:$src,
+    IndexListArrayAttr:$reassociation
+  );
 
   let assemblyFormat = [{
     $src $reassociation attr-dict `:` type($src) `into` type($result)

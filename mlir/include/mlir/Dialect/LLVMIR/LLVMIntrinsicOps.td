@@ -143,7 +143,12 @@ def LLVM_Prefetch : LLVM_ZeroResultIntrOp<"prefetch", [0],
   /*requiresArgAndResultAttrs=*/0, /*requiresOpBundles=*/0,
   /*immArgPositions=*/[1, 2, 3], /*immArgAttrNames=*/["rw", "hint", "cache"]
 > {
-  let arguments = (ins LLVM_AnyPointer:$addr, I32Attr:$rw, I32Attr:$hint, I32Attr:$cache);
+  let arguments = (ins
+    LLVM_AnyPointer:$addr,
+    I32Attr:$rw,
+    I32Attr:$hint,
+    I32Attr:$cache
+  );
 }
 def LLVM_RoundEvenOp : LLVM_UnaryIntrOpF<"roundeven">;
 def LLVM_RoundOp : LLVM_UnaryIntrOpF<"round">;

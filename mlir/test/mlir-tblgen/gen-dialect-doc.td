@@ -22,8 +22,14 @@ def OpGroupA : OpDocGroup {
 }
 
 let opDocGroup = OpGroupA in {
-def ADOp : Op<Test_Dialect, "d", [NoMemoryEffect, SingleBlockImplicitTerminator<"YieldOp">]>;
-def AAOp : Op<Test_Dialect, "a", [NoMemoryEffect, SingleBlockImplicitTerminator<"YieldOp">]>;
+def ADOp : Op<Test_Dialect, "d", [
+  NoMemoryEffect,
+  SingleBlockImplicitTerminator<"YieldOp">
+]>;
+def AAOp : Op<Test_Dialect, "a", [
+  NoMemoryEffect,
+  SingleBlockImplicitTerminator<"YieldOp">
+]>;
 }
 
 def OpGroupB : OpDocGroup {
@@ -32,8 +38,14 @@ def OpGroupB : OpDocGroup {
 }
 
 let opDocGroup = OpGroupB in {
-def ACOp : Op<Test_Dialect, "c", [NoMemoryEffect, SingleBlockImplicitTerminator<"YieldOp">]>;
-def ABOp : Op<Test_Dialect, "b", [NoMemoryEffect, SingleBlockImplicitTerminator<"YieldOp">]>;
+def ACOp : Op<Test_Dialect, "c", [
+  NoMemoryEffect,
+  SingleBlockImplicitTerminator<"YieldOp">
+]>;
+def ABOp : Op<Test_Dialect, "b", [
+  NoMemoryEffect,
+  SingleBlockImplicitTerminator<"YieldOp">
+]>;
 }
 
 def AEOp : Op<Test_Dialect, "e", [NoMemoryEffect]> {

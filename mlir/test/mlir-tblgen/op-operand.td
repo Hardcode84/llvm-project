@@ -40,7 +40,11 @@ def OpB : NS_Op<"one_variadic_operand_op", []> {
 // CHECK:         odsState.addOperands(input);
 
 def OpD : NS_Op<"mix_variadic_and_normal_inputs_op", [SameVariadicOperandSize]> {
-  let arguments = (ins Variadic<AnyTensor>:$input1, AnyTensor:$input2, Variadic<AnyTensor>:$input3);
+  let arguments = (ins
+    Variadic<AnyTensor>:$input1,
+    AnyTensor:$input2,
+    Variadic<AnyTensor>:$input3
+  );
 }
 
 // DECL-LABEL: class OpD : {{.*}} {

@@ -529,7 +529,10 @@ def SPIRV_ReturnOp : SPIRV_Op<"Return", [InFunctionScope, Pure,
 
 // -----
 
-def SPIRV_UnreachableOp : SPIRV_Op<"Unreachable", [InFunctionScope, Terminator]> {
+def SPIRV_UnreachableOp : SPIRV_Op<"Unreachable", [
+  InFunctionScope,
+  Terminator
+]> {
   let summary = "Behavior is undefined if this instruction is executed.";
 
   let description = [{

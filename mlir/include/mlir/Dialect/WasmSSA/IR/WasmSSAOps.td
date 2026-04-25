@@ -532,7 +532,10 @@ def WasmSSA_MemOp : WasmSSA_Op<"memory", [Symbol]> {
   let assemblyFormat = "(`exported` $exported^)? $sym_name $limits attr-dict";
 }
 
-def WasmSSA_MemImportOp : WasmSSA_Op<"import_mem", [Symbol, ImportOpInterface]> {
+def WasmSSA_MemImportOp : WasmSSA_Op<"import_mem", [
+  Symbol,
+  ImportOpInterface
+]> {
   let summary = "Importing a memory";
   let description = [{
     Import a memory from another module.
@@ -572,7 +575,10 @@ def WasmSSA_TableOp : WasmSSA_Op<"table", [Symbol]> {
   let assemblyFormat = "(`exported` $exported^)? $sym_name $type attr-dict";
 }
 
-def WasmSSA_TableImportOp : WasmSSA_Op<"import_table", [Symbol, ImportOpInterface]> {
+def WasmSSA_TableImportOp : WasmSSA_Op<"import_table", [
+  Symbol,
+  ImportOpInterface
+]> {
   let summary = "Importing a table";
   let description = [{
     Import a table from another module.
@@ -613,7 +619,10 @@ class WasmSSA_BinaryNumericalOp<string mnemonic, string summaryStr, string descS
   WasmSSA_Op<mnemonic, [AllTypesMatch<["lhs", "rhs", "result"]>]> {
   let summary = summaryStr;
   let description = descStr;
-  let arguments = (ins AnyTypeOf<validOpTypes>:$lhs, AnyTypeOf<validOpTypes>:$rhs);
+  let arguments = (ins
+    AnyTypeOf<validOpTypes>:$lhs,
+    AnyTypeOf<validOpTypes>:$rhs
+  );
   let results = (outs AnyTypeOf<validOpTypes>:$result);
   let assemblyFormat = "$lhs $rhs `:` type($lhs) attr-dict";
 }
@@ -763,7 +772,10 @@ class WasmSSA_BinaryComparisonOp<string mnemonic, string summaryStr, string desc
   WasmSSA_Op<mnemonic, [AllTypesMatch<["lhs", "rhs"]>]> {
   let summary = summaryStr;
   let description = descStr;
-  let arguments = (ins AnyTypeOf<validOpTypes>:$lhs, AnyTypeOf<validOpTypes>:$rhs);
+  let arguments = (ins
+    AnyTypeOf<validOpTypes>:$lhs,
+    AnyTypeOf<validOpTypes>:$rhs
+  );
   let results = (outs I32:$result);
   let assemblyFormat = "$lhs $rhs `:` type($lhs) `->` type($result) attr-dict";
 }
@@ -1082,7 +1094,10 @@ def WasmSSA_ExtendLowBitsSOp : WasmSSA_Op<"extend", [AllTypesMatch<["input", "re
   %a = wasmssa.extend 16 low bits from %[[VAL_0]]: i64
   ```
   }];
-  let arguments = (ins WasmSSA_IntegerType:$input, Builtin_IntegerAttr: $bitsToTake);
+  let arguments = (ins
+    WasmSSA_IntegerType:$input,
+    Builtin_IntegerAttr: $bitsToTake
+  );
   let results = (outs WasmSSA_IntegerType: $result);
   let hasVerifier = 1;
   let assemblyFormat = "$bitsToTake `low` `bits` `from` $input `:` type($input) attr-dict";

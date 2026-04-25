@@ -102,7 +102,10 @@ def SparseTensor_AssembleOp : SparseTensor_Op<"assemble", [Pure]> {
   let hasVerifier = 1;
 }
 
-def SparseTensor_DisassembleOp : SparseTensor_Op<"disassemble", [Pure, SameVariadicResultSize]> {
+def SparseTensor_DisassembleOp : SparseTensor_Op<"disassemble", [
+  Pure,
+  SameVariadicResultSize
+]> {
   let summary = "Copies the levels and values of the given sparse tensor";
   let description = [{
     The disassemble operation is the inverse of `sparse_tensor::assemble`.
@@ -428,7 +431,10 @@ def SparseTensor_ConcatenateOp : SparseTensor_Op<"concatenate",
      bool needsExtraSort();
   }];
 
-  let arguments = (ins Variadic<AnyRankedTensor>:$inputs, DimensionAttr:$dimension);
+  let arguments = (ins
+    Variadic<AnyRankedTensor>:$inputs,
+    DimensionAttr:$dimension
+  );
   let results = (outs AnyRankedTensor:$result);
   let assemblyFormat = "$inputs attr-dict `:` type($inputs) `to` type($result)";
 
@@ -598,7 +604,10 @@ def SparseTensor_SetStorageSpecifierOp : SparseTensor_Op<"storage_specifier.set"
 // Sparse Tensor Coordinate Operations.
 //===----------------------------------------------------------------------===//
 
-def SparseTensor_LvlOp : SparseTensor_Op<"lvl", [ConditionallySpeculatable, NoMemoryEffect]> {
+def SparseTensor_LvlOp : SparseTensor_Op<"lvl", [
+  ConditionallySpeculatable,
+  NoMemoryEffect
+]> {
   let summary = "level index operation";
   let description = [{
     The `sparse_tensor.lvl` behaves similar to `tensor.dim` operation.
@@ -1080,7 +1089,12 @@ def SparseTensor_BinaryOp : SparseTensor_Op<"binary", [Pure]> {
   }];
 
   let regions = (region AnyRegion:$overlapRegion, AnyRegion:$leftRegion, AnyRegion:$rightRegion);
-  let arguments = (ins AnyType:$x, AnyType:$y, UnitAttr:$left_identity, UnitAttr:$right_identity);
+  let arguments = (ins
+    AnyType:$x,
+    AnyType:$y,
+    UnitAttr:$left_identity,
+    UnitAttr:$right_identity
+  );
   let results = (outs AnyType:$output);
   let assemblyFormat = [{
         $x `,` $y `:` attr-dict type($x) `,` type($y) `to` type($output) `\n`
@@ -1194,7 +1208,10 @@ def SparseTensor_UnaryOp : SparseTensor_Op<"unary", [Pure]> {
   let hasVerifier = 1;
 }
 
-def SparseTensor_ReduceOp : SparseTensor_Op<"reduce", [Pure, SameOperandsAndResultType]> {
+def SparseTensor_ReduceOp : SparseTensor_Op<"reduce", [
+  Pure,
+  SameOperandsAndResultType
+]> {
   let summary = "Custom reduction operation utilized within linalg.generic";
   let description = [{
       Defines a computation with a `linalg.generic` operation that takes two
@@ -1245,7 +1262,10 @@ def SparseTensor_ReduceOp : SparseTensor_Op<"reduce", [Pure, SameOperandsAndResu
   let hasVerifier = 1;
 }
 
-def SparseTensor_SelectOp : SparseTensor_Op<"select", [Pure, SameOperandsAndResultType]> {
+def SparseTensor_SelectOp : SparseTensor_Op<"select", [
+  Pure,
+  SameOperandsAndResultType
+]> {
   let summary = "Select operation utilized within linalg.generic";
   let description = [{
       Defines an evaluation within a `linalg.generic` operation that takes a single

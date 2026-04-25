@@ -515,7 +515,10 @@ def EmitC_DivOp : EmitC_BinaryOp<"div", []> {
     ```
   }];
 
-  let arguments = (ins FloatIntegerIndexOrOpaqueType, FloatIntegerIndexOrOpaqueType);
+  let arguments = (ins
+    FloatIntegerIndexOrOpaqueType,
+    FloatIntegerIndexOrOpaqueType
+  );
   let results = (outs FloatIntegerIndexOrOpaqueType);
 }
 
@@ -1065,7 +1068,10 @@ def EmitC_MulOp : EmitC_BinaryOp<"mul", []> {
     ```
   }];
 
-  let arguments = (ins FloatIntegerIndexOrOpaqueType, FloatIntegerIndexOrOpaqueType);
+  let arguments = (ins
+    FloatIntegerIndexOrOpaqueType,
+    FloatIntegerIndexOrOpaqueType
+  );
   let results = (outs FloatIntegerIndexOrOpaqueType);
 }
 
@@ -1190,7 +1196,11 @@ def EmitC_ConditionalOp : EmitC_Op<"conditional",
     int32_t v6 = v3 ? v4 : v5;
     ```
   }];
-  let arguments = (ins I1:$condition, EmitCType:$true_value, EmitCType:$false_value);
+  let arguments = (ins
+    I1:$condition,
+    EmitCType:$true_value,
+    EmitCType:$false_value
+  );
   let results = (outs EmitCType:$result);
   let assemblyFormat = "operands attr-dict `:` type($result)";
 
@@ -1407,7 +1417,10 @@ def EmitC_VerbatimOp : EmitC_Op<"verbatim"> {
     FailureOr<SmallVector<::mlir::emitc::ReplacementItem>> parseFormatString();
   }];
 
-  let arguments = (ins StrAttr:$value, Variadic<AnyTypeOf<[EmitCType, EmitC_LValueType]>>:$fmtArgs);
+  let arguments = (ins
+    StrAttr:$value,
+    Variadic<AnyTypeOf<[EmitCType, EmitC_LValueType]>>:$fmtArgs
+  );
 
   let builders = [OpBuilder<(ins "::mlir::StringAttr":$value),
                             [{ build($_builder, $_state, value, {}); }]>];
