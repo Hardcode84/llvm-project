@@ -24,6 +24,9 @@ void registerFromWasmTranslation();
 void registerToCppTranslation();
 void registerToLLVMIRTranslation();
 void registerToSPIRVTranslation();
+namespace wave {
+void registerWaveToAMDGPUTranslation();
+}
 
 namespace smt {
 void registerExportSMTLIBTranslation();
@@ -41,6 +44,7 @@ inline void registerAllTranslations() {
     registerToCppTranslation();
     registerToLLVMIRTranslation();
     registerToSPIRVTranslation();
+    wave::registerWaveToAMDGPUTranslation();
     smt::registerExportSMTLIBTranslation();
     return true;
   }();
