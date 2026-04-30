@@ -144,8 +144,8 @@ def Wave_StoreOp : Wave_Op<"store", [MemoryEffects<[MemWrite]>]> {
 
   let arguments = (ins Wave_Simd:$value,
                        AnyMemRef:$memref,
-                       Variadic<Index>:$indices);
-  let assemblyFormat = "$value `->` $memref `[` $indices `]` attr-dict `:` qualified(type($value)) `,` type($memref)";
+                       Variadic<AnyType>:$indices);
+  let assemblyFormat = "$value `->` $memref `[` $indices `]` attr-dict `:` functional-type(operands, results)";
   let hasVerifier = 1;
 }
 

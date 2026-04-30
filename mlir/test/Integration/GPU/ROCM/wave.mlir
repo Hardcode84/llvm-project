@@ -15,7 +15,7 @@ func.func @write_lane_ids(%dst : memref<32xi32>) {
   gpu.launch blocks(%bx, %by, %bz) in (%grid_x = %c1, %grid_y = %c1, %grid_z = %c1)
              threads(%tx, %ty, %tz) in (%block_x = %c32, %block_y = %c1, %block_z = %c1) {
     %lane = wave.lane_id : !wave.simd<i32, 32>
-    wave.store %lane -> %dst[%tx] : !wave.simd<i32, 32>, memref<32xi32>
+    wave.store %lane -> %dst[%tx] : (!wave.simd<i32, 32>, memref<32xi32>, index) -> ()
     gpu.terminator
   }
   return
@@ -34,7 +34,7 @@ func.func @write_masked_values(%dst : memref<32xi32>) {
     %active = wave.cmpi ult %lane, %limit : !wave.simd<i32, 32>, !wave.simd<i32, 32> -> !wave.mask<32>
     %value = wave.binary "addi" %lane, %base : !wave.simd<i32, 32>, !wave.simd<i32, 32> -> !wave.simd<i32, 32>
     wave.where %active {
-      wave.store %value -> %dst[%tx] : !wave.simd<i32, 32>, memref<32xi32>
+      wave.store %value -> %dst[%tx] : (!wave.simd<i32, 32>, memref<32xi32>, index) -> ()
       wave.yield
     } : !wave.mask<32>
     gpu.terminator

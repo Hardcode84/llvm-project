@@ -30,6 +30,7 @@ enum class RegClass { SGPR, VGPR };
 struct VirtualReg {
   unsigned id = 0;
   RegClass regClass = RegClass::VGPR;
+  unsigned width = 1;
 };
 
 struct Operand {
@@ -76,10 +77,17 @@ enum class MachineOpcode {
   VCmpGtU32,
   VCmpGeU32,
   SMovB32,
+  SLoadB32,
+  SLoadB64,
+  SWaitCntLgkm0,
+  SWaitCntVm0,
+  SDelayAlu,
   SAndSaveExecB32,
   SCBranchExecZ,
   SMovExecLo,
   VReadFirstLaneB32,
+  GlobalStoreB32,
+  SEndPgm,
   SSetPcB64
 };
 
@@ -108,6 +116,7 @@ public:
 
     os << "\t.text\n";
     os << "\t.amdgcn_target \"amdgcn-amd-amdhsa--gfx1100\"\n";
+    os << "\t.amdhsa_code_object_version 6\n";
     for (func::FuncOp func : module.getOps<func::FuncOp>()) {
       if (failed(emitFunction(func)))
         return failure();
@@ -118,15 +127,19 @@ public:
 private:
   raw_ostream &os;
   DenseMap<Value, Operand> values;
+  DenseMap<Value, Operand> memrefBases;
   SmallVector<VirtualReg> virtualRegs;
   SmallVector<MachineInstr> instructions;
   DenseMap<unsigned, unsigned> allocation;
   unsigned nextLabel = 0;
   unsigned indent = 1;
+  bool currentFunctionIsKernel = false;
+  unsigned maxAllocatedVGPR = 0;
+  unsigned maxAllocatedSGPR = 0;
 
-  unsigned createVirtualReg(RegClass regClass) {
+  unsigned createVirtualReg(RegClass regClass, unsigned width = 1) {
     unsigned id = virtualRegs.size();
-    virtualRegs.push_back(VirtualReg{id, regClass});
+    virtualRegs.push_back(VirtualReg{id, regClass, width});
     return id;
   }
 
@@ -147,18 +160,18 @@ private:
 
   LogicalResult emitFunction(func::FuncOp func) {
     values.clear();
+    memrefBases.clear();
     virtualRegs.clear();
     instructions.clear();
     allocation.clear();
+    currentFunctionIsKernel = func->hasAttr("wave.kernel");
+    maxAllocatedVGPR = 0;
+    maxAllocatedSGPR = 0;
 
-    // Ordinary function arguments are scalar-uniform in the Wave source model.
-    // A future ABI layer will assign the exact physical user SGPRs; for now we
-    // model that contract directly in the machine IR.
-    for (BlockArgument arg : func.getArguments()) {
-      RegClass regClass = isa<SimdType>(arg.getType()) ? RegClass::VGPR
-                                                       : RegClass::SGPR;
-      values[arg] = Operand::makeReg(createVirtualReg(regClass));
-    }
+    if (currentFunctionIsKernel)
+      selectKernelArguments(func);
+    else
+      selectFunctionArguments(func);
 
     if (!func.getBody().hasOneBlock())
       return func.emitError("wave AMDGPU backend only supports one-block funcs");
@@ -183,7 +196,103 @@ private:
 
     os << "\t.size\t" << func.getSymName() << ", .-" << func.getSymName()
        << "\n";
+    if (currentFunctionIsKernel)
+      emitKernelDescriptor(func);
     return success();
+  }
+
+  unsigned getKernelArgSize(func::FuncOp func) const {
+    unsigned size = 0;
+    for (BlockArgument arg : func.getArguments())
+      size += isa<MemRefType>(arg.getType()) ? 8 : 4;
+    return (std::max(size, 4u) + 7u) & ~7u;
+  }
+
+  void emitKernelDescriptor(func::FuncOp func) {
+    unsigned kernargSize = getKernelArgSize(func);
+    os << "\t.section\t.rodata,\"a\",@progbits\n";
+    os << "\t.p2align\t6, 0x0\n";
+    os << "\t.amdhsa_kernel " << func.getSymName() << "\n";
+    os << "\t\t.amdhsa_group_segment_fixed_size 0\n";
+    os << "\t\t.amdhsa_private_segment_fixed_size 0\n";
+    os << "\t\t.amdhsa_kernarg_size " << kernargSize << "\n";
+    os << "\t\t.amdhsa_user_sgpr_count 2\n";
+    os << "\t\t.amdhsa_user_sgpr_kernarg_segment_ptr 1\n";
+    os << "\t\t.amdhsa_wavefront_size32 1\n";
+    os << "\t\t.amdhsa_uses_dynamic_stack 0\n";
+    os << "\t\t.amdhsa_enable_private_segment 0\n";
+    os << "\t\t.amdhsa_system_sgpr_workgroup_id_x 1\n";
+    os << "\t\t.amdhsa_system_sgpr_workgroup_id_y 0\n";
+    os << "\t\t.amdhsa_system_sgpr_workgroup_id_z 0\n";
+    os << "\t\t.amdhsa_system_sgpr_workgroup_info 0\n";
+    os << "\t\t.amdhsa_system_vgpr_workitem_id 0\n";
+    os << "\t\t.amdhsa_next_free_vgpr " << std::max(maxAllocatedVGPR, 1u)
+       << "\n";
+    os << "\t\t.amdhsa_next_free_sgpr " << std::max(maxAllocatedSGPR, 6u)
+       << "\n";
+    os << "\t\t.amdhsa_reserve_vcc 0\n";
+    os << "\t\t.amdhsa_float_round_mode_32 0\n";
+    os << "\t\t.amdhsa_float_round_mode_16_64 0\n";
+    os << "\t\t.amdhsa_float_denorm_mode_32 3\n";
+    os << "\t\t.amdhsa_float_denorm_mode_16_64 3\n";
+    os << "\t\t.amdhsa_dx10_clamp 1\n";
+    os << "\t\t.amdhsa_ieee_mode 1\n";
+    os << "\t\t.amdhsa_fp16_overflow 0\n";
+    os << "\t\t.amdhsa_workgroup_processor_mode 1\n";
+    os << "\t\t.amdhsa_memory_ordered 1\n";
+    os << "\t\t.amdhsa_forward_progress 1\n";
+    os << "\t\t.amdhsa_shared_vgpr_count 0\n";
+    os << "\t\t.amdhsa_inst_pref_size 1\n";
+    os << "\t.end_amdhsa_kernel\n";
+    os << "\t.text\n";
+    os << "\t.set .L" << func.getSymName() << ".num_vgpr, "
+       << std::max(maxAllocatedVGPR, 1u) << "\n";
+    os << "\t.set .L" << func.getSymName() << ".num_agpr, 0\n";
+    os << "\t.set .L" << func.getSymName() << ".numbered_sgpr, "
+       << std::max(maxAllocatedSGPR, 6u) << "\n";
+    os << "\t.set .L" << func.getSymName() << ".num_named_barrier, 0\n";
+    os << "\t.set .L" << func.getSymName() << ".private_seg_size, 0\n";
+    os << "\t.set .L" << func.getSymName() << ".uses_vcc, 0\n";
+    os << "\t.set .L" << func.getSymName() << ".uses_flat_scratch, 0\n";
+    os << "\t.set .L" << func.getSymName() << ".has_dyn_sized_stack, 0\n";
+    os << "\t.set .L" << func.getSymName() << ".has_recursion, 0\n";
+    os << "\t.set .L" << func.getSymName() << ".has_indirect_call, 0\n";
+  }
+
+  void selectFunctionArguments(func::FuncOp func) {
+    // Ordinary function arguments are scalar-uniform in the Wave source model.
+    for (BlockArgument arg : func.getArguments()) {
+      RegClass regClass = isa<SimdType>(arg.getType()) ? RegClass::VGPR
+                                                       : RegClass::SGPR;
+      values[arg] = Operand::makeReg(createVirtualReg(regClass));
+    }
+  }
+
+  void selectKernelArguments(func::FuncOp func) {
+    unsigned kernargOffset = 0;
+    for (BlockArgument arg : func.getArguments()) {
+      Type type = arg.getType();
+      if (isa<MemRefType>(type)) {
+        unsigned ptr = createVirtualReg(RegClass::SGPR, /*width=*/2);
+        addInstr(MachineOpcode::SLoadB64, ptr,
+                 {Operand::makeLabel("s[0:1]"),
+                  Operand::makeImm(kernargOffset)});
+        memrefBases[arg] = Operand::makeReg(ptr);
+        kernargOffset += 8;
+        continue;
+      }
+
+      unsigned value = createVirtualReg(RegClass::SGPR);
+      addInstr(MachineOpcode::SLoadB32, value,
+               {Operand::makeLabel("s[0:1]"), Operand::makeImm(kernargOffset)});
+      values[arg] = Operand::makeReg(value);
+      kernargOffset += 4;
+    }
+
+    if (kernargOffset != 0) {
+      addInstr(MachineOpcode::SWaitCntLgkm0, {});
+      addInstr(MachineOpcode::SDelayAlu, {});
+    }
   }
 
   FailureOr<Operand> lookup(Value value) {
@@ -334,8 +443,24 @@ private:
   }
 
   LogicalResult selectStore(StoreOp op) {
-    // This backend is intentionally text-only for now. Record where a real
-    // memory backend would select a flat/global store.
+    if (currentFunctionIsKernel) {
+      auto it = memrefBases.find(op.getMemref());
+      if (it == memrefBases.end())
+        return op.emitError("kernel store expects a memref argument base");
+      if (op.getIndices().size() != 1)
+        return op.emitError("kernel store expects exactly one index");
+
+      Operand index = expect(op.getIndices().front(), op);
+      unsigned byteOffset = createVirtualReg(RegClass::VGPR);
+      addInstr(MachineOpcode::VLshlRevB32, byteOffset,
+               {index, Operand::makeImm(2)});
+      addInstr(MachineOpcode::GlobalStoreB32, {},
+               {Operand::makeReg(byteOffset), expect(op.getValue(), op),
+                it->second});
+      return success();
+    }
+
+    // Non-kernel text functions do not have an ABI-defined pointer base yet.
     MachineInstr mi;
     mi.opcode = MachineOpcode::Comment;
     mi.operands.push_back(expect(op.getValue(), op));
@@ -373,6 +498,14 @@ private:
   LogicalResult selectReturn(func::ReturnOp op) {
     if (op.getNumOperands() > 1)
       return op.emitError("backend supports at most one return value");
+    if (currentFunctionIsKernel) {
+      if (op.getNumOperands() != 0)
+        return op.emitError("kernel functions must return void");
+      addInstr(MachineOpcode::SWaitCntVm0, {});
+      addInstr(MachineOpcode::SEndPgm, {});
+      return success();
+    }
+
     if (op.getNumOperands() == 1) {
       Operand ret = expect(op.getOperand(0), op);
       if (ret.kind == Operand::Kind::Reg &&
@@ -442,15 +575,22 @@ private:
   LogicalResult allocateClass(func::FuncOp func, ArrayRef<LiveInterval> intervals,
                               RegClass regClass, unsigned numPhys) {
     SmallVector<LiveInterval> active;
-    SmallVector<unsigned> freeRegs;
-    for (unsigned i = 0; i != numPhys; ++i)
-      freeRegs.push_back(numPhys - 1 - i);
+    SmallVector<bool> used(numPhys, false);
+    unsigned reserved = currentFunctionIsKernel && regClass == RegClass::SGPR
+                            ? 2
+                            : 0;
+    for (unsigned i = 0; i != reserved && i != numPhys; ++i)
+      used[i] = true;
+    if (regClass == RegClass::SGPR)
+      maxAllocatedSGPR = std::max(maxAllocatedSGPR, reserved);
 
     auto expireOld = [&](unsigned pos) {
       SmallVector<LiveInterval> stillActive;
       for (LiveInterval interval : active) {
         if (interval.end < pos) {
-          freeRegs.push_back(allocation[interval.reg]);
+          unsigned phys = allocation[interval.reg];
+          for (unsigned i = 0, e = virtualRegs[interval.reg].width; i != e; ++i)
+            used[phys + i] = false;
         } else {
           stillActive.push_back(interval);
         }
@@ -462,10 +602,18 @@ private:
       if (interval.regClass != regClass)
         continue;
       expireOld(interval.start);
-      if (freeRegs.empty())
+      std::optional<unsigned> phys = findFreeContiguous(used, virtualRegs[interval.reg].width);
+      if (!phys)
         return func.emitError("wave backend ran out of physical registers");
-      unsigned phys = freeRegs.pop_back_val();
-      allocation[interval.reg] = phys;
+      allocation[interval.reg] = *phys;
+      for (unsigned i = 0, e = virtualRegs[interval.reg].width; i != e; ++i)
+        used[*phys + i] = true;
+      if (regClass == RegClass::VGPR)
+        maxAllocatedVGPR =
+            std::max(maxAllocatedVGPR, *phys + virtualRegs[interval.reg].width);
+      else
+        maxAllocatedSGPR =
+            std::max(maxAllocatedSGPR, *phys + virtualRegs[interval.reg].width);
       active.push_back(interval);
       llvm::sort(active, [](const LiveInterval &lhs, const LiveInterval &rhs) {
         return lhs.end < rhs.end;
@@ -474,11 +622,32 @@ private:
     return success();
   }
 
+  static std::optional<unsigned> findFreeContiguous(ArrayRef<bool> used,
+                                                    unsigned width) {
+    for (unsigned i = 0, e = used.size(); i + width <= e; ++i) {
+      bool allFree = true;
+      for (unsigned j = 0; j != width; ++j) {
+        if (used[i + j]) {
+          allFree = false;
+          break;
+        }
+      }
+      if (allFree)
+        return i;
+    }
+    return std::nullopt;
+  }
+
   std::string physReg(unsigned reg) const {
     const VirtualReg &vreg = virtualRegs[reg];
     auto it = allocation.find(reg);
     assert(it != allocation.end() && "unallocated virtual register");
-    return (vreg.regClass == RegClass::VGPR ? "v" : "s") + Twine(it->second).str();
+    StringRef prefix = vreg.regClass == RegClass::VGPR ? "v" : "s";
+    if (vreg.width == 1)
+      return (prefix + Twine(it->second)).str();
+    return (prefix + Twine("[") + Twine(it->second) + ":" +
+            Twine(it->second + vreg.width - 1) + "]")
+        .str();
   }
 
   std::string operandToString(const Operand &operand) const {
@@ -511,7 +680,13 @@ private:
       emitLine(Twine("v_mbcnt_lo_u32_b32 ") + def() + ", -1, 0");
       return success();
     case MachineOpcode::VAddU32:
-      emitLine(Twine("v_add_u32_e32 ") + def() + ", " + op(0) + ", " + op(1));
+      if (mi.operands[1].kind == Operand::Kind::Reg &&
+          virtualRegs[mi.operands[1].regId].regClass == RegClass::SGPR)
+        emitLine(Twine("v_add_nc_u32_e32 ") + def() + ", " + op(1) + ", " +
+                 op(0));
+      else
+        emitLine(Twine("v_add_nc_u32_e32 ") + def() + ", " + op(0) + ", " +
+                 op(1));
       return success();
     case MachineOpcode::VAndB32:
       emitLine(Twine("v_and_b32_e32 ") + def() + ", " + op(0) + ", " + op(1));
@@ -552,6 +727,21 @@ private:
         emitLine(Twine("s_mov_b32 ") + def() + ", " + op(0));
       }
       return success();
+    case MachineOpcode::SLoadB32:
+      emitLine(Twine("s_load_b32 ") + def() + ", " + op(0) + ", " + op(1));
+      return success();
+    case MachineOpcode::SLoadB64:
+      emitLine(Twine("s_load_b64 ") + def() + ", " + op(0) + ", " + op(1));
+      return success();
+    case MachineOpcode::SWaitCntLgkm0:
+      emitLine(StringRef("s_waitcnt lgkmcnt(0)"));
+      return success();
+    case MachineOpcode::SWaitCntVm0:
+      emitLine(StringRef("s_waitcnt vmcnt(0)"));
+      return success();
+    case MachineOpcode::SDelayAlu:
+      emitLine(StringRef("s_delay_alu instid0(VALU_DEP_1)"));
+      return success();
     case MachineOpcode::SAndSaveExecB32:
       emitLine(Twine("s_and_saveexec_b32 ") + def() + ", " + op(0));
       return success();
@@ -563,6 +753,13 @@ private:
       return success();
     case MachineOpcode::VReadFirstLaneB32:
       emitLine(Twine("v_readfirstlane_b32 ") + def() + ", " + op(0));
+      return success();
+    case MachineOpcode::GlobalStoreB32:
+      emitLine(Twine("global_store_b32 ") + op(0) + ", " + op(1) + ", " +
+               op(2));
+      return success();
+    case MachineOpcode::SEndPgm:
+      emitLine(StringRef("s_endpgm"));
       return success();
     case MachineOpcode::SSetPcB64:
       emitLine(StringRef("s_setpc_b64 s[30:31]"));

@@ -105,6 +105,16 @@ LogicalResult StoreOp::verify() {
 
   if (simdType.getElementType() != memrefElementType)
     return emitOpError("SIMD element type must match memref element type");
+  for (Value index : getIndices()) {
+    if (index.getType().isIndex())
+      continue;
+    auto indexSimdType = dyn_cast<SimdType>(index.getType());
+    if (indexSimdType && indexSimdType.getElementType().isInteger(32) &&
+        indexSimdType.getWidth() == simdType.getWidth())
+      continue;
+    return emitOpError("indices must be scalar index values or i32 SIMD values "
+                       "with matching width");
+  }
   return success();
 }
 

@@ -1,4 +1,5 @@
 // RUN: mlir-translate --wave-to-amdgpu-asm %s | FileCheck %s
+// RUN: mlir-translate --wave-to-amdgpu-asm %s | llvm-mc -triple=amdgcn-amd-amdhsa -mcpu=gfx1100 -filetype=obj -o /dev/null
 
 // CHECK: .amdgcn_target "amdgcn-amd-amdhsa--gfx1100"
 // CHECK-LABEL: wave_add:
@@ -7,7 +8,7 @@ func.func @wave_add(%x: i32) -> i32 {
   // CHECK: v_mbcnt_lo_u32_b32 [[LANE:v[0-9]+]], -1, 0
   %lane = wave.lane_id : !wave.simd<i32, 32>
   %vx = wave.splat %x : i32 -> !wave.simd<i32, 32>
-  // CHECK: v_add_u32_e32 [[SUM:v[0-9]+]], [[LANE]], [[ARG:s[0-9]+]]
+  // CHECK: v_add_nc_u32_e32 [[SUM:v[0-9]+]], [[ARG:s[0-9]+]], [[LANE]]
   %sum = wave.binary "addi" %lane, %vx : !wave.simd<i32, 32>, !wave.simd<i32, 32> -> !wave.simd<i32, 32>
   // CHECK: v_readfirstlane_b32 s0, [[SUM]]
   %first = wave.read_first %sum : !wave.simd<i32, 32> -> i32
@@ -25,7 +26,7 @@ func.func @wave_where(%limit: i32) -> i32 {
   // CHECK: s_and_saveexec_b32 [[SAVE:s[0-9]+]], [[MASK]]
   // CHECK: s_cbranch_execz [[END:.Lwave_endif_[0-9]+]]
   wave.where %active {
-    // CHECK: v_add_u32_e32
+    // CHECK: v_add_nc_u32_e32
     %sum = wave.binary "addi" %lane, %vlimit : !wave.simd<i32, 32>, !wave.simd<i32, 32> -> !wave.simd<i32, 32>
     wave.yield
   } : !wave.mask<32>
@@ -35,3 +36,23 @@ func.func @wave_where(%limit: i32) -> i32 {
   // CHECK: s_mov_b32 s0,
   return %bits : i32
 }
+
+// CHECK-LABEL: wave_kernel:
+func.func @wave_kernel(%out: memref<32xi32>, %x: i32) attributes {wave.kernel} {
+  // CHECK: s_load_b64 [[OUT:s\[[0-9]+:[0-9]+\]]], s[0:1], 0
+  // CHECK: s_load_b32 [[X:s[0-9]+]], s[0:1], 8
+  // CHECK: s_waitcnt lgkmcnt(0)
+  // CHECK: s_delay_alu instid0(VALU_DEP_1)
+  // CHECK: v_mbcnt_lo_u32_b32 [[LANE:v[0-9]+]], -1, 0
+  %lane = wave.lane_id : !wave.simd<i32, 32>
+  %vx = wave.splat %x : i32 -> !wave.simd<i32, 32>
+  // CHECK: v_add_nc_u32_e32 [[SUM:v[0-9]+]], [[X]], [[LANE]]
+  %sum = wave.binary "addi" %lane, %vx : !wave.simd<i32, 32>, !wave.simd<i32, 32> -> !wave.simd<i32, 32>
+  // CHECK: v_lshlrev_b32_e32 [[OFFSET:v[0-9]+]], 2, [[LANE]]
+  // CHECK: global_store_b32 [[OFFSET]], [[SUM]], [[OUT]]
+  wave.store %sum -> %out[%lane] : (!wave.simd<i32, 32>, memref<32xi32>, !wave.simd<i32, 32>) -> ()
+  // CHECK: s_waitcnt vmcnt(0)
+  // CHECK: s_endpgm
+  return
+}
+// CHECK: .amdhsa_kernel wave_kernel

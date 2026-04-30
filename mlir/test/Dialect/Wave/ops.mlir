@@ -20,7 +20,7 @@ func.func @wave_ops(%pred: i1, %value: i32, %out: memref<i32>) -> i32 {
   // CHECK: wave.read_first {{.*}} : !wave.simd<i32, 32> -> i32
   %first = wave.read_first %sum : !wave.simd<i32, 32> -> i32
   // CHECK: wave.store
-  wave.store %sum -> %out[] : !wave.simd<i32, 32>, memref<i32>
+  wave.store %sum -> %out[] : (!wave.simd<i32, 32>, memref<i32>) -> ()
 
   // CHECK: wave.where
   wave.where %mask {
