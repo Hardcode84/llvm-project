@@ -6,11 +6,12 @@
 
 module attributes {llvm.target_triple = "amdgcn-amd-amdhsa"} {
   func.func @lane_ballot_readfirst(%limit: i32) -> i32 {
-    %lane = wave.lane_id
-    %lane32 = arith.index_cast %lane : index to i32
-    %active = arith.cmpi ult, %lane32, %limit : i32
-    %mask = wave.ballot %active : i32
-    %first = wave.read_first %mask : i32
-    return %first : i32
+    %lane = wave.lane_id : !wave.simd<i32, 32>
+    %vlimit = wave.splat %limit : i32 -> !wave.simd<i32, 32>
+    %active = wave.cmpi ult %lane, %vlimit : !wave.simd<i32, 32>, !wave.simd<i32, 32> -> !wave.mask<32>
+    %mask = wave.ballot %active : !wave.mask<32> -> i32
+    %first = wave.read_first %lane : !wave.simd<i32, 32> -> i32
+    %out = arith.xori %first, %mask : i32
+    return %out : i32
   }
 }

@@ -10,7 +10,9 @@
 #define MLIR_DIALECT_WAVE_IR_WAVEOPS_TD
 
 include "mlir/Dialect/Wave/IR/WaveBase.td"
+include "mlir/Dialect/Wave/IR/WaveTypes.td"
 
+include "mlir/Dialect/Arith/IR/ArithBase.td"
 include "mlir/IR/OpBase.td"
 include "mlir/Interfaces/ControlFlowInterfaces.td"
 include "mlir/Interfaces/SideEffectInterfaces.td"
@@ -34,12 +36,12 @@ def Wave_YieldOp : Wave_Op<"yield", [Pure, ReturnLike, Terminator,
 def Wave_LaneIdOp : Wave_Op<"lane_id", [Pure]> {
   let summary = "lane id within the current subgroup";
   let description = [{
-    Returns the current lane id within the subgroup/wave. The result is an
-    `index` value so it can be used naturally with `scf` and `memref` indices.
+    Returns the lane id as a lane-varying SIMD value. Each lane observes its own
+    id in the subgroup/wave.
   }];
 
-  let results = (outs Index:$result);
-  let assemblyFormat = "attr-dict";
+  let results = (outs Wave_Simd:$result);
+  let assemblyFormat = "attr-dict `:` qualified(type($result))";
 }
 
 def Wave_SubgroupIdOp : Wave_Op<"subgroup_id", [Pure]> {
@@ -63,31 +65,73 @@ def Wave_SubgroupSizeOp : Wave_Op<"subgroup_size", [Pure]> {
 }
 
 def Wave_BallotOp : Wave_Op<"ballot", [NoMemoryEffect]> {
-  let summary = "collect a lane predicate into a logical mask";
+  let summary = "materialize a logical mask as integer bits";
   let description = [{
-    Performs a subgroup ballot. Each lane contributes its `i1` predicate value
-    and the result is an integer mask whose bit `N` corresponds to lane `N`.
+    Materializes a first-class `!wave.mask<W>` as an integer bit mask whose bit
+    `N` corresponds to lane `N`.
 
     The result width is target-dependent. AMDGPU wave32 commonly uses `i32`;
     wave64 commonly uses `i64`.
   }];
 
-  let arguments = (ins I1:$predicate);
+  let arguments = (ins Wave_Mask:$mask);
   let results = (outs AnySignlessInteger:$result);
-  let assemblyFormat = "$predicate attr-dict `:` type($result)";
+  let assemblyFormat = "$mask attr-dict `:` qualified(type($mask)) `->` type($result)";
+  let hasVerifier = 1;
+}
+
+def Wave_SplatOp : Wave_Op<"splat", [Pure]> {
+  let summary = "broadcast a scalar value into a lane-varying SIMD value";
+  let description = [{
+    Broadcasts an ordinary scalar value into a `!wave.simd<T, W>`. Lowering to
+    AMDGPU can keep the original scalar value as an SGPR operand when legal.
+  }];
+
+  let arguments = (ins AnyType:$source);
+  let results = (outs Wave_Simd:$result);
+  let assemblyFormat = "$source attr-dict `:` type($source) `->` qualified(type($result))";
+  let hasVerifier = 1;
+}
+
+def Wave_BinaryOp : Wave_Op<"binary", [Pure]> {
+  let summary = "lane-wise integer binary operation";
+  let description = [{
+    Applies an integer binary operation lane-wise to two SIMD values.
+  }];
+
+  let arguments = (ins StrAttr:$kind, Wave_Simd:$lhs, Wave_Simd:$rhs);
+  let results = (outs Wave_Simd:$result);
+  let assemblyFormat = "$kind $lhs `,` $rhs attr-dict `:` qualified(type($lhs)) `,` qualified(type($rhs)) `->` qualified(type($result))";
+  let hasVerifier = 1;
+}
+
+def Wave_CmpIOp : Wave_Op<"cmpi", [Pure]> {
+  let summary = "lane-wise integer comparison";
+  let description = [{
+    Compares two SIMD integer values lane-wise and returns a first-class
+    `!wave.mask<W>`.
+  }];
+
+  let arguments = (ins Arith_CmpIPredicateAttr:$predicate,
+                       Wave_Simd:$lhs,
+                       Wave_Simd:$rhs);
+  let results = (outs Wave_Mask:$result);
+  let assemblyFormat = "$predicate $lhs `,` $rhs attr-dict `:` qualified(type($lhs)) `,` qualified(type($rhs)) `->` qualified(type($result))";
+  let hasVerifier = 1;
 }
 
 def Wave_ReadFirstOp : Wave_Op<"read_first", [
-    NoMemoryEffect, AllTypesMatch<["source", "result"]>]> {
+    NoMemoryEffect]> {
   let summary = "broadcast the first active lane's value";
   let description = [{
     Returns the value from the first active lane, broadcast to all active lanes.
     This is the explicit lane-varying to scalar-uniform boundary.
   }];
 
-  let arguments = (ins AnyType:$source);
+  let arguments = (ins Wave_Simd:$source);
   let results = (outs AnyType:$result);
-  let assemblyFormat = "$source attr-dict `:` type($result)";
+  let assemblyFormat = "$source attr-dict `:` qualified(type($source)) `->` type($result)";
+  let hasVerifier = 1;
 }
 
 def Wave_WhereOp : Wave_Op<"where", [
@@ -106,12 +150,12 @@ def Wave_WhereOp : Wave_Op<"where", [
     manipulation without reconstructing structure from generic control flow.
   }];
 
-  let arguments = (ins I1:$condition);
+  let arguments = (ins Wave_Mask:$condition);
   let regions = (region SizedRegion<1>:$thenRegion,
                         MaxSizedRegion<1>:$elseRegion);
 
   let assemblyFormat = [{
-    $condition $thenRegion (`otherwise` $elseRegion^)? attr-dict
+    $condition $thenRegion (`otherwise` $elseRegion^)? attr-dict `:` qualified(type($condition))
   }];
 
   let hasVerifier = 1;

@@ -6,19 +6,17 @@
 
 module attributes {llvm.target_triple = "amdgcn-amd-amdhsa"} {
   llvm.func @where_store(%ptr: !llvm.ptr, %value: i32) {
-    %lane = wave.lane_id
-    %lane32 = arith.index_cast %lane : index to i32
-    %c4 = llvm.mlir.constant(4 : i32) : i32
-    %laneMod4 = llvm.urem %lane32, %c4 : i32
-    %zero = llvm.mlir.constant(0 : i32) : i32
-    %selected = llvm.icmp "eq" %laneMod4, %zero : i32
+    %lane = wave.lane_id : !wave.simd<i32, 32>
+    %four = llvm.mlir.constant(4 : i32) : i32
+    %vfour = wave.splat %four : i32 -> !wave.simd<i32, 32>
+    %selected = wave.cmpi ult %lane, %vfour : !wave.simd<i32, 32>, !wave.simd<i32, 32> -> !wave.mask<32>
 
     wave.where %selected {
       llvm.store %value, %ptr : i32, !llvm.ptr
       wave.yield
     } otherwise {
       wave.yield
-    }
+    } : !wave.mask<32>
 
     llvm.return
   }

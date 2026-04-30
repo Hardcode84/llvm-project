@@ -29,6 +29,10 @@ def Wave_Dialect : Dialect {
     "gpu::GPUDialect",
     "scf::SCFDialect"
   ];
+  let useDefaultTypePrinterParser = 1;
+  let extraClassDeclaration = [{
+    void registerTypes();
+  }];
 }
 
 #endif // MLIR_DIALECT_WAVE_IR_WAVEBASE_TD

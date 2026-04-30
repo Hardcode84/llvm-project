@@ -11,10 +11,14 @@
 
 #include "mlir/IR/Dialect.h"
 #include "mlir/IR/OpDefinition.h"
+#include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Interfaces/ControlFlowInterfaces.h"
 #include "mlir/Interfaces/SideEffectInterfaces.h"
 
 #include "mlir/Dialect/Wave/IR/WaveOpsDialect.h.inc"
+
+#define GET_TYPEDEF_CLASSES
+#include "mlir/Dialect/Wave/IR/WaveOpsTypes.h.inc"
 
 #define GET_OP_CLASSES
 #include "mlir/Dialect/Wave/IR/WaveOps.h.inc"

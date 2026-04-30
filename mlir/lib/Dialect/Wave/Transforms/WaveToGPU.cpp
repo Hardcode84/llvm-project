@@ -8,6 +8,7 @@
 
 #include "mlir/Dialect/Wave/Transforms/Passes.h"
 
+#include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/GPU/IR/GPUDialect.h"
 #include "mlir/Dialect/SCF/IR/SCF.h"
 #include "mlir/Dialect/Wave/IR/Wave.h"
@@ -28,13 +29,26 @@ using namespace mlir::wave;
 
 namespace {
 
+static Type getLoweredType(Type type) {
+  if (auto simd = dyn_cast<SimdType>(type))
+    return simd.getElementType();
+  if (auto mask = dyn_cast<MaskType>(type))
+    return IntegerType::get(type.getContext(), 1);
+  return type;
+}
+
 struct LaneIdLowering : OpRewritePattern<LaneIdOp> {
   using OpRewritePattern<LaneIdOp>::OpRewritePattern;
 
   LogicalResult matchAndRewrite(LaneIdOp op,
                                 PatternRewriter &rewriter) const override {
-    rewriter.replaceOpWithNewOp<gpu::LaneIdOp>(op, op.getType(),
-                                               /*upper_bound=*/nullptr);
+    Location loc = op.getLoc();
+    Type resultType = getLoweredType(op.getType());
+    Value lane = gpu::LaneIdOp::create(rewriter, loc, rewriter.getIndexType(),
+                                       /*upper_bound=*/nullptr);
+    if (resultType != lane.getType())
+      lane = arith::IndexCastOp::create(rewriter, loc, resultType, lane);
+    rewriter.replaceOp(op, lane);
     return success();
   }
 };
@@ -66,8 +80,68 @@ struct BallotLowering : OpRewritePattern<BallotOp> {
 
   LogicalResult matchAndRewrite(BallotOp op,
                                 PatternRewriter &rewriter) const override {
+    if (isa<MaskType>(op.getMask().getType()))
+      return failure();
     rewriter.replaceOpWithNewOp<gpu::BallotOp>(op, op.getType(),
-                                               op.getPredicate());
+                                               op.getMask());
+    return success();
+  }
+};
+
+struct SplatLowering : OpRewritePattern<SplatOp> {
+  using OpRewritePattern<SplatOp>::OpRewritePattern;
+
+  LogicalResult matchAndRewrite(SplatOp op,
+                                PatternRewriter &rewriter) const override {
+    rewriter.replaceOp(op, op.getSource());
+    return success();
+  }
+};
+
+struct BinaryLowering : OpRewritePattern<BinaryOp> {
+  using OpRewritePattern<BinaryOp>::OpRewritePattern;
+
+  LogicalResult matchAndRewrite(BinaryOp op,
+                                PatternRewriter &rewriter) const override {
+    if (isa<SimdType>(op.getLhs().getType()) ||
+        isa<SimdType>(op.getRhs().getType()))
+      return failure();
+    StringRef kind = op.getKind();
+    Value result;
+    if (kind == "addi")
+      result = arith::AddIOp::create(rewriter, op.getLoc(), op.getLhs(),
+                                     op.getRhs());
+    else if (kind == "andi")
+      result = arith::AndIOp::create(rewriter, op.getLoc(), op.getLhs(),
+                                     op.getRhs());
+    else if (kind == "ori")
+      result =
+          arith::OrIOp::create(rewriter, op.getLoc(), op.getLhs(), op.getRhs());
+    else if (kind == "xori")
+      result = arith::XOrIOp::create(rewriter, op.getLoc(), op.getLhs(),
+                                     op.getRhs());
+    else if (kind == "shli")
+      result = arith::ShLIOp::create(rewriter, op.getLoc(), op.getLhs(),
+                                     op.getRhs());
+    else
+      return rewriter.notifyMatchFailure(op, "unsupported wave binary kind");
+    rewriter.replaceOp(op, result);
+    return success();
+  }
+};
+
+struct CmpILowering : OpRewritePattern<CmpIOp> {
+  using OpRewritePattern<CmpIOp>::OpRewritePattern;
+
+  LogicalResult matchAndRewrite(CmpIOp op,
+                                PatternRewriter &rewriter) const override {
+    if (isa<SimdType>(op.getLhs().getType()) ||
+        isa<SimdType>(op.getRhs().getType()))
+      return failure();
+    Value result = arith::CmpIOp::create(rewriter, op.getLoc(),
+                                         op.getPredicate(), op.getLhs(),
+                                         op.getRhs());
+    rewriter.replaceOp(op, result);
     return success();
   }
 };
@@ -77,6 +151,8 @@ struct ReadFirstLowering : OpRewritePattern<ReadFirstOp> {
 
   LogicalResult matchAndRewrite(ReadFirstOp op,
                                 PatternRewriter &rewriter) const override {
+    if (isa<SimdType>(op.getSource().getType()))
+      return failure();
     auto broadcastType = gpu::BroadcastTypeAttr::get(
         op.getContext(), gpu::BroadcastType::first_active_lane);
     rewriter.replaceOpWithNewOp<gpu::SubgroupBroadcastOp>(
@@ -103,6 +179,8 @@ struct WhereLowering : OpRewritePattern<WhereOp> {
 
   LogicalResult matchAndRewrite(WhereOp op,
                                 PatternRewriter &rewriter) const override {
+    if (isa<MaskType>(op.getCondition().getType()))
+      return failure();
     OperationState state(op.getLoc(), scf::IfOp::getOperationName());
     scf::IfOp::build(rewriter, state, TypeRange{}, op.getCondition(),
                      /*addThenBlock=*/false, /*addElseBlock=*/false);
@@ -125,12 +203,23 @@ struct WhereLowering : OpRewritePattern<WhereOp> {
 struct ConvertWaveToGPUPass
     : public wave::impl::ConvertWaveToGPUBase<ConvertWaveToGPUPass> {
   void runOnOperation() override {
-    RewritePatternSet patterns(&getContext());
-    patterns.add<LaneIdLowering, SubgroupIdLowering, SubgroupSizeLowering,
-                 BallotLowering, ReadFirstLowering, WhereLowering>(
-        &getContext());
+    RewritePatternSet valuePatterns(&getContext());
+    valuePatterns.add<LaneIdLowering, SubgroupIdLowering, SubgroupSizeLowering,
+                      SplatLowering>(&getContext());
+    if (failed(applyPatternsGreedily(getOperation(), std::move(valuePatterns))))
+      return signalPassFailure();
 
-    if (failed(applyPatternsGreedily(getOperation(), std::move(patterns))))
+    RewritePatternSet computePatterns(&getContext());
+    computePatterns.add<BinaryLowering, CmpILowering>(&getContext());
+    if (failed(
+            applyPatternsGreedily(getOperation(), std::move(computePatterns))))
+      return signalPassFailure();
+
+    RewritePatternSet boundaryPatterns(&getContext());
+    boundaryPatterns.add<BallotLowering, ReadFirstLowering, WhereLowering>(
+        &getContext());
+    if (failed(applyPatternsGreedily(getOperation(),
+                                     std::move(boundaryPatterns))))
       signalPassFailure();
   }
 };
