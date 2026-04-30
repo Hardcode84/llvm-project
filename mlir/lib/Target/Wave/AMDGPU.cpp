@@ -151,10 +151,14 @@ private:
     instructions.clear();
     allocation.clear();
 
-    // MVP convention: integer arguments arrive in VGPRs. This keeps the direct
-    // backend independent from the existing AMDGPU calling convention lowering.
-    for (BlockArgument arg : func.getArguments())
-      values[arg] = Operand::makeReg(createVirtualReg(RegClass::VGPR));
+    // Ordinary function arguments are scalar-uniform in the Wave source model.
+    // A future ABI layer will assign the exact physical user SGPRs; for now we
+    // model that contract directly in the machine IR.
+    for (BlockArgument arg : func.getArguments()) {
+      RegClass regClass = isa<SimdType>(arg.getType()) ? RegClass::VGPR
+                                                       : RegClass::SGPR;
+      values[arg] = Operand::makeReg(createVirtualReg(regClass));
+    }
 
     if (!func.getBody().hasOneBlock())
       return func.emitError("wave AMDGPU backend only supports one-block funcs");
@@ -310,9 +314,9 @@ private:
   }
 
   LogicalResult selectBallot(BallotOp op) {
-    unsigned dst = createVirtualReg(RegClass::SGPR);
-    addInstr(MachineOpcode::SMovB32, dst, expect(op.getMask(), op));
-    values[op.getResult()] = Operand::makeReg(dst);
+    // In the MVP backend a mask is already represented as an EXEC-width SGPR
+    // bit mask, so materializing it as an integer is just an alias.
+    values[op.getResult()] = expect(op.getMask(), op);
     return success();
   }
 
@@ -541,10 +545,12 @@ private:
       emitLine(Twine("v_cmp_ge_u32_e64 ") + def() + ", " + op(0) + ", " + op(1));
       return success();
     case MachineOpcode::SMovB32:
-      if (mi.defs.empty())
-        emitLine(Twine("s_mov_b32 ") + op(0) + ", " + op(1));
-      else
+      if (mi.defs.empty()) {
+        if (op(0) != op(1))
+          emitLine(Twine("s_mov_b32 ") + op(0) + ", " + op(1));
+      } else {
         emitLine(Twine("s_mov_b32 ") + def() + ", " + op(0));
+      }
       return success();
     case MachineOpcode::SAndSaveExecB32:
       emitLine(Twine("s_and_saveexec_b32 ") + def() + ", " + op(0));
