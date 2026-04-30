@@ -5,6 +5,14 @@ add_mlir_translation_library(MLIRTargetWave
   ADDITIONAL_HEADER_DIRS
   ${MLIR_MAIN_INCLUDE_DIR}/mlir/Target/Wave
 
+  LINK_COMPONENTS
+  AMDGPUAsmParser
+  AMDGPUDesc
+  AMDGPUInfo
+  MC
+  Support
+  TargetParser
+
   LINK_LIBS PUBLIC
   MLIRArithDialect
   MLIRFuncDialect
@@ -12,4 +20,10 @@ add_mlir_translation_library(MLIRTargetWave
   MLIRSupport
   MLIRTranslateLib
   MLIRWaveDialect
+  )
+
+target_include_directories(obj.MLIRTargetWave
+  PRIVATE
+  ${LLVM_MAIN_SRC_DIR}/lib/Target/AMDGPU
+  ${LLVM_BINARY_DIR}/lib/Target/AMDGPU
   )

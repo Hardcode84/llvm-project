@@ -67,8 +67,8 @@ func.func @wave_where_else(%limit: i32) -> i32 {
 
 // CHECK-LABEL: wave_kernel:
 func.func @wave_kernel(%out: memref<32xi32>, %x: i32) attributes {wave.kernel} {
-  // CHECK: s_load_b64 [[OUT:s\[[0-9]+:[0-9]+\]]], s[0:1], 0
-  // CHECK: s_load_b32 [[X:s[0-9]+]], s[0:1], 8
+  // CHECK: s_load_b64 [[OUT:s\[[0-9]+:[0-9]+\]]], s[0:1], 0x0
+  // CHECK: s_load_b32 [[X:s[0-9]+]], s[0:1], 0x8
   // CHECK: s_waitcnt lgkmcnt(0)
   // CHECK: s_delay_alu instid0(VALU_DEP_1)
   // CHECK: v_mbcnt_lo_u32_b32 [[LANE:v[0-9]+]], -1, 0

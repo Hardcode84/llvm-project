@@ -8,6 +8,7 @@
 
 #include "mlir/Target/Wave/AMDGPU.h"
 
+#include "MCTargetDesc/AMDGPUMCTargetDesc.h"
 #include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Dialect/Wave/IR/Wave.h"
@@ -17,6 +18,20 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/ADT/StringSwitch.h"
+#include "llvm/Config/Targets.h"
+#include "llvm/MC/MCAsmInfo.h"
+#include "llvm/MC/MCContext.h"
+#include "llvm/MC/MCInst.h"
+#include "llvm/MC/MCInstPrinter.h"
+#include "llvm/MC/MCInstrInfo.h"
+#include "llvm/MC/MCRegisterInfo.h"
+#include "llvm/MC/MCSubtargetInfo.h"
+#include "llvm/MC/MCExpr.h"
+#include "llvm/MC/MCTargetOptions.h"
+#include "llvm/MC/TargetRegistry.h"
+#include "llvm/Support/SourceMgr.h"
+#include "llvm/Support/TargetSelect.h"
+#include "llvm/TargetParser/Triple.h"
 #include <algorithm>
 #include <optional>
 
@@ -34,8 +49,9 @@ struct VirtualReg {
 };
 
 struct Operand {
-  enum class Kind { Reg, Imm, Label } kind = Kind::Imm;
+  enum class Kind { Reg, PhysReg, Imm, Label } kind = Kind::Imm;
   unsigned regId = 0;
+  unsigned physReg = 0;
   int64_t immValue = 0;
   std::string labelValue;
 
@@ -50,6 +66,13 @@ struct Operand {
     Operand operand;
     operand.kind = Kind::Imm;
     operand.immValue = value;
+    return operand;
+  }
+
+  static Operand makePhysReg(unsigned reg) {
+    Operand operand;
+    operand.kind = Kind::PhysReg;
+    operand.physReg = reg;
     return operand;
   }
 
@@ -129,6 +152,8 @@ public:
     auto module = dyn_cast<ModuleOp>(op);
     if (!module)
       return op->emitError("wave AMDGPU backend expects a module operation");
+    if (failed(initializeMC(op)))
+      return failure();
 
     os << "\t.text\n";
     os << "\t.amdgcn_target \"amdgcn-amd-amdhsa--gfx1100\"\n";
@@ -143,6 +168,12 @@ public:
 
 private:
   raw_ostream &os;
+  std::unique_ptr<llvm::MCRegisterInfo> mri;
+  std::unique_ptr<llvm::MCAsmInfo> mai;
+  std::unique_ptr<llvm::MCInstrInfo> mcii;
+  std::unique_ptr<llvm::MCSubtargetInfo> sti;
+  std::unique_ptr<llvm::MCContext> mcContext;
+  std::unique_ptr<llvm::MCInstPrinter> instPrinter;
   DenseMap<Value, Operand> values;
   DenseMap<Value, Operand> memrefBases;
   SmallVector<VirtualReg> virtualRegs;
@@ -154,6 +185,33 @@ private:
   bool currentFunctionIsKernel = false;
   unsigned maxAllocatedVGPR = 0;
   unsigned maxAllocatedSGPR = 0;
+
+  LogicalResult initializeMC(Operation *op) {
+    static llvm::once_flag initializeBackendOnce;
+    llvm::call_once(initializeBackendOnce, []() {
+      llvm::InitializeAllTargetInfos();
+      llvm::InitializeAllTargetMCs();
+      llvm::InitializeAllAsmPrinters();
+    });
+    llvm::Triple triple("amdgcn-amd-amdhsa");
+    std::string error;
+    const llvm::Target *target = llvm::TargetRegistry::lookupTarget(triple, error);
+    if (!target)
+      return op->emitError("failed to lookup AMDGPU target: ") << error;
+    llvm::MCTargetOptions mcOptions;
+    mri.reset(target->createMCRegInfo(triple));
+    mai.reset(target->createMCAsmInfo(*mri, triple, mcOptions));
+    mcii.reset(target->createMCInstrInfo());
+    sti.reset(target->createMCSubtargetInfo(triple, "gfx1100", ""));
+    mcContext = std::make_unique<llvm::MCContext>(
+        triple, *mai, mri.get(), sti.get());
+    unsigned asmVariant = mai->getOutputAssemblerDialect();
+    instPrinter.reset(target->createMCInstPrinter(triple, asmVariant, *mai,
+                                                 *mcii, *mri));
+    if (!instPrinter)
+      return op->emitError("failed to create AMDGPU MCInstPrinter");
+    return success();
+  }
 
   unsigned createVirtualReg(RegClass regClass, unsigned width = 1) {
     unsigned id = virtualRegs.size();
@@ -353,7 +411,7 @@ private:
       if (isa<MemRefType>(type)) {
         unsigned ptr = createVirtualReg(RegClass::SGPR, /*width=*/2);
         addInstr(MachineOpcode::SLoadB64, ptr,
-                 {Operand::makeLabel("s[0:1]"),
+                 {Operand::makePhysReg(llvm::AMDGPU::SGPR0_SGPR1),
                   Operand::makeImm(kernargOffset)});
         memrefBases[arg] = Operand::makeReg(ptr);
         kernargOffset += 8;
@@ -362,7 +420,8 @@ private:
 
       unsigned value = createVirtualReg(RegClass::SGPR);
       addInstr(MachineOpcode::SLoadB32, value,
-               {Operand::makeLabel("s[0:1]"), Operand::makeImm(kernargOffset)});
+               {Operand::makePhysReg(llvm::AMDGPU::SGPR0_SGPR1),
+                Operand::makeImm(kernargOffset)});
       values[arg] = Operand::makeReg(value);
       kernargOffset += 4;
     }
@@ -598,10 +657,12 @@ private:
         addInstr(MachineOpcode::VReadFirstLaneB32, createVirtualReg(RegClass::SGPR),
                  ret);
         unsigned returnReg = instructions.back().defs.front();
-        addInstr(MachineOpcode::SMovB32, {}, {Operand::makeLabel("s0"),
+        addInstr(MachineOpcode::SMovB32, {},
+                 {Operand::makePhysReg(llvm::AMDGPU::SGPR0),
                                               Operand::makeReg(returnReg)});
       } else {
-        addInstr(MachineOpcode::SMovB32, {}, {Operand::makeLabel("s0"), ret});
+        addInstr(MachineOpcode::SMovB32, {},
+                 {Operand::makePhysReg(llvm::AMDGPU::SGPR0), ret});
       }
     }
     addInstr(MachineOpcode::SSetPcB64, {});
@@ -739,6 +800,18 @@ private:
     switch (operand.kind) {
     case Operand::Kind::Reg:
       return physReg(operand.regId);
+    case Operand::Kind::PhysReg: {
+      if (operand.physReg == llvm::AMDGPU::SGPR0)
+        return "s0";
+      if (operand.physReg == llvm::AMDGPU::SGPR0_SGPR1)
+        return "s[0:1]";
+      if (operand.physReg == llvm::AMDGPU::EXEC_LO)
+        return "exec_lo";
+      StringRef name = mri->getName(operand.physReg);
+      if (name == "SGPR0")
+        return "s0";
+      return name.str();
+    }
     case Operand::Kind::Imm:
       return Twine(operand.immValue).str();
     case Operand::Kind::Label:
@@ -747,8 +820,50 @@ private:
     llvm_unreachable("unknown operand kind");
   }
 
+  unsigned mcReg(unsigned reg) const {
+    const VirtualReg &vreg = virtualRegs[reg];
+    unsigned phys = allocation.lookup(reg);
+    if (vreg.regClass == RegClass::VGPR)
+      return llvm::AMDGPU::VGPR0 + phys;
+    if (vreg.width == 2)
+      return llvm::AMDGPU::SGPR0_SGPR1 + phys / 2;
+    return llvm::AMDGPU::SGPR0 + phys;
+  }
+
+  llvm::MCOperand toMCOperand(const Operand &operand) {
+    switch (operand.kind) {
+    case Operand::Kind::Reg:
+      return llvm::MCOperand::createReg(mcReg(operand.regId));
+    case Operand::Kind::PhysReg:
+      return llvm::MCOperand::createReg(operand.physReg);
+    case Operand::Kind::Imm:
+      return llvm::MCOperand::createImm(operand.immValue);
+    case Operand::Kind::Label: {
+      llvm::MCSymbol *sym = mcContext->getOrCreateSymbol(operand.labelValue);
+      return llvm::MCOperand::createExpr(
+          llvm::MCSymbolRefExpr::create(sym, *mcContext));
+    }
+    }
+    llvm_unreachable("unknown operand kind");
+  }
+
+  LogicalResult emitMC(unsigned opcode, ArrayRef<Operand> operands) {
+    llvm::MCInst inst;
+    inst.setOpcode(opcode);
+    for (const Operand &operand : operands)
+      inst.addOperand(toMCOperand(operand));
+    for (unsigned i = 0; i < indent; ++i)
+      os << '\t';
+    instPrinter->printInst(&inst, /*Address=*/0, /*Annot=*/"", *sti, os);
+    os << '\n';
+    return success();
+  }
+
+  Operand defOperand(const MachineInstr &mi) const {
+    return Operand::makeReg(mi.defs.front());
+  }
+
   LogicalResult emitMachineInstr(const MachineInstr &mi) {
-    auto def = [&]() { return physReg(mi.defs.front()); };
     auto op = [&](unsigned i) { return operandToString(mi.operands[i]); };
 
     switch (mi.opcode) {
@@ -762,111 +877,105 @@ private:
         emitLine(Twine("; ") + mi.text);
       return success();
     case MachineOpcode::VMbcntLo:
-      emitLine(Twine("v_mbcnt_lo_u32_b32 ") + def() + ", -1, 0");
-      return success();
+      return emitMC(llvm::AMDGPU::V_MBCNT_LO_U32_B32_e64_gfx11,
+                    {defOperand(mi), Operand::makeImm(-1),
+                     Operand::makeImm(0)});
     case MachineOpcode::VAddU32:
       if (mi.operands[1].kind == Operand::Kind::Reg &&
           virtualRegs[mi.operands[1].regId].regClass == RegClass::SGPR)
-        emitLine(Twine("v_add_nc_u32_e32 ") + def() + ", " + op(1) + ", " +
-                 op(0));
+        return emitMC(llvm::AMDGPU::V_ADD_NC_U32_e32_gfx11,
+                      {defOperand(mi), mi.operands[1], mi.operands[0]});
       else
-        emitLine(Twine("v_add_nc_u32_e32 ") + def() + ", " + op(0) + ", " +
-                 op(1));
-      return success();
+        return emitMC(llvm::AMDGPU::V_ADD_NC_U32_e32_gfx11,
+                      {defOperand(mi), mi.operands[0], mi.operands[1]});
     case MachineOpcode::VAndB32:
       if (mi.operands[1].kind == Operand::Kind::Reg &&
           virtualRegs[mi.operands[1].regId].regClass == RegClass::SGPR)
-        emitLine(Twine("v_and_b32_e32 ") + def() + ", " + op(1) + ", " +
-                 op(0));
+        return emitMC(llvm::AMDGPU::V_AND_B32_e32_gfx11,
+                      {defOperand(mi), mi.operands[1], mi.operands[0]});
       else
-        emitLine(Twine("v_and_b32_e32 ") + def() + ", " + op(0) + ", " +
-                 op(1));
-      return success();
+        return emitMC(llvm::AMDGPU::V_AND_B32_e32_gfx11,
+                      {defOperand(mi), mi.operands[0], mi.operands[1]});
     case MachineOpcode::VOrB32:
       if (mi.operands[1].kind == Operand::Kind::Reg &&
           virtualRegs[mi.operands[1].regId].regClass == RegClass::SGPR)
-        emitLine(Twine("v_or_b32_e32 ") + def() + ", " + op(1) + ", " +
-                 op(0));
+        return emitMC(llvm::AMDGPU::V_OR_B32_e32_gfx11,
+                      {defOperand(mi), mi.operands[1], mi.operands[0]});
       else
-        emitLine(Twine("v_or_b32_e32 ") + def() + ", " + op(0) + ", " +
-                 op(1));
-      return success();
+        return emitMC(llvm::AMDGPU::V_OR_B32_e32_gfx11,
+                      {defOperand(mi), mi.operands[0], mi.operands[1]});
     case MachineOpcode::VXorB32:
       if (mi.operands[1].kind == Operand::Kind::Reg &&
           virtualRegs[mi.operands[1].regId].regClass == RegClass::SGPR)
-        emitLine(Twine("v_xor_b32_e32 ") + def() + ", " + op(1) + ", " +
-                 op(0));
+        return emitMC(llvm::AMDGPU::V_XOR_B32_e32_gfx11,
+                      {defOperand(mi), mi.operands[1], mi.operands[0]});
       else
-        emitLine(Twine("v_xor_b32_e32 ") + def() + ", " + op(0) + ", " +
-                 op(1));
-      return success();
+        return emitMC(llvm::AMDGPU::V_XOR_B32_e32_gfx11,
+                      {defOperand(mi), mi.operands[0], mi.operands[1]});
     case MachineOpcode::VLshlRevB32:
-      emitLine(Twine("v_lshlrev_b32_e32 ") + def() + ", " + op(1) + ", " +
-               op(0));
-      return success();
+      return emitMC(llvm::AMDGPU::V_LSHLREV_B32_e32_gfx11,
+                    {defOperand(mi), mi.operands[1], mi.operands[0]});
     case MachineOpcode::VCmpEqU32:
-      emitLine(Twine("v_cmp_eq_u32_e64 ") + def() + ", " + op(0) + ", " + op(1));
-      return success();
+      return emitMC(llvm::AMDGPU::V_CMP_EQ_U32_e64_gfx11,
+                    {defOperand(mi), mi.operands[0], mi.operands[1]});
     case MachineOpcode::VCmpNeU32:
-      emitLine(Twine("v_cmp_ne_u32_e64 ") + def() + ", " + op(0) + ", " + op(1));
-      return success();
+      return emitMC(llvm::AMDGPU::V_CMP_NE_U32_e64_gfx11,
+                    {defOperand(mi), mi.operands[0], mi.operands[1]});
     case MachineOpcode::VCmpLtU32:
-      emitLine(Twine("v_cmp_lt_u32_e64 ") + def() + ", " + op(0) + ", " + op(1));
-      return success();
+      return emitMC(llvm::AMDGPU::V_CMP_LT_U32_e64_gfx11,
+                    {defOperand(mi), mi.operands[0], mi.operands[1]});
     case MachineOpcode::VCmpLeU32:
-      emitLine(Twine("v_cmp_le_u32_e64 ") + def() + ", " + op(0) + ", " + op(1));
-      return success();
+      return emitMC(llvm::AMDGPU::V_CMP_LE_U32_e64_gfx11,
+                    {defOperand(mi), mi.operands[0], mi.operands[1]});
     case MachineOpcode::VCmpGtU32:
-      emitLine(Twine("v_cmp_gt_u32_e64 ") + def() + ", " + op(0) + ", " + op(1));
-      return success();
+      return emitMC(llvm::AMDGPU::V_CMP_GT_U32_e64_gfx11,
+                    {defOperand(mi), mi.operands[0], mi.operands[1]});
     case MachineOpcode::VCmpGeU32:
-      emitLine(Twine("v_cmp_ge_u32_e64 ") + def() + ", " + op(0) + ", " + op(1));
-      return success();
+      return emitMC(llvm::AMDGPU::V_CMP_GE_U32_e64_gfx11,
+                    {defOperand(mi), mi.operands[0], mi.operands[1]});
     case MachineOpcode::SMovB32:
       if (mi.defs.empty()) {
         if (op(0) != op(1))
           emitLine(Twine("s_mov_b32 ") + op(0) + ", " + op(1));
       } else {
-        emitLine(Twine("s_mov_b32 ") + def() + ", " + op(0));
+        return emitMC(llvm::AMDGPU::S_MOV_B32_gfx11,
+                      {defOperand(mi), mi.operands[0]});
       }
       return success();
     case MachineOpcode::SLoadB32:
-      emitLine(Twine("s_load_b32 ") + def() + ", " + op(0) + ", " + op(1));
-      return success();
+      return emitMC(llvm::AMDGPU::S_LOAD_B32_IMM_gfx11,
+                    {defOperand(mi), mi.operands[0], mi.operands[1],
+                     Operand::makeImm(0)});
     case MachineOpcode::SLoadB64:
-      emitLine(Twine("s_load_b64 ") + def() + ", " + op(0) + ", " + op(1));
-      return success();
+      return emitMC(llvm::AMDGPU::S_LOAD_B64_IMM_gfx11,
+                    {defOperand(mi), mi.operands[0], mi.operands[1],
+                     Operand::makeImm(0)});
     case MachineOpcode::SWaitCntLgkm0:
-      emitLine(StringRef("s_waitcnt lgkmcnt(0)"));
-      return success();
+      return emitMC(llvm::AMDGPU::S_WAITCNT_gfx11, {Operand::makeImm(64519)});
     case MachineOpcode::SWaitCntVm0:
-      emitLine(StringRef("s_waitcnt vmcnt(0)"));
-      return success();
+      return emitMC(llvm::AMDGPU::S_WAITCNT_gfx11, {Operand::makeImm(1015)});
     case MachineOpcode::SDelayAlu:
-      emitLine(StringRef("s_delay_alu instid0(VALU_DEP_1)"));
-      return success();
+      return emitMC(llvm::AMDGPU::S_DELAY_ALU_gfx11, {Operand::makeImm(1)});
     case MachineOpcode::SAndSaveExecB32:
-      emitLine(Twine("s_and_saveexec_b32 ") + def() + ", " + op(0));
-      return success();
+      return emitMC(llvm::AMDGPU::S_AND_SAVEEXEC_B32_gfx11,
+                    {defOperand(mi), mi.operands[0]});
     case MachineOpcode::SAndN2ExecB32:
       emitLine(Twine("s_andn2_b32 exec_lo, ") + op(0) + ", " + op(1));
       return success();
     case MachineOpcode::SCBranchExecZ:
-      emitLine(Twine("s_cbranch_execz ") + op(0));
-      return success();
+      return emitMC(llvm::AMDGPU::S_CBRANCH_EXECZ_gfx11, {mi.operands[0]});
     case MachineOpcode::SMovExecLo:
       emitLine(Twine("s_mov_b32 exec_lo, ") + op(0));
       return success();
     case MachineOpcode::VReadFirstLaneB32:
-      emitLine(Twine("v_readfirstlane_b32 ") + def() + ", " + op(0));
-      return success();
+      return emitMC(llvm::AMDGPU::V_READFIRSTLANE_B32_gfx11,
+                    {defOperand(mi), mi.operands[0]});
     case MachineOpcode::GlobalStoreB32:
-      emitLine(Twine("global_store_b32 ") + op(0) + ", " + op(1) + ", " +
-               op(2));
-      return success();
+      return emitMC(llvm::AMDGPU::GLOBAL_STORE_DWORD_SADDR_gfx11,
+                    {mi.operands[0], mi.operands[1], mi.operands[2],
+                     Operand::makeImm(0), Operand::makeImm(0)});
     case MachineOpcode::SEndPgm:
-      emitLine(StringRef("s_endpgm"));
-      return success();
+      return emitMC(llvm::AMDGPU::S_ENDPGM_gfx11, {Operand::makeImm(0)});
     case MachineOpcode::SSetPcB64:
       emitLine(StringRef("s_setpc_b64 s[30:31]"));
       return success();
