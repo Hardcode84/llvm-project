@@ -28,6 +28,7 @@ User Guide for AMDGPU Backend
    AMDGPUOperandSyntax
    AMDGPUInstructionSyntax
    AMDGPUInstructionNotation
+   AMDGPUExplicitWaveProgrammingModel
    AMDGPUDwarfExtensionsForHeterogeneousDebugging
    AMDGPUDwarfExtensionAllowLocationDescriptionOnTheDwarfExpressionStack/AMDGPUDwarfExtensionAllowLocationDescriptionOnTheDwarfExpressionStack
 

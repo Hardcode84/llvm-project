@@ -19,6 +19,7 @@ intermediate LLVM representation.
    AliasAnalysis
    AMDGPUUsage
    AMDGPUAsyncOperations
+   AMDGPUExplicitWaveProgrammingModel
    Benchmarking
    BigEndianNEON
    BuildingADistribution
@@ -291,6 +292,10 @@ Additional Topics
 
 :doc:`AMDGPUAsyncOperations`
    Builtins for invoking asynchronous data transfer operations in AMD GPUs.
+
+:doc:`AMDGPUExplicitWaveProgrammingModel`
+   Design proposal for an AMDGPU programming model that exposes wavefronts,
+   lane masks, and uniform values directly.
 
 :doc:`AMDGPUDwarfExtensionsForHeterogeneousDebugging`
    This document describes DWARF extensions to support heterogeneous debugging
