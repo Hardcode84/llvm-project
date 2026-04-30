@@ -420,6 +420,111 @@ The engineering cost depends on how much of the current backend is reused:
 The productive target is a wave-native frontend and middle layer connected to a
 selectively reused AMDGPU backend.
 
+Wave-Native Backend Structure
+=============================
+
+The wave-native backend should not grow as a single monolithic translator from
+MLIR operations to assembly text. It should be an MLIR pass pipeline. Each
+major code-generation stage should be a named pass with a textual IR boundary,
+so the compiler state can be inspected, tested, reduced, and debugged between
+stages.
+
+The central intermediate form for this pipeline should be a WaveMachine MLIR
+dialect. The WaveMachine dialect is lower level than the source ``wave`` dialect:
+it represents selected AMDGPU-like machine operations, explicit register
+classes, memory events, masks, ABI values, and scheduling dependencies. It is
+still MLIR, not an opaque C++ side structure. The useful boundary is therefore
+between source semantics, inspectable WaveMachine dialect IR, and the existing
+AMDGPU target machinery that already knows how to encode, schedule, and package
+code for the hardware.
+
+The intended pipeline is:
+
+1. Preserve the MLIR wave dialect as the source-level contract.
+2. Canonicalize and verify explicit ``wave<T, W>``, ``mask<W>``,
+   ``!wave.mem.token``, ``where``, and structured ``scf`` operations.
+3. Run a Wave-to-WaveMachine selection pass that converts wave operations into
+   inspectable WaveMachine dialect operations with explicit SGPR, VGPR, AGPR,
+   mask, memory, and token operands.
+4. Run ABI lowering, register allocation, resource accounting, waitcnt
+   insertion, hazard handling, and metadata construction as MLIR passes over
+   WaveMachine IR, using reusable LLVM AMDGPU infrastructure wherever possible.
+5. Emit MC instructions, ELF, code object metadata, and kernel descriptors from
+   the existing AMDGPU MC and object emission layers.
+
+This suggests the following split for a prototype under ``mlir/lib/Target/Wave``:
+
+``WaveMachine`` dialect
+  Define the inspectable machine-level MLIR operations and types used after
+  wave selection:
+  virtual registers, physical register assignments, register classes, operands,
+  memory events, basic blocks, and target opcodes. This layer should describe
+  the result of wave-aware selection, not reimplement the whole LLVM
+  ``MachineFunction`` API. Every stage below should preserve or transform this
+  IR explicitly, so ``mlir-opt`` can print the state after selection, ABI
+  lowering, register allocation, hazard insertion, and finalization.
+
+``AMDGPUISel.cpp``
+  Lower ``wave`` operations, structured ``where`` regions, and supported
+  ``scf`` control flow into the WaveMachine dialect. This is where
+  uniform values become SGPR candidates, ``wave<T, W>`` values become VGPR or
+  AGPR candidates, and ``mask<W>`` values become scalar lane-mask registers.
+  Generation-specific opcode selection belongs here only when it follows
+  directly from the source wave operation. This should be exposed as an MLIR
+  conversion pass.
+
+``AMDGPUMachineIR.cpp``
+  Hold AMDGPU-specific helpers for instruction forms, operand constraints,
+  register widths, implicit operands, and conversion between WaveMachine dialect
+  operations and LLVM AMDGPU machine constructs. This file is the natural place
+  to build an adapter to LLVM ``MachineInstr`` and ``MachineFunction`` when a
+  pass needs to call existing LLVM AMDGPU machinery.
+
+``AMDGPURegAlloc.cpp``
+  Provide an MLIR register-allocation pass for WaveMachine IR and the bridge to
+  LLVM register classes, liveness, and resource accounting. A simple allocator
+  is useful for early experiments, but the long-term design should reuse AMDGPU
+  register classes, subtarget register limits, occupancy calculations, and spill
+  behavior instead of maintaining a parallel model.
+
+``AMDGPUABI.cpp``
+  Own an MLIR ABI-lowering pass for kernel arguments, kernarg layout,
+  user/system SGPR assignment, calling convention details, entry-point setup,
+  and return lowering. This keeps HSA ABI policy separate from instruction
+  selection and makes it easier to compare the direct path with the existing
+  LLVM AMDGPU backend.
+
+``AMDGPUHazards.cpp``
+  Provide an MLIR hazard and waitcnt pass. It should translate explicit
+  memory-token dependencies into WaveMachine memory events and invoke existing
+  AMDGPU waitcnt and hazard machinery, such as waitcnt encoding utilities and
+  ``GCNHazardRecognizer``-style checks. This layer should not reintroduce
+  hidden alias analysis. Missing token dependencies remain a program promise
+  that no ordering edge is required.
+
+``AMDGPUResourceInfo.cpp``
+  Provide an MLIR analysis or annotation pass that computes or imports SGPR,
+  VGPR, AGPR, LDS, scratch, wave-size, and occupancy information. These numbers
+  feed both metadata emission and launch-time resource checks, so they should
+  not be guessed independently by the emitter.
+
+``AMDGPUMetadata.cpp``
+  Provide an MLIR metadata pass that builds HSA code object metadata and kernel
+  descriptors from ABI and resource information attached to WaveMachine IR. The
+  metadata layer should eventually delegate to the same definitions used by the
+  LLVM AMDGPU backend instead of carrying a separate schema by hand.
+
+``AMDGPUMCEmission.cpp``
+  Convert finalized WaveMachine operations to ``MCInst`` and use the AMDGPU MC
+  layer for printing, encoding, relocations, and object emission. Raw string
+  emission should be limited to temporary diagnostics and should not be the
+  architecture of the backend.
+
+This structure keeps the experimental value of a direct wave backend while
+making the replacement boundaries honest. The new code should own the semantic
+mapping from explicit wave operations to AMDGPU machine operations. It should
+not own target facts that are already present in the LLVM AMDGPU backend.
+
 Example
 =======
 
