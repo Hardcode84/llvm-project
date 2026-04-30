@@ -9,6 +9,7 @@
 #include "mlir/Target/Wave/AMDGPU.h"
 
 #include "MCTargetDesc/AMDGPUMCTargetDesc.h"
+#include "Utils/AMDGPUBaseInfo.h"
 #include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Dialect/Wave/IR/Wave.h"
@@ -31,6 +32,7 @@
 #include "llvm/MC/TargetRegistry.h"
 #include "llvm/Support/SourceMgr.h"
 #include "llvm/Support/TargetSelect.h"
+#include "llvm/TargetParser/TargetParser.h"
 #include "llvm/TargetParser/Triple.h"
 #include <algorithm>
 #include <optional>
@@ -102,8 +104,7 @@ enum class MachineOpcode {
   SMovB32,
   SLoadB32,
   SLoadB64,
-  SWaitCntLgkm0,
-  SWaitCntVm0,
+  SWaitCnt,
   SDelayAlu,
   SAndSaveExecB32,
   SAndN2ExecB32,
@@ -255,6 +256,8 @@ private:
       if (failed(selectOperation(&op)))
         return failure();
     }
+
+    runHazardWaitInsertion();
 
     if (failed(allocateRegisters(func)))
       return failure();
@@ -426,10 +429,6 @@ private:
       kernargOffset += 4;
     }
 
-    if (kernargOffset != 0) {
-      addInstr(MachineOpcode::SWaitCntLgkm0, {});
-      addInstr(MachineOpcode::SDelayAlu, {});
-    }
   }
 
   FailureOr<Operand> lookup(Value value) {
@@ -645,7 +644,6 @@ private:
     if (currentFunctionIsKernel) {
       if (op.getNumOperands() != 0)
         return op.emitError("kernel functions must return void");
-      addInstr(MachineOpcode::SWaitCntVm0, {});
       addInstr(MachineOpcode::SEndPgm, {});
       return success();
     }
@@ -667,6 +665,86 @@ private:
     }
     addInstr(MachineOpcode::SSetPcB64, {});
     return success();
+  }
+
+  static bool isVALU(MachineOpcode opcode) {
+    switch (opcode) {
+    case MachineOpcode::VMbcntLo:
+    case MachineOpcode::VAddU32:
+    case MachineOpcode::VAndB32:
+    case MachineOpcode::VOrB32:
+    case MachineOpcode::VXorB32:
+    case MachineOpcode::VLshlRevB32:
+    case MachineOpcode::VCmpEqU32:
+    case MachineOpcode::VCmpNeU32:
+    case MachineOpcode::VCmpLtU32:
+    case MachineOpcode::VCmpLeU32:
+    case MachineOpcode::VCmpGtU32:
+    case MachineOpcode::VCmpGeU32:
+    case MachineOpcode::VReadFirstLaneB32:
+      return true;
+    default:
+      return false;
+    }
+  }
+
+  static bool isSMEMLoad(MachineOpcode opcode) {
+    return opcode == MachineOpcode::SLoadB32 ||
+           opcode == MachineOpcode::SLoadB64;
+  }
+
+  unsigned encodeWaitcnt(std::optional<unsigned> vmcnt,
+                         std::optional<unsigned> lgkmcnt) const {
+    llvm::AMDGPU::IsaVersion gfx11{11, 0, 0};
+    return llvm::AMDGPU::encodeWaitcnt(
+        gfx11, vmcnt.value_or(~0u), /*expcnt=*/~0u, lgkmcnt.value_or(~0u));
+  }
+
+  MachineInstr makeWaitcnt(unsigned encoded) const {
+    MachineInstr wait;
+    wait.opcode = MachineOpcode::SWaitCnt;
+    wait.operands.push_back(Operand::makeImm(encoded));
+    return wait;
+  }
+
+  MachineInstr makeDelayAlu() const {
+    MachineInstr delay;
+    delay.opcode = MachineOpcode::SDelayAlu;
+    delay.operands.push_back(Operand::makeImm(1));
+    return delay;
+  }
+
+  void runHazardWaitInsertion() {
+    SmallVector<MachineInstr> newInstructions;
+    bool pendingSMEMLoad = false;
+    bool pendingVMEMStore = false;
+
+    for (MachineInstr &mi : instructions) {
+      if (isVALU(mi.opcode) && pendingSMEMLoad) {
+        newInstructions.push_back(
+            makeWaitcnt(encodeWaitcnt(/*vmcnt=*/std::nullopt, /*lgkmcnt=*/0)));
+        // gfx11 requires a delay after scalar memory loads before dependent
+        // vector ALU consumers. The policy is centralized here so later target
+        // feature checks can refine it.
+        newInstructions.push_back(makeDelayAlu());
+        pendingSMEMLoad = false;
+      }
+
+      if (mi.opcode == MachineOpcode::SEndPgm && pendingVMEMStore) {
+        newInstructions.push_back(
+            makeWaitcnt(encodeWaitcnt(/*vmcnt=*/0, /*lgkmcnt=*/std::nullopt)));
+        pendingVMEMStore = false;
+      }
+
+      if (isSMEMLoad(mi.opcode))
+        pendingSMEMLoad = true;
+      if (mi.opcode == MachineOpcode::GlobalStoreB32)
+        pendingVMEMStore = true;
+
+      newInstructions.push_back(std::move(mi));
+    }
+
+    instructions = std::move(newInstructions);
   }
 
   static bool isRegOperand(const Operand &operand) {
@@ -950,12 +1028,10 @@ private:
       return emitMC(llvm::AMDGPU::S_LOAD_B64_IMM_gfx11,
                     {defOperand(mi), mi.operands[0], mi.operands[1],
                      Operand::makeImm(0)});
-    case MachineOpcode::SWaitCntLgkm0:
-      return emitMC(llvm::AMDGPU::S_WAITCNT_gfx11, {Operand::makeImm(64519)});
-    case MachineOpcode::SWaitCntVm0:
-      return emitMC(llvm::AMDGPU::S_WAITCNT_gfx11, {Operand::makeImm(1015)});
+    case MachineOpcode::SWaitCnt:
+      return emitMC(llvm::AMDGPU::S_WAITCNT_gfx11, {mi.operands[0]});
     case MachineOpcode::SDelayAlu:
-      return emitMC(llvm::AMDGPU::S_DELAY_ALU_gfx11, {Operand::makeImm(1)});
+      return emitMC(llvm::AMDGPU::S_DELAY_ALU_gfx11, {mi.operands[0]});
     case MachineOpcode::SAndSaveExecB32:
       return emitMC(llvm::AMDGPU::S_AND_SAVEEXEC_B32_gfx11,
                     {defOperand(mi), mi.operands[0]});

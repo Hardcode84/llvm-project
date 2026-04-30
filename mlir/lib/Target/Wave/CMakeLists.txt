@@ -9,6 +9,7 @@ add_mlir_translation_library(MLIRTargetWave
   AMDGPUAsmParser
   AMDGPUDesc
   AMDGPUInfo
+  AMDGPUUtils
   MC
   Support
   TargetParser
