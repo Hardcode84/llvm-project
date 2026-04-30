@@ -83,6 +83,7 @@ enum class MachineOpcode {
   SWaitCntVm0,
   SDelayAlu,
   SAndSaveExecB32,
+  SAndN2ExecB32,
   SCBranchExecZ,
   SMovExecLo,
   VReadFirstLaneB32,
@@ -105,6 +106,21 @@ struct LiveInterval {
   unsigned end = 0;
 };
 
+struct KernelArgInfo {
+  std::string name;
+  unsigned offset = 0;
+  unsigned size = 0;
+  bool isGlobalBuffer = false;
+};
+
+struct KernelInfo {
+  std::string name;
+  unsigned kernargSize = 0;
+  unsigned sgprCount = 0;
+  unsigned vgprCount = 0;
+  SmallVector<KernelArgInfo> args;
+};
+
 class WaveAMDGPUEmitter {
 public:
   explicit WaveAMDGPUEmitter(raw_ostream &os) : os(os) {}
@@ -121,6 +137,7 @@ public:
       if (failed(emitFunction(func)))
         return failure();
     }
+    emitMetadata();
     return success();
   }
 
@@ -130,6 +147,7 @@ private:
   DenseMap<Value, Operand> memrefBases;
   SmallVector<VirtualReg> virtualRegs;
   SmallVector<MachineInstr> instructions;
+  SmallVector<KernelInfo> kernels;
   DenseMap<unsigned, unsigned> allocation;
   unsigned nextLabel = 0;
   unsigned indent = 1;
@@ -196,8 +214,22 @@ private:
 
     os << "\t.size\t" << func.getSymName() << ", .-" << func.getSymName()
        << "\n";
-    if (currentFunctionIsKernel)
+    if (currentFunctionIsKernel) {
+      KernelInfo info;
+      info.name = func.getSymName().str();
+      info.kernargSize = getKernelArgSize(func);
+      info.sgprCount = std::max(maxAllocatedSGPR, 6u);
+      info.vgprCount = std::max(maxAllocatedVGPR, 1u);
+      unsigned offset = 0;
+      for (auto [index, arg] : llvm::enumerate(func.getArguments())) {
+        bool isBuffer = isa<MemRefType>(arg.getType());
+        info.args.push_back(KernelArgInfo{("arg" + Twine(index)).str(), offset,
+                                          isBuffer ? 8u : 4u, isBuffer});
+        offset += isBuffer ? 8 : 4;
+      }
+      kernels.push_back(info);
       emitKernelDescriptor(func);
+    }
     return success();
   }
 
@@ -257,6 +289,52 @@ private:
     os << "\t.set .L" << func.getSymName() << ".has_dyn_sized_stack, 0\n";
     os << "\t.set .L" << func.getSymName() << ".has_recursion, 0\n";
     os << "\t.set .L" << func.getSymName() << ".has_indirect_call, 0\n";
+  }
+
+  void emitMetadata() {
+    if (kernels.empty())
+      return;
+
+    os << "\t.amdgpu_metadata\n";
+    os << "---\n";
+    os << "amdhsa.kernels:\n";
+    for (const KernelInfo &kernel : kernels) {
+      os << "  - .args:\n";
+      for (const KernelArgInfo &arg : kernel.args) {
+        if (arg.isGlobalBuffer) {
+          os << "      - .address_space:  global\n";
+          os << "        .name:           " << arg.name << "\n";
+          os << "        .offset:         " << arg.offset << "\n";
+          os << "        .size:           " << arg.size << "\n";
+          os << "        .value_kind:     global_buffer\n";
+        } else {
+          os << "      - .name:           " << arg.name << "\n";
+          os << "        .offset:         " << arg.offset << "\n";
+          os << "        .size:           " << arg.size << "\n";
+          os << "        .value_kind:     by_value\n";
+        }
+      }
+      os << "    .group_segment_fixed_size: 0\n";
+      os << "    .kernarg_segment_align: 8\n";
+      os << "    .kernarg_segment_size: " << kernel.kernargSize << "\n";
+      os << "    .max_flat_workgroup_size: 1024\n";
+      os << "    .name:           " << kernel.name << "\n";
+      os << "    .private_segment_fixed_size: 0\n";
+      os << "    .sgpr_count:     " << kernel.sgprCount << "\n";
+      os << "    .sgpr_spill_count: 0\n";
+      os << "    .symbol:         " << kernel.name << ".kd\n";
+      os << "    .uses_dynamic_stack: false\n";
+      os << "    .vgpr_count:     " << kernel.vgprCount << "\n";
+      os << "    .vgpr_spill_count: 0\n";
+      os << "    .wavefront_size: 32\n";
+      os << "    .workgroup_processor_mode: 1\n";
+    }
+    os << "amdhsa.target:   amdgcn-amd-amdhsa--gfx1100\n";
+    os << "amdhsa.version:\n";
+    os << "  - 1\n";
+    os << "  - 2\n";
+    os << "...\n";
+    os << "\t.end_amdgpu_metadata\n";
   }
 
   void selectFunctionArguments(func::FuncOp func) {
@@ -472,16 +550,23 @@ private:
   LogicalResult selectWhere(WhereOp op) {
     unsigned savedExec = createVirtualReg(RegClass::SGPR);
     std::string endLabel = makeLabel("endif");
+    std::string elseLabel = op.getElseRegion().empty() ? endLabel : makeLabel("else");
+    Operand condition = expect(op.getCondition(), op);
     addInstr(MachineOpcode::SAndSaveExecB32, savedExec,
-             expect(op.getCondition(), op));
-    addInstr(MachineOpcode::SCBranchExecZ, {}, Operand::makeLabel(endLabel));
+             condition);
+    addInstr(MachineOpcode::SCBranchExecZ, {}, Operand::makeLabel(elseLabel));
     if (failed(selectRegion(op.getThenRegion())))
       return failure();
+    if (!op.getElseRegion().empty()) {
+      addInstr(MachineOpcode::SAndN2ExecB32, {},
+               {Operand::makeReg(savedExec), condition});
+      addInstr(MachineOpcode::SCBranchExecZ, {}, Operand::makeLabel(endLabel));
+      addLabel(elseLabel);
+      if (failed(selectRegion(op.getElseRegion())))
+        return failure();
+    }
     addLabel(endLabel);
     addInstr(MachineOpcode::SMovExecLo, {}, Operand::makeReg(savedExec));
-    if (!op.getElseRegion().empty()) {
-      addComment("; otherwise region omitted in MVP backend");
-    }
     return success();
   }
 
@@ -689,13 +774,31 @@ private:
                  op(1));
       return success();
     case MachineOpcode::VAndB32:
-      emitLine(Twine("v_and_b32_e32 ") + def() + ", " + op(0) + ", " + op(1));
+      if (mi.operands[1].kind == Operand::Kind::Reg &&
+          virtualRegs[mi.operands[1].regId].regClass == RegClass::SGPR)
+        emitLine(Twine("v_and_b32_e32 ") + def() + ", " + op(1) + ", " +
+                 op(0));
+      else
+        emitLine(Twine("v_and_b32_e32 ") + def() + ", " + op(0) + ", " +
+                 op(1));
       return success();
     case MachineOpcode::VOrB32:
-      emitLine(Twine("v_or_b32_e32 ") + def() + ", " + op(0) + ", " + op(1));
+      if (mi.operands[1].kind == Operand::Kind::Reg &&
+          virtualRegs[mi.operands[1].regId].regClass == RegClass::SGPR)
+        emitLine(Twine("v_or_b32_e32 ") + def() + ", " + op(1) + ", " +
+                 op(0));
+      else
+        emitLine(Twine("v_or_b32_e32 ") + def() + ", " + op(0) + ", " +
+                 op(1));
       return success();
     case MachineOpcode::VXorB32:
-      emitLine(Twine("v_xor_b32_e32 ") + def() + ", " + op(0) + ", " + op(1));
+      if (mi.operands[1].kind == Operand::Kind::Reg &&
+          virtualRegs[mi.operands[1].regId].regClass == RegClass::SGPR)
+        emitLine(Twine("v_xor_b32_e32 ") + def() + ", " + op(1) + ", " +
+                 op(0));
+      else
+        emitLine(Twine("v_xor_b32_e32 ") + def() + ", " + op(0) + ", " +
+                 op(1));
       return success();
     case MachineOpcode::VLshlRevB32:
       emitLine(Twine("v_lshlrev_b32_e32 ") + def() + ", " + op(1) + ", " +
@@ -744,6 +847,9 @@ private:
       return success();
     case MachineOpcode::SAndSaveExecB32:
       emitLine(Twine("s_and_saveexec_b32 ") + def() + ", " + op(0));
+      return success();
+    case MachineOpcode::SAndN2ExecB32:
+      emitLine(Twine("s_andn2_b32 exec_lo, ") + op(0) + ", " + op(1));
       return success();
     case MachineOpcode::SCBranchExecZ:
       emitLine(Twine("s_cbranch_execz ") + op(0));

@@ -1,5 +1,8 @@
 // RUN: mlir-translate --wave-to-amdgpu-asm %s | FileCheck %s
 // RUN: mlir-translate --wave-to-amdgpu-asm %s | llvm-mc -triple=amdgcn-amd-amdhsa -mcpu=gfx1100 -filetype=obj -o /dev/null
+// RUN: mlir-translate --wave-to-amdgpu-asm %s | llvm-mc -triple=amdgcn-amd-amdhsa -mcpu=gfx1100 -filetype=obj -o %t.o
+// RUN: ld.lld -shared %t.o -o %t.hsaco
+// RUN: llvm-readelf --notes %t.hsaco | FileCheck %s --check-prefix=NOTE
 
 // CHECK: .amdgcn_target "amdgcn-amd-amdhsa--gfx1100"
 // CHECK-LABEL: wave_add:
@@ -37,6 +40,31 @@ func.func @wave_where(%limit: i32) -> i32 {
   return %bits : i32
 }
 
+// CHECK-LABEL: wave_where_else:
+func.func @wave_where_else(%limit: i32) -> i32 {
+  // CHECK: v_mbcnt_lo_u32_b32 [[LANE:v[0-9]+]], -1, 0
+  %lane = wave.lane_id : !wave.simd<i32, 32>
+  %vlimit = wave.splat %limit : i32 -> !wave.simd<i32, 32>
+  // CHECK: v_cmp_lt_u32_e64 [[MASK:s[0-9]+]], [[LANE]], [[ARG:s[0-9]+]]
+  %active = wave.cmpi ult %lane, %vlimit : !wave.simd<i32, 32>, !wave.simd<i32, 32> -> !wave.mask<32>
+  // CHECK: s_and_saveexec_b32 [[SAVE:s[0-9]+]], [[MASK]]
+  // CHECK: s_cbranch_execz [[ELSE:.Lwave_else_[0-9]+]]
+  wave.where %active {
+    // CHECK: v_add_nc_u32_e32
+    %then = wave.binary "addi" %lane, %vlimit : !wave.simd<i32, 32>, !wave.simd<i32, 32> -> !wave.simd<i32, 32>
+    wave.yield
+  } otherwise {
+    // CHECK: s_andn2_b32 exec_lo, [[SAVE]], [[MASK]]
+    // CHECK: [[ELSE]]:
+    // CHECK: v_xor_b32_e32
+    %else = wave.binary "xori" %lane, %vlimit : !wave.simd<i32, 32>, !wave.simd<i32, 32> -> !wave.simd<i32, 32>
+    wave.yield
+  } : !wave.mask<32>
+  // CHECK: s_mov_b32 exec_lo, [[SAVE]]
+  %bits = wave.ballot %active : !wave.mask<32> -> i32
+  return %bits : i32
+}
+
 // CHECK-LABEL: wave_kernel:
 func.func @wave_kernel(%out: memref<32xi32>, %x: i32) attributes {wave.kernel} {
   // CHECK: s_load_b64 [[OUT:s\[[0-9]+:[0-9]+\]]], s[0:1], 0
@@ -56,3 +84,9 @@ func.func @wave_kernel(%out: memref<32xi32>, %x: i32) attributes {wave.kernel} {
   return
 }
 // CHECK: .amdhsa_kernel wave_kernel
+
+// NOTE: NT_AMDGPU_METADATA
+// NOTE: amdhsa.kernels:
+// NOTE: .name:           wave_kernel
+// NOTE: .symbol:         wave_kernel.kd
+// NOTE: amdhsa.target:   amdgcn-amd-amdhsa--gfx1100
