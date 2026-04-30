@@ -15,14 +15,87 @@
 #include "mlir/IR/Diagnostics.h"
 #include "mlir/IR/Operation.h"
 #include "llvm/ADT/DenseMap.h"
-#include "llvm/ADT/ScopeExit.h"
+#include "llvm/ADT/SmallVector.h"
 #include "llvm/ADT/StringSwitch.h"
-#include "llvm/Support/FormatVariadic.h"
+#include <algorithm>
+#include <optional>
 
 using namespace mlir;
 using namespace mlir::wave;
 
 namespace {
+
+enum class RegClass { SGPR, VGPR };
+
+struct VirtualReg {
+  unsigned id = 0;
+  RegClass regClass = RegClass::VGPR;
+};
+
+struct Operand {
+  enum class Kind { Reg, Imm, Label } kind = Kind::Imm;
+  unsigned regId = 0;
+  int64_t immValue = 0;
+  std::string labelValue;
+
+  static Operand makeReg(unsigned id) {
+    Operand operand;
+    operand.kind = Kind::Reg;
+    operand.regId = id;
+    return operand;
+  }
+
+  static Operand makeImm(int64_t value) {
+    Operand operand;
+    operand.kind = Kind::Imm;
+    operand.immValue = value;
+    return operand;
+  }
+
+  static Operand makeLabel(StringRef value) {
+    Operand operand;
+    operand.kind = Kind::Label;
+    operand.labelValue = value.str();
+    return operand;
+  }
+};
+
+enum class MachineOpcode {
+  Label,
+  Comment,
+  VMbcntLo,
+  VAddU32,
+  VAndB32,
+  VOrB32,
+  VXorB32,
+  VLshlRevB32,
+  VCmpEqU32,
+  VCmpNeU32,
+  VCmpLtU32,
+  VCmpLeU32,
+  VCmpGtU32,
+  VCmpGeU32,
+  SMovB32,
+  SAndSaveExecB32,
+  SCBranchExecZ,
+  SMovExecLo,
+  VReadFirstLaneB32,
+  SSetPcB64
+};
+
+struct MachineInstr {
+  MachineOpcode opcode = MachineOpcode::Comment;
+  SmallVector<unsigned, 1> defs;
+  SmallVector<Operand, 3> operands;
+  std::string text;
+};
+
+struct LiveInterval {
+  unsigned reg = 0;
+  RegClass regClass = RegClass::VGPR;
+  unsigned start = std::numeric_limits<unsigned>::max();
+  unsigned end = 0;
+};
 
 class WaveAMDGPUEmitter {
 public:
@@ -44,14 +117,19 @@ public:
 
 private:
   raw_ostream &os;
-  DenseMap<Value, std::string> values;
-  unsigned nextVGPR = 0;
-  unsigned nextSGPR = 0;
+  DenseMap<Value, Operand> values;
+  SmallVector<VirtualReg> virtualRegs;
+  SmallVector<MachineInstr> instructions;
+  DenseMap<unsigned, unsigned> allocation;
   unsigned nextLabel = 0;
   unsigned indent = 1;
 
-  std::string makeVGPR() { return "v" + Twine(nextVGPR++).str(); }
-  std::string makeSGPR() { return "s" + Twine(nextSGPR++).str(); }
+  unsigned createVirtualReg(RegClass regClass) {
+    unsigned id = virtualRegs.size();
+    virtualRegs.push_back(VirtualReg{id, regClass});
+    return id;
+  }
+
   std::string makeLabel(StringRef stem) {
     return (Twine(".Lwave_") + stem + "_" + Twine(nextLabel++)).str();
   }
@@ -69,23 +147,33 @@ private:
 
   LogicalResult emitFunction(func::FuncOp func) {
     values.clear();
-    nextVGPR = 0;
-    nextSGPR = 0;
+    virtualRegs.clear();
+    instructions.clear();
+    allocation.clear();
+
+    // MVP convention: integer arguments arrive in VGPRs. This keeps the direct
+    // backend independent from the existing AMDGPU calling convention lowering.
+    for (BlockArgument arg : func.getArguments())
+      values[arg] = Operand::makeReg(createVirtualReg(RegClass::VGPR));
+
+    if (!func.getBody().hasOneBlock())
+      return func.emitError("wave AMDGPU backend only supports one-block funcs");
+    for (Operation &op : func.getBody().front()) {
+      if (failed(selectOperation(&op)))
+        return failure();
+    }
+
+    if (failed(allocateRegisters(func)))
+      return failure();
 
     os << "\n\t.globl\t" << func.getSymName() << "\n";
     os << "\t.p2align\t8\n";
     os << "\t.type\t" << func.getSymName() << ",@function\n";
     os << func.getSymName() << ":\n";
 
-    // MVP convention: integer arguments arrive in VGPRs. This keeps the direct
-    // backend independent from the existing AMDGPU calling convention lowering.
-    for (BlockArgument arg : func.getArguments())
-      values[arg] = makeVGPR();
-
-    if (!func.getBody().hasOneBlock())
-      return func.emitError("wave AMDGPU backend only supports one-block funcs");
-    for (Operation &op : func.getBody().front()) {
-      if (failed(emitOperation(&op)))
+    emitLine(StringRef("; wave backend: virtual registers allocated by linear scan"));
+    for (const MachineInstr &mi : instructions) {
+      if (failed(emitMachineInstr(mi)))
         return failure();
     }
 
@@ -94,180 +182,387 @@ private:
     return success();
   }
 
-  FailureOr<std::string> lookup(Value value) {
+  FailureOr<Operand> lookup(Value value) {
     auto it = values.find(value);
     if (it == values.end())
       return failure();
     return it->second;
   }
 
-  std::string expect(Value value, Operation *user) {
-    FailureOr<std::string> result = lookup(value);
+  Operand expect(Value value, Operation *user) {
+    FailureOr<Operand> result = lookup(value);
     if (failed(result)) {
       user->emitError("value has no backend location");
-      return "<invalid>";
+      return Operand::makeImm(0);
     }
     return *result;
   }
 
-  LogicalResult emitOperation(Operation *op) {
+  void addInstr(MachineOpcode opcode, ArrayRef<unsigned> defs,
+                ArrayRef<Operand> operands = {}) {
+    MachineInstr mi;
+    mi.opcode = opcode;
+    mi.defs.append(defs.begin(), defs.end());
+    mi.operands.append(operands.begin(), operands.end());
+    instructions.push_back(std::move(mi));
+  }
+
+  void addLabel(StringRef label) {
+    MachineInstr mi;
+    mi.opcode = MachineOpcode::Label;
+    mi.text = label.str();
+    instructions.push_back(std::move(mi));
+  }
+
+  void addComment(const Twine &text) {
+    MachineInstr mi;
+    mi.opcode = MachineOpcode::Comment;
+    mi.text = text.str();
+    instructions.push_back(std::move(mi));
+  }
+
+  LogicalResult selectOperation(Operation *op) {
     if (auto constant = dyn_cast<arith::ConstantIntOp>(op))
-      return emitConstant(constant);
+      return selectConstant(constant);
     if (auto laneId = dyn_cast<LaneIdOp>(op))
-      return emitLaneId(laneId);
+      return selectLaneId(laneId);
     if (auto splat = dyn_cast<SplatOp>(op))
-      return emitSplat(splat);
+      return selectSplat(splat);
     if (auto binary = dyn_cast<BinaryOp>(op))
-      return emitBinary(binary);
+      return selectBinary(binary);
     if (auto cmp = dyn_cast<CmpIOp>(op))
-      return emitCmp(cmp);
+      return selectCmp(cmp);
     if (auto ballot = dyn_cast<BallotOp>(op))
-      return emitBallot(ballot);
+      return selectBallot(ballot);
     if (auto readFirst = dyn_cast<ReadFirstOp>(op))
-      return emitReadFirst(readFirst);
+      return selectReadFirst(readFirst);
     if (auto where = dyn_cast<WhereOp>(op))
-      return emitWhere(where);
+      return selectWhere(where);
     if (auto store = dyn_cast<StoreOp>(op))
-      return emitStore(store);
+      return selectStore(store);
     if (auto ret = dyn_cast<func::ReturnOp>(op))
-      return emitReturn(ret);
+      return selectReturn(ret);
     if (isa<YieldOp>(op))
       return success();
 
     return op->emitError("unsupported operation in Wave AMDGPU backend");
   }
 
-  LogicalResult emitConstant(arith::ConstantIntOp op) {
-    values[op.getResult()] = Twine(op.value()).str();
+  LogicalResult selectConstant(arith::ConstantIntOp op) {
+    values[op.getResult()] = Operand::makeImm(op.value());
     return success();
   }
 
-  LogicalResult emitLaneId(LaneIdOp op) {
+  LogicalResult selectLaneId(LaneIdOp op) {
     auto simdType = cast<SimdType>(op.getType());
     if (!simdType.getElementType().isInteger(32) || simdType.getWidth() != 32)
       return op.emitError("backend supports only !wave.simd<i32, 32> lane_id");
 
-    std::string dst = makeVGPR();
-    emitLine(Twine("v_mbcnt_lo_u32_b32 ") + dst + ", -1, 0");
-    values[op.getResult()] = dst;
+    unsigned dst = createVirtualReg(RegClass::VGPR);
+    addInstr(MachineOpcode::VMbcntLo, dst);
+    values[op.getResult()] = Operand::makeReg(dst);
     return success();
   }
 
-  LogicalResult emitSplat(SplatOp op) {
+  LogicalResult selectSplat(SplatOp op) {
     values[op.getResult()] = expect(op.getSource(), op);
     return success();
   }
 
-  LogicalResult emitBinary(BinaryOp op) {
-    std::string dst = makeVGPR();
-    std::string lhs = expect(op.getLhs(), op);
-    std::string rhs = expect(op.getRhs(), op);
-    StringRef opcode =
-        llvm::StringSwitch<StringRef>(op.getKind())
-            .Case("addi", "v_add_u32_e32")
-            .Case("andi", "v_and_b32_e32")
-            .Case("ori", "v_or_b32_e32")
-            .Case("xori", "v_xor_b32_e32")
-            .Case("shli", "v_lshlrev_b32_e32")
-            .Default("");
-    if (opcode.empty())
+  LogicalResult selectBinary(BinaryOp op) {
+    unsigned dst = createVirtualReg(RegClass::VGPR);
+    MachineOpcode opcode =
+        llvm::StringSwitch<MachineOpcode>(op.getKind())
+            .Case("addi", MachineOpcode::VAddU32)
+            .Case("andi", MachineOpcode::VAndB32)
+            .Case("ori", MachineOpcode::VOrB32)
+            .Case("xori", MachineOpcode::VXorB32)
+            .Case("shli", MachineOpcode::VLshlRevB32)
+            .Default(MachineOpcode::Comment);
+    if (opcode == MachineOpcode::Comment)
       return op.emitError("unsupported wave.binary kind");
-    if (op.getKind() == "shli")
-      emitLine(Twine(opcode) + " " + dst + ", " + rhs + ", " + lhs);
-    else
-      emitLine(Twine(opcode) + " " + dst + ", " + lhs + ", " + rhs);
-    values[op.getResult()] = dst;
+    addInstr(opcode, dst, {expect(op.getLhs(), op), expect(op.getRhs(), op)});
+    values[op.getResult()] = Operand::makeReg(dst);
     return success();
   }
 
-  LogicalResult emitCmp(CmpIOp op) {
+  LogicalResult selectCmp(CmpIOp op) {
     auto maskType = cast<MaskType>(op.getType());
     if (maskType.getWidth() != 32)
       return op.emitError("backend supports only !wave.mask<32>");
 
-    std::string dst = makeSGPR();
-    std::string lhs = expect(op.getLhs(), op);
-    std::string rhs = expect(op.getRhs(), op);
-    StringRef cmp =
-        llvm::StringSwitch<StringRef>(stringifyCmpIPredicate(op.getPredicate()))
-            .Case("eq", "v_cmp_eq_u32_e64")
-            .Case("ne", "v_cmp_ne_u32_e64")
-            .Case("ult", "v_cmp_lt_u32_e64")
-            .Case("ule", "v_cmp_le_u32_e64")
-            .Case("ugt", "v_cmp_gt_u32_e64")
-            .Case("uge", "v_cmp_ge_u32_e64")
-            .Default("");
-    if (cmp.empty())
+    unsigned dst = createVirtualReg(RegClass::SGPR);
+    MachineOpcode cmp =
+        llvm::StringSwitch<MachineOpcode>(
+            stringifyCmpIPredicate(op.getPredicate()))
+            .Case("eq", MachineOpcode::VCmpEqU32)
+            .Case("ne", MachineOpcode::VCmpNeU32)
+            .Case("ult", MachineOpcode::VCmpLtU32)
+            .Case("ule", MachineOpcode::VCmpLeU32)
+            .Case("ugt", MachineOpcode::VCmpGtU32)
+            .Case("uge", MachineOpcode::VCmpGeU32)
+            .Default(MachineOpcode::Comment);
+    if (cmp == MachineOpcode::Comment)
       return op.emitError("unsupported wave.cmpi predicate");
-    emitLine(Twine(cmp) + " " + dst + ", " + lhs + ", " + rhs);
-    values[op.getResult()] = dst;
+    addInstr(cmp, dst, {expect(op.getLhs(), op), expect(op.getRhs(), op)});
+    values[op.getResult()] = Operand::makeReg(dst);
     return success();
   }
 
-  LogicalResult emitBallot(BallotOp op) {
-    std::string dst = makeSGPR();
-    emitLine(Twine("s_mov_b32 ") + dst + ", " + expect(op.getMask(), op));
-    values[op.getResult()] = dst;
+  LogicalResult selectBallot(BallotOp op) {
+    unsigned dst = createVirtualReg(RegClass::SGPR);
+    addInstr(MachineOpcode::SMovB32, dst, expect(op.getMask(), op));
+    values[op.getResult()] = Operand::makeReg(dst);
     return success();
   }
 
-  LogicalResult emitReadFirst(ReadFirstOp op) {
-    std::string src = expect(op.getSource(), op);
-    if (StringRef(src).starts_with("s")) {
+  LogicalResult selectReadFirst(ReadFirstOp op) {
+    Operand src = expect(op.getSource(), op);
+    if (src.kind == Operand::Kind::Reg &&
+        virtualRegs[src.regId].regClass == RegClass::SGPR) {
       values[op.getResult()] = src;
       return success();
     }
-    std::string dst = makeSGPR();
-    emitLine(Twine("v_readfirstlane_b32 ") + dst + ", " + src);
-    values[op.getResult()] = dst;
+    unsigned dst = createVirtualReg(RegClass::SGPR);
+    addInstr(MachineOpcode::VReadFirstLaneB32, dst, src);
+    values[op.getResult()] = Operand::makeReg(dst);
     return success();
   }
 
-  LogicalResult emitStore(StoreOp op) {
+  LogicalResult selectStore(StoreOp op) {
     // This backend is intentionally text-only for now. Record where a real
     // memory backend would select a flat/global store.
-    emitLine(Twine("; wave.store ") + expect(op.getValue(), op));
+    MachineInstr mi;
+    mi.opcode = MachineOpcode::Comment;
+    mi.operands.push_back(expect(op.getValue(), op));
+    mi.text = "wave.store";
+    instructions.push_back(std::move(mi));
     return success();
   }
 
-  LogicalResult emitWhere(WhereOp op) {
-    std::string savedExec = makeSGPR();
+  LogicalResult selectWhere(WhereOp op) {
+    unsigned savedExec = createVirtualReg(RegClass::SGPR);
     std::string endLabel = makeLabel("endif");
-    emitLine(Twine("s_and_saveexec_b32 ") + savedExec + ", " +
+    addInstr(MachineOpcode::SAndSaveExecB32, savedExec,
              expect(op.getCondition(), op));
-    emitLine(Twine("s_cbranch_execz ") + endLabel);
-    if (failed(emitRegion(op.getThenRegion())))
+    addInstr(MachineOpcode::SCBranchExecZ, {}, Operand::makeLabel(endLabel));
+    if (failed(selectRegion(op.getThenRegion())))
       return failure();
-    os << endLabel << ":\n";
-    emitLine(Twine("s_mov_b32 exec_lo, ") + savedExec);
+    addLabel(endLabel);
+    addInstr(MachineOpcode::SMovExecLo, {}, Operand::makeReg(savedExec));
     if (!op.getElseRegion().empty()) {
-      emitLine(StringRef("; otherwise region omitted in MVP backend"));
+      addComment("; otherwise region omitted in MVP backend");
     }
     return success();
   }
 
-  LogicalResult emitRegion(Region &region) {
+  LogicalResult selectRegion(Region &region) {
     if (!region.hasOneBlock())
       return failure();
     for (Operation &op : region.front()) {
-      if (failed(emitOperation(&op)))
+      if (failed(selectOperation(&op)))
         return failure();
     }
     return success();
   }
 
-  LogicalResult emitReturn(func::ReturnOp op) {
+  LogicalResult selectReturn(func::ReturnOp op) {
     if (op.getNumOperands() > 1)
       return op.emitError("backend supports at most one return value");
     if (op.getNumOperands() == 1) {
-      std::string ret = expect(op.getOperand(0), op);
-      if (StringRef(ret).starts_with("v"))
-        emitLine(Twine("v_readfirstlane_b32 s0, ") + ret);
-      else
-        emitLine(Twine("s_mov_b32 s0, ") + ret);
+      Operand ret = expect(op.getOperand(0), op);
+      if (ret.kind == Operand::Kind::Reg &&
+          virtualRegs[ret.regId].regClass == RegClass::VGPR) {
+        addInstr(MachineOpcode::VReadFirstLaneB32, createVirtualReg(RegClass::SGPR),
+                 ret);
+        unsigned returnReg = instructions.back().defs.front();
+        addInstr(MachineOpcode::SMovB32, {}, {Operand::makeLabel("s0"),
+                                              Operand::makeReg(returnReg)});
+      } else {
+        addInstr(MachineOpcode::SMovB32, {}, {Operand::makeLabel("s0"), ret});
+      }
     }
-    emitLine(StringRef("s_setpc_b64 s[30:31]"));
+    addInstr(MachineOpcode::SSetPcB64, {});
     return success();
+  }
+
+  static bool isRegOperand(const Operand &operand) {
+    return operand.kind == Operand::Kind::Reg;
+  }
+
+  SmallVector<LiveInterval> computeLiveIntervals() {
+    SmallVector<LiveInterval> intervals;
+    intervals.reserve(virtualRegs.size());
+    for (VirtualReg reg : virtualRegs)
+      intervals.push_back(LiveInterval{reg.id, reg.regClass});
+
+    auto touch = [&](unsigned reg, unsigned pos) {
+      LiveInterval &interval = intervals[reg];
+      interval.start = std::min(interval.start, pos);
+      interval.end = std::max(interval.end, pos);
+    };
+
+    for (unsigned pos = 0, e = instructions.size(); pos != e; ++pos) {
+      const MachineInstr &mi = instructions[pos];
+      for (unsigned def : mi.defs)
+        touch(def, pos);
+      for (const Operand &operand : mi.operands) {
+        if (isRegOperand(operand))
+          touch(operand.regId, pos);
+      }
+    }
+
+    for (LiveInterval &interval : intervals) {
+      if (interval.start == std::numeric_limits<unsigned>::max())
+        interval.start = interval.end = 0;
+    }
+    return intervals;
+  }
+
+  LogicalResult allocateRegisters(func::FuncOp func) {
+    SmallVector<LiveInterval> intervals = computeLiveIntervals();
+    llvm::stable_sort(intervals, [](const LiveInterval &lhs,
+                                   const LiveInterval &rhs) {
+      if (lhs.start != rhs.start)
+        return lhs.start < rhs.start;
+      return lhs.reg < rhs.reg;
+    });
+
+    if (failed(allocateClass(func, intervals, RegClass::VGPR, /*numPhys=*/32)))
+      return failure();
+    if (failed(allocateClass(func, intervals, RegClass::SGPR, /*numPhys=*/32)))
+      return failure();
+    return success();
+  }
+
+  LogicalResult allocateClass(func::FuncOp func, ArrayRef<LiveInterval> intervals,
+                              RegClass regClass, unsigned numPhys) {
+    SmallVector<LiveInterval> active;
+    SmallVector<unsigned> freeRegs;
+    for (unsigned i = 0; i != numPhys; ++i)
+      freeRegs.push_back(numPhys - 1 - i);
+
+    auto expireOld = [&](unsigned pos) {
+      SmallVector<LiveInterval> stillActive;
+      for (LiveInterval interval : active) {
+        if (interval.end < pos) {
+          freeRegs.push_back(allocation[interval.reg]);
+        } else {
+          stillActive.push_back(interval);
+        }
+      }
+      active = std::move(stillActive);
+    };
+
+    for (LiveInterval interval : intervals) {
+      if (interval.regClass != regClass)
+        continue;
+      expireOld(interval.start);
+      if (freeRegs.empty())
+        return func.emitError("wave backend ran out of physical registers");
+      unsigned phys = freeRegs.pop_back_val();
+      allocation[interval.reg] = phys;
+      active.push_back(interval);
+      llvm::sort(active, [](const LiveInterval &lhs, const LiveInterval &rhs) {
+        return lhs.end < rhs.end;
+      });
+    }
+    return success();
+  }
+
+  std::string physReg(unsigned reg) const {
+    const VirtualReg &vreg = virtualRegs[reg];
+    auto it = allocation.find(reg);
+    assert(it != allocation.end() && "unallocated virtual register");
+    return (vreg.regClass == RegClass::VGPR ? "v" : "s") + Twine(it->second).str();
+  }
+
+  std::string operandToString(const Operand &operand) const {
+    switch (operand.kind) {
+    case Operand::Kind::Reg:
+      return physReg(operand.regId);
+    case Operand::Kind::Imm:
+      return Twine(operand.immValue).str();
+    case Operand::Kind::Label:
+      return operand.labelValue;
+    }
+    llvm_unreachable("unknown operand kind");
+  }
+
+  LogicalResult emitMachineInstr(const MachineInstr &mi) {
+    auto def = [&]() { return physReg(mi.defs.front()); };
+    auto op = [&](unsigned i) { return operandToString(mi.operands[i]); };
+
+    switch (mi.opcode) {
+    case MachineOpcode::Label:
+      os << mi.text << ":\n";
+      return success();
+    case MachineOpcode::Comment:
+      if (!mi.operands.empty())
+        emitLine(Twine("; ") + mi.text + " " + op(0));
+      else
+        emitLine(Twine("; ") + mi.text);
+      return success();
+    case MachineOpcode::VMbcntLo:
+      emitLine(Twine("v_mbcnt_lo_u32_b32 ") + def() + ", -1, 0");
+      return success();
+    case MachineOpcode::VAddU32:
+      emitLine(Twine("v_add_u32_e32 ") + def() + ", " + op(0) + ", " + op(1));
+      return success();
+    case MachineOpcode::VAndB32:
+      emitLine(Twine("v_and_b32_e32 ") + def() + ", " + op(0) + ", " + op(1));
+      return success();
+    case MachineOpcode::VOrB32:
+      emitLine(Twine("v_or_b32_e32 ") + def() + ", " + op(0) + ", " + op(1));
+      return success();
+    case MachineOpcode::VXorB32:
+      emitLine(Twine("v_xor_b32_e32 ") + def() + ", " + op(0) + ", " + op(1));
+      return success();
+    case MachineOpcode::VLshlRevB32:
+      emitLine(Twine("v_lshlrev_b32_e32 ") + def() + ", " + op(1) + ", " +
+               op(0));
+      return success();
+    case MachineOpcode::VCmpEqU32:
+      emitLine(Twine("v_cmp_eq_u32_e64 ") + def() + ", " + op(0) + ", " + op(1));
+      return success();
+    case MachineOpcode::VCmpNeU32:
+      emitLine(Twine("v_cmp_ne_u32_e64 ") + def() + ", " + op(0) + ", " + op(1));
+      return success();
+    case MachineOpcode::VCmpLtU32:
+      emitLine(Twine("v_cmp_lt_u32_e64 ") + def() + ", " + op(0) + ", " + op(1));
+      return success();
+    case MachineOpcode::VCmpLeU32:
+      emitLine(Twine("v_cmp_le_u32_e64 ") + def() + ", " + op(0) + ", " + op(1));
+      return success();
+    case MachineOpcode::VCmpGtU32:
+      emitLine(Twine("v_cmp_gt_u32_e64 ") + def() + ", " + op(0) + ", " + op(1));
+      return success();
+    case MachineOpcode::VCmpGeU32:
+      emitLine(Twine("v_cmp_ge_u32_e64 ") + def() + ", " + op(0) + ", " + op(1));
+      return success();
+    case MachineOpcode::SMovB32:
+      if (mi.defs.empty())
+        emitLine(Twine("s_mov_b32 ") + op(0) + ", " + op(1));
+      else
+        emitLine(Twine("s_mov_b32 ") + def() + ", " + op(0));
+      return success();
+    case MachineOpcode::SAndSaveExecB32:
+      emitLine(Twine("s_and_saveexec_b32 ") + def() + ", " + op(0));
+      return success();
+    case MachineOpcode::SCBranchExecZ:
+      emitLine(Twine("s_cbranch_execz ") + op(0));
+      return success();
+    case MachineOpcode::SMovExecLo:
+      emitLine(Twine("s_mov_b32 exec_lo, ") + op(0));
+      return success();
+    case MachineOpcode::VReadFirstLaneB32:
+      emitLine(Twine("v_readfirstlane_b32 ") + def() + ", " + op(0));
+      return success();
+    case MachineOpcode::SSetPcB64:
+      emitLine(StringRef("s_setpc_b64 s[30:31]"));
+      return success();
+    }
+    llvm_unreachable("unknown machine opcode");
   }
 };
 
