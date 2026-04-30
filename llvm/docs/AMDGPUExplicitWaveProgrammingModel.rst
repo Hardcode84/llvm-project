@@ -572,7 +572,8 @@ Memory
   ``load`` and ``store`` over lane-varying addresses are wave memory operations.
   Scalar loads over uniform addresses remain scalar memory operations when legal.
   Higher-level operations can express coalesced global accesses, LDS tiling,
-  global-to-LDS movement, and memory clauses.
+  global-to-LDS movement, and memory clauses. Memory ordering is represented by
+  explicit memory tokens, not by implicit alias analysis.
 
 Matrix operations
   MFMA, WMMA, and related operations should be expressed as wave-cooperative
@@ -606,6 +607,108 @@ Ordering
   ordering. GFX12 and newer targets have more explicit scoped cache and wait
   operations, which should be represented directly rather than hidden behind a
   generic barrier.
+
+Explicit memory dependencies
+  Memory dependencies are part of the program. The compiler must not recover
+  them with hidden alias analysis. A memory operation is ordered after another
+  memory operation only when it consumes a token produced by that operation, or
+  by a token derived from it.
+
+Memory Tokens
+=============
+
+The Wave dialect should model memory dependencies explicitly with a token type,
+for example ``!wave.mem.token``.
+
+Read dependencies
+-----------------
+
+A memory read already produces an SSA value. Uses of that value are dependencies
+on the read completing. For example:
+
+.. code-block:: c++
+
+  wave<int, 32> x = wave::load(in + i);
+  wave<int, 32> y = x + 1;
+
+The use of ``x`` is enough to force the backend to wait for the read before
+issuing operations that consume the loaded value.
+
+Write dependencies
+------------------
+
+Writes do not produce data values, so they must produce explicit memory tokens:
+
+.. code-block:: c++
+
+  wave::mem_token t0 = wave::store(out + i, value);
+
+Any later operation that must be ordered after the store consumes that token:
+
+.. code-block:: c++
+
+  wave<int, 32> x = wave::load(in + i, wave::after(t0));
+  wave::mem_token t1 = wave::store(tmp + i, x, wave::after(t0));
+
+Multiple dependencies may be passed directly or joined:
+
+.. code-block:: c++
+
+  wave::mem_token a = wave::store(A + i, va);
+  wave::mem_token b = wave::store(B + i, vb);
+
+  wave<int, 32> x = wave::load(C + i, wave::after(a, b));
+
+  wave::mem_token both = wave::join(a, b);
+  wave::wait(both);
+
+The semantic rule is intentionally strict: no token means no memory dependency.
+If two memory operations do not exchange a token, the compiler may treat them as
+non-aliasing for ordering purposes even if their addresses are not statically
+distinguishable.
+
+Masked control
+--------------
+
+Tokens compose through structured masked control. A ``where`` region that
+performs memory effects can yield a token:
+
+.. code-block:: c++
+
+  wave::mem_token t = wave::where(active, [&] {
+    return wave::store(out + i, value);
+  });
+
+  wave::wait(t);
+
+At the MLIR level this corresponds to a region result:
+
+.. code-block:: mlir
+
+  %t = wave.where %active {
+    %t0 = wave.store %value -> %out[%i]
+      : (!wave.simd<i32, 32>, memref<?xi32>, !wave.simd<i32, 32>)
+      -> !wave.mem.token
+    wave.yield %t0 : !wave.mem.token
+  } : !wave.mask<32> -> !wave.mem.token
+
+Waitcnt lowering
+----------------
+
+The waitcnt algorithm should follow token dependencies, not alias-analysis
+results:
+
+* each memory-producing operation creates a token associated with one or more
+  target events, such as VMEM load, VMEM store, LDS, or SMEM;
+* each memory operation or explicit ``wave.wait`` lists the tokens it needs;
+* the backend inserts the minimum target wait required to satisfy those tokens;
+* if AMDGPU's hardware counters are coarser than the tokens, the backend may
+  conservatively wait for additional older events covered by the same counter.
+
+This removes the need for LLVM-style memory alias analysis in the Wave memory
+model. Target hazards that are not memory aliasing, such as SGPR-read hazards,
+EXEC/VCC hazards, VALU forwarding hazards, or generation-specific instruction
+restrictions, remain backend responsibilities.
 
 Lowering Strategy
 =================
@@ -658,6 +761,13 @@ Generation-specific lowering
   wave-size predicates and ``LaneMaskConstants`` machinery for ``EXEC``/``VCC``
   register selection and scalar mask opcodes.
 
+Memory dependency lowering
+  Lower memory tokens to backend scheduling dependencies. The AMDGPU waitcnt
+  insertion algorithm should consume token def-use chains directly. It should
+  not perform memory alias analysis to infer additional dependencies. Missing
+  tokens are a promise from the source-level program or earlier compiler pass
+  that no ordering dependency is required.
+
 Verifier
 ========
 
@@ -679,6 +789,10 @@ The verifier should check that:
 * Operations that require a uniform lane index, such as ``read_lane``, receive a
   scalar ``uint32_t`` index.
 * Wave-size-polymorphic code is specialized before target instruction selection.
+* Memory operations that require ordering consume the relevant
+  ``!wave.mem.token`` values.
+* Tokens yielded from ``where`` or ``scf`` regions dominate all consuming memory
+  operations.
 
 ABI and Launch Model
 ====================
@@ -725,6 +839,7 @@ Required source concepts:
 * ordinary scalar ``T`` values, which are uniform by default;
 * ``wave<T, 32>`` and ``wave<T, 64>``;
 * ``mask<32>`` and ``mask<64>``;
+* ``mem_token`` for explicit memory dependencies;
 * fixed wave-size kernel attributes;
 * custom ``where`` without arbitrary unstructured mask mutation;
 * standard MLIR ``scf.for``, ``scf.if``, and ``scf.while`` for uniform
@@ -738,7 +853,8 @@ Required operations:
 * ``ballot``, ``any``, ``all``, and ``popcount``;
 * ``read_first`` and ``broadcast``;
 * simple reductions;
-* masked global and LDS load/store.
+* masked global and LDS load/store;
+* ``after``, ``join``, and ``wait`` token operations.
 
 Required lowering:
 
@@ -748,6 +864,7 @@ Required lowering:
 * wave values to divergent scalar LLVM IR values;
 * masks to ``i32`` or ``i64``;
 * structured masks to existing AMDGPU control-flow intrinsics;
+* memory tokens to explicit backend wait dependencies;
 * explicit uniformity information to AMDGPU divergence analysis or register bank
   selection.
 
