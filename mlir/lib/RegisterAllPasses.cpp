@@ -45,6 +45,7 @@
 #include "mlir/Dialect/Tosa/Transforms/Passes.h"
 #include "mlir/Dialect/Transform/Transforms/Passes.h"
 #include "mlir/Dialect/Vector/Transforms/Passes.h"
+#include "mlir/Dialect/Wave/Transforms/Passes.h"
 #include "mlir/Dialect/XeGPU/Transforms/Passes.h"
 #include "mlir/Target/LLVMIR/Transforms/Passes.h"
 #include "mlir/Transforms/Passes.h"
@@ -90,6 +91,7 @@ void mlir::registerAllPasses() {
   tosa::registerTosaPasses();
   transform::registerTransformPasses();
   vector::registerVectorPasses();
+  wave::registerWavePasses();
   arm_sme::registerArmSMEPasses();
   arm_sve::registerArmSVEPasses();
   emitc::registerEmitCPasses();
