@@ -10,6 +10,7 @@
 
 #include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/LLVMIR/ROCDLDialect.h"
+#include "mlir/Dialect/MemRef/IR/MemRef.h"
 #include "mlir/Dialect/SCF/IR/SCF.h"
 #include "mlir/Dialect/Wave/IR/Wave.h"
 #include "mlir/IR/Builders.h"
@@ -180,6 +181,19 @@ struct ReadFirstLowering : OpRewritePattern<ReadFirstOp> {
   }
 };
 
+struct StoreLowering : OpRewritePattern<StoreOp> {
+  using OpRewritePattern<StoreOp>::OpRewritePattern;
+
+  LogicalResult matchAndRewrite(StoreOp op,
+                                PatternRewriter &rewriter) const override {
+    if (isa<SimdType>(op.getValue().getType()))
+      return failure();
+    rewriter.replaceOpWithNewOp<memref::StoreOp>(
+        op, op.getValue(), op.getMemref(), op.getIndices());
+    return success();
+  }
+};
+
 static LogicalResult replaceWaveYieldWithScfYield(Region &region,
                                                   PatternRewriter &rewriter) {
   if (region.empty())
@@ -235,8 +249,9 @@ struct ConvertWaveToROCDLPass
       return signalPassFailure();
 
     RewritePatternSet boundaryPatterns(&getContext());
-    boundaryPatterns.add<BallotLowering, ReadFirstLowering, WhereLowering>(
-        &getContext());
+    boundaryPatterns
+        .add<BallotLowering, ReadFirstLowering, StoreLowering, WhereLowering>(
+            &getContext());
     if (failed(applyPatternsGreedily(getOperation(),
                                      std::move(boundaryPatterns))))
       signalPassFailure();

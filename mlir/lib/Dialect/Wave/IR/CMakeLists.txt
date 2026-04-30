@@ -11,6 +11,7 @@ add_mlir_dialect_library(MLIRWaveDialect
   MLIRArithDialect
   MLIRGPUDialect
   MLIRIR
+  MLIRMemRefDialect
   MLIRSCFDialect
   MLIRSideEffectInterfaces
   )

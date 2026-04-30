@@ -1,7 +1,7 @@
 // RUN: mlir-opt %s -convert-wave-to-rocdl | FileCheck %s
 
 // CHECK-LABEL: func.func @lower_to_rocdl
-func.func @lower_to_rocdl(%pred: i1, %value: i32) -> i32 {
+func.func @lower_to_rocdl(%pred: i1, %value: i32, %out: memref<i32>) -> i32 {
   // CHECK: rocdl.mbcnt.lo
   %lane = wave.lane_id : !wave.simd<i32, 32>
   %vvalue = wave.splat %value : i32 -> !wave.simd<i32, 32>
@@ -18,6 +18,8 @@ func.func @lower_to_rocdl(%pred: i1, %value: i32) -> i32 {
   "test.consume"(%subgroup, %size, %mask) : (index, index, i32) -> ()
   // CHECK: rocdl.readfirstlane {{.*}} : i32
   %first = wave.read_first %sum : !wave.simd<i32, 32> -> i32
+  // CHECK: memref.store
+  wave.store %sum -> %out[] : !wave.simd<i32, 32>, memref<i32>
 
   // CHECK: scf.if {{.*}} {
   wave.where %laneMask {

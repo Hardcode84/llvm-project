@@ -13,6 +13,7 @@ include "mlir/Dialect/Wave/IR/WaveBase.td"
 include "mlir/Dialect/Wave/IR/WaveTypes.td"
 
 include "mlir/Dialect/Arith/IR/ArithBase.td"
+include "mlir/Dialect/MemRef/IR/MemRefBase.td"
 include "mlir/IR/OpBase.td"
 include "mlir/Interfaces/ControlFlowInterfaces.td"
 include "mlir/Interfaces/SideEffectInterfaces.td"
@@ -131,6 +132,20 @@ def Wave_ReadFirstOp : Wave_Op<"read_first", [
   let arguments = (ins Wave_Simd:$source);
   let results = (outs AnyType:$result);
   let assemblyFormat = "$source attr-dict `:` qualified(type($source)) `->` type($result)";
+  let hasVerifier = 1;
+}
+
+def Wave_StoreOp : Wave_Op<"store", [MemoryEffects<[MemWrite]>]> {
+  let summary = "store a lane-varying SIMD value to memory";
+  let description = [{
+    Stores a `!wave.simd<T, W>` value using ordinary scalar indices. The value is
+    lane-varying; after target lowering each active lane stores its own element.
+  }];
+
+  let arguments = (ins Wave_Simd:$value,
+                       AnyMemRef:$memref,
+                       Variadic<Index>:$indices);
+  let assemblyFormat = "$value `->` $memref `[` $indices `]` attr-dict `:` qualified(type($value)) `,` type($memref)";
   let hasVerifier = 1;
 }
 

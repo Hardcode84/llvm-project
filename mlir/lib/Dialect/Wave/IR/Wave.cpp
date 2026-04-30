@@ -10,6 +10,7 @@
 
 #include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/GPU/IR/GPUDialect.h"
+#include "mlir/Dialect/MemRef/IR/MemRef.h"
 #include "mlir/Dialect/SCF/IR/SCF.h"
 #include "mlir/IR/Builders.h"
 #include "mlir/IR/DialectImplementation.h"
@@ -88,6 +89,22 @@ LogicalResult ReadFirstOp::verify() {
   auto simdType = cast<SimdType>(getSource().getType());
   if (simdType.getElementType() != getResult().getType())
     return emitOpError("result type must match SIMD element type");
+  return success();
+}
+
+LogicalResult StoreOp::verify() {
+  auto simdType = cast<SimdType>(getValue().getType());
+  Type memrefElementType;
+  Type memrefType = getMemref().getType();
+  if (auto ranked = dyn_cast<MemRefType>(memrefType))
+    memrefElementType = ranked.getElementType();
+  else if (auto unranked = dyn_cast<UnrankedMemRefType>(memrefType))
+    memrefElementType = unranked.getElementType();
+  else
+    return emitOpError("expected memref operand");
+
+  if (simdType.getElementType() != memrefElementType)
+    return emitOpError("SIMD element type must match memref element type");
   return success();
 }
 

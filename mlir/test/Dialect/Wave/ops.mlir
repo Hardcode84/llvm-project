@@ -2,7 +2,7 @@
 // RUN: mlir-opt %s | mlir-opt | FileCheck %s
 
 // CHECK-LABEL: func.func @wave_ops
-func.func @wave_ops(%pred: i1, %value: i32) -> i32 {
+func.func @wave_ops(%pred: i1, %value: i32, %out: memref<i32>) -> i32 {
   // CHECK: wave.lane_id : !wave.simd<i32, 32>
   %lane = wave.lane_id : !wave.simd<i32, 32>
   // CHECK: wave.splat
@@ -19,6 +19,8 @@ func.func @wave_ops(%pred: i1, %value: i32) -> i32 {
   %bits = wave.ballot %mask : !wave.mask<32> -> i32
   // CHECK: wave.read_first {{.*}} : !wave.simd<i32, 32> -> i32
   %first = wave.read_first %sum : !wave.simd<i32, 32> -> i32
+  // CHECK: wave.store
+  wave.store %sum -> %out[] : !wave.simd<i32, 32>, memref<i32>
 
   // CHECK: wave.where
   wave.where %mask {
