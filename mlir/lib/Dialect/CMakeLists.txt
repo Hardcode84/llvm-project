@@ -42,6 +42,7 @@ add_subdirectory(Utils)
 add_subdirectory(Vector)
 add_subdirectory(WasmSSA)
 add_subdirectory(Wave)
+add_subdirectory(WaveMachine)
 add_subdirectory(X86)
 add_subdirectory(XeGPU)
 

@@ -42,4 +42,59 @@ def ConvertWaveToROCDL : Pass<"convert-wave-to-rocdl"> {
   ];
 }
 
+def ConvertWaveToWaveMachine : Pass<"convert-wave-to-wavemachine", "ModuleOp"> {
+  let summary = "Select Wave dialect operations into inspectable WaveMachine IR";
+  let description = [{
+    Lowers source-level Wave operations to generic WaveMachine dialect
+    operations. This is the explicit backend boundary: the result is still MLIR,
+    but the values are selected into SGPR/VGPR-like register classes and
+    machine-like operations.
+  }];
+
+  let dependentDialects = [
+    "func::FuncDialect",
+    "wavemachine::WaveMachineDialect"
+  ];
+}
+
+def WaveMachineABILowering
+    : Pass<"wavemachine-abi-lowering", "ModuleOp"> {
+  let summary = "Lower WaveMachine function arguments to the AMDGPU kernel ABI";
+  let dependentDialects = [
+    "wavemachine::WaveMachineDialect"
+  ];
+}
+
+def WaveMachineHazardWaits
+    : Pass<"wavemachine-insert-hazard-waits", "ModuleOp"> {
+  let summary = "Insert WaveMachine waitcnt and hazard instructions";
+  let dependentDialects = [
+    "wavemachine::WaveMachineDialect"
+  ];
+}
+
+def WaveMachineRegAlloc
+    : Pass<"wavemachine-reg-alloc", "ModuleOp"> {
+  let summary = "Allocate WaveMachine virtual registers to physical registers";
+  let dependentDialects = [
+    "wavemachine::WaveMachineDialect"
+  ];
+}
+
+def WaveMachineResourceInfo
+    : Pass<"wavemachine-resource-info", "ModuleOp"> {
+  let summary = "Annotate WaveMachine functions with resource usage";
+  let dependentDialects = [
+    "wavemachine::WaveMachineDialect"
+  ];
+}
+
+def WaveMachineMetadata
+    : Pass<"wavemachine-metadata", "ModuleOp"> {
+  let summary = "Attach AMDGPU metadata information to WaveMachine IR";
+  let dependentDialects = [
+    "wavemachine::WaveMachineDialect"
+  ];
+}
+
 #endif // MLIR_DIALECT_WAVE_TRANSFORMS_PASSES_TD

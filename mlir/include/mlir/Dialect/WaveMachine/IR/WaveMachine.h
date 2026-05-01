@@ -1,0 +1,20 @@
+//===- WaveMachine.h - WaveMachine dialect ----------------------*- C++ -*-===//
+//
+// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+// See https://llvm.org/LICENSE.txt for license information.
+// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+//
+//===----------------------------------------------------------------------===//
+
+#ifndef MLIR_DIALECT_WAVEMACHINE_IR_WAVEMACHINE_H
+#define MLIR_DIALECT_WAVEMACHINE_IR_WAVEMACHINE_H
+
+#include "mlir/IR/Dialect.h"
+#include "mlir/IR/Types.h"
+
+#include "mlir/Dialect/WaveMachine/IR/WaveMachineOpsDialect.h.inc"
+
+#define GET_TYPEDEF_CLASSES
+#include "mlir/Dialect/WaveMachine/IR/WaveMachineOpsTypes.h.inc"
+
+#endif // MLIR_DIALECT_WAVEMACHINE_IR_WAVEMACHINE_H

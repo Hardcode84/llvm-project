@@ -1,0 +1,15 @@
+// RUN: mlir-opt --wavemachine-reg-alloc -split-input-file -verify-diagnostics %s
+
+func.func @unsupported_register_class() {
+  // expected-error @below {{wavemachine-reg-alloc supports only SGPR(0) and VGPR(1) register classes}}
+  %reg = "wavemachine.bad_reg_class"() : () -> !wavemachine.reg<2, 1>
+  return
+}
+
+// -----
+
+// expected-error @below {{WaveMachine register allocator ran out of registers}}
+func.func @too_many_vgprs() {
+  %reg = "wavemachine.too_wide"() : () -> !wavemachine.reg<1, 33>
+  return
+}

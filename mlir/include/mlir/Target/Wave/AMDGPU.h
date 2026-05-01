@@ -18,9 +18,9 @@ namespace wave {
 
 /// Emit AMDGPU assembly for the Wave dialect MVP.
 ///
-/// This backend consumes Wave operations directly. It is intentionally small and
-/// currently targets straight-line wave functions plus structured `wave.where`
-/// regions over 32-lane masks.
+/// This backend runs the staged WaveMachine MLIR pipeline before emission. The
+/// final emitter consumes inspectable WaveMachine IR rather than selecting
+/// source Wave operations directly.
 LogicalResult translateWaveToAMDGPU(Operation *op, raw_ostream &os);
 
 /// Register the `wave-to-amdgpu-asm` mlir-translate entry point.

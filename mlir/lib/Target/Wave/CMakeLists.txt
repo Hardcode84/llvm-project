@@ -21,6 +21,8 @@ add_mlir_translation_library(MLIRTargetWave
   MLIRSupport
   MLIRTranslateLib
   MLIRWaveDialect
+  MLIRWaveMachineDialect
+  MLIRWaveTransforms
   )
 
 target_include_directories(obj.MLIRTargetWave

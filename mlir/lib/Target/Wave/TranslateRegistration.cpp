@@ -11,6 +11,7 @@
 #include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Dialect/Wave/IR/Wave.h"
+#include "mlir/Dialect/WaveMachine/IR/WaveMachine.h"
 #include "mlir/Tools/mlir-translate/Translation.h"
 
 using namespace mlir;
@@ -23,6 +24,7 @@ void mlir::wave::registerWaveToAMDGPUTranslation() {
       },
       [](DialectRegistry &registry) {
         registry.insert<arith::ArithDialect, func::FuncDialect,
-                        wave::WaveDialect>();
+                        wave::WaveDialect,
+                        wavemachine::WaveMachineDialect>();
       });
 }

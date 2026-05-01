@@ -1,4 +1,5 @@
 add_mlir_dialect_library(MLIRWaveTransforms
+  WaveMachine.cpp
   WaveToROCDL.cpp
   WaveToGPU.cpp
 
@@ -7,6 +8,10 @@ add_mlir_dialect_library(MLIRWaveTransforms
 
   DEPENDS
   MLIRWaveTransformsIncGen
+
+  LINK_COMPONENTS
+  AMDGPUUtils
+  TargetParser
 
   LINK_LIBS PUBLIC
   MLIRArithDialect
@@ -18,4 +23,11 @@ add_mlir_dialect_library(MLIRWaveTransforms
   MLIRSCFDialect
   MLIRTransformUtils
   MLIRWaveDialect
+  MLIRWaveMachineDialect
+  )
+
+target_include_directories(obj.MLIRWaveTransforms
+  PRIVATE
+  ${LLVM_MAIN_SRC_DIR}/lib/Target/AMDGPU
+  ${LLVM_BINARY_DIR}/lib/Target/AMDGPU
   )
