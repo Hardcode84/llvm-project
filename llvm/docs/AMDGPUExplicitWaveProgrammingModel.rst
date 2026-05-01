@@ -684,6 +684,114 @@ Matrix operations
   MFMA, WMMA, and related operations should be expressed as wave-cooperative
   operations over typed fragments rather than as per-lane scalar operations.
 
+Wave Matrix Fragments
+=====================
+
+MFMA, WMMA, and related matrix instructions should be modeled as first-class
+wave collectives. They are not ordinary elementwise operations on
+``wave<T, W>`` values. Each lane owns a target-defined slice of a larger matrix
+tile, and the instruction cooperatively consumes and produces a distributed
+fragment across the whole wave.
+
+The source-level Wave dialect should introduce explicit fragment types:
+
+.. code-block:: mlir
+
+  !wave.fragment<a, 16x16xf16, 32, #layout>
+  !wave.fragment<b, 16x16xf16, 32, #layout>
+  !wave.fragment<acc, 16x16xf32, 32, #layout>
+
+The fragment role identifies whether the value is an A operand, B operand, or
+accumulator/result. The shape and element type identify the logical matrix tile.
+The wave size identifies the cooperating execution width. The layout attribute
+describes how logical matrix elements are distributed across lanes and registers.
+
+The matrix operation should be semantic:
+
+.. code-block:: mlir
+
+  %c1 = wave.mma %a, %b, %c0
+      {m = 16, n = 16, k = 16, kind = "f16.f32"}
+      : !wave.fragment<a, 16x16xf16, 32, #layout_a>,
+        !wave.fragment<b, 16x16xf16, 32, #layout_b>,
+        !wave.fragment<acc, 16x16xf32, 32, #layout_c>
+     -> !wave.fragment<acc, 16x16xf32, 32, #layout_c>
+
+The operation says "perform this cooperative matrix multiply-accumulate over
+these fragments". It should not directly expose the final AMDGPU opcode. That
+keeps the source dialect stable while still making the wave-level data
+distribution explicit.
+
+Fragment operations should include:
+
+``wave.fragment_load``
+  Load a matrix fragment from global memory or LDS using an explicit layout,
+  address pattern, and memory token dependencies.
+
+``wave.fragment_store``
+  Store an accumulator or result fragment back to memory using an explicit
+  layout and memory token dependencies.
+
+``wave.fragment_splat`` and ``wave.fragment_fill``
+  Create accumulator fragments from scalar constants or uniform values.
+
+``wave.mma``
+  Perform a cooperative matrix multiply-accumulate on compatible A, B, and
+  accumulator fragments.
+
+``wave.fragment_cast_layout``
+  Convert between layouts only when the conversion is explicit and legal. This
+  may lower to register shuffles, LDS traffic, or be rejected if unsupported.
+
+The verifier should check:
+
+* legal shape, element type, accumulator type, and wave-size combinations;
+* consistency between fragment role, layout, and operand position;
+* target feature requirements, such as MFMA, WMMA, or generation-specific
+  matrix instruction availability;
+* whether the operation requires full-wave execution;
+* whether masked execution is explicitly supported for the chosen operation.
+
+The initial rule should be conservative: matrix operations require full-wave
+execution unless the operation explicitly defines masked semantics. This avoids
+accidentally inheriting vague ``EXEC`` behavior for instructions whose hardware
+semantics are collective and layout-sensitive.
+
+AMDGPU lowering should select the final instruction family after fragment
+verification:
+
+* use WMMA forms such as ``v_wmma_*`` where those are the best match for the
+  selected target and fragment layout;
+* use MFMA forms such as ``v_mfma_*`` where those are the best match;
+* reject fragment layouts that cannot be implemented efficiently or correctly on
+  the selected subtarget.
+
+At the WaveMachine level, selected matrix operations should remain inspectable:
+
+.. code-block:: mlir
+
+  %acc1 = wavemachine.wmma %a, %b, %acc0
+      {opcode = "v_wmma_f32_16x16x16_f16",
+       layout_a = #layout_a,
+       layout_b = #layout_b,
+       layout_c = #layout_c}
+      : (!wavemachine.reg_tuple<vgpr, ...>,
+         !wavemachine.reg_tuple<vgpr, ...>,
+         !wavemachine.reg_tuple<vgpr, ...>)
+     -> !wavemachine.reg_tuple<vgpr, ...>
+
+The exact WaveMachine type spelling can evolve, but it must represent the
+important machine facts explicitly: VGPR tuples, AGPR tuples where applicable,
+accumulator fragments, tied operands, implicit register constraints, and
+generation-specific hazards. The register allocator and resource pass must
+account for AGPRs, VGPR/AGPR tuple pressure, accumulator usage, and occupancy
+effects.
+
+Tests for matrix support should include hardware execution, not only assembly
+checks. The minimum end-to-end tests should run small single-wave GEMM tiles with
+known inputs, verify accumulator values, and cover both the selected instruction
+form and the fragment memory layout.
+
 Memory Model
 ============
 
@@ -860,6 +968,14 @@ Register selection
   Use scalar-uniform values to guide SGPR selection and ``wave<T, W>`` values to
   guide VGPR/AGPR selection. Reject implicit divergent-to-uniform copies before
   instruction selection.
+
+Matrix lowering
+  Lower ``wave.fragment`` and ``wave.mma`` operations through WaveMachine IR, not
+  directly to opaque intrinsics. The WaveMachine form should expose selected
+  MFMA/WMMA instruction families, operand layouts, VGPR or AGPR register tuples,
+  tied accumulator constraints, and matrix-specific resource usage. This keeps
+  fragment layout, register pressure, and selected opcodes inspectable before
+  final MC emission.
 
 Generation-specific lowering
   Select wave32 or wave64 instruction forms from the subtarget. Use the existing
