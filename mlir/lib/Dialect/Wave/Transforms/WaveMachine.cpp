@@ -119,6 +119,7 @@ static bool isAllocatableReg(Value value) {
 static bool isVALU(Operation *op) {
   StringRef name = op->getName().getStringRef();
   return name == "wavemachine.v_mbcnt_lo" ||
+         name == "wavemachine.v_mov_b32_tuple" ||
          name == "wavemachine.v_add_u32" ||
          name == "wavemachine.v_and_b32" ||
          name == "wavemachine.v_or_b32" ||
@@ -130,7 +131,9 @@ static bool isVALU(Operation *op) {
          name == "wavemachine.v_cmp_le_u32" ||
          name == "wavemachine.v_cmp_gt_u32" ||
          name == "wavemachine.v_cmp_ge_u32" ||
-         name == "wavemachine.v_readfirstlane_b32";
+         name == "wavemachine.v_readfirstlane_b32" ||
+         name == "wavemachine.wmma_i32_16x16x16_iu8" ||
+         name == "wavemachine.wmma_f32_16x16x16_f16";
 }
 
 static bool isSMEMLoad(Operation *op) {
@@ -138,7 +141,8 @@ static bool isSMEMLoad(Operation *op) {
 }
 
 static bool isVMEMStore(Operation *op) {
-  return isWaveMachineOp(op, "global_store_b32");
+  return isWaveMachineOp(op, "global_store_b32") ||
+         isWaveMachineOp(op, "global_store_tuple_b32");
 }
 
 static bool isSGPR(wavemachine::RegType type) { return type.getRegClass() == 0; }
@@ -224,6 +228,8 @@ private:
       builder.setInsertionPoint(op);
     if (auto constant = dyn_cast<arith::ConstantIntOp>(op))
       return selectConstant(constant);
+    if (auto constant = dyn_cast<arith::ConstantIndexOp>(op))
+      return selectConstantIndex(constant);
     if (auto laneId = dyn_cast<LaneIdOp>(op))
       return selectLaneId(laneId);
     if (auto splat = dyn_cast<SplatOp>(op))
@@ -240,6 +246,12 @@ private:
       return selectWhere(where);
     if (auto store = dyn_cast<StoreOp>(op))
       return selectStore(store);
+    if (auto fill = dyn_cast<FragmentFillOp>(op))
+      return selectFragmentFill(fill);
+    if (auto mma = dyn_cast<MmaOp>(op))
+      return selectMma(mma);
+    if (auto fragmentStore = dyn_cast<FragmentStoreOp>(op))
+      return selectFragmentStore(fragmentStore);
     if (auto ret = dyn_cast<func::ReturnOp>(op))
       return selectReturn(ret);
     if (isa<YieldOp>(op))
@@ -249,6 +261,12 @@ private:
   }
 
   LogicalResult selectConstant(arith::ConstantIntOp op) {
+    values[op.getResult()] = createImm(builder, op.getLoc(), op.value());
+    eraseIfTopLevel(op);
+    return success();
+  }
+
+  LogicalResult selectConstantIndex(arith::ConstantIndexOp op) {
     values[op.getResult()] = createImm(builder, op.getLoc(), op.value());
     eraseIfTopLevel(op);
     return success();
@@ -346,6 +364,74 @@ private:
     createInstrNoResult(builder, op.getLoc(), "global_store_b32",
                         {byteOffset, expect(op.getValue(), op),
                          expect(op.getMemref(), op)});
+    eraseIfTopLevel(op);
+    return success();
+  }
+
+  LogicalResult selectFragmentFill(FragmentFillOp op) {
+    auto fragmentType = cast<FragmentType>(op.getResult().getType());
+    Value source = expect(op.getSource(), op);
+    values[op.getResult()] =
+        createInstr(builder, op.getLoc(), "v_mov_b32_tuple", source,
+                    getRegType(op.getContext(), RegClass::VGPR,
+                               fragmentType.getRegisters()),
+                    {builder.getNamedAttr(
+                        "registers",
+                        builder.getI64IntegerAttr(fragmentType.getRegisters()))});
+    eraseIfTopLevel(op);
+    return success();
+  }
+
+  LogicalResult selectMma(MmaOp op) {
+    if (op.getKind() != "wmma.i32.16x16x16.iu8" &&
+        op.getKind() != "wmma.f32.16x16x16.f16")
+      return op.emitError("unsupported WaveMachine matrix operation kind");
+    auto resultType = cast<FragmentType>(op.getResult().getType());
+    StringRef machineOpcode =
+        op.getKind() == "wmma.i32.16x16x16.iu8"
+            ? "wmma_i32_16x16x16_iu8"
+            : "wmma_f32_16x16x16_f16";
+    values[op.getResult()] =
+        createInstr(builder, op.getLoc(), machineOpcode,
+                    {expect(op.getA(), op), expect(op.getB(), op),
+                     expect(op.getAcc(), op)},
+                    getRegType(op.getContext(), RegClass::VGPR,
+                               resultType.getRegisters()));
+    eraseIfTopLevel(op);
+    return success();
+  }
+
+  LogicalResult selectFragmentStore(FragmentStoreOp op) {
+    auto fragmentType = cast<FragmentType>(op.getFragment().getType());
+    if (op.getIndices().size() != 1)
+      return op.emitError("WaveMachine backend expects one fragment store index");
+
+    Value lane = createInstr(builder, op.getLoc(), "v_mbcnt_lo", {},
+                             getRegType(op.getContext(), RegClass::VGPR));
+    Value byteOffset =
+        createInstr(builder, op.getLoc(), "v_lshlrev_b32",
+                    {lane, createImm(builder, op.getLoc(), 5)},
+                    getRegType(op.getContext(), RegClass::VGPR));
+
+    Value baseIndex = expect(op.getIndices().front(), op);
+    if (auto baseDef = baseIndex.getDefiningOp();
+        baseDef && isWaveMachineOp(baseDef, "imm")) {
+      int64_t base = baseDef->getAttrOfType<IntegerAttr>("value").getInt();
+      if (base != 0)
+        return op.emitError(
+            "WaveMachine backend expects a zero fragment store base index");
+    } else {
+      return op.emitError("WaveMachine backend expects a constant fragment store base index");
+    }
+
+    for (int64_t component = 0, e = fragmentType.getRegisters(); component != e;
+         ++component) {
+      createInstrNoResult(
+          builder, op.getLoc(), "global_store_tuple_b32",
+          {byteOffset, expect(op.getFragment(), op), expect(op.getMemref(), op)},
+          {builder.getNamedAttr("component",
+                                builder.getI64IntegerAttr(component))});
+    }
     eraseIfTopLevel(op);
     return success();
   }
@@ -556,7 +642,8 @@ struct WaveMachineRegAllocPass
 
     SmallVector<LiveInterval> sgprs;
     SmallVector<LiveInterval> vgprs;
-    DenseMap<Value, LiveInterval *> intervals;
+    DenseMap<Value, unsigned> sgprIntervals;
+    DenseMap<Value, unsigned> vgprIntervals;
     for (Operation *op : orderedOps) {
       for (Value result : op->getResults()) {
         if (!isAllocatableReg(result))
@@ -567,17 +654,22 @@ struct WaveMachineRegAllocPass
                                "and VGPR(1) register classes");
         SmallVector<LiveInterval> &bucket =
             isSGPR(regType) ? sgprs : vgprs;
+        unsigned index = bucket.size();
         bucket.push_back(LiveInterval{op, positions[op], positions[op]});
-        intervals[result] = &bucket.back();
+        if (isSGPR(regType))
+          sgprIntervals[result] = index;
+        else
+          vgprIntervals[result] = index;
       }
     }
 
     for (Operation *op : orderedOps) {
       unsigned pos = positions[op];
       for (Value operand : op->getOperands()) {
-        auto it = intervals.find(operand);
-        if (it != intervals.end())
-          it->second->end = std::max(it->second->end, pos);
+        if (auto it = sgprIntervals.find(operand); it != sgprIntervals.end())
+          sgprs[it->second].end = std::max(sgprs[it->second].end, pos);
+        if (auto it = vgprIntervals.find(operand); it != vgprIntervals.end())
+          vgprs[it->second].end = std::max(vgprs[it->second].end, pos);
       }
     }
 

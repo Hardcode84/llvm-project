@@ -301,6 +301,13 @@ private:
         .str();
   }
 
+  std::string physRegComponent(Value value, unsigned component) const {
+    auto regType = cast<wavemachine::RegType>(value.getType());
+    unsigned phys = getPhys(value) + component;
+    StringRef prefix = regType.getRegClass() == 1 ? "v" : "s";
+    return (prefix + Twine(phys)).str();
+  }
+
   std::string operandToString(Value value) const {
     Operation *def = value.getDefiningOp();
     if (isWM(def, "imm"))
@@ -381,6 +388,25 @@ private:
       return emitMC(llvm::AMDGPU::V_MBCNT_LO_U32_B32_e64_gfx11,
                     {toMCOperand(result()), llvm::MCOperand::createImm(-1),
                      llvm::MCOperand::createImm(0)});
+    if (isWM(&op, "v_mov_b32_tuple")) {
+      auto regType = cast<wavemachine::RegType>(result().getType());
+      for (unsigned i = 0, e = regType.getWidth(); i != e; ++i)
+        emitLine(Twine("v_mov_b32 ") + physRegComponent(result(), i) + ", " +
+                 operandString(0));
+      return success();
+    }
+    if (isWM(&op, "wmma_i32_16x16x16_iu8")) {
+      emitLine(Twine("v_wmma_i32_16x16x16_iu8 ") + physReg(result()) + ", " +
+               physReg(op.getOperand(0)) + ", " + physReg(op.getOperand(1)) +
+               ", " + physReg(op.getOperand(2)));
+      return success();
+    }
+    if (isWM(&op, "wmma_f32_16x16x16_f16")) {
+      emitLine(Twine("v_wmma_f32_16x16x16_f16 ") + physReg(result()) + ", " +
+               physReg(op.getOperand(0)) + ", " + physReg(op.getOperand(1)) +
+               ", " + physReg(op.getOperand(2)));
+      return success();
+    }
     if (isWM(&op, "v_add_u32")) {
       Value lhs = op.getOperand(0);
       Value rhs = op.getOperand(1);
@@ -466,6 +492,13 @@ private:
                     {toMCOperand(op.getOperand(0)), toMCOperand(op.getOperand(1)),
                      toMCOperand(op.getOperand(2)), llvm::MCOperand::createImm(0),
                      llvm::MCOperand::createImm(0)});
+    if (isWM(&op, "global_store_tuple_b32")) {
+      unsigned component = getIntAttr(&op, "component", 0);
+      emitLine(Twine("global_store_b32 ") + operandString(0) + ", " +
+               physRegComponent(op.getOperand(1), component) + ", " +
+               operandString(2) + " offset:" + Twine(component * 4));
+      return success();
+    }
     if (isWM(&op, "s_endpgm"))
       return emitMC(llvm::AMDGPU::S_ENDPGM_gfx11, {llvm::MCOperand::createImm(0)});
     if (isWM(&op, "s_setpc_b64")) {

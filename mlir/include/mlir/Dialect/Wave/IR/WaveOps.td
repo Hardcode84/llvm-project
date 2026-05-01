@@ -149,6 +149,50 @@ def Wave_StoreOp : Wave_Op<"store", [MemoryEffects<[MemWrite]>]> {
   let hasVerifier = 1;
 }
 
+def Wave_FragmentFillOp : Wave_Op<"fragment_fill", [Pure]> {
+  let summary = "fill a matrix fragment with a scalar bit pattern";
+  let description = [{
+    Creates a wave-cooperative matrix fragment by filling each physical fragment
+    register with the same scalar value. This MVP form is intended for constants
+    and simple accumulator initialization.
+  }];
+
+  let arguments = (ins AnySignlessInteger:$source);
+  let results = (outs Wave_Fragment:$result);
+  let assemblyFormat = "$source attr-dict `:` type($source) `->` qualified(type($result))";
+  let hasVerifier = 1;
+}
+
+def Wave_MmaOp : Wave_Op<"mma", [Pure]> {
+  let summary = "wave-cooperative matrix multiply-accumulate";
+  let description = [{
+    Performs a cooperative matrix operation over A, B, and accumulator fragments.
+    The first implemented AMDGPU shape is `wmma.i32.16x16x16.iu8`.
+  }];
+
+  let arguments = (ins StrAttr:$kind,
+                       Wave_Fragment:$a,
+                       Wave_Fragment:$b,
+                       Wave_Fragment:$acc);
+  let results = (outs Wave_Fragment:$result);
+  let assemblyFormat = "$kind $a `,` $b `,` $acc attr-dict `:` qualified(type($a)) `,` qualified(type($b)) `,` qualified(type($acc)) `->` qualified(type($result))";
+  let hasVerifier = 1;
+}
+
+def Wave_FragmentStoreOp : Wave_Op<"fragment_store", [MemoryEffects<[MemWrite]>]> {
+  let summary = "store a matrix fragment to memory";
+  let description = [{
+    Stores the physical registers of a fragment using a lane-major layout. For
+    the MVP backend, each lane stores `registers` consecutive 32-bit words.
+  }];
+
+  let arguments = (ins Wave_Fragment:$fragment,
+                       AnyMemRef:$memref,
+                       Variadic<AnyType>:$indices);
+  let assemblyFormat = "$fragment `->` $memref `[` $indices `]` attr-dict `:` functional-type(operands, results)";
+  let hasVerifier = 1;
+}
+
 def Wave_WhereOp : Wave_Op<"where", [
     SingleBlockImplicitTerminator<"YieldOp">,
     RecursiveMemoryEffects,
