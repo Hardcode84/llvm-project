@@ -301,13 +301,6 @@ private:
         .str();
   }
 
-  std::string physRegComponent(Value value, unsigned component) const {
-    auto regType = cast<wavemachine::RegType>(value.getType());
-    unsigned phys = getPhys(value) + component;
-    StringRef prefix = regType.getRegClass() == 1 ? "v" : "s";
-    return (prefix + Twine(phys)).str();
-  }
-
   std::string operandToString(Value value) const {
     Operation *def = value.getDefiningOp();
     if (isWM(def, "imm"))
@@ -329,10 +322,34 @@ private:
     auto regType = cast<wavemachine::RegType>(value.getType());
     unsigned phys = getPhys(value);
     if (regType.getRegClass() == 1)
-      return llvm::AMDGPU::VGPR0 + phys;
+      return mcVGPRReg(phys, regType.getWidth());
     if (regType.getWidth() == 2)
       return llvm::AMDGPU::SGPR0_SGPR1 + phys / 2;
     return llvm::AMDGPU::SGPR0 + phys;
+  }
+
+  unsigned mcVGPRReg(unsigned phys, unsigned width) const {
+    switch (width) {
+    case 1:
+      return llvm::AMDGPU::VGPR0 + phys;
+    case 2:
+      return llvm::AMDGPU::VGPR0_VGPR1 + phys;
+    case 4:
+      return llvm::AMDGPU::VGPR0_VGPR1_VGPR2_VGPR3 + phys;
+    case 8:
+      return llvm::AMDGPU::
+                 VGPR0_VGPR1_VGPR2_VGPR3_VGPR4_VGPR5_VGPR6_VGPR7 +
+             phys;
+    default:
+      llvm_unreachable("unsupported VGPR tuple width");
+    }
+  }
+
+  llvm::MCOperand toMCVGPRComponent(Value value, unsigned component) const {
+    auto regType = cast<wavemachine::RegType>(value.getType());
+    if (regType.getRegClass() != 1 || component >= regType.getWidth())
+      llvm_unreachable("expected valid VGPR tuple component");
+    return llvm::MCOperand::createReg(mcVGPRReg(getPhys(value) + component, 1));
   }
 
   llvm::MCOperand toMCOperand(Value value) {
@@ -391,22 +408,35 @@ private:
     if (isWM(&op, "v_mov_b32_tuple")) {
       auto regType = cast<wavemachine::RegType>(result().getType());
       for (unsigned i = 0, e = regType.getWidth(); i != e; ++i)
-        emitLine(Twine("v_mov_b32 ") + physRegComponent(result(), i) + ", " +
-                 operandString(0));
+        if (failed(emitMC(llvm::AMDGPU::V_MOV_B32_e32_gfx11,
+                          {toMCVGPRComponent(result(), i),
+                           toMCOperand(op.getOperand(0))})))
+          return failure();
       return success();
     }
-    if (isWM(&op, "wmma_i32_16x16x16_iu8")) {
-      emitLine(Twine("v_wmma_i32_16x16x16_iu8 ") + physReg(result()) + ", " +
-               physReg(op.getOperand(0)) + ", " + physReg(op.getOperand(1)) +
-               ", " + physReg(op.getOperand(2)));
-      return success();
-    }
-    if (isWM(&op, "wmma_f32_16x16x16_f16")) {
-      emitLine(Twine("v_wmma_f32_16x16x16_f16 ") + physReg(result()) + ", " +
-               physReg(op.getOperand(0)) + ", " + physReg(op.getOperand(1)) +
-               ", " + physReg(op.getOperand(2)));
-      return success();
-    }
+    if (isWM(&op, "wmma_i32_16x16x16_iu8"))
+      return emitMC(llvm::AMDGPU::V_WMMA_I32_16X16X16_IU8_twoaddr_w32_gfx11,
+                    {toMCOperand(result()),
+                     llvm::MCOperand::createImm(0),
+                     toMCOperand(op.getOperand(0)),
+                     llvm::MCOperand::createImm(0),
+                     toMCOperand(op.getOperand(1)),
+                     llvm::MCOperand::createImm(0),
+                     toMCOperand(op.getOperand(2)),
+                     llvm::MCOperand::createImm(0),
+                     llvm::MCOperand::createImm(0),
+                     llvm::MCOperand::createImm(0)});
+    if (isWM(&op, "wmma_f32_16x16x16_f16"))
+      return emitMC(llvm::AMDGPU::V_WMMA_F32_16X16X16_F16_twoaddr_w32_gfx11,
+                    {toMCOperand(result()),
+                     llvm::MCOperand::createImm(0),
+                     toMCOperand(op.getOperand(0)),
+                     llvm::MCOperand::createImm(0),
+                     toMCOperand(op.getOperand(1)),
+                     llvm::MCOperand::createImm(0),
+                     toMCOperand(op.getOperand(2)),
+                     llvm::MCOperand::createImm(0),
+                     llvm::MCOperand::createImm(0)});
     if (isWM(&op, "v_add_u32")) {
       Value lhs = op.getOperand(0);
       Value rhs = op.getOperand(1);
@@ -494,10 +524,12 @@ private:
                      llvm::MCOperand::createImm(0)});
     if (isWM(&op, "global_store_tuple_b32")) {
       unsigned component = getIntAttr(&op, "component", 0);
-      emitLine(Twine("global_store_b32 ") + operandString(0) + ", " +
-               physRegComponent(op.getOperand(1), component) + ", " +
-               operandString(2) + " offset:" + Twine(component * 4));
-      return success();
+      return emitMC(llvm::AMDGPU::GLOBAL_STORE_DWORD_SADDR_gfx11,
+                    {toMCOperand(op.getOperand(0)),
+                     toMCVGPRComponent(op.getOperand(1), component),
+                     toMCOperand(op.getOperand(2)),
+                     llvm::MCOperand::createImm(component * 4),
+                     llvm::MCOperand::createImm(0)});
     }
     if (isWM(&op, "s_endpgm"))
       return emitMC(llvm::AMDGPU::S_ENDPGM_gfx11, {llvm::MCOperand::createImm(0)});
