@@ -37,7 +37,7 @@ func.func @matrix_kernel(%out: memref<256xi32>) attributes {wave.kernel} {
   %b = wave.fragment_fill %zero : i32 -> !wave.fragment<1, i8, 16, 16, 32, 4>
   %acc = wave.fragment_fill %seven : i32 -> !wave.fragment<2, i32, 16, 16, 32, 8>
   %result = wave.mma "wmma.i32.16x16x16.iu8" %a, %b, %acc : !wave.fragment<0, i8, 16, 16, 32, 4>, !wave.fragment<1, i8, 16, 16, 32, 4>, !wave.fragment<2, i32, 16, 16, 32, 8> -> !wave.fragment<2, i32, 16, 16, 32, 8>
-  wave.fragment_store %result -> %out[%base] : (!wave.fragment<2, i32, 16, 16, 32, 8>, memref<256xi32>, index) -> ()
+  %store_token = wave.fragment_store %result -> %out[%base] : (!wave.fragment<2, i32, 16, 16, 32, 8>, memref<256xi32>, index) -> !wave.mem.token
   return
 }
 
@@ -63,7 +63,7 @@ func.func @matrix_f16_kernel(%out: memref<256xi32>) attributes {wave.kernel} {
   %b = wave.fragment_fill %zero : i32 -> !wave.fragment<1, f16, 16, 16, 32, 8>
   %acc = wave.fragment_fill %seven_as_f32_bits : i32 -> !wave.fragment<2, f32, 16, 16, 32, 8>
   %result = wave.mma "wmma.f32.16x16x16.f16" %a, %b, %acc : !wave.fragment<0, f16, 16, 16, 32, 8>, !wave.fragment<1, f16, 16, 16, 32, 8>, !wave.fragment<2, f32, 16, 16, 32, 8> -> !wave.fragment<2, f32, 16, 16, 32, 8>
-  wave.fragment_store %result -> %out[%base] : (!wave.fragment<2, f32, 16, 16, 32, 8>, memref<256xi32>, index) -> ()
+  %store_token = wave.fragment_store %result -> %out[%base] : (!wave.fragment<2, f32, 16, 16, 32, 8>, memref<256xi32>, index) -> !wave.mem.token
   return
 }
 

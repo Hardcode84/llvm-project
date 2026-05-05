@@ -110,22 +110,34 @@ struct WaitcntScoreboard {
   CounterState vmem;
   CounterState lgkm;
   CounterState vscnt;
-  DenseMap<Value, Ticket> valueTickets;
+  DenseMap<Value, SmallVector<Ticket, 2>> valueTickets;
 
   bool merge(const WaitcntScoreboard &other) {
     bool changed = false;
     changed |= vmem.merge(other.vmem);
     changed |= lgkm.merge(other.lgkm);
     changed |= vscnt.merge(other.vscnt);
-    for (auto [value, ticket] : other.valueTickets) {
-      auto [it, inserted] = valueTickets.try_emplace(value, ticket);
+    for (auto [value, tickets] : other.valueTickets) {
+      auto [it, inserted] = valueTickets.try_emplace(value, tickets);
       if (inserted) {
         changed = true;
         continue;
       }
-      if (ticket.value < it->second.value) {
-        it->second = ticket;
-        changed = true;
+      for (Ticket ticket : tickets) {
+        bool found = false;
+        for (Ticket &existing : it->second) {
+          if (existing.counter != ticket.counter)
+            continue;
+          if (ticket.value < existing.value) {
+            existing.value = ticket.value;
+            changed = true;
+          }
+          found = true;
+        }
+        if (!found) {
+          it->second.push_back(ticket);
+          changed = true;
+        }
       }
     }
     return changed;
@@ -205,6 +217,14 @@ static bool isWaitcnt(Operation *op) {
          isWaveMachineOp(op, "s_waitcnt_vscnt");
 }
 
+static bool isTokenJoin(Operation *op) {
+  return isWaveMachineOp(op, "token_join") || isWaveMachineOp(op, "after");
+}
+
+static bool isTokenOnly(Operation *op) {
+  return isWaveMachineOp(op, "token") || isTokenJoin(op);
+}
+
 static bool hasMemoryTicket(Operation *op) {
   return isSMEMLoad(op) || isVMEMLoad(op) || isVMEMStore(op);
 }
@@ -275,24 +295,28 @@ static std::optional<unsigned> getImmediate(Value value) {
 static WaitRequirement
 computeRequirement(Operation *op, const WaitcntScoreboard &scoreboard) {
   WaitRequirement requirement;
+  if (isTokenOnly(op))
+    return requirement;
   for (Value operand : op->getOperands()) {
     auto it = scoreboard.valueTickets.find(operand);
     if (it == scoreboard.valueTickets.end())
       continue;
-    const CounterState *counter = nullptr;
-    switch (it->second.counter) {
-    case CounterKind::Vmem:
-      counter = &scoreboard.vmem;
-      break;
-    case CounterKind::Lgkm:
-      counter = &scoreboard.lgkm;
-      break;
-    case CounterKind::Vscnt:
-      counter = &scoreboard.vscnt;
-      break;
+    for (Ticket ticket : it->second) {
+      const CounterState *counter = nullptr;
+      switch (ticket.counter) {
+      case CounterKind::Vmem:
+        counter = &scoreboard.vmem;
+        break;
+      case CounterKind::Lgkm:
+        counter = &scoreboard.lgkm;
+        break;
+      case CounterKind::Vscnt:
+        counter = &scoreboard.vscnt;
+        break;
+      }
+      if (auto wait = counter->computeWait(ticket.value))
+        requirement.add(ticket.counter, *wait);
     }
-    if (auto wait = counter->computeWait(it->second.value))
-      requirement.add(it->second.counter, *wait);
   }
   if (isWaveMachineOp(op, "s_endpgm")) {
     if (auto wait = scoreboard.vscnt.computeWait(scoreboard.vscnt.lastTicket))
@@ -322,6 +346,16 @@ static void observeExistingWait(Operation *op, WaitcntScoreboard &scoreboard,
   }
 }
 
+static void observeRequirement(WaitcntScoreboard &scoreboard,
+                               const WaitRequirement &requirement) {
+  if (requirement.vmcnt)
+    scoreboard.vmem.observeWait(*requirement.vmcnt);
+  if (requirement.lgkmcnt)
+    scoreboard.lgkm.observeWait(*requirement.lgkmcnt);
+  if (requirement.vscnt)
+    scoreboard.vscnt.observeWait(*requirement.vscnt);
+}
+
 static unsigned counterIndex(CounterKind counter) {
   switch (counter) {
   case CounterKind::Vmem:
@@ -341,12 +375,14 @@ static void propagateTicket(WaitcntScoreboard &scoreboard, Value src, Value dst,
   auto it = scoreboard.valueTickets.find(src);
   if (it == scoreboard.valueTickets.end())
     return;
-  Ticket ticket = it->second;
+  SmallVector<Ticket, 2> tickets = it->second;
   if (!ticketShift.empty()) {
-    ticket.value -= ticketShift[counterIndex(ticket.counter)];
-    ticket.value = std::max<int64_t>(ticket.value, -64);
+    for (Ticket &ticket : tickets) {
+      ticket.value -= ticketShift[counterIndex(ticket.counter)];
+      ticket.value = std::max<int64_t>(ticket.value, -64);
+    }
   }
-  scoreboard.valueTickets[dst] = ticket;
+  scoreboard.valueTickets[dst] = tickets;
 }
 
 static void propagateTickets(WaitcntScoreboard &scoreboard, ValueRange sources,
@@ -412,6 +448,19 @@ static LogicalResult validateWaveMachineOp(Operation *op) {
 static void observeTicket(Operation *op,
                           const DenseMap<Operation *, Ticket> &operationTickets,
                           WaitcntScoreboard &scoreboard) {
+  if (isTokenJoin(op)) {
+    SmallVector<Ticket, 2> joined;
+    for (Value operand : op->getOperands()) {
+      auto it = scoreboard.valueTickets.find(operand);
+      if (it == scoreboard.valueTickets.end())
+        continue;
+      llvm::append_range(joined, it->second);
+    }
+    if (op->getNumResults() == 1)
+      scoreboard.valueTickets[op->getResult(0)] = std::move(joined);
+    return;
+  }
+
   auto it = operationTickets.find(op);
   if (it == operationTickets.end())
     return;
@@ -428,7 +477,7 @@ static void observeTicket(Operation *op,
     break;
   }
   for (Value result : op->getResults())
-    scoreboard.valueTickets[result] = ticket;
+    scoreboard.valueTickets[result] = SmallVector<Ticket, 2>{ticket};
 }
 
 static void collectBlocks(Region &region, SmallVectorImpl<Block *> &blocks) {
@@ -517,6 +566,9 @@ public:
     WaitcntScoreboard &scoreboard = next.mutate();
     if (isWaitcnt(op)) {
       observeExistingWait(op, scoreboard, isaVersion);
+    } else if (isWaveMachineOp(op, "wait")) {
+      WaitRequirement requirement = computeRequirement(op, before.get());
+      observeRequirement(scoreboard, requirement);
     } else {
       observeTicket(op, operationTickets, scoreboard);
     }
@@ -683,7 +735,7 @@ struct WaveMachineTicketWaitsPass
       OpBuilder builder(func.getContext());
       SmallVector<Operation *> ops;
       func.walk([&](Operation *op) {
-        if (isWaveMachineOp(op) && !isWaitcnt(op))
+        if (isWaveMachineOp(op) && !isWaitcnt(op) && !isTokenOnly(op))
           ops.push_back(op);
       });
 

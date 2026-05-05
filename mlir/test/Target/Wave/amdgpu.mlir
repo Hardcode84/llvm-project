@@ -78,7 +78,7 @@ func.func @wave_kernel(%out: memref<32xi32>, %x: i32) attributes {wave.kernel} {
   %sum = wave.binary "addi" %lane, %vx : !wave.simd<i32, 32>, !wave.simd<i32, 32> -> !wave.simd<i32, 32>
   // CHECK: v_lshlrev_b32_e32 [[OFFSET:v[0-9]+]], 2, [[LANE]]
   // CHECK: global_store_b32 [[OFFSET]], [[SUM]], [[OUT]]
-  wave.store %sum -> %out[%lane] : (!wave.simd<i32, 32>, memref<32xi32>, !wave.simd<i32, 32>) -> ()
+  %store_token = wave.store %sum -> %out[%lane] : (!wave.simd<i32, 32>, memref<32xi32>, !wave.simd<i32, 32>) -> !wave.mem.token
   // CHECK: s_waitcnt_vscnt null, 0x0
   // CHECK: s_endpgm
   return

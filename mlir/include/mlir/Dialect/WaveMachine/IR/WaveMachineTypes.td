@@ -41,6 +41,14 @@ def WaveMachine_ImmType : WaveMachine_Type<"Imm", "imm"> {
   }];
 }
 
+def WaveMachine_MemTokenType : WaveMachine_Type<"MemToken", "mem.token"> {
+  let summary = "machine memory dependency token";
+  let description = [{
+    A `!wavemachine.mem.token` value carries explicit WaveMachine memory
+    dependencies for waitcnt insertion.
+  }];
+}
+
 def WaveMachine_Reg
     : Type<CPred<"::llvm::isa<::mlir::wavemachine::RegType>($_self)">,
            "WaveMachine register type">;
@@ -48,5 +56,9 @@ def WaveMachine_Reg
 def WaveMachine_Imm
     : Type<CPred<"::llvm::isa<::mlir::wavemachine::ImmType>($_self)">,
            "WaveMachine immediate type">;
+
+def WaveMachine_MemToken
+    : Type<CPred<"::llvm::isa<::mlir::wavemachine::MemTokenType>($_self)">,
+           "WaveMachine memory token type">;
 
 #endif // MLIR_DIALECT_WAVEMACHINE_IR_WAVEMACHINETYPES_TD

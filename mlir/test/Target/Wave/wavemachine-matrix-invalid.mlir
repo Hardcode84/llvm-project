@@ -42,6 +42,6 @@ func.func @bad_fragment_store_memref(%out: memref<256xindex>, %x: i32) {
   %base = arith.constant 0 : index
   %acc = wave.fragment_fill %x : i32 -> !wave.fragment<2, i32, 16, 16, 32, 8>
   // expected-error @below {{fragment stores currently require a 32-bit memref}}
-  wave.fragment_store %acc -> %out[%base] : (!wave.fragment<2, i32, 16, 16, 32, 8>, memref<256xindex>, index) -> ()
+  %store_token = wave.fragment_store %acc -> %out[%base] : (!wave.fragment<2, i32, 16, 16, 32, 8>, memref<256xindex>, index) -> !wave.mem.token
   return
 }

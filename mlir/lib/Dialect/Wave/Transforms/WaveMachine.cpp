@@ -62,6 +62,10 @@ static wavemachine::ImmType getImmType(MLIRContext *ctx) {
   return wavemachine::ImmType::get(ctx);
 }
 
+static wavemachine::MemTokenType getMemTokenType(MLIRContext *ctx) {
+  return wavemachine::MemTokenType::get(ctx);
+}
+
 static bool isWaveMachineOp(Operation *op, StringRef name) {
   return op->getName().getStringRef() == ("wavemachine." + name).str();
 }
@@ -250,6 +254,14 @@ private:
       return selectBallot(ballot);
     if (auto readFirst = dyn_cast<ReadFirstOp>(op))
       return selectReadFirst(readFirst);
+    if (auto token = dyn_cast<TokenOp>(op))
+      return selectToken(token);
+    if (auto after = dyn_cast<AfterOp>(op))
+      return selectTokenJoin(after);
+    if (auto join = dyn_cast<JoinOp>(op))
+      return selectTokenJoin(join);
+    if (auto wait = dyn_cast<WaitOp>(op))
+      return selectWait(wait);
     if (auto where = dyn_cast<WhereOp>(op))
       return selectWhere(where);
     if (auto store = dyn_cast<StoreOp>(op))
@@ -369,9 +381,42 @@ private:
         createInstr(builder, op.getLoc(), "v_lshlrev_b32",
                     {index, createImm(builder, op.getLoc(), 2)},
                     getRegType(op.getContext(), RegClass::VGPR));
-    createInstrNoResult(builder, op.getLoc(), "global_store_b32",
-                        {byteOffset, expect(op.getValue(), op),
-                         expect(op.getMemref(), op)});
+    SmallVector<Value> operands{byteOffset, expect(op.getValue(), op),
+                                expect(op.getMemref(), op)};
+    if (Value dependency = op.getDependency())
+      operands.push_back(expect(dependency, op));
+    Operation *store =
+        createWMOp(builder, op.getLoc(), "global_store_b32", operands,
+                   getMemTokenType(op.getContext()));
+    values[op.getToken()] = store->getResult(0);
+    eraseIfTopLevel(op);
+    return success();
+  }
+
+  LogicalResult selectToken(TokenOp op) {
+    Operation *token = createWMOp(builder, op.getLoc(), "token", {},
+                                  getMemTokenType(op.getContext()));
+    values[op.getResult()] = token->getResult(0);
+    eraseIfTopLevel(op);
+    return success();
+  }
+
+  LogicalResult selectTokenJoin(Operation *op) {
+    SmallVector<Value> operands;
+    for (Value dependency : op->getOperands())
+      operands.push_back(expect(dependency, op));
+    Operation *join = createWMOp(builder, op->getLoc(), "token_join", operands,
+                                 getMemTokenType(op->getContext()));
+    values[op->getResult(0)] = join->getResult(0);
+    eraseIfTopLevel(op);
+    return success();
+  }
+
+  LogicalResult selectWait(WaitOp op) {
+    SmallVector<Value> operands;
+    for (Value dependency : op.getDependencies())
+      operands.push_back(expect(dependency, op));
+    createInstrNoResult(builder, op.getLoc(), "wait", operands);
     eraseIfTopLevel(op);
     return success();
   }
@@ -432,14 +477,23 @@ private:
       return op.emitError("WaveMachine backend expects a constant fragment store base index");
     }
 
+    SmallVector<Value> storeTokens;
     for (int64_t component = 0, e = fragmentType.getRegisters(); component != e;
          ++component) {
-      createInstrNoResult(
-          builder, op.getLoc(), "global_store_tuple_b32",
-          {byteOffset, expect(op.getFragment(), op), expect(op.getMemref(), op)},
+      SmallVector<Value> operands{byteOffset, expect(op.getFragment(), op),
+                                  expect(op.getMemref(), op)};
+      if (Value dependency = op.getDependency())
+        operands.push_back(expect(dependency, op));
+      Operation *store = createWMOp(
+          builder, op.getLoc(), "global_store_tuple_b32", operands,
+          getMemTokenType(op.getContext()),
           {builder.getNamedAttr("component",
                                 builder.getI64IntegerAttr(component))});
+      storeTokens.push_back(store->getResult(0));
     }
+    Operation *token = createWMOp(builder, op.getLoc(), "token_join", storeTokens,
+                                 getMemTokenType(op.getContext()));
+    values[op.getToken()] = token->getResult(0);
     eraseIfTopLevel(op);
     return success();
   }

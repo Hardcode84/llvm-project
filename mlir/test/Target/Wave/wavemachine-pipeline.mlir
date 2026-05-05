@@ -63,7 +63,7 @@ func.func @kernel_test(%out: memref<32xi32>, %x: i32) attributes {wave.kernel} {
   %lane = wave.lane_id : !wave.simd<i32, 32>
   %vx = wave.splat %x : i32 -> !wave.simd<i32, 32>
   %sum = wave.binary "addi" %lane, %vx : !wave.simd<i32, 32>, !wave.simd<i32, 32> -> !wave.simd<i32, 32>
-  wave.store %sum -> %out[%lane] : (!wave.simd<i32, 32>, memref<32xi32>, !wave.simd<i32, 32>) -> ()
+  %store_token = wave.store %sum -> %out[%lane] : (!wave.simd<i32, 32>, memref<32xi32>, !wave.simd<i32, 32>) -> !wave.mem.token
   return
 }
 

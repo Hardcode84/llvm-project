@@ -135,7 +135,34 @@ def Wave_ReadFirstOp : Wave_Op<"read_first", [
   let hasVerifier = 1;
 }
 
-def Wave_StoreOp : Wave_Op<"store", [MemoryEffects<[MemWrite]>]> {
+def Wave_TokenOp : Wave_Op<"token", [Pure]> {
+  let summary = "create an empty memory dependency token";
+  let results = (outs Wave_MemToken:$result);
+  let assemblyFormat = "attr-dict `:` qualified(type($result))";
+}
+
+def Wave_AfterOp : Wave_Op<"after", [Pure]> {
+  let summary = "derive a memory token after one or more dependencies";
+  let arguments = (ins Variadic<Wave_MemToken>:$dependencies);
+  let results = (outs Wave_MemToken:$result);
+  let assemblyFormat = "$dependencies attr-dict `:` type($dependencies) `->` qualified(type($result))";
+}
+
+def Wave_JoinOp : Wave_Op<"join", [Pure]> {
+  let summary = "join multiple memory dependency tokens";
+  let arguments = (ins Variadic<Wave_MemToken>:$dependencies);
+  let results = (outs Wave_MemToken:$result);
+  let assemblyFormat = "$dependencies attr-dict `:` type($dependencies) `->` qualified(type($result))";
+}
+
+def Wave_WaitOp : Wave_Op<"wait", []> {
+  let summary = "wait for explicit memory dependencies";
+  let arguments = (ins Variadic<Wave_MemToken>:$dependencies);
+  let assemblyFormat = "$dependencies attr-dict `:` type($dependencies)";
+}
+
+def Wave_StoreOp : Wave_Op<"store", [
+    MemoryEffects<[MemWrite]>, AttrSizedOperandSegments]> {
   let summary = "store a lane-varying SIMD value to memory";
   let description = [{
     Stores a `!wave.simd<T, W>` value using ordinary scalar indices. The value is
@@ -144,8 +171,10 @@ def Wave_StoreOp : Wave_Op<"store", [MemoryEffects<[MemWrite]>]> {
 
   let arguments = (ins Wave_Simd:$value,
                        AnyMemRef:$memref,
-                       Variadic<AnyType>:$indices);
-  let assemblyFormat = "$value `->` $memref `[` $indices `]` attr-dict `:` functional-type(operands, results)";
+                       Variadic<AnyType>:$indices,
+                       Optional<Wave_MemToken>:$dependency);
+  let results = (outs Wave_MemToken:$token);
+  let assemblyFormat = "$value `->` $memref `[` $indices `]` (`after` $dependency^)? attr-dict `:` functional-type(operands, results)";
   let hasVerifier = 1;
 }
 
@@ -179,7 +208,8 @@ def Wave_MmaOp : Wave_Op<"mma", [Pure]> {
   let hasVerifier = 1;
 }
 
-def Wave_FragmentStoreOp : Wave_Op<"fragment_store", [MemoryEffects<[MemWrite]>]> {
+def Wave_FragmentStoreOp : Wave_Op<"fragment_store", [
+    MemoryEffects<[MemWrite]>, AttrSizedOperandSegments]> {
   let summary = "store a matrix fragment to memory";
   let description = [{
     Stores the physical registers of a fragment using a lane-major layout. For
@@ -188,8 +218,10 @@ def Wave_FragmentStoreOp : Wave_Op<"fragment_store", [MemoryEffects<[MemWrite]>]
 
   let arguments = (ins Wave_Fragment:$fragment,
                        AnyMemRef:$memref,
-                       Variadic<AnyType>:$indices);
-  let assemblyFormat = "$fragment `->` $memref `[` $indices `]` attr-dict `:` functional-type(operands, results)";
+                       Variadic<AnyType>:$indices,
+                       Optional<Wave_MemToken>:$dependency);
+  let results = (outs Wave_MemToken:$token);
+  let assemblyFormat = "$fragment `->` $memref `[` $indices `]` (`after` $dependency^)? attr-dict `:` functional-type(operands, results)";
   let hasVerifier = 1;
 }
 

@@ -62,6 +62,16 @@ def Wave_FragmentType : Wave_Type<"Fragment", "fragment"> {
       "`<` $role `,` $elementType `,` $rows `,` $columns `,` $waveSize `,` $registers `>`";
 }
 
+def Wave_MemTokenType : Wave_Type<"MemToken", "mem.token"> {
+  let summary = "explicit memory dependency token";
+  let description = [{
+    A `!wave.mem.token` value represents an explicit ordering dependency
+    between Wave memory operations. Memory operations that exchange tokens are
+    ordered; operations with no token relationship may be scheduled
+    independently.
+  }];
+}
+
 def Wave_Simd : Type<CPred<"::llvm::isa<::mlir::wave::SimdType>($_self)">,
                      "wave SIMD type">;
 
@@ -71,5 +81,9 @@ def Wave_Mask : Type<CPred<"::llvm::isa<::mlir::wave::MaskType>($_self)">,
 def Wave_Fragment
     : Type<CPred<"::llvm::isa<::mlir::wave::FragmentType>($_self)">,
            "wave matrix fragment type">;
+
+def Wave_MemToken
+    : Type<CPred<"::llvm::isa<::mlir::wave::MemTokenType>($_self)">,
+           "wave memory token type">;
 
 #endif // MLIR_DIALECT_WAVE_IR_WAVETYPES_TD

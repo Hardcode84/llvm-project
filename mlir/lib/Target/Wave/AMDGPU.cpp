@@ -398,7 +398,8 @@ private:
     auto result = [&]() { return op.getResult(0); };
     StringRef name = op.getName().getStringRef();
 
-    if (isWM(&op, "imm") || isWM(&op, "arg"))
+    if (isWM(&op, "imm") || isWM(&op, "arg") || isWM(&op, "token") ||
+        isWM(&op, "token_join") || isWM(&op, "wait"))
       return success();
     if (isWM(&op, "label")) {
       os << op.getAttrOfType<StringAttr>("name").str() << ":\n";
