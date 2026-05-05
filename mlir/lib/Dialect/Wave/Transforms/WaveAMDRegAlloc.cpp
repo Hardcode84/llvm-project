@@ -8,6 +8,7 @@
 
 #include "mlir/Dialect/Wave/Transforms/Passes.h"
 
+#include "Utils/AMDGPUBaseInfo.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Dialect/WaveMachine/IR/WaveMachine.h"
 #include "mlir/IR/Builders.h"
@@ -15,6 +16,11 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/SmallVector.h"
+#include "llvm/MC/MCSubtargetInfo.h"
+#include "llvm/MC/TargetRegistry.h"
+#include "llvm/Support/TargetSelect.h"
+#include "llvm/TargetParser/TargetParser.h"
+#include "llvm/TargetParser/Triple.h"
 #include <limits>
 #include <optional>
 
@@ -33,6 +39,11 @@ struct LiveInterval {
   unsigned end = 0;
 };
 
+struct RegisterLimits {
+  unsigned numSGPR = 0;
+  unsigned numVGPR = 0;
+};
+
 static bool isReg(Value value) {
   return isa<wavemachine::RegType>(value.getType());
 }
@@ -45,16 +56,66 @@ static bool isVGPR(wavemachine::RegType type) {
   return type.getRegClass() == wavemachine::RegClass::VGPR;
 }
 
+static FailureOr<std::unique_ptr<llvm::MCSubtargetInfo>>
+createSubtargetInfo(ModuleOp module) {
+  auto targetAttr = module->getAttrOfType<StringAttr>("wavemachine.target");
+  if (!targetAttr)
+    return module.emitError("waveamd-reg-alloc requires a wavemachine.target "
+                            "attribute");
+
+  StringRef target = targetAttr.getValue();
+  std::pair<StringRef, StringRef> split = target.rsplit("--");
+  StringRef cpu = split.second.empty() ? target : split.second;
+
+  static llvm::once_flag initializeBackendOnce;
+  llvm::call_once(initializeBackendOnce, []() {
+    llvm::InitializeAllTargetInfos();
+    llvm::InitializeAllTargetMCs();
+  });
+
+  llvm::Triple triple("amdgcn-amd-amdhsa");
+  std::string error;
+  const llvm::Target *llvmTarget =
+      llvm::TargetRegistry::lookupTarget(triple, error);
+  if (!llvmTarget)
+    return module.emitError("failed to lookup AMDGPU target: ") << error;
+
+  std::unique_ptr<llvm::MCSubtargetInfo> sti(
+      llvmTarget->createMCSubtargetInfo(triple, cpu, /*Features=*/""));
+  if (!sti)
+    return module.emitError("unsupported AMDGPU target: ") << target;
+  if (llvm::AMDGPU::getIsaVersion(cpu).Major == 0)
+    return module.emitError("unsupported AMDGPU target: ") << target;
+  return sti;
+}
+
+static FailureOr<RegisterLimits> getRegisterLimits(ModuleOp module) {
+  FailureOr<std::unique_ptr<llvm::MCSubtargetInfo>> sti =
+      createSubtargetInfo(module);
+  if (failed(sti))
+    return failure();
+
+  RegisterLimits limits;
+  limits.numSGPR = llvm::AMDGPU::IsaInfo::getAddressableNumSGPRs(sti->get());
+  limits.numVGPR =
+      llvm::AMDGPU::IsaInfo::getAddressableNumVGPRs(sti->get(),
+                                                    /*DynamicVGPRBlockSize=*/0);
+  return limits;
+}
+
 struct WaveAMDRegAllocPass
     : public wave::impl::WaveAMDRegAllocBase<WaveAMDRegAllocPass> {
   void runOnOperation() override {
+    FailureOr<RegisterLimits> limits = getRegisterLimits(getOperation());
+    if (failed(limits))
+      return signalPassFailure();
     for (func::FuncOp func : getOperation().getOps<func::FuncOp>()) {
-      if (failed(allocateFunction(func)))
+      if (failed(allocateFunction(func, *limits)))
         return signalPassFailure();
     }
   }
 
-  LogicalResult allocateFunction(func::FuncOp func) {
+  LogicalResult allocateFunction(func::FuncOp func, RegisterLimits limits) {
     SmallVector<Operation *> orderedOps;
     DenseMap<Operation *, unsigned> positions;
     for (Operation &op : func.getBody().front()) {
@@ -97,10 +158,10 @@ struct WaveAMDRegAllocPass
       }
     }
 
-    if (failed(allocateClass(func, sgprs, /*numPhys=*/32,
+    if (failed(allocateClass(func, sgprs, limits.numSGPR,
                              func->hasAttr("wave.kernel") ? 2 : 0)))
       return failure();
-    if (failed(allocateClass(func, vgprs, /*numPhys=*/32, /*reserved=*/0)))
+    if (failed(allocateClass(func, vgprs, limits.numVGPR, /*reserved=*/0)))
       return failure();
     return success();
   }
