@@ -43,25 +43,6 @@ def Wave_MaskType : Wave_Type<"Mask", "mask"> {
   let assemblyFormat = "`<` $width `>`";
 }
 
-def Wave_FragmentType : Wave_Type<"Fragment", "fragment"> {
-  let summary = "wave-cooperative matrix fragment";
-  let description = [{
-    A `!wave.fragment<role, T, M, N, W, R>` value is a distributed matrix
-    fragment. `role` is 0 for an A operand, 1 for a B operand, and 2 for an
-    accumulator/result. `T`, `M`, and `N` describe the logical tile, `W` is the
-    wave width, and `R` is the number of 32-bit registers used by each lane.
-  }];
-
-  let parameters = (ins "int64_t":$role,
-                        "mlir::Type":$elementType,
-                        "int64_t":$rows,
-                        "int64_t":$columns,
-                        "int64_t":$waveSize,
-                        "int64_t":$registers);
-  let assemblyFormat =
-      "`<` $role `,` $elementType `,` $rows `,` $columns `,` $waveSize `,` $registers `>`";
-}
-
 def Wave_MemTokenType : Wave_Type<"MemToken", "mem.token"> {
   let summary = "explicit memory dependency token";
   let description = [{
@@ -77,10 +58,6 @@ def Wave_Simd : Type<CPred<"::llvm::isa<::mlir::wave::SimdType>($_self)">,
 
 def Wave_Mask : Type<CPred<"::llvm::isa<::mlir::wave::MaskType>($_self)">,
                      "wave mask type">;
-
-def Wave_Fragment
-    : Type<CPred<"::llvm::isa<::mlir::wave::FragmentType>($_self)">,
-           "wave matrix fragment type">;
 
 def Wave_MemToken
     : Type<CPred<"::llvm::isa<::mlir::wave::MemTokenType>($_self)">,

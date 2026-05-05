@@ -98,6 +98,7 @@
 #include "mlir/Dialect/Vector/Transforms/SubsetOpInterfaceImpl.h"
 #include "mlir/Dialect/WasmSSA/IR/WasmSSA.h"
 #include "mlir/Dialect/Wave/IR/Wave.h"
+#include "mlir/Dialect/Wave/IR/WaveAMD.h"
 #include "mlir/Dialect/WaveMachine/IR/WaveMachine.h"
 #include "mlir/Dialect/X86/X86Dialect.h"
 #include "mlir/Dialect/XeGPU/IR/XeGPU.h"
@@ -154,6 +155,7 @@ void mlir::registerAllDialects(DialectRegistry &registry) {
                   ub::UBDialect,
                   vector::VectorDialect,
                   wasmssa::WasmSSADialect,
+                  waveamd::WaveAMDDialect,
                   wave::WaveDialect,
                   wavemachine::WaveMachineDialect,
                   x86::X86Dialect,

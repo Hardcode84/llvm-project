@@ -53,6 +53,7 @@ def ConvertWaveToWaveMachine : Pass<"convert-wave-to-wavemachine", "ModuleOp"> {
 
   let dependentDialects = [
     "func::FuncDialect",
+    "waveamd::WaveAMDDialect",
     "wavemachine::WaveMachineDialect"
   ];
 }

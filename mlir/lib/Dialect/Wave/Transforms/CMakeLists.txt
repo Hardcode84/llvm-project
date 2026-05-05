@@ -24,6 +24,7 @@ add_mlir_dialect_library(MLIRWaveTransforms
   MLIRPass
   MLIRSCFDialect
   MLIRTransformUtils
+  MLIRWaveAMDDialect
   MLIRWaveDialect
   MLIRWaveMachineDialect
   )

@@ -13,6 +13,7 @@
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Dialect/MemRef/IR/MemRef.h"
 #include "mlir/Dialect/Wave/IR/Wave.h"
+#include "mlir/Dialect/Wave/IR/WaveAMD.h"
 #include "mlir/Dialect/WaveMachine/IR/WaveMachine.h"
 #include "mlir/IR/Builders.h"
 #include "mlir/IR/BuiltinOps.h"
@@ -38,6 +39,7 @@ namespace mlir::wave {
 
 using namespace mlir;
 using namespace mlir::wave;
+using namespace mlir::waveamd;
 
 namespace {
 
@@ -266,11 +268,11 @@ private:
       return selectWhere(where);
     if (auto store = dyn_cast<StoreOp>(op))
       return selectStore(store);
-    if (auto fill = dyn_cast<FragmentFillOp>(op))
+    if (auto fill = dyn_cast<waveamd::FragmentFillOp>(op))
       return selectFragmentFill(fill);
-    if (auto mma = dyn_cast<MmaOp>(op))
+    if (auto mma = dyn_cast<waveamd::MmaOp>(op))
       return selectMma(mma);
-    if (auto fragmentStore = dyn_cast<FragmentStoreOp>(op))
+    if (auto fragmentStore = dyn_cast<waveamd::FragmentStoreOp>(op))
       return selectFragmentStore(fragmentStore);
     if (auto ret = dyn_cast<func::ReturnOp>(op))
       return selectReturn(ret);
@@ -421,8 +423,8 @@ private:
     return success();
   }
 
-  LogicalResult selectFragmentFill(FragmentFillOp op) {
-    auto fragmentType = cast<FragmentType>(op.getResult().getType());
+  LogicalResult selectFragmentFill(waveamd::FragmentFillOp op) {
+    auto fragmentType = cast<waveamd::FragmentType>(op.getResult().getType());
     Value source = expect(op.getSource(), op);
     values[op.getResult()] =
         createInstr(builder, op.getLoc(), "v_mov_b32_tuple", source,
@@ -435,11 +437,11 @@ private:
     return success();
   }
 
-  LogicalResult selectMma(MmaOp op) {
+  LogicalResult selectMma(waveamd::MmaOp op) {
     if (op.getKind() != "wmma.i32.16x16x16.iu8" &&
         op.getKind() != "wmma.f32.16x16x16.f16")
       return op.emitError("unsupported WaveMachine matrix operation kind");
-    auto resultType = cast<FragmentType>(op.getResult().getType());
+    auto resultType = cast<waveamd::FragmentType>(op.getResult().getType());
     StringRef machineOpcode =
         op.getKind() == "wmma.i32.16x16x16.iu8"
             ? "wmma_i32_16x16x16_iu8"
@@ -454,8 +456,8 @@ private:
     return success();
   }
 
-  LogicalResult selectFragmentStore(FragmentStoreOp op) {
-    auto fragmentType = cast<FragmentType>(op.getFragment().getType());
+  LogicalResult selectFragmentStore(waveamd::FragmentStoreOp op) {
+    auto fragmentType = cast<waveamd::FragmentType>(op.getFragment().getType());
     if (op.getIndices().size() != 1)
       return op.emitError("WaveMachine backend expects one fragment store index");
 
