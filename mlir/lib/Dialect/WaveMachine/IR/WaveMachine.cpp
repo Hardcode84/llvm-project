@@ -19,7 +19,10 @@ using namespace mlir::wavemachine;
 
 void WaveMachineDialect::initialize() {
   registerTypes();
-  allowUnknownOperations();
+  addOperations<
+#define GET_OP_LIST
+#include "mlir/Dialect/WaveMachine/IR/WaveMachineOps.cpp.inc"
+      >();
 }
 
 void WaveMachineDialect::registerTypes() {
@@ -31,3 +34,6 @@ void WaveMachineDialect::registerTypes() {
 
 #define GET_TYPEDEF_CLASSES
 #include "mlir/Dialect/WaveMachine/IR/WaveMachineOpsTypes.cpp.inc"
+
+#define GET_OP_CLASSES
+#include "mlir/Dialect/WaveMachine/IR/WaveMachineOps.cpp.inc"

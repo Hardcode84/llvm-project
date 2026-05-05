@@ -38,12 +38,9 @@ using namespace mlir;
 
 namespace {
 
-static bool isWM(Operation *op, StringRef name) {
-  return op->getName().getStringRef() == ("wavemachine." + name).str();
-}
-
 static bool isWM(Operation *op) {
-  return op->getName().getStringRef().starts_with("wavemachine.");
+  return op->getName().getDialectNamespace() ==
+         wavemachine::WaveMachineDialect::getDialectNamespace();
 }
 
 struct KernelArgInfo {
@@ -304,7 +301,7 @@ private:
 
   std::string operandToString(Value value) const {
     Operation *def = value.getDefiningOp();
-    if (isWM(def, "imm"))
+    if (isa<wavemachine::ImmOp>(def))
       return Twine(def->getAttrOfType<IntegerAttr>("value").getInt()).str();
     return physReg(value);
   }
@@ -357,7 +354,7 @@ private:
 
   llvm::MCOperand toMCOperand(Value value) {
     Operation *def = value.getDefiningOp();
-    if (isWM(def, "imm"))
+    if (isa<wavemachine::ImmOp>(def))
       return llvm::MCOperand::createImm(
           def->getAttrOfType<IntegerAttr>("value").getInt());
     return llvm::MCOperand::createReg(mcReg(value));
@@ -398,18 +395,18 @@ private:
     auto result = [&]() { return op.getResult(0); };
     StringRef name = op.getName().getStringRef();
 
-    if (isWM(&op, "imm") || isWM(&op, "arg") || isWM(&op, "token") ||
-        isWM(&op, "token_join") || isWM(&op, "wait"))
+    if (isa<wavemachine::ImmOp, wavemachine::ArgOp, wavemachine::TokenOp,
+            wavemachine::TokenJoinOp, wavemachine::WaitOp>(&op))
       return success();
-    if (isWM(&op, "label")) {
+    if (isa<wavemachine::LabelOp>(op)) {
       os << op.getAttrOfType<StringAttr>("name").str() << ":\n";
       return success();
     }
-    if (isWM(&op, "v_mbcnt_lo"))
+    if (isa<wavemachine::VMbcntLoOp>(op))
       return emitMC(llvm::AMDGPU::V_MBCNT_LO_U32_B32_e64_gfx11,
                     {toMCOperand(result()), llvm::MCOperand::createImm(-1),
                      llvm::MCOperand::createImm(0)});
-    if (isWM(&op, "v_mov_b32_tuple")) {
+    if (isa<wavemachine::VMovB32TupleOp>(op)) {
       auto regType = cast<wavemachine::RegType>(result().getType());
       for (unsigned i = 0, e = regType.getWidth(); i != e; ++i)
         if (failed(emitMC(llvm::AMDGPU::V_MOV_B32_e32_gfx11,
@@ -418,7 +415,7 @@ private:
           return failure();
       return success();
     }
-    if (isWM(&op, "wmma_i32_16x16x16_iu8"))
+    if (isa<wavemachine::WmmaI32_16x16x16_IU8Op>(op))
       return emitMC(llvm::AMDGPU::V_WMMA_I32_16X16X16_IU8_twoaddr_w32_gfx11,
                     {toMCOperand(result()),
                      llvm::MCOperand::createImm(0),
@@ -430,7 +427,7 @@ private:
                      llvm::MCOperand::createImm(0),
                      llvm::MCOperand::createImm(0),
                      llvm::MCOperand::createImm(0)});
-    if (isWM(&op, "wmma_f32_16x16x16_f16"))
+    if (isa<wavemachine::WmmaF32_16x16x16_F16Op>(op))
       return emitMC(llvm::AMDGPU::V_WMMA_F32_16X16X16_F16_twoaddr_w32_gfx11,
                     {toMCOperand(result()),
                      llvm::MCOperand::createImm(0),
@@ -441,7 +438,7 @@ private:
                      toMCOperand(op.getOperand(2)),
                      llvm::MCOperand::createImm(0),
                      llvm::MCOperand::createImm(0)});
-    if (isWM(&op, "v_add_u32")) {
+    if (isa<wavemachine::VAddU32Op>(op)) {
       Value lhs = op.getOperand(0);
       Value rhs = op.getOperand(1);
       if (isSGPR(rhs))
@@ -449,88 +446,88 @@ private:
       return emitMC(llvm::AMDGPU::V_ADD_NC_U32_e32_gfx11,
                     {toMCOperand(result()), toMCOperand(lhs), toMCOperand(rhs)});
     }
-    if (isWM(&op, "v_and_b32") || isWM(&op, "v_or_b32") ||
-        isWM(&op, "v_xor_b32")) {
+    if (isa<wavemachine::VAndB32Op, wavemachine::VOrB32Op,
+            wavemachine::VXorB32Op>(op)) {
       Value lhs = op.getOperand(0);
       Value rhs = op.getOperand(1);
       if (isSGPR(rhs))
         std::swap(lhs, rhs);
       unsigned opcode =
-          isWM(&op, "v_and_b32") ? llvm::AMDGPU::V_AND_B32_e32_gfx11
-          : isWM(&op, "v_or_b32") ? llvm::AMDGPU::V_OR_B32_e32_gfx11
-                                  : llvm::AMDGPU::V_XOR_B32_e32_gfx11;
+          isa<wavemachine::VAndB32Op>(op) ? llvm::AMDGPU::V_AND_B32_e32_gfx11
+          : isa<wavemachine::VOrB32Op>(op) ? llvm::AMDGPU::V_OR_B32_e32_gfx11
+                                           : llvm::AMDGPU::V_XOR_B32_e32_gfx11;
       return emitMC(opcode,
                     {toMCOperand(result()), toMCOperand(lhs), toMCOperand(rhs)});
     }
-    if (isWM(&op, "v_lshlrev_b32"))
+    if (isa<wavemachine::VLshlrevB32Op>(op))
       return emitMC(llvm::AMDGPU::V_LSHLREV_B32_e32_gfx11,
                     {toMCOperand(result()), toMCOperand(op.getOperand(1)),
                      toMCOperand(op.getOperand(0))});
-    if (isWM(&op, "v_cmp_eq_u32") || isWM(&op, "v_cmp_ne_u32") ||
-        isWM(&op, "v_cmp_lt_u32") || isWM(&op, "v_cmp_le_u32") ||
-        isWM(&op, "v_cmp_gt_u32") || isWM(&op, "v_cmp_ge_u32")) {
+    if (isa<wavemachine::VCmpEqU32Op, wavemachine::VCmpNeU32Op,
+            wavemachine::VCmpLtU32Op, wavemachine::VCmpLeU32Op,
+            wavemachine::VCmpGtU32Op, wavemachine::VCmpGeU32Op>(op)) {
       unsigned opcode =
-          isWM(&op, "v_cmp_eq_u32") ? llvm::AMDGPU::V_CMP_EQ_U32_e64_gfx11
-          : isWM(&op, "v_cmp_ne_u32") ? llvm::AMDGPU::V_CMP_NE_U32_e64_gfx11
-          : isWM(&op, "v_cmp_lt_u32") ? llvm::AMDGPU::V_CMP_LT_U32_e64_gfx11
-          : isWM(&op, "v_cmp_le_u32") ? llvm::AMDGPU::V_CMP_LE_U32_e64_gfx11
-          : isWM(&op, "v_cmp_gt_u32") ? llvm::AMDGPU::V_CMP_GT_U32_e64_gfx11
-                                      : llvm::AMDGPU::V_CMP_GE_U32_e64_gfx11;
+          isa<wavemachine::VCmpEqU32Op>(op) ? llvm::AMDGPU::V_CMP_EQ_U32_e64_gfx11
+          : isa<wavemachine::VCmpNeU32Op>(op) ? llvm::AMDGPU::V_CMP_NE_U32_e64_gfx11
+          : isa<wavemachine::VCmpLtU32Op>(op) ? llvm::AMDGPU::V_CMP_LT_U32_e64_gfx11
+          : isa<wavemachine::VCmpLeU32Op>(op) ? llvm::AMDGPU::V_CMP_LE_U32_e64_gfx11
+          : isa<wavemachine::VCmpGtU32Op>(op) ? llvm::AMDGPU::V_CMP_GT_U32_e64_gfx11
+                                               : llvm::AMDGPU::V_CMP_GE_U32_e64_gfx11;
       return emitMC(opcode,
                     {toMCOperand(result()), toMCOperand(op.getOperand(0)),
                      toMCOperand(op.getOperand(1))});
     }
-    if (isWM(&op, "s_mov_b32")) {
+    if (isa<wavemachine::SMovB32Op>(op)) {
       StringRef dst = op.getAttrOfType<StringAttr>("dst").getValue();
       std::string src = operandString(0);
       if (dst != src)
         emitLine(Twine("s_mov_b32 ") + dst + ", " + src);
       return success();
     }
-    if (isWM(&op, "s_load_b32"))
+    if (isa<wavemachine::SLoadB32Op>(op))
       return emitMC(llvm::AMDGPU::S_LOAD_B32_IMM_gfx11,
                     {toMCOperand(result()),
                      llvm::MCOperand::createReg(
                          namedPhysReg(op.getAttrOfType<StringAttr>("base").getValue())),
                      toMCOperand(op.getOperand(0)), llvm::MCOperand::createImm(0)});
-    if (isWM(&op, "s_load_b64"))
+    if (isa<wavemachine::SLoadB64Op>(op))
       return emitMC(llvm::AMDGPU::S_LOAD_B64_IMM_gfx11,
                     {toMCOperand(result()),
                      llvm::MCOperand::createReg(
                          namedPhysReg(op.getAttrOfType<StringAttr>("base").getValue())),
                      toMCOperand(op.getOperand(0)), llvm::MCOperand::createImm(0)});
-    if (isWM(&op, "s_waitcnt"))
+    if (isa<wavemachine::SWaitcntOp>(op))
       return emitMCValues(llvm::AMDGPU::S_WAITCNT_gfx11, op.getOperands());
-    if (isWM(&op, "s_waitcnt_vscnt"))
+    if (isa<wavemachine::SWaitcntVscntOp>(op))
       return emitMC(llvm::AMDGPU::S_WAITCNT_VSCNT_gfx11,
                     {llvm::MCOperand::createReg(namedPhysReg("null")),
                      toMCOperand(op.getOperand(0))});
-    if (isWM(&op, "s_delay_alu"))
+    if (isa<wavemachine::SDelayAluOp>(op))
       return emitMCValues(llvm::AMDGPU::S_DELAY_ALU_gfx11, op.getOperands());
-    if (isWM(&op, "s_and_saveexec_b32"))
+    if (isa<wavemachine::SAndSaveexecB32Op>(op))
       return emitMC(llvm::AMDGPU::S_AND_SAVEEXEC_B32_gfx11,
                     {toMCOperand(result()), toMCOperand(op.getOperand(0))});
-    if (isWM(&op, "s_andn2_exec_b32")) {
+    if (isa<wavemachine::SAndn2ExecB32Op>(op)) {
       emitLine(Twine("s_andn2_b32 exec_lo, ") + operandString(0) + ", " +
                operandString(1));
       return success();
     }
-    if (isWM(&op, "s_cbranch_execz"))
+    if (isa<wavemachine::SCBranchExeczOp>(op))
       return emitMC(llvm::AMDGPU::S_CBRANCH_EXECZ_gfx11,
                     {labelOperand(op.getAttrOfType<StringAttr>("label"))});
-    if (isWM(&op, "s_mov_exec_lo")) {
+    if (isa<wavemachine::SMovExecLoOp>(op)) {
       emitLine(Twine("s_mov_b32 exec_lo, ") + operandString(0));
       return success();
     }
-    if (isWM(&op, "v_readfirstlane_b32"))
+    if (isa<wavemachine::VReadfirstlaneB32Op>(op))
       return emitMC(llvm::AMDGPU::V_READFIRSTLANE_B32_gfx11,
                     {toMCOperand(result()), toMCOperand(op.getOperand(0))});
-    if (isWM(&op, "global_store_b32"))
+    if (isa<wavemachine::GlobalStoreB32Op>(op))
       return emitMC(llvm::AMDGPU::GLOBAL_STORE_DWORD_SADDR_gfx11,
                     {toMCOperand(op.getOperand(0)), toMCOperand(op.getOperand(1)),
                      toMCOperand(op.getOperand(2)), llvm::MCOperand::createImm(0),
                      llvm::MCOperand::createImm(0)});
-    if (isWM(&op, "global_store_tuple_b32")) {
+    if (isa<wavemachine::GlobalStoreTupleB32Op>(op)) {
       unsigned component = getIntAttr(&op, "component", 0);
       return emitMC(llvm::AMDGPU::GLOBAL_STORE_DWORD_SADDR_gfx11,
                     {toMCOperand(op.getOperand(0)),
@@ -539,9 +536,9 @@ private:
                      llvm::MCOperand::createImm(component * 4),
                      llvm::MCOperand::createImm(0)});
     }
-    if (isWM(&op, "s_endpgm"))
+    if (isa<wavemachine::SEndpgmOp>(op))
       return emitMC(llvm::AMDGPU::S_ENDPGM_gfx11, {llvm::MCOperand::createImm(0)});
-    if (isWM(&op, "s_setpc_b64")) {
+    if (isa<wavemachine::SSetpcB64Op>(op)) {
       emitLine(StringRef("s_setpc_b64 s[30:31]"));
       return success();
     }

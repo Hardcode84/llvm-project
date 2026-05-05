@@ -68,12 +68,9 @@ static wavemachine::MemTokenType getMemTokenType(MLIRContext *ctx) {
   return wavemachine::MemTokenType::get(ctx);
 }
 
-static bool isWaveMachineOp(Operation *op, StringRef name) {
-  return op->getName().getStringRef() == ("wavemachine." + name).str();
-}
-
 static bool isWaveMachineOp(Operation *op) {
-  return op->getName().getStringRef().starts_with("wavemachine.");
+  return op->getName().getDialectNamespace() ==
+         wavemachine::WaveMachineDialect::getDialectNamespace();
 }
 
 static Operation *createWMOp(OpBuilder &builder, Location loc, StringRef name,
@@ -123,27 +120,11 @@ static bool isAllocatableReg(Value value) {
 }
 
 static bool isVALU(Operation *op) {
-  StringRef name = op->getName().getStringRef();
-  return name == "wavemachine.v_mbcnt_lo" ||
-         name == "wavemachine.v_mov_b32_tuple" ||
-         name == "wavemachine.v_add_u32" ||
-         name == "wavemachine.v_and_b32" ||
-         name == "wavemachine.v_or_b32" ||
-         name == "wavemachine.v_xor_b32" ||
-         name == "wavemachine.v_lshlrev_b32" ||
-         name == "wavemachine.v_cmp_eq_u32" ||
-         name == "wavemachine.v_cmp_ne_u32" ||
-         name == "wavemachine.v_cmp_lt_u32" ||
-         name == "wavemachine.v_cmp_le_u32" ||
-         name == "wavemachine.v_cmp_gt_u32" ||
-         name == "wavemachine.v_cmp_ge_u32" ||
-         name == "wavemachine.v_readfirstlane_b32" ||
-         name == "wavemachine.wmma_i32_16x16x16_iu8" ||
-         name == "wavemachine.wmma_f32_16x16x16_f16";
+  return op->hasTrait<OpTrait::wavemachine::VALUOp>();
 }
 
 static bool isSMEMLoad(Operation *op) {
-  return isWaveMachineOp(op, "s_load_b32") || isWaveMachineOp(op, "s_load_b64");
+  return op->hasTrait<OpTrait::wavemachine::SMEMLoadOp>();
 }
 
 static FailureOr<llvm::AMDGPU::IsaVersion> getIsaVersion(Operation *op) {
@@ -470,7 +451,7 @@ private:
 
     Value baseIndex = expect(op.getIndices().front(), op);
     if (auto baseDef = baseIndex.getDefiningOp();
-        baseDef && isWaveMachineOp(baseDef, "imm")) {
+        baseDef && isa<wavemachine::ImmOp>(baseDef)) {
       int64_t base = baseDef->getAttrOfType<IntegerAttr>("value").getInt();
       if (base != 0)
         return op.emitError(
@@ -589,7 +570,7 @@ struct WaveMachineABILoweringPass
 
       unsigned offset = 0;
       for (Operation &op : llvm::make_early_inc_range(block)) {
-        if (!isWaveMachineOp(&op, "arg"))
+        if (!isa<wavemachine::ArgOp>(op))
           continue;
         if (op.getNumResults() != 1) {
           op.emitError("wavemachine-abi-lowering expects wavemachine.arg "
@@ -652,7 +633,7 @@ struct WaveMachineHazardWaitsPass
       for (Operation &op : llvm::make_early_inc_range(func.getBody().front())) {
         if (!isWaveMachineOp(&op))
           continue;
-        if (func->hasAttr("wave.kernel") && isWaveMachineOp(&op, "arg")) {
+        if (func->hasAttr("wave.kernel") && isa<wavemachine::ArgOp>(op)) {
           op.emitError("wavemachine-insert-hazard-waits expects "
                        "ABI-lowered kernel arguments");
           return signalPassFailure();
@@ -670,7 +651,7 @@ struct WaveMachineHazardWaitsPass
           pendingLgkmWait = false;
         }
 
-        if (isWaveMachineOp(&op, "s_waitcnt")) {
+        if (isa<wavemachine::SWaitcntOp>(op)) {
           auto imm = getImmediate(op.getOperand(0));
           if (!imm)
             continue;
@@ -686,7 +667,7 @@ struct WaveMachineHazardWaitsPass
 
   std::optional<unsigned> getImmediate(Value value) {
     Operation *def = value.getDefiningOp();
-    if (!def || !isWaveMachineOp(def, "imm"))
+    if (!def || !isa<wavemachine::ImmOp>(def))
       return std::nullopt;
     return static_cast<unsigned>(
         def->getAttrOfType<IntegerAttr>("value").getInt());

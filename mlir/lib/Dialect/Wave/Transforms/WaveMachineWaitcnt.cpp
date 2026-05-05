@@ -214,38 +214,33 @@ private:
   WaitcntScoreboard scoreboard;
 };
 
-static bool isWaveMachineOp(Operation *op, StringRef name) {
-  return op->getName().getStringRef() == ("wavemachine." + name).str();
-}
-
 static bool isWaveMachineOp(Operation *op) {
-  return op->getName().getStringRef().starts_with("wavemachine.");
+  return op->getName().getDialectNamespace() ==
+         wavemachine::WaveMachineDialect::getDialectNamespace();
 }
 
 static bool isSMEMLoad(Operation *op) {
-  return isWaveMachineOp(op, "s_load_b32") || isWaveMachineOp(op, "s_load_b64");
+  return op->hasTrait<OpTrait::wavemachine::SMEMLoadOp>();
 }
 
 static bool isVMEMLoad(Operation *op) {
-  return isWaveMachineOp(op, "global_load_b32");
+  return op->hasTrait<OpTrait::wavemachine::VMEMLoadOp>();
 }
 
 static bool isVMEMStore(Operation *op) {
-  return isWaveMachineOp(op, "global_store_b32") ||
-         isWaveMachineOp(op, "global_store_tuple_b32");
+  return op->hasTrait<OpTrait::wavemachine::VMEMStoreOp>();
 }
 
 static bool isWaitcnt(Operation *op) {
-  return isWaveMachineOp(op, "s_waitcnt") ||
-         isWaveMachineOp(op, "s_waitcnt_vscnt");
+  return op->hasTrait<OpTrait::wavemachine::WaitcntOp>();
 }
 
 static bool isTokenJoin(Operation *op) {
-  return isWaveMachineOp(op, "token_join") || isWaveMachineOp(op, "after");
+  return op->hasTrait<OpTrait::wavemachine::TokenJoinOp>();
 }
 
 static bool isTokenOnly(Operation *op) {
-  return isWaveMachineOp(op, "token") || isTokenJoin(op);
+  return op->hasTrait<OpTrait::wavemachine::TokenOp>() || isTokenJoin(op);
 }
 
 static bool hasMemoryTicket(Operation *op) {
@@ -309,7 +304,7 @@ static Operation *createInstrNoResult(OpBuilder &builder, Location loc,
 
 static std::optional<unsigned> getImmediate(Value value) {
   Operation *def = value.getDefiningOp();
-  if (!def || !isWaveMachineOp(def, "imm"))
+  if (!def || !isa<wavemachine::ImmOp>(def))
     return std::nullopt;
   return static_cast<unsigned>(
       def->getAttrOfType<IntegerAttr>("value").getInt());
@@ -341,7 +336,7 @@ computeRequirement(Operation *op, const WaitcntScoreboard &scoreboard) {
         requirement.add(ticket.counter, *wait);
     }
   }
-  if (isWaveMachineOp(op, "s_endpgm")) {
+  if (isa<wavemachine::SEndpgmOp>(op)) {
     if (auto wait = scoreboard.vscnt.computeWait(scoreboard.vscnt.lastTicket))
       requirement.add(CounterKind::Vscnt, *wait);
   }
@@ -350,7 +345,7 @@ computeRequirement(Operation *op, const WaitcntScoreboard &scoreboard) {
 
 static void observeExistingWait(Operation *op, WaitcntScoreboard &scoreboard,
                                 const llvm::AMDGPU::IsaVersion &isaVersion) {
-  if (isWaveMachineOp(op, "s_waitcnt")) {
+  if (isa<wavemachine::SWaitcntOp>(op)) {
     auto imm = getImmediate(op->getOperand(0));
     if (!imm)
       return;
@@ -362,7 +357,7 @@ static void observeExistingWait(Operation *op, WaitcntScoreboard &scoreboard,
     scoreboard.lgkm.observeWait(lg);
     return;
   }
-  if (isWaveMachineOp(op, "s_waitcnt_vscnt")) {
+  if (isa<wavemachine::SWaitcntVscntOp>(op)) {
     auto imm = getImmediate(op->getOperand(0));
     if (imm)
       scoreboard.vscnt.observeWait(*imm);
@@ -459,7 +454,7 @@ static LogicalResult validateWaveMachineOp(Operation *op) {
   if (!isWaveMachineOp(op))
     return success();
   if (auto func = op->getParentOfType<func::FuncOp>();
-      func && func->hasAttr("wave.kernel") && isWaveMachineOp(op, "arg"))
+      func && func->hasAttr("wave.kernel") && isa<wavemachine::ArgOp>(op))
     return op->emitError("wavemachine-insert-ticket-waits expects "
                          "ABI-lowered kernel arguments");
   if (isSMEMLoad(op) && !op->getAttrOfType<StringAttr>("base"))
@@ -589,7 +584,7 @@ public:
     WaitcntScoreboard &scoreboard = next.mutate();
     if (isWaitcnt(op)) {
       observeExistingWait(op, scoreboard, isaVersion);
-    } else if (isWaveMachineOp(op, "wait")) {
+    } else if (isa<wavemachine::WaitOp>(op)) {
       WaitRequirement requirement = computeRequirement(op, before.get());
       observeRequirement(scoreboard, requirement);
     } else {

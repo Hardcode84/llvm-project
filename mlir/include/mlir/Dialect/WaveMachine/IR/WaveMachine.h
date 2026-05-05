@@ -10,11 +10,17 @@
 #define MLIR_DIALECT_WAVEMACHINE_IR_WAVEMACHINE_H
 
 #include "mlir/IR/Dialect.h"
+#include "mlir/IR/OpDefinition.h"
 #include "mlir/IR/Types.h"
+#include "mlir/Dialect/WaveMachine/IR/WaveMachineTraits.h"
+#include "mlir/Interfaces/SideEffectInterfaces.h"
 
 #include "mlir/Dialect/WaveMachine/IR/WaveMachineOpsDialect.h.inc"
 
 #define GET_TYPEDEF_CLASSES
 #include "mlir/Dialect/WaveMachine/IR/WaveMachineOpsTypes.h.inc"
+
+#define GET_OP_CLASSES
+#include "mlir/Dialect/WaveMachine/IR/WaveMachineOps.h.inc"
 
 #endif // MLIR_DIALECT_WAVEMACHINE_IR_WAVEMACHINE_H

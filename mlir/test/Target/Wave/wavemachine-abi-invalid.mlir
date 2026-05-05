@@ -25,7 +25,7 @@ func.func @bad_kernel_arg_width() attributes {wave.kernel} {
 // -----
 
 func.func @bad_arg_result_count() attributes {wave.kernel} {
-  // expected-error @below {{wavemachine-abi-lowering expects wavemachine.arg to have one result}}
+  // expected-error @below {{'wavemachine.arg' op requires one result}}
   "wavemachine.arg"() {index = 0 : i64, memref = false} : () -> ()
   return
 }
