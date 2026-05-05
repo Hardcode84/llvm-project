@@ -37,9 +37,13 @@ static bool isReg(Value value) {
   return isa<wavemachine::RegType>(value.getType());
 }
 
-static bool isSGPR(wavemachine::RegType type) { return type.getRegClass() == 0; }
+static bool isSGPR(wavemachine::RegType type) {
+  return type.getRegClass() == wavemachine::RegClass::SGPR;
+}
 
-static bool isVGPR(wavemachine::RegType type) { return type.getRegClass() == 1; }
+static bool isVGPR(wavemachine::RegType type) {
+  return type.getRegClass() == wavemachine::RegClass::VGPR;
+}
 
 struct WaveAMDRegAllocPass
     : public wave::impl::WaveAMDRegAllocBase<WaveAMDRegAllocPass> {
@@ -68,8 +72,10 @@ struct WaveAMDRegAllocPass
           continue;
         auto regType = cast<wavemachine::RegType>(result.getType());
         if (!isSGPR(regType) && !isVGPR(regType))
-          return op->emitError("waveamd-reg-alloc supports only SGPR(0) "
-                               "and VGPR(1) register classes");
+          return op->emitError("waveamd-reg-alloc supports only SGPR "
+                               "and VGPR register classes");
+        if (regType.getIndex() >= 0)
+          continue;
         SmallVector<LiveInterval> &bucket =
             isSGPR(regType) ? sgprs : vgprs;
         unsigned index = bucket.size();
@@ -118,9 +124,10 @@ struct WaveAMDRegAllocPass
       SmallVector<LiveInterval> stillActive;
       for (LiveInterval interval : active) {
         if (interval.end < pos) {
-          unsigned phys = interval.def->getAttrOfType<IntegerAttr>("phys").getInt();
-          unsigned width =
-              cast<wavemachine::RegType>(interval.def->getResult(0).getType()).getWidth();
+          auto regType =
+              cast<wavemachine::RegType>(interval.def->getResult(0).getType());
+          unsigned phys = regType.getIndex();
+          unsigned width = regType.getWidth();
           for (unsigned i = 0; i != width; ++i)
             used[phys + i] = false;
         } else {
@@ -137,7 +144,11 @@ struct WaveAMDRegAllocPass
       std::optional<unsigned> phys = findFreeContiguous(used, width);
       if (!phys)
         return func.emitError("WaveMachine register allocator ran out of registers");
-      interval.def->setAttr("phys", IntegerAttr::get(IntegerType::get(func.getContext(), 64), *phys));
+      auto oldType =
+          cast<wavemachine::RegType>(interval.def->getResult(0).getType());
+      interval.def->getResult(0).setType(wavemachine::RegType::get(
+          func.getContext(), oldType.getRegClass(), oldType.getWidth(),
+          static_cast<int64_t>(*phys)));
       for (unsigned i = 0; i != width; ++i)
         used[*phys + i] = true;
       active.push_back(interval);

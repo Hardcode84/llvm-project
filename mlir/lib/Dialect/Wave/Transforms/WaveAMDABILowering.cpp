@@ -51,7 +51,9 @@ static Value createInstr(OpBuilder &builder, Location loc, StringRef name,
   return op->getResult(0);
 }
 
-static bool isSGPR(wavemachine::RegType type) { return type.getRegClass() == 0; }
+static bool isSGPR(wavemachine::RegType type) {
+  return type.getRegClass() == wavemachine::RegClass::SGPR;
+}
 
 struct WaveAMDABILoweringPass
     : public wave::impl::WaveAMDABILoweringBase<WaveAMDABILoweringPass> {

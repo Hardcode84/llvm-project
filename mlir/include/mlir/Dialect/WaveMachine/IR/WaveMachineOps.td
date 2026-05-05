@@ -27,24 +27,24 @@ def WaveMachine_TokenJoinTrait : NativeOpTrait<"wavemachine::TokenJoinOp">;
 
 def WaveMachine_SGPR1
     : Type<CPred<"::llvm::isa<::mlir::wavemachine::RegType>($_self) && "
-                 "::llvm::cast<::mlir::wavemachine::RegType>($_self).getRegClass() == 0 && "
+                 "::llvm::cast<::mlir::wavemachine::RegType>($_self).getRegClass() == ::mlir::wavemachine::RegClass::SGPR && "
                  "::llvm::cast<::mlir::wavemachine::RegType>($_self).getWidth() == 1">,
            "WaveMachine scalar SGPR register">;
 
 def WaveMachine_SGPR2
     : Type<CPred<"::llvm::isa<::mlir::wavemachine::RegType>($_self) && "
-                 "::llvm::cast<::mlir::wavemachine::RegType>($_self).getRegClass() == 0 && "
+                 "::llvm::cast<::mlir::wavemachine::RegType>($_self).getRegClass() == ::mlir::wavemachine::RegClass::SGPR && "
                  "::llvm::cast<::mlir::wavemachine::RegType>($_self).getWidth() == 2">,
            "WaveMachine SGPR pair register">;
 
 def WaveMachine_VGPR
     : Type<CPred<"::llvm::isa<::mlir::wavemachine::RegType>($_self) && "
-                 "::llvm::cast<::mlir::wavemachine::RegType>($_self).getRegClass() == 1">,
+                 "::llvm::cast<::mlir::wavemachine::RegType>($_self).getRegClass() == ::mlir::wavemachine::RegClass::VGPR">,
            "WaveMachine VGPR register">;
 
 def WaveMachine_VGPR1
     : Type<CPred<"::llvm::isa<::mlir::wavemachine::RegType>($_self) && "
-                 "::llvm::cast<::mlir::wavemachine::RegType>($_self).getRegClass() == 1 && "
+                 "::llvm::cast<::mlir::wavemachine::RegType>($_self).getRegClass() == ::mlir::wavemachine::RegClass::VGPR && "
                  "::llvm::cast<::mlir::wavemachine::RegType>($_self).getWidth() == 1">,
            "WaveMachine scalar VGPR register">;
 

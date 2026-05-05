@@ -16,6 +16,7 @@ using namespace mlir;
 using namespace mlir::wavemachine;
 
 #include "mlir/Dialect/WaveMachine/IR/WaveMachineOpsDialect.cpp.inc"
+#include "mlir/Dialect/WaveMachine/IR/WaveMachineOpsEnums.cpp.inc"
 
 void WaveMachineDialect::initialize() {
   registerTypes();
@@ -35,7 +36,7 @@ void WaveMachineDialect::registerTypes() {
 #define GET_TYPEDEF_CLASSES
 #include "mlir/Dialect/WaveMachine/IR/WaveMachineOpsTypes.cpp.inc"
 
-static bool isRegClassWidth(Type type, int64_t regClass, int64_t width) {
+static bool isRegClassWidth(Type type, RegClass regClass, int64_t width) {
   auto regType = dyn_cast<RegType>(type);
   return regType && regType.getRegClass() == regClass &&
          regType.getWidth() == width;
@@ -43,13 +44,13 @@ static bool isRegClassWidth(Type type, int64_t regClass, int64_t width) {
 
 static bool isVGPR(Type type) {
   auto regType = dyn_cast<RegType>(type);
-  return regType && regType.getRegClass() == 1;
+  return regType && regType.getRegClass() == RegClass::VGPR;
 }
 
 static LogicalResult verifyVGPRWidth(Operation *op, Value value, int64_t width,
                                      StringRef name) {
-  if (!isRegClassWidth(value.getType(), /*regClass=*/1, width))
-    return op->emitOpError() << name << " must be !wavemachine.reg<1, "
+  if (!isRegClassWidth(value.getType(), RegClass::VGPR, width))
+    return op->emitOpError() << name << " must be !wavemachine.reg<vgpr, "
                              << width << ">";
   return success();
 }

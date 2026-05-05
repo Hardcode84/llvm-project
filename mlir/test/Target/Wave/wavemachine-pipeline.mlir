@@ -9,8 +9,8 @@
 module attributes {wavemachine.target = "amdgcn-amd-amdhsa--gfx1100"} {
 
 // SELECT-LABEL: func.func @where_test
-// SELECT: wavemachine.arg {index = 0 : i64, pointer = false} : !wavemachine.reg<0, 1>
-// SELECT: wavemachine.v_mbcnt_lo : !wavemachine.reg<1, 1>
+// SELECT: wavemachine.arg {index = 0 : i64, pointer = false} : !wavemachine.reg<sgpr, 1>
+// SELECT: wavemachine.v_mbcnt_lo : !wavemachine.reg<vgpr, 1>
 // SELECT: wavemachine.v_cmp_lt_u32
 // SELECT: wavemachine.s_and_saveexec_b32
 // SELECT: wavemachine.s_cbranch_execz ".Lwave_where_test_endif_0"
@@ -29,8 +29,8 @@ func.func @where_test(%limit: i32) -> i32 {
 }
 
 // SELECT-LABEL: func.func @kernel_test
-// SELECT: wavemachine.arg {index = 0 : i64, pointer = true} : !wavemachine.reg<0, 2>
-// SELECT: wavemachine.arg {index = 1 : i64, pointer = false} : !wavemachine.reg<0, 1>
+// SELECT: wavemachine.arg {index = 0 : i64, pointer = true} : !wavemachine.reg<sgpr, 2>
+// SELECT: wavemachine.arg {index = 1 : i64, pointer = false} : !wavemachine.reg<sgpr, 1>
 // SELECT: wavemachine.global_store_b32
 // ABI-LABEL: func.func @kernel_test
 // ABI: wavemachine.s_load_b64 {{.*}}, "s[0:1]"
@@ -49,10 +49,10 @@ func.func @where_test(%limit: i32) -> i32 {
 // HAZARD: wavemachine.s_delay_alu
 // HAZARD: wavemachine.v_add_u32
 // REGALLOC-LABEL: func.func @kernel_test
-// REGALLOC: wavemachine.s_load_b64 {{.*}}, "s[0:1]" {phys = 2 : i64}
-// REGALLOC: wavemachine.s_load_b32 {{.*}}, "s[0:1]" {phys = 4 : i64}
-// REGALLOC: wavemachine.v_mbcnt_lo {phys = 0 : i64}
-// REGALLOC: wavemachine.v_add_u32{{.*}} {phys = 1 : i64}
+// REGALLOC: wavemachine.s_load_b64 {{.*}}, "s[0:1]" : (!wavemachine.imm) -> !wavemachine.reg<sgpr, 2, 2>
+// REGALLOC: wavemachine.s_load_b32 {{.*}}, "s[0:1]" : (!wavemachine.imm) -> !wavemachine.reg<sgpr, 1, 4>
+// REGALLOC: wavemachine.v_mbcnt_lo : !wavemachine.reg<vgpr, 1, 0>
+// REGALLOC: wavemachine.v_add_u32{{.*}} -> !wavemachine.reg<vgpr, 1, 1>
 // RESOURCE-LABEL: func.func @kernel_test
 // RESOURCE-SAME: wavemachine.sgpr_count = 6 : i64
 // RESOURCE-SAME: wavemachine.vgpr_count = 3 : i64

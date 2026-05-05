@@ -6,10 +6,10 @@
 module attributes {wavemachine.target = "amdgcn-amd-amdhsa--gfx1100"} {
 
 // SELECT-LABEL: func.func @matrix_kernel
-// SELECT: wavemachine.v_mov_b32_tuple{{.*}} : (!wavemachine.imm) -> !wavemachine.reg<1, 4>
-// SELECT: wavemachine.v_mov_b32_tuple{{.*}} : (!wavemachine.imm) -> !wavemachine.reg<1, 4>
-// SELECT: wavemachine.v_mov_b32_tuple{{.*}} : (!wavemachine.imm) -> !wavemachine.reg<1, 8>
-// SELECT: wavemachine.wmma_i32_16x16x16_iu8{{.*}} : (!wavemachine.reg<1, 4>, !wavemachine.reg<1, 4>, !wavemachine.reg<1, 8>) -> !wavemachine.reg<1, 8>
+// SELECT: wavemachine.v_mov_b32_tuple{{.*}} : (!wavemachine.imm) -> !wavemachine.reg<vgpr, 4>
+// SELECT: wavemachine.v_mov_b32_tuple{{.*}} : (!wavemachine.imm) -> !wavemachine.reg<vgpr, 4>
+// SELECT: wavemachine.v_mov_b32_tuple{{.*}} : (!wavemachine.imm) -> !wavemachine.reg<vgpr, 8>
+// SELECT: wavemachine.wmma_i32_16x16x16_iu8{{.*}} : (!wavemachine.reg<vgpr, 4>, !wavemachine.reg<vgpr, 4>, !wavemachine.reg<vgpr, 8>) -> !wavemachine.reg<vgpr, 8>
 // SELECT: wavemachine.global_store_tuple_b32{{.*}} {component = 0 : i64}
 // SELECT: wavemachine.global_store_tuple_b32{{.*}} {component = 7 : i64}
 
@@ -17,7 +17,7 @@ module attributes {wavemachine.target = "amdgcn-amd-amdhsa--gfx1100"} {
 // PIPELINE-LABEL: func.func @matrix_kernel
 // PIPELINE-SAME: wavemachine.metadata
 // PIPELINE-SAME: wavemachine.vgpr_count
-// PIPELINE: wavemachine.wmma_i32_16x16x16_iu8{{.*}} {phys =
+// PIPELINE: wavemachine.wmma_i32_16x16x16_iu8{{.*}} -> !wavemachine.reg<vgpr, 8,
 // PIPELINE: wavemachine.global_store_tuple_b32{{.*}} {component = 7 : i64}
 
 // ASM-LABEL: matrix_kernel:
@@ -43,14 +43,14 @@ func.func @matrix_kernel(%out: !wave.ptr<i32, #wave.global>) attributes {wave.ke
 }
 
 // SELECT-LABEL: func.func @matrix_f16_kernel
-// SELECT: wavemachine.v_mov_b32_tuple{{.*}} : (!wavemachine.imm) -> !wavemachine.reg<1, 8>
-// SELECT: wavemachine.v_mov_b32_tuple{{.*}} : (!wavemachine.imm) -> !wavemachine.reg<1, 8>
-// SELECT: wavemachine.v_mov_b32_tuple{{.*}} : (!wavemachine.imm) -> !wavemachine.reg<1, 8>
-// SELECT: wavemachine.wmma_f32_16x16x16_f16{{.*}} : (!wavemachine.reg<1, 8>, !wavemachine.reg<1, 8>, !wavemachine.reg<1, 8>) -> !wavemachine.reg<1, 8>
+// SELECT: wavemachine.v_mov_b32_tuple{{.*}} : (!wavemachine.imm) -> !wavemachine.reg<vgpr, 8>
+// SELECT: wavemachine.v_mov_b32_tuple{{.*}} : (!wavemachine.imm) -> !wavemachine.reg<vgpr, 8>
+// SELECT: wavemachine.v_mov_b32_tuple{{.*}} : (!wavemachine.imm) -> !wavemachine.reg<vgpr, 8>
+// SELECT: wavemachine.wmma_f32_16x16x16_f16{{.*}} : (!wavemachine.reg<vgpr, 8>, !wavemachine.reg<vgpr, 8>, !wavemachine.reg<vgpr, 8>) -> !wavemachine.reg<vgpr, 8>
 
 // PIPELINE-LABEL: func.func @matrix_f16_kernel
 // PIPELINE-SAME: wavemachine.metadata
-// PIPELINE: wavemachine.wmma_f32_16x16x16_f16{{.*}} {phys =
+// PIPELINE: wavemachine.wmma_f32_16x16x16_f16{{.*}} -> !wavemachine.reg<vgpr, 8,
 
 // ASM-LABEL: matrix_f16_kernel:
 // ASM: v_wmma_f32_16x16x16_f16 [[DST:v\[[0-9]+:[0-9]+\]]], [[A:v\[[0-9]+:[0-9]+\]]], [[B:v\[[0-9]+:[0-9]+\]]], [[C:v\[[0-9]+:[0-9]+\]]]

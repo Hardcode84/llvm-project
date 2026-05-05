@@ -16,6 +16,7 @@
 #include "mlir/IR/Types.h"
 #include "mlir/Interfaces/SideEffectInterfaces.h"
 
+#include "mlir/Dialect/WaveMachine/IR/WaveMachineOpsEnums.h.inc"
 #include "mlir/Dialect/WaveMachine/IR/WaveMachineOpsDialect.h.inc"
 
 #define GET_TYPEDEF_CLASSES

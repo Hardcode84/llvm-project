@@ -22,9 +22,13 @@ using namespace mlir;
 
 namespace {
 
-static bool isSGPR(wavemachine::RegType type) { return type.getRegClass() == 0; }
+static bool isSGPR(wavemachine::RegType type) {
+  return type.getRegClass() == wavemachine::RegClass::SGPR;
+}
 
-static bool isVGPR(wavemachine::RegType type) { return type.getRegClass() == 1; }
+static bool isVGPR(wavemachine::RegType type) {
+  return type.getRegClass() == wavemachine::RegClass::VGPR;
+}
 
 struct WaveAMDResourceInfoPass
     : public wave::impl::WaveAMDResourceInfoBase<WaveAMDResourceInfoPass> {
@@ -39,13 +43,13 @@ struct WaveAMDResourceInfoPass
         auto regType = dyn_cast<wavemachine::RegType>(op.getResult(0).getType());
         if (!regType)
           continue;
-        auto physAttr = op.getAttrOfType<IntegerAttr>("phys");
-        if (!physAttr) {
+        int64_t index = regType.getIndex();
+        if (index < 0) {
           op.emitError("waveamd-resource-info requires allocated register "
                        "results");
           return signalPassFailure();
         }
-        unsigned end = physAttr.getInt() + regType.getWidth();
+        unsigned end = index + regType.getWidth();
         if (isSGPR(regType))
           maxSGPR = std::max(maxSGPR, end);
         if (isVGPR(regType))

@@ -38,21 +38,16 @@ using namespace mlir::waveamd;
 
 namespace {
 
-enum class RegClass { SGPR, VGPR };
-
 struct LiveInterval {
   Operation *def = nullptr;
   unsigned start = std::numeric_limits<unsigned>::max();
   unsigned end = 0;
 };
 
-static int64_t regClassCode(RegClass regClass) {
-  return regClass == RegClass::SGPR ? 0 : 1;
-}
-
-static wavemachine::RegType getRegType(MLIRContext *ctx, RegClass regClass,
+static wavemachine::RegType getRegType(MLIRContext *ctx,
+                                       wavemachine::RegClass regClass,
                                        unsigned width = 1) {
-  return wavemachine::RegType::get(ctx, regClassCode(regClass), width);
+  return wavemachine::RegType::get(ctx, regClass, width, -1);
 }
 
 static wavemachine::ImmType getImmType(MLIRContext *ctx) {
@@ -119,7 +114,9 @@ public:
     for (auto [index, arg] : llvm::enumerate(func.getArguments())) {
       Type type = arg.getType();
       bool isPtr = isa<PtrType>(type);
-      RegClass regClass = isa<SimdType>(type) ? RegClass::VGPR : RegClass::SGPR;
+      wavemachine::RegClass regClass =
+          isa<SimdType>(type) ? wavemachine::RegClass::VGPR
+                              : wavemachine::RegClass::SGPR;
       unsigned width = isPtr ? 2 : 1;
       Operation *argOp = createWMOp(
           builder, func.getLoc(), "arg", {}, getRegType(func.getContext(), regClass, width),
@@ -244,7 +241,7 @@ private:
       return op.emitError("WaveMachine backend supports only !wave.simd<i32, 32> lane_id");
     values[op.getResult()] =
         createInstr(builder, op.getLoc(), "v_mbcnt_lo", {},
-                    getRegType(op.getContext(), RegClass::VGPR));
+                    getRegType(op.getContext(), wavemachine::RegClass::VGPR));
     eraseIfTopLevel(op);
     return success();
   }
@@ -269,7 +266,7 @@ private:
     values[op.getResult()] =
         createInstr(builder, op.getLoc(), machineOpcode,
                     {expect(op.getLhs(), op), expect(op.getRhs(), op)},
-                    getRegType(op.getContext(), RegClass::VGPR));
+                    getRegType(op.getContext(), wavemachine::RegClass::VGPR));
     eraseIfTopLevel(op);
     return success();
   }
@@ -293,7 +290,7 @@ private:
     values[op.getResult()] =
         createInstr(builder, op.getLoc(), machineOpcode,
                     {expect(op.getLhs(), op), expect(op.getRhs(), op)},
-                    getRegType(op.getContext(), RegClass::SGPR));
+                    getRegType(op.getContext(), wavemachine::RegClass::SGPR));
     eraseIfTopLevel(op);
     return success();
   }
@@ -307,14 +304,14 @@ private:
   LogicalResult selectReadFirst(ReadFirstOp op) {
     Value src = expect(op.getSource(), op);
     if (auto regType = dyn_cast<wavemachine::RegType>(src.getType());
-        regType && regType.getRegClass() == regClassCode(RegClass::SGPR)) {
+        regType && regType.getRegClass() == wavemachine::RegClass::SGPR) {
       values[op.getResult()] = src;
       eraseIfTopLevel(op);
       return success();
     }
     values[op.getResult()] =
         createInstr(builder, op.getLoc(), "v_readfirstlane_b32", src,
-                    getRegType(op.getContext(), RegClass::SGPR));
+                    getRegType(op.getContext(), wavemachine::RegClass::SGPR));
     eraseIfTopLevel(op);
     return success();
   }
@@ -367,7 +364,7 @@ private:
     if (rhsImm && *rhsImm == 0)
       return lhs;
     return createInstr(builder, loc, "v_add_u32", {lhs, rhs},
-                       getRegType(builder.getContext(), RegClass::VGPR));
+                       getRegType(builder.getContext(), wavemachine::RegClass::VGPR));
   }
 
   LogicalResult selectPtrAdd(PtrAddOp op) {
@@ -387,7 +384,7 @@ private:
       byteOffset = createInstr(builder, op.getLoc(), "v_lshlrev_b32",
                                {offset, createImm(builder, op.getLoc(),
                                                   llvm::Log2_32(size))},
-                               getRegType(op.getContext(), RegClass::VGPR));
+                               getRegType(op.getContext(), wavemachine::RegClass::VGPR));
     }
     byteOffset = addByteOffsets(op.getLoc(), offsetIt->second, byteOffset);
 
@@ -431,7 +428,7 @@ private:
     Value source = expect(op.getSource(), op);
     values[op.getResult()] =
         createInstr(builder, op.getLoc(), "v_mov_b32_tuple", source,
-                    getRegType(op.getContext(), RegClass::VGPR,
+                    getRegType(op.getContext(), wavemachine::RegClass::VGPR,
                                fragmentType.getRegisters()),
                     {builder.getNamedAttr(
                         "registers",
@@ -453,7 +450,7 @@ private:
         createInstr(builder, op.getLoc(), machineOpcode,
                     {expect(op.getA(), op), expect(op.getB(), op),
                      expect(op.getAcc(), op)},
-                    getRegType(op.getContext(), RegClass::VGPR,
+                    getRegType(op.getContext(), wavemachine::RegClass::VGPR,
                                resultType.getRegisters()));
     eraseIfTopLevel(op);
     return success();
@@ -466,11 +463,11 @@ private:
     if (baseIt == pointerBases.end() || offsetIt == pointerOffsets.end())
       return op.emitError("WaveMachine backend expects selected wave pointer");
     Value lane = createInstr(builder, op.getLoc(), "v_mbcnt_lo", {},
-                             getRegType(op.getContext(), RegClass::VGPR));
+                             getRegType(op.getContext(), wavemachine::RegClass::VGPR));
     Value byteOffset =
         createInstr(builder, op.getLoc(), "v_lshlrev_b32",
                     {lane, createImm(builder, op.getLoc(), 5)},
-                    getRegType(op.getContext(), RegClass::VGPR));
+                    getRegType(op.getContext(), wavemachine::RegClass::VGPR));
     byteOffset = addByteOffsets(op.getLoc(), offsetIt->second, byteOffset);
 
     SmallVector<Value> storeTokens;
@@ -500,7 +497,7 @@ private:
     Value condition = expect(op.getCondition(), op);
     Value savedExec =
         createInstr(builder, op.getLoc(), "s_and_saveexec_b32", condition,
-                    getRegType(op.getContext(), RegClass::SGPR));
+                    getRegType(op.getContext(), wavemachine::RegClass::SGPR));
     createInstrNoResult(builder, op.getLoc(), "s_cbranch_execz", {},
                         {builder.getNamedAttr("label", builder.getStringAttr(elseLabel))});
     if (failed(selectRegion(op.getThenRegion())))
@@ -546,9 +543,9 @@ private:
     if (op.getNumOperands() == 1) {
       Value ret = expect(op.getOperand(0), op);
       auto regType = dyn_cast<wavemachine::RegType>(ret.getType());
-      if (regType && regType.getRegClass() == regClassCode(RegClass::VGPR))
+      if (regType && regType.getRegClass() == wavemachine::RegClass::VGPR)
         ret = createInstr(builder, op.getLoc(), "v_readfirstlane_b32", ret,
-                          getRegType(op.getContext(), RegClass::SGPR));
+                          getRegType(op.getContext(), wavemachine::RegClass::SGPR));
       createInstrNoResult(builder, op.getLoc(), "s_mov_b32", ret,
                           {builder.getNamedAttr("dst", builder.getStringAttr("s0"))});
     }

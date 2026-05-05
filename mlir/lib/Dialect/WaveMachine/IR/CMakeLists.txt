@@ -5,6 +5,7 @@ add_mlir_dialect_library(MLIRWaveMachineDialect
   ${MLIR_MAIN_INCLUDE_DIR}/mlir/Dialect/WaveMachine
 
   DEPENDS
+  MLIRWaveMachineEnumsIncGen
   MLIRWaveMachineOpsIncGen
 
   LINK_LIBS PUBLIC

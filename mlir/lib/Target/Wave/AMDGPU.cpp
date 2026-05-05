@@ -282,16 +282,17 @@ private:
   }
 
   unsigned getPhys(Value value) const {
-    Operation *def = value.getDefiningOp();
-    if (auto attr = def->getAttrOfType<IntegerAttr>("phys"))
-      return attr.getInt();
+    auto regType = cast<wavemachine::RegType>(value.getType());
+    if (regType.getIndex() >= 0)
+      return regType.getIndex();
     llvm_unreachable("expected allocated WaveMachine register");
   }
 
   std::string physReg(Value value) const {
     auto regType = cast<wavemachine::RegType>(value.getType());
     unsigned phys = getPhys(value);
-    StringRef prefix = regType.getRegClass() == 1 ? "v" : "s";
+    StringRef prefix =
+        regType.getRegClass() == wavemachine::RegClass::VGPR ? "v" : "s";
     if (regType.getWidth() == 1)
       return (prefix + Twine(phys)).str();
     return (prefix + Twine("[") + Twine(phys) + ":" +
@@ -321,7 +322,7 @@ private:
   unsigned mcReg(Value value) const {
     auto regType = cast<wavemachine::RegType>(value.getType());
     unsigned phys = getPhys(value);
-    if (regType.getRegClass() == 1)
+    if (regType.getRegClass() == wavemachine::RegClass::VGPR)
       return mcVGPRReg(phys, regType.getWidth());
     if (regType.getWidth() == 2)
       return llvm::AMDGPU::SGPR0_SGPR1 + phys / 2;
@@ -347,7 +348,8 @@ private:
 
   llvm::MCOperand toMCVGPRComponent(Value value, unsigned component) const {
     auto regType = cast<wavemachine::RegType>(value.getType());
-    if (regType.getRegClass() != 1 || component >= regType.getWidth())
+    if (regType.getRegClass() != wavemachine::RegClass::VGPR ||
+        component >= regType.getWidth())
       llvm_unreachable("expected valid VGPR tuple component");
     return llvm::MCOperand::createReg(mcVGPRReg(getPhys(value) + component, 1));
   }
@@ -387,7 +389,7 @@ private:
 
   bool isSGPR(Value value) const {
     auto regType = dyn_cast<wavemachine::RegType>(value.getType());
-    return regType && regType.getRegClass() == 0;
+    return regType && regType.getRegClass() == wavemachine::RegClass::SGPR;
   }
 
   LogicalResult emitOperation(Operation &op) {
