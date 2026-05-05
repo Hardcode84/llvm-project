@@ -9,10 +9,11 @@
 #ifndef MLIR_DIALECT_WAVEMACHINE_IR_WAVEMACHINE_H
 #define MLIR_DIALECT_WAVEMACHINE_IR_WAVEMACHINE_H
 
+#include "mlir/Bytecode/BytecodeOpInterface.h"
+#include "mlir/Dialect/WaveMachine/IR/WaveMachineTraits.h"
 #include "mlir/IR/Dialect.h"
 #include "mlir/IR/OpDefinition.h"
 #include "mlir/IR/Types.h"
-#include "mlir/Dialect/WaveMachine/IR/WaveMachineTraits.h"
 #include "mlir/Interfaces/SideEffectInterfaces.h"
 
 #include "mlir/Dialect/WaveMachine/IR/WaveMachineOpsDialect.h.inc"

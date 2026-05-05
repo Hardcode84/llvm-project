@@ -25,25 +25,102 @@ def WaveMachine_Waitcnt : NativeOpTrait<"wavemachine::WaitcntOp">;
 def WaveMachine_TokenTrait : NativeOpTrait<"wavemachine::TokenOp">;
 def WaveMachine_TokenJoinTrait : NativeOpTrait<"wavemachine::TokenJoinOp">;
 
-class WaveMachine_GenericOp<string mnemonic, list<Trait> traits = []>
+def WaveMachine_SGPR1
+    : Type<CPred<"::llvm::isa<::mlir::wavemachine::RegType>($_self) && "
+                 "::llvm::cast<::mlir::wavemachine::RegType>($_self).getRegClass() == 0 && "
+                 "::llvm::cast<::mlir::wavemachine::RegType>($_self).getWidth() == 1">,
+           "WaveMachine scalar SGPR register">;
+
+def WaveMachine_SGPR2
+    : Type<CPred<"::llvm::isa<::mlir::wavemachine::RegType>($_self) && "
+                 "::llvm::cast<::mlir::wavemachine::RegType>($_self).getRegClass() == 0 && "
+                 "::llvm::cast<::mlir::wavemachine::RegType>($_self).getWidth() == 2">,
+           "WaveMachine SGPR pair register">;
+
+def WaveMachine_VGPR
+    : Type<CPred<"::llvm::isa<::mlir::wavemachine::RegType>($_self) && "
+                 "::llvm::cast<::mlir::wavemachine::RegType>($_self).getRegClass() == 1">,
+           "WaveMachine VGPR register">;
+
+def WaveMachine_VGPR1
+    : Type<CPred<"::llvm::isa<::mlir::wavemachine::RegType>($_self) && "
+                 "::llvm::cast<::mlir::wavemachine::RegType>($_self).getRegClass() == 1 && "
+                 "::llvm::cast<::mlir::wavemachine::RegType>($_self).getWidth() == 1">,
+           "WaveMachine scalar VGPR register">;
+
+def WaveMachine_RegOrImm
+    : Type<CPred<"::llvm::isa<::mlir::wavemachine::RegType>($_self) || "
+                 "::llvm::isa<::mlir::wavemachine::ImmType>($_self)">,
+           "WaveMachine register or immediate">;
+
+class WaveMachine_ZeroResult<string mnemonic, list<Trait> traits = []>
     : WaveMachine_Op<mnemonic, traits> {
-  let arguments = (ins Variadic<AnyType>:$operands);
-  let results = (outs Variadic<AnyType>:$results);
+  let assemblyFormat = "attr-dict";
+}
+
+class WaveMachine_ZeroOperandResult<string mnemonic, Type resultType,
+                                    list<Trait> traits = []>
+    : WaveMachine_Op<mnemonic, traits> {
+  let results = (outs resultType:$result);
+  let assemblyFormat = "attr-dict `:` type($result)";
+}
+
+class WaveMachine_UnaryResult<string mnemonic, Type operandType, Type resultType,
+                              list<Trait> traits = []>
+    : WaveMachine_Op<mnemonic, traits> {
+  let arguments = (ins operandType:$source);
+  let results = (outs resultType:$result);
+  let assemblyFormat = "$source attr-dict `:` functional-type(operands, results)";
+}
+
+class WaveMachine_BinaryResult<string mnemonic, Type operandType, Type resultType,
+                               list<Trait> traits = []>
+    : WaveMachine_Op<mnemonic, traits> {
+  let arguments = (ins operandType:$lhs, operandType:$rhs);
+  let results = (outs resultType:$result);
+  let assemblyFormat = "$lhs `,` $rhs attr-dict `:` functional-type(operands, results)";
+}
+
+class WaveMachine_TernaryResult<string mnemonic, Type operandType, Type resultType,
+                                list<Trait> traits = []>
+    : WaveMachine_Op<mnemonic, traits> {
+  let arguments = (ins operandType:$a, operandType:$b, operandType:$c);
+  let results = (outs resultType:$result);
+  let assemblyFormat = "$a `,` $b `,` $c attr-dict `:` functional-type(operands, results)";
+}
+
+class WaveMachine_UnaryNoResult<string mnemonic, Type operandType,
+                                list<Trait> traits = []>
+    : WaveMachine_Op<mnemonic, traits> {
+  let arguments = (ins operandType:$source);
+  let assemblyFormat = "$source attr-dict `:` functional-type(operands, results)";
+}
+
+class WaveMachine_BinaryNoResult<string mnemonic, Type operandType,
+                                 list<Trait> traits = []>
+    : WaveMachine_Op<mnemonic, traits> {
+  let arguments = (ins operandType:$lhs, operandType:$rhs);
+  let assemblyFormat = "$lhs `,` $rhs attr-dict `:` functional-type(operands, results)";
 }
 
 def WaveMachine_ArgOp : WaveMachine_Op<"arg"> {
   let summary = "selected function argument";
+  let arguments = (ins I64Attr:$index, BoolAttr:$pointer);
   let results = (outs WaveMachine_Reg:$result);
+  let assemblyFormat = "attr-dict `:` type($result)";
 }
 
 def WaveMachine_ImmOp : WaveMachine_Op<"imm", [Pure]> {
   let summary = "machine immediate";
+  let arguments = (ins I64Attr:$value);
   let results = (outs WaveMachine_Imm:$result);
+  let assemblyFormat = "$value attr-dict `:` type($result)";
 }
 
 def WaveMachine_TokenOp : WaveMachine_Op<"token", [Pure, WaveMachine_TokenTrait]> {
   let summary = "empty machine memory token";
   let results = (outs WaveMachine_MemToken:$result);
+  let assemblyFormat = "attr-dict `:` type($result)";
 }
 
 def WaveMachine_TokenJoinOp : WaveMachine_Op<"token_join",
@@ -51,6 +128,7 @@ def WaveMachine_TokenJoinOp : WaveMachine_Op<"token_join",
   let summary = "join machine memory tokens";
   let arguments = (ins Variadic<WaveMachine_MemToken>:$dependencies);
   let results = (outs WaveMachine_MemToken:$result);
+  let assemblyFormat = "$dependencies attr-dict `:` functional-type(operands, results)";
 }
 
 def WaveMachine_AfterOp : WaveMachine_Op<"after",
@@ -58,51 +136,145 @@ def WaveMachine_AfterOp : WaveMachine_Op<"after",
   let summary = "derive a machine memory token after dependencies";
   let arguments = (ins Variadic<WaveMachine_MemToken>:$dependencies);
   let results = (outs WaveMachine_MemToken:$result);
+  let assemblyFormat = "$dependencies attr-dict `:` functional-type(operands, results)";
 }
 
 def WaveMachine_WaitOp : WaveMachine_Op<"wait"> {
   let summary = "wait for machine memory token dependencies";
   let arguments = (ins Variadic<WaveMachine_MemToken>:$dependencies);
+  let assemblyFormat = "$dependencies attr-dict `:` functional-type(operands, results)";
 }
 
-def WaveMachine_LabelOp : WaveMachine_Op<"label">;
+def WaveMachine_LabelOp : WaveMachine_Op<"label"> {
+  let summary = "assembly label";
+  let arguments = (ins StrAttr:$name);
+  let assemblyFormat = "$name attr-dict";
+}
 
-def WaveMachine_VMbcntLoOp : WaveMachine_GenericOp<"v_mbcnt_lo", [WaveMachine_VALU]>;
-def WaveMachine_VMovB32TupleOp : WaveMachine_GenericOp<"v_mov_b32_tuple", [WaveMachine_VALU]>;
-def WaveMachine_VAddU32Op : WaveMachine_GenericOp<"v_add_u32", [WaveMachine_VALU]>;
-def WaveMachine_VAndB32Op : WaveMachine_GenericOp<"v_and_b32", [WaveMachine_VALU]>;
-def WaveMachine_VOrB32Op : WaveMachine_GenericOp<"v_or_b32", [WaveMachine_VALU]>;
-def WaveMachine_VXorB32Op : WaveMachine_GenericOp<"v_xor_b32", [WaveMachine_VALU]>;
-def WaveMachine_VLshlrevB32Op : WaveMachine_GenericOp<"v_lshlrev_b32", [WaveMachine_VALU]>;
-def WaveMachine_VCmpEqU32Op : WaveMachine_GenericOp<"v_cmp_eq_u32", [WaveMachine_VALU]>;
-def WaveMachine_VCmpNeU32Op : WaveMachine_GenericOp<"v_cmp_ne_u32", [WaveMachine_VALU]>;
-def WaveMachine_VCmpLtU32Op : WaveMachine_GenericOp<"v_cmp_lt_u32", [WaveMachine_VALU]>;
-def WaveMachine_VCmpLeU32Op : WaveMachine_GenericOp<"v_cmp_le_u32", [WaveMachine_VALU]>;
-def WaveMachine_VCmpGtU32Op : WaveMachine_GenericOp<"v_cmp_gt_u32", [WaveMachine_VALU]>;
-def WaveMachine_VCmpGeU32Op : WaveMachine_GenericOp<"v_cmp_ge_u32", [WaveMachine_VALU]>;
-def WaveMachine_VReadfirstlaneB32Op : WaveMachine_GenericOp<"v_readfirstlane_b32", [WaveMachine_VALU]>;
+def WaveMachine_VMbcntLoOp
+    : WaveMachine_ZeroOperandResult<"v_mbcnt_lo", WaveMachine_VGPR1,
+                                    [WaveMachine_VALU]>;
+def WaveMachine_VMovB32TupleOp
+    : WaveMachine_UnaryResult<"v_mov_b32_tuple", WaveMachine_RegOrImm,
+                              WaveMachine_VGPR, [WaveMachine_VALU]> {
+  let hasVerifier = 1;
+}
+def WaveMachine_VAddU32Op
+    : WaveMachine_BinaryResult<"v_add_u32", WaveMachine_RegOrImm,
+                               WaveMachine_VGPR1, [WaveMachine_VALU]>;
+def WaveMachine_VAndB32Op
+    : WaveMachine_BinaryResult<"v_and_b32", WaveMachine_RegOrImm,
+                               WaveMachine_VGPR1, [WaveMachine_VALU]>;
+def WaveMachine_VOrB32Op
+    : WaveMachine_BinaryResult<"v_or_b32", WaveMachine_RegOrImm,
+                               WaveMachine_VGPR1, [WaveMachine_VALU]>;
+def WaveMachine_VXorB32Op
+    : WaveMachine_BinaryResult<"v_xor_b32", WaveMachine_RegOrImm,
+                               WaveMachine_VGPR1, [WaveMachine_VALU]>;
+def WaveMachine_VLshlrevB32Op
+    : WaveMachine_BinaryResult<"v_lshlrev_b32", WaveMachine_RegOrImm,
+                               WaveMachine_VGPR1, [WaveMachine_VALU]>;
+def WaveMachine_VCmpEqU32Op
+    : WaveMachine_BinaryResult<"v_cmp_eq_u32", WaveMachine_RegOrImm,
+                               WaveMachine_SGPR1, [WaveMachine_VALU]>;
+def WaveMachine_VCmpNeU32Op
+    : WaveMachine_BinaryResult<"v_cmp_ne_u32", WaveMachine_RegOrImm,
+                               WaveMachine_SGPR1, [WaveMachine_VALU]>;
+def WaveMachine_VCmpLtU32Op
+    : WaveMachine_BinaryResult<"v_cmp_lt_u32", WaveMachine_RegOrImm,
+                               WaveMachine_SGPR1, [WaveMachine_VALU]>;
+def WaveMachine_VCmpLeU32Op
+    : WaveMachine_BinaryResult<"v_cmp_le_u32", WaveMachine_RegOrImm,
+                               WaveMachine_SGPR1, [WaveMachine_VALU]>;
+def WaveMachine_VCmpGtU32Op
+    : WaveMachine_BinaryResult<"v_cmp_gt_u32", WaveMachine_RegOrImm,
+                               WaveMachine_SGPR1, [WaveMachine_VALU]>;
+def WaveMachine_VCmpGeU32Op
+    : WaveMachine_BinaryResult<"v_cmp_ge_u32", WaveMachine_RegOrImm,
+                               WaveMachine_SGPR1, [WaveMachine_VALU]>;
+def WaveMachine_VReadfirstlaneB32Op
+    : WaveMachine_UnaryResult<"v_readfirstlane_b32", WaveMachine_VGPR1,
+                              WaveMachine_SGPR1, [WaveMachine_VALU]>;
 
 def WaveMachine_WmmaI32_16x16x16_IU8Op
-    : WaveMachine_GenericOp<"wmma_i32_16x16x16_iu8", [WaveMachine_VALU]>;
+    : WaveMachine_TernaryResult<"wmma_i32_16x16x16_iu8", WaveMachine_VGPR,
+                                WaveMachine_VGPR, [WaveMachine_VALU]> {
+  let hasVerifier = 1;
+}
 def WaveMachine_WmmaF32_16x16x16_F16Op
-    : WaveMachine_GenericOp<"wmma_f32_16x16x16_f16", [WaveMachine_VALU]>;
+    : WaveMachine_TernaryResult<"wmma_f32_16x16x16_f16", WaveMachine_VGPR,
+                                WaveMachine_VGPR, [WaveMachine_VALU]> {
+  let hasVerifier = 1;
+}
 
-def WaveMachine_SMovB32Op : WaveMachine_GenericOp<"s_mov_b32">;
-def WaveMachine_SLoadB32Op : WaveMachine_GenericOp<"s_load_b32", [WaveMachine_SMEMLoad]>;
-def WaveMachine_SLoadB64Op : WaveMachine_GenericOp<"s_load_b64", [WaveMachine_SMEMLoad]>;
-def WaveMachine_SWaitcntOp : WaveMachine_GenericOp<"s_waitcnt", [WaveMachine_Waitcnt]>;
-def WaveMachine_SWaitcntVscntOp : WaveMachine_GenericOp<"s_waitcnt_vscnt", [WaveMachine_Waitcnt]>;
-def WaveMachine_SDelayAluOp : WaveMachine_GenericOp<"s_delay_alu">;
-def WaveMachine_SAndSaveexecB32Op : WaveMachine_GenericOp<"s_and_saveexec_b32">;
-def WaveMachine_SAndn2ExecB32Op : WaveMachine_GenericOp<"s_andn2_exec_b32">;
-def WaveMachine_SCBranchExeczOp : WaveMachine_GenericOp<"s_cbranch_execz">;
-def WaveMachine_SMovExecLoOp : WaveMachine_GenericOp<"s_mov_exec_lo">;
-def WaveMachine_SEndpgmOp : WaveMachine_GenericOp<"s_endpgm">;
-def WaveMachine_SSetpcB64Op : WaveMachine_GenericOp<"s_setpc_b64">;
+def WaveMachine_SMovB32Op : WaveMachine_UnaryNoResult<"s_mov_b32",
+                                                       WaveMachine_RegOrImm> {
+  let arguments = (ins StrAttr:$dst, WaveMachine_RegOrImm:$source);
+  let assemblyFormat = "$dst `,` $source attr-dict `:` functional-type(operands, results)";
+}
+def WaveMachine_SLoadB32Op : WaveMachine_UnaryResult<"s_load_b32",
+                                                      WaveMachine_Imm,
+                                                      WaveMachine_SGPR1,
+                                                      [WaveMachine_SMEMLoad]> {
+  let arguments = (ins WaveMachine_Imm:$offset, StrAttr:$base);
+  let assemblyFormat = "$offset `,` $base attr-dict `:` functional-type(operands, results)";
+}
+def WaveMachine_SLoadB64Op : WaveMachine_UnaryResult<"s_load_b64",
+                                                      WaveMachine_Imm,
+                                                      WaveMachine_SGPR2,
+                                                      [WaveMachine_SMEMLoad]> {
+  let arguments = (ins WaveMachine_Imm:$offset, StrAttr:$base);
+  let assemblyFormat = "$offset `,` $base attr-dict `:` functional-type(operands, results)";
+}
+def WaveMachine_SWaitcntOp : WaveMachine_UnaryNoResult<"s_waitcnt",
+                                                        WaveMachine_Imm,
+                                                        [WaveMachine_Waitcnt]>;
+def WaveMachine_SWaitcntVscntOp : WaveMachine_UnaryNoResult<"s_waitcnt_vscnt",
+                                                             WaveMachine_Imm,
+                                                             [WaveMachine_Waitcnt]>;
+def WaveMachine_SDelayAluOp : WaveMachine_UnaryNoResult<"s_delay_alu",
+                                                         WaveMachine_Imm>;
+def WaveMachine_SAndSaveexecB32Op
+    : WaveMachine_UnaryResult<"s_and_saveexec_b32", WaveMachine_SGPR1,
+                              WaveMachine_SGPR1>;
+def WaveMachine_SAndn2ExecB32Op
+    : WaveMachine_BinaryNoResult<"s_andn2_exec_b32", WaveMachine_SGPR1>;
+def WaveMachine_SCBranchExeczOp : WaveMachine_ZeroResult<"s_cbranch_execz"> {
+  let arguments = (ins StrAttr:$label);
+  let assemblyFormat = "$label attr-dict";
+}
+def WaveMachine_SMovExecLoOp : WaveMachine_UnaryNoResult<"s_mov_exec_lo",
+                                                          WaveMachine_SGPR1>;
+def WaveMachine_SEndpgmOp : WaveMachine_ZeroResult<"s_endpgm">;
+def WaveMachine_SSetpcB64Op : WaveMachine_ZeroResult<"s_setpc_b64">;
 
-def WaveMachine_GlobalLoadB32Op : WaveMachine_GenericOp<"global_load_b32", [WaveMachine_VMEMLoad]>;
-def WaveMachine_GlobalStoreB32Op : WaveMachine_GenericOp<"global_store_b32", [WaveMachine_VMEMStore]>;
+def WaveMachine_GlobalLoadB32Op
+    : WaveMachine_Op<"global_load_b32", [WaveMachine_VMEMLoad]> {
+  let summary = "global 32-bit load through an SGPR base";
+  let arguments = (ins WaveMachine_VGPR1:$offset, WaveMachine_SGPR2:$base,
+                       Optional<WaveMachine_MemToken>:$dependency);
+  let results = (outs WaveMachine_VGPR1:$result);
+  let assemblyFormat = "$offset `,` $base (`after` $dependency^)? attr-dict `:` functional-type(operands, results)";
+}
+def WaveMachine_GlobalStoreB32Op
+    : WaveMachine_Op<"global_store_b32", [WaveMachine_VMEMStore]> {
+  let summary = "global 32-bit store through an SGPR base";
+  let arguments = (ins WaveMachine_VGPR1:$offset, WaveMachine_RegOrImm:$value,
+                       WaveMachine_SGPR2:$base,
+                       Optional<WaveMachine_MemToken>:$dependency);
+  let results = (outs Variadic<WaveMachine_MemToken>:$tokens);
+  let assemblyFormat = "$offset `,` $value `,` $base (`after` $dependency^)? attr-dict `:` functional-type(operands, results)";
+  let hasVerifier = 1;
+}
 def WaveMachine_GlobalStoreTupleB32Op
-    : WaveMachine_GenericOp<"global_store_tuple_b32", [WaveMachine_VMEMStore]>;
+    : WaveMachine_Op<"global_store_tuple_b32", [WaveMachine_VMEMStore]> {
+  let summary = "global 32-bit store of a VGPR tuple component";
+  let arguments = (ins WaveMachine_VGPR1:$offset, WaveMachine_VGPR:$value,
+                       WaveMachine_SGPR2:$base,
+                       Optional<WaveMachine_MemToken>:$dependency);
+  let results = (outs Variadic<WaveMachine_MemToken>:$tokens);
+  let assemblyFormat = "$offset `,` $value `,` $base (`after` $dependency^)? attr-dict `:` functional-type(operands, results)";
+  let hasVerifier = 1;
+}
 
 #endif // MLIR_DIALECT_WAVEMACHINE_IR_WAVEMACHINEOPS_TD

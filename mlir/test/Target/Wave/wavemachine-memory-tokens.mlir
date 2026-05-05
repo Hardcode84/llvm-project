@@ -4,19 +4,19 @@
 module attributes {wavemachine.target = "amdgcn-amd-amdhsa--gfx1100"} {
 
 // SELECT-LABEL: func.func @token_kernel
-// SELECT: "wavemachine.global_store_b32"{{.*}} : {{.*}} -> !wavemachine.mem.token
-// SELECT: "wavemachine.token_join"{{.*}} : (!wavemachine.mem.token) -> !wavemachine.mem.token
-// SELECT: "wavemachine.global_store_b32"{{.*}} : {{.*}} !wavemachine.mem.token) -> !wavemachine.mem.token
-// SELECT: "wavemachine.wait"{{.*}} : (!wavemachine.mem.token) -> ()
+// SELECT: wavemachine.global_store_b32{{.*}} : {{.*}} -> !wavemachine.mem.token
+// SELECT: wavemachine.token_join{{.*}} : (!wavemachine.mem.token) -> !wavemachine.mem.token
+// SELECT: wavemachine.global_store_b32{{.*}} after {{.*}} : {{.*}} !wavemachine.mem.token) -> !wavemachine.mem.token
+// SELECT: wavemachine.wait{{.*}} : (!wavemachine.mem.token) -> ()
 
 // TICKET-LABEL: func.func @token_kernel
-// TICKET: "wavemachine.global_store_b32"{{.*}} : {{.*}} -> !wavemachine.mem.token
-// TICKET: "wavemachine.s_waitcnt_vscnt"
-// TICKET-NEXT: "wavemachine.global_store_b32"{{.*}} : {{.*}} !wavemachine.mem.token) -> !wavemachine.mem.token
-// TICKET: "wavemachine.s_waitcnt_vscnt"
-// TICKET-NEXT: "wavemachine.wait"
-// TICKET-NOT: "wavemachine.s_waitcnt_vscnt"
-// TICKET: "wavemachine.s_endpgm"
+// TICKET: wavemachine.global_store_b32{{.*}} : {{.*}} -> !wavemachine.mem.token
+// TICKET: wavemachine.s_waitcnt_vscnt
+// TICKET-NEXT: wavemachine.global_store_b32{{.*}} after {{.*}} : {{.*}} !wavemachine.mem.token) -> !wavemachine.mem.token
+// TICKET: wavemachine.s_waitcnt_vscnt
+// TICKET-NEXT: wavemachine.wait
+// TICKET-NOT: wavemachine.s_waitcnt_vscnt
+// TICKET: wavemachine.s_endpgm
 func.func @token_kernel(%out: !wave.ptr<i32, #wave.global>, %x: i32) attributes {wave.kernel} {
   %lane = wave.lane_id : !wave.simd<i32, 32>
   %vx = wave.splat %x : i32 -> !wave.simd<i32, 32>
@@ -29,15 +29,15 @@ func.func @token_kernel(%out: !wave.ptr<i32, #wave.global>, %x: i32) attributes 
 }
 
 // SELECT-LABEL: func.func @join_kernel
-// SELECT: "wavemachine.token_join"{{.*}} : (!wavemachine.mem.token, !wavemachine.mem.token) -> !wavemachine.mem.token
-// SELECT: "wavemachine.wait"
+// SELECT: wavemachine.token_join{{.*}} : (!wavemachine.mem.token, !wavemachine.mem.token) -> !wavemachine.mem.token
+// SELECT: wavemachine.wait
 
 // TICKET-LABEL: func.func @join_kernel
-// TICKET: "wavemachine.global_store_b32"
-// TICKET: "wavemachine.global_store_b32"
-// TICKET: "wavemachine.token_join"
-// TICKET: "wavemachine.s_waitcnt_vscnt"
-// TICKET-NEXT: "wavemachine.wait"
+// TICKET: wavemachine.global_store_b32
+// TICKET: wavemachine.global_store_b32
+// TICKET: wavemachine.token_join
+// TICKET: wavemachine.s_waitcnt_vscnt
+// TICKET-NEXT: wavemachine.wait
 func.func @join_kernel(%out: !wave.ptr<i32, #wave.global>, %x: i32) attributes {wave.kernel} {
   %lane = wave.lane_id : !wave.simd<i32, 32>
   %vx = wave.splat %x : i32 -> !wave.simd<i32, 32>

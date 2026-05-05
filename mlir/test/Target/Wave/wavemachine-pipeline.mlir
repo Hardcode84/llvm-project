@@ -9,13 +9,13 @@
 module attributes {wavemachine.target = "amdgcn-amd-amdhsa--gfx1100"} {
 
 // SELECT-LABEL: func.func @where_test
-// SELECT: "wavemachine.arg"() {index = 0 : i64, pointer = false} : () -> !wavemachine.reg<0, 1>
-// SELECT: "wavemachine.v_mbcnt_lo"() : () -> !wavemachine.reg<1, 1>
-// SELECT: "wavemachine.v_cmp_lt_u32"
-// SELECT: "wavemachine.s_and_saveexec_b32"
-// SELECT: "wavemachine.s_cbranch_execz"() {label = ".Lwave_where_test_endif_0"}
-// SELECT: "wavemachine.label"() {name = ".Lwave_where_test_endif_0"}
-// SELECT: "wavemachine.s_mov_exec_lo"
+// SELECT: wavemachine.arg {index = 0 : i64, pointer = false} : !wavemachine.reg<0, 1>
+// SELECT: wavemachine.v_mbcnt_lo : !wavemachine.reg<1, 1>
+// SELECT: wavemachine.v_cmp_lt_u32
+// SELECT: wavemachine.s_and_saveexec_b32
+// SELECT: wavemachine.s_cbranch_execz ".Lwave_where_test_endif_0"
+// SELECT: wavemachine.label ".Lwave_where_test_endif_0"
+// SELECT: wavemachine.s_mov_exec_lo
 func.func @where_test(%limit: i32) -> i32 {
   %lane = wave.lane_id : !wave.simd<i32, 32>
   %vlimit = wave.splat %limit : i32 -> !wave.simd<i32, 32>
@@ -29,30 +29,30 @@ func.func @where_test(%limit: i32) -> i32 {
 }
 
 // SELECT-LABEL: func.func @kernel_test
-// SELECT: "wavemachine.arg"() {index = 0 : i64, pointer = true} : () -> !wavemachine.reg<0, 2>
-// SELECT: "wavemachine.arg"() {index = 1 : i64, pointer = false} : () -> !wavemachine.reg<0, 1>
-// SELECT: "wavemachine.global_store_b32"
+// SELECT: wavemachine.arg {index = 0 : i64, pointer = true} : !wavemachine.reg<0, 2>
+// SELECT: wavemachine.arg {index = 1 : i64, pointer = false} : !wavemachine.reg<0, 1>
+// SELECT: wavemachine.global_store_b32
 // ABI-LABEL: func.func @kernel_test
-// ABI: "wavemachine.s_load_b64"{{.*}} {base = "s[0:1]"}
-// ABI: "wavemachine.s_load_b32"{{.*}} {base = "s[0:1]"}
-// ABI-NOT: "wavemachine.arg"
+// ABI: wavemachine.s_load_b64 {{.*}}, "s[0:1]"
+// ABI: wavemachine.s_load_b32 {{.*}}, "s[0:1]"
+// ABI-NOT: wavemachine.arg
 // TICKET-LABEL: func.func @kernel_test
-// TICKET: "wavemachine.v_mbcnt_lo"
-// TICKET: "wavemachine.s_waitcnt"
-// TICKET-NOT: "wavemachine.s_delay_alu"
-// TICKET: "wavemachine.v_add_u32"
-// TICKET: "wavemachine.global_store_b32"
-// TICKET: "wavemachine.s_waitcnt_vscnt"
-// TICKET: "wavemachine.s_endpgm"
+// TICKET: wavemachine.v_mbcnt_lo
+// TICKET: wavemachine.s_waitcnt
+// TICKET-NOT: wavemachine.s_delay_alu
+// TICKET: wavemachine.v_add_u32
+// TICKET: wavemachine.global_store_b32
+// TICKET: wavemachine.s_waitcnt_vscnt
+// TICKET: wavemachine.s_endpgm
 // HAZARD-LABEL: func.func @kernel_test
-// HAZARD: "wavemachine.s_waitcnt"
-// HAZARD: "wavemachine.s_delay_alu"
-// HAZARD: "wavemachine.v_add_u32"
+// HAZARD: wavemachine.s_waitcnt
+// HAZARD: wavemachine.s_delay_alu
+// HAZARD: wavemachine.v_add_u32
 // REGALLOC-LABEL: func.func @kernel_test
-// REGALLOC: "wavemachine.s_load_b64"{{.*}} {base = "s[0:1]", phys = 2 : i64}
-// REGALLOC: "wavemachine.s_load_b32"{{.*}} {base = "s[0:1]", phys = 4 : i64}
-// REGALLOC: "wavemachine.v_mbcnt_lo"() {phys = 0 : i64}
-// REGALLOC: "wavemachine.v_add_u32"{{.*}} {phys = 1 : i64}
+// REGALLOC: wavemachine.s_load_b64 {{.*}}, "s[0:1]" {phys = 2 : i64}
+// REGALLOC: wavemachine.s_load_b32 {{.*}}, "s[0:1]" {phys = 4 : i64}
+// REGALLOC: wavemachine.v_mbcnt_lo {phys = 0 : i64}
+// REGALLOC: wavemachine.v_add_u32{{.*}} {phys = 1 : i64}
 // RESOURCE-LABEL: func.func @kernel_test
 // RESOURCE-SAME: wavemachine.sgpr_count = 6 : i64
 // RESOURCE-SAME: wavemachine.vgpr_count = 3 : i64
