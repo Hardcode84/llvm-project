@@ -33,6 +33,29 @@ using namespace mlir::wave;
 
 namespace {
 
+// Waitcnt insertion is modeled as a ticket scoreboard over the WaveMachine IR:
+//
+// 1. Before analysis, assign each async memory operation a monotonic ticket in
+//    its hardware counter domain (vmcnt for VMEM loads, lgkmcnt for scalar/LDS
+//    style memory, and vscnt for VMEM stores).
+// 2. Run a dense forward dataflow analysis over CFG and RegionBranchOpInterface
+//    edges. The lattice carries the latest observed ticket per counter plus an
+//    SSA map from values/tokens to the ticket(s) that define their memory
+//    readiness.
+// 3. Region and block transfers propagate that SSA map through block arguments,
+//    structured operation results, and loop-carried iter_args. Backedges shift
+//    carried tickets by the number of same-counter memory events issued in the
+//    loop body, which is what makes double/triple buffering produce lgkmcnt(1)
+//    and lgkmcnt(2) instead of conservative lgkmcnt(0).
+// 4. Existing waitcnt operations update the lattice's "already waited" state.
+//    Explicit wavemachine.mem.token values can carry multiple tickets via
+//    token_join; wavemachine.wait and token-consuming memory operations require
+//    the corresponding tickets to be complete.
+// 5. After the solver reaches a fixpoint, a second pass over WaveMachine ops
+//    computes the minimum threshold for each required counter and inserts only
+//    the waitcnt operations. Pipeline hazards such as s_delay_alu are handled by
+//    the separate WaveMachine hazard pass.
+
 enum class CounterKind { Vmem, Lgkm, Vscnt };
 
 struct Ticket {
