@@ -553,6 +553,7 @@ static LogicalResult runWaveMachinePipeline(ModuleOp module) {
   pm.addPass(wave::createConvertWaveToWaveMachine());
   pm.addPass(wave::createWaveMachineABILowering());
   pm.addPass(wave::createWaveMachineTicketWaits());
+  pm.addPass(wave::createWaveMachineHazardWaits());
   pm.addPass(wave::createWaveMachineRegAlloc());
   pm.addPass(wave::createWaveMachineResourceInfo());
   pm.addPass(wave::createWaveMachineMetadata());

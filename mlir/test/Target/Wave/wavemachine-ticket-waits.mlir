@@ -5,8 +5,6 @@
 // CHECK: "wavemachine.s_load_b32"
 // CHECK: "wavemachine.imm"() {value = 64535 : i64}
 // CHECK-NEXT: "wavemachine.s_waitcnt"
-// CHECK-NEXT: "wavemachine.imm"() {value = 1 : i64}
-// CHECK-NEXT: "wavemachine.s_delay_alu"
 // CHECK-NEXT: "wavemachine.v_add_u32"
 func.func @lgkm_nonzero_distance(%x: !wavemachine.reg<1, 1>) {
   %zero = "wavemachine.imm"() {value = 0 : i64} : () -> !wavemachine.imm

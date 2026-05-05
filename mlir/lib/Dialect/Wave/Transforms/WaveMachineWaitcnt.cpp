@@ -9,6 +9,8 @@
 #include "mlir/Dialect/Wave/Transforms/Passes.h"
 
 #include "Utils/AMDGPUBaseInfo.h"
+#include "mlir/Analysis/DataFlow/DenseAnalysis.h"
+#include "mlir/Analysis/DataFlow/Utils.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Dialect/WaveMachine/IR/WaveMachine.h"
 #include "mlir/IR/Builders.h"
@@ -26,6 +28,7 @@ namespace mlir::wave {
 } // namespace mlir::wave
 
 using namespace mlir;
+using namespace mlir::dataflow;
 using namespace mlir::wave;
 
 namespace {
@@ -56,7 +59,7 @@ struct CounterState {
   }
 
   std::optional<unsigned> computeWait(int64_t requiredTicket) const {
-    if (requiredTicket < 0 || lastTicket < 0)
+    if (lastTicket < 0)
       return std::nullopt;
     int64_t threshold = std::max<int64_t>(0, lastTicket - requiredTicket);
     if (lastWait && *lastWait <= threshold)
@@ -129,32 +132,59 @@ struct WaitcntScoreboard {
   }
 };
 
+class WaitcntState : public AbstractDenseLattice {
+public:
+  MLIR_DEFINE_EXPLICIT_INTERNAL_INLINE_TYPE_ID(WaitcntState)
+
+  using AbstractDenseLattice::AbstractDenseLattice;
+
+  ChangeResult join(const AbstractDenseLattice &rhs) override {
+    const auto &other = static_cast<const WaitcntState &>(rhs);
+    WaitcntScoreboard merged = scoreboard;
+    if (!merged.merge(other.scoreboard))
+      return ChangeResult::NoChange;
+    scoreboard = std::move(merged);
+    return ChangeResult::Change;
+  }
+
+  ChangeResult joinScoreboard(const WaitcntScoreboard &rhs) {
+    WaitcntScoreboard merged = scoreboard;
+    if (!merged.merge(rhs))
+      return ChangeResult::NoChange;
+    scoreboard = std::move(merged);
+    return ChangeResult::Change;
+  }
+
+  void print(raw_ostream &os) const override {
+    os << "vmem=" << scoreboard.vmem.lastTicket << " lgkm="
+       << scoreboard.lgkm.lastTicket << " vscnt="
+       << scoreboard.vscnt.lastTicket << " values="
+       << scoreboard.valueTickets.size();
+  }
+
+  ChangeResult reset() {
+    if (scoreboard.vmem.lastTicket == -1 &&
+        scoreboard.lgkm.lastTicket == -1 &&
+        scoreboard.vscnt.lastTicket == -1 &&
+        scoreboard.valueTickets.empty())
+      return ChangeResult::NoChange;
+    scoreboard = WaitcntScoreboard();
+    return ChangeResult::Change;
+  }
+
+  WaitcntScoreboard &mutate() { return scoreboard; }
+  const WaitcntScoreboard &get() const { return scoreboard; }
+
+private:
+  WaitcntScoreboard scoreboard;
+};
+
 static bool isWaveMachineOp(Operation *op, StringRef name) {
   return op->getName().getStringRef() == ("wavemachine." + name).str();
 }
 
 static bool isWaveMachineOp(Operation *op) {
   return op->getName().getStringRef().starts_with("wavemachine.");
-}
-
-static bool isVALU(Operation *op) {
-  StringRef name = op->getName().getStringRef();
-  return name == "wavemachine.v_mbcnt_lo" ||
-         name == "wavemachine.v_mov_b32_tuple" ||
-         name == "wavemachine.v_add_u32" ||
-         name == "wavemachine.v_and_b32" ||
-         name == "wavemachine.v_or_b32" ||
-         name == "wavemachine.v_xor_b32" ||
-         name == "wavemachine.v_lshlrev_b32" ||
-         name == "wavemachine.v_cmp_eq_u32" ||
-         name == "wavemachine.v_cmp_ne_u32" ||
-         name == "wavemachine.v_cmp_lt_u32" ||
-         name == "wavemachine.v_cmp_le_u32" ||
-         name == "wavemachine.v_cmp_gt_u32" ||
-         name == "wavemachine.v_cmp_ge_u32" ||
-         name == "wavemachine.v_readfirstlane_b32" ||
-         name == "wavemachine.wmma_i32_16x16x16_iu8" ||
-         name == "wavemachine.wmma_f32_16x16x16_f16";
 }
 
 static bool isSMEMLoad(Operation *op) {
@@ -250,16 +280,6 @@ computeRequirement(Operation *op, const WaitcntScoreboard &scoreboard) {
   return requirement;
 }
 
-static void observeRequirement(WaitcntScoreboard &scoreboard,
-                               const WaitRequirement &requirement) {
-  if (requirement.vmcnt)
-    scoreboard.vmem.observeWait(*requirement.vmcnt);
-  if (requirement.lgkmcnt)
-    scoreboard.lgkm.observeWait(*requirement.lgkmcnt);
-  if (requirement.vscnt)
-    scoreboard.vscnt.observeWait(*requirement.vscnt);
-}
-
 static void observeExistingWait(Operation *op, WaitcntScoreboard &scoreboard) {
   if (isWaveMachineOp(op, "s_waitcnt")) {
     auto imm = getImmediate(op->getOperand(0));
@@ -281,13 +301,38 @@ static void observeExistingWait(Operation *op, WaitcntScoreboard &scoreboard) {
   }
 }
 
-static void propagateTicket(WaitcntScoreboard &scoreboard, Value src,
-                            Value dst) {
+static unsigned counterIndex(CounterKind counter) {
+  switch (counter) {
+  case CounterKind::Vmem:
+    return 0;
+  case CounterKind::Lgkm:
+    return 1;
+  case CounterKind::Vscnt:
+    return 2;
+  }
+  llvm_unreachable("unknown counter");
+}
+
+static void propagateTicket(WaitcntScoreboard &scoreboard, Value src, Value dst,
+                            ArrayRef<int64_t> ticketShift = {}) {
   if (!src || !dst)
     return;
   auto it = scoreboard.valueTickets.find(src);
-  if (it != scoreboard.valueTickets.end())
-    scoreboard.valueTickets[dst] = it->second;
+  if (it == scoreboard.valueTickets.end())
+    return;
+  Ticket ticket = it->second;
+  if (!ticketShift.empty()) {
+    ticket.value -= ticketShift[counterIndex(ticket.counter)];
+    ticket.value = std::max<int64_t>(ticket.value, -64);
+  }
+  scoreboard.valueTickets[dst] = ticket;
+}
+
+static void propagateTickets(WaitcntScoreboard &scoreboard, ValueRange sources,
+                             ValueRange destinations,
+                             ArrayRef<int64_t> ticketShift = {}) {
+  for (auto [src, dst] : llvm::zip_equal(sources, destinations))
+    propagateTicket(scoreboard, src, dst, ticketShift);
 }
 
 static void assignOperationTickets(func::FuncOp func,
@@ -325,7 +370,8 @@ static void emitWaits(OpBuilder &builder, Location loc,
 }
 
 static void propagateBranchOperands(Operation *terminator, Block *successor,
-                                    WaitcntScoreboard &scoreboard);
+                                    WaitcntScoreboard &scoreboard,
+                                    ArrayRef<int64_t> ticketShift = {});
 
 static LogicalResult validateWaveMachineOp(Operation *op) {
   if (!isWaveMachineOp(op))
@@ -362,86 +408,175 @@ static void observeTicket(Operation *op,
     scoreboard.valueTickets[result] = ticket;
 }
 
-static LogicalResult
-transferBlock(Block &block, const WaitcntScoreboard &input,
-              const DenseMap<Operation *, Ticket> &operationTickets,
-              WaitcntScoreboard &output) {
-  output = input;
-  for (Operation &op : block) {
-    if (failed(validateWaveMachineOp(&op)))
-      return failure();
-    if (!isWaveMachineOp(&op))
-      continue;
-    if (isWaitcnt(&op)) {
-      observeExistingWait(&op, output);
-      continue;
-    }
-    WaitRequirement requirement = computeRequirement(&op, output);
-    observeRequirement(output, requirement);
-    observeTicket(&op, operationTickets, output);
-  }
-  return success();
-}
-
-static LogicalResult
-processFunctionCFG(func::FuncOp func,
-                   const DenseMap<Operation *, Ticket> &operationTickets) {
-  DenseMap<Block *, WaitcntScoreboard> blockInputs;
-  DenseMap<Block *, WaitcntScoreboard> blockOutputs;
-  SmallVector<Block *> blocks;
-  for (Block &block : func.getBody())
+static void collectBlocks(Region &region, SmallVectorImpl<Block *> &blocks) {
+  for (Block &block : region) {
     blocks.push_back(&block);
-
-  bool changed = true;
-  for (unsigned iteration = 0; changed && iteration != 128; ++iteration) {
-    changed = false;
-    for (Block *block : blocks) {
-      WaitcntScoreboard output;
-      if (failed(transferBlock(*block, blockInputs[block], operationTickets,
-                               output)))
-        return failure();
-      if (blockOutputs[block].merge(output))
-        changed = true;
-
-      Operation *terminator = block->getTerminator();
-      for (Block *successor : terminator->getSuccessors()) {
-        WaitcntScoreboard successorInput = output;
-        propagateBranchOperands(terminator, successor, successorInput);
-        if (blockInputs[successor].merge(successorInput))
-          changed = true;
-      }
-    }
+    for (Operation &op : block)
+      for (Region &nested : op.getRegions())
+        collectBlocks(nested, blocks);
   }
-  if (changed)
-    return func.emitError("wavemachine-insert-ticket-waits failed to converge");
-
-  OpBuilder builder(func.getContext());
-  for (Block *block : blocks) {
-    WaitcntScoreboard scoreboard = blockInputs[block];
-    for (Operation &op : llvm::make_early_inc_range(*block)) {
-      if (!isWaveMachineOp(&op))
-        continue;
-      if (isWaitcnt(&op)) {
-        observeExistingWait(&op, scoreboard);
-        continue;
-      }
-      WaitRequirement requirement = computeRequirement(&op, scoreboard);
-      if (requirement.hasWait()) {
-        builder.setInsertionPoint(&op);
-        emitWaits(builder, op.getLoc(), requirement);
-        if (requirement.lgkmcnt && isVALU(&op))
-          createInstrNoResult(builder, op.getLoc(), "s_delay_alu",
-                              createImm(builder, op.getLoc(), 1));
-        observeRequirement(scoreboard, requirement);
-      }
-      observeTicket(&op, operationTickets, scoreboard);
-    }
-  }
-  return success();
 }
+
+static void countIssuesInBlock(Block *block, int64_t (&counts)[3]) {
+  for (Operation &op : *block) {
+    if (isVMEMLoad(&op))
+      ++counts[counterIndex(CounterKind::Vmem)];
+    if (isSMEMLoad(&op))
+      ++counts[counterIndex(CounterKind::Lgkm)];
+    if (isVMEMStore(&op))
+      ++counts[counterIndex(CounterKind::Vscnt)];
+  }
+}
+
+static bool isBackedge(Block *source, Block *dest,
+                       const DenseMap<Block *, unsigned> &blockOrder) {
+  auto sourceIt = blockOrder.find(source);
+  auto destIt = blockOrder.find(dest);
+  if (sourceIt == blockOrder.end() || destIt == blockOrder.end())
+    return false;
+  return destIt->second <= sourceIt->second;
+}
+
+static void computeTicketShift(Block *source, Block *dest,
+                               const DenseMap<Block *, unsigned> &blockOrder,
+                               int64_t (&shift)[3]) {
+  shift[0] = shift[1] = shift[2] = 0;
+  if (!isBackedge(source, dest, blockOrder))
+    return;
+  countIssuesInBlock(dest, shift);
+}
+
+class WaitcntAnalysis : public DenseForwardDataFlowAnalysis<WaitcntState> {
+public:
+  MLIR_DEFINE_EXPLICIT_INTERNAL_INLINE_TYPE_ID(WaitcntAnalysis)
+
+  WaitcntAnalysis(DataFlowSolver &solver,
+                  const DenseMap<Operation *, Ticket> &operationTickets,
+                  const DenseMap<Block *, unsigned> &blockOrder)
+      : DenseForwardDataFlowAnalysis(solver),
+        operationTickets(operationTickets), blockOrder(blockOrder) {}
+
+  LogicalResult initialize(Operation *top) override {
+    auto markOperation = [&](Operation *op) {
+      for (Region &region : op->getRegions()) {
+        for (Block &block : region) {
+          auto *blockLive =
+              getOrCreate<Executable>(getProgramPointBefore(&block));
+          propagateIfChanged(blockLive, blockLive->setToLive());
+          Operation *terminator = block.getTerminator();
+          if (!terminator)
+            continue;
+          for (Block *successor : terminator->getSuccessors()) {
+            auto *edgeLive = getOrCreate<Executable>(
+                getLatticeAnchor<CFGEdge>(&block, successor));
+            propagateIfChanged(edgeLive, edgeLive->setToLive());
+          }
+        }
+      }
+    };
+    markOperation(top);
+    top->walk(markOperation);
+    return DenseForwardDataFlowAnalysis<WaitcntState>::initialize(top);
+  }
+
+  void setToEntryState(WaitcntState *lattice) override {
+    propagateIfChanged(lattice, lattice->reset());
+  }
+
+  LogicalResult visitOperation(Operation *op, const WaitcntState &before,
+                               WaitcntState *after) override {
+    if (failed(validateWaveMachineOp(op)))
+      return failure();
+
+    WaitcntState next = before;
+    WaitcntScoreboard &scoreboard = next.mutate();
+    if (isWaitcnt(op)) {
+      observeExistingWait(op, scoreboard);
+    } else {
+      observeTicket(op, operationTickets, scoreboard);
+    }
+
+    propagateIfChanged(after, after->join(next));
+    markCFGSuccessorsLive(op, next.get());
+    return success();
+  }
+
+  void visitBlockTransfer(Block *block, ProgramPoint *point, Block *predecessor,
+                          const WaitcntState &before,
+                          WaitcntState *after) override {
+    WaitcntState next = before;
+    int64_t shift[3];
+    computeTicketShift(predecessor, block, blockOrder, shift);
+    propagateBranchOperands(predecessor->getTerminator(), block, next.mutate(),
+                            shift);
+    propagateIfChanged(after, after->join(next));
+  }
+
+  void visitRegionBranchControlFlowTransfer(
+      RegionBranchOpInterface branch, std::optional<unsigned> regionFrom,
+      std::optional<unsigned> regionTo, const WaitcntState &before,
+      WaitcntState *after) override {
+    WaitcntState next = before;
+    WaitcntScoreboard &scoreboard = next.mutate();
+    RegionSuccessor successor =
+        regionTo ? RegionSuccessor(&branch->getRegion(*regionTo))
+                 : RegionSuccessor::parent();
+
+    SmallVector<Value> sources;
+    Block *sourceBlock = nullptr;
+    if (regionFrom) {
+      Operation *terminator =
+          branch->getRegion(*regionFrom).front().getTerminator();
+      sourceBlock = terminator->getBlock();
+      if (auto regionTerm =
+              dyn_cast<RegionBranchTerminatorOpInterface>(terminator))
+        llvm::append_range(sources, regionTerm.getSuccessorOperands(successor));
+    } else {
+      llvm::append_range(sources, branch.getEntrySuccessorOperands(successor));
+    }
+
+    int64_t shift[3] = {0, 0, 0};
+    if (regionFrom && regionTo && sourceBlock)
+      computeTicketShift(sourceBlock, &branch->getRegion(*regionTo).front(),
+                         blockOrder, shift);
+
+    propagateTickets(scoreboard, sources, branch.getSuccessorInputs(successor),
+                     shift);
+
+    propagateIfChanged(after, after->join(next));
+  }
+
+private:
+  void markCFGSuccessorsLive(Operation *op,
+                             const WaitcntScoreboard &scoreboard) {
+    if (op->getNumSuccessors() == 0)
+      return;
+    Block *source = op->getBlock();
+    if (!source)
+      return;
+    for (Block *successor : op->getSuccessors()) {
+      WaitcntScoreboard successorState = scoreboard;
+      int64_t shift[3];
+      computeTicketShift(source, successor, blockOrder, shift);
+      propagateBranchOperands(op, successor, successorState, shift);
+      auto *blockState =
+          getLattice(getProgramPointBefore(successor));
+      propagateIfChanged(blockState, blockState->joinScoreboard(successorState));
+      auto *blockLive = getOrCreate<Executable>(getProgramPointBefore(successor));
+      propagateIfChanged(blockLive, blockLive->setToLive());
+      auto *edgeLive = getOrCreate<Executable>(
+          getLatticeAnchor<CFGEdge>(source, successor));
+      propagateIfChanged(edgeLive, edgeLive->setToLive());
+    }
+  }
+
+  const DenseMap<Operation *, Ticket> &operationTickets;
+  const DenseMap<Block *, unsigned> &blockOrder;
+};
 
 static void propagateBranchOperands(Operation *terminator, Block *successor,
-                                    WaitcntScoreboard &scoreboard) {
+                                    WaitcntScoreboard &scoreboard,
+                                    ArrayRef<int64_t> ticketShift) {
   bool mappedSuccessorOperands = false;
   if (auto branch = dyn_cast<BranchOpInterface>(terminator)) {
     for (auto [index, target] : llvm::enumerate(branch->getSuccessors())) {
@@ -451,7 +586,7 @@ static void propagateBranchOperands(Operation *terminator, Block *successor,
       for (auto [argIndex, arg] : llvm::enumerate(successor->getArguments())) {
         if (argIndex >= operands.size())
           break;
-        propagateTicket(scoreboard, operands[argIndex], arg);
+        propagateTicket(scoreboard, operands[argIndex], arg, ticketShift);
       }
       mappedSuccessorOperands = true;
     }
@@ -460,8 +595,41 @@ static void propagateBranchOperands(Operation *terminator, Block *successor,
       terminator->getSuccessor(0) == successor &&
       terminator->getNumOperands() >= successor->getNumArguments()) {
     for (auto [argIndex, arg] : llvm::enumerate(successor->getArguments()))
-      propagateTicket(scoreboard, terminator->getOperand(argIndex), arg);
+      propagateTicket(scoreboard, terminator->getOperand(argIndex), arg,
+                      ticketShift);
   }
+}
+
+static WaitcntScoreboard
+getEffectiveStateBefore(Operation *op, DataFlowSolver &solver,
+                        const DenseMap<Block *, unsigned> &blockOrder) {
+  WaitcntScoreboard effective;
+  if (auto *state = solver.lookupState<WaitcntState>(
+          solver.getProgramPointBefore(op)))
+    effective.merge(state->get());
+
+  Block *block = op->getBlock();
+  if (!block)
+    return effective;
+  if (auto *blockState = solver.lookupState<WaitcntState>(
+          solver.getProgramPointBefore(block)))
+    effective.merge(blockState->get());
+  if (block->isEntryBlock())
+    return effective;
+
+  for (Block *predecessor : block->getPredecessors()) {
+    Operation *terminator = predecessor->getTerminator();
+    auto *predState = solver.lookupState<WaitcntState>(
+        solver.getProgramPointAfter(terminator));
+    if (!predState)
+      continue;
+    WaitcntScoreboard predEffective = predState->get();
+    int64_t shift[3];
+    computeTicketShift(predecessor, block, blockOrder, shift);
+    propagateBranchOperands(terminator, block, predEffective, shift);
+    effective.merge(predEffective);
+  }
+  return effective;
 }
 
 struct WaveMachineTicketWaitsPass
@@ -470,9 +638,35 @@ struct WaveMachineTicketWaitsPass
     ModuleOp module = getOperation();
     for (func::FuncOp func : module.getOps<func::FuncOp>()) {
       DenseMap<Operation *, Ticket> operationTickets;
+      DenseMap<Block *, unsigned> blockOrder;
       assignOperationTickets(func, operationTickets);
-      if (failed(processFunctionCFG(func, operationTickets)))
+      SmallVector<Block *> blocks;
+      collectBlocks(func.getBody(), blocks);
+      for (auto [index, block] : llvm::enumerate(blocks))
+        blockOrder[block] = index;
+
+      DataFlowSolver solver;
+      loadBaselineAnalyses(solver);
+      solver.load<WaitcntAnalysis>(operationTickets, blockOrder);
+      if (failed(solver.initializeAndRun(func)))
         return signalPassFailure();
+
+      OpBuilder builder(func.getContext());
+      SmallVector<Operation *> ops;
+      func.walk([&](Operation *op) {
+        if (isWaveMachineOp(op) && !isWaitcnt(op))
+          ops.push_back(op);
+      });
+
+      for (Operation *op : ops) {
+        WaitcntScoreboard effective =
+            getEffectiveStateBefore(op, solver, blockOrder);
+        WaitRequirement requirement = computeRequirement(op, effective);
+        if (!requirement.hasWait())
+          continue;
+        builder.setInsertionPoint(op);
+        emitWaits(builder, op->getLoc(), requirement);
+      }
     }
   }
 };

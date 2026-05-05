@@ -140,21 +140,9 @@ static bool isSMEMLoad(Operation *op) {
   return isWaveMachineOp(op, "s_load_b32") || isWaveMachineOp(op, "s_load_b64");
 }
 
-static bool isVMEMStore(Operation *op) {
-  return isWaveMachineOp(op, "global_store_b32") ||
-         isWaveMachineOp(op, "global_store_tuple_b32");
-}
-
 static bool isSGPR(wavemachine::RegType type) { return type.getRegClass() == 0; }
 
 static bool isVGPR(wavemachine::RegType type) { return type.getRegClass() == 1; }
-
-static unsigned encodeWaitcnt(std::optional<unsigned> vmcnt,
-                              std::optional<unsigned> lgkmcnt) {
-  llvm::AMDGPU::IsaVersion gfx11{11, 0, 0};
-  return llvm::AMDGPU::encodeWaitcnt(
-      gfx11, vmcnt.value_or(~0u), /*expcnt=*/~0u, lgkmcnt.value_or(~0u));
-}
 
 class WaveMachineSelector {
 public:
@@ -578,8 +566,7 @@ struct WaveMachineHazardWaitsPass
     ModuleOp module = getOperation();
     OpBuilder builder(module.getContext());
     for (func::FuncOp func : module.getOps<func::FuncOp>()) {
-      bool pendingSMEMLoad = false;
-      bool pendingVMEMStore = false;
+      bool pendingLgkmWait = false;
       for (Operation &op : llvm::make_early_inc_range(func.getBody().front())) {
         if (!isWaveMachineOp(&op))
           continue;
@@ -594,32 +581,35 @@ struct WaveMachineHazardWaitsPass
           return signalPassFailure();
         }
 
-        if (isVALU(&op) && pendingSMEMLoad) {
+        if (isVALU(&op) && pendingLgkmWait) {
           builder.setInsertionPoint(&op);
-          createInstrNoResult(builder, op.getLoc(), "s_waitcnt",
-                              createImm(builder, op.getLoc(),
-                                        encodeWaitcnt(/*vmcnt=*/std::nullopt,
-                                                      /*lgkmcnt=*/0)));
           createInstrNoResult(builder, op.getLoc(), "s_delay_alu",
                               createImm(builder, op.getLoc(), 1));
-          pendingSMEMLoad = false;
+          pendingLgkmWait = false;
         }
 
-        if (isWaveMachineOp(&op, "s_endpgm") && pendingVMEMStore) {
-          builder.setInsertionPoint(&op);
-          createInstrNoResult(builder, op.getLoc(), "s_waitcnt",
-                              createImm(builder, op.getLoc(),
-                                        encodeWaitcnt(/*vmcnt=*/0,
-                                                      /*lgkmcnt=*/std::nullopt)));
-          pendingVMEMStore = false;
+        if (isWaveMachineOp(&op, "s_waitcnt")) {
+          auto imm = getImmediate(op.getOperand(0));
+          if (!imm)
+            continue;
+          llvm::AMDGPU::IsaVersion gfx11{11, 0, 0};
+          unsigned vm = 0;
+          unsigned exp = 0;
+          unsigned lg = 0;
+          llvm::AMDGPU::decodeWaitcnt(gfx11, *imm, vm, exp, lg);
+          pendingLgkmWait = lg != llvm::AMDGPU::decodeLgkmcnt(
+                                      gfx11, llvm::AMDGPU::getWaitcntBitMask(gfx11));
         }
-
-        if (isSMEMLoad(&op))
-          pendingSMEMLoad = true;
-        if (isVMEMStore(&op))
-          pendingVMEMStore = true;
       }
     }
+  }
+
+  std::optional<unsigned> getImmediate(Value value) {
+    Operation *def = value.getDefiningOp();
+    if (!def || !isWaveMachineOp(def, "imm"))
+      return std::nullopt;
+    return static_cast<unsigned>(
+        def->getAttrOfType<IntegerAttr>("value").getInt());
   }
 };
 

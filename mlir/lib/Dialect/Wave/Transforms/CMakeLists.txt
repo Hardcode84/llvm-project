@@ -15,6 +15,7 @@ add_mlir_dialect_library(MLIRWaveTransforms
   TargetParser
 
   LINK_LIBS PUBLIC
+  MLIRAnalysis
   MLIRArithDialect
   MLIRGPUDialect
   MLIRIR
