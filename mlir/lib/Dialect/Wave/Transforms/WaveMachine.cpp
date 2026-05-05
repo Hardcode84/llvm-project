@@ -140,6 +140,26 @@ static bool isSMEMLoad(Operation *op) {
   return isWaveMachineOp(op, "s_load_b32") || isWaveMachineOp(op, "s_load_b64");
 }
 
+static FailureOr<llvm::AMDGPU::IsaVersion> getIsaVersion(Operation *op) {
+  auto module = dyn_cast<ModuleOp>(op);
+  if (!module)
+    module = op->getParentOfType<ModuleOp>();
+  if (!module)
+    return op->emitError("wavemachine pass requires a module");
+  auto target = module->getAttrOfType<StringAttr>("wavemachine.target");
+  if (!target)
+    return module.emitError("wavemachine pass requires a wavemachine.target "
+                            "attribute");
+  StringRef cpu = target.getValue();
+  std::pair<StringRef, StringRef> split = cpu.rsplit("--");
+  if (!split.second.empty())
+    cpu = split.second;
+  llvm::AMDGPU::IsaVersion version = llvm::AMDGPU::getIsaVersion(cpu);
+  if (version.Major == 0)
+    return module.emitError("unsupported AMDGPU target: ") << target.getValue();
+  return version;
+}
+
 static bool isSGPR(wavemachine::RegType type) { return type.getRegClass() == 0; }
 
 static bool isVGPR(wavemachine::RegType type) { return type.getRegClass() == 1; }
@@ -565,6 +585,12 @@ struct WaveMachineHazardWaitsPass
   void runOnOperation() override {
     ModuleOp module = getOperation();
     OpBuilder builder(module.getContext());
+    FailureOr<llvm::AMDGPU::IsaVersion> isaVersion = getIsaVersion(module);
+    if (failed(isaVersion))
+      return signalPassFailure();
+    unsigned defaultLgkmcnt =
+        llvm::AMDGPU::decodeLgkmcnt(*isaVersion,
+                                    llvm::AMDGPU::getWaitcntBitMask(*isaVersion));
     for (func::FuncOp func : module.getOps<func::FuncOp>()) {
       bool pendingLgkmWait = false;
       for (Operation &op : llvm::make_early_inc_range(func.getBody().front())) {
@@ -592,13 +618,11 @@ struct WaveMachineHazardWaitsPass
           auto imm = getImmediate(op.getOperand(0));
           if (!imm)
             continue;
-          llvm::AMDGPU::IsaVersion gfx11{11, 0, 0};
           unsigned vm = 0;
           unsigned exp = 0;
           unsigned lg = 0;
-          llvm::AMDGPU::decodeWaitcnt(gfx11, *imm, vm, exp, lg);
-          pendingLgkmWait = lg != llvm::AMDGPU::decodeLgkmcnt(
-                                      gfx11, llvm::AMDGPU::getWaitcntBitMask(gfx11));
+          llvm::AMDGPU::decodeWaitcnt(*isaVersion, *imm, vm, exp, lg);
+          pendingLgkmWait = lg != defaultLgkmcnt;
         }
       }
     }
@@ -774,8 +798,11 @@ struct WaveMachineMetadataPass
     : public wave::impl::WaveMachineMetadataBase<WaveMachineMetadataPass> {
   void runOnOperation() override {
     OpBuilder builder(getOperation().getContext());
-    getOperation()->setAttr("wavemachine.target",
-                            builder.getStringAttr("amdgcn-amd-amdhsa--gfx1100"));
+    if (!getOperation()->hasAttr("wavemachine.target")) {
+      getOperation().emitError("wavemachine-metadata requires a "
+                               "wavemachine.target module attribute");
+      return signalPassFailure();
+    }
     for (func::FuncOp func : getOperation().getOps<func::FuncOp>()) {
       if (!func->hasAttr("wave.kernel"))
         continue;

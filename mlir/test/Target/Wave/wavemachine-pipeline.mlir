@@ -6,6 +6,8 @@
 // RUN: mlir-opt --convert-wave-to-wavemachine --wavemachine-abi-lowering --wavemachine-insert-ticket-waits --wavemachine-insert-hazard-waits --wavemachine-reg-alloc --wavemachine-resource-info %s | FileCheck %s --check-prefix=RESOURCE
 // RUN: mlir-opt --convert-wave-to-wavemachine --wavemachine-abi-lowering --wavemachine-insert-ticket-waits --wavemachine-insert-hazard-waits --wavemachine-reg-alloc --wavemachine-resource-info --wavemachine-metadata %s | FileCheck %s --check-prefix=METADATA
 
+module attributes {wavemachine.target = "amdgcn-amd-amdhsa--gfx1100"} {
+
 // SELECT-LABEL: func.func @where_test
 // SELECT: "wavemachine.arg"() {index = 0 : i64, memref = false} : () -> !wavemachine.reg<0, 1>
 // SELECT: "wavemachine.v_mbcnt_lo"() : () -> !wavemachine.reg<1, 1>
@@ -63,4 +65,6 @@ func.func @kernel_test(%out: memref<32xi32>, %x: i32) attributes {wave.kernel} {
   %sum = wave.binary "addi" %lane, %vx : !wave.simd<i32, 32>, !wave.simd<i32, 32> -> !wave.simd<i32, 32>
   wave.store %sum -> %out[%lane] : (!wave.simd<i32, 32>, memref<32xi32>, !wave.simd<i32, 32>) -> ()
   return
+}
+
 }

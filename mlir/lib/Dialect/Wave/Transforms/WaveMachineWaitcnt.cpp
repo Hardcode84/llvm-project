@@ -209,11 +209,32 @@ static bool hasMemoryTicket(Operation *op) {
   return isSMEMLoad(op) || isVMEMLoad(op) || isVMEMStore(op);
 }
 
+static FailureOr<llvm::AMDGPU::IsaVersion> getIsaVersion(Operation *op) {
+  auto module = dyn_cast<ModuleOp>(op);
+  if (!module)
+    module = op->getParentOfType<ModuleOp>();
+  if (!module)
+    return op->emitError("wavemachine-insert-ticket-waits requires a module");
+  auto target = module->getAttrOfType<StringAttr>("wavemachine.target");
+  if (!target)
+    return module.emitError("wavemachine-insert-ticket-waits requires a "
+                            "wavemachine.target attribute");
+  StringRef cpu = target.getValue();
+  std::pair<StringRef, StringRef> split = cpu.rsplit("--");
+  if (!split.second.empty())
+    cpu = split.second;
+  llvm::AMDGPU::IsaVersion version = llvm::AMDGPU::getIsaVersion(cpu);
+  if (version.Major == 0)
+    return module.emitError("unsupported AMDGPU target: ") << target.getValue();
+  return version;
+}
+
 static unsigned encodeWaitcnt(std::optional<unsigned> vmcnt,
-                              std::optional<unsigned> lgkmcnt) {
-  llvm::AMDGPU::IsaVersion gfx11{11, 0, 0};
+                              std::optional<unsigned> lgkmcnt,
+                              const llvm::AMDGPU::IsaVersion &isaVersion) {
   return llvm::AMDGPU::encodeWaitcnt(
-      gfx11, vmcnt.value_or(~0u), /*expcnt=*/~0u, lgkmcnt.value_or(~0u));
+      isaVersion, vmcnt.value_or(~0u), /*expcnt=*/~0u,
+      lgkmcnt.value_or(~0u));
 }
 
 static wavemachine::ImmType getImmType(MLIRContext *ctx) {
@@ -280,16 +301,16 @@ computeRequirement(Operation *op, const WaitcntScoreboard &scoreboard) {
   return requirement;
 }
 
-static void observeExistingWait(Operation *op, WaitcntScoreboard &scoreboard) {
+static void observeExistingWait(Operation *op, WaitcntScoreboard &scoreboard,
+                                const llvm::AMDGPU::IsaVersion &isaVersion) {
   if (isWaveMachineOp(op, "s_waitcnt")) {
     auto imm = getImmediate(op->getOperand(0));
     if (!imm)
       return;
-    llvm::AMDGPU::IsaVersion gfx11{11, 0, 0};
     unsigned vm = 0;
     unsigned exp = 0;
     unsigned lg = 0;
-    llvm::AMDGPU::decodeWaitcnt(gfx11, *imm, vm, exp, lg);
+    llvm::AMDGPU::decodeWaitcnt(isaVersion, *imm, vm, exp, lg);
     scoreboard.vmem.observeWait(vm);
     scoreboard.lgkm.observeWait(lg);
     return;
@@ -357,9 +378,11 @@ static void assignOperationTickets(func::FuncOp func,
 }
 
 static void emitWaits(OpBuilder &builder, Location loc,
-                      const WaitRequirement &requirement) {
+                      const WaitRequirement &requirement,
+                      const llvm::AMDGPU::IsaVersion &isaVersion) {
   if (requirement.vmcnt || requirement.lgkmcnt) {
-    unsigned encoded = encodeWaitcnt(requirement.vmcnt, requirement.lgkmcnt);
+    unsigned encoded =
+        encodeWaitcnt(requirement.vmcnt, requirement.lgkmcnt, isaVersion);
     createInstrNoResult(builder, loc, "s_waitcnt",
                         createImm(builder, loc, encoded));
   }
@@ -452,9 +475,11 @@ public:
 
   WaitcntAnalysis(DataFlowSolver &solver,
                   const DenseMap<Operation *, Ticket> &operationTickets,
-                  const DenseMap<Block *, unsigned> &blockOrder)
+                  const DenseMap<Block *, unsigned> &blockOrder,
+                  const llvm::AMDGPU::IsaVersion &isaVersion)
       : DenseForwardDataFlowAnalysis(solver),
-        operationTickets(operationTickets), blockOrder(blockOrder) {}
+        operationTickets(operationTickets), blockOrder(blockOrder),
+        isaVersion(isaVersion) {}
 
   LogicalResult initialize(Operation *top) override {
     auto markOperation = [&](Operation *op) {
@@ -491,7 +516,7 @@ public:
     WaitcntState next = before;
     WaitcntScoreboard &scoreboard = next.mutate();
     if (isWaitcnt(op)) {
-      observeExistingWait(op, scoreboard);
+      observeExistingWait(op, scoreboard, isaVersion);
     } else {
       observeTicket(op, operationTickets, scoreboard);
     }
@@ -572,6 +597,7 @@ private:
 
   const DenseMap<Operation *, Ticket> &operationTickets;
   const DenseMap<Block *, unsigned> &blockOrder;
+  const llvm::AMDGPU::IsaVersion &isaVersion;
 };
 
 static void propagateBranchOperands(Operation *terminator, Block *successor,
@@ -639,6 +665,9 @@ struct WaveMachineTicketWaitsPass
     for (func::FuncOp func : module.getOps<func::FuncOp>()) {
       DenseMap<Operation *, Ticket> operationTickets;
       DenseMap<Block *, unsigned> blockOrder;
+      FailureOr<llvm::AMDGPU::IsaVersion> isaVersion = getIsaVersion(func);
+      if (failed(isaVersion))
+        return signalPassFailure();
       assignOperationTickets(func, operationTickets);
       SmallVector<Block *> blocks;
       collectBlocks(func.getBody(), blocks);
@@ -647,7 +676,7 @@ struct WaveMachineTicketWaitsPass
 
       DataFlowSolver solver;
       loadBaselineAnalyses(solver);
-      solver.load<WaitcntAnalysis>(operationTickets, blockOrder);
+      solver.load<WaitcntAnalysis>(operationTickets, blockOrder, *isaVersion);
       if (failed(solver.initializeAndRun(func)))
         return signalPassFailure();
 
@@ -665,7 +694,7 @@ struct WaveMachineTicketWaitsPass
         if (!requirement.hasWait())
           continue;
         builder.setInsertionPoint(op);
-        emitWaits(builder, op->getLoc(), requirement);
+        emitWaits(builder, op->getLoc(), requirement, *isaVersion);
       }
     }
   }

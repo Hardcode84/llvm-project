@@ -1,5 +1,7 @@
 // RUN: mlir-opt --wavemachine-insert-ticket-waits -split-input-file %s | FileCheck %s
 
+module attributes {wavemachine.target = "amdgcn-amd-amdhsa--gfx1100"} {
+
 // CHECK-LABEL: func.func @lgkm_nonzero_distance
 // CHECK: "wavemachine.s_load_b32"
 // CHECK: "wavemachine.s_load_b32"
@@ -14,7 +16,11 @@ func.func @lgkm_nonzero_distance(%x: !wavemachine.reg<1, 1>) {
   return
 }
 
+}
+
 // -----
+
+module attributes {wavemachine.target = "amdgcn-amd-amdhsa--gfx1100"} {
 
 // CHECK-LABEL: func.func @store_uses_vscnt
 // CHECK: "wavemachine.global_store_b32"
@@ -27,7 +33,11 @@ func.func @store_uses_vscnt(%offset: !wavemachine.reg<1, 1>, %value: !wavemachin
   return
 }
 
+}
+
 // -----
+
+module attributes {wavemachine.target = "amdgcn-amd-amdhsa--gfx1100"} {
 
 // CHECK-LABEL: func.func @existing_wait_satisfies_use
 // CHECK: "wavemachine.s_waitcnt"
@@ -40,4 +50,6 @@ func.func @existing_wait_satisfies_use(%x: !wavemachine.reg<1, 1>) {
   "wavemachine.s_waitcnt"(%wait) : (!wavemachine.imm) -> ()
   %sum = "wavemachine.v_add_u32"(%x, %a) : (!wavemachine.reg<1, 1>, !wavemachine.reg<0, 1>) -> !wavemachine.reg<1, 1>
   return
+}
+
 }

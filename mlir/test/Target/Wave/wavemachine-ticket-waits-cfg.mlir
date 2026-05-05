@@ -1,5 +1,7 @@
 // RUN: mlir-opt --wavemachine-insert-ticket-waits -split-input-file %s | FileCheck %s
 
+module attributes {wavemachine.target = "amdgcn-amd-amdhsa--gfx1100"} {
+
 // CHECK-LABEL: func.func @cfg_join_nonzero
 // CHECK: "wavemachine.s_load_b32"
 // CHECK: cf.cond_br
@@ -23,7 +25,11 @@ func.func @cfg_join_nonzero(%cond: i1, %x: !wavemachine.reg<1, 1>) {
   return
 }
 
+}
+
 // -----
+
+module attributes {wavemachine.target = "amdgcn-amd-amdhsa--gfx1100"} {
 
 // CHECK-LABEL: func.func @block_arg_ticket
 // CHECK: "wavemachine.s_load_b32"
@@ -41,7 +47,11 @@ func.func @block_arg_ticket(%x: !wavemachine.reg<1, 1>) {
   return
 }
 
+}
+
 // -----
+
+module attributes {wavemachine.target = "amdgcn-amd-amdhsa--gfx1100"} {
 
 // CHECK-LABEL: func.func @structured_if_nonzero
 // CHECK: scf.if
@@ -62,7 +72,11 @@ func.func @structured_if_nonzero(%cond: i1, %x: !wavemachine.reg<1, 1>) {
   return
 }
 
+}
+
 // -----
+
+module attributes {wavemachine.target = "amdgcn-amd-amdhsa--gfx1100"} {
 
 // CHECK-LABEL: func.func @structured_for_double_buffer
 // CHECK: scf.for
@@ -84,7 +98,11 @@ func.func @structured_for_double_buffer(%x: !wavemachine.reg<1, 1>) {
   return
 }
 
+}
+
 // -----
+
+module attributes {wavemachine.target = "amdgcn-amd-amdhsa--gfx1100"} {
 
 // CHECK-LABEL: func.func @structured_for_triple_buffer
 // CHECK: scf.for
@@ -107,4 +125,6 @@ func.func @structured_for_triple_buffer(%x: !wavemachine.reg<1, 1>) {
     scf.yield %nextBuf, %future0 : !wavemachine.reg<0, 1>, !wavemachine.reg<0, 1>
   }
   return
+}
+
 }

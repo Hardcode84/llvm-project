@@ -13,6 +13,7 @@
 #include "mlir/Dialect/Wave/IR/Wave.h"
 #include "mlir/Dialect/Wave/Transforms/Passes.h"
 #include "mlir/Dialect/WaveMachine/IR/WaveMachine.h"
+#include "mlir/IR/Builders.h"
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/IR/Diagnostics.h"
 #include "mlir/Pass/PassManager.h"
@@ -549,6 +550,9 @@ private:
 };
 
 static LogicalResult runWaveMachinePipeline(ModuleOp module) {
+  Builder builder(module.getContext());
+  module->setAttr("wavemachine.target",
+                  builder.getStringAttr("amdgcn-amd-amdhsa--gfx1100"));
   PassManager pm(module.getContext());
   pm.addPass(wave::createConvertWaveToWaveMachine());
   pm.addPass(wave::createWaveMachineABILowering());

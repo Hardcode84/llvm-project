@@ -3,6 +3,8 @@
 // RUN: mlir-translate --wave-to-amdgpu-asm %s | FileCheck %s --check-prefix=ASM
 // RUN: mlir-translate --wave-to-amdgpu-asm %s | llvm-mc -triple=amdgcn-amd-amdhsa -mcpu=gfx1100 -filetype=obj -o /dev/null
 
+module attributes {wavemachine.target = "amdgcn-amd-amdhsa--gfx1100"} {
+
 // SELECT-LABEL: func.func @matrix_kernel
 // SELECT: "wavemachine.v_mov_b32_tuple"{{.*}} : (!wavemachine.imm) -> !wavemachine.reg<1, 4>
 // SELECT: "wavemachine.v_mov_b32_tuple"{{.*}} : (!wavemachine.imm) -> !wavemachine.reg<1, 4>
@@ -63,4 +65,6 @@ func.func @matrix_f16_kernel(%out: memref<256xi32>) attributes {wave.kernel} {
   %result = wave.mma "wmma.f32.16x16x16.f16" %a, %b, %acc : !wave.fragment<0, f16, 16, 16, 32, 8>, !wave.fragment<1, f16, 16, 16, 32, 8>, !wave.fragment<2, f32, 16, 16, 32, 8> -> !wave.fragment<2, f32, 16, 16, 32, 8>
   wave.fragment_store %result -> %out[%base] : (!wave.fragment<2, f32, 16, 16, 32, 8>, memref<256xi32>, index) -> ()
   return
+}
+
 }
