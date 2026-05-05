@@ -164,7 +164,7 @@ private:
       info.vgprCount = getIntAttr(func, "wavemachine.vgpr_count", 1);
       unsigned offset = 0;
       for (auto [index, arg] : llvm::enumerate(func.getArguments())) {
-        bool isBuffer = isa<MemRefType>(arg.getType());
+        bool isBuffer = isa<wave::PtrType>(arg.getType());
         info.args.push_back(KernelArgInfo{("arg" + Twine(index)).str(), offset,
                                           isBuffer ? 8u : 4u, isBuffer});
         offset += isBuffer ? 8 : 4;
@@ -180,7 +180,7 @@ private:
       return attr.getInt();
     unsigned size = 0;
     for (BlockArgument arg : func.getArguments())
-      size += isa<MemRefType>(arg.getType()) ? 8 : 4;
+      size += isa<wave::PtrType>(arg.getType()) ? 8 : 4;
     return (std::max(size, 4u) + 7u) & ~7u;
   }
 

@@ -20,7 +20,6 @@ def WaveAMD_Dialect : Dialect {
   }];
 
   let dependentDialects = [
-    "memref::MemRefDialect",
     "wave::WaveDialect"
   ];
   let useDefaultTypePrinterParser = 1;

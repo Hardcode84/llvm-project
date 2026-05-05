@@ -78,30 +78,30 @@ struct WaveAMDABILoweringPass
                        "to be SGPR WaveMachine registers");
           return signalPassFailure();
         }
-        auto memrefAttr = op.getAttrOfType<BoolAttr>("memref");
-        if (!memrefAttr) {
+        auto pointerAttr = op.getAttrOfType<BoolAttr>("pointer");
+        if (!pointerAttr) {
           op.emitError("waveamd-abi-lowering expects wavemachine.arg "
-                       "to have a memref attribute");
+                       "to have a pointer attribute");
           return signalPassFailure();
         }
-        bool isMemref = memrefAttr.getValue();
-        if ((isMemref && regType.getWidth() != 2) ||
-            (!isMemref && regType.getWidth() != 1)) {
+        bool isPointer = pointerAttr.getValue();
+        if ((isPointer && regType.getWidth() != 2) ||
+            (!isPointer && regType.getWidth() != 1)) {
           op.emitError("waveamd-abi-lowering found argument register width "
-                       "inconsistent with memref attribute");
+                       "inconsistent with pointer attribute");
           return signalPassFailure();
         }
 
         builder.setInsertionPoint(&op);
         Value offsetImm = createImm(builder, op.getLoc(), offset);
         Value loaded =
-            createInstr(builder, op.getLoc(), isMemref ? "s_load_b64" : "s_load_b32",
+            createInstr(builder, op.getLoc(), isPointer ? "s_load_b64" : "s_load_b32",
                         offsetImm, op.getResult(0).getType(),
                         {builder.getNamedAttr("base",
                                               builder.getStringAttr("s[0:1]"))});
         op.getResult(0).replaceAllUsesWith(loaded);
         op.erase();
-        offset += isMemref ? 8 : 4;
+        offset += isPointer ? 8 : 4;
       }
       unsigned kernargSize = (std::max(offset, 4u) + 7u) & ~7u;
       func->setAttr("wavemachine.kernarg_size",

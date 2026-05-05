@@ -13,12 +13,13 @@ def run(f):
 def test_generic_wave_kernel():
     with w.module() as m:
         with m.function(
-            "generic_wave_kernel", [w.memref_i32(32), w.i32()], kernel=True
+            "generic_wave_kernel", [w.ptr_type(w.i32()), w.i32()], kernel=True
         ) as f:
             out, x = f.args
             lane = f.lane_id()
             vx = f.splat(x)
-            token = f.store(vx, out, [lane])
+            ptrs = f.ptr_add(out, lane, w.simd_type(w.ptr_type(w.i32())))
+            token = f.store(vx, ptrs)
             f.wait(token)
         # CHECK: func.func @generic_wave_kernel
         # CHECK: wave.lane_id
@@ -32,7 +33,7 @@ def test_generic_wave_kernel():
 @run
 def test_waveamd_matrix_kernel():
     with w.module() as m:
-        with m.function("matrix_kernel", [w.memref_i32(256)], kernel=True) as f:
+        with m.function("matrix_kernel", [w.ptr_type(w.i32())], kernel=True) as f:
             (out,) = f.args
             zero = f.constant_i32(0)
             seven = f.constant_i32(7)
@@ -44,7 +45,8 @@ def test_waveamd_matrix_kernel():
             b = f.fragment_fill(zero, b_t)
             acc = f.fragment_fill(seven, acc_t)
             result = f.mma("wmma.i32.16x16x16.iu8", a, b, acc)
-            token = f.fragment_store(result, out, [base])
+            ptr = f.ptr_add(out, base)
+            token = f.fragment_store(result, ptr)
             f.wait(token)
         # CHECK: func.func @matrix_kernel
         # CHECK: waveamd.fragment_fill
@@ -53,6 +55,3 @@ def test_waveamd_matrix_kernel():
         # CHECK: wave.wait
         print(m.module)
 
-
-test_generic_wave_kernel()
-test_waveamd_matrix_kernel()

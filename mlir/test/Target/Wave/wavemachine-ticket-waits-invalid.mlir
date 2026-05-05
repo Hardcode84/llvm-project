@@ -4,7 +4,7 @@ module attributes {wavemachine.target = "amdgcn-amd-amdhsa--gfx1100"} {
 
 func.func @kernel_arg_not_abi_lowered() attributes {wave.kernel} {
   // expected-error @below {{waveamd-insert-ticket-waits expects ABI-lowered kernel arguments}}
-  %arg = "wavemachine.arg"() {index = 0 : i64, memref = false} : () -> !wavemachine.reg<0, 1>
+  %arg = "wavemachine.arg"() {index = 0 : i64, pointer = false} : () -> !wavemachine.reg<0, 1>
   return
 }
 

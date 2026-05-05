@@ -27,7 +27,6 @@ def Wave_Dialect : Dialect {
   let dependentDialects = [
     "arith::ArithDialect",
     "gpu::GPUDialect",
-    "memref::MemRefDialect",
     "scf::SCFDialect"
   ];
   let useDefaultAttributePrinterParser = 1;

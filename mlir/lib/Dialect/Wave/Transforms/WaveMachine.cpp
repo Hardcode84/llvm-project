@@ -11,7 +11,6 @@
 #include "Utils/AMDGPUBaseInfo.h"
 #include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
-#include "mlir/Dialect/MemRef/IR/MemRef.h"
 #include "mlir/Dialect/Wave/IR/Wave.h"
 #include "mlir/Dialect/Wave/IR/WaveAMD.h"
 #include "mlir/Dialect/WaveMachine/IR/WaveMachine.h"
@@ -22,6 +21,7 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/ADT/StringSwitch.h"
+#include "llvm/Support/MathExtras.h"
 #include "llvm/Support/Debug.h"
 #include "llvm/TargetParser/TargetParser.h"
 #include <limits>
@@ -118,14 +118,18 @@ public:
     builder.setInsertionPointToStart(&block);
     for (auto [index, arg] : llvm::enumerate(func.getArguments())) {
       Type type = arg.getType();
-      bool isMemref = isa<MemRefType>(type);
+      bool isPtr = isa<PtrType>(type);
       RegClass regClass = isa<SimdType>(type) ? RegClass::VGPR : RegClass::SGPR;
-      unsigned width = isMemref ? 2 : 1;
+      unsigned width = isPtr ? 2 : 1;
       Operation *argOp = createWMOp(
           builder, func.getLoc(), "arg", {}, getRegType(func.getContext(), regClass, width),
           {builder.getNamedAttr("index", builder.getI64IntegerAttr(index)),
-           builder.getNamedAttr("memref", builder.getBoolAttr(isMemref))});
+           builder.getNamedAttr("pointer", builder.getBoolAttr(isPtr))});
       values[arg] = argOp->getResult(0);
+      if (isPtr) {
+        pointerBases[arg] = argOp->getResult(0);
+        pointerOffsets[arg] = createImm(builder, func.getLoc(), 0);
+      }
     }
 
     SmallVector<Operation *> topLevelOps;
@@ -151,6 +155,8 @@ private:
   func::FuncOp func;
   OpBuilder builder;
   DenseMap<Value, Value> values;
+  DenseMap<Value, Value> pointerBases;
+  DenseMap<Value, Value> pointerOffsets;
   SmallVector<Operation *> opsToErase;
   unsigned nextLabel = 0;
 
@@ -192,6 +198,8 @@ private:
       return selectBallot(ballot);
     if (auto readFirst = dyn_cast<ReadFirstOp>(op))
       return selectReadFirst(readFirst);
+    if (auto ptrAdd = dyn_cast<PtrAddOp>(op))
+      return selectPtrAdd(ptrAdd);
     if (auto token = dyn_cast<TokenOp>(op))
       return selectToken(token);
     if (auto after = dyn_cast<AfterOp>(op))
@@ -312,21 +320,80 @@ private:
   }
 
   LogicalResult selectStore(StoreOp op) {
-    if (op.getIndices().size() != 1)
-      return op.emitError("WaveMachine backend expects exactly one store index");
-    Value index = expect(op.getIndices().front(), op);
-    Value byteOffset =
-        createInstr(builder, op.getLoc(), "v_lshlrev_b32",
-                    {index, createImm(builder, op.getLoc(), 2)},
-                    getRegType(op.getContext(), RegClass::VGPR));
-    SmallVector<Value> operands{byteOffset, expect(op.getValue(), op),
-                                expect(op.getMemref(), op)};
+    auto baseIt = pointerBases.find(op.getPtr());
+    auto offsetIt = pointerOffsets.find(op.getPtr());
+    if (baseIt == pointerBases.end() || offsetIt == pointerOffsets.end())
+      return op.emitError("WaveMachine backend expects selected wave pointer");
+    SmallVector<Value> operands{offsetIt->second, expect(op.getValue(), op),
+                                baseIt->second};
     if (Value dependency = op.getDependency())
       operands.push_back(expect(dependency, op));
     Operation *store =
         createWMOp(builder, op.getLoc(), "global_store_b32", operands,
                    getMemTokenType(op.getContext()));
     values[op.getToken()] = store->getResult(0);
+    eraseIfTopLevel(op);
+    return success();
+  }
+
+  unsigned elementSizeBytes(Type type) {
+    if (auto ptr = dyn_cast<PtrType>(type))
+      type = ptr.getElementType();
+    if (auto simd = dyn_cast<SimdType>(type))
+      type = cast<PtrType>(simd.getElementType()).getElementType();
+    if (type.isInteger(8))
+      return 1;
+    if (type.isInteger(16) || type.isF16())
+      return 2;
+    if (type.isIntOrFloat() && type.getIntOrFloatBitWidth() == 32)
+      return 4;
+    return 4;
+  }
+
+  std::optional<int64_t> getImmediateValue(Value value) {
+    auto imm = value.getDefiningOp<wavemachine::ImmOp>();
+    if (!imm)
+      return std::nullopt;
+    return imm->getAttrOfType<IntegerAttr>("value").getInt();
+  }
+
+  Value addByteOffsets(Location loc, Value lhs, Value rhs) {
+    std::optional<int64_t> lhsImm = getImmediateValue(lhs);
+    std::optional<int64_t> rhsImm = getImmediateValue(rhs);
+    if (lhsImm && rhsImm)
+      return createImm(builder, loc, *lhsImm + *rhsImm);
+    if (lhsImm && *lhsImm == 0)
+      return rhs;
+    if (rhsImm && *rhsImm == 0)
+      return lhs;
+    return createInstr(builder, loc, "v_add_u32", {lhs, rhs},
+                       getRegType(builder.getContext(), RegClass::VGPR));
+  }
+
+  LogicalResult selectPtrAdd(PtrAddOp op) {
+    auto baseIt = pointerBases.find(op.getBase());
+    auto offsetIt = pointerOffsets.find(op.getBase());
+    if (baseIt == pointerBases.end() || offsetIt == pointerOffsets.end())
+      return op.emitError("WaveMachine backend expects selected base pointer");
+
+    Value offset = expect(op.getOffset(), op);
+    unsigned size = elementSizeBytes(op.getBase().getType());
+    Value byteOffset = offset;
+    if (auto offsetDef = offset.getDefiningOp<wavemachine::ImmOp>()) {
+      int64_t scaled =
+          offsetDef->getAttrOfType<IntegerAttr>("value").getInt() * size;
+      byteOffset = createImm(builder, op.getLoc(), scaled);
+    } else if (size != 1) {
+      byteOffset = createInstr(builder, op.getLoc(), "v_lshlrev_b32",
+                               {offset, createImm(builder, op.getLoc(),
+                                                  llvm::Log2_32(size))},
+                               getRegType(op.getContext(), RegClass::VGPR));
+    }
+    byteOffset = addByteOffsets(op.getLoc(), offsetIt->second, byteOffset);
+
+    pointerBases[op.getResult()] = baseIt->second;
+    pointerOffsets[op.getResult()] = byteOffset;
+    values[op.getResult()] = baseIt->second;
     eraseIfTopLevel(op);
     return success();
   }
@@ -394,32 +461,23 @@ private:
 
   LogicalResult selectFragmentStore(waveamd::FragmentStoreOp op) {
     auto fragmentType = cast<waveamd::FragmentType>(op.getFragment().getType());
-    if (op.getIndices().size() != 1)
-      return op.emitError("WaveMachine backend expects one fragment store index");
-
+    auto baseIt = pointerBases.find(op.getPtr());
+    auto offsetIt = pointerOffsets.find(op.getPtr());
+    if (baseIt == pointerBases.end() || offsetIt == pointerOffsets.end())
+      return op.emitError("WaveMachine backend expects selected wave pointer");
     Value lane = createInstr(builder, op.getLoc(), "v_mbcnt_lo", {},
                              getRegType(op.getContext(), RegClass::VGPR));
     Value byteOffset =
         createInstr(builder, op.getLoc(), "v_lshlrev_b32",
                     {lane, createImm(builder, op.getLoc(), 5)},
                     getRegType(op.getContext(), RegClass::VGPR));
-
-    Value baseIndex = expect(op.getIndices().front(), op);
-    if (auto baseDef = baseIndex.getDefiningOp();
-        baseDef && isa<wavemachine::ImmOp>(baseDef)) {
-      int64_t base = baseDef->getAttrOfType<IntegerAttr>("value").getInt();
-      if (base != 0)
-        return op.emitError(
-            "WaveMachine backend expects a zero fragment store base index");
-    } else {
-      return op.emitError("WaveMachine backend expects a constant fragment store base index");
-    }
+    byteOffset = addByteOffsets(op.getLoc(), offsetIt->second, byteOffset);
 
     SmallVector<Value> storeTokens;
     for (int64_t component = 0, e = fragmentType.getRegisters(); component != e;
          ++component) {
       SmallVector<Value> operands{byteOffset, expect(op.getFragment(), op),
-                                  expect(op.getMemref(), op)};
+                                  baseIt->second};
       if (Value dependency = op.getDependency())
         operands.push_back(expect(dependency, op));
       Operation *store = createWMOp(

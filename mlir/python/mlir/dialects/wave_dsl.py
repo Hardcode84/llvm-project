@@ -12,7 +12,6 @@ from mlir.ir import (
     InsertionPoint,
     IntegerType,
     Location,
-    MemRefType,
     Module,
     Type,
     UnitAttr,
@@ -40,8 +39,9 @@ def fragment_type(role, element_type, rows=16, columns=16, wave_size=32, registe
     )
 
 
-def memref_i32(size):
-    return MemRefType.get((size,), i32())
+def ptr_type(element_type=None, address_space="#wave.global"):
+    element_type = element_type or i32()
+    return Type.parse(f"!wave.ptr<{element_type}, {address_space}>")
 
 
 def i8():
@@ -108,8 +108,12 @@ class FunctionBuilder:
     def addi(self, lhs, rhs):
         return wave.BinaryOp(lhs.type, "addi", lhs, rhs).result
 
-    def store(self, value, memref, indices, *, after=None):
-        return wave.StoreOp(mem_token_type(), value, memref, indices, dependency=after).token
+    def ptr_add(self, base, offset, result_type=None):
+        result_type = result_type or base.type
+        return wave.PtrAddOp(result_type, base, offset).result
+
+    def store(self, value, ptr, *, after=None):
+        return wave.StoreOp(mem_token_type(), value, ptr, dependency=after).token
 
     def wait(self, *tokens):
         return wave.WaitOp(tokens)
@@ -129,9 +133,9 @@ class FunctionBuilder:
     def mma(self, kind, a, b, acc):
         return waveamd.MmaOp(acc.type, kind, a, b, acc).result
 
-    def fragment_store(self, fragment, memref, indices, *, after=None):
+    def fragment_store(self, fragment, ptr, *, after=None):
         return waveamd.FragmentStoreOp(
-            mem_token_type(), fragment, memref, indices, dependency=after
+            mem_token_type(), fragment, ptr, dependency=after
         ).token
 
 
@@ -150,7 +154,7 @@ __all__ = [
     "i32",
     "mask_type",
     "mem_token_type",
-    "memref_i32",
     "module",
+    "ptr_type",
     "simd_type",
 ]

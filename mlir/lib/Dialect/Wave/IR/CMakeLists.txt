@@ -13,7 +13,6 @@ add_mlir_dialect_library(MLIRWaveDialect
   MLIRArithDialect
   MLIRGPUDialect
   MLIRIR
-  MLIRMemRefDialect
   MLIRSCFDialect
   MLIRSideEffectInterfaces
   )
@@ -30,7 +29,6 @@ add_mlir_dialect_library(MLIRWaveAMDDialect
 
   LINK_LIBS PUBLIC
   MLIRIR
-  MLIRMemRefDialect
   MLIRSideEffectInterfaces
   MLIRWaveDialect
   )

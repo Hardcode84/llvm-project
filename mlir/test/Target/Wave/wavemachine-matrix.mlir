@@ -29,15 +29,16 @@ module attributes {wavemachine.target = "amdgcn-amd-amdhsa--gfx1100"} {
 // ASM: global_store_b32 {{v[0-9]+}}, {{v[0-9]+}}, [[OUT]]
 // ASM: s_waitcnt_vscnt null, 0x0
 // ASM: s_endpgm
-func.func @matrix_kernel(%out: memref<256xi32>) attributes {wave.kernel} {
+func.func @matrix_kernel(%out: !wave.ptr<i32, #wave.global>) attributes {wave.kernel} {
   %zero = arith.constant 0 : i32
   %seven = arith.constant 7 : i32
   %base = arith.constant 0 : index
+  %ptr = wave.ptr_add %out, %base : !wave.ptr<i32, #wave.global>, index -> !wave.ptr<i32, #wave.global>
   %a = waveamd.fragment_fill %zero : i32 -> !waveamd.fragment<0, i8, 16, 16, 32, 4>
   %b = waveamd.fragment_fill %zero : i32 -> !waveamd.fragment<1, i8, 16, 16, 32, 4>
   %acc = waveamd.fragment_fill %seven : i32 -> !waveamd.fragment<2, i32, 16, 16, 32, 8>
   %result = waveamd.mma "wmma.i32.16x16x16.iu8" %a, %b, %acc : !waveamd.fragment<0, i8, 16, 16, 32, 4>, !waveamd.fragment<1, i8, 16, 16, 32, 4>, !waveamd.fragment<2, i32, 16, 16, 32, 8> -> !waveamd.fragment<2, i32, 16, 16, 32, 8>
-  %store_token = waveamd.fragment_store %result -> %out[%base] : (!waveamd.fragment<2, i32, 16, 16, 32, 8>, memref<256xi32>, index) -> !wave.mem.token
+  %store_token = waveamd.fragment_store %result -> %ptr : (!waveamd.fragment<2, i32, 16, 16, 32, 8>, !wave.ptr<i32, #wave.global>) -> !wave.mem.token
   return
 }
 
@@ -55,15 +56,16 @@ func.func @matrix_kernel(%out: memref<256xi32>) attributes {wave.kernel} {
 // ASM: v_wmma_f32_16x16x16_f16 [[DST:v\[[0-9]+:[0-9]+\]]], [[A:v\[[0-9]+:[0-9]+\]]], [[B:v\[[0-9]+:[0-9]+\]]], [[C:v\[[0-9]+:[0-9]+\]]]
 // ASM: global_store_b32 {{v[0-9]+}}, {{v[0-9]+}}, {{s\[[0-9]+:[0-9]+\]}} offset:28
 // ASM: s_endpgm
-func.func @matrix_f16_kernel(%out: memref<256xi32>) attributes {wave.kernel} {
+func.func @matrix_f16_kernel(%out: !wave.ptr<i32, #wave.global>) attributes {wave.kernel} {
   %zero = arith.constant 0 : i32
   %seven_as_f32_bits = arith.constant 1088421888 : i32
   %base = arith.constant 0 : index
+  %ptr = wave.ptr_add %out, %base : !wave.ptr<i32, #wave.global>, index -> !wave.ptr<i32, #wave.global>
   %a = waveamd.fragment_fill %zero : i32 -> !waveamd.fragment<0, f16, 16, 16, 32, 8>
   %b = waveamd.fragment_fill %zero : i32 -> !waveamd.fragment<1, f16, 16, 16, 32, 8>
   %acc = waveamd.fragment_fill %seven_as_f32_bits : i32 -> !waveamd.fragment<2, f32, 16, 16, 32, 8>
   %result = waveamd.mma "wmma.f32.16x16x16.f16" %a, %b, %acc : !waveamd.fragment<0, f16, 16, 16, 32, 8>, !waveamd.fragment<1, f16, 16, 16, 32, 8>, !waveamd.fragment<2, f32, 16, 16, 32, 8> -> !waveamd.fragment<2, f32, 16, 16, 32, 8>
-  %store_token = waveamd.fragment_store %result -> %out[%base] : (!waveamd.fragment<2, f32, 16, 16, 32, 8>, memref<256xi32>, index) -> !wave.mem.token
+  %store_token = waveamd.fragment_store %result -> %ptr : (!waveamd.fragment<2, f32, 16, 16, 32, 8>, !wave.ptr<i32, #wave.global>) -> !wave.mem.token
   return
 }
 

@@ -13,7 +13,6 @@ include "mlir/Dialect/Wave/IR/WaveBase.td"
 include "mlir/Dialect/Wave/IR/WaveTypes.td"
 
 include "mlir/Dialect/Arith/IR/ArithBase.td"
-include "mlir/Dialect/MemRef/IR/MemRefBase.td"
 include "mlir/IR/OpBase.td"
 include "mlir/Interfaces/ControlFlowInterfaces.td"
 include "mlir/Interfaces/SideEffectInterfaces.td"
@@ -161,20 +160,26 @@ def Wave_WaitOp : Wave_Op<"wait", []> {
   let assemblyFormat = "$dependencies attr-dict `:` type($dependencies)";
 }
 
-def Wave_StoreOp : Wave_Op<"store", [
-    MemoryEffects<[MemWrite]>, AttrSizedOperandSegments]> {
+def Wave_PtrAddOp : Wave_Op<"ptr_add", [Pure]> {
+  let summary = "add an element offset to a Wave pointer";
+  let arguments = (ins AnyType:$base, AnyType:$offset);
+  let results = (outs AnyType:$result);
+  let assemblyFormat = "$base `,` $offset attr-dict `:` type($base) `,` type($offset) `->` type($result)";
+  let hasVerifier = 1;
+}
+
+def Wave_StoreOp : Wave_Op<"store", [MemoryEffects<[MemWrite]>]> {
   let summary = "store a lane-varying SIMD value to memory";
   let description = [{
-    Stores a `!wave.simd<T, W>` value using ordinary scalar indices. The value is
-    lane-varying; after target lowering each active lane stores its own element.
+    Stores a value to a `!wave.ptr<T, space>` or lane-varying
+    `!wave.simd<!wave.ptr<T, space>, W>` pointer.
   }];
 
   let arguments = (ins Wave_Simd:$value,
-                       AnyMemRef:$memref,
-                       Variadic<AnyType>:$indices,
+                       AnyType:$ptr,
                        Optional<Wave_MemToken>:$dependency);
   let results = (outs Wave_MemToken:$token);
-  let assemblyFormat = "$value `->` $memref `[` $indices `]` (`after` $dependency^)? attr-dict `:` functional-type(operands, results)";
+  let assemblyFormat = "$value `->` $ptr (`after` $dependency^)? attr-dict `:` functional-type(operands, results)";
   let hasVerifier = 1;
 }
 

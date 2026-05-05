@@ -13,7 +13,6 @@ include "mlir/Dialect/Wave/IR/WaveAMDBase.td"
 include "mlir/Dialect/Wave/IR/WaveAMDTypes.td"
 include "mlir/Dialect/Wave/IR/WaveTypes.td"
 
-include "mlir/Dialect/MemRef/IR/MemRefBase.td"
 include "mlir/IR/OpBase.td"
 include "mlir/Interfaces/SideEffectInterfaces.td"
 
@@ -39,15 +38,13 @@ def WaveAMD_MmaOp : WaveAMD_Op<"mma", [Pure]> {
   let hasVerifier = 1;
 }
 
-def WaveAMD_FragmentStoreOp : WaveAMD_Op<"fragment_store", [
-    MemoryEffects<[MemWrite]>, AttrSizedOperandSegments]> {
+def WaveAMD_FragmentStoreOp : WaveAMD_Op<"fragment_store", [MemoryEffects<[MemWrite]>]> {
   let summary = "store an AMD matrix fragment to memory";
   let arguments = (ins WaveAMD_Fragment:$fragment,
-                       AnyMemRef:$memref,
-                       Variadic<AnyType>:$indices,
+                       AnyType:$ptr,
                        Optional<Wave_MemToken>:$dependency);
   let results = (outs Wave_MemToken:$token);
-  let assemblyFormat = "$fragment `->` $memref `[` $indices `]` (`after` $dependency^)? attr-dict `:` functional-type(operands, results)";
+  let assemblyFormat = "$fragment `->` $ptr (`after` $dependency^)? attr-dict `:` functional-type(operands, results)";
   let hasVerifier = 1;
 }
 

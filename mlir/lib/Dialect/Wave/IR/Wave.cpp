@@ -10,7 +10,6 @@
 
 #include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/GPU/IR/GPUDialect.h"
-#include "mlir/Dialect/MemRef/IR/MemRef.h"
 #include "mlir/Dialect/SCF/IR/SCF.h"
 #include "mlir/IR/Builders.h"
 #include "mlir/IR/DialectImplementation.h"
@@ -102,26 +101,69 @@ LogicalResult ReadFirstOp::verify() {
 
 LogicalResult StoreOp::verify() {
   auto simdType = cast<SimdType>(getValue().getType());
-  Type memrefElementType;
-  Type memrefType = getMemref().getType();
-  if (auto ranked = dyn_cast<MemRefType>(memrefType))
-    memrefElementType = ranked.getElementType();
-  else if (auto unranked = dyn_cast<UnrankedMemRefType>(memrefType))
-    memrefElementType = unranked.getElementType();
-  else
-    return emitOpError("expected memref operand");
+  Type ptrType = getPtr().getType();
+  Type ptrElementType;
+  if (auto wavePtr = dyn_cast<PtrType>(ptrType)) {
+    ptrElementType = wavePtr.getElementType();
+  } else if (auto ptrSimdType = dyn_cast<SimdType>(ptrType)) {
+    auto wavePtr = dyn_cast<PtrType>(ptrSimdType.getElementType());
+    if (!wavePtr)
+      return emitOpError("pointer SIMD element type must be a wave pointer");
+    if (ptrSimdType.getWidth() != simdType.getWidth())
+      return emitOpError("pointer SIMD width must match value SIMD width");
+    ptrElementType = wavePtr.getElementType();
+  } else {
+    return emitOpError("expected wave pointer operand");
+  }
 
-  if (simdType.getElementType() != memrefElementType)
-    return emitOpError("SIMD element type must match memref element type");
-  for (Value index : getIndices()) {
-    if (index.getType().isIndex())
-      continue;
-    auto indexSimdType = dyn_cast<SimdType>(index.getType());
-    if (indexSimdType && indexSimdType.getElementType().isInteger(32) &&
-        indexSimdType.getWidth() == simdType.getWidth())
-      continue;
-    return emitOpError("indices must be scalar index values or i32 SIMD values "
-                       "with matching width");
+  if (simdType.getElementType() != ptrElementType)
+    return emitOpError("SIMD element type must match pointer element type");
+  return success();
+}
+
+LogicalResult PtrAddOp::verify() {
+  Type baseType = getBase().getType();
+  Type offsetType = getOffset().getType();
+  Type resultType = getResult().getType();
+
+  Type pointerType;
+  int64_t pointerWidth = 0;
+  if (auto basePtr = dyn_cast<PtrType>(baseType)) {
+    pointerType = basePtr;
+  } else if (auto baseSimd = dyn_cast<SimdType>(baseType)) {
+    if (!isa<PtrType>(baseSimd.getElementType()))
+      return emitOpError("base SIMD element type must be a wave pointer");
+    pointerType = baseSimd.getElementType();
+    pointerWidth = baseSimd.getWidth();
+  } else {
+    return emitOpError("base must be a wave pointer or SIMD of wave pointers");
+  }
+
+  int64_t offsetWidth = 0;
+  if (offsetType.isIndex()) {
+    offsetWidth = 0;
+  } else if (auto intType = dyn_cast<IntegerType>(offsetType)) {
+    if (intType.getWidth() != 32 && intType.getWidth() != 64)
+      return emitOpError("integer offset must be i32 or i64");
+  } else if (auto offsetSimd = dyn_cast<SimdType>(offsetType)) {
+    if (!offsetSimd.getElementType().isInteger(32))
+      return emitOpError("SIMD offset element type must be i32");
+    offsetWidth = offsetSimd.getWidth();
+  } else {
+    return emitOpError("offset must be index, integer, or i32 SIMD");
+  }
+
+  if (pointerWidth && offsetWidth && pointerWidth != offsetWidth)
+    return emitOpError("base and offset SIMD widths must match");
+
+  if (offsetWidth || pointerWidth) {
+    int64_t width = offsetWidth ? offsetWidth : pointerWidth;
+    auto resultSimd = dyn_cast<SimdType>(resultType);
+    if (!resultSimd || resultSimd.getElementType() != pointerType ||
+        resultSimd.getWidth() != width)
+      return emitOpError("result must be a SIMD of the wave pointer type");
+  } else if (resultType != pointerType) {
+    return emitOpError("result must match base pointer type");
   }
   return success();
 }

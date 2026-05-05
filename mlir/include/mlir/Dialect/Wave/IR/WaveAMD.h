@@ -9,7 +9,6 @@
 #ifndef MLIR_DIALECT_WAVE_IR_WAVEAMD_H_
 #define MLIR_DIALECT_WAVE_IR_WAVEAMD_H_
 
-#include "mlir/Dialect/MemRef/IR/MemRef.h"
 #include "mlir/Dialect/Wave/IR/Wave.h"
 #include "mlir/IR/Dialect.h"
 #include "mlir/IR/OpDefinition.h"

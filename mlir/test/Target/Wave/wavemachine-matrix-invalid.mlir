@@ -38,10 +38,11 @@ func.func @bad_mma_b_role(%x: i32) {
 
 // -----
 
-func.func @bad_fragment_store_memref(%out: memref<256xindex>, %x: i32) {
+func.func @bad_fragment_store_pointer(%out: !wave.ptr<index, #wave.global>, %x: i32) {
   %base = arith.constant 0 : index
+  %ptr = wave.ptr_add %out, %base : !wave.ptr<index, #wave.global>, index -> !wave.ptr<index, #wave.global>
   %acc = waveamd.fragment_fill %x : i32 -> !waveamd.fragment<2, i32, 16, 16, 32, 8>
-  // expected-error @below {{fragment stores currently require a 32-bit memref}}
-  %store_token = waveamd.fragment_store %acc -> %out[%base] : (!waveamd.fragment<2, i32, 16, 16, 32, 8>, memref<256xindex>, index) -> !wave.mem.token
+  // expected-error @below {{fragment stores currently require a 32-bit pointer}}
+  %store_token = waveamd.fragment_store %acc -> %ptr : (!waveamd.fragment<2, i32, 16, 16, 32, 8>, !wave.ptr<index, #wave.global>) -> !wave.mem.token
   return
 }

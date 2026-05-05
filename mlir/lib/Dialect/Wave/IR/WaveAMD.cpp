@@ -8,7 +8,6 @@
 
 #include "mlir/Dialect/Wave/IR/WaveAMD.h"
 
-#include "mlir/Dialect/MemRef/IR/MemRef.h"
 #include "mlir/IR/Builders.h"
 #include "mlir/IR/DialectImplementation.h"
 #include "llvm/ADT/TypeSwitch.h"
@@ -119,22 +118,22 @@ LogicalResult FragmentStoreOp::verify() {
       (!fragmentType.getElementType().isInteger(32) &&
        !fragmentType.getElementType().isF32()))
     return emitOpError("only 32-bit accumulator fragment stores are supported for now");
-  Type memrefElementType;
-  Type memrefType = getMemref().getType();
-  if (auto ranked = dyn_cast<MemRefType>(memrefType))
-    memrefElementType = ranked.getElementType();
-  else if (auto unranked = dyn_cast<UnrankedMemRefType>(memrefType))
-    memrefElementType = unranked.getElementType();
-  else
-    return emitOpError("expected memref operand");
-  if (!memrefElementType.isInteger(32) && !memrefElementType.isF32())
-    return emitOpError("fragment stores currently require a 32-bit memref");
-  if (getIndices().size() != 1)
-    return emitOpError("fragment stores currently require one base index");
-  for (Value index : getIndices()) {
-    if (!index.getType().isIndex())
-      return emitOpError("fragment store index must be an index value");
+  Type ptrType = getPtr().getType();
+  Type ptrElementType;
+  if (auto wavePtr = dyn_cast<wave::PtrType>(ptrType)) {
+    ptrElementType = wavePtr.getElementType();
+  } else if (auto ptrSimdType = dyn_cast<wave::SimdType>(ptrType)) {
+    auto wavePtr = dyn_cast<wave::PtrType>(ptrSimdType.getElementType());
+    if (!wavePtr)
+      return emitOpError("pointer SIMD element type must be a wave pointer");
+    if (ptrSimdType.getWidth() != fragmentType.getWaveSize())
+      return emitOpError("pointer SIMD width must match fragment wave size");
+    ptrElementType = wavePtr.getElementType();
+  } else {
+    return emitOpError("expected wave pointer operand");
   }
+  if (!ptrElementType.isInteger(32) && !ptrElementType.isF32())
+    return emitOpError("fragment stores currently require a 32-bit pointer");
   return success();
 }
 
