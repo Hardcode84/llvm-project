@@ -25,7 +25,7 @@
 // ASM: v_mov_b32_e32 [[C0:v[0-9]+]], 7
 // ASM: v_wmma_i32_16x16x16_iu8 [[DST:v\[[0-9]+:[0-9]+\]]], [[A:v\[[0-9]+:[0-9]+\]]], [[B:v\[[0-9]+:[0-9]+\]]], [[C:v\[[0-9]+:[0-9]+\]]]
 // ASM: global_store_b32 {{v[0-9]+}}, {{v[0-9]+}}, [[OUT]]
-// ASM: s_waitcnt vmcnt(0)
+// ASM: s_waitcnt_vscnt null, 0x0
 // ASM: s_endpgm
 func.func @matrix_kernel(%out: memref<256xi32>) attributes {wave.kernel} {
   %zero = arith.constant 0 : i32

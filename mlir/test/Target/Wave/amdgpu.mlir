@@ -69,17 +69,17 @@ func.func @wave_where_else(%limit: i32) -> i32 {
 func.func @wave_kernel(%out: memref<32xi32>, %x: i32) attributes {wave.kernel} {
   // CHECK: s_load_b64 [[OUT:s\[[0-9]+:[0-9]+\]]], s[0:1], 0x0
   // CHECK: s_load_b32 [[X:s[0-9]+]], s[0:1], 0x8
-  // CHECK: s_waitcnt lgkmcnt(0)
-  // CHECK: s_delay_alu instid0(VALU_DEP_1)
   // CHECK: v_mbcnt_lo_u32_b32 [[LANE:v[0-9]+]], -1, 0
   %lane = wave.lane_id : !wave.simd<i32, 32>
   %vx = wave.splat %x : i32 -> !wave.simd<i32, 32>
+  // CHECK: s_waitcnt lgkmcnt(0)
+  // CHECK: s_delay_alu instid0(VALU_DEP_1)
   // CHECK: v_add_nc_u32_e32 [[SUM:v[0-9]+]], [[X]], [[LANE]]
   %sum = wave.binary "addi" %lane, %vx : !wave.simd<i32, 32>, !wave.simd<i32, 32> -> !wave.simd<i32, 32>
   // CHECK: v_lshlrev_b32_e32 [[OFFSET:v[0-9]+]], 2, [[LANE]]
   // CHECK: global_store_b32 [[OFFSET]], [[SUM]], [[OUT]]
   wave.store %sum -> %out[%lane] : (!wave.simd<i32, 32>, memref<32xi32>, !wave.simd<i32, 32>) -> ()
-  // CHECK: s_waitcnt vmcnt(0)
+  // CHECK: s_waitcnt_vscnt null, 0x0
   // CHECK: s_endpgm
   return
 }

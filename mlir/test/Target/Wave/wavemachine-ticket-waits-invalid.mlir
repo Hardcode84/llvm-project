@@ -1,0 +1,16 @@
+// RUN: mlir-opt --wavemachine-insert-ticket-waits -split-input-file -verify-diagnostics %s
+
+func.func @kernel_arg_not_abi_lowered() attributes {wave.kernel} {
+  // expected-error @below {{wavemachine-insert-ticket-waits expects ABI-lowered kernel arguments}}
+  %arg = "wavemachine.arg"() {index = 0 : i64, memref = false} : () -> !wavemachine.reg<0, 1>
+  return
+}
+
+// -----
+
+func.func @missing_smem_base() {
+  %offset = "wavemachine.imm"() {value = 0 : i64} : () -> !wavemachine.imm
+  // expected-error @below {{wavemachine-insert-ticket-waits expects scalar memory loads to carry a base register attribute}}
+  %load = "wavemachine.s_load_b32"(%offset) : (!wavemachine.imm) -> !wavemachine.reg<0, 1>
+  return
+}

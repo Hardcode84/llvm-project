@@ -73,6 +73,20 @@ def WaveMachineHazardWaits
   ];
 }
 
+def WaveMachineTicketWaits
+    : Pass<"wavemachine-insert-ticket-waits", "ModuleOp"> {
+  let summary = "Insert WaveMachine waitcnt instructions using ticket scoreboards";
+  let description = [{
+    Tracks async memory operations with per-counter tickets and inserts the
+    minimum waitcnt threshold required by SSA uses. This is the waitcnt pass
+    intended for the staged WaveMachine backend; pipeline hazards remain a
+    separate concern.
+  }];
+  let dependentDialects = [
+    "wavemachine::WaveMachineDialect"
+  ];
+}
+
 def WaveMachineRegAlloc
     : Pass<"wavemachine-reg-alloc", "ModuleOp"> {
   let summary = "Allocate WaveMachine virtual registers to physical registers";

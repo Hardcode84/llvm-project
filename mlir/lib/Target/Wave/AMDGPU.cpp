@@ -315,6 +315,8 @@ private:
       return llvm::AMDGPU::SGPR0_SGPR1;
     if (name == "exec_lo")
       return llvm::AMDGPU::EXEC_LO;
+    if (name == "null")
+      return llvm::AMDGPU::SGPR_NULL;
     llvm_unreachable("unknown physical register name");
   }
 
@@ -497,6 +499,10 @@ private:
                      toMCOperand(op.getOperand(0)), llvm::MCOperand::createImm(0)});
     if (isWM(&op, "s_waitcnt"))
       return emitMCValues(llvm::AMDGPU::S_WAITCNT_gfx11, op.getOperands());
+    if (isWM(&op, "s_waitcnt_vscnt"))
+      return emitMC(llvm::AMDGPU::S_WAITCNT_VSCNT_gfx11,
+                    {llvm::MCOperand::createReg(namedPhysReg("null")),
+                     toMCOperand(op.getOperand(0))});
     if (isWM(&op, "s_delay_alu"))
       return emitMCValues(llvm::AMDGPU::S_DELAY_ALU_gfx11, op.getOperands());
     if (isWM(&op, "s_and_saveexec_b32"))
@@ -546,7 +552,7 @@ static LogicalResult runWaveMachinePipeline(ModuleOp module) {
   PassManager pm(module.getContext());
   pm.addPass(wave::createConvertWaveToWaveMachine());
   pm.addPass(wave::createWaveMachineABILowering());
-  pm.addPass(wave::createWaveMachineHazardWaits());
+  pm.addPass(wave::createWaveMachineTicketWaits());
   pm.addPass(wave::createWaveMachineRegAlloc());
   pm.addPass(wave::createWaveMachineResourceInfo());
   pm.addPass(wave::createWaveMachineMetadata());

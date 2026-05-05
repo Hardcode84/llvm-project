@@ -1,9 +1,9 @@
 // RUN: mlir-opt --convert-wave-to-wavemachine %s | FileCheck %s --check-prefix=SELECT
 // RUN: mlir-opt --convert-wave-to-wavemachine --wavemachine-abi-lowering %s | FileCheck %s --check-prefix=ABI
-// RUN: mlir-opt --convert-wave-to-wavemachine --wavemachine-abi-lowering --wavemachine-insert-hazard-waits %s | FileCheck %s --check-prefix=HAZARD
-// RUN: mlir-opt --convert-wave-to-wavemachine --wavemachine-abi-lowering --wavemachine-insert-hazard-waits --wavemachine-reg-alloc %s | FileCheck %s --check-prefix=REGALLOC
-// RUN: mlir-opt --convert-wave-to-wavemachine --wavemachine-abi-lowering --wavemachine-insert-hazard-waits --wavemachine-reg-alloc --wavemachine-resource-info %s | FileCheck %s --check-prefix=RESOURCE
-// RUN: mlir-opt --convert-wave-to-wavemachine --wavemachine-abi-lowering --wavemachine-insert-hazard-waits --wavemachine-reg-alloc --wavemachine-resource-info --wavemachine-metadata %s | FileCheck %s --check-prefix=METADATA
+// RUN: mlir-opt --convert-wave-to-wavemachine --wavemachine-abi-lowering --wavemachine-insert-ticket-waits %s | FileCheck %s --check-prefix=TICKET
+// RUN: mlir-opt --convert-wave-to-wavemachine --wavemachine-abi-lowering --wavemachine-insert-ticket-waits --wavemachine-reg-alloc %s | FileCheck %s --check-prefix=REGALLOC
+// RUN: mlir-opt --convert-wave-to-wavemachine --wavemachine-abi-lowering --wavemachine-insert-ticket-waits --wavemachine-reg-alloc --wavemachine-resource-info %s | FileCheck %s --check-prefix=RESOURCE
+// RUN: mlir-opt --convert-wave-to-wavemachine --wavemachine-abi-lowering --wavemachine-insert-ticket-waits --wavemachine-reg-alloc --wavemachine-resource-info --wavemachine-metadata %s | FileCheck %s --check-prefix=METADATA
 
 // SELECT-LABEL: func.func @where_test
 // SELECT: "wavemachine.arg"() {index = 0 : i64, memref = false} : () -> !wavemachine.reg<0, 1>
@@ -33,12 +33,14 @@ func.func @where_test(%limit: i32) -> i32 {
 // ABI: "wavemachine.s_load_b64"{{.*}} {base = "s[0:1]"}
 // ABI: "wavemachine.s_load_b32"{{.*}} {base = "s[0:1]"}
 // ABI-NOT: "wavemachine.arg"
-// HAZARD-LABEL: func.func @kernel_test
-// HAZARD: "wavemachine.s_waitcnt"
-// HAZARD: "wavemachine.s_delay_alu"
-// HAZARD: "wavemachine.global_store_b32"
-// HAZARD: "wavemachine.s_waitcnt"
-// HAZARD: "wavemachine.s_endpgm"
+// TICKET-LABEL: func.func @kernel_test
+// TICKET: "wavemachine.v_mbcnt_lo"
+// TICKET: "wavemachine.s_waitcnt"
+// TICKET: "wavemachine.s_delay_alu"
+// TICKET: "wavemachine.v_add_u32"
+// TICKET: "wavemachine.global_store_b32"
+// TICKET: "wavemachine.s_waitcnt_vscnt"
+// TICKET: "wavemachine.s_endpgm"
 // REGALLOC-LABEL: func.func @kernel_test
 // REGALLOC: "wavemachine.s_load_b64"{{.*}} {base = "s[0:1]", phys = 2 : i64}
 // REGALLOC: "wavemachine.s_load_b32"{{.*}} {base = "s[0:1]", phys = 4 : i64}
