@@ -18,6 +18,9 @@
 
 #include "mlir/Dialect/Wave/IR/WaveOpsDialect.h.inc"
 
+#define GET_ATTRDEF_CLASSES
+#include "mlir/Dialect/Wave/IR/WaveOpsAttributes.h.inc"
+
 #define GET_TYPEDEF_CLASSES
 #include "mlir/Dialect/Wave/IR/WaveOpsTypes.h.inc"
 

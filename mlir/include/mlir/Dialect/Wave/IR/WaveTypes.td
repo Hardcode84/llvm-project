@@ -10,6 +10,7 @@
 #define MLIR_DIALECT_WAVE_IR_WAVETYPES_TD
 
 include "mlir/Dialect/Wave/IR/WaveBase.td"
+include "mlir/Dialect/Wave/IR/WaveAttrs.td"
 include "mlir/IR/AttrTypeBase.td"
 
 class Wave_Type<string name, string typeMnemonic, list<Trait> traits = [],
@@ -53,6 +54,20 @@ def Wave_MemTokenType : Wave_Type<"MemToken", "mem.token"> {
   }];
 }
 
+def Wave_PtrType : Wave_Type<"Ptr", "ptr"> {
+  let summary = "Wave pointer";
+  let description = [{
+    A `!wave.ptr<T, #space>` value is a pointer to an element of type `T` in an
+    arbitrary address space attribute. The `wave` dialect defines
+    `#wave.global`, `#wave.shared`, and `#wave.private`; target-specific
+    dialects may provide additional address-space attributes.
+  }];
+
+  let parameters = (ins "mlir::Type":$elementType,
+                        "mlir::Attribute":$addressSpace);
+  let assemblyFormat = "`<` $elementType `,` $addressSpace `>`";
+}
+
 def Wave_Simd : Type<CPred<"::llvm::isa<::mlir::wave::SimdType>($_self)">,
                      "wave SIMD type">;
 
@@ -62,5 +77,8 @@ def Wave_Mask : Type<CPred<"::llvm::isa<::mlir::wave::MaskType>($_self)">,
 def Wave_MemToken
     : Type<CPred<"::llvm::isa<::mlir::wave::MemTokenType>($_self)">,
            "wave memory token type">;
+
+def Wave_Ptr : Type<CPred<"::llvm::isa<::mlir::wave::PtrType>($_self)">,
+                    "wave pointer type">;
 
 #endif // MLIR_DIALECT_WAVE_IR_WAVETYPES_TD

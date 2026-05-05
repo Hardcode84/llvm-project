@@ -22,10 +22,18 @@ using namespace mlir::wave;
 #include "mlir/Dialect/Wave/IR/WaveOpsDialect.cpp.inc"
 
 void WaveDialect::initialize() {
+  registerAttributes();
   registerTypes();
   addOperations<
 #define GET_OP_LIST
 #include "mlir/Dialect/Wave/IR/WaveOps.cpp.inc"
+      >();
+}
+
+void WaveDialect::registerAttributes() {
+  addAttributes<
+#define GET_ATTRDEF_LIST
+#include "mlir/Dialect/Wave/IR/WaveOpsAttributes.cpp.inc"
       >();
 }
 
@@ -123,3 +131,6 @@ LogicalResult StoreOp::verify() {
 
 #define GET_TYPEDEF_CLASSES
 #include "mlir/Dialect/Wave/IR/WaveOpsTypes.cpp.inc"
+
+#define GET_ATTRDEF_CLASSES
+#include "mlir/Dialect/Wave/IR/WaveOpsAttributes.cpp.inc"

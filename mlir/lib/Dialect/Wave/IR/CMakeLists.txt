@@ -6,6 +6,7 @@ add_mlir_dialect_library(MLIRWaveDialect
   ${MLIR_MAIN_INCLUDE_DIR}/mlir/Dialect/Wave
 
   DEPENDS
+  MLIRWaveAttributesIncGen
   MLIRWaveOpsIncGen
 
   LINK_LIBS PUBLIC
