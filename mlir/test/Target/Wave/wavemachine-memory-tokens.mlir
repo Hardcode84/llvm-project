@@ -1,5 +1,5 @@
-// RUN: mlir-opt --convert-wave-to-wavemachine %s | FileCheck %s --check-prefix=SELECT
-// RUN: mlir-opt --convert-wave-to-wavemachine --wavemachine-abi-lowering --wavemachine-insert-ticket-waits %s | FileCheck %s --check-prefix=TICKET
+// RUN: mlir-opt --waveamd-to-wavemachine %s | FileCheck %s --check-prefix=SELECT
+// RUN: mlir-opt --waveamd-to-wavemachine --waveamd-abi-lowering --waveamd-insert-ticket-waits %s | FileCheck %s --check-prefix=TICKET
 
 module attributes {wavemachine.target = "amdgcn-amd-amdhsa--gfx1100"} {
 

@@ -42,8 +42,8 @@ def ConvertWaveToROCDL : Pass<"convert-wave-to-rocdl"> {
   ];
 }
 
-def ConvertWaveToWaveMachine : Pass<"convert-wave-to-wavemachine", "ModuleOp"> {
-  let summary = "Select Wave dialect operations into inspectable WaveMachine IR";
+def ConvertWaveAMDToWaveMachine : Pass<"waveamd-to-wavemachine", "ModuleOp"> {
+  let summary = "Select Wave/WaveAMD operations into inspectable WaveMachine IR";
   let description = [{
     Lowers source-level Wave operations to generic WaveMachine dialect
     operations. This is the explicit backend boundary: the result is still MLIR,
@@ -58,24 +58,24 @@ def ConvertWaveToWaveMachine : Pass<"convert-wave-to-wavemachine", "ModuleOp"> {
   ];
 }
 
-def WaveMachineABILowering
-    : Pass<"wavemachine-abi-lowering", "ModuleOp"> {
+def WaveAMDABILowering
+    : Pass<"waveamd-abi-lowering", "ModuleOp"> {
   let summary = "Lower WaveMachine function arguments to the AMDGPU kernel ABI";
   let dependentDialects = [
     "wavemachine::WaveMachineDialect"
   ];
 }
 
-def WaveMachineHazardWaits
-    : Pass<"wavemachine-insert-hazard-waits", "ModuleOp"> {
+def WaveAMDHazardWaits
+    : Pass<"waveamd-insert-hazard-waits", "ModuleOp"> {
   let summary = "Insert WaveMachine waitcnt and hazard instructions";
   let dependentDialects = [
     "wavemachine::WaveMachineDialect"
   ];
 }
 
-def WaveMachineTicketWaits
-    : Pass<"wavemachine-insert-ticket-waits", "ModuleOp"> {
+def WaveAMDTicketWaits
+    : Pass<"waveamd-insert-ticket-waits", "ModuleOp"> {
   let summary = "Insert WaveMachine waitcnt instructions using ticket scoreboards";
   let description = [{
     Tracks async memory operations with per-counter tickets and inserts the
@@ -88,24 +88,24 @@ def WaveMachineTicketWaits
   ];
 }
 
-def WaveMachineRegAlloc
-    : Pass<"wavemachine-reg-alloc", "ModuleOp"> {
+def WaveAMDRegAlloc
+    : Pass<"waveamd-reg-alloc", "ModuleOp"> {
   let summary = "Allocate WaveMachine virtual registers to physical registers";
   let dependentDialects = [
     "wavemachine::WaveMachineDialect"
   ];
 }
 
-def WaveMachineResourceInfo
-    : Pass<"wavemachine-resource-info", "ModuleOp"> {
+def WaveAMDResourceInfo
+    : Pass<"waveamd-resource-info", "ModuleOp"> {
   let summary = "Annotate WaveMachine functions with resource usage";
   let dependentDialects = [
     "wavemachine::WaveMachineDialect"
   ];
 }
 
-def WaveMachineMetadata
-    : Pass<"wavemachine-metadata", "ModuleOp"> {
+def WaveAMDMetadata
+    : Pass<"waveamd-metadata", "ModuleOp"> {
   let summary = "Attach AMDGPU metadata information to WaveMachine IR";
   let dependentDialects = [
     "wavemachine::WaveMachineDialect"

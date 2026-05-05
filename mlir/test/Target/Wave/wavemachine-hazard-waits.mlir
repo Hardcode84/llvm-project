@@ -1,4 +1,4 @@
-// RUN: mlir-opt --wavemachine-insert-hazard-waits %s | FileCheck %s
+// RUN: mlir-opt --waveamd-insert-hazard-waits %s | FileCheck %s
 
 module attributes {wavemachine.target = "amdgcn-amd-amdhsa--gfx1100"} {
 

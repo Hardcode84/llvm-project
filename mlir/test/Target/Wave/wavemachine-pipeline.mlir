@@ -1,10 +1,10 @@
-// RUN: mlir-opt --convert-wave-to-wavemachine %s | FileCheck %s --check-prefix=SELECT
-// RUN: mlir-opt --convert-wave-to-wavemachine --wavemachine-abi-lowering %s | FileCheck %s --check-prefix=ABI
-// RUN: mlir-opt --convert-wave-to-wavemachine --wavemachine-abi-lowering --wavemachine-insert-ticket-waits %s | FileCheck %s --check-prefix=TICKET
-// RUN: mlir-opt --convert-wave-to-wavemachine --wavemachine-abi-lowering --wavemachine-insert-ticket-waits --wavemachine-insert-hazard-waits %s | FileCheck %s --check-prefix=HAZARD
-// RUN: mlir-opt --convert-wave-to-wavemachine --wavemachine-abi-lowering --wavemachine-insert-ticket-waits --wavemachine-insert-hazard-waits --wavemachine-reg-alloc %s | FileCheck %s --check-prefix=REGALLOC
-// RUN: mlir-opt --convert-wave-to-wavemachine --wavemachine-abi-lowering --wavemachine-insert-ticket-waits --wavemachine-insert-hazard-waits --wavemachine-reg-alloc --wavemachine-resource-info %s | FileCheck %s --check-prefix=RESOURCE
-// RUN: mlir-opt --convert-wave-to-wavemachine --wavemachine-abi-lowering --wavemachine-insert-ticket-waits --wavemachine-insert-hazard-waits --wavemachine-reg-alloc --wavemachine-resource-info --wavemachine-metadata %s | FileCheck %s --check-prefix=METADATA
+// RUN: mlir-opt --waveamd-to-wavemachine %s | FileCheck %s --check-prefix=SELECT
+// RUN: mlir-opt --waveamd-to-wavemachine --waveamd-abi-lowering %s | FileCheck %s --check-prefix=ABI
+// RUN: mlir-opt --waveamd-to-wavemachine --waveamd-abi-lowering --waveamd-insert-ticket-waits %s | FileCheck %s --check-prefix=TICKET
+// RUN: mlir-opt --waveamd-to-wavemachine --waveamd-abi-lowering --waveamd-insert-ticket-waits --waveamd-insert-hazard-waits %s | FileCheck %s --check-prefix=HAZARD
+// RUN: mlir-opt --waveamd-to-wavemachine --waveamd-abi-lowering --waveamd-insert-ticket-waits --waveamd-insert-hazard-waits --waveamd-reg-alloc %s | FileCheck %s --check-prefix=REGALLOC
+// RUN: mlir-opt --waveamd-to-wavemachine --waveamd-abi-lowering --waveamd-insert-ticket-waits --waveamd-insert-hazard-waits --waveamd-reg-alloc --waveamd-resource-info %s | FileCheck %s --check-prefix=RESOURCE
+// RUN: mlir-opt --waveamd-to-wavemachine --waveamd-abi-lowering --waveamd-insert-ticket-waits --waveamd-insert-hazard-waits --waveamd-reg-alloc --waveamd-resource-info --waveamd-metadata %s | FileCheck %s --check-prefix=METADATA
 
 module attributes {wavemachine.target = "amdgcn-amd-amdhsa--gfx1100"} {
 

@@ -23,7 +23,7 @@
 #include <optional>
 
 namespace mlir::wave {
-#define GEN_PASS_DEF_WAVEMACHINETICKETWAITS
+#define GEN_PASS_DEF_WAVEAMDTICKETWAITS
 #include "mlir/Dialect/Wave/Transforms/Passes.h.inc"
 } // namespace mlir::wave
 
@@ -252,10 +252,10 @@ static FailureOr<llvm::AMDGPU::IsaVersion> getIsaVersion(Operation *op) {
   if (!module)
     module = op->getParentOfType<ModuleOp>();
   if (!module)
-    return op->emitError("wavemachine-insert-ticket-waits requires a module");
+    return op->emitError("waveamd-insert-ticket-waits requires a module");
   auto target = module->getAttrOfType<StringAttr>("wavemachine.target");
   if (!target)
-    return module.emitError("wavemachine-insert-ticket-waits requires a "
+    return module.emitError("waveamd-insert-ticket-waits requires a "
                             "wavemachine.target attribute");
   StringRef cpu = target.getValue();
   std::pair<StringRef, StringRef> split = cpu.rsplit("--");
@@ -455,10 +455,10 @@ static LogicalResult validateWaveMachineOp(Operation *op) {
     return success();
   if (auto func = op->getParentOfType<func::FuncOp>();
       func && func->hasAttr("wave.kernel") && isa<wavemachine::ArgOp>(op))
-    return op->emitError("wavemachine-insert-ticket-waits expects "
+    return op->emitError("waveamd-insert-ticket-waits expects "
                          "ABI-lowered kernel arguments");
   if (isSMEMLoad(op) && !op->getAttrOfType<StringAttr>("base"))
-    return op->emitError("wavemachine-insert-ticket-waits expects scalar "
+    return op->emitError("waveamd-insert-ticket-waits expects scalar "
                          "memory loads to carry a base register attribute");
   return success();
 }
@@ -728,8 +728,8 @@ getEffectiveStateBefore(Operation *op, DataFlowSolver &solver,
   return effective;
 }
 
-struct WaveMachineTicketWaitsPass
-    : public wave::impl::WaveMachineTicketWaitsBase<WaveMachineTicketWaitsPass> {
+struct WaveAMDTicketWaitsPass
+    : public wave::impl::WaveAMDTicketWaitsBase<WaveAMDTicketWaitsPass> {
   void runOnOperation() override {
     ModuleOp module = getOperation();
     for (func::FuncOp func : module.getOps<func::FuncOp>()) {

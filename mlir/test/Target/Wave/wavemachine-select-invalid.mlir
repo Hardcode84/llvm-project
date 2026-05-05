@@ -1,4 +1,4 @@
-// RUN: mlir-opt --convert-wave-to-wavemachine -split-input-file -verify-diagnostics %s
+// RUN: mlir-opt --waveamd-to-wavemachine -split-input-file -verify-diagnostics %s
 
 func.func @unsupported_op(%x: i32, %y: i32) -> i32 {
   // expected-error @below {{unsupported operation in WaveMachine selection}}

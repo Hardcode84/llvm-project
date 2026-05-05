@@ -552,13 +552,13 @@ static LogicalResult runWaveMachinePipeline(ModuleOp module) {
   module->setAttr("wavemachine.target",
                   builder.getStringAttr("amdgcn-amd-amdhsa--gfx1100"));
   PassManager pm(module.getContext());
-  pm.addPass(wave::createConvertWaveToWaveMachine());
-  pm.addPass(wave::createWaveMachineABILowering());
-  pm.addPass(wave::createWaveMachineTicketWaits());
-  pm.addPass(wave::createWaveMachineHazardWaits());
-  pm.addPass(wave::createWaveMachineRegAlloc());
-  pm.addPass(wave::createWaveMachineResourceInfo());
-  pm.addPass(wave::createWaveMachineMetadata());
+  pm.addPass(wave::createConvertWaveAMDToWaveMachine());
+  pm.addPass(wave::createWaveAMDABILowering());
+  pm.addPass(wave::createWaveAMDTicketWaits());
+  pm.addPass(wave::createWaveAMDHazardWaits());
+  pm.addPass(wave::createWaveAMDRegAlloc());
+  pm.addPass(wave::createWaveAMDResourceInfo());
+  pm.addPass(wave::createWaveAMDMetadata());
   return pm.run(module);
 }
 
