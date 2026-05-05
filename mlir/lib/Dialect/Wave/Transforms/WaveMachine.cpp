@@ -33,7 +33,6 @@ namespace mlir::wave {
 #define GEN_PASS_DEF_WAVEMACHINEMETADATA
 #define GEN_PASS_DEF_WAVEMACHINEREGALLOC
 #define GEN_PASS_DEF_WAVEMACHINERESOURCEINFO
-#define GEN_PASS_DEF_WAVEMACHINETICKETWAITS
 #include "mlir/Dialect/Wave/Transforms/Passes.h.inc"
 } // namespace mlir::wave
 
@@ -44,68 +43,10 @@ namespace {
 
 enum class RegClass { SGPR, VGPR };
 
-enum class CounterKind { Vmem, Lgkm, Vscnt };
-
 struct LiveInterval {
   Operation *def = nullptr;
   unsigned start = std::numeric_limits<unsigned>::max();
   unsigned end = 0;
-};
-
-struct Ticket {
-  CounterKind counter;
-  int64_t value = -1;
-};
-
-struct CounterState {
-  int64_t lastTicket = -1;
-  std::optional<int64_t> lastWait;
-
-  int64_t issue() {
-    ++lastTicket;
-    if (lastWait)
-      ++(*lastWait);
-    return lastTicket;
-  }
-
-  std::optional<unsigned> computeWait(int64_t requiredTicket) const {
-    if (requiredTicket < 0 || lastTicket < 0)
-      return std::nullopt;
-    int64_t threshold = std::max<int64_t>(0, lastTicket - requiredTicket);
-    if (lastWait && *lastWait <= threshold)
-      return std::nullopt;
-    return static_cast<unsigned>(threshold);
-  }
-
-  void observeWait(unsigned threshold) {
-    if (!lastWait || threshold < *lastWait)
-      lastWait = threshold;
-  }
-};
-
-struct WaitRequirement {
-  std::optional<unsigned> vmcnt;
-  std::optional<unsigned> lgkmcnt;
-  std::optional<unsigned> vscnt;
-
-  bool hasWait() const { return vmcnt || lgkmcnt || vscnt; }
-
-  void add(CounterKind counter, unsigned threshold) {
-    std::optional<unsigned> *slot = nullptr;
-    switch (counter) {
-    case CounterKind::Vmem:
-      slot = &vmcnt;
-      break;
-    case CounterKind::Lgkm:
-      slot = &lgkmcnt;
-      break;
-    case CounterKind::Vscnt:
-      slot = &vscnt;
-      break;
-    }
-    if (!*slot || threshold < **slot)
-      *slot = threshold;
-  }
 };
 
 static int64_t regClassCode(RegClass regClass) {
@@ -202,15 +143,6 @@ static bool isSMEMLoad(Operation *op) {
 static bool isVMEMStore(Operation *op) {
   return isWaveMachineOp(op, "global_store_b32") ||
          isWaveMachineOp(op, "global_store_tuple_b32");
-}
-
-static bool isVMEMLoad(Operation *op) {
-  return isWaveMachineOp(op, "global_load_b32");
-}
-
-static bool isWaitcnt(Operation *op) {
-  return isWaveMachineOp(op, "s_waitcnt") ||
-         isWaveMachineOp(op, "s_waitcnt_vscnt");
 }
 
 static bool isSGPR(wavemachine::RegType type) { return type.getRegClass() == 0; }
@@ -688,154 +620,6 @@ struct WaveMachineHazardWaitsPass
           pendingVMEMStore = true;
       }
     }
-  }
-};
-
-struct WaveMachineTicketWaitsPass
-    : public wave::impl::WaveMachineTicketWaitsBase<WaveMachineTicketWaitsPass> {
-  void runOnOperation() override {
-    for (func::FuncOp func : getOperation().getOps<func::FuncOp>()) {
-      if (failed(processFunction(func)))
-        return signalPassFailure();
-    }
-  }
-
-  LogicalResult processFunction(func::FuncOp func) {
-    if (!func.getBody().hasOneBlock())
-      return func.emitError("wavemachine-insert-ticket-waits supports one-block funcs");
-
-    OpBuilder builder(func.getContext());
-    DenseMap<Value, Ticket> tickets;
-    CounterState vmem;
-    CounterState lgkm;
-    CounterState vscnt;
-
-    for (Operation &op : llvm::make_early_inc_range(func.getBody().front())) {
-      if (!isWaveMachineOp(&op))
-        continue;
-      if (func->hasAttr("wave.kernel") && isWaveMachineOp(&op, "arg")) {
-        op.emitError("wavemachine-insert-ticket-waits expects ABI-lowered "
-                     "kernel arguments");
-        return failure();
-      }
-      if (isSMEMLoad(&op) && !op.getAttrOfType<StringAttr>("base")) {
-        op.emitError("wavemachine-insert-ticket-waits expects scalar memory "
-                     "loads to carry a base register attribute");
-        return failure();
-      }
-
-      if (isWaitcnt(&op)) {
-        observeExistingWait(&op, vmem, lgkm, vscnt);
-        continue;
-      }
-
-      WaitRequirement requirement =
-          computeRequirement(&op, tickets, vmem, lgkm, vscnt);
-      if (isWaveMachineOp(&op, "s_endpgm")) {
-        if (auto wait = vscnt.computeWait(vscnt.lastTicket))
-          requirement.add(CounterKind::Vscnt, *wait);
-      }
-      if (requirement.hasWait()) {
-        builder.setInsertionPoint(&op);
-        emitWaits(builder, op.getLoc(), requirement, vmem, lgkm, vscnt);
-        if (requirement.lgkmcnt && isVALU(&op))
-          createInstrNoResult(builder, op.getLoc(), "s_delay_alu",
-                              createImm(builder, op.getLoc(), 1));
-      }
-
-      if (isSMEMLoad(&op)) {
-        int64_t ticket = lgkm.issue();
-        for (Value result : op.getResults())
-          tickets[result] = Ticket{CounterKind::Lgkm, ticket};
-        continue;
-      }
-      if (isVMEMLoad(&op)) {
-        int64_t ticket = vmem.issue();
-        for (Value result : op.getResults())
-          tickets[result] = Ticket{CounterKind::Vmem, ticket};
-        continue;
-      }
-      if (isVMEMStore(&op))
-        vscnt.issue();
-    }
-
-    return success();
-  }
-
-  WaitRequirement computeRequirement(Operation *op,
-                                     const DenseMap<Value, Ticket> &tickets,
-                                     const CounterState &vmem,
-                                     const CounterState &lgkm,
-                                     const CounterState &vscnt) {
-    WaitRequirement requirement;
-    for (Value operand : op->getOperands()) {
-      auto it = tickets.find(operand);
-      if (it == tickets.end())
-        continue;
-      const CounterState *counter = nullptr;
-      switch (it->second.counter) {
-      case CounterKind::Vmem:
-        counter = &vmem;
-        break;
-      case CounterKind::Lgkm:
-        counter = &lgkm;
-        break;
-      case CounterKind::Vscnt:
-        counter = &vscnt;
-        break;
-      }
-      if (auto wait = counter->computeWait(it->second.value))
-        requirement.add(it->second.counter, *wait);
-    }
-    return requirement;
-  }
-
-  void emitWaits(OpBuilder &builder, Location loc,
-                 const WaitRequirement &requirement, CounterState &vmem,
-                 CounterState &lgkm, CounterState &vscnt) {
-    if (requirement.vmcnt || requirement.lgkmcnt) {
-      unsigned encoded = encodeWaitcnt(requirement.vmcnt, requirement.lgkmcnt);
-      createInstrNoResult(builder, loc, "s_waitcnt",
-                          createImm(builder, loc, encoded));
-      if (requirement.vmcnt)
-        vmem.observeWait(*requirement.vmcnt);
-      if (requirement.lgkmcnt)
-        lgkm.observeWait(*requirement.lgkmcnt);
-    }
-    if (requirement.vscnt) {
-      createInstrNoResult(builder, loc, "s_waitcnt_vscnt",
-                          createImm(builder, loc, *requirement.vscnt));
-      vscnt.observeWait(*requirement.vscnt);
-    }
-  }
-
-  void observeExistingWait(Operation *op, CounterState &vmem, CounterState &lgkm,
-                           CounterState &vscnt) {
-    if (isWaveMachineOp(op, "s_waitcnt")) {
-      auto imm = getImmediate(op->getOperand(0));
-      if (!imm)
-        return;
-      llvm::AMDGPU::IsaVersion gfx11{11, 0, 0};
-      unsigned vm = 0;
-      unsigned exp = 0;
-      unsigned lg = 0;
-      llvm::AMDGPU::decodeWaitcnt(gfx11, *imm, vm, exp, lg);
-      vmem.observeWait(vm);
-      lgkm.observeWait(lg);
-      return;
-    }
-    if (isWaveMachineOp(op, "s_waitcnt_vscnt")) {
-      auto imm = getImmediate(op->getOperand(0));
-      if (imm)
-        vscnt.observeWait(*imm);
-    }
-  }
-
-  std::optional<unsigned> getImmediate(Value value) {
-    Operation *def = value.getDefiningOp();
-    if (!def || !isWaveMachineOp(def, "imm"))
-      return std::nullopt;
-    return static_cast<unsigned>(def->getAttrOfType<IntegerAttr>("value").getInt());
   }
 };
 
