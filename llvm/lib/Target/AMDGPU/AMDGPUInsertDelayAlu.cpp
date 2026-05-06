@@ -15,6 +15,7 @@
 #include "GCNSubtarget.h"
 #include "MCTargetDesc/AMDGPUMCTargetDesc.h"
 #include "SIInstrInfo.h"
+#include "Utils/AMDGPUBaseInfo.h"
 #include "llvm/ADT/SetVector.h"
 
 using namespace llvm;
@@ -289,18 +290,23 @@ public:
                              MachineInstr *LastDelayAlu) {
     unsigned Imm = 0;
 
+    auto encodeSecondDelay = [](unsigned Imm, unsigned Delay) {
+      return Imm ? (Imm | (Delay << 7)) : Delay;
+    };
+
     // Wait for a TRANS instruction.
     if (Delay.TRANSNum < DelayInfo::TRANS_MAX)
-      Imm |= 4 + Delay.TRANSNum;
+      Imm |=
+          AMDGPU::SDelayAlu::encodeDelay(AMDGPU::SDelayAlu::DelayType::TRANS32,
+                                         Delay.TRANSNum);
 
     // Wait for a VALU instruction (if it's more recent than any TRANS
     // instruction that we're also waiting for).
     if (Delay.VALUNum < DelayInfo::VALU_MAX &&
         Delay.VALUNum <= Delay.TRANSNumVALU) {
-      if (Imm & 0xf)
-        Imm |= Delay.VALUNum << 7;
-      else
-        Imm |= Delay.VALUNum;
+      Imm = encodeSecondDelay(
+          Imm, AMDGPU::SDelayAlu::encodeDelay(
+                   AMDGPU::SDelayAlu::DelayType::VALU, Delay.VALUNum));
     }
 
     // Wait for an SALU instruction.
@@ -310,9 +316,12 @@ public:
         // We have already encoded a VALU and a TRANS delay. There's no room in
         // the encoding for an SALU delay as well, so just drop it.
       } else if (Imm & 0xf) {
-        Imm |= (Delay.SALUCycles + 8) << 7;
+        Imm = encodeSecondDelay(
+            Imm, AMDGPU::SDelayAlu::encodeDelay(
+                     AMDGPU::SDelayAlu::DelayType::SALU, Delay.SALUCycles));
       } else {
-        Imm |= Delay.SALUCycles + 8;
+        Imm |= AMDGPU::SDelayAlu::encodeDelay(
+            AMDGPU::SDelayAlu::DelayType::SALU, Delay.SALUCycles);
       }
     }
 

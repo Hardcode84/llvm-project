@@ -2176,6 +2176,59 @@ unsigned encodeFieldHoldCnt(unsigned HoldCnt, const MCSubtargetInfo &STI) {
 
 } // namespace DepCtr
 
+namespace SDelayAlu {
+
+unsigned encodeDelay(DelayType Type, unsigned Count) {
+  switch (Type) {
+  case DelayType::None:
+    return 0;
+  case DelayType::VALU:
+    assert(Count < 5 && "VALU dependency id must fit s_delay_alu");
+    return Count;
+  case DelayType::TRANS32:
+    assert(Count < 4 && "TRANS32 dependency id must fit s_delay_alu");
+    return Count + 4;
+  case DelayType::SALU:
+    assert(Count < 4 && "SALU cycle id must fit s_delay_alu");
+    return Count + 8;
+  }
+  llvm_unreachable("unknown s_delay_alu delay type");
+}
+
+unsigned encode(DelayType Type0, unsigned Count0, unsigned Skip,
+                DelayType Type1, unsigned Count1) {
+  unsigned Encoded = encodeDelay(Type0, Count0);
+  unsigned Second = encodeDelay(Type1, Count1);
+  if (!Second)
+    return Encoded;
+  assert(Skip < 8 && "skip count must fit s_delay_alu");
+  return Encoded | (Skip << 4) | (Second << 7);
+}
+
+} // namespace SDelayAlu
+
+namespace SNop {
+
+unsigned getBitWidth(const MCSubtargetInfo &STI) {
+  IsaVersion Version = getIsaVersion(STI.getCPU());
+  if (Version.Major >= 12)
+    return 7;
+  if (Version.Major >= 8)
+    return 4;
+  return 3;
+}
+
+unsigned getMaxCount(const MCSubtargetInfo &STI) {
+  return 1u << getBitWidth(STI);
+}
+
+unsigned encodeCount(unsigned Count) {
+  assert(Count > 0 && "S_NOP count must be non-zero");
+  return Count - 1;
+}
+
+} // namespace SNop
+
 //===----------------------------------------------------------------------===//
 // exp tgt
 //===----------------------------------------------------------------------===//

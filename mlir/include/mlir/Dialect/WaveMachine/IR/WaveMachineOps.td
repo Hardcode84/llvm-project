@@ -232,6 +232,7 @@ def WaveMachine_SWaitcntOp : WaveMachine_UnaryNoResult<"s_waitcnt",
 def WaveMachine_SWaitcntVscntOp : WaveMachine_UnaryNoResult<"s_waitcnt_vscnt",
                                                              WaveMachine_Imm,
                                                              [WaveMachine_Waitcnt]>;
+def WaveMachine_SNopOp : WaveMachine_UnaryNoResult<"s_nop", WaveMachine_Imm>;
 def WaveMachine_SDelayAluOp : WaveMachine_UnaryNoResult<"s_delay_alu",
                                                          WaveMachine_Imm>;
 def WaveMachine_SAndSaveexecB32Op

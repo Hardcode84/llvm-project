@@ -1354,6 +1354,32 @@ unsigned encodeFieldVaSsrc(unsigned Encoded, unsigned VaSsrc);
 
 } // namespace DepCtr
 
+namespace SDelayAlu {
+
+enum class DelayType { None, VALU, TRANS32, SALU };
+
+/// \returns Encoded single-delay field for s_delay_alu.
+unsigned encodeDelay(DelayType Type, unsigned Count);
+
+/// \returns Encoded s_delay_alu immediate for one or two delay specs.
+unsigned encode(DelayType Type0, unsigned Count0, unsigned Skip = 0,
+                DelayType Type1 = DelayType::None, unsigned Count1 = 0);
+
+} // namespace SDelayAlu
+
+namespace SNop {
+
+/// \returns Number of significant bits in the S_NOP immediate field.
+unsigned getBitWidth(const MCSubtargetInfo &STI);
+
+/// \returns Maximum wait-state count encodable in one S_NOP instruction.
+unsigned getMaxCount(const MCSubtargetInfo &STI);
+
+/// \returns S_NOP immediate encoding for \p Count wait states.
+unsigned encodeCount(unsigned Count);
+
+} // namespace SNop
+
 namespace Exp {
 
 bool getTgtName(unsigned Id, StringRef &Name, int &Index);

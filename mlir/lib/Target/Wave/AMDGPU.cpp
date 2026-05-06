@@ -504,6 +504,8 @@ private:
       return emitMC(llvm::AMDGPU::S_WAITCNT_VSCNT_gfx11,
                     {llvm::MCOperand::createReg(namedPhysReg("null")),
                      toMCOperand(op.getOperand(0))});
+    if (isa<wavemachine::SNopOp>(op))
+      return emitMCValues(llvm::AMDGPU::S_NOP_gfx11, op.getOperands());
     if (isa<wavemachine::SDelayAluOp>(op))
       return emitMCValues(llvm::AMDGPU::S_DELAY_ALU_gfx11, op.getOperands());
     if (isa<wavemachine::SAndSaveexecB32Op>(op))
