@@ -117,7 +117,7 @@ public:
       wavemachine::RegClass regClass =
           isa<SimdType>(type) ? wavemachine::RegClass::VGPR
                               : wavemachine::RegClass::SGPR;
-      unsigned width = isPtr ? 2 : 1;
+      unsigned width = isPtr ? pointerBaseWidth(type) : 1;
       Operation *argOp = createWMOp(
           builder, func.getLoc(), "arg", {}, getRegType(func.getContext(), regClass, width),
           {builder.getNamedAttr("index", builder.getI64IntegerAttr(index)),
@@ -126,6 +126,7 @@ public:
       if (isPtr) {
         pointerBases[arg] = argOp->getResult(0);
         pointerOffsets[arg] = createImm(builder, func.getLoc(), 0);
+        pointerBuffers[arg] = isBufferPointer(type);
       }
     }
 
@@ -154,8 +155,20 @@ private:
   DenseMap<Value, Value> values;
   DenseMap<Value, Value> pointerBases;
   DenseMap<Value, Value> pointerOffsets;
+  DenseMap<Value, bool> pointerBuffers;
   SmallVector<Operation *> opsToErase;
   unsigned nextLabel = 0;
+
+  bool isBufferPointer(Type type) {
+    if (auto simd = dyn_cast<SimdType>(type))
+      type = simd.getElementType();
+    auto ptr = dyn_cast<PtrType>(type);
+    return ptr && isa<waveamd::BufferAddressSpaceAttr>(ptr.getAddressSpace());
+  }
+
+  unsigned pointerBaseWidth(Type type) {
+    return isBufferPointer(type) ? 4 : 2;
+  }
 
   std::string makeLabel(StringRef stem) {
     return (Twine(".Lwave_") + func.getSymName() + "_" + stem + "_" +
@@ -197,6 +210,8 @@ private:
       return selectReadFirst(readFirst);
     if (auto ptrAdd = dyn_cast<PtrAddOp>(op))
       return selectPtrAdd(ptrAdd);
+    if (auto makeBuffer = dyn_cast<waveamd::MakeBufferOp>(op))
+      return selectMakeBuffer(makeBuffer);
     if (auto token = dyn_cast<TokenOp>(op))
       return selectToken(token);
     if (auto after = dyn_cast<AfterOp>(op))
@@ -319,15 +334,19 @@ private:
   LogicalResult selectStore(StoreOp op) {
     auto baseIt = pointerBases.find(op.getPtr());
     auto offsetIt = pointerOffsets.find(op.getPtr());
+    auto bufferIt = pointerBuffers.find(op.getPtr());
     if (baseIt == pointerBases.end() || offsetIt == pointerOffsets.end())
       return op.emitError("WaveMachine backend expects selected wave pointer");
     SmallVector<Value> operands{offsetIt->second, expect(op.getValue(), op),
                                 baseIt->second};
     if (Value dependency = op.getDependency())
       operands.push_back(expect(dependency, op));
-    Operation *store =
-        createWMOp(builder, op.getLoc(), "global_store_b32", operands,
-                   getMemTokenType(op.getContext()));
+    Operation *store = createWMOp(
+        builder, op.getLoc(),
+        bufferIt != pointerBuffers.end() && bufferIt->second
+            ? "buffer_store_b32"
+            : "global_store_b32",
+        operands, getMemTokenType(op.getContext()));
     values[op.getToken()] = store->getResult(0);
     eraseIfTopLevel(op);
     return success();
@@ -390,7 +409,25 @@ private:
 
     pointerBases[op.getResult()] = baseIt->second;
     pointerOffsets[op.getResult()] = byteOffset;
+    pointerBuffers[op.getResult()] = pointerBuffers.lookup(op.getBase());
     values[op.getResult()] = baseIt->second;
+    eraseIfTopLevel(op);
+    return success();
+  }
+
+  LogicalResult selectMakeBuffer(waveamd::MakeBufferOp op) {
+    auto baseIt = pointerBases.find(op.getBase());
+    auto offsetIt = pointerOffsets.find(op.getBase());
+    if (baseIt == pointerBases.end() || offsetIt == pointerOffsets.end())
+      return op.emitError("WaveMachine backend expects selected base pointer");
+    Operation *descriptor = createWMOp(
+        builder, op.getLoc(), "make_buffer_rsrc",
+        {baseIt->second, expect(op.getRange(), op)},
+        getRegType(op.getContext(), wavemachine::RegClass::SGPR, 4));
+    pointerBases[op.getResult()] = descriptor->getResult(0);
+    pointerOffsets[op.getResult()] = offsetIt->second;
+    pointerBuffers[op.getResult()] = true;
+    values[op.getResult()] = descriptor->getResult(0);
     eraseIfTopLevel(op);
     return success();
   }

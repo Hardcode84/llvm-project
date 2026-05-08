@@ -19,6 +19,21 @@ include "mlir/Interfaces/SideEffectInterfaces.td"
 class WaveAMD_Op<string mnemonic, list<Trait> traits = []> :
     Op<WaveAMD_Dialect, mnemonic, traits>;
 
+def WaveAMD_MakeBufferOp : WaveAMD_Op<"make_buffer", [Pure]> {
+  let summary = "construct an AMD buffer pointer from a flat/global pointer";
+  let description = [{
+    Constructs a `!wave.ptr<T, #waveamd.buffer>` value from a uniform base
+    pointer and a uniform byte range. The resulting pointer is represented by a
+    uniform AMD buffer descriptor plus the lane-varying i32 offset carried by
+    subsequent `wave.ptr_add` operations.
+  }];
+  let arguments = (ins Wave_Ptr:$base,
+                       AnySignlessInteger:$range);
+  let results = (outs Wave_Ptr:$result);
+  let assemblyFormat = "$base `,` $range attr-dict `:` type($base) `,` type($range) `->` type($result)";
+  let hasVerifier = 1;
+}
+
 def WaveAMD_FragmentFillOp : WaveAMD_Op<"fragment_fill", [Pure]> {
   let summary = "fill an AMD matrix fragment with a scalar bit pattern";
   let arguments = (ins AnySignlessInteger:$source);

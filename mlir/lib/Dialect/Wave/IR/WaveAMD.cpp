@@ -18,10 +18,18 @@ using namespace mlir::waveamd;
 #include "mlir/Dialect/Wave/IR/WaveAMDOpsDialect.cpp.inc"
 
 void WaveAMDDialect::initialize() {
+  registerAttributes();
   registerTypes();
   addOperations<
 #define GET_OP_LIST
 #include "mlir/Dialect/Wave/IR/WaveAMDOps.cpp.inc"
+      >();
+}
+
+void WaveAMDDialect::registerAttributes() {
+  addAttributes<
+#define GET_ATTRDEF_LIST
+#include "mlir/Dialect/Wave/IR/WaveAMDOpsAttributes.cpp.inc"
       >();
 }
 
@@ -30,6 +38,20 @@ void WaveAMDDialect::registerTypes() {
 #define GET_TYPEDEF_LIST
 #include "mlir/Dialect/Wave/IR/WaveAMDOpsTypes.cpp.inc"
       >();
+}
+
+LogicalResult MakeBufferOp::verify() {
+  auto baseType = cast<wave::PtrType>(getBase().getType());
+  auto resultType = cast<wave::PtrType>(getResult().getType());
+  if (!isa<wave::GlobalAddressSpaceAttr>(baseType.getAddressSpace()))
+    return emitOpError("base must be a global wave pointer");
+  if (!isa<BufferAddressSpaceAttr>(resultType.getAddressSpace()))
+    return emitOpError("result must be a waveamd buffer pointer");
+  if (baseType.getElementType() != resultType.getElementType())
+    return emitOpError("base and result element types must match");
+  if (!getRange().getType().isInteger(32))
+    return emitOpError("range must be i32 bytes");
+  return success();
 }
 
 LogicalResult FragmentFillOp::verify() {
@@ -142,3 +164,6 @@ LogicalResult FragmentStoreOp::verify() {
 
 #define GET_TYPEDEF_CLASSES
 #include "mlir/Dialect/Wave/IR/WaveAMDOpsTypes.cpp.inc"
+
+#define GET_ATTRDEF_CLASSES
+#include "mlir/Dialect/Wave/IR/WaveAMDOpsAttributes.cpp.inc"

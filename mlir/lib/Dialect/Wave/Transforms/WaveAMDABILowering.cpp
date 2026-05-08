@@ -87,7 +87,7 @@ struct WaveAMDABILoweringPass
           return signalPassFailure();
         }
         bool isPointer = pointerAttr.getValue();
-        if ((isPointer && regType.getWidth() != 2) ||
+        if ((isPointer && regType.getWidth() != 2 && regType.getWidth() != 4) ||
             (!isPointer && regType.getWidth() != 1)) {
           op.emitError("waveamd-abi-lowering found argument register width "
                        "inconsistent with pointer attribute");
@@ -96,14 +96,15 @@ struct WaveAMDABILoweringPass
 
         builder.setInsertionPoint(&op);
         Value offsetImm = createImm(builder, op.getLoc(), offset);
-        Value loaded =
-            createInstr(builder, op.getLoc(), isPointer ? "s_load_b64" : "s_load_b32",
-                        offsetImm, op.getResult(0).getType(),
-                        {builder.getNamedAttr("base",
-                                              builder.getStringAttr("s[0:1]"))});
+        StringRef opcode = "s_load_b32";
+        if (isPointer)
+          opcode = regType.getWidth() == 4 ? "s_load_b128" : "s_load_b64";
+        Value loaded = createInstr(
+            builder, op.getLoc(), opcode, offsetImm, op.getResult(0).getType(),
+            {builder.getNamedAttr("base", builder.getStringAttr("s[0:1]"))});
         op.getResult(0).replaceAllUsesWith(loaded);
         op.erase();
-        offset += isPointer ? 8 : 4;
+        offset += isPointer ? regType.getWidth() * 4 : 4;
       }
       unsigned kernargSize = (std::max(offset, 4u) + 7u) & ~7u;
       func->setAttr("wavemachine.kernarg_size",

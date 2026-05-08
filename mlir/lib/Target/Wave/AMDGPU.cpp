@@ -11,6 +11,7 @@
 #include "MCTargetDesc/AMDGPUMCTargetDesc.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Dialect/Wave/IR/Wave.h"
+#include "mlir/Dialect/Wave/IR/WaveAMD.h"
 #include "mlir/Dialect/Wave/Transforms/Passes.h"
 #include "mlir/Dialect/WaveMachine/IR/WaveMachine.h"
 #include "mlir/IR/Builders.h"
@@ -135,6 +136,18 @@ private:
     return fallback;
   }
 
+  bool isBufferPointer(Type type) const {
+    auto ptr = dyn_cast<wave::PtrType>(type);
+    return ptr && isa<waveamd::BufferAddressSpaceAttr>(ptr.getAddressSpace());
+  }
+
+  unsigned kernelArgSize(Type type) const {
+    auto ptr = dyn_cast<wave::PtrType>(type);
+    if (!ptr)
+      return 4;
+    return isBufferPointer(type) ? 16 : 8;
+  }
+
   LogicalResult emitFunction(func::FuncOp func) {
     if (!func.getBody().hasOneBlock())
       return func.emitError("WaveMachine AMDGPU emitter supports one-block funcs");
@@ -165,9 +178,10 @@ private:
       unsigned offset = 0;
       for (auto [index, arg] : llvm::enumerate(func.getArguments())) {
         bool isBuffer = isa<wave::PtrType>(arg.getType());
+        unsigned size = kernelArgSize(arg.getType());
         info.args.push_back(KernelArgInfo{("arg" + Twine(index)).str(), offset,
-                                          isBuffer ? 8u : 4u, isBuffer});
-        offset += isBuffer ? 8 : 4;
+                                          size, isBuffer && !isBufferPointer(arg.getType())});
+        offset += size;
       }
       kernels.push_back(info);
       emitKernelDescriptor(func);
@@ -180,7 +194,7 @@ private:
       return attr.getInt();
     unsigned size = 0;
     for (BlockArgument arg : func.getArguments())
-      size += isa<wave::PtrType>(arg.getType()) ? 8 : 4;
+      size += kernelArgSize(arg.getType());
     return (std::max(size, 4u) + 7u) & ~7u;
   }
 
@@ -324,6 +338,8 @@ private:
     unsigned phys = getPhys(value);
     if (regType.getRegClass() == wavemachine::RegClass::VGPR)
       return mcVGPRReg(phys, regType.getWidth());
+    if (regType.getWidth() == 4)
+      return llvm::AMDGPU::SGPR0_SGPR1_SGPR2_SGPR3 + phys / 4;
     if (regType.getWidth() == 2)
       return llvm::AMDGPU::SGPR0_SGPR1 + phys / 2;
     return llvm::AMDGPU::SGPR0 + phys;
@@ -352,6 +368,15 @@ private:
         component >= regType.getWidth())
       llvm_unreachable("expected valid VGPR tuple component");
     return llvm::MCOperand::createReg(mcVGPRReg(getPhys(value) + component, 1));
+  }
+
+  llvm::MCOperand toMCSGPRComponent(Value value, unsigned component) const {
+    auto regType = cast<wavemachine::RegType>(value.getType());
+    if (regType.getRegClass() != wavemachine::RegClass::SGPR ||
+        component >= regType.getWidth())
+      llvm_unreachable("expected valid SGPR tuple component");
+    return llvm::MCOperand::createReg(llvm::AMDGPU::SGPR0 + getPhys(value) +
+                                     component);
   }
 
   llvm::MCOperand toMCOperand(Value value) {
@@ -498,6 +523,12 @@ private:
                      llvm::MCOperand::createReg(
                          namedPhysReg(op.getAttrOfType<StringAttr>("base").getValue())),
                      toMCOperand(op.getOperand(0)), llvm::MCOperand::createImm(0)});
+    if (isa<wavemachine::SLoadB128Op>(op))
+      return emitMC(llvm::AMDGPU::S_LOAD_B128_IMM_gfx11,
+                    {toMCOperand(result()),
+                     llvm::MCOperand::createReg(
+                         namedPhysReg(op.getAttrOfType<StringAttr>("base").getValue())),
+                     toMCOperand(op.getOperand(0)), llvm::MCOperand::createImm(0)});
     if (isa<wavemachine::SWaitcntOp>(op))
       return emitMCValues(llvm::AMDGPU::S_WAITCNT_gfx11, op.getOperands());
     if (isa<wavemachine::SWaitcntVscntOp>(op))
@@ -531,6 +562,31 @@ private:
                     {toMCOperand(op.getOperand(0)), toMCOperand(op.getOperand(1)),
                      toMCOperand(op.getOperand(2)), llvm::MCOperand::createImm(0),
                      llvm::MCOperand::createImm(0)});
+    if (isa<wavemachine::MakeBufferRsrcOp>(op)) {
+      constexpr uint32_t gfx11Format32Float = 22;
+      constexpr uint32_t defaultRsrcFlags =
+          (gfx11Format32Float << 12) | (1u << 24) | (3u << 28);
+      if (failed(emitMC(llvm::AMDGPU::S_MOV_B32_gfx11,
+                        {toMCSGPRComponent(result(), 0),
+                         toMCSGPRComponent(op.getOperand(0), 0)})) ||
+          failed(emitMC(llvm::AMDGPU::S_MOV_B32_gfx11,
+                        {toMCSGPRComponent(result(), 1),
+                         toMCSGPRComponent(op.getOperand(0), 1)})) ||
+          failed(emitMC(llvm::AMDGPU::S_MOV_B32_gfx11,
+                        {toMCSGPRComponent(result(), 2),
+                         toMCOperand(op.getOperand(1))})) ||
+          failed(emitMC(llvm::AMDGPU::S_MOV_B32_gfx11,
+                        {toMCSGPRComponent(result(), 3),
+                         llvm::MCOperand::createImm(defaultRsrcFlags)})))
+        return failure();
+      return success();
+    }
+    if (isa<wavemachine::BufferStoreB32Op>(op)) {
+      emitLine(Twine("buffer_store_dword ") + operandString(1) + ", " +
+               operandString(0) + ", " + physReg(op.getOperand(2)) +
+               ", 0 offen");
+      return success();
+    }
     if (isa<wavemachine::GlobalStoreTupleB32Op>(op)) {
       unsigned component = getIntAttr(&op, "component", 0);
       return emitMC(llvm::AMDGPU::GLOBAL_STORE_DWORD_SADDR_gfx11,

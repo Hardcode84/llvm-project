@@ -37,6 +37,12 @@ def WaveMachine_SGPR2
                  "::llvm::cast<::mlir::wavemachine::RegType>($_self).getWidth() == 2">,
            "WaveMachine SGPR pair register">;
 
+def WaveMachine_SGPR4
+    : Type<CPred<"::llvm::isa<::mlir::wavemachine::RegType>($_self) && "
+                 "::llvm::cast<::mlir::wavemachine::RegType>($_self).getRegClass() == ::mlir::wavemachine::RegClass::SGPR && "
+                 "::llvm::cast<::mlir::wavemachine::RegType>($_self).getWidth() == 4">,
+           "WaveMachine SGPR quad register">;
+
 def WaveMachine_VGPR
     : Type<CPred<"::llvm::isa<::mlir::wavemachine::RegType>($_self) && "
                  "::llvm::cast<::mlir::wavemachine::RegType>($_self).getRegClass() == ::mlir::wavemachine::RegClass::VGPR">,
@@ -226,6 +232,13 @@ def WaveMachine_SLoadB64Op : WaveMachine_UnaryResult<"s_load_b64",
   let arguments = (ins WaveMachine_Imm:$offset, StrAttr:$base);
   let assemblyFormat = "$offset `,` $base attr-dict `:` functional-type(operands, results)";
 }
+def WaveMachine_SLoadB128Op : WaveMachine_UnaryResult<"s_load_b128",
+                                                       WaveMachine_Imm,
+                                                       WaveMachine_SGPR4,
+                                                       [WaveMachine_SMEMLoad]> {
+  let arguments = (ins WaveMachine_Imm:$offset, StrAttr:$base);
+  let assemblyFormat = "$offset `,` $base attr-dict `:` functional-type(operands, results)";
+}
 def WaveMachine_SWaitcntOp : WaveMachine_UnaryNoResult<"s_waitcnt",
                                                         WaveMachine_Imm,
                                                         [WaveMachine_Waitcnt]>;
@@ -257,6 +270,16 @@ def WaveMachine_GlobalLoadB32Op
   let results = (outs WaveMachine_VGPR1:$result);
   let assemblyFormat = "$offset `,` $base (`after` $dependency^)? attr-dict `:` functional-type(operands, results)";
 }
+
+def WaveMachine_MakeBufferRsrcOp
+    : WaveMachine_Op<"make_buffer_rsrc", [Pure]> {
+  let summary = "construct an AMD buffer descriptor";
+  let arguments = (ins WaveMachine_SGPR2:$base,
+                       WaveMachine_RegOrImm:$range);
+  let results = (outs WaveMachine_SGPR4:$descriptor);
+  let assemblyFormat = "$base `,` $range attr-dict `:` functional-type(operands, results)";
+}
+
 def WaveMachine_GlobalStoreB32Op
     : WaveMachine_Op<"global_store_b32", [WaveMachine_VMEMStore]> {
   let summary = "global 32-bit store through an SGPR base";
@@ -265,6 +288,16 @@ def WaveMachine_GlobalStoreB32Op
                        Optional<WaveMachine_MemToken>:$dependency);
   let results = (outs Variadic<WaveMachine_MemToken>:$tokens);
   let assemblyFormat = "$offset `,` $value `,` $base (`after` $dependency^)? attr-dict `:` functional-type(operands, results)";
+  let hasVerifier = 1;
+}
+def WaveMachine_BufferStoreB32Op
+    : WaveMachine_Op<"buffer_store_b32", [WaveMachine_VMEMStore]> {
+  let summary = "buffer 32-bit store through an SGPR descriptor and VGPR offset";
+  let arguments = (ins WaveMachine_VGPR1:$offset, WaveMachine_VGPR1:$value,
+                       WaveMachine_SGPR4:$descriptor,
+                       Optional<WaveMachine_MemToken>:$dependency);
+  let results = (outs Variadic<WaveMachine_MemToken>:$tokens);
+  let assemblyFormat = "$offset `,` $value `,` $descriptor (`after` $dependency^)? attr-dict `:` functional-type(operands, results)";
   let hasVerifier = 1;
 }
 def WaveMachine_GlobalStoreTupleB32Op

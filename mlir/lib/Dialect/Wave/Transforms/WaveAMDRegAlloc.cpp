@@ -202,7 +202,8 @@ struct WaveAMDRegAllocPass
       expireOld(interval.start);
       unsigned width =
           cast<wavemachine::RegType>(interval.def->getResult(0).getType()).getWidth();
-      std::optional<unsigned> phys = findFreeContiguous(used, width);
+      std::optional<unsigned> phys =
+          findFreeContiguous(used, width, /*align=*/width);
       if (!phys)
         return func.emitError("WaveMachine register allocator ran out of registers");
       auto oldType =
@@ -221,8 +222,11 @@ struct WaveAMDRegAllocPass
   }
 
   static std::optional<unsigned> findFreeContiguous(ArrayRef<bool> used,
-                                                    unsigned width) {
+                                                    unsigned width,
+                                                    unsigned align) {
     for (unsigned i = 0, e = used.size(); i + width <= e; ++i) {
+      if (i % align)
+        continue;
       bool allFree = true;
       for (unsigned j = 0; j != width; ++j) {
         if (used[i + j]) {

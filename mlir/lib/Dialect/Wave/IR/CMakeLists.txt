@@ -25,6 +25,7 @@ add_mlir_dialect_library(MLIRWaveAMDDialect
   ${MLIR_MAIN_INCLUDE_DIR}/mlir/Dialect/Wave
 
   DEPENDS
+  MLIRWaveAMDAttributesIncGen
   MLIRWaveAMDOpsIncGen
 
   LINK_LIBS PUBLIC

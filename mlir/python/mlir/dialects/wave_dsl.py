@@ -44,6 +44,10 @@ def ptr_type(element_type=None, address_space="#wave.global"):
     return Type.parse(f"!wave.ptr<{element_type}, {address_space}>")
 
 
+def buffer_ptr_type(element_type=None):
+    return ptr_type(element_type, "#waveamd.buffer")
+
+
 def i8():
     return IntegerType.get_signless(8)
 
@@ -133,6 +137,10 @@ class FunctionBuilder:
     def mma(self, kind, a, b, acc):
         return waveamd.MmaOp(acc.type, kind, a, b, acc).result
 
+    def make_buffer(self, base, range_bytes, result_type=None):
+        result_type = result_type or buffer_ptr_type()
+        return waveamd.MakeBufferOp(result_type, base, range_bytes).result
+
     def fragment_store(self, fragment, ptr, *, after=None):
         return waveamd.FragmentStoreOp(
             mem_token_type(), fragment, ptr, dependency=after
@@ -149,6 +157,7 @@ __all__ = [
     "IntegerType",
     "IndexType",
     "ModuleBuilder",
+    "buffer_ptr_type",
     "fragment_type",
     "i8",
     "i32",

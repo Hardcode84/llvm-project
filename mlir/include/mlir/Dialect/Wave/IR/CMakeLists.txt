@@ -8,3 +8,8 @@ add_mlir_dialect_tablegen_target(MLIRWaveAttributesIncGen)
 
 add_mlir_dialect(WaveAMDOps waveamd)
 add_mlir_doc(WaveAMDOps WaveAMDOps Dialects/ -gen-dialect-doc)
+
+set(LLVM_TARGET_DEFINITIONS WaveAMDAttrs.td)
+mlir_tablegen(WaveAMDOpsAttributes.h.inc -gen-attrdef-decls -attrdefs-dialect=waveamd)
+mlir_tablegen(WaveAMDOpsAttributes.cpp.inc -gen-attrdef-defs -attrdefs-dialect=waveamd)
+add_mlir_dialect_tablegen_target(MLIRWaveAMDAttributesIncGen)

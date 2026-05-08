@@ -88,6 +88,12 @@ LogicalResult GlobalStoreB32Op::verify() {
   return success();
 }
 
+LogicalResult BufferStoreB32Op::verify() {
+  if (getNumResults() > 1)
+    return emitOpError("produces at most one memory token");
+  return success();
+}
+
 LogicalResult GlobalStoreTupleB32Op::verify() {
   if (getNumResults() > 1)
     return emitOpError("produces at most one memory token");
