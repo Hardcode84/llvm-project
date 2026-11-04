@@ -21,6 +21,7 @@
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/MapVector.h"
 #include "llvm/Support/TypeSize.h"
+#include <utility>
 
 namespace mlir {
 class DataLayout;
@@ -265,9 +266,15 @@ private:
   /// Operation defining the scope of requests.
   Operation *scope;
 
+  using SizeEntry = std::pair<bool, llvm::TypeSize>;
+  SizeEntry getTypeSizeEntry(Type t) const;
+  SizeEntry getTypeSizeInBitsEntry(Type t) const;
+
+  /// Size entries contain a default flag and the resolved size.
+  mutable DenseMap<Type, SizeEntry> sizes;
+  mutable DenseMap<Type, SizeEntry> bitsizes;
+
   /// Caches for individual requests.
-  mutable DenseMap<Type, llvm::TypeSize> sizes;
-  mutable DenseMap<Type, llvm::TypeSize> bitsizes;
   mutable DenseMap<Type, uint64_t> abiAlignments;
   mutable DenseMap<Type, uint64_t> preferredAlignments;
   mutable DenseMap<Type, std::optional<uint64_t>> indexBitwidths;

@@ -738,6 +738,11 @@ TEST(DataLayout, Caching) {
       cast<DataLayoutOpInterface>(module->getBody()->getOperations().front());
   DataLayout layout(op);
 
+  Type type = SingleQueryType::get(&ctx);
+  // Optional and ordinary queries must share the resolved default size.
+  EXPECT_EQ(layout.getTypeSizeIfSpecified(type), std::nullopt);
+  EXPECT_EQ(layout.getTypeSizeIfSpecified(type), std::nullopt);
+
   unsigned sum = 0;
   sum += layout.getTypeSize(SingleQueryType::get(&ctx));
   // The second call should hit the cache. If it does not, the function in
@@ -745,6 +750,7 @@ TEST(DataLayout, Caching) {
   sum += layout.getTypeSize(SingleQueryType::get(&ctx));
   // Make sure the complier doesn't optimize away the query code.
   EXPECT_EQ(sum, 2u);
+  EXPECT_EQ(layout.getTypeSizeIfSpecified(type), std::nullopt);
 
   // A fresh data layout has a new cache, so the call to it should be dispatched
   // down to the type and abort the process.

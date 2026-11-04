@@ -552,44 +552,52 @@ static T cachedLookup(Type t, DenseMap<Type, T> &cache,
   return result.first->second;
 }
 
-llvm::TypeSize mlir::DataLayout::getTypeSize(Type t) const {
+mlir::DataLayout::SizeEntry mlir::DataLayout::getTypeSizeEntry(Type t) const {
   checkValid();
-  return cachedLookup<llvm::TypeSize>(t, sizes, [&](Type ty) {
+  return cachedLookup<SizeEntry>(t, sizes, [&](Type ty) {
     DataLayoutEntryList list;
     if (originalLayout)
       list = originalLayout.getSpecForType(ty.getTypeID());
-    if (auto iface = dyn_cast_or_null<DataLayoutOpInterface>(scope))
-      return iface.getTypeSize(ty, *this, list);
-    return detail::getDefaultTypeSize(ty, *this, list);
+    auto iface = dyn_cast_or_null<DataLayoutOpInterface>(scope);
+    llvm::TypeSize size = iface ? iface.getTypeSize(ty, *this, list)
+                                : detail::getDefaultTypeSize(ty, *this, list);
+    return SizeEntry(list.empty(), size);
   });
 }
 
-llvm::TypeSize mlir::DataLayout::getTypeSizeInBits(Type t) const {
+mlir::DataLayout::SizeEntry
+mlir::DataLayout::getTypeSizeInBitsEntry(Type t) const {
   checkValid();
-  return cachedLookup<llvm::TypeSize>(t, bitsizes, [&](Type ty) {
+  return cachedLookup<SizeEntry>(t, bitsizes, [&](Type ty) {
     DataLayoutEntryList list;
     if (originalLayout)
       list = originalLayout.getSpecForType(ty.getTypeID());
-    if (auto iface = dyn_cast_or_null<DataLayoutOpInterface>(scope))
-      return iface.getTypeSizeInBits(ty, *this, list);
-    return detail::getDefaultTypeSizeInBits(ty, *this, list);
+    auto iface = dyn_cast_or_null<DataLayoutOpInterface>(scope);
+    llvm::TypeSize size =
+        iface ? iface.getTypeSizeInBits(ty, *this, list)
+              : detail::getDefaultTypeSizeInBits(ty, *this, list);
+    return SizeEntry(list.empty(), size);
   });
+}
+
+llvm::TypeSize mlir::DataLayout::getTypeSize(Type t) const {
+  return getTypeSizeEntry(t).second;
+}
+
+llvm::TypeSize mlir::DataLayout::getTypeSizeInBits(Type t) const {
+  return getTypeSizeInBitsEntry(t).second;
 }
 
 std::optional<llvm::TypeSize>
 mlir::DataLayout::getTypeSizeIfSpecified(Type t) const {
-  checkValid();
-  if (!originalLayout || originalLayout.getSpecForType(t.getTypeID()).empty())
-    return std::nullopt;
-  return getTypeSize(t);
+  auto [isDefault, size] = getTypeSizeEntry(t);
+  return isDefault ? std::nullopt : std::optional(size);
 }
 
 std::optional<llvm::TypeSize>
 mlir::DataLayout::getTypeSizeInBitsIfSpecified(Type t) const {
-  checkValid();
-  if (!originalLayout || originalLayout.getSpecForType(t.getTypeID()).empty())
-    return std::nullopt;
-  return getTypeSizeInBits(t);
+  auto [isDefault, size] = getTypeSizeInBitsEntry(t);
+  return isDefault ? std::nullopt : std::optional(size);
 }
 
 llvm::TypeSize mlir::DataLayout::getTypeAllocSize(Type t) const {
