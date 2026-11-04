@@ -491,6 +491,10 @@ module {}
 
   OwningOpRef<ModuleOp> module = parseSourceString<ModuleOp>(ir, &ctx);
   DataLayout layout(module.get());
+  EXPECT_EQ(layout.getTypeSizeIfSpecified(IndexType::get(&ctx)), std::nullopt);
+  EXPECT_EQ(layout.getTypeSizeInBitsIfSpecified(IndexType::get(&ctx)),
+            std::nullopt);
+  EXPECT_EQ(layout.getTypeSizeInBits(IndexType::get(&ctx)), 64u);
   EXPECT_EQ(layout.getTypeSize(IntegerType::get(&ctx, 42)), 6u);
   EXPECT_EQ(layout.getTypeSize(Float16Type::get(&ctx)), 2u);
   EXPECT_EQ(layout.getTypeSizeInBits(IntegerType::get(&ctx, 42)), 42u);
@@ -652,6 +656,12 @@ TEST(DataLayout, SpecWithEntries) {
   auto op =
       cast<DataLayoutOpInterface>(module->getBody()->getOperations().front());
   DataLayout layout(op);
+  EXPECT_EQ(layout.getTypeSizeIfSpecified(IntegerType::get(&ctx, 42)),
+            llvm::TypeSize::getFixed(5));
+  EXPECT_EQ(layout.getTypeSizeInBitsIfSpecified(IntegerType::get(&ctx, 42)),
+            llvm::TypeSize::getFixed(40));
+  EXPECT_EQ(layout.getTypeSizeInBitsIfSpecified(Float16Type::get(&ctx)),
+            std::nullopt);
   EXPECT_EQ(layout.getTypeSize(IntegerType::get(&ctx, 42)), 5u);
   EXPECT_EQ(layout.getTypeSize(Float16Type::get(&ctx)), 6u);
   EXPECT_EQ(layout.getTypeSizeInBits(IntegerType::get(&ctx, 42)), 40u);

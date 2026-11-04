@@ -576,6 +576,22 @@ llvm::TypeSize mlir::DataLayout::getTypeSizeInBits(Type t) const {
   });
 }
 
+std::optional<llvm::TypeSize>
+mlir::DataLayout::getTypeSizeIfSpecified(Type t) const {
+  checkValid();
+  if (!originalLayout || originalLayout.getSpecForType(t.getTypeID()).empty())
+    return std::nullopt;
+  return getTypeSize(t);
+}
+
+std::optional<llvm::TypeSize>
+mlir::DataLayout::getTypeSizeInBitsIfSpecified(Type t) const {
+  checkValid();
+  if (!originalLayout || originalLayout.getSpecForType(t.getTypeID()).empty())
+    return std::nullopt;
+  return getTypeSizeInBits(t);
+}
+
 llvm::TypeSize mlir::DataLayout::getTypeAllocSize(Type t) const {
   return llvm::alignTo(getTypeSize(t), getTypeABIAlignment(t));
 }

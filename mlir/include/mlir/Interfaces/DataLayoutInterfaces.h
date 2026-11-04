@@ -187,6 +187,14 @@ public:
   /// Returns the size in bits of the given type in the current scope.
   llvm::TypeSize getTypeSizeInBits(Type t) const;
 
+  /// Returns the type size if the combined layout has an entry for its type
+  /// class. Returns std::nullopt when no such entry is present.
+  std::optional<llvm::TypeSize> getTypeSizeIfSpecified(Type t) const;
+
+  /// Returns the type size in bits if the combined layout has an entry for its
+  /// type class. Returns std::nullopt when no such entry is present.
+  std::optional<llvm::TypeSize> getTypeSizeInBitsIfSpecified(Type t) const;
+
   /// Returns the offset in bytes between successive objects of the given type
   /// in the current scope, that is, its size rounded up to its ABI alignment.
   llvm::TypeSize getTypeAllocSize(Type t) const;
